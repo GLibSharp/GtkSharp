@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
@@ -6,19 +6,19 @@ using MonoDevelop.Ide.Desktop;
 
 namespace MonoDevelop.GtkSharp.Addin
 {
-	public class GladeDesktopApplication : DesktopApplication
-	{
-		private static readonly string s_unixgladeapp = "-c '" + File.ReadAllText("glade.sh") + "'";
+    public class GladeDesktopApplication : DesktopApplication
+    {
+        private static readonly string s_unixgladeapp = "-c '" + File.ReadAllText("glade.sh") + "'";
 
         private readonly string _filename;
 
         public GladeDesktopApplication(string filename) : base("GladeApp", "Glade", true)
-		{
-			_filename = filename;
-		}
+        {
+            _filename = filename;
+        }
 
-		public override void Launch(params string[] files)
-		{
+        public override void Launch(params string[] files)
+        {
             try
             {
                 var process = new Process();
@@ -45,6 +45,6 @@ namespace MonoDevelop.GtkSharp.Addin
             {
                 Console.WriteLine(ex);
             }
-		}
-	}
+        }
+    }
 }

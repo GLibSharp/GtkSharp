@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <Template>
     <TemplateConfiguration>
         <_Name>Gtk# Application</_Name>
@@ -7,7 +7,7 @@
         <LanguageName>F#</LanguageName>
         <Image id="md-gui-project" />
         <_Description>Creates a new Gtk# multiplatform application.</_Description>
-		<GroupId>gtk-project</GroupId>
+        <GroupId>gtk-project</GroupId>
     </TemplateConfiguration>
     <Actions>
         <Open filename="MainWindow.cs" />

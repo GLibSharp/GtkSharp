@@ -1,4 +1,4 @@
-﻿using Mono.Addins;
+using Mono.Addins;
 using Mono.Addins.Description;
 
 [assembly: Addin("MonoDevelop.GtkSharp.Addin", Version="1.0")]
