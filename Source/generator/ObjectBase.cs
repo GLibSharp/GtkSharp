@@ -35,7 +35,7 @@ namespace GtkSharp.Generation {
 
 		ArrayList class_members = new ArrayList ();
 		protected List<StructABIField> abi_class_members = new List<StructABIField> ();
-		bool class_abi_valid;
+		bool class_abi_valid = true;
 
 		protected IList<ClassField> class_fields = new List<ClassField> ();
 		// The default handlers of these signals need to be overridden with g_signal_override_class_closure
@@ -89,6 +89,12 @@ namespace GtkSharp.Generation {
 			}
 				
 			if (class_elem == null) return;
+			
+			if (class_elem.GetAttributeAsBoolean("private")) {
+				class_abi_valid = false;
+				return;
+			}
+
 			class_struct_name = class_elem.GetAttribute ("cname");
 
 			int num_abi_fields = 0;
@@ -319,7 +325,6 @@ namespace GtkSharp.Generation {
 				if (!field.Validate (log))
 					class_fields_valid = false;
 
-			class_abi_valid = true;
 			foreach (StructABIField field in abi_class_members)
 				if (!field.Validate (log))
 					class_abi_valid = false;
