@@ -106,6 +106,9 @@ namespace GtkSharp.Generation {
 				if (IsCPointer())
 					min_align = "(uint) Marshal.SizeOf(typeof(IntPtr))";
 
+				if (IsBitfield)
+					min_align = "1";
+
 				if (min_align == null) {
 					var tmpindent = "\t\t";
 					structw.WriteLine(tmpindent + "[StructLayout(LayoutKind.Sequential)]");
