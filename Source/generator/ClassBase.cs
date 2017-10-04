@@ -255,7 +255,7 @@ namespace GtkSharp.Generation {
 				prev = field.Generate(gen_info, "\t\t\t\t\t", prev, next, cs_parent_struct,
 						field_alignment_structures_writer);
 				var union = field as UnionABIField;
-				if (union == null && gen_info.CAbiWriter != null) {
+				if (union == null && gen_info.CAbiWriter != null && !field.IsBitfield) {
 					gen_info.AbiWriter.WriteLine("\t\t\tConsole.WriteLine(\"\\\"{0}.{3}\\\": \\\"\" + {1}.{2}." + info_name + ".GetFieldOffset(\"{3}\") + \"\\\"\");", structname, NS, Name, field.CName);
 					gen_info.CAbiWriter.WriteLine("\tg_print(\"\\\"{0}.{1}\\\": \\\"%\" G_GOFFSET_FORMAT \"\\\"\\n\", G_STRUCT_OFFSET({0}, {1}));", structname, field.CName);
 				}
