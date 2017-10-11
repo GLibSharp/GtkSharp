@@ -187,6 +187,7 @@
             </xs:element>
         </xs:choice>
         <xs:attribute name="cname" type="xs:string"/>
+        <xs:attribute name="private" type="xs:boolean"/>
     </xs:complexType>
 
     <xs:complexType name="constructorType">
@@ -218,6 +219,7 @@
         <xs:attribute name="access" type="xs:string" use="optional"/>
         <xs:attribute name="writeable" type="xs:boolean" use="optional"/>
         <xs:attribute name="bits" type="xs:positiveInteger" use="optional"/>
+        <xs:attribute name="is_callback" type="xs:boolean" use="optional"/>
     </xs:complexType>
 
     <xs:complexType name="implementsType">
