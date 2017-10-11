@@ -4,8 +4,7 @@ symbols = join_paths(meson.current_source_dir(), pkg + '-symbols.xml')
 
 raw_api_fname = join_paths(meson.current_source_dir(), pkg + '-api.raw')
 metadata = files('Gtk.metadata')
-glueincludes = 'gtk/gtk.h'
-gluefile = join_paths(meson.current_build_dir(), 'generate.c')
+abi_includes = 'gtk/gtk.h'
 
 configure_file(input: assembly_name + '.dll.config.in',
         output: assembly_name + '.dll.config',
