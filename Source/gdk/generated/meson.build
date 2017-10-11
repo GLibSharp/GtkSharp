@@ -216,7 +216,7 @@ source_gen = custom_target(assembly_name + 'codegen',
 api_xml = custom_target(pkg + '_api_xml',
         input: raw_api_fname,
         output: pkg + '-api.xml',
-        command: [generate_api, '--fakeglue'],
+        command: [generate_api, '--fake'],
         depends: [source_gen],
         install: install,
         install_dir: gapi_xml_installdir)
