@@ -55,7 +55,7 @@ assembly_data.set('API_VERSION', apiversion)
 assemblyinfo = configure_file(input: 'AssemblyInfo.cs.in', output: 'AssemblyInfo.cs', configuration : assembly_data)
 
 policy_config = files('policy.config.in')
-if host_machine.system() == 'osx'
+if host_machine.system() == 'darwin'
   lib_prefix=''
   lib_suffix='.dylib'
 else
