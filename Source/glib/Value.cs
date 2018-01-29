@@ -254,6 +254,12 @@ namespace GLib {
 			return g_value_get_double (ref val);
 		}
 
+		public static explicit operator GLib.GType (Value val)
+		{
+			return g_value_get_gtype (ref val);
+		}
+
+
 		public static explicit operator string (Value val)
 		{
 			IntPtr str = g_value_get_string (ref val);
@@ -702,6 +708,9 @@ namespace GLib {
 
 		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern float g_value_get_float (ref Value val);
+
+		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern GLib.GType g_value_get_gtype (ref Value val);
 
 		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern int g_value_get_int (ref Value val);
