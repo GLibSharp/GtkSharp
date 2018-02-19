@@ -14,6 +14,7 @@ glib_required_version='>=2.32.0'
 csc = meson.get_compiler('cs')
 
 runtime = ''
+runtime_debug_flags = ''
 if get_option('buildtype') == 'debug' or get_option('buildtype') == 'debugoptimized'
   runtime_debug_flags=' --debug'
 endif
