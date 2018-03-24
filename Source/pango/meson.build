@@ -57,7 +57,7 @@ sources = [
 ]
 
 deps = [glib_sharp, cairo_sharp]
-pango_sharp = library(assembly_name, source_gen, sources, assemblyinfo,
+pango_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         cs_args: ['-unsafe'],
         link_with: deps,
         install: install,

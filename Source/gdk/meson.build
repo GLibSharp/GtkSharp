@@ -63,7 +63,7 @@ sources = [
 ]
 
 deps = [glib_sharp, pango_sharp, cairo_sharp, gio_sharp]
-gdk_sharp = library(assembly_name, source_gen, sources, assemblyinfo,
+gdk_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         cs_args: ['-unsafe'],
         link_with: deps,
         install: install,
