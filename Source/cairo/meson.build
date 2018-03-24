@@ -60,7 +60,7 @@ sources = [
     'XlibSurface.cs',
 ]
 
-cairo_sharp = library(assembly_name, sources, assemblyinfo,
+cairo_sharp = shared_library(assembly_name, sources, assemblyinfo,
         install: install,
         install_dir: lib_install_dir
 )

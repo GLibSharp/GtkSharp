@@ -95,7 +95,7 @@ sources = [
     'VariantType.cs']
 
 
-glib_sharp = library(assembly_name, sources, assemblyinfo,
+glib_sharp = shared_library(assembly_name, sources, assemblyinfo,
         cs_args: ['-unsafe'],
         install: install,
         install_dir: lib_install_dir
