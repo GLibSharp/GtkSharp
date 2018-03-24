@@ -28,7 +28,7 @@ sources = [
     'IFile.cs'
 ]
 
-gio_sharp = library(assembly_name, source_gen, sources, assemblyinfo,
+gio_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         cs_args: ['-unsafe'],
         link_with: glib_sharp,
         install: install,
