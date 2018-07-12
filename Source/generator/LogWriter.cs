@@ -33,7 +33,7 @@ namespace GtkSharp.Generation {
 		public LogWriter () {
 			var l = Environment.GetEnvironmentVariable("CODEGEN_DEBUG");
 
-			level = 1;
+			level = 0;
 			if (l != null) {
 				level = Int32.Parse(l);
 			}
