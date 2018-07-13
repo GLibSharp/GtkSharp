@@ -104,7 +104,7 @@ else
     message('Cairo not found, not building')
 endif
 
-pango_dep = dependency('pango', required: get_option('pango')
+pango_dep = dependency('pango', required: get_option('pango'))
 if pango_dep.found()
     mono_path += pathsep + join_paths(meson.current_build_dir(), 'pango')
     subdir('pango')
