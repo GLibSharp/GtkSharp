@@ -37,8 +37,7 @@ endif
 install = get_option('install')
 assemblyinfo='/AssemblyInfo.cs'
 
-gacutil = find_program('gacutil')
-al = find_program('al')
+gacutil = find_program('gacutil', required: install)
 diff = find_program('audit/test_abi.py')
 
 glib_dep = dependency('glib-2.0', version: glib_required_version,
