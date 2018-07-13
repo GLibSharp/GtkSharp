@@ -2,6 +2,6 @@
 
 set -e
 
-docker build -t gtk-sharp-debian9 .
+docker build -t gtk-sharp-arch .
 
-docker run gtk-sharp-debian9 ${@}
+docker run gtk-sharp-arch ${@}

@@ -1,9 +1,8 @@
-FROM debian:9
+FROM base/devel
 
-RUN apt-get update && \
-    apt-get install -y git python3 python3-pip ninja-build mono-devel libgtk-3-dev
-
-RUN pip3 install git+https://github.com/mesonbuild/meson/
+RUN pacman -Syy --noconfirm
+RUN pacman -Syu --noconfirm
+RUN pacman -S --noconfirm meson mono gtk3 git
 
 ENV SOURCE_DIR="/source"
 
