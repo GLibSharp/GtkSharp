@@ -1,1 +1,6 @@
 option('install', type : 'boolean', value : false)
+option('cairo', type : 'feature', value : 'auto')
+option('pango', type : 'feature', value : 'auto')
+option('atk', type : 'feature', value : 'auto')
+option('gdk', type : 'feature', value : 'auto')
+option('gtk', type : 'feature', value : 'auto')

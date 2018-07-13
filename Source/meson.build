@@ -96,7 +96,7 @@ subdir('generator')
 subdir('glib')
 subdir('gio')
 
-cairo_dep = dependency('cairo', required: false)
+cairo_dep = dependency('cairo', required: get_option('cairo'))
 if cairo_dep.found()
     mono_path += pathsep + join_paths(meson.current_build_dir(), 'cairo')
     subdir('cairo')
@@ -104,7 +104,7 @@ else
     message('Cairo not found, not building')
 endif
 
-pango_dep = dependency('pango', required: false)
+pango_dep = dependency('pango', required: get_option('pango')
 if pango_dep.found()
     mono_path += pathsep + join_paths(meson.current_build_dir(), 'pango')
     subdir('pango')
@@ -112,7 +112,7 @@ else
     message('Pango not found, not building')
 endif
 
-atk_dep = dependency('atk', required: false)
+atk_dep = dependency('atk', required: get_option('atk'))
 if atk_dep.found()
     mono_path += pathsep + join_paths(meson.current_build_dir(), 'atk')
     subdir('atk')
@@ -120,7 +120,7 @@ else
     message('Atk not found, not building')
 endif
 
-gdk_dep = dependency('gdk-3.0', version: gtk_required_version, required: false)
+gdk_dep = dependency('gdk-3.0', version: gtk_required_version, required: get_option('gdk'))
 if gdk_dep.found() and atk_dep.found() and pango_dep.found()
     mono_path += pathsep + join_paths(meson.current_build_dir(), 'gdk')
     subdir('gdk')
@@ -130,7 +130,7 @@ else
     has_gdk = false
 endif
 
-gtk_dep = dependency('gtk+-3.0', version: gtk_required_version, required: false)
+gtk_dep = dependency('gtk+-3.0', version: gtk_required_version, required: get_option('gtk'))
 if gtk_dep.found() and atk_dep.found() and pango_dep.found()
     mono_path += pathsep + join_paths(meson.current_build_dir(), 'gtk')
     subdir('gtk')
