@@ -58,10 +58,10 @@ namespace Gtk {
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ClosureMarshal (IntPtr closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data);
 
-		[DllImport ("libgobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_closure_new_simple (int closure_size, IntPtr dummy);
 
-		[DllImport ("libgobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_closure_set_marshal (IntPtr closure, ClosureMarshal marshaler);
 
 		static IntPtr CreateClosure (ClosureMarshal marshaler) {
@@ -70,7 +70,7 @@ namespace Gtk {
 			return raw_closure;
 		}
 
-		[DllImport ("libgobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_signal_newv (IntPtr signal_name, IntPtr gtype, GLib.Signal.Flags signal_flags, IntPtr closure, IntPtr accumulator, IntPtr accu_data, IntPtr c_marshaller, IntPtr return_type, uint n_params, [MarshalAs (UnmanagedType.LPArray)] IntPtr[] param_types);
 
 		static uint RegisterSignal (string signal_name, GLib.GType gtype, GLib.Signal.Flags signal_flags, GLib.GType return_type, GLib.GType[] param_types, ClosureMarshal marshaler)

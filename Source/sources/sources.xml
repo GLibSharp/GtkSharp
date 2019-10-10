@@ -1,6 +1,6 @@
 <gapi-parser-input>
   <api filename="../gio/gio-api.raw">
-    <library name="libgio-2.0-0.dll">
+    <library name="gio-2.0-0.dll">
       <namespace name="G">
         <directory path="glib-2.50.2/gio">
           <exclude>gasynchelper.h</exclude>

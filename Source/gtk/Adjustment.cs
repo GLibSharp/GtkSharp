@@ -42,10 +42,10 @@ namespace Gtk {
 			Raw = gtk_adjustment_new(value, lower, upper, step_increment, page_increment, page_size);
 		}
 
-		[DllImport ("libgobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_object_freeze_notify (IntPtr inst);
 
-		[DllImport ("libgobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_object_thaw_notify (IntPtr inst);
 
 		public void SetBounds (double lower, double upper, double step_increment, double page_increment, double page_size)

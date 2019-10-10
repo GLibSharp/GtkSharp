@@ -49,7 +49,7 @@ namespace Pango {
 		[DllImport ("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_script_iter_get_range (IntPtr raw, out IntPtr start, out IntPtr end, out Pango.Script script);
 
-		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("glib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_utf8_pointer_to_offset (IntPtr str, IntPtr pos);
 
 		public void GetRange (out int start, out int len, out Pango.Script script)
