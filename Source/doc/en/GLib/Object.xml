@@ -228,7 +228,7 @@ This method is called by the generated classes by the Gtk# framework.
     </Member>
     <Member MemberName="g_signal_chain_from_overridden">
       <MemberSignature Language="C#" Value="protected static void g_signal_chain_from_overridden (IntPtr args, ref GLib.Value retval);" />
-      <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig pinvokeimpl (&quot;libgobject-2.0-0.dll&quot; as &quot;g_signal_chain_from_overridden&quot; cdecl)void g_signal_chain_from_overridden(native int args, valuetype GLib.Value retval) cil managed" />
+      <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig pinvokeimpl (&quot;gobject-2.0-0.dll&quot; as &quot;g_signal_chain_from_overridden&quot; cdecl)void g_signal_chain_from_overridden(native int args, valuetype GLib.Value retval) cil managed" />
       <MemberType>Method</MemberType>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
