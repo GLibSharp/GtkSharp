@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public CssProvider (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_provider_new();
 
 		public CssProvider () : base (IntPtr.Zero)
@@ -136,7 +136,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_css_provider_error_quark();
 
 		public static int ErrorQuark() {
@@ -145,7 +145,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_provider_get_default();
 
 		public static Gtk.CssProvider Default { 
@@ -156,7 +156,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_provider_get_named(IntPtr name, IntPtr variant);
 
 		public static Gtk.CssProvider GetNamed(string name, string variant) {
@@ -169,7 +169,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_provider_get_type();
 
 		public static new GLib.GType GType { 
@@ -180,7 +180,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_css_provider_load_from_data(IntPtr raw, IntPtr data, IntPtr length, out IntPtr error);
 
 		public unsafe bool LoadFromData(string data) {
@@ -193,7 +193,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_css_provider_load_from_file(IntPtr raw, IntPtr file, out IntPtr error);
 
 		public unsafe bool LoadFromFile(GLib.IFile file) {
@@ -204,7 +204,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_css_provider_load_from_path(IntPtr raw, IntPtr path, out IntPtr error);
 
 		public unsafe bool LoadFromPath(string path) {
@@ -217,7 +217,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_css_provider_load_from_resource(IntPtr raw, IntPtr resource_path);
 
 		public void LoadFromResource(string resource_path) {
@@ -226,7 +226,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_resource_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_provider_to_string(IntPtr raw);
 
 		public override string ToString() {
@@ -235,7 +235,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_provider_get_style_property(IntPtr raw, IntPtr path, int state, IntPtr pspec, IntPtr value);
 
 		public bool GetStyleProperty(Gtk.WidgetPath path, Gtk.StateFlags state, IntPtr pspec, GLib.Value value) {

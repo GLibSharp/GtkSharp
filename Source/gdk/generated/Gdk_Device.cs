@@ -18,7 +18,7 @@ namespace Gdk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_display(IntPtr raw);
 
 		[GLib.Property ("display")]
@@ -40,7 +40,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_name(IntPtr raw);
 
 		[GLib.Property ("name")]
@@ -62,7 +62,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_associated_device(IntPtr raw);
 
 		[GLib.Property ("associated-device")]
@@ -99,7 +99,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_device_get_has_cursor(IntPtr raw);
 
 		[GLib.Property ("has-cursor")]
@@ -111,7 +111,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_n_axes(IntPtr raw);
 
 		[GLib.Property ("n-axes")]
@@ -123,7 +123,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_vendor_id(IntPtr raw);
 
 		[GLib.Property ("vendor-id")]
@@ -135,7 +135,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_product_id(IntPtr raw);
 
 		[GLib.Property ("product-id")]
@@ -147,7 +147,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_seat(IntPtr raw);
 
 		[GLib.Property ("seat")]
@@ -174,7 +174,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_axes(IntPtr raw);
 
 		[GLib.Property ("axes")]
@@ -914,7 +914,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_device_get_axis(IntPtr raw, double[] axes, int use, out double value);
 
 		public bool GetAxis(double[] axes, Gdk.AxisUse use, out double value) {
@@ -923,7 +923,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_axis_use(IntPtr raw, uint index_);
 
 		public Gdk.AxisUse GetAxisUse(uint index_) {
@@ -932,7 +932,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_device_get_axis_value(IntPtr raw, out double axes, IntPtr axis_label, out double value);
 
 		public bool GetAxisValue(out double axes, Gdk.Atom axis_label, out double value) {
@@ -941,7 +941,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_device_type(IntPtr raw);
 
 		public Gdk.DeviceType DeviceType { 
@@ -952,7 +952,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_device_get_key(IntPtr raw, uint index_, out uint keyval, out int modifiers);
 
 		public bool GetKey(uint index_, out uint keyval, out Gdk.ModifierType modifiers) {
@@ -963,7 +963,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_last_event_window(IntPtr raw);
 
 		public Gdk.Window LastEventWindow { 
@@ -974,7 +974,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_mode(IntPtr raw);
 
 		public Gdk.InputMode Mode { 
@@ -985,7 +985,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_n_keys(IntPtr raw);
 
 		public int NKeys { 
@@ -996,21 +996,21 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_get_position(IntPtr raw, IntPtr screen, out int x, out int y);
 
 		public void GetPosition(Gdk.Screen screen, out int x, out int y) {
 			gdk_device_get_position(Handle, screen == null ? IntPtr.Zero : screen.Handle, out x, out y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_get_position_double(IntPtr raw, IntPtr screen, out double x, out double y);
 
 		public void GetPositionDouble(Gdk.Screen screen, out double x, out double y) {
 			gdk_device_get_position_double(Handle, screen == null ? IntPtr.Zero : screen.Handle, out x, out y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_get_source(IntPtr raw);
 
 		public Gdk.InputSource Source { 
@@ -1021,7 +1021,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_get_state(IntPtr raw, IntPtr window, out double axes, out int mask);
 
 		public void GetState(Gdk.Window window, out double axes, out Gdk.ModifierType mask) {
@@ -1030,7 +1030,7 @@ namespace Gdk {
 			mask = (Gdk.ModifierType) native_mask;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_type();
 
 		public static new GLib.GType GType { 
@@ -1041,7 +1041,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_window_at_position(IntPtr raw, out int win_x, out int win_y);
 
 		public Gdk.Window GetWindowAtPosition(out int win_x, out int win_y) {
@@ -1050,7 +1050,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_get_window_at_position_double(IntPtr raw, out double win_x, out double win_y);
 
 		public Gdk.Window GetWindowAtPositionDouble(out double win_x, out double win_y) {
@@ -1059,7 +1059,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_grab(IntPtr raw, IntPtr window, int grab_ownership, bool owner_events, int event_mask, IntPtr cursor, uint time_);
 
 		[Obsolete]
@@ -1069,7 +1069,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_device_grab_info_libgtk_only(IntPtr display, IntPtr device, IntPtr grab_window, out bool owner_events);
 
 		[Obsolete]
@@ -1079,7 +1079,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_list_axes(IntPtr raw);
 
 		public Gdk.Atom[] ListAxes() {
@@ -1088,7 +1088,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_list_slave_devices(IntPtr raw);
 
 		public Gdk.Device[] ListSlaveDevices() {
@@ -1097,21 +1097,21 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_set_axis_use(IntPtr raw, uint index_, int use);
 
 		public void SetAxisUse(uint index_, Gdk.AxisUse use) {
 			gdk_device_set_axis_use(Handle, index_, (int) use);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_set_key(IntPtr raw, uint index_, uint keyval, int modifiers);
 
 		public void SetKey(uint index_, uint keyval, Gdk.ModifierType modifiers) {
 			gdk_device_set_key(Handle, index_, keyval, (int) modifiers);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_device_set_mode(IntPtr raw, int mode);
 
 		public bool SetMode(Gdk.InputMode mode) {
@@ -1120,7 +1120,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_ungrab(IntPtr raw, uint time_);
 
 		[Obsolete]
@@ -1128,7 +1128,7 @@ namespace Gdk {
 			gdk_device_ungrab(Handle, time_);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_device_warp(IntPtr raw, IntPtr screen, int x, int y);
 
 		public void Warp(Gdk.Screen screen, int x, int y) {

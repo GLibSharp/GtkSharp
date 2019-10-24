@@ -1329,7 +1329,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_cell_area_activate(IntPtr raw, IntPtr context, IntPtr widget, IntPtr cell_area, int flags, bool edit_only);
 
 		public bool Activate(Gtk.CellAreaContext context, Gtk.Widget widget, Gdk.Rectangle cell_area, Gtk.CellRendererState flags, bool edit_only) {
@@ -1340,7 +1340,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_cell_area_activate_cell(IntPtr raw, IntPtr widget, IntPtr renderer, IntPtr evnt, IntPtr cell_area, int flags);
 
 		public bool ActivateCell(Gtk.Widget widget, Gtk.CellRenderer renderer, Gdk.Event evnt, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
@@ -1351,21 +1351,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_add(IntPtr raw, IntPtr renderer);
 
 		public void Add(Gtk.CellRenderer renderer) {
 			gtk_cell_area_add(Handle, renderer == null ? IntPtr.Zero : renderer.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_add_focus_sibling(IntPtr raw, IntPtr renderer, IntPtr sibling);
 
 		public void AddFocusSibling(Gtk.CellRenderer renderer, Gtk.CellRenderer sibling) {
 			gtk_cell_area_add_focus_sibling(Handle, renderer == null ? IntPtr.Zero : renderer.Handle, sibling == null ? IntPtr.Zero : sibling.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_apply_attributes(IntPtr raw, IntPtr tree_model, IntPtr iter, bool is_expander, bool is_expanded);
 
 		public void ApplyAttributes(Gtk.ITreeModel tree_model, Gtk.TreeIter iter, bool is_expander, bool is_expanded) {
@@ -1374,7 +1374,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_attribute_connect(IntPtr raw, IntPtr renderer, IntPtr attribute, int column);
 
 		public void AttributeConnect(Gtk.CellRenderer renderer, string attribute, int column) {
@@ -1383,7 +1383,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_attribute);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_attribute_disconnect(IntPtr raw, IntPtr renderer, IntPtr attribute);
 
 		public void AttributeDisconnect(Gtk.CellRenderer renderer, string attribute) {
@@ -1392,7 +1392,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_attribute);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_cell_area_attribute_get_column(IntPtr raw, IntPtr renderer, IntPtr attribute);
 
 		public int AttributeGetColumn(Gtk.CellRenderer renderer, string attribute) {
@@ -1403,7 +1403,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_cell_get_property(IntPtr raw, IntPtr renderer, IntPtr property_name, IntPtr value);
 
 		public void CellGetProperty(Gtk.CellRenderer renderer, string property_name, GLib.Value value) {
@@ -1414,7 +1414,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_cell_get_valist(IntPtr raw, IntPtr renderer, IntPtr first_property_name, IntPtr var_args);
 
 		public void CellGetValist(Gtk.CellRenderer renderer, string first_property_name, IntPtr var_args) {
@@ -1423,7 +1423,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_first_property_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_cell_set_property(IntPtr raw, IntPtr renderer, IntPtr property_name, IntPtr value);
 
 		public void CellSetProperty(Gtk.CellRenderer renderer, string property_name, GLib.Value value) {
@@ -1434,7 +1434,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_cell_set_valist(IntPtr raw, IntPtr renderer, IntPtr first_property_name, IntPtr var_args);
 
 		public void CellSetValist(Gtk.CellRenderer renderer, string first_property_name, IntPtr var_args) {
@@ -1443,7 +1443,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_first_property_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_copy_context(IntPtr raw, IntPtr context);
 
 		public Gtk.CellAreaContext CopyContext(Gtk.CellAreaContext context) {
@@ -1452,7 +1452,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_create_context(IntPtr raw);
 
 		public Gtk.CellAreaContext CreateContext() {
@@ -1461,7 +1461,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_cell_area_event(IntPtr raw, IntPtr context, IntPtr widget, IntPtr evnt, IntPtr cell_area, int flags);
 
 		public int Event(Gtk.CellAreaContext context, Gtk.Widget widget, Gdk.Event evnt, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
@@ -1472,7 +1472,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_cell_area_focus(IntPtr raw, int direction);
 
 		public bool Focus(Gtk.DirectionType direction) {
@@ -1481,7 +1481,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_foreach(IntPtr raw, GtkSharp.CellCallbackNative cb, IntPtr callback_data);
 
 		public void Foreach(Gtk.CellCallback cb) {
@@ -1489,7 +1489,7 @@ namespace Gtk {
 			gtk_cell_area_foreach(Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_foreach_alloc(IntPtr raw, IntPtr context, IntPtr widget, IntPtr cell_area, IntPtr background_area, GtkSharp.CellAllocCallbackNative cb, IntPtr callback_data);
 
 		public void ForeachAlloc(Gtk.CellAreaContext context, Gtk.Widget widget, Gdk.Rectangle cell_area, Gdk.Rectangle background_area, Gtk.CellAllocCallback cb) {
@@ -1501,7 +1501,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_background_area);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_get_cell_allocation(IntPtr raw, IntPtr context, IntPtr widget, IntPtr renderer, IntPtr cell_area, IntPtr allocation);
 
 		public void GetCellAllocation(Gtk.CellAreaContext context, Gtk.Widget widget, Gtk.CellRenderer renderer, Gdk.Rectangle cell_area, Gdk.Rectangle allocation) {
@@ -1512,7 +1512,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_allocation);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_cell_at_position(IntPtr raw, IntPtr context, IntPtr widget, IntPtr cell_area, int x, int y, IntPtr alloc_area);
 
 		public Gtk.CellRenderer GetCellAtPosition(Gtk.CellAreaContext context, Gtk.Widget widget, Gdk.Rectangle cell_area, int x, int y, Gdk.Rectangle alloc_area) {
@@ -1525,7 +1525,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_current_path_string(IntPtr raw);
 
 		public string CurrentPathString { 
@@ -1536,7 +1536,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_edit_widget(IntPtr raw);
 
 		public Gtk.ICellEditable EditWidget { 
@@ -1547,7 +1547,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_edited_cell(IntPtr raw);
 
 		public Gtk.CellRenderer EditedCell { 
@@ -1558,10 +1558,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_focus_cell(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_set_focus_cell(IntPtr raw, IntPtr renderer);
 
 		public Gtk.CellRenderer FocusCell { 
@@ -1575,7 +1575,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_focus_from_sibling(IntPtr raw, IntPtr renderer);
 
 		public Gtk.CellRenderer GetFocusFromSibling(Gtk.CellRenderer renderer) {
@@ -1584,7 +1584,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_focus_siblings(IntPtr raw, IntPtr renderer);
 
 		public Gtk.CellRenderer[] GetFocusSiblings(Gtk.CellRenderer renderer) {
@@ -1593,35 +1593,35 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_get_preferred_height(IntPtr raw, IntPtr context, IntPtr widget, out int minimum_height, out int natural_height);
 
 		public void GetPreferredHeight(Gtk.CellAreaContext context, Gtk.Widget widget, out int minimum_height, out int natural_height) {
 			gtk_cell_area_get_preferred_height(Handle, context == null ? IntPtr.Zero : context.Handle, widget == null ? IntPtr.Zero : widget.Handle, out minimum_height, out natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_get_preferred_height_for_width(IntPtr raw, IntPtr context, IntPtr widget, int width, out int minimum_height, out int natural_height);
 
 		public void GetPreferredHeightForWidth(Gtk.CellAreaContext context, Gtk.Widget widget, int width, out int minimum_height, out int natural_height) {
 			gtk_cell_area_get_preferred_height_for_width(Handle, context == null ? IntPtr.Zero : context.Handle, widget == null ? IntPtr.Zero : widget.Handle, width, out minimum_height, out natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_get_preferred_width(IntPtr raw, IntPtr context, IntPtr widget, out int minimum_width, out int natural_width);
 
 		public void GetPreferredWidth(Gtk.CellAreaContext context, Gtk.Widget widget, out int minimum_width, out int natural_width) {
 			gtk_cell_area_get_preferred_width(Handle, context == null ? IntPtr.Zero : context.Handle, widget == null ? IntPtr.Zero : widget.Handle, out minimum_width, out natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_get_preferred_width_for_height(IntPtr raw, IntPtr context, IntPtr widget, int height, out int minimum_width, out int natural_width);
 
 		public void GetPreferredWidthForHeight(Gtk.CellAreaContext context, Gtk.Widget widget, int height, out int minimum_width, out int natural_width) {
 			gtk_cell_area_get_preferred_width_for_height(Handle, context == null ? IntPtr.Zero : context.Handle, widget == null ? IntPtr.Zero : widget.Handle, height, out minimum_width, out natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_cell_area_get_request_mode(IntPtr raw);
 
 		public Gtk.SizeRequestMode RequestMode { 
@@ -1632,7 +1632,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_get_type();
 
 		public static new GLib.GType GType { 
@@ -1643,7 +1643,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_cell_area_has_renderer(IntPtr raw, IntPtr renderer);
 
 		public bool HasRenderer(Gtk.CellRenderer renderer) {
@@ -1652,7 +1652,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_inner_cell_area(IntPtr raw, IntPtr widget, IntPtr cell_area, IntPtr inner_area);
 
 		public void InnerCellArea(Gtk.Widget widget, Gdk.Rectangle cell_area, Gdk.Rectangle inner_area) {
@@ -1663,7 +1663,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_inner_area);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_cell_area_is_activatable(IntPtr raw);
 
 		public bool IsActivatable { 
@@ -1674,7 +1674,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_cell_area_is_focus_sibling(IntPtr raw, IntPtr renderer, IntPtr sibling);
 
 		public bool IsFocusSibling(Gtk.CellRenderer renderer, Gtk.CellRenderer sibling) {
@@ -1683,21 +1683,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_remove(IntPtr raw, IntPtr renderer);
 
 		public void Remove(Gtk.CellRenderer renderer) {
 			gtk_cell_area_remove(Handle, renderer == null ? IntPtr.Zero : renderer.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_remove_focus_sibling(IntPtr raw, IntPtr renderer, IntPtr sibling);
 
 		public void RemoveFocusSibling(Gtk.CellRenderer renderer, Gtk.CellRenderer sibling) {
 			gtk_cell_area_remove_focus_sibling(Handle, renderer == null ? IntPtr.Zero : renderer.Handle, sibling == null ? IntPtr.Zero : sibling.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_render(IntPtr raw, IntPtr context, IntPtr widget, IntPtr cr, IntPtr background_area, IntPtr cell_area, int flags, bool paint_focus);
 
 		public void Render(Gtk.CellAreaContext context, Gtk.Widget widget, Cairo.Context cr, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags, bool paint_focus) {
@@ -1708,14 +1708,14 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_cell_area);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_request_renderer(IntPtr raw, IntPtr renderer, int orientation, IntPtr widget, int for_size, out int minimum_size, out int natural_size);
 
 		public void RequestRenderer(Gtk.CellRenderer renderer, Gtk.Orientation orientation, Gtk.Widget widget, int for_size, out int minimum_size, out int natural_size) {
 			gtk_cell_area_request_renderer(Handle, renderer == null ? IntPtr.Zero : renderer.Handle, (int) orientation, widget == null ? IntPtr.Zero : widget.Handle, for_size, out minimum_size, out natural_size);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_stop_editing(IntPtr raw, bool canceled);
 
 		public void StopEditing(bool canceled) {

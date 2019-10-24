@@ -13,7 +13,7 @@ namespace Gdk {
 
 		public Window (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_new(IntPtr parent, IntPtr attributes, int attributes_mask);
 
 		public Window (Gdk.Window parent, Gdk.WindowAttr attributes, int attributes_mask) : base (IntPtr.Zero)
@@ -29,10 +29,10 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_attributes);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_cursor(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_cursor(IntPtr raw, IntPtr cursor);
 
 		[GLib.Property ("cursor")]
@@ -577,7 +577,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_at_pointer(out int win_x, out int win_y);
 
 		[Obsolete]
@@ -587,14 +587,14 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_beep(IntPtr raw);
 
 		public void Beep() {
 			gdk_window_beep(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_begin_draw_frame(IntPtr raw, IntPtr region);
 
 		public Gdk.DrawingContext BeginDrawFrame(Cairo.Region region) {
@@ -603,21 +603,21 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_begin_move_drag(IntPtr raw, int button, int root_x, int root_y, uint timestamp);
 
 		public void BeginMoveDrag(int button, int root_x, int root_y, uint timestamp) {
 			gdk_window_begin_move_drag(Handle, button, root_x, root_y, timestamp);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_begin_move_drag_for_device(IntPtr raw, IntPtr device, int button, int root_x, int root_y, uint timestamp);
 
 		public void BeginMoveDragForDevice(Gdk.Device device, int button, int root_x, int root_y, uint timestamp) {
 			gdk_window_begin_move_drag_for_device(Handle, device == null ? IntPtr.Zero : device.Handle, button, root_x, root_y, timestamp);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_begin_paint_rect(IntPtr raw, IntPtr rectangle);
 
 		[Obsolete]
@@ -627,7 +627,7 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_rectangle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_begin_paint_region(IntPtr raw, IntPtr region);
 
 		[Obsolete]
@@ -635,21 +635,21 @@ namespace Gdk {
 			gdk_window_begin_paint_region(Handle, region == null ? IntPtr.Zero : region.Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_begin_resize_drag(IntPtr raw, int edge, int button, int root_x, int root_y, uint timestamp);
 
 		public void BeginResizeDrag(Gdk.WindowEdge edge, int button, int root_x, int root_y, uint timestamp) {
 			gdk_window_begin_resize_drag(Handle, (int) edge, button, root_x, root_y, timestamp);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_begin_resize_drag_for_device(IntPtr raw, int edge, IntPtr device, int button, int root_x, int root_y, uint timestamp);
 
 		public void BeginResizeDragForDevice(Gdk.WindowEdge edge, Gdk.Device device, int button, int root_x, int root_y, uint timestamp) {
 			gdk_window_begin_resize_drag_for_device(Handle, (int) edge, device == null ? IntPtr.Zero : device.Handle, button, root_x, root_y, timestamp);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_configure_finished(IntPtr raw);
 
 		[Obsolete]
@@ -657,7 +657,7 @@ namespace Gdk {
 			gdk_window_configure_finished(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_constrain_size(IntPtr geometry, int flags, int width, int height, out int new_width, out int new_height);
 
 		public static void ConstrainSize(Gdk.Geometry geometry, Gdk.WindowHints flags, int width, int height, out int new_width, out int new_height) {
@@ -666,21 +666,21 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_geometry);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_coords_from_parent(IntPtr raw, double parent_x, double parent_y, out double x, out double y);
 
 		public void CoordsFromParent(double parent_x, double parent_y, out double x, out double y) {
 			gdk_window_coords_from_parent(Handle, parent_x, parent_y, out x, out y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_coords_to_parent(IntPtr raw, double x, double y, out double parent_x, out double parent_y);
 
 		public void CoordsToParent(double x, double y, out double parent_x, out double parent_y) {
 			gdk_window_coords_to_parent(Handle, x, y, out parent_x, out parent_y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_window_create_gl_context(IntPtr raw, out IntPtr error);
 
 		public unsafe Gdk.GLContext CreateGlContext() {
@@ -691,7 +691,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_create_similar_surface(IntPtr raw, int content, int width, int height);
 
 		public Cairo.Surface CreateSimilarSurface(Cairo.Content content, int width, int height) {
@@ -700,14 +700,14 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_deiconify(IntPtr raw);
 
 		public void Deiconify() {
 			gdk_window_deiconify(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_enable_synchronized_configure(IntPtr raw);
 
 		[Obsolete]
@@ -715,14 +715,14 @@ namespace Gdk {
 			gdk_window_enable_synchronized_configure(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_end_draw_frame(IntPtr raw, IntPtr context);
 
 		public void EndDrawFrame(Gdk.DrawingContext context) {
 			gdk_window_end_draw_frame(Handle, context == null ? IntPtr.Zero : context.Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_end_paint(IntPtr raw);
 
 		[Obsolete]
@@ -730,7 +730,7 @@ namespace Gdk {
 			gdk_window_end_paint(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_ensure_native(IntPtr raw);
 
 		public bool EnsureNative() {
@@ -739,7 +739,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_flush(IntPtr raw);
 
 		[Obsolete]
@@ -747,45 +747,45 @@ namespace Gdk {
 			gdk_window_flush(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_focus(IntPtr raw, uint timestamp);
 
 		public void Focus(uint timestamp) {
 			gdk_window_focus(Handle, timestamp);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_freeze_updates(IntPtr raw);
 
 		public void FreezeUpdates() {
 			gdk_window_freeze_updates(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_fullscreen(IntPtr raw);
 
 		public void Fullscreen() {
 			gdk_window_fullscreen(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_fullscreen_on_monitor(IntPtr raw, int monitor);
 
 		public void FullscreenOnMonitor(int monitor) {
 			gdk_window_fullscreen_on_monitor(Handle, monitor);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_geometry_changed(IntPtr raw);
 
 		public void GeometryChanged() {
 			gdk_window_geometry_changed(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_accept_focus(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_accept_focus(IntPtr raw, bool accept_focus);
 
 		public bool AcceptFocus { 
@@ -799,7 +799,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_children_with_user_data(IntPtr raw, IntPtr user_data);
 
 		public GLib.List GetChildrenWithUserData(IntPtr user_data) {
@@ -808,7 +808,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_clip_region(IntPtr raw);
 
 		public Cairo.Region ClipRegion { 
@@ -819,10 +819,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_composited(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_composited(IntPtr raw, bool composited);
 
 		[Obsolete]
@@ -837,7 +837,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_decorations(IntPtr raw, out int decorations);
 
 		public bool GetDecorations(out Gdk.WMDecoration decorations) {
@@ -848,7 +848,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_device_cursor(IntPtr raw, IntPtr device);
 
 		public Gdk.Cursor GetDeviceCursor(Gdk.Device device) {
@@ -857,7 +857,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_device_events(IntPtr raw, IntPtr device);
 
 		public Gdk.EventMask GetDeviceEvents(Gdk.Device device) {
@@ -866,7 +866,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_device_position(IntPtr raw, IntPtr device, out int x, out int y, out int mask);
 
 		public Gdk.Window GetDevicePosition(Gdk.Device device, out int x, out int y, out Gdk.ModifierType mask) {
@@ -877,7 +877,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_device_position_double(IntPtr raw, IntPtr device, out double x, out double y, out int mask);
 
 		public Gdk.Window GetDevicePositionDouble(Gdk.Device device, out double x, out double y, out Gdk.ModifierType mask) {
@@ -888,7 +888,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_display(IntPtr raw);
 
 		public Gdk.Display Display { 
@@ -899,7 +899,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_drag_protocol(IntPtr raw, IntPtr target);
 
 		public Gdk.DragProtocol GetDragProtocol(Gdk.Window target) {
@@ -908,7 +908,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_effective_parent(IntPtr raw);
 
 		public Gdk.Window EffectiveParent { 
@@ -919,7 +919,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_effective_toplevel(IntPtr raw);
 
 		public Gdk.Window EffectiveToplevel { 
@@ -930,10 +930,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_event_compression(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_event_compression(IntPtr raw, bool event_compression);
 
 		public bool EventCompression { 
@@ -947,10 +947,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_events(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_events(IntPtr raw, int event_mask);
 
 		public Gdk.EventMask Events { 
@@ -964,10 +964,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_focus_on_map(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_focus_on_map(IntPtr raw, bool focus_on_map);
 
 		public bool FocusOnMap { 
@@ -981,7 +981,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_frame_clock(IntPtr raw);
 
 		public Gdk.FrameClock FrameClock { 
@@ -992,7 +992,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_get_frame_extents(IntPtr raw, IntPtr rect);
 
 		public Gdk.Rectangle FrameExtents { 
@@ -1006,10 +1006,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_fullscreen_mode(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_fullscreen_mode(IntPtr raw, int mode);
 
 		public Gdk.FullscreenMode FullscreenMode { 
@@ -1023,17 +1023,17 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_get_geometry(IntPtr raw, out int x, out int y, out int width, out int height);
 
 		public void GetGeometry(out int x, out int y, out int width, out int height) {
 			gdk_window_get_geometry(Handle, out x, out y, out width, out height);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_group(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_group(IntPtr raw, IntPtr leader);
 
 		public Gdk.Window Group { 
@@ -1047,7 +1047,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_height(IntPtr raw);
 
 		public int Height { 
@@ -1058,10 +1058,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_modal_hint(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_modal_hint(IntPtr raw, bool modal);
 
 		public bool ModalHint { 
@@ -1075,7 +1075,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_origin(IntPtr raw, out int x, out int y);
 
 		public int GetOrigin(out int x, out int y) {
@@ -1084,7 +1084,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_parent(IntPtr raw);
 
 		public Gdk.Window Parent { 
@@ -1095,10 +1095,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_pass_through(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_pass_through(IntPtr raw, bool pass_through);
 
 		public bool PassThrough { 
@@ -1112,7 +1112,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_pointer(IntPtr raw, out int x, out int y, out int mask);
 
 		[Obsolete]
@@ -1124,28 +1124,28 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_get_position(IntPtr raw, out int x, out int y);
 
 		public void GetPosition(out int x, out int y) {
 			gdk_window_get_position(Handle, out x, out y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_get_root_coords(IntPtr raw, int x, int y, out int root_x, out int root_y);
 
 		public void GetRootCoords(int x, int y, out int root_x, out int root_y) {
 			gdk_window_get_root_coords(Handle, x, y, out root_x, out root_y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_get_root_origin(IntPtr raw, out int x, out int y);
 
 		public void GetRootOrigin(out int x, out int y) {
 			gdk_window_get_root_origin(Handle, out x, out y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_scale_factor(IntPtr raw);
 
 		public int ScaleFactor { 
@@ -1156,7 +1156,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_screen(IntPtr raw);
 
 		public Gdk.Screen Screen { 
@@ -1167,7 +1167,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_source_events(IntPtr raw, int source);
 
 		public Gdk.EventMask GetSourceEvents(Gdk.InputSource source) {
@@ -1176,7 +1176,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_state(IntPtr raw);
 
 		public Gdk.WindowState State { 
@@ -1187,10 +1187,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_get_support_multidevice(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_support_multidevice(IntPtr raw, bool support_multidevice);
 
 		public bool SupportMultidevice { 
@@ -1204,7 +1204,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_toplevel(IntPtr raw);
 
 		public Gdk.Window Toplevel { 
@@ -1215,7 +1215,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_type();
 
 		public static new GLib.GType GType { 
@@ -1226,10 +1226,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_type_hint(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_type_hint(IntPtr raw, int hint);
 
 		public Gdk.WindowTypeHint TypeHint { 
@@ -1243,7 +1243,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_update_area(IntPtr raw);
 
 		public Cairo.Region UpdateArea { 
@@ -1254,7 +1254,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_visible_region(IntPtr raw);
 
 		public Cairo.Region VisibleRegion { 
@@ -1265,7 +1265,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_get_visual(IntPtr raw);
 
 		public Gdk.Visual Visual { 
@@ -1276,7 +1276,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_width(IntPtr raw);
 
 		public int Width { 
@@ -1287,7 +1287,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_window_get_window_type(IntPtr raw);
 
 		public Gdk.WindowType WindowType { 
@@ -1298,7 +1298,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_has_native(IntPtr raw);
 
 		public bool HasNative { 
@@ -1309,28 +1309,28 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_hide(IntPtr raw);
 
 		public void Hide() {
 			gdk_window_hide(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_iconify(IntPtr raw);
 
 		public void Iconify() {
 			gdk_window_iconify(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_input_shape_combine_region(IntPtr raw, IntPtr shape_region, int offset_x, int offset_y);
 
 		public void InputShapeCombineRegion(Cairo.Region shape_region, int offset_x, int offset_y) {
 			gdk_window_input_shape_combine_region(Handle, shape_region == null ? IntPtr.Zero : shape_region.Handle, offset_x, offset_y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_invalidate_maybe_recurse(IntPtr raw, IntPtr region, GdkSharp.WindowChildFuncNative child_func, IntPtr user_data);
 
 		public void InvalidateMaybeRecurse(Cairo.Region region, Gdk.WindowChildFunc child_func) {
@@ -1338,7 +1338,7 @@ namespace Gdk {
 			gdk_window_invalidate_maybe_recurse(Handle, region == null ? IntPtr.Zero : region.Handle, child_func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_invalidate_rect(IntPtr raw, IntPtr rect, bool invalidate_children);
 
 		public void InvalidateRect(Gdk.Rectangle rect, bool invalidate_children) {
@@ -1347,14 +1347,14 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_rect);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_invalidate_region(IntPtr raw, IntPtr region, bool invalidate_children);
 
 		public void InvalidateRegion(Cairo.Region region, bool invalidate_children) {
 			gdk_window_invalidate_region(Handle, region == null ? IntPtr.Zero : region.Handle, invalidate_children);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_is_destroyed(IntPtr raw);
 
 		public bool IsDestroyed { 
@@ -1365,7 +1365,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_is_input_only(IntPtr raw);
 
 		public bool IsInputOnly { 
@@ -1376,7 +1376,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_is_shaped(IntPtr raw);
 
 		public bool IsShaped { 
@@ -1387,7 +1387,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_is_viewable(IntPtr raw);
 
 		public bool IsViewable { 
@@ -1398,7 +1398,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_is_visible(IntPtr raw);
 
 		public bool IsVisible { 
@@ -1409,119 +1409,119 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_lower(IntPtr raw);
 
 		public void Lower() {
 			gdk_window_lower(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_mark_paint_from_clip(IntPtr raw, IntPtr cr);
 
 		public void MarkPaintFromClip(Cairo.Context cr) {
 			gdk_window_mark_paint_from_clip(Handle, cr == null ? IntPtr.Zero : cr.Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_maximize(IntPtr raw);
 
 		public void Maximize() {
 			gdk_window_maximize(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_merge_child_input_shapes(IntPtr raw);
 
 		public void MergeChildInputShapes() {
 			gdk_window_merge_child_input_shapes(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_merge_child_shapes(IntPtr raw);
 
 		public void MergeChildShapes() {
 			gdk_window_merge_child_shapes(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_move(IntPtr raw, int x, int y);
 
 		public void Move(int x, int y) {
 			gdk_window_move(Handle, x, y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_move_region(IntPtr raw, IntPtr region, int dx, int dy);
 
 		public void MoveRegion(Cairo.Region region, int dx, int dy) {
 			gdk_window_move_region(Handle, region == null ? IntPtr.Zero : region.Handle, dx, dy);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_move_resize(IntPtr raw, int x, int y, int width, int height);
 
 		public void MoveResize(int x, int y, int width, int height) {
 			gdk_window_move_resize(Handle, x, y, width, height);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_process_all_updates();
 
 		public static void ProcessAllUpdates() {
 			gdk_window_process_all_updates();
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_process_updates(IntPtr raw, bool update_children);
 
 		public void ProcessUpdates(bool update_children) {
 			gdk_window_process_updates(Handle, update_children);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_raise(IntPtr raw);
 
 		public void Raise() {
 			gdk_window_raise(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_register_dnd(IntPtr raw);
 
 		public void RegisterDnd() {
 			gdk_window_register_dnd(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_reparent(IntPtr raw, IntPtr new_parent, int x, int y);
 
 		public void Reparent(Gdk.Window new_parent, int x, int y) {
 			gdk_window_reparent(Handle, new_parent == null ? IntPtr.Zero : new_parent.Handle, x, y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_resize(IntPtr raw, int width, int height);
 
 		public void Resize(int width, int height) {
 			gdk_window_resize(Handle, width, height);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_restack(IntPtr raw, IntPtr sibling, bool above);
 
 		public void Restack(Gdk.Window sibling, bool above) {
 			gdk_window_restack(Handle, sibling == null ? IntPtr.Zero : sibling.Handle, above);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_scroll(IntPtr raw, int dx, int dy);
 
 		public void Scroll(int dx, int dy) {
 			gdk_window_scroll(Handle, dx, dy);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_background(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -1533,7 +1533,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_background_rgba(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -1545,21 +1545,21 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_child_input_shapes(IntPtr raw);
 
 		public void SetChildInputShapes() {
 			gdk_window_set_child_input_shapes(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_child_shapes(IntPtr raw);
 
 		public void SetChildShapes() {
 			gdk_window_set_child_shapes(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_debug_updates(bool setting);
 
 		[Obsolete]
@@ -1569,28 +1569,28 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_decorations(IntPtr raw, int decorations);
 
 		public void SetDecorations(Gdk.WMDecoration decorations) {
 			gdk_window_set_decorations(Handle, (int) decorations);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_device_cursor(IntPtr raw, IntPtr device, IntPtr cursor);
 
 		public void SetDeviceCursor(Gdk.Device device, Gdk.Cursor cursor) {
 			gdk_window_set_device_cursor(Handle, device == null ? IntPtr.Zero : device.Handle, cursor == null ? IntPtr.Zero : cursor.Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_device_events(IntPtr raw, IntPtr device, int event_mask);
 
 		public void SetDeviceEvents(Gdk.Device device, Gdk.EventMask event_mask) {
 			gdk_window_set_device_events(Handle, device == null ? IntPtr.Zero : device.Handle, (int) event_mask);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_functions(IntPtr raw, int functions);
 
 		public Gdk.WMFunction Functions { 
@@ -1599,7 +1599,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_geometry_hints(IntPtr raw, IntPtr geometry, int geom_mask);
 
 		public void SetGeometryHints(Gdk.Geometry geometry, Gdk.WindowHints geom_mask) {
@@ -1608,7 +1608,7 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_geometry);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_icon_name(IntPtr raw, IntPtr name);
 
 		public string IconName { 
@@ -1619,7 +1619,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_invalidate_handler(IntPtr raw, GdkSharp.WindowInvalidateHandlerFuncNative handler);
 
 		public Gdk.WindowInvalidateHandlerFunc InvalidateHandler { 
@@ -1629,7 +1629,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_keep_above(IntPtr raw, bool setting);
 
 		public bool KeepAbove { 
@@ -1638,7 +1638,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_keep_below(IntPtr raw, bool setting);
 
 		public bool KeepBelow { 
@@ -1647,7 +1647,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_opacity(IntPtr raw, double opacity);
 
 		public double Opacity { 
@@ -1656,7 +1656,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_opaque_region(IntPtr raw, IntPtr region);
 
 		public Cairo.Region OpaqueRegion { 
@@ -1665,7 +1665,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_override_redirect(IntPtr raw, bool override_redirect);
 
 		public bool OverrideRedirect { 
@@ -1674,7 +1674,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_role(IntPtr raw, IntPtr role);
 
 		public string Role { 
@@ -1685,14 +1685,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_shadow_width(IntPtr raw, int left, int right, int top, int bottom);
 
 		public void SetShadowWidth(int left, int right, int top, int bottom) {
 			gdk_window_set_shadow_width(Handle, left, right, top, bottom);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_skip_pager_hint(IntPtr raw, bool skips_pager);
 
 		public bool SkipPagerHint { 
@@ -1701,7 +1701,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_skip_taskbar_hint(IntPtr raw, bool skips_taskbar);
 
 		public bool SkipTaskbarHint { 
@@ -1710,14 +1710,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_source_events(IntPtr raw, int source, int event_mask);
 
 		public void SetSourceEvents(Gdk.InputSource source, Gdk.EventMask event_mask) {
 			gdk_window_set_source_events(Handle, (int) source, (int) event_mask);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_startup_id(IntPtr raw, IntPtr startup_id);
 
 		public string StartupId { 
@@ -1728,7 +1728,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_set_static_gravities(IntPtr raw, bool use_static);
 
 		[Obsolete]
@@ -1738,7 +1738,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_title(IntPtr raw, IntPtr title);
 
 		public string Title { 
@@ -1749,7 +1749,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_transient_for(IntPtr raw, IntPtr parent);
 
 		public Gdk.Window TransientFor { 
@@ -1758,7 +1758,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_set_urgency_hint(IntPtr raw, bool urgent);
 
 		public bool UrgencyHint { 
@@ -1767,28 +1767,28 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_shape_combine_region(IntPtr raw, IntPtr shape_region, int offset_x, int offset_y);
 
 		public void ShapeCombineRegion(Cairo.Region shape_region, int offset_x, int offset_y) {
 			gdk_window_shape_combine_region(Handle, shape_region == null ? IntPtr.Zero : shape_region.Handle, offset_x, offset_y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_show(IntPtr raw);
 
 		public void Show() {
 			gdk_window_show(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_show_unraised(IntPtr raw);
 
 		public void ShowUnraised() {
 			gdk_window_show_unraised(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_window_show_window_menu(IntPtr raw, IntPtr evnt);
 
 		public bool ShowWindowMenu(Gdk.Event evnt) {
@@ -1797,42 +1797,42 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_stick(IntPtr raw);
 
 		public void Stick() {
 			gdk_window_stick(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_thaw_updates(IntPtr raw);
 
 		public void ThawUpdates() {
 			gdk_window_thaw_updates(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_unfullscreen(IntPtr raw);
 
 		public void Unfullscreen() {
 			gdk_window_unfullscreen(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_unmaximize(IntPtr raw);
 
 		public void Unmaximize() {
 			gdk_window_unmaximize(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_unstick(IntPtr raw);
 
 		public void Unstick() {
 			gdk_window_unstick(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_window_withdraw(IntPtr raw);
 
 		public void Withdraw() {

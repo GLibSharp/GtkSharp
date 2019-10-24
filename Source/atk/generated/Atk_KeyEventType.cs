@@ -16,7 +16,7 @@ namespace Atk {
 	}
 
 	internal class KeyEventTypeGType {
-		[DllImport ("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_key_event_type_get_type ();
 
 		public static GLib.GType GType {

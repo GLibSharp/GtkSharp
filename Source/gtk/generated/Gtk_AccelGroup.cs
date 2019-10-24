@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public AccelGroup (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_group_new();
 
 		public AccelGroup () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_accel_group_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_group_get_is_locked(IntPtr raw);
 
 		[GLib.Property ("is-locked")]
@@ -37,7 +37,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_accel_group_get_modifier_mask(IntPtr raw);
 
 		[GLib.Property ("modifier-mask")]
@@ -240,7 +240,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_group_activate(IntPtr raw, int accel_quark, IntPtr acceleratable, uint accel_key, int accel_mods);
 
 		public bool Activate(int accel_quark, GLib.Object acceleratable, uint accel_key, Gdk.ModifierType accel_mods) {
@@ -249,14 +249,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_group_connect(IntPtr raw, uint accel_key, int accel_mods, int accel_flags, IntPtr closure);
 
 		public void Connect(uint accel_key, Gdk.ModifierType accel_mods, Gtk.AccelFlags accel_flags, IntPtr closure) {
 			gtk_accel_group_connect(Handle, accel_key, (int) accel_mods, (int) accel_flags, closure);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_group_connect_by_path(IntPtr raw, IntPtr accel_path, IntPtr closure);
 
 		public void ConnectByPath(string accel_path, IntPtr closure) {
@@ -265,7 +265,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accel_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_group_disconnect(IntPtr raw, IntPtr closure);
 
 		public bool Disconnect(IntPtr closure) {
@@ -274,7 +274,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_group_disconnect_key(IntPtr raw, uint accel_key, int accel_mods);
 
 		public bool DisconnectKey(uint accel_key, Gdk.ModifierType accel_mods) {
@@ -283,7 +283,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_group_find(IntPtr raw, GtkSharp.AccelGroupFindFuncNative find_func, IntPtr data);
 
 		public Gtk.AccelKey Find(Gtk.AccelGroupFindFunc find_func) {
@@ -293,7 +293,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_group_from_accel_closure(IntPtr closure);
 
 		public static Gtk.AccelGroup FromAccelClosure(IntPtr closure) {
@@ -302,7 +302,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_group_get_type();
 
 		public static new GLib.GType GType { 
@@ -313,14 +313,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_group_lock(IntPtr raw);
 
 		public void Lock() {
 			gtk_accel_group_lock(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_group_query(IntPtr raw, uint accel_key, int accel_mods, out uint n_entries);
 
 		public Gtk.AccelGroupEntry Query(uint accel_key, Gdk.ModifierType accel_mods, out uint n_entries) {
@@ -329,7 +329,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_group_unlock(IntPtr raw);
 
 		public void Unlock() {

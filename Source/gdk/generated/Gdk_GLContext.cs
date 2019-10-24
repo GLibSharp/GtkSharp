@@ -18,7 +18,7 @@ namespace Gdk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_gl_context_get_display(IntPtr raw);
 
 		[GLib.Property ("display")]
@@ -30,7 +30,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_gl_context_get_window(IntPtr raw);
 
 		[GLib.Property ("window")]
@@ -254,14 +254,14 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_clear_current();
 
 		public static void ClearCurrent() {
 			gdk_gl_context_clear_current();
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_gl_context_get_current();
 
 		public static Gdk.GLContext Current { 
@@ -272,10 +272,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_gl_context_get_debug_enabled(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_set_debug_enabled(IntPtr raw, bool enabled);
 
 		public bool DebugEnabled { 
@@ -289,10 +289,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_gl_context_get_forward_compatible(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_set_forward_compatible(IntPtr raw, bool compatible);
 
 		public bool ForwardCompatible { 
@@ -306,14 +306,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_get_required_version(IntPtr raw, out int major, out int minor);
 
 		public void GetRequiredVersion(out int major, out int minor) {
 			gdk_gl_context_get_required_version(Handle, out major, out minor);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_gl_context_get_shared_context(IntPtr raw);
 
 		public Gdk.GLContext SharedContext { 
@@ -324,7 +324,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_gl_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -335,7 +335,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_gl_context_get_use_es(IntPtr raw);
 
 		public bool UseEs { 
@@ -346,14 +346,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_get_version(IntPtr raw, out int major, out int minor);
 
 		public void GetVersion(out int major, out int minor) {
 			gdk_gl_context_get_version(Handle, out major, out minor);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_gl_context_is_legacy(IntPtr raw);
 
 		public bool IsLegacy { 
@@ -364,14 +364,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_make_current(IntPtr raw);
 
 		public void MakeCurrent() {
 			gdk_gl_context_make_current(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gdk_gl_context_realize(IntPtr raw, out IntPtr error);
 
 		public unsafe bool Realize() {
@@ -382,14 +382,14 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_set_required_version(IntPtr raw, int major, int minor);
 
 		public void SetRequiredVersion(int major, int minor) {
 			gdk_gl_context_set_required_version(Handle, major, minor);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_gl_context_set_use_es(IntPtr raw, int use_es);
 
 		public void SetUseEs(int use_es) {

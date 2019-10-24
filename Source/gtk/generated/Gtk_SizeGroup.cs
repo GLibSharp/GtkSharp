@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public SizeGroup (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_size_group_new(int mode);
 
 		public SizeGroup (Gtk.SizeGroupMode mode) : base (IntPtr.Zero)
@@ -29,10 +29,10 @@ namespace Gtk {
 			Raw = gtk_size_group_new((int) mode);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_size_group_get_mode(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_size_group_set_mode(IntPtr raw, int mode);
 
 		[GLib.Property ("mode")]
@@ -47,10 +47,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_size_group_get_ignore_hidden(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_size_group_set_ignore_hidden(IntPtr raw, bool ignore_hidden);
 
 		[Obsolete]
@@ -114,14 +114,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_size_group_add_widget(IntPtr raw, IntPtr widget);
 
 		public void AddWidget(Gtk.Widget widget) {
 			gtk_size_group_add_widget(Handle, widget == null ? IntPtr.Zero : widget.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_size_group_get_type();
 
 		public static new GLib.GType GType { 
@@ -132,7 +132,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_size_group_get_widgets(IntPtr raw);
 
 		public Gtk.Widget[] Widgets { 
@@ -143,7 +143,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_size_group_remove_widget(IntPtr raw, IntPtr widget);
 
 		public void RemoveWidget(Gtk.Widget widget) {

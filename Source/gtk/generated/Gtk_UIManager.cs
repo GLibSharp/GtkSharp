@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public UIManager (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_ui_manager_new();
 
 		public UIManager () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_ui_manager_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_ui_manager_get_add_tearoffs(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_ui_manager_set_add_tearoffs(IntPtr raw, bool add_tearoffs);
 
 		[Obsolete]
@@ -44,7 +44,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_ui_manager_get_ui(IntPtr raw);
 
 		[Obsolete]
@@ -667,7 +667,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_ui_manager_add_ui(IntPtr raw, uint merge_id, IntPtr path, IntPtr name, IntPtr action, int type, bool top);
 
 		[Obsolete]
@@ -681,7 +681,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_ui_manager_add_ui_from_file(IntPtr raw, IntPtr filename, out IntPtr error);
 
 		[Obsolete]
@@ -695,7 +695,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_ui_manager_add_ui_from_string(IntPtr raw, IntPtr buffer, IntPtr length, out IntPtr error);
 
 		[Obsolete]
@@ -709,7 +709,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_ui_manager_ensure_update(IntPtr raw);
 
 		[Obsolete]
@@ -717,7 +717,7 @@ namespace Gtk {
 			gtk_ui_manager_ensure_update(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_ui_manager_get_accel_group(IntPtr raw);
 
 		[Obsolete]
@@ -729,7 +729,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_ui_manager_get_action(IntPtr raw, IntPtr path);
 
 		[Obsolete]
@@ -741,7 +741,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_ui_manager_get_type();
 
 		[Obsolete]
@@ -753,7 +753,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_ui_manager_get_widget(IntPtr raw, IntPtr path);
 
 		[Obsolete]
@@ -765,7 +765,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_ui_manager_insert_action_group(IntPtr raw, IntPtr action_group, int pos);
 
 		[Obsolete]
@@ -773,7 +773,7 @@ namespace Gtk {
 			gtk_ui_manager_insert_action_group(Handle, action_group == null ? IntPtr.Zero : action_group.Handle, pos);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_ui_manager_remove_action_group(IntPtr raw, IntPtr action_group);
 
 		[Obsolete]
@@ -781,7 +781,7 @@ namespace Gtk {
 			gtk_ui_manager_remove_action_group(Handle, action_group == null ? IntPtr.Zero : action_group.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_ui_manager_remove_ui(IntPtr raw, uint merge_id);
 
 		[Obsolete]

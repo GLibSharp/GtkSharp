@@ -1176,7 +1176,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_im_context_delete_surrounding(IntPtr raw, int offset, int n_chars);
 
 		public bool DeleteSurrounding(int offset, int n_chars) {
@@ -1185,7 +1185,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_im_context_filter_keypress(IntPtr raw, IntPtr evnt);
 
 		public bool FilterKeypress(Gdk.EventKey evnt) {
@@ -1194,21 +1194,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_focus_in(IntPtr raw);
 
 		public void FocusIn() {
 			gtk_im_context_focus_in(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_focus_out(IntPtr raw);
 
 		public void FocusOut() {
 			gtk_im_context_focus_out(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_get_preedit_string(IntPtr raw, out IntPtr str, out IntPtr attrs, out int cursor_pos);
 
 		public void GetPreeditString(out string str, out Pango.AttrList attrs, out int cursor_pos) {
@@ -1219,7 +1219,7 @@ namespace Gtk {
 			attrs = native_attrs == IntPtr.Zero ? null : (Pango.AttrList) GLib.Opaque.GetOpaque (native_attrs, typeof (Pango.AttrList), false);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_im_context_get_surrounding(IntPtr raw, out IntPtr text, out int cursor_index);
 
 		public bool GetSurrounding(out string text, out int cursor_index) {
@@ -1230,7 +1230,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_im_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -1241,14 +1241,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_reset(IntPtr raw);
 
 		public void Reset() {
 			gtk_im_context_reset(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_set_client_window(IntPtr raw, IntPtr window);
 
 		public Gdk.Window ClientWindow { 
@@ -1257,7 +1257,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_set_cursor_location(IntPtr raw, IntPtr value);
 
 		public Gdk.Rectangle CursorLocation { 
@@ -1268,7 +1268,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_set_surrounding(IntPtr raw, IntPtr text, int len, int cursor_index);
 
 		public void SetSurrounding(string text, int cursor_index) {
@@ -1277,7 +1277,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_set_use_preedit(IntPtr raw, bool use_preedit);
 
 		public bool UsePreedit { 

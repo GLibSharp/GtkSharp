@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public IMMulticontext (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_im_multicontext_new();
 
 		public IMMulticontext () : base (IntPtr.Zero)
@@ -73,7 +73,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_multicontext_append_menuitems(IntPtr raw, IntPtr menushell);
 
 		[Obsolete]
@@ -81,10 +81,10 @@ namespace Gtk {
 			gtk_im_multicontext_append_menuitems(Handle, menushell == null ? IntPtr.Zero : menushell.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_im_multicontext_get_context_id(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_multicontext_set_context_id(IntPtr raw, IntPtr context_id);
 
 		public string ContextId { 
@@ -100,7 +100,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_im_multicontext_get_type();
 
 		public static new GLib.GType GType { 

@@ -26,7 +26,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_string_copy(IntPtr raw);
 
 		public Pango.GlyphString Copy() {
@@ -35,7 +35,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_extents(IntPtr raw, IntPtr font, IntPtr ink_rect, IntPtr logical_rect);
 
 		public void Extents(Pango.Font font, Pango.Rectangle ink_rect, Pango.Rectangle logical_rect) {
@@ -46,7 +46,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_logical_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_extents_range(IntPtr raw, int start, int end, IntPtr font, IntPtr ink_rect, IntPtr logical_rect);
 
 		public void ExtentsRange(int start, int end, Pango.Font font, Pango.Rectangle ink_rect, Pango.Rectangle logical_rect) {
@@ -57,7 +57,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_logical_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_get_logical_widths(IntPtr raw, IntPtr text, int length, int embedding_level, out int logical_widths);
 
 		public int GetLogicalWidths(string text, int embedding_level) {
@@ -68,7 +68,7 @@ namespace Pango {
 			return logical_widths;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_string_get_type();
 
 		public static GLib.GType GType { 
@@ -79,7 +79,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_glyph_string_get_width(IntPtr raw);
 
 		public int Width { 
@@ -90,7 +90,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_index_to_x(IntPtr raw, IntPtr text, int length, IntPtr analysis, int index_, bool trailing, out int x_pos);
 
 		public int IndexToX(string text, Pango.Analysis analysis, int index_, bool trailing) {
@@ -101,7 +101,7 @@ namespace Pango {
 			return x_pos;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_set_size(IntPtr raw, int new_len);
 
 		public int Size { 
@@ -110,7 +110,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_x_to_index(IntPtr raw, IntPtr text, int length, IntPtr analysis, int x_pos, out int index_, out int trailing);
 
 		public void XToIndex(string text, Pango.Analysis analysis, int x_pos, out int index_, out int trailing) {
@@ -121,7 +121,7 @@ namespace Pango {
 
 		public GlyphString(IntPtr raw) : base(raw) {}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_string_new();
 
 		public GlyphString () 
@@ -129,7 +129,7 @@ namespace Pango {
 			Raw = pango_glyph_string_new();
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_free(IntPtr raw);
 
 		protected override void Free (IntPtr raw)

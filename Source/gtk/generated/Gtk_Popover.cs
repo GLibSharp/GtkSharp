@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Popover (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_new(IntPtr relative_to);
 
 		public Popover (Gtk.Widget relative_to) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			Raw = gtk_popover_new(relative_to == null ? IntPtr.Zero : relative_to.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_new_from_model(IntPtr relative_to, IntPtr model);
 
 		public Popover (Gtk.Widget relative_to, GLib.MenuModel model) : base (IntPtr.Zero)
@@ -49,10 +49,10 @@ namespace Gtk {
 			Raw = gtk_popover_new_from_model(relative_to == null ? IntPtr.Zero : relative_to.Handle, model == null ? IntPtr.Zero : model.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_get_relative_to(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_relative_to(IntPtr raw, IntPtr relative_to);
 
 		[GLib.Property ("relative-to")]
@@ -67,7 +67,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_pointing_to(IntPtr raw, IntPtr value);
 
 		[GLib.Property ("pointing-to")]
@@ -85,10 +85,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_popover_get_position(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_position(IntPtr raw, int position);
 
 		[GLib.Property ("position")]
@@ -103,10 +103,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_popover_get_modal(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_modal(IntPtr raw, bool modal);
 
 		[GLib.Property ("modal")]
@@ -121,10 +121,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_popover_get_transitions_enabled(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_transitions_enabled(IntPtr raw, bool transitions_enabled);
 
 		[Obsolete]
@@ -140,10 +140,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_popover_get_constrain_to(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_constrain_to(IntPtr raw, int constraint);
 
 		[GLib.Property ("constrain-to")]
@@ -253,7 +253,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_bind_model(IntPtr raw, IntPtr model, IntPtr action_namespace);
 
 		public void BindModel(GLib.MenuModel model, string action_namespace) {
@@ -262,10 +262,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_namespace);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_get_default_widget(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_set_default_widget(IntPtr raw, IntPtr widget);
 
 		public Gtk.Widget DefaultWidget { 
@@ -279,7 +279,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_popover_get_pointing_to(IntPtr raw, IntPtr rect);
 
 		public bool GetPointingTo(Gdk.Rectangle rect) {
@@ -290,7 +290,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_get_type();
 
 		public static new GLib.GType GType { 
@@ -301,14 +301,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_popdown(IntPtr raw);
 
 		public void Popdown() {
 			gtk_popover_popdown(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_popup(IntPtr raw);
 
 		public void Popup() {

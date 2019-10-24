@@ -18,7 +18,7 @@ namespace Pango {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_describe(IntPtr raw);
 
 		public Pango.FontDescription Describe() {
@@ -27,7 +27,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_describe_with_absolute_size(IntPtr raw);
 
 		public Pango.FontDescription DescribeWithAbsoluteSize() {
@@ -36,7 +36,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_find_shaper(IntPtr raw, IntPtr language, uint ch);
 
 		public Pango.EngineShape FindShaper(Pango.Language language, uint ch) {
@@ -45,7 +45,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_get_coverage(IntPtr raw, IntPtr language);
 
 		public Pango.Coverage GetCoverage(Pango.Language language) {
@@ -54,7 +54,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_get_font_map(IntPtr raw);
 
 		public Pango.FontMap FontMap { 
@@ -65,7 +65,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_font_get_glyph_extents(IntPtr raw, uint glyph, IntPtr ink_rect, IntPtr logical_rect);
 
 		public void GetGlyphExtents(uint glyph, Pango.Rectangle ink_rect, Pango.Rectangle logical_rect) {
@@ -76,7 +76,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_logical_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_get_metrics(IntPtr raw, IntPtr language);
 
 		public Pango.FontMetrics GetMetrics(Pango.Language language) {
@@ -85,7 +85,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_get_type();
 
 		public static new GLib.GType GType { 

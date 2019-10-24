@@ -1056,7 +1056,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_settings_get_default();
 
 		public static Gtk.Settings Default { 
@@ -1067,7 +1067,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_settings_get_for_screen(IntPtr screen);
 
 		public static Gtk.Settings GetForScreen(Gdk.Screen screen) {
@@ -1076,7 +1076,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_settings_get_type();
 
 		public static new GLib.GType GType { 
@@ -1087,7 +1087,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_install_property(IntPtr pspec);
 
 		[Obsolete]
@@ -1095,7 +1095,7 @@ namespace Gtk {
 			gtk_settings_install_property(pspec);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_install_property_parser(IntPtr pspec, GtkSharp.RcPropertyParserNative parser);
 
 		[Obsolete]
@@ -1104,7 +1104,7 @@ namespace Gtk {
 			gtk_settings_install_property_parser(pspec, parser_wrapper.NativeDelegate);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_reset_property(IntPtr raw, IntPtr name);
 
 		public void ResetProperty(string name) {
@@ -1113,7 +1113,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_set_double_property(IntPtr raw, IntPtr name, double v_double, IntPtr origin);
 
 		[Obsolete]
@@ -1125,7 +1125,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_origin);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_set_long_property(IntPtr raw, IntPtr name, IntPtr v_long, IntPtr origin);
 
 		[Obsolete]
@@ -1137,7 +1137,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_origin);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_set_property_value(IntPtr raw, IntPtr name, IntPtr svalue);
 
 		[Obsolete]
@@ -1149,7 +1149,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_svalue);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_settings_set_string_property(IntPtr raw, IntPtr name, IntPtr v_string, IntPtr origin);
 
 		[Obsolete]
@@ -1163,7 +1163,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_origin);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_provider_get_style_property(IntPtr raw, IntPtr path, int state, IntPtr pspec, IntPtr value);
 
 		public bool GetStyleProperty(Gtk.WidgetPath path, Gtk.StateFlags state, IntPtr pspec, GLib.Value value) {

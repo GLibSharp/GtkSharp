@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RadioButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_button_new_from_widget(IntPtr radio_group_member);
 
 		public RadioButton (Gtk.RadioButton radio_group_member) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			Raw = gtk_radio_button_new_from_widget(radio_group_member == null ? IntPtr.Zero : radio_group_member.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_button_new_with_mnemonic_from_widget(IntPtr radio_group_member, IntPtr label);
 
 		public RadioButton (Gtk.RadioButton radio_group_member, string label) : base (IntPtr.Zero)
@@ -172,7 +172,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_button_get_type();
 
 		public static new GLib.GType GType { 
@@ -183,7 +183,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_radio_button_join_group(IntPtr raw, IntPtr group_source);
 
 		public void JoinGroup(Gtk.RadioButton group_source) {

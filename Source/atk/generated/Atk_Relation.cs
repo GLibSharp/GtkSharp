@@ -13,7 +13,7 @@ namespace Atk {
 
 		public Relation (IntPtr raw) : base(raw) {}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_relation_new(IntPtr[] targets, int n_targets, int relationship);
 
 		public Relation (Atk.Object[] targets, Atk.RelationType relationship) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Atk {
 			Raw = atk_relation_new(native_targets, (targets == null ? 0 : targets.Length), (int) relationship);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_relation_get_relation_type(IntPtr raw);
 
 		[GLib.Property ("relation_type")]
@@ -48,7 +48,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_relation_get_target(IntPtr raw);
 
 		public Atk.Object[] Target {
@@ -74,14 +74,14 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_relation_add_target(IntPtr raw, IntPtr target);
 
 		public void AddTarget(Atk.Object target) {
 			atk_relation_add_target(Handle, target == null ? IntPtr.Zero : target.Handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_relation_get_type();
 
 		public static new GLib.GType GType { 
@@ -92,7 +92,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_relation_remove_target(IntPtr raw, IntPtr target);
 
 		public bool RemoveTarget(Atk.Object target) {
@@ -101,7 +101,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_relation_type_for_name(IntPtr name);
 
 		public static Atk.RelationType TypeForName(string name) {
@@ -112,7 +112,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_relation_type_get_name(int type);
 
 		public static string TypeGetName(Atk.RelationType type) {
@@ -121,7 +121,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_relation_type_register(IntPtr name);
 
 		public static Atk.RelationType TypeRegister(string name) {

@@ -21,7 +21,7 @@ namespace Gtk {
 	}
 
 	internal class NumberUpLayoutGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_number_up_layout_get_type ();
 
 		public static GLib.GType GType {

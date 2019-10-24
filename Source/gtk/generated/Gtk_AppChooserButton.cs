@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public AppChooserButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_button_new(IntPtr content_type);
 
 		public AppChooserButton (string content_type) : base (IntPtr.Zero)
@@ -29,10 +29,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_content_type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_app_chooser_button_get_show_dialog_item(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_button_set_show_dialog_item(IntPtr raw, bool setting);
 
 		[GLib.Property ("show-dialog-item")]
@@ -47,10 +47,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_app_chooser_button_get_show_default_item(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_button_set_show_default_item(IntPtr raw, bool setting);
 
 		[GLib.Property ("show-default-item")]
@@ -65,10 +65,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_button_get_heading(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_button_set_heading(IntPtr raw, IntPtr heading);
 
 		[GLib.Property ("heading")]
@@ -182,7 +182,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_button_append_custom_item(IntPtr raw, IntPtr name, IntPtr label, IntPtr icon);
 
 		public void AppendCustomItem(string name, string label, GLib.IIcon icon) {
@@ -193,14 +193,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_label);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_button_append_separator(IntPtr raw);
 
 		public void AppendSeparator() {
 			gtk_app_chooser_button_append_separator(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_button_get_type();
 
 		public static new GLib.GType GType { 
@@ -211,7 +211,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_button_set_active_custom_item(IntPtr raw, IntPtr name);
 
 		public string ActiveCustomItem { 
@@ -222,7 +222,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_app_info(IntPtr raw);
 
 		public GLib.IAppInfo AppInfo { 
@@ -233,7 +233,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_content_type(IntPtr raw);
 
 		public string ContentType { 
@@ -244,7 +244,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_refresh(IntPtr raw);
 
 		public void Refresh() {

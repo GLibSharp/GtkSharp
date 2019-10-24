@@ -33,7 +33,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_context_create_pango_context(IntPtr raw);
 
 		public Pango.Context CreatePangoContext() {
@@ -42,7 +42,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_context_create_pango_layout(IntPtr raw);
 
 		public Pango.Layout CreatePangoLayout() {
@@ -51,7 +51,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_context_get_cairo_context(IntPtr raw);
 
 		public Cairo.Context CairoContext { 
@@ -62,7 +62,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_context_get_dpi_x(IntPtr raw);
 
 		public double DpiX { 
@@ -73,7 +73,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_context_get_dpi_y(IntPtr raw);
 
 		public double DpiY { 
@@ -84,7 +84,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_context_get_hard_margins(IntPtr raw, out double top, out double bottom, out double left, out double right);
 
 		public bool GetHardMargins(out double top, out double bottom, out double left, out double right) {
@@ -93,7 +93,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_context_get_height(IntPtr raw);
 
 		public double Height { 
@@ -104,7 +104,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_context_get_page_setup(IntPtr raw);
 
 		public Gtk.PageSetup PageSetup { 
@@ -115,7 +115,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_context_get_pango_fontmap(IntPtr raw);
 
 		public Pango.FontMap PangoFontmap { 
@@ -126,7 +126,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -137,7 +137,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_context_get_width(IntPtr raw);
 
 		public double Width { 
@@ -148,7 +148,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_context_set_cairo_context(IntPtr raw, IntPtr cr, double dpi_x, double dpi_y);
 
 		public void SetCairoContext(Cairo.Context cr, double dpi_x, double dpi_y) {

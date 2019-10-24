@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public IconInfo (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_info_new_for_pixbuf(IntPtr icon_theme, IntPtr pixbuf);
 
 		public IconInfo (Gtk.IconTheme icon_theme, Gdk.Pixbuf pixbuf) : base (IntPtr.Zero)
@@ -42,7 +42,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_info_copy(IntPtr raw);
 
 		[Obsolete]
@@ -52,7 +52,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_info_free(IntPtr raw);
 
 		[Obsolete]
@@ -60,7 +60,7 @@ namespace Gtk {
 			gtk_icon_info_free(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_icon_info_get_attach_points(IntPtr raw, IntPtr points, out int n_points);
 
 		[Obsolete]
@@ -72,7 +72,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_icon_info_get_base_scale(IntPtr raw);
 
 		public int BaseScale { 
@@ -83,7 +83,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_icon_info_get_base_size(IntPtr raw);
 
 		public int BaseSize { 
@@ -94,7 +94,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_info_get_builtin_pixbuf(IntPtr raw);
 
 		[Obsolete]
@@ -106,7 +106,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_info_get_display_name(IntPtr raw);
 
 		[Obsolete]
@@ -118,7 +118,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_icon_info_get_embedded_rect(IntPtr raw, IntPtr rectangle);
 
 		[Obsolete]
@@ -130,7 +130,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_info_get_filename(IntPtr raw);
 
 		public string Filename { 
@@ -141,7 +141,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_info_get_type();
 
 		public static new GLib.GType GType { 
@@ -152,7 +152,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_icon_info_is_symbolic(IntPtr raw);
 
 		public bool IsSymbolic { 
@@ -163,7 +163,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_icon(IntPtr raw, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadIcon() {
@@ -174,7 +174,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_info_load_icon_async(IntPtr raw, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void LoadIconAsync(GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -182,7 +182,7 @@ namespace Gtk {
 			gtk_icon_info_load_icon_async(Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_icon_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadIconFinish(GLib.IAsyncResult res) {
@@ -193,7 +193,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_surface(IntPtr raw, IntPtr for_window, out IntPtr error);
 
 		public unsafe Cairo.Surface LoadSurface(Gdk.Window for_window) {
@@ -204,7 +204,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_symbolic(IntPtr raw, IntPtr fg, IntPtr success_color, IntPtr warning_color, IntPtr error_color, out bool was_symbolic, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadSymbolic(Gdk.RGBA fg, Gdk.RGBA success_color, Gdk.RGBA warning_color, Gdk.RGBA error_color, out bool was_symbolic) {
@@ -223,7 +223,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_info_load_symbolic_async(IntPtr raw, IntPtr fg, IntPtr success_color, IntPtr warning_color, IntPtr error_color, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void LoadSymbolicAsync(Gdk.RGBA fg, Gdk.RGBA success_color, Gdk.RGBA warning_color, Gdk.RGBA error_color, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -239,7 +239,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_error_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_symbolic_finish(IntPtr raw, IntPtr res, out bool was_symbolic, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadSymbolicFinish(GLib.IAsyncResult res, out bool was_symbolic) {
@@ -250,7 +250,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_symbolic_for_context(IntPtr raw, IntPtr context, out bool was_symbolic, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadSymbolicForContext(Gtk.StyleContext context, out bool was_symbolic) {
@@ -261,7 +261,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_info_load_symbolic_for_context_async(IntPtr raw, IntPtr context, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void LoadSymbolicForContextAsync(Gtk.StyleContext context, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -269,7 +269,7 @@ namespace Gtk {
 			gtk_icon_info_load_symbolic_for_context_async(Handle, context == null ? IntPtr.Zero : context.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_symbolic_for_context_finish(IntPtr raw, IntPtr res, out bool was_symbolic, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadSymbolicForContextFinish(GLib.IAsyncResult res, out bool was_symbolic) {
@@ -280,7 +280,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_info_load_symbolic_for_style(IntPtr raw, IntPtr style, int state, out bool was_symbolic, out IntPtr error);
 
 		[Obsolete]
@@ -292,7 +292,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_info_set_raw_coordinates(IntPtr raw, bool raw_coordinates);
 
 		[Obsolete]

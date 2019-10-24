@@ -35,7 +35,7 @@ namespace Gtk {
 			return (Gtk.TextIter) Marshal.PtrToStructure (raw, typeof (Gtk.TextIter));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_assign(IntPtr raw, IntPtr other);
 
 		public void Assign(Gtk.TextIter other) {
@@ -48,7 +48,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_other);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_char(IntPtr raw);
 
 		public bool BackwardChar() {
@@ -61,7 +61,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_chars(IntPtr raw, int count);
 
 		public bool BackwardChars(int count) {
@@ -74,7 +74,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_cursor_position(IntPtr raw);
 
 		public bool BackwardCursorPosition() {
@@ -87,7 +87,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_cursor_positions(IntPtr raw, int count);
 
 		public bool BackwardCursorPositions(int count) {
@@ -100,7 +100,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_find_char(IntPtr raw, GtkSharp.TextCharPredicateNative pred, IntPtr user_data, IntPtr limit);
 
 		public bool BackwardFindChar(Gtk.TextCharPredicate pred, Gtk.TextIter limit) {
@@ -116,7 +116,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_line(IntPtr raw);
 
 		public bool BackwardLine() {
@@ -129,7 +129,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_lines(IntPtr raw, int count);
 
 		public bool BackwardLines(int count) {
@@ -142,7 +142,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_search(IntPtr raw, IntPtr str, int flags, IntPtr match_start, IntPtr match_end, IntPtr limit);
 
 		public bool BackwardSearch(string str, Gtk.TextSearchFlags flags, out Gtk.TextIter match_start, out Gtk.TextIter match_end, Gtk.TextIter limit) {
@@ -165,7 +165,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_sentence_start(IntPtr raw);
 
 		public bool BackwardSentenceStart() {
@@ -178,7 +178,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_sentence_starts(IntPtr raw, int count);
 
 		public bool BackwardSentenceStarts(int count) {
@@ -191,7 +191,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_to_tag_toggle(IntPtr raw, IntPtr tag);
 
 		public bool BackwardToTagToggle(Gtk.TextTag tag) {
@@ -204,7 +204,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_visible_cursor_position(IntPtr raw);
 
 		public bool BackwardVisibleCursorPosition() {
@@ -217,7 +217,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_visible_cursor_positions(IntPtr raw, int count);
 
 		public bool BackwardVisibleCursorPositions(int count) {
@@ -230,7 +230,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_visible_line(IntPtr raw);
 
 		public bool BackwardVisibleLine() {
@@ -243,7 +243,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_visible_lines(IntPtr raw, int count);
 
 		public bool BackwardVisibleLines(int count) {
@@ -256,7 +256,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_visible_word_start(IntPtr raw);
 
 		public bool BackwardVisibleWordStart() {
@@ -269,7 +269,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_visible_word_starts(IntPtr raw, int count);
 
 		public bool BackwardVisibleWordStarts(int count) {
@@ -282,7 +282,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_word_start(IntPtr raw);
 
 		public bool BackwardWordStart() {
@@ -295,7 +295,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_backward_word_starts(IntPtr raw, int count);
 
 		public bool BackwardWordStarts(int count) {
@@ -308,7 +308,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_begins_tag(IntPtr raw, IntPtr tag);
 
 		[Obsolete]
@@ -322,7 +322,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_can_insert(IntPtr raw, bool default_editability);
 
 		public bool CanInsert(bool default_editability) {
@@ -335,7 +335,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_compare(IntPtr raw, IntPtr rhs);
 
 		public int Compare(Gtk.TextIter rhs) {
@@ -350,7 +350,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_editable(IntPtr raw, bool default_setting);
 
 		public bool Editable(bool default_setting) {
@@ -363,7 +363,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_ends_line(IntPtr raw);
 
 		public bool EndsLine() {
@@ -376,7 +376,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_ends_sentence(IntPtr raw);
 
 		public bool EndsSentence() {
@@ -389,7 +389,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_ends_tag(IntPtr raw, IntPtr tag);
 
 		public bool EndsTag(Gtk.TextTag tag) {
@@ -402,7 +402,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_ends_word(IntPtr raw);
 
 		public bool EndsWord() {
@@ -415,7 +415,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_equal(IntPtr raw, IntPtr rhs);
 
 		public bool Equals(Gtk.TextIter rhs) {
@@ -430,7 +430,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_char(IntPtr raw);
 
 		public bool ForwardChar() {
@@ -443,7 +443,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_chars(IntPtr raw, int count);
 
 		public bool ForwardChars(int count) {
@@ -456,7 +456,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_cursor_position(IntPtr raw);
 
 		public bool ForwardCursorPosition() {
@@ -469,7 +469,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_cursor_positions(IntPtr raw, int count);
 
 		public bool ForwardCursorPositions(int count) {
@@ -482,7 +482,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_find_char(IntPtr raw, GtkSharp.TextCharPredicateNative pred, IntPtr user_data, IntPtr limit);
 
 		public bool ForwardFindChar(Gtk.TextCharPredicate pred, Gtk.TextIter limit) {
@@ -498,7 +498,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_line(IntPtr raw);
 
 		public bool ForwardLine() {
@@ -511,7 +511,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_lines(IntPtr raw, int count);
 
 		public bool ForwardLines(int count) {
@@ -524,7 +524,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_search(IntPtr raw, IntPtr str, int flags, IntPtr match_start, IntPtr match_end, IntPtr limit);
 
 		public bool ForwardSearch(string str, Gtk.TextSearchFlags flags, out Gtk.TextIter match_start, out Gtk.TextIter match_end, Gtk.TextIter limit) {
@@ -547,7 +547,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_sentence_end(IntPtr raw);
 
 		public bool ForwardSentenceEnd() {
@@ -560,7 +560,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_sentence_ends(IntPtr raw, int count);
 
 		public bool ForwardSentenceEnds(int count) {
@@ -573,7 +573,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_forward_to_end(IntPtr raw);
 
 		public void ForwardToEnd() {
@@ -584,7 +584,7 @@ namespace Gtk {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_to_line_end(IntPtr raw);
 
 		public bool ForwardToLineEnd() {
@@ -597,7 +597,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_to_tag_toggle(IntPtr raw, IntPtr tag);
 
 		public bool ForwardToTagToggle(Gtk.TextTag tag) {
@@ -610,7 +610,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_visible_cursor_position(IntPtr raw);
 
 		public bool ForwardVisibleCursorPosition() {
@@ -623,7 +623,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_visible_cursor_positions(IntPtr raw, int count);
 
 		public bool ForwardVisibleCursorPositions(int count) {
@@ -636,7 +636,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_visible_line(IntPtr raw);
 
 		public bool ForwardVisibleLine() {
@@ -649,7 +649,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_visible_lines(IntPtr raw, int count);
 
 		public bool ForwardVisibleLines(int count) {
@@ -662,7 +662,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_visible_word_end(IntPtr raw);
 
 		public bool ForwardVisibleWordEnd() {
@@ -675,7 +675,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_visible_word_ends(IntPtr raw, int count);
 
 		public bool ForwardVisibleWordEnds(int count) {
@@ -688,7 +688,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_word_end(IntPtr raw);
 
 		public bool ForwardWordEnd() {
@@ -701,7 +701,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_forward_word_ends(IntPtr raw, int count);
 
 		public bool ForwardWordEnds(int count) {
@@ -714,7 +714,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_get_attributes(IntPtr raw, IntPtr values);
 
 		public bool GetAttributes(Gtk.TextAttributes values) {
@@ -727,7 +727,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_buffer(IntPtr raw);
 
 		public Gtk.TextBuffer Buffer { 
@@ -742,7 +742,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_bytes_in_line(IntPtr raw);
 
 		public int BytesInLine { 
@@ -757,7 +757,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_chars_in_line(IntPtr raw);
 
 		public int CharsInLine { 
@@ -772,7 +772,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_child_anchor(IntPtr raw);
 
 		public Gtk.TextChildAnchor ChildAnchor { 
@@ -787,7 +787,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_language(IntPtr raw);
 
 		public Pango.Language Language { 
@@ -802,10 +802,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_line(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_set_line(IntPtr raw, int line_number);
 
 		public int Line { 
@@ -827,10 +827,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_line_index(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_set_line_index(IntPtr raw, int byte_on_line);
 
 		public int LineIndex { 
@@ -852,10 +852,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_line_offset(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_set_line_offset(IntPtr raw, int char_on_line);
 
 		public int LineOffset { 
@@ -877,10 +877,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_offset(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_set_offset(IntPtr raw, int char_offset);
 
 		public int Offset { 
@@ -902,7 +902,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_pixbuf(IntPtr raw);
 
 		public Gdk.Pixbuf Pixbuf { 
@@ -917,7 +917,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_slice(IntPtr raw, IntPtr end);
 
 		public string GetSlice(Gtk.TextIter end) {
@@ -932,7 +932,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_text(IntPtr raw, IntPtr end);
 
 		public string GetText(Gtk.TextIter end) {
@@ -947,7 +947,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_type();
 
 		public static GLib.GType GType { 
@@ -958,10 +958,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_visible_line_index(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_set_visible_line_index(IntPtr raw, int byte_on_line);
 
 		public int VisibleLineIndex { 
@@ -983,10 +983,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_iter_get_visible_line_offset(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_set_visible_line_offset(IntPtr raw, int char_on_line);
 
 		public int VisibleLineOffset { 
@@ -1008,7 +1008,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_visible_slice(IntPtr raw, IntPtr end);
 
 		public string GetVisibleSlice(Gtk.TextIter end) {
@@ -1023,7 +1023,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_iter_get_visible_text(IntPtr raw, IntPtr end);
 
 		public string GetVisibleText(Gtk.TextIter end) {
@@ -1038,7 +1038,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_has_tag(IntPtr raw, IntPtr tag);
 
 		public bool HasTag(Gtk.TextTag tag) {
@@ -1051,7 +1051,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_in_range(IntPtr raw, IntPtr start, IntPtr end);
 
 		public bool InRange(Gtk.TextIter start, Gtk.TextIter end) {
@@ -1068,7 +1068,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_inside_sentence(IntPtr raw);
 
 		public bool InsideSentence() {
@@ -1081,7 +1081,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_inside_word(IntPtr raw);
 
 		public bool InsideWord() {
@@ -1094,7 +1094,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_is_cursor_position(IntPtr raw);
 
 		public bool IsCursorPosition { 
@@ -1109,7 +1109,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_is_end(IntPtr raw);
 
 		public bool IsEnd { 
@@ -1124,7 +1124,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_is_start(IntPtr raw);
 
 		public bool IsStart { 
@@ -1139,7 +1139,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_iter_order(IntPtr raw, IntPtr second);
 
 		public void Order(Gtk.TextIter second) {
@@ -1152,7 +1152,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_second);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_starts_line(IntPtr raw);
 
 		public bool StartsLine() {
@@ -1165,7 +1165,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_starts_sentence(IntPtr raw);
 
 		public bool StartsSentence() {
@@ -1178,7 +1178,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_starts_tag(IntPtr raw, IntPtr tag);
 
 		public bool StartsTag(Gtk.TextTag tag) {
@@ -1191,7 +1191,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_starts_word(IntPtr raw);
 
 		public bool StartsWord() {
@@ -1204,7 +1204,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_iter_toggles_tag(IntPtr raw, IntPtr tag);
 
 		public bool TogglesTag(Gtk.TextTag tag) {

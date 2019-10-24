@@ -17,7 +17,7 @@ namespace Gtk {
 	}
 
 	internal class TextViewLayerGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_view_layer_get_type ();
 
 		public static GLib.GType GType {

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GestureMultiPress (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_multi_press_new(IntPtr widget);
 
 		public GestureMultiPress (Gtk.Widget widget) : base (IntPtr.Zero)
@@ -61,7 +61,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_multi_press_get_area(IntPtr raw, IntPtr rect);
 
 		public bool GetArea(Gdk.Rectangle rect) {
@@ -72,7 +72,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_multi_press_get_type();
 
 		public static new GLib.GType GType { 
@@ -83,7 +83,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_gesture_multi_press_set_area(IntPtr raw, IntPtr rect);
 
 		public void SetArea(Gdk.Rectangle rect) {

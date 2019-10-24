@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public SearchEntry (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_search_entry_new();
 
 		public SearchEntry () : base (IntPtr.Zero)
@@ -325,7 +325,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_search_entry_get_type();
 
 		public static new GLib.GType GType { 
@@ -336,7 +336,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_search_entry_handle_event(IntPtr raw, IntPtr evnt);
 
 		public bool HandleEvent(Gdk.Event evnt) {

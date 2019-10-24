@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Arrow (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_arrow_new(int arrow_type, int shadow_type);
 
 		public Arrow (Gtk.ArrowType arrow_type, Gtk.ShadowType shadow_type) : base (IntPtr.Zero)
@@ -119,7 +119,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_arrow_get_type();
 
 		[Obsolete]

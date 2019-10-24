@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public CellRendererText (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_renderer_text_new();
 
 		public CellRendererText () : base (IntPtr.Zero)
@@ -610,7 +610,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_renderer_text_get_type();
 
 		public static new GLib.GType GType { 
@@ -621,7 +621,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_renderer_text_set_fixed_height_from_font(IntPtr raw, int number_of_rows);
 
 		public int FixedHeightFromFont { 

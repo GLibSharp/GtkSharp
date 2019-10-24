@@ -144,7 +144,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_streamable_content_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_streamable_content_get_type ());
@@ -197,7 +197,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_streamable_content_get_mime_type(IntPtr raw, int i);
 
 		public string GetMimeType(int i) {
@@ -206,7 +206,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_streamable_content_get_n_mime_types(IntPtr raw);
 
 		public int NMimeTypes { 
@@ -217,7 +217,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_streamable_content_get_stream(IntPtr raw, IntPtr mime_type);
 
 		public IntPtr GetStream(string mime_type) {
@@ -228,7 +228,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_streamable_content_get_uri(IntPtr raw, IntPtr mime_type);
 
 		public string GetUri(string mime_type) {

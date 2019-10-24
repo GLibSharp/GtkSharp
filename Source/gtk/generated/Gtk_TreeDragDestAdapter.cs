@@ -92,7 +92,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_drag_dest_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_tree_drag_dest_get_type ());
@@ -145,7 +145,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_dest_drag_data_received(IntPtr raw, IntPtr dest, IntPtr selection_data);
 
 		public bool DragDataReceived(Gtk.TreePath dest, Gtk.SelectionData selection_data) {
@@ -154,7 +154,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_dest_row_drop_possible(IntPtr raw, IntPtr dest_path, IntPtr selection_data);
 
 		public bool RowDropPossible(Gtk.TreePath dest_path, Gtk.SelectionData selection_data) {

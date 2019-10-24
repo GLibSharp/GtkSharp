@@ -17,7 +17,7 @@ namespace Gdk {
 	}
 
 	internal class PixbufRotationGType {
-		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_rotation_get_type ();
 
 		public static GLib.GType GType {

@@ -179,7 +179,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_editable_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_editable_get_type ());
@@ -293,35 +293,35 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_copy_clipboard(IntPtr raw);
 
 		public void CopyClipboard() {
 			gtk_editable_copy_clipboard(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_cut_clipboard(IntPtr raw);
 
 		public void CutClipboard() {
 			gtk_editable_cut_clipboard(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_delete_selection(IntPtr raw);
 
 		public void DeleteSelection() {
 			gtk_editable_delete_selection(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_delete_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void DeleteText(int start_pos, int end_pos) {
 			gtk_editable_delete_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_editable_get_chars(IntPtr raw, int start_pos, int end_pos);
 
 		public string GetChars(int start_pos, int end_pos) {
@@ -330,10 +330,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_editable_get_editable(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_set_editable(IntPtr raw, bool is_editable);
 
 		public bool IsEditable { 
@@ -347,10 +347,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_editable_get_position(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_set_position(IntPtr raw, int position);
 
 		public int Position { 
@@ -364,7 +364,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_editable_get_selection_bounds(IntPtr raw, out int start_pos, out int end_pos);
 
 		public bool GetSelectionBounds(out int start_pos, out int end_pos) {
@@ -373,7 +373,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_insert_text(IntPtr raw, IntPtr new_text, int new_text_length, ref int position);
 
 		public void InsertText(string new_text, ref int position) {
@@ -382,14 +382,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_new_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_paste_clipboard(IntPtr raw);
 
 		public void PasteClipboard() {
 			gtk_editable_paste_clipboard(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_editable_select_region(IntPtr raw, int start_pos, int end_pos);
 
 		public void SelectRegion(int start_pos, int end_pos) {

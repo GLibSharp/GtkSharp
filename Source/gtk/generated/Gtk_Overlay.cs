@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Overlay (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_overlay_new();
 
 		public Overlay () : base (IntPtr.Zero)
@@ -224,14 +224,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_overlay_add_overlay(IntPtr raw, IntPtr widget);
 
 		public void AddOverlay(Gtk.Widget widget) {
 			gtk_overlay_add_overlay(Handle, widget == null ? IntPtr.Zero : widget.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_overlay_get_overlay_pass_through(IntPtr raw, IntPtr widget);
 
 		public bool GetOverlayPassThrough(Gtk.Widget widget) {
@@ -240,7 +240,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_overlay_get_type();
 
 		public static new GLib.GType GType { 
@@ -251,14 +251,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_overlay_reorder_overlay(IntPtr raw, IntPtr child, int position);
 
 		public void ReorderOverlay(Gtk.Widget child, int position) {
 			gtk_overlay_reorder_overlay(Handle, child == null ? IntPtr.Zero : child.Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_overlay_set_overlay_pass_through(IntPtr raw, IntPtr widget, bool pass_through);
 
 		public void SetOverlayPassThrough(Gtk.Widget widget, bool pass_through) {

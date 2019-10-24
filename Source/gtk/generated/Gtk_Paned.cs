@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Paned (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_paned_new(int orientation);
 
 		public Paned (Gtk.Orientation orientation) : base (IntPtr.Zero)
@@ -29,10 +29,10 @@ namespace Gtk {
 			Raw = gtk_paned_new((int) orientation);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_paned_get_position(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paned_set_position(IntPtr raw, int position);
 
 		[GLib.Property ("position")]
@@ -82,10 +82,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_paned_get_wide_handle(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paned_set_wide_handle(IntPtr raw, bool wide);
 
 		[GLib.Property ("wide-handle")]
@@ -655,21 +655,21 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paned_add1(IntPtr raw, IntPtr child);
 
 		public void Add1(Gtk.Widget child) {
 			gtk_paned_add1(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paned_add2(IntPtr raw, IntPtr child);
 
 		public void Add2(Gtk.Widget child) {
 			gtk_paned_add2(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_paned_get_child1(IntPtr raw);
 
 		public Gtk.Widget Child1 { 
@@ -680,7 +680,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_paned_get_child2(IntPtr raw);
 
 		public Gtk.Widget Child2 { 
@@ -691,7 +691,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_paned_get_handle_window(IntPtr raw);
 
 		public Gdk.Window HandleWindow { 
@@ -702,7 +702,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_paned_get_type();
 
 		public static new GLib.GType GType { 
@@ -713,24 +713,24 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paned_pack1(IntPtr raw, IntPtr child, bool resize, bool shrink);
 
 		public void Pack1(Gtk.Widget child, bool resize, bool shrink) {
 			gtk_paned_pack1(Handle, child == null ? IntPtr.Zero : child.Handle, resize, shrink);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paned_pack2(IntPtr raw, IntPtr child, bool resize, bool shrink);
 
 		public void Pack2(Gtk.Widget child, bool resize, bool shrink) {
 			gtk_paned_pack2(Handle, child == null ? IntPtr.Zero : child.Handle, resize, shrink);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_orientable_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_orientable_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]

@@ -25,7 +25,7 @@ namespace Gdk {
 			return (Gdk.Color) Marshal.PtrToStructure (raw, typeof (Gdk.Color));
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_color_equal(IntPtr raw, IntPtr colorb);
 
 		[Obsolete]
@@ -41,7 +41,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_color_get_type();
 
 		[Obsolete]
@@ -53,7 +53,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_color_parse(IntPtr spec, IntPtr color);
 
 		[Obsolete]

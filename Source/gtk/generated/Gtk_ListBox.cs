@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ListBox (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_new();
 
 		public ListBox () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_list_box_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_list_box_get_selection_mode(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_selection_mode(IntPtr raw, int mode);
 
 		[GLib.Property ("selection-mode")]
@@ -43,10 +43,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_list_box_get_activate_on_single_click(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_activate_on_single_click(IntPtr raw, bool single);
 
 		[GLib.Property ("activate-on-single-click")]
@@ -669,24 +669,24 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_drag_highlight_row(IntPtr raw, IntPtr row);
 
 		public void DragHighlightRow(Gtk.ListBoxRow row) {
 			gtk_list_box_drag_highlight_row(Handle, row == null ? IntPtr.Zero : row.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_drag_unhighlight_row(IntPtr raw);
 
 		public void DragUnhighlightRow() {
 			gtk_list_box_drag_unhighlight_row(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_get_adjustment(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_adjustment(IntPtr raw, IntPtr adjustment);
 
 		public Gtk.Adjustment Adjustment { 
@@ -700,7 +700,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_get_row_at_index(IntPtr raw, int index_);
 
 		public Gtk.ListBoxRow GetRowAtIndex(int index_) {
@@ -709,7 +709,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_get_row_at_y(IntPtr raw, int y);
 
 		public Gtk.ListBoxRow GetRowAtY(int y) {
@@ -718,7 +718,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_get_selected_row(IntPtr raw);
 
 		public Gtk.ListBoxRow SelectedRow { 
@@ -729,7 +729,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_get_selected_rows(IntPtr raw);
 
 		public GLib.List SelectedRows { 
@@ -740,7 +740,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_list_box_get_type();
 
 		public static new GLib.GType GType { 
@@ -751,56 +751,56 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_insert(IntPtr raw, IntPtr child, int position);
 
 		public void Insert(Gtk.Widget child, int position) {
 			gtk_list_box_insert(Handle, child == null ? IntPtr.Zero : child.Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_invalidate_filter(IntPtr raw);
 
 		public void InvalidateFilter() {
 			gtk_list_box_invalidate_filter(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_invalidate_headers(IntPtr raw);
 
 		public void InvalidateHeaders() {
 			gtk_list_box_invalidate_headers(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_invalidate_sort(IntPtr raw);
 
 		public void InvalidateSort() {
 			gtk_list_box_invalidate_sort(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_prepend(IntPtr raw, IntPtr child);
 
 		public void Prepend(Gtk.Widget child) {
 			gtk_list_box_prepend(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_select_all(IntPtr raw);
 
 		public void SelectAll() {
 			gtk_list_box_select_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_select_row(IntPtr raw, IntPtr row);
 
 		public void SelectRow(Gtk.ListBoxRow row) {
 			gtk_list_box_select_row(Handle, row == null ? IntPtr.Zero : row.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_selected_foreach(IntPtr raw, GtkSharp.ListBoxForeachFuncNative func, IntPtr data);
 
 		public void SelectedForeach(Gtk.ListBoxForeachFunc func) {
@@ -808,7 +808,7 @@ namespace Gtk {
 			gtk_list_box_selected_foreach(Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_filter_func(IntPtr raw, GtkSharp.ListBoxFilterFuncNative filter_func, IntPtr user_data, GLib.DestroyNotify destroy);
 
 		public Gtk.ListBoxFilterFunc FilterFunc { 
@@ -827,7 +827,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_header_func(IntPtr raw, GtkSharp.ListBoxUpdateHeaderFuncNative update_header, IntPtr user_data, GLib.DestroyNotify destroy);
 
 		public Gtk.ListBoxUpdateHeaderFunc HeaderFunc { 
@@ -846,7 +846,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_placeholder(IntPtr raw, IntPtr placeholder);
 
 		public Gtk.Widget Placeholder { 
@@ -855,7 +855,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_set_sort_func(IntPtr raw, GtkSharp.ListBoxSortFuncNative sort_func, IntPtr user_data, GLib.DestroyNotify destroy);
 
 		public Gtk.ListBoxSortFunc SortFunc { 
@@ -874,14 +874,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_unselect_all(IntPtr raw);
 
 		public void UnselectAll() {
 			gtk_list_box_unselect_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_list_box_unselect_row(IntPtr raw, IntPtr row);
 
 		public void UnselectRow(Gtk.ListBoxRow row) {

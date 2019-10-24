@@ -148,7 +148,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_image_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_image_get_type ());
@@ -201,7 +201,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_image_get_image_description(IntPtr raw);
 
 		public string ImageDescription { 
@@ -212,7 +212,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_image_get_image_locale(IntPtr raw);
 
 		public string ImageLocale { 
@@ -223,21 +223,21 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_image_get_image_position(IntPtr raw, out int x, out int y, int coord_type);
 
 		public void GetImagePosition(out int x, out int y, Atk.CoordType coord_type) {
 			atk_image_get_image_position(Handle, out x, out y, (int) coord_type);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_image_get_image_size(IntPtr raw, out int width, out int height);
 
 		public void GetImageSize(out int width, out int height) {
 			atk_image_get_image_size(Handle, out width, out height);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_image_set_image_description(IntPtr raw, IntPtr description);
 
 		public bool SetImageDescription(string description) {

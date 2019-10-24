@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ButtonBox (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_button_box_new(int orientation);
 
 		public ButtonBox (Gtk.Orientation orientation) : base (IntPtr.Zero)
@@ -171,7 +171,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_button_box_get_child_non_homogeneous(IntPtr raw, IntPtr child);
 
 		public bool GetChildNonHomogeneous(Gtk.Widget child) {
@@ -180,7 +180,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_button_box_get_child_secondary(IntPtr raw, IntPtr child);
 
 		public bool GetChildSecondary(Gtk.Widget child) {
@@ -189,10 +189,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_button_box_get_layout(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_button_box_set_layout(IntPtr raw, int layout_style);
 
 		public Gtk.ButtonBoxStyle Layout { 
@@ -206,7 +206,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_button_box_get_type();
 
 		public static new GLib.GType GType { 
@@ -217,14 +217,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_button_box_set_child_non_homogeneous(IntPtr raw, IntPtr child, bool non_homogeneous);
 
 		public void SetChildNonHomogeneous(Gtk.Widget child, bool non_homogeneous) {
 			gtk_button_box_set_child_non_homogeneous(Handle, child == null ? IntPtr.Zero : child.Handle, non_homogeneous);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_button_box_set_child_secondary(IntPtr raw, IntPtr child, bool is_secondary);
 
 		public void SetChildSecondary(Gtk.Widget child, bool is_secondary) {

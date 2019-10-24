@@ -18,10 +18,10 @@ namespace Gtk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tree_selection_get_mode(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_set_mode(IntPtr raw, int type);
 
 		[GLib.Property ("mode")]
@@ -155,7 +155,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tree_selection_count_selected_rows(IntPtr raw);
 
 		public int CountSelectedRows() {
@@ -164,10 +164,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern GtkSharp.TreeSelectionFuncNative gtk_tree_selection_get_select_function(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_set_select_function(IntPtr raw, GtkSharp.TreeSelectionFuncNative func, IntPtr data, GLib.DestroyNotify destroy);
 
 		public Gtk.TreeSelectionFunc SelectFunction { 
@@ -191,7 +191,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_selection_get_selected(IntPtr raw, out IntPtr model, IntPtr iter);
 
 		public bool GetSelected(out Gtk.ITreeModel model, out Gtk.TreeIter iter) {
@@ -205,7 +205,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_selection_get_selected_rows(IntPtr raw, out IntPtr model);
 
 		public Gtk.TreePath[] GetSelectedRows(out Gtk.ITreeModel model) {
@@ -216,7 +216,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_selection_get_tree_view(IntPtr raw);
 
 		public Gtk.TreeView TreeView { 
@@ -227,7 +227,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_selection_get_type();
 
 		public static new GLib.GType GType { 
@@ -238,7 +238,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_selection_get_user_data(IntPtr raw);
 
 		public IntPtr UserData { 
@@ -249,7 +249,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_selection_iter_is_selected(IntPtr raw, IntPtr iter);
 
 		public bool IterIsSelected(Gtk.TreeIter iter) {
@@ -260,7 +260,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_selection_path_is_selected(IntPtr raw, IntPtr path);
 
 		public bool PathIsSelected(Gtk.TreePath path) {
@@ -269,14 +269,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_select_all(IntPtr raw);
 
 		public void SelectAll() {
 			gtk_tree_selection_select_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_select_iter(IntPtr raw, IntPtr iter);
 
 		public void SelectIter(Gtk.TreeIter iter) {
@@ -285,21 +285,21 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_select_path(IntPtr raw, IntPtr path);
 
 		public void SelectPath(Gtk.TreePath path) {
 			gtk_tree_selection_select_path(Handle, path == null ? IntPtr.Zero : path.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_select_range(IntPtr raw, IntPtr start_path, IntPtr end_path);
 
 		public void SelectRange(Gtk.TreePath start_path, Gtk.TreePath end_path) {
 			gtk_tree_selection_select_range(Handle, start_path == null ? IntPtr.Zero : start_path.Handle, end_path == null ? IntPtr.Zero : end_path.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_selected_foreach(IntPtr raw, GtkSharp.TreeSelectionForeachFuncNative func, IntPtr data);
 
 		public void SelectedForeach(Gtk.TreeSelectionForeachFunc func) {
@@ -307,14 +307,14 @@ namespace Gtk {
 			gtk_tree_selection_selected_foreach(Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_unselect_all(IntPtr raw);
 
 		public void UnselectAll() {
 			gtk_tree_selection_unselect_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_unselect_iter(IntPtr raw, IntPtr iter);
 
 		public void UnselectIter(Gtk.TreeIter iter) {
@@ -323,14 +323,14 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_unselect_path(IntPtr raw, IntPtr path);
 
 		public void UnselectPath(Gtk.TreePath path) {
 			gtk_tree_selection_unselect_path(Handle, path == null ? IntPtr.Zero : path.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_selection_unselect_range(IntPtr raw, IntPtr start_path, IntPtr end_path);
 
 		public void UnselectRange(Gtk.TreePath start_path, Gtk.TreePath end_path) {

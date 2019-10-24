@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Dialog (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_new();
 
 		public Dialog () : base (IntPtr.Zero)
@@ -265,14 +265,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_dialog_add_action_widget(IntPtr raw, IntPtr child, int response_id);
 
 		public void AddActionWidget(Gtk.Widget child, int response_id) {
 			gtk_dialog_add_action_widget(Handle, child == null ? IntPtr.Zero : child.Handle, response_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_add_button(IntPtr raw, IntPtr button_text, int response_id);
 
 		public Gtk.Widget AddButton(string button_text, int response_id) {
@@ -283,7 +283,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_action_area(IntPtr raw);
 
 		[Obsolete]
@@ -295,7 +295,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_content_area(IntPtr raw);
 
 		public Gtk.Box ContentArea { 
@@ -306,7 +306,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_header_bar(IntPtr raw);
 
 		public Gtk.Widget HeaderBar { 
@@ -317,7 +317,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_dialog_get_response_for_widget(IntPtr raw, IntPtr widget);
 
 		public int GetResponseForWidget(Gtk.Widget widget) {
@@ -326,7 +326,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_type();
 
 		public static new GLib.GType GType { 
@@ -337,7 +337,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_widget_for_response(IntPtr raw, int response_id);
 
 		public Gtk.Widget GetWidgetForResponse(int response_id) {
@@ -346,14 +346,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_dialog_response(IntPtr raw, int response_id);
 
 		public void Respond(int response_id) {
 			gtk_dialog_response(Handle, response_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_dialog_run(IntPtr raw);
 
 		public int Run() {
@@ -362,7 +362,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_dialog_set_alternative_button_order_from_array(IntPtr raw, int n_params, int[] new_order);
 
 		[Obsolete]
@@ -372,7 +372,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_dialog_set_default_response(IntPtr raw, int response_id);
 
 		public Gtk.ResponseType DefaultResponse { 
@@ -381,7 +381,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_dialog_set_response_sensitive(IntPtr raw, int response_id, bool setting);
 
 		public void SetResponseSensitive(Gtk.ResponseType response_id, bool setting) {

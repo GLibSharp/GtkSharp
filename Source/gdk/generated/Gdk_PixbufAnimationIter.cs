@@ -18,7 +18,7 @@ namespace Gdk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_animation_iter_advance(IntPtr raw, IntPtr current_time);
 
 		public bool Advance(IntPtr current_time) {
@@ -27,7 +27,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_pixbuf_animation_iter_get_delay_time(IntPtr raw);
 
 		public int DelayTime { 
@@ -38,7 +38,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_animation_iter_get_pixbuf(IntPtr raw);
 
 		public Gdk.Pixbuf Pixbuf { 
@@ -49,7 +49,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_animation_iter_get_type();
 
 		public static new GLib.GType GType { 
@@ -60,7 +60,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_animation_iter_on_currently_loading_frame(IntPtr raw);
 
 		public bool OnCurrentlyLoadingFrame() {

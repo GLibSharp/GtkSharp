@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public SpinButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_spin_button_new(IntPtr adjustment, double climb_rate, uint digits);
 
 		public SpinButton (Gtk.Adjustment adjustment, double climb_rate, uint digits) : base (IntPtr.Zero)
@@ -35,10 +35,10 @@ namespace Gtk {
 			Raw = gtk_spin_button_new(adjustment == null ? IntPtr.Zero : adjustment.Handle, climb_rate, digits);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_spin_button_get_adjustment(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_adjustment(IntPtr raw, IntPtr adjustment);
 
 		[GLib.Property ("adjustment")]
@@ -68,10 +68,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_spin_button_get_digits(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_digits(IntPtr raw, uint digits);
 
 		[GLib.Property ("digits")]
@@ -86,10 +86,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_spin_button_get_snap_to_ticks(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_snap_to_ticks(IntPtr raw, bool snap_to_ticks);
 
 		[GLib.Property ("snap-to-ticks")]
@@ -104,10 +104,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_spin_button_get_numeric(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_numeric(IntPtr raw, bool numeric);
 
 		[GLib.Property ("numeric")]
@@ -122,10 +122,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_spin_button_get_wrap(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_wrap(IntPtr raw, bool wrap);
 
 		[GLib.Property ("wrap")]
@@ -140,10 +140,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_spin_button_get_update_policy(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_update_policy(IntPtr raw, int policy);
 
 		[GLib.Property ("update-policy")]
@@ -158,10 +158,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_spin_button_get_value(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_value(IntPtr raw, double value);
 
 		[GLib.Property ("value")]
@@ -655,28 +655,28 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_configure(IntPtr raw, IntPtr adjustment, double climb_rate, uint digits);
 
 		public void Configure(Gtk.Adjustment adjustment, double climb_rate, uint digits) {
 			gtk_spin_button_configure(Handle, adjustment == null ? IntPtr.Zero : adjustment.Handle, climb_rate, digits);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_get_increments(IntPtr raw, out double step, out double page);
 
 		public void GetIncrements(out double step, out double page) {
 			gtk_spin_button_get_increments(Handle, out step, out page);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_get_range(IntPtr raw, out double min, out double max);
 
 		public void GetRange(out double min, out double max) {
 			gtk_spin_button_get_range(Handle, out min, out max);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_spin_button_get_type();
 
 		public static new GLib.GType GType { 
@@ -687,7 +687,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_spin_button_get_value_as_int(IntPtr raw);
 
 		public int ValueAsInt { 
@@ -698,38 +698,38 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_increments(IntPtr raw, double step, double page);
 
 		public void SetIncrements(double step, double page) {
 			gtk_spin_button_set_increments(Handle, step, page);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_set_range(IntPtr raw, double min, double max);
 
 		public void SetRange(double min, double max) {
 			gtk_spin_button_set_range(Handle, min, max);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_spin(IntPtr raw, int direction, double increment);
 
 		public void Spin(Gtk.SpinType direction, double increment) {
 			gtk_spin_button_spin(Handle, (int) direction, increment);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_spin_button_update(IntPtr raw);
 
 		public void Update() {
 			gtk_spin_button_update(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_orientable_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_orientable_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]

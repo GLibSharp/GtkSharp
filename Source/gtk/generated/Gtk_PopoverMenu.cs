@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PopoverMenu (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_menu_new();
 
 		public PopoverMenu () : base (IntPtr.Zero)
@@ -105,7 +105,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_popover_menu_get_type();
 
 		public static new GLib.GType GType { 
@@ -116,7 +116,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_popover_menu_open_submenu(IntPtr raw, IntPtr name);
 
 		public void OpenSubmenu(string name) {

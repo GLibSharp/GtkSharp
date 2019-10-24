@@ -16,7 +16,7 @@ namespace Gdk {
 	}
 
 	internal class FilterReturnGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_filter_return_get_type ();
 
 		public static GLib.GType GType {

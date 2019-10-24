@@ -1,6 +1,6 @@
 <configuration>
   <dllmap dll="glib-2.0-0.dll" target="libglib-2.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
   <dllmap dll="gobject-2.0-0.dll" target="libgobject-2.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
-  <dllmap dll="libpango-1.0-0.dll" target="libpango-1.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
-  <dllmap dll="libpangocairo-1.0-0.dll" target="libpangocairo-1.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
+  <dllmap dll="pango-1.0-0.dll" target="libpango-1.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
+  <dllmap dll="pangocairo-1.0-0.dll" target="libpangocairo-1.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
 </configuration>

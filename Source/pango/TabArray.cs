@@ -25,7 +25,7 @@ namespace Pango {
 
 	public partial class TabArray {
 
-		[DllImport ("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_tab_array_get_tabs (IntPtr raw, out IntPtr alignments, out IntPtr locations);
 
 		public void GetTabs (out TabAlign[] alignments, out int[] locations) 

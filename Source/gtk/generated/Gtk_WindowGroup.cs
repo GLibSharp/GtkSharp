@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public WindowGroup (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_group_new();
 
 		public WindowGroup () : base (IntPtr.Zero)
@@ -73,14 +73,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_window_group_add_window(IntPtr raw, IntPtr window);
 
 		public void AddWindow(Gtk.Window window) {
 			gtk_window_group_add_window(Handle, window == null ? IntPtr.Zero : window.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_group_get_current_device_grab(IntPtr raw, IntPtr device);
 
 		public Gtk.Widget GetCurrentDeviceGrab(Gdk.Device device) {
@@ -89,7 +89,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_group_get_current_grab(IntPtr raw);
 
 		public Gtk.Widget CurrentGrab { 
@@ -100,7 +100,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_group_get_type();
 
 		public static new GLib.GType GType { 
@@ -111,7 +111,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_group_list_windows(IntPtr raw);
 
 		public Gtk.Window[] ListWindows() {
@@ -120,7 +120,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_window_group_remove_window(IntPtr raw, IntPtr window);
 
 		public void RemoveWindow(Gtk.Window window) {

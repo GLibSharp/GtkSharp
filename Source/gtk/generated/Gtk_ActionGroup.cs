@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ActionGroup (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_group_new(IntPtr name);
 
 		public ActionGroup (string name) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_group_get_name(IntPtr raw);
 
 		[Obsolete]
@@ -44,10 +44,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_action_group_get_sensitive(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_set_sensitive(IntPtr raw, bool sensitive);
 
 		[Obsolete]
@@ -63,10 +63,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_action_group_get_visible(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_set_visible(IntPtr raw, bool visible);
 
 		[Obsolete]
@@ -82,10 +82,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_group_get_accel_group(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_set_accel_group(IntPtr raw, IntPtr accel_group);
 
 		[Obsolete]
@@ -465,7 +465,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_add_action(IntPtr raw, IntPtr action);
 
 		[Obsolete]
@@ -473,7 +473,7 @@ namespace Gtk {
 			gtk_action_group_add_action(Handle, action == null ? IntPtr.Zero : action.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_add_action_with_accel(IntPtr raw, IntPtr action, IntPtr accelerator);
 
 		[Obsolete]
@@ -483,7 +483,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accelerator);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_group_get_action(IntPtr raw, IntPtr action_name);
 
 		[Obsolete]
@@ -495,7 +495,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_group_get_type();
 
 		[Obsolete]
@@ -507,7 +507,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_remove_action(IntPtr raw, IntPtr action);
 
 		[Obsolete]
@@ -515,7 +515,7 @@ namespace Gtk {
 			gtk_action_group_remove_action(Handle, action == null ? IntPtr.Zero : action.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_set_translate_func(IntPtr raw, GtkSharp.TranslateFuncNative func, IntPtr data, GLib.DestroyNotify notify);
 
 		[Obsolete]
@@ -535,7 +535,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_group_set_translation_domain(IntPtr raw, IntPtr domain);
 
 		[Obsolete]
@@ -547,7 +547,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_group_translate_string(IntPtr raw, IntPtr str1ng);
 
 		[Obsolete]

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public MenuSectionBox (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_section_box_new_toplevel(IntPtr stack, IntPtr model, IntPtr action_namespace, IntPtr popover);
 
 		public MenuSectionBox (Gtk.Stack stack, GLib.MenuModel model, string action_namespace, Gtk.Popover popover) : base (IntPtr.Zero)
@@ -29,7 +29,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_namespace);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_section_box_get_type();
 
 		public static new GLib.GType GType { 

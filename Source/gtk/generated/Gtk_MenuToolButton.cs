@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public MenuToolButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_tool_button_new(IntPtr icon_widget, IntPtr label);
 
 		public MenuToolButton (Gtk.Widget icon_widget, string label) : base (IntPtr.Zero)
@@ -35,7 +35,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_label);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_tool_button_new_from_stock(IntPtr stock_id);
 
 		public MenuToolButton (string stock_id) : base (IntPtr.Zero)
@@ -53,10 +53,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_stock_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_tool_button_get_menu(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_tool_button_set_menu(IntPtr raw, IntPtr menu);
 
 		[GLib.Property ("menu")]
@@ -190,7 +190,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_tool_button_get_type();
 
 		public static new GLib.GType GType { 
@@ -201,7 +201,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_tool_button_set_arrow_tooltip_markup(IntPtr raw, IntPtr markup);
 
 		public string ArrowTooltipMarkup { 
@@ -212,7 +212,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_tool_button_set_arrow_tooltip_text(IntPtr raw, IntPtr text);
 
 		public string ArrowTooltipText { 

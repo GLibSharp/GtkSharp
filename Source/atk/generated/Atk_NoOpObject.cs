@@ -13,7 +13,7 @@ namespace Atk {
 
 		public NoOpObject (IntPtr raw) : base(raw) {}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_no_op_object_new(IntPtr obj);
 
 		public NoOpObject (GLib.Object obj) : base (IntPtr.Zero)
@@ -42,7 +42,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_no_op_object_get_type();
 
 		public static new GLib.GType GType { 
@@ -53,7 +53,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint atk_component_add_focus_handler(IntPtr raw, AtkSharp.FocusHandlerNative handler);
 
 		[Obsolete]
@@ -64,7 +64,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_contains(IntPtr raw, int x, int y, int coord_type);
 
 		public bool Contains(int x, int y, Atk.CoordType coord_type) {
@@ -73,7 +73,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double atk_component_get_alpha(IntPtr raw);
 
 		public double Alpha { 
@@ -84,14 +84,14 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_get_extents(IntPtr raw, out int x, out int y, out int width, out int height, int coord_type);
 
 		public void GetExtents(out int x, out int y, out int width, out int height, Atk.CoordType coord_type) {
 			atk_component_get_extents(Handle, out x, out y, out width, out height, (int) coord_type);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_component_get_layer(IntPtr raw);
 
 		public Atk.Layer Layer { 
@@ -102,7 +102,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_component_get_mdi_zorder(IntPtr raw);
 
 		public int MdiZorder { 
@@ -113,7 +113,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_get_position(IntPtr raw, out int x, out int y, int coord_type);
 
 		[Obsolete]
@@ -121,7 +121,7 @@ namespace Atk {
 			atk_component_get_position(Handle, out x, out y, (int) coord_type);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_get_size(IntPtr raw, out int width, out int height);
 
 		[Obsolete]
@@ -129,7 +129,7 @@ namespace Atk {
 			atk_component_get_size(Handle, out width, out height);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_grab_focus(IntPtr raw);
 
 		public bool GrabFocus() {
@@ -138,7 +138,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_component_ref_accessible_at_point(IntPtr raw, int x, int y, int coord_type);
 
 		public Atk.Object RefAccessibleAtPoint(int x, int y, Atk.CoordType coord_type) {
@@ -147,7 +147,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_remove_focus_handler(IntPtr raw, uint handler_id);
 
 		[Obsolete]
@@ -155,7 +155,7 @@ namespace Atk {
 			atk_component_remove_focus_handler(Handle, handler_id);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_set_extents(IntPtr raw, int x, int y, int width, int height, int coord_type);
 
 		public bool SetExtents(int x, int y, int width, int height, Atk.CoordType coord_type) {
@@ -164,7 +164,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_set_position(IntPtr raw, int x, int y, int coord_type);
 
 		public bool SetPosition(int x, int y, Atk.CoordType coord_type) {
@@ -173,7 +173,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_set_size(IntPtr raw, int width, int height);
 
 		public bool SetSize(int width, int height) {
@@ -243,7 +243,7 @@ namespace Atk {
 				v.Dispose ();
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_action_do_action(IntPtr raw, int i);
 
 		public bool DoAction(int i) {
@@ -252,7 +252,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_action_get_description(IntPtr raw, int i);
 
 		public string GetDescription(int i) {
@@ -261,7 +261,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_action_get_keybinding(IntPtr raw, int i);
 
 		public string GetKeybinding(int i) {
@@ -270,7 +270,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_action_get_localized_name(IntPtr raw, int i);
 
 		public string GetLocalizedName(int i) {
@@ -279,7 +279,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_action_get_n_actions(IntPtr raw);
 
 		public int NActions { 
@@ -290,7 +290,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_action_get_name(IntPtr raw, int i);
 
 		public string GetName(int i) {
@@ -299,7 +299,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_action_set_description(IntPtr raw, int i, IntPtr desc);
 
 		public bool SetDescription(int i, string desc) {
@@ -310,28 +310,28 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_copy_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void CopyText(int start_pos, int end_pos) {
 			atk_editable_text_copy_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_cut_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void CutText(int start_pos, int end_pos) {
 			atk_editable_text_cut_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_delete_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void DeleteText(int start_pos, int end_pos) {
 			atk_editable_text_delete_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_insert_text(IntPtr raw, IntPtr str1ng, int length, ref int position);
 
 		public void InsertText(string str1ng, ref int position) {
@@ -340,14 +340,14 @@ namespace Atk {
 			GLib.Marshaller.Free (native_str1ng);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_paste_text(IntPtr raw, int position);
 
 		public void PasteText(int position) {
 			atk_editable_text_paste_text(Handle, position);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_editable_text_set_run_attributes(IntPtr raw, IntPtr attrib_set, int start_offset, int end_offset);
 
 		public bool SetRunAttributes(GLib.SList attrib_set, int start_offset, int end_offset) {
@@ -356,7 +356,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_set_text_contents(IntPtr raw, IntPtr str1ng);
 
 		public string TextContents { 
@@ -367,7 +367,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_image_get_image_description(IntPtr raw);
 
 		public string ImageDescription { 
@@ -378,7 +378,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_image_get_image_locale(IntPtr raw);
 
 		public string ImageLocale { 
@@ -389,21 +389,21 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_image_get_image_position(IntPtr raw, out int x, out int y, int coord_type);
 
 		public void GetImagePosition(out int x, out int y, Atk.CoordType coord_type) {
 			atk_image_get_image_position(Handle, out x, out y, (int) coord_type);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_image_get_image_size(IntPtr raw, out int width, out int height);
 
 		public void GetImageSize(out int width, out int height) {
 			atk_image_get_image_size(Handle, out width, out height);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_image_set_image_description(IntPtr raw, IntPtr description);
 
 		public bool SetImageDescription(string description) {
@@ -414,7 +414,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_selection_add_selection(IntPtr raw, int i);
 
 		public bool AddSelection(int i) {
@@ -423,7 +423,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_selection_clear_selection(IntPtr raw);
 
 		public bool ClearSelection() {
@@ -432,7 +432,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_selection_get_selection_count(IntPtr raw);
 
 		public int SelectionCount { 
@@ -443,7 +443,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_selection_is_child_selected(IntPtr raw, int i);
 
 		public bool IsChildSelected(int i) {
@@ -452,7 +452,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_selection_ref_selection(IntPtr raw, int i);
 
 		public Atk.Object RefSelection(int i) {
@@ -461,7 +461,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_selection_remove_selection(IntPtr raw, int i);
 
 		bool Atk.ISelection.RemoveSelection(int i) {
@@ -470,7 +470,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_selection_select_all_selection(IntPtr raw);
 
 		public bool SelectAllSelection() {
@@ -538,7 +538,7 @@ namespace Atk {
 				v.Dispose ();
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_add_column_selection(IntPtr raw, int column);
 
 		public bool AddColumnSelection(int column) {
@@ -547,7 +547,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_add_row_selection(IntPtr raw, int row);
 
 		public bool AddRowSelection(int row) {
@@ -556,10 +556,10 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_get_caption(IntPtr raw);
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_table_set_caption(IntPtr raw, IntPtr caption);
 
 		public Atk.Object Caption { 
@@ -573,7 +573,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_column_at_index(IntPtr raw, int index_);
 
 		[Obsolete]
@@ -583,7 +583,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_get_column_description(IntPtr raw, int column);
 
 		public string GetColumnDescription(int column) {
@@ -592,7 +592,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_column_extent_at(IntPtr raw, int row, int column);
 
 		public int GetColumnExtentAt(int row, int column) {
@@ -601,7 +601,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_get_column_header(IntPtr raw, int column);
 
 		public Atk.Object GetColumnHeader(int column) {
@@ -610,7 +610,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_index_at(IntPtr raw, int row, int column);
 
 		[Obsolete]
@@ -620,7 +620,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_n_columns(IntPtr raw);
 
 		public int NColumns { 
@@ -631,7 +631,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_n_rows(IntPtr raw);
 
 		public int NRows { 
@@ -642,7 +642,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_row_at_index(IntPtr raw, int index_);
 
 		[Obsolete]
@@ -652,7 +652,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_get_row_description(IntPtr raw, int row);
 
 		public string GetRowDescription(int row) {
@@ -661,7 +661,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_row_extent_at(IntPtr raw, int row, int column);
 
 		public int GetRowExtentAt(int row, int column) {
@@ -670,7 +670,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_get_row_header(IntPtr raw, int row);
 
 		public Atk.Object GetRowHeader(int row) {
@@ -679,7 +679,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_selected_columns(IntPtr raw, out int selected);
 
 		public int GetSelectedColumns(out int selected) {
@@ -688,7 +688,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_get_selected_rows(IntPtr raw, out int selected);
 
 		public int GetSelectedRows(out int selected) {
@@ -697,10 +697,10 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_get_summary(IntPtr raw);
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_table_set_summary(IntPtr raw, IntPtr accessible);
 
 		public Atk.Object Summary { 
@@ -714,7 +714,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_is_column_selected(IntPtr raw, int column);
 
 		public bool IsColumnSelected(int column) {
@@ -723,7 +723,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_is_row_selected(IntPtr raw, int row);
 
 		public bool IsRowSelected(int row) {
@@ -732,7 +732,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_is_selected(IntPtr raw, int row, int column);
 
 		public bool IsSelected(int row, int column) {
@@ -741,7 +741,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_ref_at(IntPtr raw, int row, int column);
 
 		public Atk.Object RefAt(int row, int column) {
@@ -750,7 +750,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_remove_column_selection(IntPtr raw, int column);
 
 		public bool RemoveColumnSelection(int column) {
@@ -759,7 +759,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_remove_row_selection(IntPtr raw, int row);
 
 		public bool RemoveRowSelection(int row) {
@@ -768,7 +768,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_table_set_column_description(IntPtr raw, int column, IntPtr description);
 
 		public void SetColumnDescription(int column, string description) {
@@ -777,14 +777,14 @@ namespace Atk {
 			GLib.Marshaller.Free (native_description);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_table_set_column_header(IntPtr raw, int column, IntPtr header);
 
 		public void SetColumnHeader(int column, Atk.Object header) {
 			atk_table_set_column_header(Handle, column, header == null ? IntPtr.Zero : header.Handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_table_set_row_description(IntPtr raw, int row, IntPtr description);
 
 		public void SetRowDescription(int row, string description) {
@@ -793,7 +793,7 @@ namespace Atk {
 			GLib.Marshaller.Free (native_description);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_table_set_row_header(IntPtr raw, int row, IntPtr header);
 
 		public void SetRowHeader(int row, Atk.Object header) {
@@ -1229,7 +1229,7 @@ namespace Atk {
 				v.Dispose ();
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_column_header_cells(IntPtr raw);
 
 		public GLib.PtrArray ColumnHeaderCells { 
@@ -1240,7 +1240,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_cell_get_column_span(IntPtr raw);
 
 		public int ColumnSpan { 
@@ -1251,7 +1251,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_cell_get_position(IntPtr raw, out int row, out int column);
 
 		public bool GetPosition(out int row, out int column) {
@@ -1260,7 +1260,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_cell_get_row_column_span(IntPtr raw, out int row, out int column, out int row_span, out int column_span);
 
 		public bool GetRowColumnSpan(out int row, out int column, out int row_span, out int column_span) {
@@ -1269,7 +1269,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_row_header_cells(IntPtr raw);
 
 		public GLib.PtrArray RowHeaderCells { 
@@ -1280,7 +1280,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_cell_get_row_span(IntPtr raw);
 
 		public int RowSpan { 
@@ -1291,7 +1291,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_table(IntPtr raw);
 
 		public Atk.Object Table { 
@@ -1302,7 +1302,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_add_selection(IntPtr raw, int start_offset, int end_offset);
 
 		public bool AddSelection(int start_offset, int end_offset) {
@@ -1311,7 +1311,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_bounded_ranges(IntPtr raw, IntPtr rect, int coord_type, int x_clip_type, int y_clip_type);
 
 		public Atk.TextRange GetBoundedRanges(Atk.TextRectangle rect, Atk.CoordType coord_type, Atk.TextClipType x_clip_type, Atk.TextClipType y_clip_type) {
@@ -1322,7 +1322,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_caret_offset(IntPtr raw);
 
 		public int CaretOffset { 
@@ -1333,7 +1333,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint atk_text_get_character_at_offset(IntPtr raw, int offset);
 
 		public char GetCharacterAtOffset(int offset) {
@@ -1342,7 +1342,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_character_count(IntPtr raw);
 
 		public int CharacterCount { 
@@ -1353,14 +1353,14 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_text_get_character_extents(IntPtr raw, int offset, out int x, out int y, out int width, out int height, int coords);
 
 		public void GetCharacterExtents(int offset, out int x, out int y, out int width, out int height, Atk.CoordType coords) {
 			atk_text_get_character_extents(Handle, offset, out x, out y, out width, out height, (int) coords);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_default_attributes(IntPtr raw);
 
 		public Atk.Attribute[] DefaultAttributes { 
@@ -1371,7 +1371,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_n_selections(IntPtr raw);
 
 		public int NSelections { 
@@ -1382,7 +1382,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_offset_at_point(IntPtr raw, int x, int y, int coords);
 
 		public int GetOffsetAtPoint(int x, int y, Atk.CoordType coords) {
@@ -1391,7 +1391,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_text_get_range_extents(IntPtr raw, int start_offset, int end_offset, int coord_type, IntPtr rect);
 
 		public Atk.TextRectangle GetRangeExtents(int start_offset, int end_offset, Atk.CoordType coord_type) {
@@ -1403,7 +1403,7 @@ namespace Atk {
 			return rect;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_run_attributes(IntPtr raw, int offset, out int start_offset, out int end_offset);
 
 		public Atk.Attribute[] GetRunAttributes(int offset, out int start_offset, out int end_offset) {
@@ -1412,7 +1412,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_selection(IntPtr raw, int selection_num, out int start_offset, out int end_offset);
 
 		public string GetSelection(int selection_num, out int start_offset, out int end_offset) {
@@ -1421,7 +1421,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_string_at_offset(IntPtr raw, int offset, int granularity, out int start_offset, out int end_offset);
 
 		public string GetStringAtOffset(int offset, Atk.TextGranularity granularity, out int start_offset, out int end_offset) {
@@ -1430,7 +1430,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text(IntPtr raw, int start_offset, int end_offset);
 
 		public string GetText(int start_offset, int end_offset) {
@@ -1439,7 +1439,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text_after_offset(IntPtr raw, int offset, int boundary_type, out int start_offset, out int end_offset);
 
 		[Obsolete]
@@ -1449,7 +1449,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text_at_offset(IntPtr raw, int offset, int boundary_type, out int start_offset, out int end_offset);
 
 		[Obsolete]
@@ -1459,7 +1459,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text_before_offset(IntPtr raw, int offset, int boundary_type, out int start_offset, out int end_offset);
 
 		[Obsolete]
@@ -1469,7 +1469,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_remove_selection(IntPtr raw, int selection_num);
 
 		bool Atk.IText.RemoveSelection(int selection_num) {
@@ -1478,7 +1478,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_set_caret_offset(IntPtr raw, int offset);
 
 		public bool SetCaretOffset(int offset) {
@@ -1487,7 +1487,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_set_selection(IntPtr raw, int selection_num, int start_offset, int end_offset);
 
 		public bool SetSelection(int selection_num, int start_offset, int end_offset) {
@@ -1868,7 +1868,7 @@ namespace Atk {
 				v.Dispose ();
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_hypertext_get_link(IntPtr raw, int link_index);
 
 		public Atk.Hyperlink GetLink(int link_index) {
@@ -1877,7 +1877,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_hypertext_get_link_index(IntPtr raw, int char_index);
 
 		public int GetLinkIndex(int char_index) {
@@ -1886,7 +1886,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_hypertext_get_n_links(IntPtr raw);
 
 		public int NLinks { 
@@ -1958,7 +1958,7 @@ namespace Atk {
 				v.Dispose ();
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_current_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -1969,7 +1969,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double atk_value_get_increment(IntPtr raw);
 
 		public double Increment { 
@@ -1980,7 +1980,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_maximum_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -1991,7 +1991,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_minimum_increment(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -2002,7 +2002,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_minimum_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -2013,7 +2013,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_get_range(IntPtr raw);
 
 		public Atk.Range Range { 
@@ -2024,7 +2024,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_get_sub_ranges(IntPtr raw);
 
 		public GLib.SList SubRanges { 
@@ -2035,7 +2035,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_value_and_text(IntPtr raw, out double value, IntPtr text);
 
 		public double GetValueAndText(string text) {
@@ -2044,7 +2044,7 @@ namespace Atk {
 			return value;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_value_set_current_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -2056,7 +2056,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_set_value(IntPtr raw, double new_value);
 
 		public double Value { 
@@ -2128,7 +2128,7 @@ namespace Atk {
 				v.Dispose ();
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_attribute_value(IntPtr raw, IntPtr attribute_name);
 
 		public string GetAttributeValue(string attribute_name) {
@@ -2139,7 +2139,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_attributes(IntPtr raw);
 
 		public new Atk.Attribute[] Attributes { 
@@ -2150,7 +2150,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_document_get_current_page_number(IntPtr raw);
 
 		public int CurrentPageNumber { 
@@ -2161,7 +2161,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_document(IntPtr raw);
 
 		[Obsolete]
@@ -2173,7 +2173,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_document_type(IntPtr raw);
 
 		[Obsolete]
@@ -2185,7 +2185,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_locale(IntPtr raw);
 
 		[Obsolete]
@@ -2197,7 +2197,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_document_get_page_count(IntPtr raw);
 
 		public int PageCount { 
@@ -2208,7 +2208,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_document_set_attribute_value(IntPtr raw, IntPtr attribute_name, IntPtr attribute_value);
 
 		public bool SetAttributeValue(string attribute_name, string attribute_value) {

@@ -25,7 +25,7 @@ namespace Atk {
 			return (Atk.TextRange) Marshal.PtrToStructure (raw, typeof (Atk.TextRange));
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_range_get_type();
 
 		public static GLib.GType GType { 

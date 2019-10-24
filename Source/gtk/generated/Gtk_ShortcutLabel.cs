@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ShortcutLabel (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_shortcut_label_new(IntPtr accelerator);
 
 		public ShortcutLabel (string accelerator) : base (IntPtr.Zero)
@@ -31,10 +31,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accelerator);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_shortcut_label_get_accelerator(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_shortcut_label_set_accelerator(IntPtr raw, IntPtr accelerator);
 
 		[GLib.Property ("accelerator")]
@@ -51,10 +51,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_shortcut_label_get_disabled_text(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_shortcut_label_set_disabled_text(IntPtr raw, IntPtr disabled_text);
 
 		[GLib.Property ("disabled-text")]
@@ -86,7 +86,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_shortcut_label_get_type();
 
 		public static new GLib.GType GType { 

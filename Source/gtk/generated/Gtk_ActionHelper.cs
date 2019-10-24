@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ActionHelper (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_helper_new(IntPtr widget);
 
 		public ActionHelper (Gtk.IActionable widget) : base (IntPtr.Zero)
@@ -27,7 +27,7 @@ namespace Gtk {
 			Raw = gtk_action_helper_new(widget == null ? IntPtr.Zero : ((widget is GLib.Object) ? (widget as GLib.Object).Handle : (widget as Gtk.ActionableAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_action_helper_get_enabled(IntPtr raw);
 
 		[GLib.Property ("enabled")]
@@ -39,7 +39,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_action_helper_get_active(IntPtr raw);
 
 		[GLib.Property ("active")]
@@ -61,17 +61,17 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_helper_activate(IntPtr raw);
 
 		public void Activate() {
 			gtk_action_helper_activate(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_helper_get_action_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_helper_set_action_name(IntPtr raw, IntPtr action_name);
 
 		public string ActionName { 
@@ -87,10 +87,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_helper_get_action_target_value(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_helper_set_action_target_value(IntPtr raw, IntPtr action_target);
 
 		public GLib.Variant ActionTargetValue { 
@@ -104,7 +104,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_helper_get_type();
 
 		public static new GLib.GType GType { 
@@ -115,7 +115,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observer_action_added(IntPtr raw, IntPtr observable, IntPtr action_name, IntPtr parameter_type, bool enabled, IntPtr state);
 
 		public void ActionAdded(Gtk.IActionObservable observable, string action_name, GLib.VariantType parameter_type, bool enabled, GLib.Variant state) {
@@ -124,7 +124,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observer_action_enabled_changed(IntPtr raw, IntPtr observable, IntPtr action_name, bool enabled);
 
 		public void ActionEnabledChanged(Gtk.IActionObservable observable, string action_name, bool enabled) {
@@ -133,7 +133,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observer_action_removed(IntPtr raw, IntPtr observable, IntPtr action_name);
 
 		public void ActionRemoved(Gtk.IActionObservable observable, string action_name) {
@@ -142,7 +142,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observer_action_state_changed(IntPtr raw, IntPtr observable, IntPtr action_name, IntPtr state);
 
 		public void ActionStateChanged(Gtk.IActionObservable observable, string action_name, GLib.Variant state) {
@@ -151,7 +151,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observer_primary_accel_changed(IntPtr raw, IntPtr observable, IntPtr action_name, IntPtr action_and_target);
 
 		public void PrimaryAccelChanged(Gtk.IActionObservable observable, string action_name, string action_and_target) {

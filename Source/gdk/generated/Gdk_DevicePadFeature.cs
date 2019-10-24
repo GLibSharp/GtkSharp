@@ -16,7 +16,7 @@ namespace Gdk {
 	}
 
 	internal class DevicePadFeatureGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_pad_feature_get_type ();
 
 		public static GLib.GType GType {

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PageSetupUnixDialog (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_unix_dialog_new(IntPtr title, IntPtr parent);
 
 		public PageSetupUnixDialog (string title, Gtk.Window parent) : base (IntPtr.Zero)
@@ -35,10 +35,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_title);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_unix_dialog_get_page_setup(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_unix_dialog_set_page_setup(IntPtr raw, IntPtr page_setup);
 
 		public Gtk.PageSetup PageSetup { 
@@ -52,10 +52,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_unix_dialog_get_print_settings(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_unix_dialog_set_print_settings(IntPtr raw, IntPtr print_settings);
 
 		public Gtk.PrintSettings PrintSettings { 
@@ -69,7 +69,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_unix_dialog_get_type();
 
 		public static new GLib.GType GType { 

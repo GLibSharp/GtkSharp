@@ -25,7 +25,7 @@ namespace Gdk {
 			return (Gdk.RGBA) Marshal.PtrToStructure (raw, typeof (Gdk.RGBA));
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_rgba_copy(IntPtr raw);
 
 		public Gdk.RGBA Copy() {
@@ -38,7 +38,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_rgba_equal(IntPtr p1, IntPtr p2);
 
 		public static bool Equal(IntPtr p1, IntPtr p2) {
@@ -47,7 +47,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_rgba_free(IntPtr raw);
 
 		public void Free() {
@@ -58,7 +58,7 @@ namespace Gdk {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_rgba_get_type();
 
 		public static GLib.GType GType { 
@@ -69,7 +69,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gdk_rgba_hash(IntPtr p);
 
 		public static uint Hash(IntPtr p) {
@@ -78,7 +78,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_rgba_parse(IntPtr raw, IntPtr spec);
 
 		public bool Parse(string spec) {
@@ -93,7 +93,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_rgba_to_string(IntPtr raw);
 
 		public override string ToString() {

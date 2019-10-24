@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public TextTag (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_tag_new(IntPtr name);
 
 		public TextTag (string name) : base (IntPtr.Zero)
@@ -1169,14 +1169,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_tag_changed(IntPtr raw, bool size_changed);
 
 		public void Changed(bool size_changed) {
 			gtk_text_tag_changed(Handle, size_changed);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_tag_event(IntPtr raw, IntPtr event_object, IntPtr evnt, IntPtr iter);
 
 		public bool ProcessEvent(GLib.Object event_object, Gdk.Event evnt, Gtk.TextIter iter) {
@@ -1187,10 +1187,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_tag_get_priority(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_tag_set_priority(IntPtr raw, int priority);
 
 		public int Priority { 
@@ -1204,7 +1204,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_tag_get_type();
 
 		public static new GLib.GType GType { 

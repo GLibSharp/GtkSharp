@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Calendar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_calendar_new();
 
 		public Calendar () : base (IntPtr.Zero)
@@ -130,10 +130,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_calendar_get_detail_width_chars(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_set_detail_width_chars(IntPtr raw, int chars);
 
 		[GLib.Property ("detail-width-chars")]
@@ -148,10 +148,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_calendar_get_detail_height_rows(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_set_detail_height_rows(IntPtr raw, int rows);
 
 		[GLib.Property ("detail-height-rows")]
@@ -756,21 +756,21 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_clear_marks(IntPtr raw);
 
 		public void ClearMarks() {
 			gtk_calendar_clear_marks(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_get_date(IntPtr raw, out uint year, out uint month, out uint day);
 
 		public void GetDate(out uint year, out uint month, out uint day) {
 			gtk_calendar_get_date(Handle, out year, out month, out day);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_calendar_get_day_is_marked(IntPtr raw, uint day);
 
 		public bool GetDayIsMarked(uint day) {
@@ -779,10 +779,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_calendar_get_display_options(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_set_display_options(IntPtr raw, int flags);
 
 		public Gtk.CalendarDisplayOptions DisplayOptions { 
@@ -796,7 +796,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_calendar_get_type();
 
 		public static new GLib.GType GType { 
@@ -807,28 +807,28 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_mark_day(IntPtr raw, uint day);
 
 		public void MarkDay(uint day) {
 			gtk_calendar_mark_day(Handle, day);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_select_day(IntPtr raw, uint day);
 
 		public void SelectDay(uint day) {
 			gtk_calendar_select_day(Handle, day);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_select_month(IntPtr raw, uint month, uint year);
 
 		public void SelectMonth(uint month, uint year) {
 			gtk_calendar_select_month(Handle, month, year);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_set_detail_func(IntPtr raw, GtkSharp.CalendarDetailFuncNative func, IntPtr data, GLib.DestroyNotify destroy);
 
 		public Gtk.CalendarDetailFunc DetailFunc { 
@@ -847,7 +847,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_calendar_unmark_day(IntPtr raw, uint day);
 
 		public void UnmarkDay(uint day) {

@@ -132,7 +132,7 @@ namespace Gdk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_device_pad_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gdk_device_pad_get_type ());
@@ -185,7 +185,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_pad_get_feature_group(IntPtr raw, int feature, int feature_idx);
 
 		public int GetFeatureGroup(Gdk.DevicePadFeature feature, int feature_idx) {
@@ -194,7 +194,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_pad_get_group_n_modes(IntPtr raw, int group_idx);
 
 		public int GetGroupNModes(int group_idx) {
@@ -203,7 +203,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_pad_get_n_features(IntPtr raw, int feature);
 
 		public int GetNFeatures(Gdk.DevicePadFeature feature) {
@@ -212,7 +212,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_device_pad_get_n_groups(IntPtr raw);
 
 		public int NGroups { 

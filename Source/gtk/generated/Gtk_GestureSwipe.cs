@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GestureSwipe (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_swipe_new(IntPtr widget);
 
 		public GestureSwipe (Gtk.Widget widget) : base (IntPtr.Zero)
@@ -41,7 +41,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_swipe_get_type();
 
 		public static new GLib.GType GType { 
@@ -52,7 +52,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_swipe_get_velocity(IntPtr raw, out double velocity_x, out double velocity_y);
 
 		public bool GetVelocity(out double velocity_x, out double velocity_y) {

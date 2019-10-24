@@ -6,7 +6,7 @@
         Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
 
 -->
-  <namespace name="Pango" library="libpango-1.0-0.dll">
+  <namespace name="Pango" library="pango-1.0-0.dll">
     <enum name="Alignment" cname="PangoAlignment" gtype="pango_alignment_get_type" type="enum">
       <member cname="PANGO_ALIGN_LEFT" name="Left" />
       <member cname="PANGO_ALIGN_CENTER" name="Center" />
@@ -2736,40 +2736,40 @@
       </method>
     </class>
     <class name="CairoHelper" cname="PangoCairo_">
-      <method name="ContextGetFontOptions" cname="pango_cairo_context_get_font_options" shared="true" library="libpangocairo-1.0-0.dll" hidden="1">
+      <method name="ContextGetFontOptions" cname="pango_cairo_context_get_font_options" shared="true" library="pangocairo-1.0-0.dll" hidden="1">
         <return-type type="const-cairo_font_options_t*" />
         <parameters>
           <parameter type="PangoContext*" name="context" />
         </parameters>
       </method>
-      <method name="ContextGetResolution" cname="pango_cairo_context_get_resolution" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ContextGetResolution" cname="pango_cairo_context_get_resolution" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="double" />
         <parameters>
           <parameter type="PangoContext*" name="context" />
         </parameters>
       </method>
-      <method name="ContextGetShapeRenderer" cname="pango_cairo_context_get_shape_renderer" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ContextGetShapeRenderer" cname="pango_cairo_context_get_shape_renderer" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="PangoCairoShapeRendererFunc" />
         <parameters>
           <parameter type="PangoContext*" name="context" />
           <parameter type="gpointer*" name="data" />
         </parameters>
       </method>
-      <method name="ContextSetFontOptions" cname="pango_cairo_context_set_font_options" shared="true" library="libpangocairo-1.0-0.dll" hidden="1">
+      <method name="ContextSetFontOptions" cname="pango_cairo_context_set_font_options" shared="true" library="pangocairo-1.0-0.dll" hidden="1">
         <return-type type="void" />
         <parameters>
           <parameter type="PangoContext*" name="context" />
           <parameter type="const-cairo_font_options_t*" name="options" />
         </parameters>
       </method>
-      <method name="ContextSetResolution" cname="pango_cairo_context_set_resolution" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ContextSetResolution" cname="pango_cairo_context_set_resolution" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="PangoContext*" name="context" />
           <parameter type="double" name="dpi" />
         </parameters>
       </method>
-      <method name="ContextSetShapeRenderer" cname="pango_cairo_context_set_shape_renderer" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ContextSetShapeRenderer" cname="pango_cairo_context_set_shape_renderer" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="PangoContext*" name="context" />
@@ -2778,19 +2778,19 @@
           <parameter type="GDestroyNotify" name="dnotify" />
         </parameters>
       </method>
-      <method name="CreateContext" cname="pango_cairo_create_context" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="CreateContext" cname="pango_cairo_create_context" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="PangoContext*" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
         </parameters>
       </method>
-      <method name="CreateLayout" cname="pango_cairo_create_layout" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="CreateLayout" cname="pango_cairo_create_layout" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="PangoLayout*" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
         </parameters>
       </method>
-      <method name="ErrorUnderlinePath" cname="pango_cairo_error_underline_path" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ErrorUnderlinePath" cname="pango_cairo_error_underline_path" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
@@ -2800,7 +2800,7 @@
           <parameter type="double" name="height" />
         </parameters>
       </method>
-      <method name="GlyphStringPath" cname="pango_cairo_glyph_string_path" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="GlyphStringPath" cname="pango_cairo_glyph_string_path" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
@@ -2808,21 +2808,21 @@
           <parameter type="PangoGlyphString*" name="glyphs" />
         </parameters>
       </method>
-      <method name="LayoutLinePath" cname="pango_cairo_layout_line_path" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="LayoutLinePath" cname="pango_cairo_layout_line_path" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
           <parameter type="PangoLayoutLine*" name="line" />
         </parameters>
       </method>
-      <method name="LayoutPath" cname="pango_cairo_layout_path" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="LayoutPath" cname="pango_cairo_layout_path" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
           <parameter type="PangoLayout*" name="layout" />
         </parameters>
       </method>
-      <method name="ShowErrorUnderline" cname="pango_cairo_show_error_underline" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ShowErrorUnderline" cname="pango_cairo_show_error_underline" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
@@ -2832,7 +2832,7 @@
           <parameter type="double" name="height" />
         </parameters>
       </method>
-      <method name="ShowGlyphItem" cname="pango_cairo_show_glyph_item" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ShowGlyphItem" cname="pango_cairo_show_glyph_item" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
@@ -2840,7 +2840,7 @@
           <parameter type="PangoGlyphItem*" name="glyph_item" />
         </parameters>
       </method>
-      <method name="ShowGlyphString" cname="pango_cairo_show_glyph_string" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ShowGlyphString" cname="pango_cairo_show_glyph_string" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
@@ -2848,28 +2848,28 @@
           <parameter type="PangoGlyphString*" name="glyphs" />
         </parameters>
       </method>
-      <method name="ShowLayout" cname="pango_cairo_show_layout" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ShowLayout" cname="pango_cairo_show_layout" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
           <parameter type="PangoLayout*" name="layout" />
         </parameters>
       </method>
-      <method name="ShowLayoutLine" cname="pango_cairo_show_layout_line" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="ShowLayoutLine" cname="pango_cairo_show_layout_line" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
           <parameter type="PangoLayoutLine*" name="line" />
         </parameters>
       </method>
-      <method name="UpdateContext" cname="pango_cairo_update_context" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="UpdateContext" cname="pango_cairo_update_context" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />
           <parameter type="PangoContext*" name="context" />
         </parameters>
       </method>
-      <method name="UpdateLayout" cname="pango_cairo_update_layout" shared="true" library="libpangocairo-1.0-0.dll">
+      <method name="UpdateLayout" cname="pango_cairo_update_layout" shared="true" library="pangocairo-1.0-0.dll">
         <return-type type="void" />
         <parameters>
           <parameter type="cairo_t*" name="cr" />

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public FileFilter (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_filter_new();
 
 		public FileFilter () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_file_filter_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_filter_new_from_gvariant(IntPtr variant);
 
 		public FileFilter (GLib.Variant variant) : base (IntPtr.Zero)
@@ -54,7 +54,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_filter_add_custom(IntPtr raw, int needed, GtkSharp.FileFilterFuncNative func, IntPtr data, GLib.DestroyNotify notify);
 
 		public void AddCustom(Gtk.FileFilterFlags needed, Gtk.FileFilterFunc func) {
@@ -71,7 +71,7 @@ namespace Gtk {
 			gtk_file_filter_add_custom(Handle, (int) needed, func_wrapper.NativeDelegate, data, notify);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_filter_add_mime_type(IntPtr raw, IntPtr mime_type);
 
 		public void AddMimeType(string mime_type) {
@@ -80,7 +80,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_mime_type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_filter_add_pattern(IntPtr raw, IntPtr pattern);
 
 		public void AddPattern(string pattern) {
@@ -89,14 +89,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_pattern);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_filter_add_pixbuf_formats(IntPtr raw);
 
 		public void AddPixbufFormats() {
 			gtk_file_filter_add_pixbuf_formats(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_filter_filter(IntPtr raw, IntPtr filter_info);
 
 		public bool Filter(Gtk.FileFilterInfo filter_info) {
@@ -107,10 +107,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_filter_get_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_filter_set_name(IntPtr raw, IntPtr name);
 
 		public string Name { 
@@ -126,7 +126,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_file_filter_get_needed(IntPtr raw);
 
 		public Gtk.FileFilterFlags Needed { 
@@ -137,7 +137,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_filter_get_type();
 
 		public static new GLib.GType GType { 
@@ -148,7 +148,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_filter_to_gvariant(IntPtr raw);
 
 		public GLib.Variant ToGvariant() {

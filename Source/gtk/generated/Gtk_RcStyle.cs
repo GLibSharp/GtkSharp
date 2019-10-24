@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RcStyle (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_rc_style_new();
 
 		public RcStyle () : base (IntPtr.Zero)
@@ -194,7 +194,7 @@ namespace Gtk {
 			return GLib.Object.GetObject(__result) as Gtk.Style;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_rc_style_copy(IntPtr raw);
 
 		[Obsolete]
@@ -204,7 +204,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_rc_style_get_type();
 
 		[Obsolete]

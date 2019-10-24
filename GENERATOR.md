@@ -14,7 +14,7 @@ Parse the library:
 
 	<gapi-parser-input>
 	  <api filename="../api/atk-api.xml">
-	    <library name="libatk-1.0-0.dll">
+	    <library name="atk-1.0-0.dll">
 	      <namespace name="Atk">
 	        <dir>atk-1.2.4/atk</dir>
 	      </namespace>

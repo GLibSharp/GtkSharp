@@ -23,7 +23,7 @@ namespace Gtk {
 	}
 
 	internal class BorderStyleGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_border_style_get_type ();
 
 		public static GLib.GType GType {

@@ -16,7 +16,7 @@ namespace Gtk {
 	}
 
 	internal class EventSequenceStateGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_event_sequence_state_get_type ();
 
 		public static GLib.GType GType {

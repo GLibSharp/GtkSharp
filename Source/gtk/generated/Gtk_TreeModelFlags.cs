@@ -16,7 +16,7 @@ namespace Gtk {
 	}
 
 	internal class TreeModelFlagsGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_flags_get_type ();
 
 		public static GLib.GType GType {

@@ -145,7 +145,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_sortable_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_tree_sortable_get_type ());
@@ -208,7 +208,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_sortable_get_sort_column_id(IntPtr raw, out int sort_column_id, out int order);
 
 		public bool GetSortColumnId(out int sort_column_id, out Gtk.SortType order) {
@@ -219,7 +219,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_sortable_has_default_sort_func(IntPtr raw);
 
 		public bool HasDefaultSortFunc { 
@@ -230,7 +230,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_sortable_set_default_sort_func(IntPtr raw, GtkSharp.TreeIterCompareFuncNative sort_func, IntPtr user_data, GLib.DestroyNotify destroy);
 
 		public Gtk.TreeIterCompareFunc DefaultSortFunc { 
@@ -249,14 +249,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_sortable_set_sort_column_id(IntPtr raw, int sort_column_id, int order);
 
 		public void SetSortColumnId(int sort_column_id, Gtk.SortType order) {
 			gtk_tree_sortable_set_sort_column_id(Handle, sort_column_id, (int) order);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_sortable_set_sort_func(IntPtr raw, int sort_column_id, GtkSharp.TreeIterCompareFuncNative sort_func, IntPtr user_data, GLib.DestroyNotify destroy);
 
 		public void SetSortFunc(int sort_column_id, Gtk.TreeIterCompareFunc sort_func) {
@@ -273,7 +273,7 @@ namespace Gtk {
 			gtk_tree_sortable_set_sort_func(Handle, sort_column_id, sort_func_wrapper.NativeDelegate, user_data, destroy);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_sortable_sort_column_changed(IntPtr raw);
 
 		public void ChangeSortColumn() {

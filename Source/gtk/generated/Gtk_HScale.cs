@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public HScale (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_hscale_new(IntPtr adjustment);
 
 		public HScale (Gtk.Adjustment adjustment) : base (IntPtr.Zero)
@@ -46,7 +46,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_hscale_get_type();
 
 		[Obsolete]

@@ -22,7 +22,7 @@ namespace Gdk {
 	}
 
 	internal class InputSourceGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_input_source_get_type ();
 
 		public static GLib.GType GType {

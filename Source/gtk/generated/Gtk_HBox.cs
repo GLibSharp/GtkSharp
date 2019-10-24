@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public HBox (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_hbox_new(bool homogeneous, int spacing);
 
 		public HBox (bool homogeneous, int spacing) : base (IntPtr.Zero)
@@ -46,7 +46,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_hbox_get_type();
 
 		[Obsolete]

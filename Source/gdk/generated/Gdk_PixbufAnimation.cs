@@ -13,7 +13,7 @@ namespace Gdk {
 
 		public PixbufAnimation (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_animation_new_from_file(IntPtr filename, out IntPtr error);
 
 		public unsafe PixbufAnimation (string filename) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gdk {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_animation_new_from_file_utf8(IntPtr filename, out IntPtr error);
 
 		public static unsafe PixbufAnimation NewFromFileUtf8(string filename)
@@ -44,7 +44,7 @@ namespace Gdk {
 			return result;
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_animation_new_from_resource(IntPtr resource_path, out IntPtr error);
 
 		public static unsafe PixbufAnimation NewFromResource(string resource_path)
@@ -57,7 +57,7 @@ namespace Gdk {
 			return result;
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_animation_new_from_stream(IntPtr stream, IntPtr cancellable, out IntPtr error);
 
 		public unsafe PixbufAnimation (GLib.InputStream stream, GLib.Cancellable cancellable) : base (IntPtr.Zero)
@@ -73,7 +73,7 @@ namespace Gdk {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_animation_new_from_stream_async(IntPtr stream, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public PixbufAnimation (GLib.InputStream stream, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) : base (IntPtr.Zero)
@@ -88,7 +88,7 @@ namespace Gdk {
 			Raw = gdk_pixbuf_animation_new_from_stream_async(stream == null ? IntPtr.Zero : stream.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_animation_new_from_stream_finish(IntPtr async_result, out IntPtr error);
 
 		public unsafe PixbufAnimation (GLib.IAsyncResult async_result) : base (IntPtr.Zero)
@@ -104,7 +104,7 @@ namespace Gdk {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_pixbuf_animation_get_height(IntPtr raw);
 
 		public int Height { 
@@ -115,7 +115,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_animation_get_iter(IntPtr raw, IntPtr start_time);
 
 		public Gdk.PixbufAnimationIter GetIter(IntPtr start_time) {
@@ -124,7 +124,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_animation_get_static_image(IntPtr raw);
 
 		public Gdk.Pixbuf StaticImage { 
@@ -135,7 +135,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_animation_get_type();
 
 		public static new GLib.GType GType { 
@@ -146,7 +146,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_pixbuf_animation_get_width(IntPtr raw);
 
 		public int Width { 
@@ -157,7 +157,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_animation_is_static_image(IntPtr raw);
 
 		public bool IsStaticImage { 

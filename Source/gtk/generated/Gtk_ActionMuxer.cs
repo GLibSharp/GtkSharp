@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ActionMuxer (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_muxer_new();
 
 		public ActionMuxer () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_action_muxer_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_muxer_get_parent(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_muxer_set_parent(IntPtr raw, IntPtr parent);
 
 		[GLib.Property ("parent")]
@@ -106,7 +106,7 @@ namespace Gtk {
 				v.Dispose ();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_muxer_get_primary_accel(IntPtr raw, IntPtr action_and_target);
 
 		public string GetPrimaryAccel(string action_and_target) {
@@ -117,7 +117,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_muxer_get_type();
 
 		public static new GLib.GType GType { 
@@ -128,7 +128,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_muxer_insert(IntPtr raw, IntPtr prefix, IntPtr action_group);
 
 		public void Insert(string prefix, GLib.IActionGroup action_group) {
@@ -137,7 +137,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_prefix);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_muxer_list_prefixes(IntPtr raw);
 
 		public string ListPrefixes() {
@@ -146,7 +146,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_muxer_lookup(IntPtr raw, IntPtr prefix);
 
 		public GLib.IActionGroup Lookup(string prefix) {
@@ -157,7 +157,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_muxer_remove(IntPtr raw, IntPtr prefix);
 
 		public void Remove(string prefix) {
@@ -166,7 +166,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_prefix);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_muxer_set_primary_accel(IntPtr raw, IntPtr action_and_target, IntPtr primary_accel);
 
 		public void SetPrimaryAccel(string action_and_target, string primary_accel) {
@@ -565,7 +565,7 @@ namespace Gtk {
 				v.Dispose ();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observable_register_observer(IntPtr raw, IntPtr action_name, IntPtr observer);
 
 		public void RegisterObserver(string action_name, Gtk.IActionObserver observer) {
@@ -574,7 +574,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observable_unregister_observer(IntPtr raw, IntPtr action_name, IntPtr observer);
 
 		public void UnregisterObserver(string action_name, Gtk.IActionObserver observer) {

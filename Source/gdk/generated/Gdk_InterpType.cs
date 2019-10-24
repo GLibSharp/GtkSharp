@@ -17,7 +17,7 @@ namespace Gdk {
 	}
 
 	internal class InterpTypeGType {
-		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_interp_type_get_type ();
 
 		public static GLib.GType GType {

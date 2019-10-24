@@ -14,7 +14,7 @@ namespace Gdk {
 	}
 
 	internal class ColorspaceGType {
-		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_colorspace_get_type ();
 
 		public static GLib.GType GType {

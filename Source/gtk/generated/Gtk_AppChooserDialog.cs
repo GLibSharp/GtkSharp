@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public AppChooserDialog (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_dialog_new(IntPtr parent, int flags, IntPtr file);
 
 		public AppChooserDialog (Gtk.Window parent, Gtk.DialogFlags flags, GLib.IFile file) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			Raw = gtk_app_chooser_dialog_new(parent == null ? IntPtr.Zero : parent.Handle, (int) flags, file == null ? IntPtr.Zero : ((file is GLib.Object) ? (file as GLib.Object).Handle : (file as GLib.FileAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_dialog_new_for_content_type(IntPtr parent, int flags, IntPtr content_type);
 
 		public AppChooserDialog (Gtk.Window parent, Gtk.DialogFlags flags, string content_type) : base (IntPtr.Zero)
@@ -61,10 +61,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_dialog_get_heading(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_dialog_set_heading(IntPtr raw, IntPtr heading);
 
 		[GLib.Property ("heading")]
@@ -105,7 +105,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_dialog_get_type();
 
 		public static new GLib.GType GType { 
@@ -116,7 +116,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_dialog_get_widget(IntPtr raw);
 
 		public Gtk.Widget Widget { 
@@ -127,7 +127,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_app_info(IntPtr raw);
 
 		public GLib.IAppInfo AppInfo { 
@@ -138,7 +138,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_content_type(IntPtr raw);
 
 		public string ContentType { 
@@ -149,7 +149,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_refresh(IntPtr raw);
 
 		public void Refresh() {

@@ -33,7 +33,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tooltip_get_type();
 
 		public static new GLib.GType GType { 
@@ -44,7 +44,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_custom(IntPtr raw, IntPtr custom_widget);
 
 		public Gtk.Widget Custom { 
@@ -53,7 +53,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_icon(IntPtr raw, IntPtr pixbuf);
 
 		public Gdk.Pixbuf Icon { 
@@ -62,14 +62,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_icon_from_gicon(IntPtr raw, IntPtr gicon, int size);
 
 		public void SetIconFromGicon(GLib.IIcon gicon, Gtk.IconSize size) {
 			gtk_tooltip_set_icon_from_gicon(Handle, gicon == null ? IntPtr.Zero : ((gicon is GLib.Object) ? (gicon as GLib.Object).Handle : (gicon as GLib.IconAdapter).Handle), (int) size);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_icon_from_icon_name(IntPtr raw, IntPtr icon_name, int size);
 
 		public void SetIconFromIconName(string icon_name, Gtk.IconSize size) {
@@ -78,7 +78,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_icon_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_icon_from_stock(IntPtr raw, IntPtr stock_id, int size);
 
 		[Obsolete]
@@ -88,7 +88,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_stock_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_markup(IntPtr raw, IntPtr markup);
 
 		public string Markup { 
@@ -99,7 +99,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_text(IntPtr raw, IntPtr text);
 
 		public string Text { 
@@ -110,7 +110,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_set_tip_area(IntPtr raw, IntPtr value);
 
 		public Gdk.Rectangle TipArea { 
@@ -121,7 +121,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tooltip_trigger_tooltip_query(IntPtr display);
 
 		public static void TriggerTooltipQuery(Gdk.Display display) {

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public EntryBuffer (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_entry_buffer_new(IntPtr initial_chars, int n_initial_chars);
 
 		public EntryBuffer (string initial_chars, int n_initial_chars) : base (IntPtr.Zero)
@@ -29,7 +29,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_initial_chars);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_entry_buffer_get_text(IntPtr raw);
 
 		[GLib.Property ("text")]
@@ -46,7 +46,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_entry_buffer_get_length(IntPtr raw);
 
 		[GLib.Property ("length")]
@@ -58,10 +58,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_entry_buffer_get_max_length(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_entry_buffer_set_max_length(IntPtr raw, int max_length);
 
 		[GLib.Property ("max-length")]
@@ -570,7 +570,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_entry_buffer_delete_text(IntPtr raw, uint position, int n_chars);
 
 		public uint DeleteText(uint position, int n_chars) {
@@ -579,14 +579,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_entry_buffer_emit_deleted_text(IntPtr raw, uint position, uint n_chars);
 
 		public void EmitDeletedText(uint position, uint n_chars) {
 			gtk_entry_buffer_emit_deleted_text(Handle, position, n_chars);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_entry_buffer_emit_inserted_text(IntPtr raw, uint position, IntPtr chars, uint n_chars);
 
 		public void EmitInsertedText(uint position, string chars, uint n_chars) {
@@ -595,7 +595,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_chars);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern UIntPtr gtk_entry_buffer_get_bytes(IntPtr raw);
 
 		public ulong Bytes { 
@@ -606,7 +606,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_entry_buffer_get_type();
 
 		public static new GLib.GType GType { 
@@ -617,7 +617,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_entry_buffer_insert_text(IntPtr raw, uint position, IntPtr chars, int n_chars);
 
 		public uint InsertText(uint position, string chars, int n_chars) {
@@ -628,7 +628,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_entry_buffer_set_text(IntPtr raw, IntPtr chars, int n_chars);
 
 		public void SetText(string chars, int n_chars) {

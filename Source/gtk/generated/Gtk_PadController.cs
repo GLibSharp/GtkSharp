@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PadController (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_pad_controller_new(IntPtr window, IntPtr group, IntPtr pad);
 
 		public PadController (Gtk.Window window, GLib.IActionGroup group, Gdk.Device pad) : base (IntPtr.Zero)
@@ -51,7 +51,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_pad_controller_get_type();
 
 		public static new GLib.GType GType { 
@@ -62,7 +62,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_pad_controller_set_action(IntPtr raw, int type, int index, int mode, IntPtr label, IntPtr action_name);
 
 		public void SetAction(Gtk.PadActionType type, int index, int mode, string label, string action_name) {
@@ -73,7 +73,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_pad_controller_set_action_entries(IntPtr raw, IntPtr entries, int n_entries);
 
 		public void SetActionEntries(Gtk.PadActionEntry entries, int n_entries) {

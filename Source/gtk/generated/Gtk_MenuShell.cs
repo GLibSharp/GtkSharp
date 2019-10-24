@@ -18,10 +18,10 @@ namespace Gtk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_menu_shell_get_take_focus(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_set_take_focus(IntPtr raw, bool take_focus);
 
 		[GLib.Property ("take-focus")]
@@ -782,21 +782,21 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_activate_item(IntPtr raw, IntPtr menu_item, bool force_deactivate);
 
 		public void ActivateItem(Gtk.Widget menu_item, bool force_deactivate) {
 			gtk_menu_shell_activate_item(Handle, menu_item == null ? IntPtr.Zero : menu_item.Handle, force_deactivate);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_append(IntPtr raw, IntPtr child);
 
 		public void Append(Gtk.Widget child) {
 			gtk_menu_shell_append(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_bind_model(IntPtr raw, IntPtr model, IntPtr action_namespace, bool with_separators);
 
 		public void BindModel(GLib.MenuModel model, string action_namespace, bool with_separators) {
@@ -805,28 +805,28 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_namespace);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_cancel(IntPtr raw);
 
 		public void Cancel() {
 			gtk_menu_shell_cancel(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_deactivate(IntPtr raw);
 
 		public void Deactivate() {
 			gtk_menu_shell_deactivate(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_deselect(IntPtr raw);
 
 		public void Deselect() {
 			gtk_menu_shell_deselect(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_shell_get_parent_shell(IntPtr raw);
 
 		public Gtk.Widget ParentShell { 
@@ -837,7 +837,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_shell_get_selected_item(IntPtr raw);
 
 		public Gtk.Widget SelectedItem { 
@@ -848,7 +848,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_shell_get_type();
 
 		public static new GLib.GType GType { 
@@ -859,28 +859,28 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_insert(IntPtr raw, IntPtr child, int position);
 
 		public void Insert(Gtk.Widget child, int position) {
 			gtk_menu_shell_insert(Handle, child == null ? IntPtr.Zero : child.Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_prepend(IntPtr raw, IntPtr child);
 
 		public void Prepend(Gtk.Widget child) {
 			gtk_menu_shell_prepend(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_select_first(IntPtr raw, bool search_sensitive);
 
 		public void SelectFirst(bool search_sensitive) {
 			gtk_menu_shell_select_first(Handle, search_sensitive);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_shell_select_item(IntPtr raw, IntPtr menu_item);
 
 		public void SelectItem(Gtk.Widget menu_item) {

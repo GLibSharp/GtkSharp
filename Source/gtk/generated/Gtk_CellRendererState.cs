@@ -21,7 +21,7 @@ namespace Gtk {
 	}
 
 	internal class CellRendererStateGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_renderer_state_get_type ();
 
 		public static GLib.GType GType {

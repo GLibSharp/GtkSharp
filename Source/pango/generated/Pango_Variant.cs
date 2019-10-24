@@ -15,7 +15,7 @@ namespace Pango {
 	}
 
 	internal class VariantGType {
-		[DllImport ("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_variant_get_type ();
 
 		public static GLib.GType GType {

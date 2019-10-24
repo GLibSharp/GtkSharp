@@ -18,7 +18,7 @@ namespace Gtk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_context_get_area(IntPtr raw);
 
 		[GLib.Property ("area")]
@@ -382,49 +382,49 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_allocate(IntPtr raw, int width, int height);
 
 		public void Allocate(int width, int height) {
 			gtk_cell_area_context_allocate(Handle, width, height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_get_allocation(IntPtr raw, out int width, out int height);
 
 		public void GetAllocation(out int width, out int height) {
 			gtk_cell_area_context_get_allocation(Handle, out width, out height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_get_preferred_height(IntPtr raw, out int minimum_height, out int natural_height);
 
 		public void GetPreferredHeight(out int minimum_height, out int natural_height) {
 			gtk_cell_area_context_get_preferred_height(Handle, out minimum_height, out natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_get_preferred_height_for_width(IntPtr raw, int width, out int minimum_height, out int natural_height);
 
 		public void GetPreferredHeightForWidth(int width, out int minimum_height, out int natural_height) {
 			gtk_cell_area_context_get_preferred_height_for_width(Handle, width, out minimum_height, out natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_get_preferred_width(IntPtr raw, out int minimum_width, out int natural_width);
 
 		public void GetPreferredWidth(out int minimum_width, out int natural_width) {
 			gtk_cell_area_context_get_preferred_width(Handle, out minimum_width, out natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_get_preferred_width_for_height(IntPtr raw, int height, out int minimum_width, out int natural_width);
 
 		public void GetPreferredWidthForHeight(int height, out int minimum_width, out int natural_width) {
 			gtk_cell_area_context_get_preferred_width_for_height(Handle, height, out minimum_width, out natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_area_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -435,21 +435,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_push_preferred_height(IntPtr raw, int minimum_height, int natural_height);
 
 		public void PushPreferredHeight(int minimum_height, int natural_height) {
 			gtk_cell_area_context_push_preferred_height(Handle, minimum_height, natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_push_preferred_width(IntPtr raw, int minimum_width, int natural_width);
 
 		public void PushPreferredWidth(int minimum_width, int natural_width) {
 			gtk_cell_area_context_push_preferred_width(Handle, minimum_width, natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_area_context_reset(IntPtr raw);
 
 		public void Reset() {

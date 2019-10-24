@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public TextBuffer (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_new(IntPtr table);
 
 		public TextBuffer (Gtk.TextTagTable table) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			Raw = gtk_text_buffer_new(table == null ? IntPtr.Zero : table.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_tag_table(IntPtr raw);
 
 		[GLib.Property ("tag-table")]
@@ -58,7 +58,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_get_has_selection(IntPtr raw);
 
 		[GLib.Property ("has-selection")]
@@ -80,7 +80,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_copy_target_list(IntPtr raw);
 
 		[GLib.Property ("copy-target-list")]
@@ -92,7 +92,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_paste_target_list(IntPtr raw);
 
 		[GLib.Property ("paste-target-list")]
@@ -1097,7 +1097,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_add_mark(IntPtr raw, IntPtr mark, IntPtr wh3r3);
 
 		public void AddMark(Gtk.TextMark mark, Gtk.TextIter wh3r3) {
@@ -1106,14 +1106,14 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_wh3r3);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_add_selection_clipboard(IntPtr raw, IntPtr clipboard);
 
 		public void AddSelectionClipboard(Gtk.Clipboard clipboard) {
 			gtk_text_buffer_add_selection_clipboard(Handle, clipboard == null ? IntPtr.Zero : clipboard.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_apply_tag(IntPtr raw, IntPtr tag, IntPtr start, IntPtr end);
 
 		public void ApplyTag(Gtk.TextTag tag, Gtk.TextIter start, Gtk.TextIter end) {
@@ -1124,7 +1124,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_apply_tag_by_name(IntPtr raw, IntPtr name, IntPtr start, IntPtr end);
 
 		public void ApplyTag(string name, Gtk.TextIter start, Gtk.TextIter end) {
@@ -1137,7 +1137,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_backspace(IntPtr raw, IntPtr iter, bool interactive, bool default_editable);
 
 		public bool Backspace(ref Gtk.TextIter iter, bool interactive, bool default_editable) {
@@ -1149,21 +1149,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_begin_user_action(IntPtr raw);
 
 		public void BeginUserAction() {
 			gtk_text_buffer_begin_user_action(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_copy_clipboard(IntPtr raw, IntPtr clipboard);
 
 		public void CopyClipboard(Gtk.Clipboard clipboard) {
 			gtk_text_buffer_copy_clipboard(Handle, clipboard == null ? IntPtr.Zero : clipboard.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_create_child_anchor(IntPtr raw, IntPtr iter);
 
 		public Gtk.TextChildAnchor CreateChildAnchor(ref Gtk.TextIter iter) {
@@ -1175,7 +1175,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_create_mark(IntPtr raw, IntPtr mark_name, IntPtr wh3r3, bool left_gravity);
 
 		public Gtk.TextMark CreateMark(string mark_name, Gtk.TextIter wh3r3, bool left_gravity) {
@@ -1188,14 +1188,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_cut_clipboard(IntPtr raw, IntPtr clipboard, bool default_editable);
 
 		public void CutClipboard(Gtk.Clipboard clipboard, bool default_editable) {
 			gtk_text_buffer_cut_clipboard(Handle, clipboard == null ? IntPtr.Zero : clipboard.Handle, default_editable);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_delete(IntPtr raw, IntPtr start, IntPtr end);
 
 		public void Delete(ref Gtk.TextIter start, ref Gtk.TextIter end) {
@@ -1208,7 +1208,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_delete_interactive(IntPtr raw, IntPtr start_iter, IntPtr end_iter, bool default_editable);
 
 		public bool DeleteInteractive(ref Gtk.TextIter start_iter, ref Gtk.TextIter end_iter, bool default_editable) {
@@ -1223,14 +1223,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_delete_mark(IntPtr raw, IntPtr mark);
 
 		public void DeleteMark(Gtk.TextMark mark) {
 			gtk_text_buffer_delete_mark(Handle, mark == null ? IntPtr.Zero : mark.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_delete_mark_by_name(IntPtr raw, IntPtr name);
 
 		public void DeleteMark(string name) {
@@ -1239,7 +1239,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_delete_selection(IntPtr raw, bool interactive, bool default_editable);
 
 		public bool DeleteSelection(bool interactive, bool default_editable) {
@@ -1248,7 +1248,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_text_buffer_deserialize(IntPtr raw, IntPtr content_buffer, IntPtr format, IntPtr iter, byte[] data, UIntPtr length, out IntPtr error);
 
 		public unsafe bool Deserialize(Gtk.TextBuffer content_buffer, Gdk.Atom format, ref Gtk.TextIter iter, byte[] data, ulong length) {
@@ -1262,7 +1262,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_deserialize_get_can_create_tags(IntPtr raw, IntPtr format);
 
 		public bool DeserializeGetCanCreateTags(Gdk.Atom format) {
@@ -1271,21 +1271,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_deserialize_set_can_create_tags(IntPtr raw, IntPtr format, bool can_create_tags);
 
 		public void DeserializeSetCanCreateTags(Gdk.Atom format, bool can_create_tags) {
 			gtk_text_buffer_deserialize_set_can_create_tags(Handle, format == null ? IntPtr.Zero : format.Handle, can_create_tags);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_end_user_action(IntPtr raw);
 
 		public void EndUserAction() {
 			gtk_text_buffer_end_user_action(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_bounds(IntPtr raw, IntPtr start, IntPtr end);
 
 		public void GetBounds(out Gtk.TextIter start, out Gtk.TextIter end) {
@@ -1298,7 +1298,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_buffer_get_char_count(IntPtr raw);
 
 		public int CharCount { 
@@ -1309,7 +1309,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_end_iter(IntPtr raw, IntPtr iter);
 
 		public Gtk.TextIter EndIter { 
@@ -1323,7 +1323,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_insert(IntPtr raw);
 
 		public Gtk.TextMark InsertMark { 
@@ -1334,7 +1334,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_iter_at_child_anchor(IntPtr raw, IntPtr iter, IntPtr anchor);
 
 		public Gtk.TextIter GetIterAtChildAnchor(Gtk.TextChildAnchor anchor) {
@@ -1346,7 +1346,7 @@ namespace Gtk {
 			return iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_iter_at_line(IntPtr raw, IntPtr iter, int line_number);
 
 		public Gtk.TextIter GetIterAtLine(int line_number) {
@@ -1358,7 +1358,7 @@ namespace Gtk {
 			return iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_iter_at_line_index(IntPtr raw, IntPtr iter, int line_number, int byte_index);
 
 		public Gtk.TextIter GetIterAtLineIndex(int line_number, int byte_index) {
@@ -1370,7 +1370,7 @@ namespace Gtk {
 			return iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_iter_at_line_offset(IntPtr raw, IntPtr iter, int line_number, int char_offset);
 
 		public Gtk.TextIter GetIterAtLineOffset(int line_number, int char_offset) {
@@ -1382,7 +1382,7 @@ namespace Gtk {
 			return iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_iter_at_mark(IntPtr raw, IntPtr iter, IntPtr mark);
 
 		public Gtk.TextIter GetIterAtMark(Gtk.TextMark mark) {
@@ -1394,7 +1394,7 @@ namespace Gtk {
 			return iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_iter_at_offset(IntPtr raw, IntPtr iter, int char_offset);
 
 		public Gtk.TextIter GetIterAtOffset(int char_offset) {
@@ -1406,7 +1406,7 @@ namespace Gtk {
 			return iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_buffer_get_line_count(IntPtr raw);
 
 		public int LineCount { 
@@ -1417,7 +1417,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_mark(IntPtr raw, IntPtr name);
 
 		public Gtk.TextMark GetMark(string name) {
@@ -1428,10 +1428,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_get_modified(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_set_modified(IntPtr raw, bool setting);
 
 		public bool Modified { 
@@ -1445,7 +1445,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_selection_bound(IntPtr raw);
 
 		public Gtk.TextMark SelectionBound { 
@@ -1456,7 +1456,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_get_selection_bounds(IntPtr raw, IntPtr start, IntPtr end);
 
 		public bool GetSelectionBounds(out Gtk.TextIter start, out Gtk.TextIter end) {
@@ -1471,7 +1471,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_slice(IntPtr raw, IntPtr start, IntPtr end, bool include_hidden_chars);
 
 		public string GetSlice(Gtk.TextIter start, Gtk.TextIter end, bool include_hidden_chars) {
@@ -1484,7 +1484,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_get_start_iter(IntPtr raw, IntPtr iter);
 
 		public Gtk.TextIter StartIter { 
@@ -1498,7 +1498,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_text(IntPtr raw, IntPtr start, IntPtr end, bool include_hidden_chars);
 
 		public string GetText(Gtk.TextIter start, Gtk.TextIter end, bool include_hidden_chars) {
@@ -1511,7 +1511,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_get_type();
 
 		public static new GLib.GType GType { 
@@ -1522,7 +1522,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_insert_child_anchor(IntPtr raw, IntPtr iter, IntPtr anchor);
 
 		public void InsertChildAnchor(ref Gtk.TextIter iter, Gtk.TextChildAnchor anchor) {
@@ -1532,7 +1532,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_insert_markup(IntPtr raw, IntPtr iter, IntPtr markup, int len);
 
 		public void InsertMarkup(ref Gtk.TextIter iter, string markup) {
@@ -1544,7 +1544,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_markup);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_insert_pixbuf(IntPtr raw, IntPtr iter, IntPtr pixbuf);
 
 		public void InsertPixbuf(ref Gtk.TextIter iter, Gdk.Pixbuf pixbuf) {
@@ -1554,7 +1554,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_insert_range(IntPtr raw, IntPtr iter, IntPtr start, IntPtr end);
 
 		public void InsertRange(ref Gtk.TextIter iter, Gtk.TextIter start, Gtk.TextIter end) {
@@ -1568,7 +1568,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_buffer_insert_range_interactive(IntPtr raw, IntPtr iter, IntPtr start, IntPtr end, bool default_editable);
 
 		public bool InsertRangeInteractive(ref Gtk.TextIter iter, Gtk.TextIter start, Gtk.TextIter end, bool default_editable) {
@@ -1584,7 +1584,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_move_mark(IntPtr raw, IntPtr mark, IntPtr wh3r3);
 
 		public void MoveMark(Gtk.TextMark mark, Gtk.TextIter wh3r3) {
@@ -1593,7 +1593,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_wh3r3);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_move_mark_by_name(IntPtr raw, IntPtr name, IntPtr wh3r3);
 
 		public void MoveMark(string name, Gtk.TextIter wh3r3) {
@@ -1604,7 +1604,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_wh3r3);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_paste_clipboard(IntPtr raw, IntPtr clipboard, IntPtr override_location, bool default_editable);
 
 		public void PasteClipboard(Gtk.Clipboard clipboard, ref Gtk.TextIter override_location, bool default_editable) {
@@ -1614,7 +1614,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_override_location);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_place_cursor(IntPtr raw, IntPtr wh3r3);
 
 		public void PlaceCursor(Gtk.TextIter wh3r3) {
@@ -1623,7 +1623,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_wh3r3);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_register_deserialize_format(IntPtr raw, IntPtr mime_type, GtkSharp.TextBufferDeserializeFuncNative function, IntPtr user_data, GLib.DestroyNotify user_data_destroy);
 
 		public Gdk.Atom RegisterDeserializeFormat(string mime_type, Gtk.TextBufferDeserializeFunc function) {
@@ -1644,7 +1644,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_register_deserialize_tagset(IntPtr raw, IntPtr tagset_name);
 
 		public Gdk.Atom RegisterDeserializeTagset(string tagset_name) {
@@ -1655,7 +1655,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_register_serialize_format(IntPtr raw, IntPtr mime_type, GtkSharp.TextBufferSerializeFuncNative function, IntPtr user_data, GLib.DestroyNotify user_data_destroy);
 
 		public Gdk.Atom RegisterSerializeFormat(string mime_type, Gtk.TextBufferSerializeFunc function) {
@@ -1676,7 +1676,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_buffer_register_serialize_tagset(IntPtr raw, IntPtr tagset_name);
 
 		public Gdk.Atom RegisterSerializeTagset(string tagset_name) {
@@ -1687,7 +1687,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_remove_all_tags(IntPtr raw, IntPtr start, IntPtr end);
 
 		public void RemoveAllTags(Gtk.TextIter start, Gtk.TextIter end) {
@@ -1698,14 +1698,14 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_remove_selection_clipboard(IntPtr raw, IntPtr clipboard);
 
 		public void RemoveSelectionClipboard(Gtk.Clipboard clipboard) {
 			gtk_text_buffer_remove_selection_clipboard(Handle, clipboard == null ? IntPtr.Zero : clipboard.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_remove_tag(IntPtr raw, IntPtr tag, IntPtr start, IntPtr end);
 
 		public void RemoveTag(Gtk.TextTag tag, Gtk.TextIter start, Gtk.TextIter end) {
@@ -1716,7 +1716,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_remove_tag_by_name(IntPtr raw, IntPtr name, IntPtr start, IntPtr end);
 
 		public void RemoveTag(string name, Gtk.TextIter start, Gtk.TextIter end) {
@@ -1729,7 +1729,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_end);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_select_range(IntPtr raw, IntPtr ins, IntPtr bound);
 
 		public void SelectRange(Gtk.TextIter ins, Gtk.TextIter bound) {
@@ -1740,14 +1740,14 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_bound);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_unregister_deserialize_format(IntPtr raw, IntPtr format);
 
 		public void UnregisterDeserializeFormat(Gdk.Atom format) {
 			gtk_text_buffer_unregister_deserialize_format(Handle, format == null ? IntPtr.Zero : format.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_buffer_unregister_serialize_format(IntPtr raw, IntPtr format);
 
 		public void UnregisterSerializeFormat(Gdk.Atom format) {

@@ -23,7 +23,7 @@ namespace Gdk {
 	}
 
 	internal class AnchorHintsGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_anchor_hints_get_type ();
 
 		public static GLib.GType GType {

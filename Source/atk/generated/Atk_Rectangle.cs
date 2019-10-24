@@ -25,7 +25,7 @@ namespace Atk {
 			return (Atk.Rectangle) Marshal.PtrToStructure (raw, typeof (Atk.Rectangle));
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_rectangle_get_type();
 
 		public static GLib.GType GType { 

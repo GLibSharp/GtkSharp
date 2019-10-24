@@ -15,7 +15,7 @@ namespace Gdk {
 	}
 
 	internal class PixbufAlphaModeGType {
-		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_alpha_mode_get_type ();
 
 		public static GLib.GType GType {

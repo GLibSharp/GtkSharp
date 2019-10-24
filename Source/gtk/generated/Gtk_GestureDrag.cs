@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GestureDrag (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_drag_new(IntPtr widget);
 
 		public GestureDrag (Gtk.Widget widget) : base (IntPtr.Zero)
@@ -220,7 +220,7 @@ namespace Gtk {
 			unmanaged (this.Handle, offset_x, offset_y);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_drag_get_offset(IntPtr raw, out double x, out double y);
 
 		public bool GetOffset(out double x, out double y) {
@@ -229,7 +229,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_drag_get_start_point(IntPtr raw, out double x, out double y);
 
 		public bool GetStartPoint(out double x, out double y) {
@@ -238,7 +238,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_drag_get_type();
 
 		public static new GLib.GType GType { 

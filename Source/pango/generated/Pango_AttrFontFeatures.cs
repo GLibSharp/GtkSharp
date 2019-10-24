@@ -13,7 +13,7 @@ namespace Pango {
 
 		public AttrFontFeatures(IntPtr raw) : base(raw) {}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_attr_font_features_new(IntPtr features);
 
 		public AttrFontFeatures (string features) 

@@ -18,14 +18,14 @@ namespace Pango {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_font_map_changed(IntPtr raw);
 
 		public void Changed() {
 			pango_font_map_changed(Handle);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_map_create_context(IntPtr raw);
 
 		public Pango.Context CreateContext() {
@@ -34,7 +34,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint pango_font_map_get_serial(IntPtr raw);
 
 		public uint Serial { 
@@ -45,7 +45,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_map_get_type();
 
 		public static new GLib.GType GType { 
@@ -56,7 +56,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_map_load_font(IntPtr raw, IntPtr context, IntPtr desc);
 
 		public Pango.Font LoadFont(Pango.Context context, Pango.FontDescription desc) {
@@ -65,7 +65,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_map_load_fontset(IntPtr raw, IntPtr context, IntPtr desc, IntPtr language);
 
 		public Pango.Fontset LoadFontset(Pango.Context context, Pango.FontDescription desc, Pango.Language language) {

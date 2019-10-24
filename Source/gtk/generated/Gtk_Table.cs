@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Table (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_table_new(uint rows, uint columns, bool homogeneous);
 
 		public Table (uint rows, uint columns, bool homogeneous) : base (IntPtr.Zero)
@@ -93,10 +93,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_table_get_homogeneous(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_set_homogeneous(IntPtr raw, bool homogeneous);
 
 		[Obsolete]
@@ -291,7 +291,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_attach(IntPtr raw, IntPtr child, uint left_attach, uint right_attach, uint top_attach, uint bottom_attach, int xoptions, int yoptions, uint xpadding, uint ypadding);
 
 		[Obsolete]
@@ -299,7 +299,7 @@ namespace Gtk {
 			gtk_table_attach(Handle, child == null ? IntPtr.Zero : child.Handle, left_attach, right_attach, top_attach, bottom_attach, (int) xoptions, (int) yoptions, xpadding, ypadding);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_attach_defaults(IntPtr raw, IntPtr widget, uint left_attach, uint right_attach, uint top_attach, uint bottom_attach);
 
 		[Obsolete]
@@ -307,7 +307,7 @@ namespace Gtk {
 			gtk_table_attach_defaults(Handle, widget == null ? IntPtr.Zero : widget.Handle, left_attach, right_attach, top_attach, bottom_attach);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_table_get_col_spacing(IntPtr raw, uint column);
 
 		[Obsolete]
@@ -317,7 +317,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_table_get_default_col_spacing(IntPtr raw);
 
 		[Obsolete]
@@ -329,7 +329,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_table_get_default_row_spacing(IntPtr raw);
 
 		[Obsolete]
@@ -341,7 +341,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_table_get_row_spacing(IntPtr raw, uint row);
 
 		[Obsolete]
@@ -351,7 +351,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_get_size(IntPtr raw, out uint rows, out uint columns);
 
 		[Obsolete]
@@ -359,7 +359,7 @@ namespace Gtk {
 			gtk_table_get_size(Handle, out rows, out columns);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_table_get_type();
 
 		[Obsolete]
@@ -371,7 +371,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_resize(IntPtr raw, uint rows, uint columns);
 
 		[Obsolete]
@@ -379,7 +379,7 @@ namespace Gtk {
 			gtk_table_resize(Handle, rows, columns);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_set_col_spacing(IntPtr raw, uint column, uint spacing);
 
 		[Obsolete]
@@ -387,7 +387,7 @@ namespace Gtk {
 			gtk_table_set_col_spacing(Handle, column, spacing);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_table_set_row_spacing(IntPtr raw, uint row, uint spacing);
 
 		[Obsolete]

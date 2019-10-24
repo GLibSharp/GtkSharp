@@ -23,7 +23,7 @@ namespace Gtk {
 	}
 
 	internal class JunctionSidesGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_junction_sides_get_type ();
 
 		public static GLib.GType GType {

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GestureRotate (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_rotate_new(IntPtr widget);
 
 		public GestureRotate (Gtk.Widget widget) : base (IntPtr.Zero)
@@ -94,7 +94,7 @@ namespace Gtk {
 			unmanaged (this.Handle, angle, delta);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_gesture_rotate_get_angle_delta(IntPtr raw);
 
 		public double AngleDelta { 
@@ -105,7 +105,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_rotate_get_type();
 
 		public static new GLib.GType GType { 

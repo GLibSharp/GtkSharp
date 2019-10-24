@@ -818,21 +818,21 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_frame_clock_begin_updating(IntPtr raw);
 
 		public void BeginUpdating() {
 			gdk_frame_clock_begin_updating(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_frame_clock_end_updating(IntPtr raw);
 
 		public void EndUpdating() {
 			gdk_frame_clock_end_updating(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_frame_clock_get_current_timings(IntPtr raw);
 
 		public Gdk.FrameTimings CurrentTimings { 
@@ -843,7 +843,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern long gdk_frame_clock_get_frame_counter(IntPtr raw);
 
 		public long FrameCounter { 
@@ -854,7 +854,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern long gdk_frame_clock_get_frame_time(IntPtr raw);
 
 		public long FrameTime { 
@@ -865,7 +865,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern long gdk_frame_clock_get_history_start(IntPtr raw);
 
 		public long HistoryStart { 
@@ -876,14 +876,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_frame_clock_get_refresh_info(IntPtr raw, long base_time, out long refresh_interval_return, out long presentation_time_return);
 
 		public void GetRefreshInfo(long base_time, out long refresh_interval_return, out long presentation_time_return) {
 			gdk_frame_clock_get_refresh_info(Handle, base_time, out refresh_interval_return, out presentation_time_return);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_frame_clock_get_timings(IntPtr raw, long frame_counter);
 
 		public Gdk.FrameTimings GetTimings(long frame_counter) {
@@ -892,7 +892,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_frame_clock_get_type();
 
 		public static new GLib.GType GType { 
@@ -903,7 +903,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_frame_clock_request_phase(IntPtr raw, int phase);
 
 		public void RequestPhase(Gdk.FrameClockPhase phase) {

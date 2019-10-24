@@ -15,7 +15,7 @@ namespace Gtk {
 	}
 
 	internal class WidgetHelpTypeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_help_type_get_type ();
 
 		public static GLib.GType GType {

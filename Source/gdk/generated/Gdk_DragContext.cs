@@ -1333,7 +1333,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_drag_context_get_actions(IntPtr raw);
 
 		public Gdk.DragAction Actions { 
@@ -1344,7 +1344,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_drag_context_get_dest_window(IntPtr raw);
 
 		public Gdk.Window DestWindow { 
@@ -1355,10 +1355,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_drag_context_get_device(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_drag_context_set_device(IntPtr raw, IntPtr device);
 
 		public Gdk.Device Device { 
@@ -1372,7 +1372,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_drag_context_get_drag_window(IntPtr raw);
 
 		public Gdk.Window DragWindow { 
@@ -1383,7 +1383,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_drag_context_get_protocol(IntPtr raw);
 
 		public Gdk.DragProtocol Protocol { 
@@ -1394,7 +1394,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_drag_context_get_selected_action(IntPtr raw);
 
 		public Gdk.DragAction SelectedAction { 
@@ -1405,7 +1405,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_drag_context_get_source_window(IntPtr raw);
 
 		public Gdk.Window SourceWindow { 
@@ -1416,7 +1416,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_drag_context_get_suggested_action(IntPtr raw);
 
 		public Gdk.DragAction SuggestedAction { 
@@ -1427,7 +1427,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_drag_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -1438,7 +1438,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_drag_context_list_targets(IntPtr raw);
 
 		public Gdk.Atom[] ListTargets() {
@@ -1447,7 +1447,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_drag_context_manage_dnd(IntPtr raw, IntPtr ipc_window, int actions);
 
 		public bool ManageDnd(Gdk.Window ipc_window, Gdk.DragAction actions) {
@@ -1456,7 +1456,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_drag_context_set_hotspot(IntPtr raw, int hot_x, int hot_y);
 
 		public void SetHotspot(int hot_x, int hot_y) {

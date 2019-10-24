@@ -13,7 +13,7 @@ namespace Gdk {
 
 		public AppLaunchContext (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_app_launch_context_new();
 
 		public AppLaunchContext () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gdk {
 			Raw = gdk_app_launch_context_new();
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_app_launch_context_set_display(IntPtr raw, IntPtr display);
 
 		[Obsolete]
@@ -42,7 +42,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_app_launch_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -53,7 +53,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_app_launch_context_set_desktop(IntPtr raw, int desktop);
 
 		public int Desktop { 
@@ -62,7 +62,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_app_launch_context_set_icon(IntPtr raw, IntPtr icon);
 
 		public GLib.IIcon Icon { 
@@ -71,7 +71,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_app_launch_context_set_icon_name(IntPtr raw, IntPtr icon_name);
 
 		public string IconName { 
@@ -82,7 +82,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_app_launch_context_set_screen(IntPtr raw, IntPtr screen);
 
 		public Gdk.Screen Screen { 
@@ -91,7 +91,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_app_launch_context_set_timestamp(IntPtr raw, uint timestamp);
 
 		public uint Timestamp { 

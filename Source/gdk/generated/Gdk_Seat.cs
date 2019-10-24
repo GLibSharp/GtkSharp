@@ -610,7 +610,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_seat_get_capabilities(IntPtr raw);
 
 		public Gdk.SeatCapabilities Capabilities { 
@@ -621,7 +621,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_seat_get_display(IntPtr raw);
 
 		public Gdk.Display Display { 
@@ -632,7 +632,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_seat_get_keyboard(IntPtr raw);
 
 		public Gdk.Device Keyboard { 
@@ -643,7 +643,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_seat_get_pointer(IntPtr raw);
 
 		public Gdk.Device Pointer { 
@@ -654,7 +654,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_seat_get_slaves(IntPtr raw, int capabilities);
 
 		public GLib.List GetSlaves(Gdk.SeatCapabilities capabilities) {
@@ -663,7 +663,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_seat_get_type();
 
 		public static new GLib.GType GType { 
@@ -674,7 +674,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_seat_grab(IntPtr raw, IntPtr window, int capabilities, bool owner_events, IntPtr cursor, IntPtr evnt, GdkSharp.SeatGrabPrepareFuncNative prepare_func, IntPtr prepare_func_data);
 
 		public Gdk.GrabStatus Grab(Gdk.Window window, Gdk.SeatCapabilities capabilities, bool owner_events, Gdk.Cursor cursor, Gdk.Event evnt, Gdk.SeatGrabPrepareFunc prepare_func) {
@@ -684,7 +684,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_seat_ungrab(IntPtr raw);
 
 		public void Ungrab() {

@@ -98,7 +98,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_add_entry(IntPtr accel_path, uint accel_key, int accel_mods);
 
 		public static void AddEntry(string accel_path, uint accel_key, Gdk.ModifierType accel_mods) {
@@ -107,7 +107,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accel_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_add_filter(IntPtr filter_pattern);
 
 		public static void AddFilter(string filter_pattern) {
@@ -116,7 +116,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_filter_pattern);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_map_change_entry(IntPtr accel_path, uint accel_key, int accel_mods, bool replace);
 
 		public static bool ChangeEntry(string accel_path, uint accel_key, Gdk.ModifierType accel_mods, bool replace) {
@@ -127,7 +127,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_foreach(IntPtr data, GtkSharp.AccelMapForeachNative foreach_func);
 
 		public static void Foreach(IntPtr data, Gtk.AccelMapForeach foreach_func) {
@@ -135,7 +135,7 @@ namespace Gtk {
 			gtk_accel_map_foreach(data, foreach_func_wrapper.NativeDelegate);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_foreach_unfiltered(IntPtr data, GtkSharp.AccelMapForeachNative foreach_func);
 
 		public static void ForeachUnfiltered(IntPtr data, Gtk.AccelMapForeach foreach_func) {
@@ -143,7 +143,7 @@ namespace Gtk {
 			gtk_accel_map_foreach_unfiltered(data, foreach_func_wrapper.NativeDelegate);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_map_get();
 
 		public static Gtk.AccelMap Get() {
@@ -152,7 +152,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_map_get_type();
 
 		public static new GLib.GType GType { 
@@ -163,7 +163,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_load(IntPtr file_name);
 
 		public static void Load(string file_name) {
@@ -172,14 +172,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_file_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_load_fd(int fd);
 
 		public static void LoadFd(int fd) {
 			gtk_accel_map_load_fd(fd);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_lock_path(IntPtr accel_path);
 
 		public static void LockPath(string accel_path) {
@@ -188,7 +188,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accel_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_map_lookup_entry(IntPtr accel_path, IntPtr key);
 
 		public static bool LookupEntry(string accel_path, out Gtk.AccelKey key) {
@@ -202,7 +202,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_save(IntPtr file_name);
 
 		public static void Save(string file_name) {
@@ -211,14 +211,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_file_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_save_fd(int fd);
 
 		public static void SaveFd(int fd) {
 			gtk_accel_map_save_fd(fd);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_map_unlock_path(IntPtr accel_path);
 
 		public static void UnlockPath(string accel_path) {

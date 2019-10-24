@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GestureZoom (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_zoom_new(IntPtr widget);
 
 		public GestureZoom (Gtk.Widget widget) : base (IntPtr.Zero)
@@ -41,7 +41,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_gesture_zoom_get_scale_delta(IntPtr raw);
 
 		public double ScaleDelta { 
@@ -52,7 +52,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_zoom_get_type();
 
 		public static new GLib.GType GType { 

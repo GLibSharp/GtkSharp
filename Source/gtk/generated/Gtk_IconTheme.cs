@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public IconTheme (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_new();
 
 		public IconTheme () : base (IntPtr.Zero)
@@ -144,7 +144,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_theme_add_builtin_icon(IntPtr icon_name, int size, IntPtr pixbuf);
 
 		[Obsolete]
@@ -154,7 +154,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_icon_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_theme_add_resource_path(IntPtr raw, IntPtr path);
 
 		public void AddResourcePath(string path) {
@@ -163,7 +163,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_theme_append_search_path(IntPtr raw, IntPtr path);
 
 		public void AppendSearchPath(string path) {
@@ -172,7 +172,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_choose_icon(IntPtr raw, IntPtr[] icon_names, int size, int flags);
 
 		public Gtk.IconInfo ChooseIcon(string[] icon_names, int size, Gtk.IconLookupFlags flags) {
@@ -190,7 +190,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_choose_icon_for_scale(IntPtr raw, IntPtr[] icon_names, int size, int scale, int flags);
 
 		public Gtk.IconInfo ChooseIconForScale(string[] icon_names, int size, int scale, Gtk.IconLookupFlags flags) {
@@ -207,7 +207,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_icon_theme_error_quark();
 
 		public static int ErrorQuark() {
@@ -216,7 +216,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_get_default();
 
 		public static Gtk.IconTheme Default { 
@@ -227,7 +227,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_get_example_icon_name(IntPtr raw);
 
 		public string ExampleIconName { 
@@ -238,7 +238,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_get_for_screen(IntPtr screen);
 
 		public static Gtk.IconTheme GetForScreen(Gdk.Screen screen) {
@@ -247,7 +247,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_get_type();
 
 		public static new GLib.GType GType { 
@@ -258,7 +258,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_icon_theme_has_icon(IntPtr raw, IntPtr icon_name);
 
 		public bool HasIcon(string icon_name) {
@@ -269,7 +269,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_list_contexts(IntPtr raw);
 
 		public string[] ListContexts() {
@@ -278,7 +278,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_theme_load_icon(IntPtr raw, IntPtr icon_name, int size, int flags, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadIcon(string icon_name, int size, Gtk.IconLookupFlags flags) {
@@ -291,7 +291,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_theme_load_icon_for_scale(IntPtr raw, IntPtr icon_name, int size, int scale, int flags, out IntPtr error);
 
 		public unsafe Gdk.Pixbuf LoadIconForScale(string icon_name, int size, int scale, Gtk.IconLookupFlags flags) {
@@ -304,7 +304,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_icon_theme_load_surface(IntPtr raw, IntPtr icon_name, int size, int scale, IntPtr for_window, int flags, out IntPtr error);
 
 		public unsafe Cairo.Surface LoadSurface(string icon_name, int size, int scale, Gdk.Window for_window, Gtk.IconLookupFlags flags) {
@@ -317,7 +317,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_lookup_by_gicon(IntPtr raw, IntPtr icon, int size, int flags);
 
 		public Gtk.IconInfo LookupIcon(GLib.IIcon icon, int size, Gtk.IconLookupFlags flags) {
@@ -326,7 +326,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_lookup_by_gicon_for_scale(IntPtr raw, IntPtr icon, int size, int scale, int flags);
 
 		public Gtk.IconInfo LookupByGiconForScale(GLib.IIcon icon, int size, int scale, Gtk.IconLookupFlags flags) {
@@ -335,7 +335,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_lookup_icon(IntPtr raw, IntPtr icon_name, int size, int flags);
 
 		public Gtk.IconInfo LookupIcon(string icon_name, int size, Gtk.IconLookupFlags flags) {
@@ -346,7 +346,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_theme_lookup_icon_for_scale(IntPtr raw, IntPtr icon_name, int size, int scale, int flags);
 
 		public Gtk.IconInfo LookupIconForScale(string icon_name, int size, int scale, Gtk.IconLookupFlags flags) {
@@ -357,7 +357,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_theme_prepend_search_path(IntPtr raw, IntPtr path);
 
 		public void PrependSearchPath(string path) {
@@ -366,7 +366,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_icon_theme_rescan_if_needed(IntPtr raw);
 
 		public bool RescanIfNeeded() {
@@ -375,7 +375,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_theme_set_custom_theme(IntPtr raw, IntPtr theme_name);
 
 		public string CustomTheme { 
@@ -386,7 +386,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_theme_set_screen(IntPtr raw, IntPtr screen);
 
 		public Gdk.Screen Screen { 

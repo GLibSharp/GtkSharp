@@ -20,7 +20,7 @@ namespace Atk {
 	}
 
 	internal class TextBoundaryGType {
-		[DllImport ("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_boundary_get_type ();
 
 		public static GLib.GType GType {

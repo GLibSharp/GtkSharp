@@ -84,7 +84,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_observable_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_action_observable_get_type ());
@@ -137,7 +137,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observable_register_observer(IntPtr raw, IntPtr action_name, IntPtr observer);
 
 		public void RegisterObserver(string action_name, Gtk.IActionObserver observer) {
@@ -146,7 +146,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_observable_unregister_observer(IntPtr raw, IntPtr action_name, IntPtr observer);
 
 		public void UnregisterObserver(string action_name, Gtk.IActionObserver observer) {

@@ -27,7 +27,7 @@ namespace Pango {
 			return (Pango.Matrix) Marshal.PtrToStructure (raw, typeof (Pango.Matrix));
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_concat(IntPtr raw, IntPtr new_matrix);
 
 		public void Concat(Pango.Matrix new_matrix) {
@@ -40,7 +40,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_new_matrix);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double pango_matrix_get_font_scale_factor(IntPtr raw);
 
 		public double FontScaleFactor { 
@@ -55,7 +55,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_get_font_scale_factors(IntPtr raw, out double xscale, out double yscale);
 
 		public void GetFontScaleFactors(out double xscale, out double yscale) {
@@ -66,7 +66,7 @@ namespace Pango {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_matrix_get_type();
 
 		public static GLib.GType GType { 
@@ -77,7 +77,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_rotate(IntPtr raw, double degrees);
 
 		public void Rotate(double degrees) {
@@ -88,7 +88,7 @@ namespace Pango {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_scale(IntPtr raw, double scale_x, double scale_y);
 
 		public void Scale(double scale_x, double scale_y) {
@@ -99,7 +99,7 @@ namespace Pango {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_transform_distance(IntPtr raw, ref double dx, ref double dy);
 
 		public void TransformDistance(ref double dx, ref double dy) {
@@ -110,7 +110,7 @@ namespace Pango {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_transform_pixel_rectangle(IntPtr raw, IntPtr rect);
 
 		public void TransformPixelRectangle(ref Pango.Rectangle rect) {
@@ -124,7 +124,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_transform_point(IntPtr raw, ref double x, ref double y);
 
 		public void TransformPoint(ref double x, ref double y) {
@@ -135,7 +135,7 @@ namespace Pango {
 			System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_transform_rectangle(IntPtr raw, IntPtr rect);
 
 		public void TransformRectangle(ref Pango.Rectangle rect) {
@@ -149,7 +149,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_matrix_translate(IntPtr raw, double tx, double ty);
 
 		public void Translate(double tx, double ty) {

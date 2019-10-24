@@ -18,7 +18,7 @@ namespace Gdk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_monitor_get_display(IntPtr raw);
 
 		[GLib.Property ("display")]
@@ -30,7 +30,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_monitor_get_manufacturer(IntPtr raw);
 
 		[GLib.Property ("manufacturer")]
@@ -42,7 +42,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_monitor_get_model(IntPtr raw);
 
 		[GLib.Property ("model")]
@@ -54,7 +54,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_monitor_get_scale_factor(IntPtr raw);
 
 		[GLib.Property ("scale-factor")]
@@ -86,7 +86,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_monitor_get_width_mm(IntPtr raw);
 
 		[GLib.Property ("width-mm")]
@@ -98,7 +98,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_monitor_get_height_mm(IntPtr raw);
 
 		[GLib.Property ("height-mm")]
@@ -110,7 +110,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_monitor_get_refresh_rate(IntPtr raw);
 
 		[GLib.Property ("refresh-rate")]
@@ -122,7 +122,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_monitor_get_subpixel_layout(IntPtr raw);
 
 		[GLib.Property ("subpixel-layout")]
@@ -272,7 +272,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_monitor_get_geometry(IntPtr raw, IntPtr geometry);
 
 		public void GetGeometry(Gdk.Rectangle geometry) {
@@ -281,7 +281,7 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_geometry);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_monitor_get_type();
 
 		public static new GLib.GType GType { 
@@ -292,7 +292,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_monitor_get_workarea(IntPtr raw, IntPtr workarea);
 
 		public void GetWorkarea(Gdk.Rectangle workarea) {
@@ -301,7 +301,7 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_workarea);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_monitor_is_primary(IntPtr raw);
 
 		public bool IsPrimary { 

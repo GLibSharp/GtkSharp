@@ -17,7 +17,7 @@ namespace Gtk {
 	}
 
 	internal class ToolbarStyleGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toolbar_style_get_type ();
 
 		public static GLib.GType GType {

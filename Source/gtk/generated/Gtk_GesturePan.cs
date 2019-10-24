@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GesturePan (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_pan_new(IntPtr widget, int orientation);
 
 		public GesturePan (Gtk.Widget widget, Gtk.Orientation orientation) : base (IntPtr.Zero)
@@ -33,10 +33,10 @@ namespace Gtk {
 			Raw = gtk_gesture_pan_new(widget == null ? IntPtr.Zero : widget.Handle, (int) orientation);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_gesture_pan_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_gesture_pan_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]
@@ -114,7 +114,7 @@ namespace Gtk {
 			unmanaged (this.Handle, (int) direction, offset);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_pan_get_type();
 
 		public static new GLib.GType GType { 

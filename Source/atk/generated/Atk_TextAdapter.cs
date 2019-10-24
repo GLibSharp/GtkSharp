@@ -454,7 +454,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_text_get_type ());
@@ -567,7 +567,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_add_selection(IntPtr raw, int start_offset, int end_offset);
 
 		public bool AddSelection(int start_offset, int end_offset) {
@@ -576,7 +576,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_attribute_for_name(IntPtr name);
 
 		public static Atk.TextAttribute AttributeForName(string name) {
@@ -587,7 +587,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_attribute_get_name(int attr);
 
 		public static string AttributeGetName(Atk.TextAttribute attr) {
@@ -596,7 +596,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_attribute_get_value(int attr, int index_);
 
 		public static string AttributeGetValue(Atk.TextAttribute attr, int index_) {
@@ -605,7 +605,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_attribute_register(IntPtr name);
 
 		public static Atk.TextAttribute AttributeRegister(string name) {
@@ -616,7 +616,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_text_free_ranges(IntPtr ranges);
 
 		public static void FreeRanges(Atk.TextRange ranges) {
@@ -625,7 +625,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_ranges);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_bounded_ranges(IntPtr raw, IntPtr rect, int coord_type, int x_clip_type, int y_clip_type);
 
 		public Atk.TextRange GetBoundedRanges(Atk.TextRectangle rect, Atk.CoordType coord_type, Atk.TextClipType x_clip_type, Atk.TextClipType y_clip_type) {
@@ -636,7 +636,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_caret_offset(IntPtr raw);
 
 		public int CaretOffset { 
@@ -647,7 +647,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint atk_text_get_character_at_offset(IntPtr raw, int offset);
 
 		public char GetCharacterAtOffset(int offset) {
@@ -656,7 +656,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_character_count(IntPtr raw);
 
 		public int CharacterCount { 
@@ -667,14 +667,14 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_text_get_character_extents(IntPtr raw, int offset, out int x, out int y, out int width, out int height, int coords);
 
 		public void GetCharacterExtents(int offset, out int x, out int y, out int width, out int height, Atk.CoordType coords) {
 			atk_text_get_character_extents(Handle, offset, out x, out y, out width, out height, (int) coords);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_default_attributes(IntPtr raw);
 
 		public Atk.Attribute[] DefaultAttributes { 
@@ -685,7 +685,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_n_selections(IntPtr raw);
 
 		public int NSelections { 
@@ -696,7 +696,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_text_get_offset_at_point(IntPtr raw, int x, int y, int coords);
 
 		public int GetOffsetAtPoint(int x, int y, Atk.CoordType coords) {
@@ -705,7 +705,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_text_get_range_extents(IntPtr raw, int start_offset, int end_offset, int coord_type, IntPtr rect);
 
 		public Atk.TextRectangle GetRangeExtents(int start_offset, int end_offset, Atk.CoordType coord_type) {
@@ -717,7 +717,7 @@ namespace Atk {
 			return rect;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_run_attributes(IntPtr raw, int offset, out int start_offset, out int end_offset);
 
 		public Atk.Attribute[] GetRunAttributes(int offset, out int start_offset, out int end_offset) {
@@ -726,7 +726,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_selection(IntPtr raw, int selection_num, out int start_offset, out int end_offset);
 
 		public string GetSelection(int selection_num, out int start_offset, out int end_offset) {
@@ -735,7 +735,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_string_at_offset(IntPtr raw, int offset, int granularity, out int start_offset, out int end_offset);
 
 		public string GetStringAtOffset(int offset, Atk.TextGranularity granularity, out int start_offset, out int end_offset) {
@@ -744,7 +744,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text(IntPtr raw, int start_offset, int end_offset);
 
 		public string GetText(int start_offset, int end_offset) {
@@ -753,7 +753,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text_after_offset(IntPtr raw, int offset, int boundary_type, out int start_offset, out int end_offset);
 
 		[Obsolete]
@@ -763,7 +763,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text_at_offset(IntPtr raw, int offset, int boundary_type, out int start_offset, out int end_offset);
 
 		[Obsolete]
@@ -773,7 +773,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_text_get_text_before_offset(IntPtr raw, int offset, int boundary_type, out int start_offset, out int end_offset);
 
 		[Obsolete]
@@ -783,7 +783,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_remove_selection(IntPtr raw, int selection_num);
 
 		public bool RemoveSelection(int selection_num) {
@@ -792,7 +792,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_set_caret_offset(IntPtr raw, int offset);
 
 		public bool SetCaretOffset(int offset) {
@@ -801,7 +801,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_text_set_selection(IntPtr raw, int selection_num, int start_offset, int end_offset);
 
 		public bool SetSelection(int selection_num, int start_offset, int end_offset) {

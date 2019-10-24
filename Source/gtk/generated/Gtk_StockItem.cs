@@ -26,7 +26,7 @@ namespace Gtk {
 			return (Gtk.StockItem) Marshal.PtrToStructure (raw, typeof (Gtk.StockItem));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_stock_item_copy(IntPtr raw);
 
 		[Obsolete]
@@ -40,7 +40,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_stock_item_free(IntPtr raw);
 
 		[Obsolete]
