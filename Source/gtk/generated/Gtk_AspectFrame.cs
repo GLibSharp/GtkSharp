@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public AspectFrame (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_aspect_frame_new(IntPtr label, float xalign, float yalign, float ratio, bool obey_child);
 
 		public AspectFrame (string label, float xalign, float yalign, float ratio, bool obey_child) : base (IntPtr.Zero)
@@ -147,7 +147,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_aspect_frame_get_type();
 
 		public static new GLib.GType GType { 
@@ -158,7 +158,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_aspect_frame_set(IntPtr raw, float xalign, float yalign, float ratio, bool obey_child);
 
 		public void Set(float xalign, float yalign, float ratio, bool obey_child) {

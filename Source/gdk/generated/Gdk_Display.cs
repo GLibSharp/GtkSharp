@@ -3464,21 +3464,21 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_beep(IntPtr raw);
 
 		public void Beep() {
 			gdk_display_beep(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_close(IntPtr raw);
 
 		public void Close() {
 			gdk_display_close(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_device_is_grabbed(IntPtr raw, IntPtr device);
 
 		public bool DeviceIsGrabbed(Gdk.Device device) {
@@ -3487,14 +3487,14 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_flush(IntPtr raw);
 
 		public void Flush() {
 			gdk_display_flush(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_app_launch_context(IntPtr raw);
 
 		public Gdk.AppLaunchContext AppLaunchContext { 
@@ -3505,7 +3505,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_default();
 
 		public static Gdk.Display Default { 
@@ -3516,7 +3516,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gdk_display_get_default_cursor_size(IntPtr raw);
 
 		public uint DefaultCursorSize { 
@@ -3527,7 +3527,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_default_group(IntPtr raw);
 
 		public Gdk.Window DefaultGroup { 
@@ -3538,7 +3538,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_default_screen(IntPtr raw);
 
 		public Gdk.Screen DefaultScreen { 
@@ -3549,7 +3549,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_default_seat(IntPtr raw);
 
 		public Gdk.Seat DefaultSeat { 
@@ -3560,7 +3560,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_device_manager(IntPtr raw);
 
 		[Obsolete]
@@ -3572,7 +3572,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_event(IntPtr raw);
 
 		public Gdk.Event Event { 
@@ -3583,14 +3583,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_get_maximal_cursor_size(IntPtr raw, out uint width, out uint height);
 
 		public void GetMaximalCursorSize(out uint width, out uint height) {
 			gdk_display_get_maximal_cursor_size(Handle, out width, out height);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_monitor(IntPtr raw, int monitor_num);
 
 		public Gdk.Monitor GetMonitor(int monitor_num) {
@@ -3599,7 +3599,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_monitor_at_point(IntPtr raw, int x, int y);
 
 		public Gdk.Monitor GetMonitorAtPoint(int x, int y) {
@@ -3608,7 +3608,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_monitor_at_window(IntPtr raw, IntPtr window);
 
 		public Gdk.Monitor GetMonitorAtWindow(Gdk.Window window) {
@@ -3617,7 +3617,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_display_get_n_monitors(IntPtr raw);
 
 		public int NMonitors { 
@@ -3628,7 +3628,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_display_get_n_screens(IntPtr raw);
 
 		[Obsolete]
@@ -3640,7 +3640,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_name(IntPtr raw);
 
 		public string Name { 
@@ -3651,7 +3651,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_primary_monitor(IntPtr raw);
 
 		public Gdk.Monitor PrimaryMonitor { 
@@ -3662,7 +3662,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_screen(IntPtr raw, int screen_num);
 
 		[Obsolete]
@@ -3672,7 +3672,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_type();
 
 		public static new GLib.GType GType { 
@@ -3683,7 +3683,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_get_window_at_pointer(IntPtr raw, out int win_x, out int win_y);
 
 		[Obsolete]
@@ -3693,7 +3693,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_has_pending(IntPtr raw);
 
 		public bool HasPending { 
@@ -3704,7 +3704,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_is_closed(IntPtr raw);
 
 		public bool IsClosed { 
@@ -3715,7 +3715,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_keyboard_ungrab(IntPtr raw, uint time_);
 
 		[Obsolete]
@@ -3723,7 +3723,7 @@ namespace Gdk {
 			gdk_display_keyboard_ungrab(Handle, time_);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_list_seats(IntPtr raw);
 
 		public GLib.List ListSeats() {
@@ -3732,7 +3732,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_notify_startup_complete(IntPtr raw, IntPtr startup_id);
 
 		public void NotifyStartupComplete(string startup_id) {
@@ -3741,7 +3741,7 @@ namespace Gdk {
 			GLib.Marshaller.Free (native_startup_id);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_open(IntPtr display_name);
 
 		public static Gdk.Display Open(string display_name) {
@@ -3752,7 +3752,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_open_default_libgtk_only();
 
 		[Obsolete]
@@ -3762,7 +3762,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_peek_event(IntPtr raw);
 
 		public Gdk.Event PeekEvent() {
@@ -3771,7 +3771,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_pointer_is_grabbed(IntPtr raw);
 
 		[Obsolete]
@@ -3781,7 +3781,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_pointer_ungrab(IntPtr raw, uint time_);
 
 		[Obsolete]
@@ -3789,14 +3789,14 @@ namespace Gdk {
 			gdk_display_pointer_ungrab(Handle, time_);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_put_event(IntPtr raw, IntPtr evnt);
 
 		public void PutEvent(Gdk.Event evnt) {
 			gdk_display_put_event(Handle, evnt == null ? IntPtr.Zero : evnt.Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_request_selection_notification(IntPtr raw, IntPtr selection);
 
 		public bool RequestSelectionNotification(Gdk.Atom selection) {
@@ -3805,7 +3805,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_set_double_click_distance(IntPtr raw, uint distance);
 
 		public uint DoubleClickDistance { 
@@ -3814,7 +3814,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_set_double_click_time(IntPtr raw, uint msec);
 
 		public uint DoubleClickTime { 
@@ -3823,14 +3823,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_store_clipboard(IntPtr raw, IntPtr clipboard_window, uint time_, IntPtr targets, int n_targets);
 
 		public void StoreClipboard(Gdk.Window clipboard_window, uint time_, Gdk.Atom targets, int n_targets) {
 			gdk_display_store_clipboard(Handle, clipboard_window == null ? IntPtr.Zero : clipboard_window.Handle, time_, targets == null ? IntPtr.Zero : targets.Handle, n_targets);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_clipboard_persistence(IntPtr raw);
 
 		public bool SupportsClipboardPersistence() {
@@ -3839,7 +3839,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_composite(IntPtr raw);
 
 		[Obsolete]
@@ -3851,7 +3851,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_cursor_alpha(IntPtr raw);
 
 		public bool SupportsCursorAlpha() {
@@ -3860,7 +3860,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_cursor_color(IntPtr raw);
 
 		public bool SupportsCursorColor() {
@@ -3869,7 +3869,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_input_shapes(IntPtr raw);
 
 		public bool SupportsInputShapes { 
@@ -3880,7 +3880,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_selection_notification(IntPtr raw);
 
 		public bool SupportsSelectionNotification() {
@@ -3889,7 +3889,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_display_supports_shapes(IntPtr raw);
 
 		public bool SupportsShapes { 
@@ -3900,14 +3900,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_sync(IntPtr raw);
 
 		public void Sync() {
 			gdk_display_sync(Handle);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_warp_pointer(IntPtr raw, IntPtr screen, int x, int y);
 
 		[Obsolete]

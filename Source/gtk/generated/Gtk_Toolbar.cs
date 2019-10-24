@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Toolbar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toolbar_new();
 
 		public Toolbar () : base (IntPtr.Zero)
@@ -40,10 +40,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_toolbar_get_show_arrow(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_set_show_arrow(IntPtr raw, bool show_arrow);
 
 		[GLib.Property ("show-arrow")]
@@ -58,10 +58,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_toolbar_get_icon_size(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_set_icon_size(IntPtr raw, int icon_size);
 
 		[GLib.Property ("icon-size")]
@@ -516,7 +516,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_toolbar_get_drop_index(IntPtr raw, int x, int y);
 
 		public int GetDropIndex(int x, int y) {
@@ -525,7 +525,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_toolbar_get_item_index(IntPtr raw, IntPtr item);
 
 		public int GetItemIndex(Gtk.ToolItem item) {
@@ -534,7 +534,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_toolbar_get_n_items(IntPtr raw);
 
 		public int NItems { 
@@ -545,7 +545,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toolbar_get_nth_item(IntPtr raw, int n);
 
 		public Gtk.ToolItem GetNthItem(int n) {
@@ -554,7 +554,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_toolbar_get_relief_style(IntPtr raw);
 
 		public Gtk.ReliefStyle ReliefStyle { 
@@ -565,10 +565,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_toolbar_get_style(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_set_style(IntPtr raw, int style);
 
 		public new Gtk.ToolbarStyle Style { 
@@ -582,7 +582,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toolbar_get_type();
 
 		public static new GLib.GType GType { 
@@ -593,35 +593,35 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_insert(IntPtr raw, IntPtr item, int pos);
 
 		public void Insert(Gtk.ToolItem item, int pos) {
 			gtk_toolbar_insert(Handle, item == null ? IntPtr.Zero : item.Handle, pos);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_set_drop_highlight_item(IntPtr raw, IntPtr tool_item, int index_);
 
 		public void SetDropHighlightItem(Gtk.ToolItem tool_item, int index_) {
 			gtk_toolbar_set_drop_highlight_item(Handle, tool_item == null ? IntPtr.Zero : tool_item.Handle, index_);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_unset_icon_size(IntPtr raw);
 
 		public void UnsetIconSize() {
 			gtk_toolbar_unset_icon_size(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toolbar_unset_style(IntPtr raw);
 
 		public void UnsetStyle() {
 			gtk_toolbar_unset_style(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_shell_get_ellipsize_mode(IntPtr raw);
 
 		public Pango.EllipsizeMode EllipsizeMode { 
@@ -632,7 +632,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_shell_get_icon_size(IntPtr raw);
 
 		Gtk.IconSize Gtk.IToolShell.IconSize { 
@@ -643,7 +643,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_shell_get_orientation(IntPtr raw);
 
 		Gtk.Orientation Gtk.IToolShell.Orientation { 
@@ -654,7 +654,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_shell_get_relief_style(IntPtr raw);
 
 		Gtk.ReliefStyle Gtk.IToolShell.ReliefStyle { 
@@ -665,7 +665,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_shell_get_style(IntPtr raw);
 
 		Gtk.ToolbarStyle Gtk.IToolShell.Style { 
@@ -676,7 +676,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern float gtk_tool_shell_get_text_alignment(IntPtr raw);
 
 		public float TextAlignment { 
@@ -687,7 +687,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_shell_get_text_orientation(IntPtr raw);
 
 		public Gtk.Orientation TextOrientation { 
@@ -698,7 +698,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_shell_get_text_size_group(IntPtr raw);
 
 		public Gtk.SizeGroup TextSizeGroup { 
@@ -709,17 +709,17 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_shell_rebuild_menu(IntPtr raw);
 
 		public void RebuildMenu() {
 			gtk_tool_shell_rebuild_menu(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_orientable_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_orientable_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]

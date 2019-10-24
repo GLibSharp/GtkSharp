@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public LinkButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_link_button_new(IntPtr uri);
 
 		public LinkButton (string uri) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_uri);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_link_button_new_with_label(IntPtr uri, IntPtr label);
 
 		public LinkButton (string uri, string label) : base (IntPtr.Zero)
@@ -53,10 +53,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_label);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_link_button_get_uri(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_link_button_set_uri(IntPtr raw, IntPtr uri);
 
 		[GLib.Property ("uri")]
@@ -73,10 +73,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_link_button_get_visited(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_link_button_set_visited(IntPtr raw, bool visited);
 
 		[GLib.Property ("visited")]
@@ -215,7 +215,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_link_button_get_type();
 
 		public static new GLib.GType GType { 

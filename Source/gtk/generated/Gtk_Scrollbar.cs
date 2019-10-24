@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Scrollbar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scrollbar_new(int orientation, IntPtr adjustment);
 
 		public Scrollbar (Gtk.Orientation orientation, Gtk.Adjustment adjustment) : base (IntPtr.Zero)
@@ -137,7 +137,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scrollbar_get_type();
 
 		public static new GLib.GType GType { 

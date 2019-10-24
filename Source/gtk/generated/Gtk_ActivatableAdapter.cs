@@ -69,7 +69,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_activatable_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_activatable_get_type ());
@@ -122,10 +122,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_activatable_get_related_action(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_activatable_set_related_action(IntPtr raw, IntPtr action);
 
 		[Obsolete]
@@ -141,10 +141,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_activatable_get_use_action_appearance(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_activatable_set_use_action_appearance(IntPtr raw, bool use_appearance);
 
 		[Obsolete]
@@ -160,7 +160,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_activatable_do_set_related_action(IntPtr raw, IntPtr action);
 
 		[Obsolete]
@@ -168,7 +168,7 @@ namespace Gtk {
 			gtk_activatable_do_set_related_action(Handle, action == null ? IntPtr.Zero : action.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_activatable_sync_action_properties(IntPtr raw, IntPtr action);
 
 		[Obsolete]

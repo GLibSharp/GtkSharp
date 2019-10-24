@@ -33,7 +33,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_registry_get_factory(IntPtr raw, IntPtr type);
 
 		public Atk.ObjectFactory GetFactory(GLib.GType type) {
@@ -42,7 +42,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_registry_get_factory_type(IntPtr raw, IntPtr type);
 
 		public GLib.GType GetFactoryType(GLib.GType type) {
@@ -51,7 +51,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_registry_get_type();
 
 		public static new GLib.GType GType { 
@@ -62,7 +62,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_registry_set_factory_type(IntPtr raw, IntPtr type, IntPtr factory_type);
 
 		public void SetFactoryType(GLib.GType type, GLib.GType factory_type) {

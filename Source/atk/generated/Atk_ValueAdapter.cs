@@ -238,7 +238,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_value_get_type ());
@@ -301,7 +301,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_current_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -312,7 +312,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double atk_value_get_increment(IntPtr raw);
 
 		public double Increment { 
@@ -323,7 +323,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_maximum_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -334,7 +334,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_minimum_increment(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -345,7 +345,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_minimum_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -356,7 +356,7 @@ namespace Atk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_get_range(IntPtr raw);
 
 		public Atk.Range Range { 
@@ -367,7 +367,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_get_sub_ranges(IntPtr raw);
 
 		public GLib.SList SubRanges { 
@@ -378,7 +378,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_get_value_and_text(IntPtr raw, out double value, IntPtr text);
 
 		public double GetValueAndText(string text) {
@@ -387,7 +387,7 @@ namespace Atk {
 			return value;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_value_set_current_value(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -399,7 +399,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_value_set_value(IntPtr raw, double new_value);
 
 		public double Value { 
@@ -408,7 +408,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_type_get_localized_name(int value_type);
 
 		public static string TypeGetLocalizedName(Atk.ValueType value_type) {
@@ -417,7 +417,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_value_type_get_name(int value_type);
 
 		public static string TypeGetName(Atk.ValueType value_type) {

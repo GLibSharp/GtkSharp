@@ -6,7 +6,7 @@
         Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
 
 -->
-  <namespace name="Gtksharp" library="libopaque.dll">
+  <namespace name="Gtksharp" library="opaque.dll">
     <callback name="GCFunc" cname="GtksharpGCFunc">
       <return-type type="void" />
     </callback>

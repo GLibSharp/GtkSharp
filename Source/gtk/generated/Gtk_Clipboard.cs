@@ -28,14 +28,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_clear(IntPtr raw);
 
 		public void Clear() {
 			gtk_clipboard_clear(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get(IntPtr selection);
 
 		public static Gtk.Clipboard Get(Gdk.Atom selection) {
@@ -44,7 +44,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get_default(IntPtr display);
 
 		public static Gtk.Clipboard GetDefault(Gdk.Display display) {
@@ -53,7 +53,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get_display(IntPtr raw);
 
 		public Gdk.Display Display { 
@@ -64,7 +64,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get_for_display(IntPtr display, IntPtr selection);
 
 		public static Gtk.Clipboard GetForDisplay(Gdk.Display display, Gdk.Atom selection) {
@@ -73,7 +73,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get_owner(IntPtr raw);
 
 		public GLib.Object Owner { 
@@ -84,7 +84,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get_selection(IntPtr raw);
 
 		public Gdk.Atom Selection { 
@@ -95,7 +95,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_get_type();
 
 		public static new GLib.GType GType { 
@@ -106,7 +106,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_request_contents(IntPtr raw, IntPtr target, GtkSharp.ClipboardReceivedFuncNative cb, IntPtr user_data);
 
 		public void RequestContents(Gdk.Atom target, Gtk.ClipboardReceivedFunc cb) {
@@ -115,7 +115,7 @@ namespace Gtk {
 			gtk_clipboard_request_contents(Handle, target == null ? IntPtr.Zero : target.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_request_image(IntPtr raw, GtkSharp.ClipboardImageReceivedFuncNative cb, IntPtr user_data);
 
 		public void RequestImage(Gtk.ClipboardImageReceivedFunc cb) {
@@ -124,7 +124,7 @@ namespace Gtk {
 			gtk_clipboard_request_image(Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_request_targets(IntPtr raw, GtkSharp.ClipboardTargetsReceivedFuncNative cb, IntPtr user_data);
 
 		public void RequestTargets(Gtk.ClipboardTargetsReceivedFunc cb) {
@@ -133,7 +133,7 @@ namespace Gtk {
 			gtk_clipboard_request_targets(Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_request_text(IntPtr raw, GtkSharp.ClipboardTextReceivedFuncNative cb, IntPtr user_data);
 
 		public void RequestText(Gtk.ClipboardTextReceivedFunc cb) {
@@ -142,7 +142,7 @@ namespace Gtk {
 			gtk_clipboard_request_text(Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_request_uris(IntPtr raw, GtkSharp.ClipboardURIReceivedFuncNative cb, IntPtr user_data);
 
 		public void RequestUris(Gtk.ClipboardURIReceivedFunc cb) {
@@ -151,7 +151,7 @@ namespace Gtk {
 			gtk_clipboard_request_uris(Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_set_can_store(IntPtr raw, IntPtr targets, int n_targets);
 
 		public void SetCanStore(Gtk.TargetEntry targets, int n_targets) {
@@ -160,7 +160,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_targets);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_set_image(IntPtr raw, IntPtr pixbuf);
 
 		public Gdk.Pixbuf Image { 
@@ -169,7 +169,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_set_text(IntPtr raw, IntPtr text, int len);
 
 		public string Text { 
@@ -180,14 +180,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_clipboard_store(IntPtr raw);
 
 		public void Store() {
 			gtk_clipboard_store(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_wait_for_contents(IntPtr raw, IntPtr target);
 
 		public Gtk.SelectionData WaitForContents(Gdk.Atom target) {
@@ -196,7 +196,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_wait_for_image(IntPtr raw);
 
 		public Gdk.Pixbuf WaitForImage() {
@@ -205,7 +205,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_clipboard_wait_for_targets(IntPtr raw, IntPtr targets, out int n_targets);
 
 		public bool WaitForTargets(Gdk.Atom targets, out int n_targets) {
@@ -214,7 +214,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_wait_for_text(IntPtr raw);
 
 		public string WaitForText() {
@@ -223,7 +223,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_clipboard_wait_for_uris(IntPtr raw);
 
 		public string WaitForUris() {
@@ -232,7 +232,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_clipboard_wait_is_image_available(IntPtr raw);
 
 		public bool WaitIsImageAvailable() {
@@ -241,7 +241,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_clipboard_wait_is_rich_text_available(IntPtr raw, IntPtr buffer);
 
 		public bool WaitIsRichTextAvailable(Gtk.TextBuffer buffer) {
@@ -250,7 +250,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_clipboard_wait_is_target_available(IntPtr raw, IntPtr target);
 
 		public bool WaitIsTargetAvailable(Gdk.Atom target) {
@@ -259,7 +259,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_clipboard_wait_is_text_available(IntPtr raw);
 
 		public bool WaitIsTextAvailable() {
@@ -268,7 +268,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_clipboard_wait_is_uris_available(IntPtr raw);
 
 		public bool WaitIsUrisAvailable() {

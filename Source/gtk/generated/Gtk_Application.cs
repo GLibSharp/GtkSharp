@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Application (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_new(IntPtr application_id, int flags);
 
 		public Application (string application_id, GLib.ApplicationFlags flags) : base (IntPtr.Zero)
@@ -48,10 +48,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_app_menu(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_set_app_menu(IntPtr raw, IntPtr app_menu);
 
 		[GLib.Property ("app-menu")]
@@ -66,10 +66,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_menubar(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_set_menubar(IntPtr raw, IntPtr menubar);
 
 		[GLib.Property ("menubar")]
@@ -84,7 +84,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_active_window(IntPtr raw);
 
 		[GLib.Property ("active-window")]
@@ -262,7 +262,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_add_accelerator(IntPtr raw, IntPtr accelerator, IntPtr action_name, IntPtr parameter);
 
 		[Obsolete]
@@ -274,14 +274,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_add_window(IntPtr raw, IntPtr window);
 
 		public void AddWindow(Gtk.Window window) {
 			gtk_application_add_window(Handle, window == null ? IntPtr.Zero : window.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_accels_for_action(IntPtr raw, IntPtr detailed_action_name);
 
 		public string GetAccelsForAction(string detailed_action_name) {
@@ -292,7 +292,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_actions_for_accel(IntPtr raw, IntPtr accel);
 
 		public string GetActionsForAccel(string accel) {
@@ -303,7 +303,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_menu_by_id(IntPtr raw, IntPtr id);
 
 		public GLib.Menu GetMenuById(string id) {
@@ -314,7 +314,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_type();
 
 		public static new GLib.GType GType { 
@@ -325,7 +325,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_window_by_id(IntPtr raw, uint id);
 
 		public Gtk.Window GetWindowById(uint id) {
@@ -334,7 +334,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_get_windows(IntPtr raw);
 
 		public Gtk.Window[] Windows { 
@@ -345,7 +345,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_application_inhibit(IntPtr raw, IntPtr window, int flags, IntPtr reason);
 
 		public uint Inhibit(Gtk.Window window, Gtk.ApplicationInhibitFlags flags, string reason) {
@@ -356,7 +356,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_application_is_inhibited(IntPtr raw, int flags);
 
 		public bool IsInhibited(Gtk.ApplicationInhibitFlags flags) {
@@ -365,7 +365,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_list_action_descriptions(IntPtr raw);
 
 		public string ListActionDescriptions() {
@@ -374,7 +374,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_application_prefers_app_menu(IntPtr raw);
 
 		public bool PrefersAppMenu() {
@@ -383,7 +383,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_remove_accelerator(IntPtr raw, IntPtr action_name, IntPtr parameter);
 
 		[Obsolete]
@@ -393,14 +393,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_remove_window(IntPtr raw, IntPtr window);
 
 		public void RemoveWindow(Gtk.Window window) {
 			gtk_application_remove_window(Handle, window == null ? IntPtr.Zero : window.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_set_accels_for_action(IntPtr raw, IntPtr detailed_action_name, IntPtr accels);
 
 		public void SetAccelsForAction(string detailed_action_name, string accels) {
@@ -411,7 +411,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accels);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_uninhibit(IntPtr raw, uint cookie);
 
 		public void Uninhibit(uint cookie) {

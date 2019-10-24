@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Assistant (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_assistant_new();
 
 		public Assistant () : base (IntPtr.Zero)
@@ -555,14 +555,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_add_action_widget(IntPtr raw, IntPtr child);
 
 		public void AddActionWidget(Gtk.Widget child) {
 			gtk_assistant_add_action_widget(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_assistant_append_page(IntPtr raw, IntPtr page);
 
 		public int AppendPage(Gtk.Widget page) {
@@ -571,17 +571,17 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_commit(IntPtr raw);
 
 		public void Commit() {
 			gtk_assistant_commit(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_assistant_get_current_page(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_current_page(IntPtr raw, int page_num);
 
 		public int CurrentPage { 
@@ -595,7 +595,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_assistant_get_n_pages(IntPtr raw);
 
 		public int NPages { 
@@ -606,7 +606,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_assistant_get_nth_page(IntPtr raw, int page_num);
 
 		public Gtk.Widget GetNthPage(int page_num) {
@@ -615,7 +615,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_assistant_get_page_complete(IntPtr raw, IntPtr page);
 
 		public bool GetPageComplete(Gtk.Widget page) {
@@ -624,7 +624,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_assistant_get_page_has_padding(IntPtr raw, IntPtr page);
 
 		public bool GetPageHasPadding(Gtk.Widget page) {
@@ -633,7 +633,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_assistant_get_page_header_image(IntPtr raw, IntPtr page);
 
 		[Obsolete]
@@ -643,7 +643,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_assistant_get_page_side_image(IntPtr raw, IntPtr page);
 
 		[Obsolete]
@@ -653,7 +653,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_assistant_get_page_title(IntPtr raw, IntPtr page);
 
 		public string GetPageTitle(Gtk.Widget page) {
@@ -662,7 +662,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_assistant_get_page_type(IntPtr raw, IntPtr page);
 
 		public Gtk.AssistantPageType GetPageType(Gtk.Widget page) {
@@ -671,7 +671,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_assistant_get_type();
 
 		public static new GLib.GType GType { 
@@ -682,7 +682,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_assistant_insert_page(IntPtr raw, IntPtr page, int position);
 
 		public int InsertPage(Gtk.Widget page, int position) {
@@ -691,14 +691,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_next_page(IntPtr raw);
 
 		public void NextPage() {
 			gtk_assistant_next_page(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_assistant_prepend_page(IntPtr raw, IntPtr page);
 
 		public int PrependPage(Gtk.Widget page) {
@@ -707,28 +707,28 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_previous_page(IntPtr raw);
 
 		public void PreviousPage() {
 			gtk_assistant_previous_page(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_remove_action_widget(IntPtr raw, IntPtr child);
 
 		public void RemoveActionWidget(Gtk.Widget child) {
 			gtk_assistant_remove_action_widget(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_remove_page(IntPtr raw, int page_num);
 
 		public void RemovePage(int page_num) {
 			gtk_assistant_remove_page(Handle, page_num);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_forward_page_func(IntPtr raw, GtkSharp.AssistantPageFuncNative page_func, IntPtr data, GLib.DestroyNotify destroy);
 
 		public Gtk.AssistantPageFunc ForwardPageFunc { 
@@ -747,21 +747,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_page_complete(IntPtr raw, IntPtr page, bool complete);
 
 		public void SetPageComplete(Gtk.Widget page, bool complete) {
 			gtk_assistant_set_page_complete(Handle, page == null ? IntPtr.Zero : page.Handle, complete);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_page_has_padding(IntPtr raw, IntPtr page, bool has_padding);
 
 		public void SetPageHasPadding(Gtk.Widget page, bool has_padding) {
 			gtk_assistant_set_page_has_padding(Handle, page == null ? IntPtr.Zero : page.Handle, has_padding);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_page_header_image(IntPtr raw, IntPtr page, IntPtr pixbuf);
 
 		[Obsolete]
@@ -769,7 +769,7 @@ namespace Gtk {
 			gtk_assistant_set_page_header_image(Handle, page == null ? IntPtr.Zero : page.Handle, pixbuf == null ? IntPtr.Zero : pixbuf.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_page_side_image(IntPtr raw, IntPtr page, IntPtr pixbuf);
 
 		[Obsolete]
@@ -777,7 +777,7 @@ namespace Gtk {
 			gtk_assistant_set_page_side_image(Handle, page == null ? IntPtr.Zero : page.Handle, pixbuf == null ? IntPtr.Zero : pixbuf.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_page_title(IntPtr raw, IntPtr page, IntPtr title);
 
 		public void SetPageTitle(Gtk.Widget page, string title) {
@@ -786,14 +786,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_title);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_set_page_type(IntPtr raw, IntPtr page, int type);
 
 		public void SetPageType(Gtk.Widget page, Gtk.AssistantPageType type) {
 			gtk_assistant_set_page_type(Handle, page == null ? IntPtr.Zero : page.Handle, (int) type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_assistant_update_buttons_state(IntPtr raw);
 
 		public void UpdateButtonsState() {

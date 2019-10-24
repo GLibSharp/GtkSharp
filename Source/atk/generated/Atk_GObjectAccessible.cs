@@ -50,7 +50,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_gobject_accessible_for_object(IntPtr obj);
 
 		public static Atk.Object ForObject(GLib.Object obj) {
@@ -59,7 +59,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_gobject_accessible_get_object(IntPtr raw);
 
 		public GLib.Object Object { 
@@ -70,7 +70,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_gobject_accessible_get_type();
 
 		public static new GLib.GType GType { 

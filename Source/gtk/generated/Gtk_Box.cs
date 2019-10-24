@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Box (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_box_new(int orientation, int spacing);
 
 		public Box (Gtk.Orientation orientation, int spacing) : base (IntPtr.Zero)
@@ -31,10 +31,10 @@ namespace Gtk {
 			Raw = gtk_box_new((int) orientation, spacing);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_box_get_spacing(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_set_spacing(IntPtr raw, int spacing);
 
 		[GLib.Property ("spacing")]
@@ -49,10 +49,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_box_get_homogeneous(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_set_homogeneous(IntPtr raw, bool homogeneous);
 
 		[GLib.Property ("homogeneous")]
@@ -67,10 +67,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_box_get_baseline_position(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_set_baseline_position(IntPtr raw, int position);
 
 		[GLib.Property ("baseline-position")]
@@ -208,10 +208,10 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_box_get_center_widget(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_set_center_widget(IntPtr raw, IntPtr widget);
 
 		public Gtk.Widget CenterWidget { 
@@ -225,7 +225,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_box_get_type();
 
 		public static new GLib.GType GType { 
@@ -236,21 +236,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_pack_end(IntPtr raw, IntPtr child, bool expand, bool fill, uint padding);
 
 		public void PackEnd(Gtk.Widget child, bool expand, bool fill, uint padding) {
 			gtk_box_pack_end(Handle, child == null ? IntPtr.Zero : child.Handle, expand, fill, padding);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_pack_start(IntPtr raw, IntPtr child, bool expand, bool fill, uint padding);
 
 		public void PackStart(Gtk.Widget child, bool expand, bool fill, uint padding) {
 			gtk_box_pack_start(Handle, child == null ? IntPtr.Zero : child.Handle, expand, fill, padding);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_query_child_packing(IntPtr raw, IntPtr child, out bool expand, out bool fill, out uint padding, out int pack_type);
 
 		public void QueryChildPacking(Gtk.Widget child, out bool expand, out bool fill, out uint padding, out Gtk.PackType pack_type) {
@@ -259,24 +259,24 @@ namespace Gtk {
 			pack_type = (Gtk.PackType) native_pack_type;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_reorder_child(IntPtr raw, IntPtr child, int position);
 
 		public void ReorderChild(Gtk.Widget child, int position) {
 			gtk_box_reorder_child(Handle, child == null ? IntPtr.Zero : child.Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_box_set_child_packing(IntPtr raw, IntPtr child, bool expand, bool fill, uint padding, int pack_type);
 
 		public void SetChildPacking(Gtk.Widget child, bool expand, bool fill, uint padding, Gtk.PackType pack_type) {
 			gtk_box_set_child_packing(Handle, child == null ? IntPtr.Zero : child.Handle, expand, fill, padding, (int) pack_type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_orientable_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_orientable_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]

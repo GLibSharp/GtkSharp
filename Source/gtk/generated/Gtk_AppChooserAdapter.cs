@@ -18,7 +18,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_app_chooser_get_type ());
@@ -63,7 +63,7 @@ namespace Gtk {
 				return obj as IAppChooser;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_app_info(IntPtr raw);
 
 		public GLib.IAppInfo AppInfo { 
@@ -74,7 +74,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_app_chooser_get_content_type(IntPtr raw);
 
 		public string ContentType { 
@@ -85,7 +85,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_app_chooser_refresh(IntPtr raw);
 
 		public void Refresh() {

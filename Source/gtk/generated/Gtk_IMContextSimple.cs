@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public IMContextSimple (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_im_context_simple_new();
 
 		public IMContextSimple () : base (IntPtr.Zero)
@@ -40,7 +40,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_simple_add_compose_file(IntPtr raw, IntPtr compose_file);
 
 		public void AddComposeFile(string compose_file) {
@@ -49,7 +49,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_compose_file);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_im_context_simple_add_table(IntPtr raw, out ushort data, int max_seq_len, int n_seqs);
 
 		public ushort AddTable(int max_seq_len, int n_seqs) {
@@ -58,7 +58,7 @@ namespace Gtk {
 			return data;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_im_context_simple_get_type();
 
 		public static new GLib.GType GType { 

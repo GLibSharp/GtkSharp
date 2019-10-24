@@ -18,7 +18,7 @@ namespace Gtk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_custom_paper_unix_dialog_get_type();
 
 		public static new GLib.GType GType { 

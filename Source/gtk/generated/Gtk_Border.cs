@@ -25,7 +25,7 @@ namespace Gtk {
 			return (Gtk.Border) Marshal.PtrToStructure (raw, typeof (Gtk.Border));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_border_new();
 
 		public static Border New()
@@ -34,7 +34,7 @@ namespace Gtk {
 			return result;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_border_get_type();
 
 		public static GLib.GType GType { 

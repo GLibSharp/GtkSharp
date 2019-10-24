@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public TextChildAnchor (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_child_anchor_new();
 
 		public TextChildAnchor () : base (IntPtr.Zero)
@@ -73,7 +73,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_child_anchor_get_deleted(IntPtr raw);
 
 		public bool Deleted { 
@@ -84,7 +84,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_child_anchor_get_type();
 
 		public static new GLib.GType GType { 

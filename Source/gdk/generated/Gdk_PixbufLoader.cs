@@ -13,7 +13,7 @@ namespace Gdk {
 
 		public PixbufLoader (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_loader_new();
 
 		public PixbufLoader () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gdk {
 			Raw = gdk_pixbuf_loader_new();
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_loader_new_with_mime_type(IntPtr mime_type, out IntPtr error);
 
 		public unsafe PixbufLoader (string mime_type) : base (IntPtr.Zero)
@@ -43,7 +43,7 @@ namespace Gdk {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gdk_pixbuf_loader_new_with_type(IntPtr image_type, out IntPtr error);
 
 		public static unsafe PixbufLoader NewWithType(string image_type)
@@ -356,7 +356,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gdk_pixbuf_loader_close(IntPtr raw, out IntPtr error);
 
 		public unsafe bool Close() {
@@ -367,7 +367,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_loader_get_animation(IntPtr raw);
 
 		public Gdk.PixbufAnimation Animation { 
@@ -378,7 +378,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_loader_get_format(IntPtr raw);
 
 		public Gdk.PixbufFormat Format { 
@@ -389,7 +389,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_loader_get_pixbuf(IntPtr raw);
 
 		public Gdk.Pixbuf Pixbuf { 
@@ -400,7 +400,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_loader_get_type();
 
 		public static new GLib.GType GType { 
@@ -411,14 +411,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_pixbuf_loader_set_size(IntPtr raw, int width, int height);
 
 		public void SetSize(int width, int height) {
 			gdk_pixbuf_loader_set_size(Handle, width, height);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gdk_pixbuf_loader_write(IntPtr raw, byte[] buf, UIntPtr count, out IntPtr error);
 
 		public unsafe bool Write(byte[] buf, ulong count) {
@@ -429,7 +429,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gdk_pixbuf_loader_write_bytes(IntPtr raw, IntPtr buffer, out IntPtr error);
 
 		public unsafe bool WriteBytes(GLib.Bytes buffer) {

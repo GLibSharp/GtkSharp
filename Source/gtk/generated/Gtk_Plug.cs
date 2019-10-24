@@ -18,7 +18,7 @@ namespace Gtk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_plug_get_embedded(IntPtr raw);
 
 		[GLib.Property ("embedded")]
@@ -30,7 +30,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_plug_get_socket_window(IntPtr raw);
 
 		[GLib.Property ("socket-window")]
@@ -52,21 +52,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_plug_construct(IntPtr raw, UIntPtr socket_id);
 
 		public void Construct(ulong socket_id) {
 			gtk_plug_construct(Handle, new UIntPtr (socket_id));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_plug_construct_for_display(IntPtr raw, IntPtr display, UIntPtr socket_id);
 
 		public void ConstructForDisplay(Gdk.Display display, ulong socket_id) {
 			gtk_plug_construct_for_display(Handle, display == null ? IntPtr.Zero : display.Handle, new UIntPtr (socket_id));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern UIntPtr gtk_plug_get_id(IntPtr raw);
 
 		public ulong Id { 
@@ -77,7 +77,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_plug_get_type();
 
 		public static new GLib.GType GType { 

@@ -212,7 +212,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_document_get_type ());
@@ -305,7 +305,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_attribute_value(IntPtr raw, IntPtr attribute_name);
 
 		public string GetAttributeValue(string attribute_name) {
@@ -316,7 +316,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_attributes(IntPtr raw);
 
 		public Atk.Attribute[] Attributes { 
@@ -327,7 +327,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_document_get_current_page_number(IntPtr raw);
 
 		public int CurrentPageNumber { 
@@ -338,7 +338,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_document(IntPtr raw);
 
 		[Obsolete]
@@ -350,7 +350,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_document_type(IntPtr raw);
 
 		[Obsolete]
@@ -362,7 +362,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_document_get_locale(IntPtr raw);
 
 		[Obsolete]
@@ -374,7 +374,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_document_get_page_count(IntPtr raw);
 
 		public int PageCount { 
@@ -385,7 +385,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_document_set_attribute_value(IntPtr raw, IntPtr attribute_name, IntPtr attribute_value);
 
 		public bool SetAttributeValue(string attribute_name, string attribute_value) {

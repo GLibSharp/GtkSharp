@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Statusbar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_statusbar_new();
 
 		public Statusbar () : base (IntPtr.Zero)
@@ -237,7 +237,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_statusbar_get_context_id(IntPtr raw, IntPtr context_description);
 
 		public uint GetContextId(string context_description) {
@@ -248,7 +248,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_statusbar_get_message_area(IntPtr raw);
 
 		public Gtk.Widget MessageArea { 
@@ -259,7 +259,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_statusbar_get_type();
 
 		public static new GLib.GType GType { 
@@ -270,14 +270,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_statusbar_pop(IntPtr raw, uint context_id);
 
 		public void Pop(uint context_id) {
 			gtk_statusbar_pop(Handle, context_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_statusbar_push(IntPtr raw, uint context_id, IntPtr text);
 
 		public uint Push(uint context_id, string text) {
@@ -288,14 +288,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_statusbar_remove(IntPtr raw, uint context_id, uint message_id);
 
 		public void Remove(uint context_id, uint message_id) {
 			gtk_statusbar_remove(Handle, context_id, message_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_statusbar_remove_all(IntPtr raw, uint context_id);
 
 		public void RemoveAll(uint context_id) {

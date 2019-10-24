@@ -18,7 +18,7 @@ namespace Gtk {
 	}
 
 	internal class ShadowTypeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_shadow_type_get_type ();
 
 		public static GLib.GType GType {

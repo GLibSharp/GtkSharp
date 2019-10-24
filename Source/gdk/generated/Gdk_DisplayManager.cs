@@ -18,10 +18,10 @@ namespace Gdk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_manager_get_default_display(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_display_manager_set_default_display(IntPtr raw, IntPtr display);
 
 		[GLib.Property ("default-display")]
@@ -123,7 +123,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_manager_get();
 
 		public static Gdk.DisplayManager Get() {
@@ -132,7 +132,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_manager_get_type();
 
 		public static new GLib.GType GType { 
@@ -143,7 +143,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_display_manager_open_display(IntPtr raw, IntPtr name);
 
 		public Gdk.Display OpenDisplay(string name) {

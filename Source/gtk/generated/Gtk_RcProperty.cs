@@ -25,7 +25,7 @@ namespace Gtk {
 			return (Gtk.RcProperty) Marshal.PtrToStructure (raw, typeof (Gtk.RcProperty));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_rc_property_parse_border(IntPtr pspec, IntPtr gstring, IntPtr property_value);
 
 		public static bool ParseBorder(IntPtr pspec, string gstring, GLib.Value property_value) {
@@ -36,7 +36,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_rc_property_parse_color(IntPtr pspec, IntPtr gstring, IntPtr property_value);
 
 		public static bool ParseColor(IntPtr pspec, string gstring, GLib.Value property_value) {
@@ -47,7 +47,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_rc_property_parse_enum(IntPtr pspec, IntPtr gstring, IntPtr property_value);
 
 		public static bool ParseEnum(IntPtr pspec, string gstring, GLib.Value property_value) {
@@ -58,7 +58,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_rc_property_parse_flags(IntPtr pspec, IntPtr gstring, IntPtr property_value);
 
 		public static bool ParseFlags(IntPtr pspec, string gstring, GLib.Value property_value) {
@@ -69,7 +69,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_rc_property_parse_requisition(IntPtr pspec, IntPtr gstring, IntPtr property_value);
 
 		public static bool ParseRequisition(IntPtr pspec, string gstring, GLib.Value property_value) {

@@ -16,7 +16,7 @@ namespace Gdk {
 	}
 
 	internal class SettingActionGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_setting_action_get_type ();
 
 		public static GLib.GType GType {

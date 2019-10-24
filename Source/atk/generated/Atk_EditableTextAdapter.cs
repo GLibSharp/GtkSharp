@@ -168,7 +168,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_editable_text_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_editable_text_get_type ());
@@ -221,28 +221,28 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_copy_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void CopyText(int start_pos, int end_pos) {
 			atk_editable_text_copy_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_cut_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void CutText(int start_pos, int end_pos) {
 			atk_editable_text_cut_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_delete_text(IntPtr raw, int start_pos, int end_pos);
 
 		public void DeleteText(int start_pos, int end_pos) {
 			atk_editable_text_delete_text(Handle, start_pos, end_pos);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_insert_text(IntPtr raw, IntPtr str1ng, int length, ref int position);
 
 		public void InsertText(string str1ng, ref int position) {
@@ -251,14 +251,14 @@ namespace Atk {
 			GLib.Marshaller.Free (native_str1ng);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_paste_text(IntPtr raw, int position);
 
 		public void PasteText(int position) {
 			atk_editable_text_paste_text(Handle, position);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_editable_text_set_run_attributes(IntPtr raw, IntPtr attrib_set, int start_offset, int end_offset);
 
 		public bool SetRunAttributes(GLib.SList attrib_set, int start_offset, int end_offset) {
@@ -267,7 +267,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_editable_text_set_text_contents(IntPtr raw, IntPtr str1ng);
 
 		public string TextContents { 

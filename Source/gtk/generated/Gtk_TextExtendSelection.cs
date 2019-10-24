@@ -15,7 +15,7 @@ namespace Gtk {
 	}
 
 	internal class TextExtendSelectionGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_extend_selection_get_type ();
 
 		public static GLib.GType GType {

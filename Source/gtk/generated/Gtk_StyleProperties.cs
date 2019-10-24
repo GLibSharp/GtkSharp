@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public StyleProperties (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_properties_new();
 
 		public StyleProperties () : base (IntPtr.Zero)
@@ -73,7 +73,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_clear(IntPtr raw);
 
 		[Obsolete]
@@ -81,7 +81,7 @@ namespace Gtk {
 			gtk_style_properties_clear(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_properties_get_property(IntPtr raw, IntPtr property, int state, IntPtr value);
 
 		[Obsolete]
@@ -95,7 +95,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_properties_get_type();
 
 		[Obsolete]
@@ -107,7 +107,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_get_valist(IntPtr raw, int state, IntPtr args);
 
 		[Obsolete]
@@ -115,7 +115,7 @@ namespace Gtk {
 			gtk_style_properties_get_valist(Handle, (int) state, args);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_properties_lookup_color(IntPtr raw, IntPtr name);
 
 		[Obsolete]
@@ -127,7 +127,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_properties_lookup_property(IntPtr property_name, GtkSharp.StylePropertyParserNative parse_func, IntPtr pspec);
 
 		[Obsolete]
@@ -140,7 +140,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_map_color(IntPtr raw, IntPtr name, IntPtr color);
 
 		[Obsolete]
@@ -150,7 +150,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_merge(IntPtr raw, IntPtr props_to_merge, bool replace);
 
 		[Obsolete]
@@ -158,7 +158,7 @@ namespace Gtk {
 			gtk_style_properties_merge(Handle, props_to_merge == null ? IntPtr.Zero : props_to_merge.Handle, replace);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_register_property(GtkSharp.StylePropertyParserNative parse_func, IntPtr pspec);
 
 		[Obsolete]
@@ -167,7 +167,7 @@ namespace Gtk {
 			gtk_style_properties_register_property(parse_func_wrapper.NativeDelegate, pspec);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_set_property(IntPtr raw, IntPtr property, int state, IntPtr value);
 
 		[Obsolete]
@@ -179,7 +179,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_set_valist(IntPtr raw, int state, IntPtr args);
 
 		[Obsolete]
@@ -187,7 +187,7 @@ namespace Gtk {
 			gtk_style_properties_set_valist(Handle, (int) state, args);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_properties_unset_property(IntPtr raw, IntPtr property, int state);
 
 		[Obsolete]
@@ -197,7 +197,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_property);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_provider_get_style_property(IntPtr raw, IntPtr path, int state, IntPtr pspec, IntPtr value);
 
 		public bool GetStyleProperty(Gtk.WidgetPath path, Gtk.StateFlags state, IntPtr pspec, GLib.Value value) {

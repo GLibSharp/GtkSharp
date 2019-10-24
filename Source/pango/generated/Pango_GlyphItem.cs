@@ -39,7 +39,7 @@ namespace Pango {
 			return (Pango.GlyphItem) Marshal.PtrToStructure (raw, typeof (Pango.GlyphItem));
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_item_get_logical_widths(IntPtr raw, IntPtr text, out int logical_widths);
 
 		public int GetLogicalWidths(string text) {
@@ -54,7 +54,7 @@ namespace Pango {
 			return logical_widths;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_item_get_type();
 
 		public static GLib.GType GType { 
@@ -65,7 +65,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_item_letter_space(IntPtr raw, IntPtr text, IntPtr log_attrs, int letter_spacing);
 
 		public void LetterSpace(string text, Pango.LogAttr log_attrs, int letter_spacing) {
@@ -80,7 +80,7 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_log_attrs);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_item_split(IntPtr raw, IntPtr text, int split_index);
 
 		public Pango.GlyphItem Split(string text, int split_index) {

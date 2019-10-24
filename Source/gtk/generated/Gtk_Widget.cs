@@ -19,10 +19,10 @@ namespace Gtk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_name(IntPtr raw, IntPtr name);
 
 		[GLib.Property ("name")]
@@ -39,10 +39,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_parent(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_parent(IntPtr raw, IntPtr parent);
 
 		[GLib.Property ("parent")]
@@ -87,10 +87,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_visible(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_visible(IntPtr raw, bool visible);
 
 		[GLib.Property ("visible")]
@@ -105,10 +105,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_sensitive(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_sensitive(IntPtr raw, bool sensitive);
 
 		[GLib.Property ("sensitive")]
@@ -123,10 +123,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_app_paintable(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_app_paintable(IntPtr raw, bool app_paintable);
 
 		[GLib.Property ("app-paintable")]
@@ -141,10 +141,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_can_focus(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_can_focus(IntPtr raw, bool can_focus);
 
 		[GLib.Property ("can-focus")]
@@ -159,7 +159,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_has_focus(IntPtr raw);
 
 		[GLib.Property ("has-focus")]
@@ -176,7 +176,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_focus(IntPtr raw);
 
 		[GLib.Property ("is-focus")]
@@ -193,10 +193,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_focus_on_click(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_focus_on_click(IntPtr raw, bool focus_on_click);
 
 		[GLib.Property ("focus-on-click")]
@@ -211,10 +211,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_can_default(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_can_default(IntPtr raw, bool can_default);
 
 		[GLib.Property ("can-default")]
@@ -229,7 +229,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_has_default(IntPtr raw);
 
 		[GLib.Property ("has-default")]
@@ -246,10 +246,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_receives_default(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_receives_default(IntPtr raw, bool receives_default);
 
 		[GLib.Property ("receives-default")]
@@ -274,10 +274,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_style(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_style(IntPtr raw, IntPtr style);
 
 		[Obsolete]
@@ -293,10 +293,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_events(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_events(IntPtr raw, int events);
 
 		[GLib.Property ("events")]
@@ -311,10 +311,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_no_show_all(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_no_show_all(IntPtr raw, bool no_show_all);
 
 		[GLib.Property ("no-show-all")]
@@ -329,10 +329,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_has_tooltip(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_has_tooltip(IntPtr raw, bool has_tooltip);
 
 		[GLib.Property ("has-tooltip")]
@@ -347,10 +347,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_tooltip_text(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_tooltip_text(IntPtr raw, IntPtr text);
 
 		[GLib.Property ("tooltip-text")]
@@ -367,10 +367,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_tooltip_markup(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_tooltip_markup(IntPtr raw, IntPtr markup);
 
 		[GLib.Property ("tooltip-markup")]
@@ -387,10 +387,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_window(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_window(IntPtr raw, IntPtr window);
 
 		[GLib.Property ("window")]
@@ -405,10 +405,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_double_buffered(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_double_buffered(IntPtr raw, bool double_buffered);
 
 		[Obsolete]
@@ -424,10 +424,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_halign(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_halign(IntPtr raw, int align);
 
 		[GLib.Property ("halign")]
@@ -442,10 +442,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_valign(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_valign(IntPtr raw, int align);
 
 		[GLib.Property ("valign")]
@@ -460,10 +460,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_margin_left(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_margin_left(IntPtr raw, int margin);
 
 		[Obsolete]
@@ -479,10 +479,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_margin_right(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_margin_right(IntPtr raw, int margin);
 
 		[Obsolete]
@@ -498,10 +498,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_margin_start(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_margin_start(IntPtr raw, int margin);
 
 		[GLib.Property ("margin-start")]
@@ -516,10 +516,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_margin_end(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_margin_end(IntPtr raw, int margin);
 
 		[GLib.Property ("margin-end")]
@@ -534,10 +534,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_margin_top(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_margin_top(IntPtr raw, int margin);
 
 		[GLib.Property ("margin-top")]
@@ -552,10 +552,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_margin_bottom(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_margin_bottom(IntPtr raw, int margin);
 
 		[GLib.Property ("margin-bottom")]
@@ -585,10 +585,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_hexpand(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_hexpand(IntPtr raw, bool expand);
 
 		[GLib.Property ("hexpand")]
@@ -603,10 +603,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_hexpand_set(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_hexpand_set(IntPtr raw, bool set);
 
 		[GLib.Property ("hexpand-set")]
@@ -621,10 +621,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_vexpand(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_vexpand(IntPtr raw, bool expand);
 
 		[GLib.Property ("vexpand")]
@@ -639,10 +639,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_vexpand_set(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_vexpand_set(IntPtr raw, bool set);
 
 		[GLib.Property ("vexpand-set")]
@@ -672,10 +672,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_widget_get_opacity(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_opacity(IntPtr raw, double opacity);
 
 		[GLib.Property ("opacity")]
@@ -690,7 +690,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_scale_factor(IntPtr raw);
 
 		[GLib.Property ("scale-factor")]
@@ -6856,7 +6856,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_activate(IntPtr raw);
 
 		public bool Activate() {
@@ -6865,7 +6865,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_add_accelerator(IntPtr raw, IntPtr accel_signal, IntPtr accel_group, uint accel_key, int accel_mods, int accel_flags);
 
 		public void AddAccelerator(string accel_signal, Gtk.AccelGroup accel_group, uint accel_key, Gdk.ModifierType accel_mods, Gtk.AccelFlags accel_flags) {
@@ -6874,28 +6874,28 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accel_signal);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_add_device_events(IntPtr raw, IntPtr device, int events);
 
 		public void AddDeviceEvents(Gdk.Device device, Gdk.EventMask events) {
 			gtk_widget_add_device_events(Handle, device == null ? IntPtr.Zero : device.Handle, (int) events);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_add_events(IntPtr raw, int events);
 
 		public void AddEvents(int events) {
 			gtk_widget_add_events(Handle, events);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_add_mnemonic_label(IntPtr raw, IntPtr label);
 
 		public void AddMnemonicLabel(Gtk.Widget label) {
 			gtk_widget_add_mnemonic_label(Handle, label == null ? IntPtr.Zero : label.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_widget_add_tick_callback(IntPtr raw, GtkSharp.TickCallbackNative cb, IntPtr user_data, GLib.DestroyNotify notify);
 
 		public uint AddTickCallback(Gtk.TickCallback cb) {
@@ -6914,7 +6914,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_can_activate_accel(IntPtr raw, uint signal_id);
 
 		public bool CanActivateAccel(uint signal_id) {
@@ -6923,7 +6923,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_child_focus(IntPtr raw, int direction);
 
 		public bool ChildFocus(Gtk.DirectionType direction) {
@@ -6932,7 +6932,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_child_notify(IntPtr raw, IntPtr child_property);
 
 		public void ChildNotify(string child_property) {
@@ -6941,7 +6941,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_child_property);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_class_path(IntPtr raw, out uint path_length, out IntPtr path, out IntPtr path_reversed);
 
 		[Obsolete]
@@ -6953,7 +6953,7 @@ namespace Gtk {
 			path_reversed = GLib.Marshaller.PtrToStringGFree(native_path_reversed);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_compute_expand(IntPtr raw, int orientation);
 
 		public bool ComputeExpand(Gtk.Orientation orientation) {
@@ -6962,7 +6962,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_create_pango_context(IntPtr raw);
 
 		public Pango.Context CreatePangoContext() {
@@ -6971,7 +6971,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_create_pango_layout(IntPtr raw, IntPtr text);
 
 		public Pango.Layout CreatePangoLayout(string text) {
@@ -6982,7 +6982,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_device_is_shadowed(IntPtr raw, IntPtr device);
 
 		public bool DeviceIsShadowed(Gdk.Device device) {
@@ -6991,14 +6991,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_draw(IntPtr raw, IntPtr cr);
 
 		public void Draw(Cairo.Context cr) {
 			gtk_widget_draw(Handle, cr == null ? IntPtr.Zero : cr.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_ensure_style(IntPtr raw);
 
 		[Obsolete]
@@ -7006,14 +7006,14 @@ namespace Gtk {
 			gtk_widget_ensure_style(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_error_bell(IntPtr raw);
 
 		public void ErrorBell() {
 			gtk_widget_error_bell(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_event(IntPtr raw, IntPtr evnt);
 
 		public bool ProcessEvent(Gdk.Event evnt) {
@@ -7022,14 +7022,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_freeze_child_notify(IntPtr raw);
 
 		public void FreezeChildNotify() {
 			gtk_widget_freeze_child_notify(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_accessible(IntPtr raw);
 
 		public Atk.Object Accessible { 
@@ -7040,7 +7040,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_action_group(IntPtr raw, IntPtr prefix);
 
 		public GLib.IActionGroup GetActionGroup(string prefix) {
@@ -7051,7 +7051,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_allocated_baseline(IntPtr raw);
 
 		public int AllocatedBaseline { 
@@ -7062,7 +7062,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_allocated_height(IntPtr raw);
 
 		public int AllocatedHeight { 
@@ -7073,7 +7073,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_allocated_size(IntPtr raw, IntPtr allocation, out int baseline);
 
 		public int GetAllocatedSize(Gdk.Rectangle allocation) {
@@ -7084,7 +7084,7 @@ namespace Gtk {
 			return baseline;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_allocated_width(IntPtr raw);
 
 		public int AllocatedWidth { 
@@ -7095,7 +7095,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_allocation(IntPtr raw, IntPtr allocation);
 
 		public Gdk.Rectangle Allocation { 
@@ -7109,7 +7109,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_ancestor(IntPtr raw, IntPtr widget_type);
 
 		public Gtk.Widget GetAncestor(GLib.GType widget_type) {
@@ -7118,7 +7118,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_child_requisition(IntPtr raw, IntPtr requisition);
 
 		[Obsolete]
@@ -7133,10 +7133,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_child_visible(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_child_visible(IntPtr raw, bool is_visible);
 
 		public bool ChildVisible { 
@@ -7150,7 +7150,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_clip(IntPtr raw, IntPtr clip);
 
 		public void GetClip(Gdk.Rectangle clip) {
@@ -7159,7 +7159,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_clip);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_clipboard(IntPtr raw, IntPtr selection);
 
 		public Gtk.Clipboard GetClipboard(Gdk.Atom selection) {
@@ -7168,10 +7168,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_composite_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_composite_name(IntPtr raw, IntPtr name);
 
 		[Obsolete]
@@ -7188,10 +7188,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_default_direction();
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_default_direction(int dir);
 
 		public static Gtk.TextDirection DefaultDirection { 
@@ -7205,7 +7205,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_default_style();
 
 		[Obsolete]
@@ -7217,7 +7217,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_device_enabled(IntPtr raw, IntPtr device);
 
 		public bool GetDeviceEnabled(Gdk.Device device) {
@@ -7226,7 +7226,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_device_events(IntPtr raw, IntPtr device);
 
 		public Gdk.EventMask GetDeviceEvents(Gdk.Device device) {
@@ -7235,10 +7235,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_direction(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_direction(IntPtr raw, int dir);
 
 		public Gtk.TextDirection Direction { 
@@ -7252,7 +7252,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_display(IntPtr raw);
 
 		public Gdk.Display Display { 
@@ -7263,10 +7263,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_font_map(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_font_map(IntPtr raw, IntPtr font_map);
 
 		public Pango.FontMap FontMap { 
@@ -7280,10 +7280,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_font_options(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_font_options(IntPtr raw, IntPtr options);
 
 		public Cairo.FontOptions FontOptions { 
@@ -7297,7 +7297,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_frame_clock(IntPtr raw);
 
 		public Gdk.FrameClock FrameClock { 
@@ -7308,10 +7308,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_has_window(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_has_window(IntPtr raw, bool has_window);
 
 		public bool HasWindow { 
@@ -7325,10 +7325,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_mapped(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_mapped(IntPtr raw, bool mapped);
 
 		public bool IsMapped { 
@@ -7342,7 +7342,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_modifier_mask(IntPtr raw, int intent);
 
 		public Gdk.ModifierType GetModifierMask(Gdk.ModifierIntent intent) {
@@ -7351,7 +7351,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_modifier_style(IntPtr raw);
 
 		[Obsolete]
@@ -7363,7 +7363,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_pango_context(IntPtr raw);
 
 		public Pango.Context PangoContext { 
@@ -7374,10 +7374,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_parent_window(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_parent_window(IntPtr raw, IntPtr parent_window);
 
 		public Gdk.Window ParentWindow { 
@@ -7391,7 +7391,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_path(IntPtr raw);
 
 		public Gtk.WidgetPath WidgetPath { 
@@ -7402,7 +7402,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_pointer(IntPtr raw, out int x, out int y);
 
 		[Obsolete]
@@ -7410,28 +7410,28 @@ namespace Gtk {
 			gtk_widget_get_pointer(Handle, out x, out y);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_preferred_height(IntPtr raw, out int minimum_height, out int natural_height);
 
 		public void GetPreferredHeight(out int minimum_height, out int natural_height) {
 			gtk_widget_get_preferred_height(Handle, out minimum_height, out natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_preferred_height_and_baseline_for_width(IntPtr raw, int width, out int minimum_height, out int natural_height, out int minimum_baseline, out int natural_baseline);
 
 		public void GetPreferredHeightAndBaselineForWidth(int width, out int minimum_height, out int natural_height, out int minimum_baseline, out int natural_baseline) {
 			gtk_widget_get_preferred_height_and_baseline_for_width(Handle, width, out minimum_height, out natural_height, out minimum_baseline, out natural_baseline);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_preferred_height_for_width(IntPtr raw, int width, out int minimum_height, out int natural_height);
 
 		public void GetPreferredHeightForWidth(int width, out int minimum_height, out int natural_height) {
 			gtk_widget_get_preferred_height_for_width(Handle, width, out minimum_height, out natural_height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_preferred_size(IntPtr raw, IntPtr minimum_size, IntPtr natural_size);
 
 		public void GetPreferredSize(out Gtk.Requisition minimum_size, out Gtk.Requisition natural_size) {
@@ -7444,24 +7444,24 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_natural_size);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_preferred_width(IntPtr raw, out int minimum_width, out int natural_width);
 
 		public void GetPreferredWidth(out int minimum_width, out int natural_width) {
 			gtk_widget_get_preferred_width(Handle, out minimum_width, out natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_preferred_width_for_height(IntPtr raw, int height, out int minimum_width, out int natural_width);
 
 		public void GetPreferredWidthForHeight(int height, out int minimum_width, out int natural_width) {
 			gtk_widget_get_preferred_width_for_height(Handle, height, out minimum_width, out natural_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_realized(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_realized(IntPtr raw, bool realized);
 
 		public bool IsRealized { 
@@ -7475,7 +7475,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_request_mode(IntPtr raw);
 
 		public Gtk.SizeRequestMode RequestMode { 
@@ -7486,7 +7486,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_root_window(IntPtr raw);
 
 		[Obsolete]
@@ -7498,7 +7498,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_screen(IntPtr raw);
 
 		public Gdk.Screen Screen { 
@@ -7509,14 +7509,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_get_size_request(IntPtr raw, out int width, out int height);
 
 		public void GetSizeRequest(out int width, out int height) {
 			gtk_widget_get_size_request(Handle, out width, out height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_state(IntPtr raw);
 
 		[Obsolete]
@@ -7528,7 +7528,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_state_flags(IntPtr raw);
 
 		public Gtk.StateFlags StateFlags { 
@@ -7539,7 +7539,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_style_context(IntPtr raw);
 
 		public Gtk.StyleContext StyleContext { 
@@ -7550,10 +7550,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_get_support_multidevice(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_support_multidevice(IntPtr raw, bool support_multidevice);
 
 		public bool SupportMultidevice { 
@@ -7567,7 +7567,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_template_child(IntPtr raw, IntPtr widget_type, IntPtr name);
 
 		public GLib.Object GetTemplateChild(GLib.GType widget_type, string name) {
@@ -7578,10 +7578,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_tooltip_window(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_tooltip_window(IntPtr raw, IntPtr custom_window);
 
 		public Gtk.Window TooltipWindow { 
@@ -7595,7 +7595,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_toplevel(IntPtr raw);
 
 		public Gtk.Widget Toplevel { 
@@ -7606,7 +7606,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_type();
 
 		public static new GLib.GType GType { 
@@ -7617,7 +7617,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_get_valign_with_baseline(IntPtr raw);
 
 		public Gtk.Align ValignWithBaseline { 
@@ -7628,10 +7628,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_visual(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_visual(IntPtr raw, IntPtr visual);
 
 		public Gdk.Visual Visual { 
@@ -7645,21 +7645,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_grab_default(IntPtr raw);
 
 		public void GrabDefault() {
 			gtk_widget_grab_default(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_grab_focus(IntPtr raw);
 
 		public void GrabFocus() {
 			gtk_widget_grab_focus(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_has_grab(IntPtr raw);
 
 		public bool HasGrab { 
@@ -7670,7 +7670,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_has_rc_style(IntPtr raw);
 
 		[Obsolete]
@@ -7682,7 +7682,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_has_screen(IntPtr raw);
 
 		public bool HasScreen { 
@@ -7693,7 +7693,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_has_visible_focus(IntPtr raw);
 
 		public bool HasVisibleFocus { 
@@ -7704,14 +7704,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_hide(IntPtr raw);
 
 		public void Hide() {
 			gtk_widget_hide(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_hide_on_delete(IntPtr raw);
 
 		public bool HideOnDelete() {
@@ -7720,7 +7720,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_in_destruction(IntPtr raw);
 
 		public bool InDestruction() {
@@ -7729,21 +7729,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_init_template(IntPtr raw);
 
 		public void InitTemplate() {
 			gtk_widget_init_template(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_input_shape_combine_region(IntPtr raw, IntPtr region);
 
 		public void InputShapeCombineRegion(Cairo.Region region) {
 			gtk_widget_input_shape_combine_region(Handle, region == null ? IntPtr.Zero : region.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_insert_action_group(IntPtr raw, IntPtr name, IntPtr group);
 
 		public void InsertActionGroup(string name, GLib.IActionGroup group) {
@@ -7752,7 +7752,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_intersect(IntPtr raw, IntPtr area, IntPtr intersection);
 
 		public bool Intersect(Gdk.Rectangle area, out Gdk.Rectangle intersection) {
@@ -7766,7 +7766,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_ancestor(IntPtr raw, IntPtr ancestor);
 
 		public bool IsAncestor(Gtk.Widget ancestor) {
@@ -7775,7 +7775,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_composited(IntPtr raw);
 
 		[Obsolete]
@@ -7787,7 +7787,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_drawable(IntPtr raw);
 
 		public bool IsDrawable { 
@@ -7798,7 +7798,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_sensitive(IntPtr raw);
 
 		public bool IsSensitive { 
@@ -7809,7 +7809,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_toplevel(IntPtr raw);
 
 		public bool IsToplevel { 
@@ -7820,7 +7820,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_is_visible(IntPtr raw);
 
 		public bool IsVisible { 
@@ -7831,7 +7831,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_keynav_failed(IntPtr raw, int direction);
 
 		public bool KeynavFailed(Gtk.DirectionType direction) {
@@ -7840,7 +7840,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_list_action_prefixes(IntPtr raw);
 
 		public string ListActionPrefixes() {
@@ -7849,14 +7849,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_map(IntPtr raw);
 
 		public void Map() {
 			gtk_widget_map(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_mnemonic_activate(IntPtr raw, bool group_cycling);
 
 		public bool MnemonicActivate(bool group_cycling) {
@@ -7865,7 +7865,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_modify_bg(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -7875,7 +7875,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_modify_fg(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -7885,7 +7885,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_modify_font(IntPtr raw, IntPtr font_desc);
 
 		[Obsolete]
@@ -7893,7 +7893,7 @@ namespace Gtk {
 			gtk_widget_modify_font(Handle, font_desc == null ? IntPtr.Zero : font_desc.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_modify_style(IntPtr raw, IntPtr style);
 
 		[Obsolete]
@@ -7901,7 +7901,7 @@ namespace Gtk {
 			gtk_widget_modify_style(Handle, style == null ? IntPtr.Zero : style.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_override_background_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -7911,7 +7911,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_override_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -7921,7 +7921,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_override_cursor(IntPtr raw, IntPtr cursor, IntPtr secondary_cursor);
 
 		[Obsolete]
@@ -7933,7 +7933,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_secondary_cursor);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_override_font(IntPtr raw, IntPtr font_desc);
 
 		[Obsolete]
@@ -7941,7 +7941,7 @@ namespace Gtk {
 			gtk_widget_override_font(Handle, font_desc == null ? IntPtr.Zero : font_desc.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_override_symbolic_color(IntPtr raw, IntPtr name, IntPtr color);
 
 		[Obsolete]
@@ -7953,7 +7953,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_path(IntPtr raw, out uint path_length, out IntPtr path, out IntPtr path_reversed);
 
 		[Obsolete]
@@ -7965,7 +7965,7 @@ namespace Gtk {
 			path_reversed = GLib.Marshaller.PtrToStringGFree(native_path_reversed);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_pop_composite_child();
 
 		[Obsolete]
@@ -7973,7 +7973,7 @@ namespace Gtk {
 			gtk_widget_pop_composite_child();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_push_composite_child();
 
 		[Obsolete]
@@ -7981,63 +7981,63 @@ namespace Gtk {
 			gtk_widget_push_composite_child();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_allocate(IntPtr raw);
 
 		public void QueueAllocate() {
 			gtk_widget_queue_allocate(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_compute_expand(IntPtr raw);
 
 		public void QueueComputeExpand() {
 			gtk_widget_queue_compute_expand(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_draw(IntPtr raw);
 
 		public void QueueDraw() {
 			gtk_widget_queue_draw(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_draw_area(IntPtr raw, int x, int y, int width, int height);
 
 		public void QueueDrawArea(int x, int y, int width, int height) {
 			gtk_widget_queue_draw_area(Handle, x, y, width, height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_draw_region(IntPtr raw, IntPtr region);
 
 		public void QueueDrawRegion(Cairo.Region region) {
 			gtk_widget_queue_draw_region(Handle, region == null ? IntPtr.Zero : region.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_resize(IntPtr raw);
 
 		public void QueueResize() {
 			gtk_widget_queue_resize(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_queue_resize_no_redraw(IntPtr raw);
 
 		public void QueueResizeNoRedraw() {
 			gtk_widget_queue_resize_no_redraw(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_realize(IntPtr raw);
 
 		public void Realize() {
 			gtk_widget_realize(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_region_intersect(IntPtr raw, IntPtr region);
 
 		[Obsolete]
@@ -8047,14 +8047,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_register_window(IntPtr raw, IntPtr window);
 
 		public void RegisterWindow(Gdk.Window window) {
 			gtk_widget_register_window(Handle, window == null ? IntPtr.Zero : window.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_remove_accelerator(IntPtr raw, IntPtr accel_group, uint accel_key, int accel_mods);
 
 		public bool RemoveAccelerator(Gtk.AccelGroup accel_group, uint accel_key, Gdk.ModifierType accel_mods) {
@@ -8063,21 +8063,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_remove_mnemonic_label(IntPtr raw, IntPtr label);
 
 		public void RemoveMnemonicLabel(Gtk.Widget label) {
 			gtk_widget_remove_mnemonic_label(Handle, label == null ? IntPtr.Zero : label.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_remove_tick_callback(IntPtr raw, uint id);
 
 		public void RemoveTickCallback(uint id) {
 			gtk_widget_remove_tick_callback(Handle, id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_render_icon(IntPtr raw, IntPtr stock_id, int size, IntPtr detail);
 
 		[Obsolete]
@@ -8091,7 +8091,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_render_icon_pixbuf(IntPtr raw, IntPtr stock_id, int size);
 
 		[Obsolete]
@@ -8103,7 +8103,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_reparent(IntPtr raw, IntPtr new_parent);
 
 		[Obsolete]
@@ -8111,7 +8111,7 @@ namespace Gtk {
 			gtk_widget_reparent(Handle, new_parent == null ? IntPtr.Zero : new_parent.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_reset_rc_styles(IntPtr raw);
 
 		[Obsolete]
@@ -8119,14 +8119,14 @@ namespace Gtk {
 			gtk_widget_reset_rc_styles(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_reset_style(IntPtr raw);
 
 		public void ResetStyle() {
 			gtk_widget_reset_style(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_widget_send_expose(IntPtr raw, IntPtr evnt);
 
 		[Obsolete]
@@ -8136,7 +8136,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_send_focus_change(IntPtr raw, IntPtr evnt);
 
 		public bool SendFocusChange(Gdk.Event evnt) {
@@ -8145,7 +8145,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_accel_path(IntPtr raw, IntPtr accel_path, IntPtr accel_group);
 
 		public void SetAccelPath(string accel_path, Gtk.AccelGroup accel_group) {
@@ -8154,7 +8154,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_accel_path);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_allocation(IntPtr raw, IntPtr allocation);
 
 		public void SetAllocation(Gdk.Rectangle allocation) {
@@ -8163,7 +8163,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_allocation);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_clip(IntPtr raw, IntPtr clip);
 
 		public void SetClip(Gdk.Rectangle clip) {
@@ -8172,21 +8172,21 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_clip);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_device_enabled(IntPtr raw, IntPtr device, bool enabled);
 
 		public void SetDeviceEnabled(Gdk.Device device, bool enabled) {
 			gtk_widget_set_device_enabled(Handle, device == null ? IntPtr.Zero : device.Handle, enabled);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_device_events(IntPtr raw, IntPtr device, int events);
 
 		public void SetDeviceEvents(Gdk.Device device, Gdk.EventMask events) {
 			gtk_widget_set_device_events(Handle, device == null ? IntPtr.Zero : device.Handle, (int) events);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_redraw_on_allocate(IntPtr raw, bool redraw_on_allocate);
 
 		public bool RedrawOnAllocate { 
@@ -8195,49 +8195,49 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_size_request(IntPtr raw, int width, int height);
 
 		public void SetSizeRequest(int width, int height) {
 			gtk_widget_set_size_request(Handle, width, height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_set_state_flags(IntPtr raw, int flags, bool clear);
 
 		public void SetStateFlags(Gtk.StateFlags flags, bool clear) {
 			gtk_widget_set_state_flags(Handle, (int) flags, clear);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_shape_combine_region(IntPtr raw, IntPtr region);
 
 		public void ShapeCombineRegion(Cairo.Region region) {
 			gtk_widget_shape_combine_region(Handle, region == null ? IntPtr.Zero : region.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_show(IntPtr raw);
 
 		public void Show() {
 			gtk_widget_show(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_show_all(IntPtr raw);
 
 		public void ShowAll() {
 			gtk_widget_show_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_show_now(IntPtr raw);
 
 		public void ShowNow() {
 			gtk_widget_show_now(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_size_allocate(IntPtr raw, IntPtr allocation);
 
 		public void SizeAllocate(Gdk.Rectangle allocation) {
@@ -8246,7 +8246,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_allocation);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_size_allocate_with_baseline(IntPtr raw, IntPtr allocation, int baseline);
 
 		public void SizeAllocateWithBaseline(Gdk.Rectangle allocation, int baseline) {
@@ -8255,7 +8255,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_allocation);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_size_request(IntPtr raw, IntPtr requisition);
 
 		[Obsolete]
@@ -8268,7 +8268,7 @@ namespace Gtk {
 			return requisition;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_style_attach(IntPtr raw);
 
 		[Obsolete]
@@ -8276,14 +8276,14 @@ namespace Gtk {
 			gtk_widget_style_attach(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_thaw_child_notify(IntPtr raw);
 
 		public void ThawChildNotify() {
 			gtk_widget_thaw_child_notify(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_widget_translate_coordinates(IntPtr raw, IntPtr dest_widget, int src_x, int src_y, out int dest_x, out int dest_y);
 
 		public bool TranslateCoordinates(Gtk.Widget dest_widget, int src_x, int src_y, out int dest_x, out int dest_y) {
@@ -8292,49 +8292,49 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_trigger_tooltip_query(IntPtr raw);
 
 		public void TriggerTooltipQuery() {
 			gtk_widget_trigger_tooltip_query(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_unmap(IntPtr raw);
 
 		public void Unmap() {
 			gtk_widget_unmap(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_unparent(IntPtr raw);
 
 		public void Unparent() {
 			gtk_widget_unparent(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_unrealize(IntPtr raw);
 
 		public void Unrealize() {
 			gtk_widget_unrealize(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_unregister_window(IntPtr raw, IntPtr window);
 
 		public void UnregisterWindow(Gdk.Window window) {
 			gtk_widget_unregister_window(Handle, window == null ? IntPtr.Zero : window.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_unset_state_flags(IntPtr raw, int flags);
 
 		public void UnsetStateFlags(Gtk.StateFlags flags) {
 			gtk_widget_unset_state_flags(Handle, (int) flags);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_implementor_ref_accessible(IntPtr raw);
 
 		public Atk.Object RefAccessible() {

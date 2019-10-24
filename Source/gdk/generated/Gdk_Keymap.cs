@@ -1120,7 +1120,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_keymap_add_virtual_modifiers(IntPtr raw, out int state);
 
 		public Gdk.ModifierType AddVirtualModifiers() {
@@ -1131,7 +1131,7 @@ namespace Gdk {
 			return state;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_get_caps_lock_state(IntPtr raw);
 
 		public bool CapsLockState { 
@@ -1142,7 +1142,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_keymap_get_default();
 
 		public static Gdk.Keymap Default { 
@@ -1153,7 +1153,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_keymap_get_direction(IntPtr raw);
 
 		public Pango.Direction Direction { 
@@ -1164,7 +1164,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_keymap_get_for_display(IntPtr display);
 
 		public static Gdk.Keymap GetForDisplay(Gdk.Display display) {
@@ -1173,7 +1173,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_keymap_get_modifier_mask(IntPtr raw, int intent);
 
 		public Gdk.ModifierType GetModifierMask(Gdk.ModifierIntent intent) {
@@ -1182,7 +1182,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gdk_keymap_get_modifier_state(IntPtr raw);
 
 		public uint ModifierState { 
@@ -1193,7 +1193,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_get_num_lock_state(IntPtr raw);
 
 		public bool NumLockState { 
@@ -1204,7 +1204,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_get_scroll_lock_state(IntPtr raw);
 
 		public bool ScrollLockState { 
@@ -1215,7 +1215,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_keymap_get_type();
 
 		public static new GLib.GType GType { 
@@ -1226,7 +1226,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_have_bidi_layouts(IntPtr raw);
 
 		public bool HaveBidiLayouts() {
@@ -1235,7 +1235,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gdk_keymap_lookup_key(IntPtr raw, IntPtr key);
 
 		public uint LookupKey(Gdk.KeymapKey key) {
@@ -1246,7 +1246,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_map_virtual_modifiers(IntPtr raw, out int state);
 
 		public bool MapVirtualModifiers(out Gdk.ModifierType state) {
@@ -1257,7 +1257,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_translate_keyboard_state(IntPtr raw, uint hardware_keycode, int state, int group, out uint keyval, out int effective_group, out int level, out int consumed_modifiers);
 
 		public bool TranslateKeyboardState(uint hardware_keycode, Gdk.ModifierType state, int group, out uint keyval, out int effective_group, out int level, out Gdk.ModifierType consumed_modifiers) {

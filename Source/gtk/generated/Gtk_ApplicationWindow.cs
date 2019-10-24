@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ApplicationWindow (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_window_new(IntPtr application);
 
 		public ApplicationWindow (Gtk.Application application) : base (IntPtr.Zero)
@@ -31,10 +31,10 @@ namespace Gtk {
 			Raw = gtk_application_window_new(application == null ? IntPtr.Zero : application.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_application_window_get_show_menubar(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_window_set_show_menubar(IntPtr raw, bool show_menubar);
 
 		[GLib.Property ("show-menubar")]
@@ -73,10 +73,10 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_window_get_help_overlay(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_application_window_set_help_overlay(IntPtr raw, IntPtr help_overlay);
 
 		public Gtk.ShortcutsWindow HelpOverlay { 
@@ -90,7 +90,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_application_window_get_id(IntPtr raw);
 
 		public uint Id { 
@@ -101,7 +101,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_application_window_get_type();
 
 		public static new GLib.GType GType { 

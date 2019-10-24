@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public TextMark (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_mark_new(IntPtr name, bool left_gravity);
 
 		public TextMark (string name, bool left_gravity) : base (IntPtr.Zero)
@@ -33,7 +33,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_mark_get_name(IntPtr raw);
 
 		[GLib.Property ("name")]
@@ -45,7 +45,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_mark_get_left_gravity(IntPtr raw);
 
 		[GLib.Property ("left-gravity")]
@@ -105,7 +105,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_mark_get_buffer(IntPtr raw);
 
 		public Gtk.TextBuffer Buffer { 
@@ -116,7 +116,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_mark_get_deleted(IntPtr raw);
 
 		public bool Deleted { 
@@ -127,7 +127,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_mark_get_type();
 
 		public static new GLib.GType GType { 
@@ -138,10 +138,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_mark_get_visible(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_mark_set_visible(IntPtr raw, bool setting);
 
 		public bool Visible { 

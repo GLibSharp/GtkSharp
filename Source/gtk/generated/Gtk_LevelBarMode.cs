@@ -15,7 +15,7 @@ namespace Gtk {
 	}
 
 	internal class LevelBarModeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_level_bar_mode_get_type ();
 
 		public static GLib.GType GType {

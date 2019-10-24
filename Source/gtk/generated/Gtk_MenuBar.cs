@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public MenuBar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_bar_new();
 
 		public MenuBar () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_menu_bar_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_bar_new_from_model(IntPtr model);
 
 		public MenuBar (GLib.MenuModel model) : base (IntPtr.Zero)
@@ -39,10 +39,10 @@ namespace Gtk {
 			Raw = gtk_menu_bar_new_from_model(model == null ? IntPtr.Zero : model.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_menu_bar_get_pack_direction(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_bar_set_pack_direction(IntPtr raw, int pack_dir);
 
 		[GLib.Property ("pack-direction")]
@@ -57,10 +57,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_menu_bar_get_child_pack_direction(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_bar_set_child_pack_direction(IntPtr raw, int child_pack_dir);
 
 		[GLib.Property ("child-pack-direction")]
@@ -143,7 +143,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_bar_get_type();
 
 		public static new GLib.GType GType { 

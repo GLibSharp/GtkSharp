@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ColorButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_button_new();
 
 		public ColorButton () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_color_button_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_button_new_with_color(IntPtr color);
 
 		public ColorButton (Gdk.Color color) : base (IntPtr.Zero)
@@ -43,7 +43,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_button_new_with_rgba(IntPtr rgba);
 
 		public ColorButton (Gdk.RGBA rgba) : base (IntPtr.Zero)
@@ -76,10 +76,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_button_get_title(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_button_set_title(IntPtr raw, IntPtr title);
 
 		[GLib.Property ("title")]
@@ -96,10 +96,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_button_get_color(IntPtr raw, IntPtr color);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_button_set_color(IntPtr raw, IntPtr value);
 
 		[Obsolete]
@@ -120,10 +120,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern ushort gtk_color_button_get_alpha(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_button_set_alpha(IntPtr raw, ushort alpha);
 
 		[Obsolete]
@@ -273,7 +273,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_button_get_type();
 
 		public static new GLib.GType GType { 
@@ -284,7 +284,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_chooser_add_palette(IntPtr raw, int orientation, int colors_per_line, int n_colors, IntPtr colors);
 
 		public void AddPalette(Gtk.Orientation orientation, int colors_per_line, int n_colors, Gdk.RGBA colors) {
@@ -293,10 +293,10 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_colors);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_chooser_get_rgba(IntPtr raw, IntPtr color);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_chooser_set_rgba(IntPtr raw, IntPtr value);
 
 		[GLib.Property ("rgba")]
@@ -316,10 +316,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_color_chooser_get_use_alpha(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_color_chooser_set_use_alpha(IntPtr raw, bool use_alpha);
 
 		[GLib.Property ("use-alpha")]

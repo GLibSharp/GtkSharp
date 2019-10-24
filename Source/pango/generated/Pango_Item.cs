@@ -71,7 +71,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_item_copy(IntPtr raw);
 
 		public Pango.Item Copy() {
@@ -80,7 +80,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_item_get_type();
 
 		public static GLib.GType GType { 
@@ -91,7 +91,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_item_split(IntPtr raw, int split_index, int split_offset);
 
 		public Pango.Item Split(int split_index, int split_offset) {
@@ -102,7 +102,7 @@ namespace Pango {
 
 		public Item(IntPtr raw) : base(raw) {}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_item_new();
 
 		public Item () 
@@ -110,7 +110,7 @@ namespace Pango {
 			Raw = pango_item_new();
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_item_free(IntPtr raw);
 
 		protected override void Free (IntPtr raw)

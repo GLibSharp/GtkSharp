@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RadioMenuItem (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_menu_item_new_from_widget(IntPtr group);
 
 		public RadioMenuItem (Gtk.RadioMenuItem group) : base (IntPtr.Zero)
@@ -27,7 +27,7 @@ namespace Gtk {
 			Raw = gtk_radio_menu_item_new_from_widget(group == null ? IntPtr.Zero : group.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_menu_item_new_with_mnemonic_from_widget(IntPtr group, IntPtr label);
 
 		public RadioMenuItem (Gtk.RadioMenuItem group, string label) : base (IntPtr.Zero)
@@ -166,7 +166,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_menu_item_get_type();
 
 		public static new GLib.GType GType { 
@@ -177,7 +177,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_radio_menu_item_join_group(IntPtr raw, IntPtr group_source);
 
 		public void JoinGroup(Gtk.RadioMenuItem group_source) {

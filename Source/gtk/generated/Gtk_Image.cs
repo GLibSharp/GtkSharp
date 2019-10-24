@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Image (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new();
 
 		public Image () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_image_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_animation(IntPtr animation);
 
 		public Image (Gdk.PixbufAnimation animation) : base (IntPtr.Zero)
@@ -43,7 +43,7 @@ namespace Gtk {
 			Raw = gtk_image_new_from_animation(animation == null ? IntPtr.Zero : animation.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_file(IntPtr filename);
 
 		public Image (string filename) : base (IntPtr.Zero)
@@ -61,7 +61,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_filename);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_gicon(IntPtr icon, int size);
 
 		public Image (GLib.IIcon icon, Gtk.IconSize size) : base (IntPtr.Zero)
@@ -79,7 +79,7 @@ namespace Gtk {
 			Raw = gtk_image_new_from_gicon(icon == null ? IntPtr.Zero : ((icon is GLib.Object) ? (icon as GLib.Object).Handle : (icon as GLib.IconAdapter).Handle), (int) size);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_icon_name(IntPtr icon_name, int size);
 
 		public static Image NewFromIconName(string icon_name, Gtk.IconSize size)
@@ -90,7 +90,7 @@ namespace Gtk {
 			return result;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_pixbuf(IntPtr pixbuf);
 
 		public Image (Gdk.Pixbuf pixbuf) : base (IntPtr.Zero)
@@ -108,7 +108,7 @@ namespace Gtk {
 			Raw = gtk_image_new_from_pixbuf(pixbuf == null ? IntPtr.Zero : pixbuf.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_resource(IntPtr resource_path);
 
 		public static Image NewFromResource(string resource_path)
@@ -119,7 +119,7 @@ namespace Gtk {
 			return result;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_surface(IntPtr surface);
 
 		public Image (Cairo.Surface surface) : base (IntPtr.Zero)
@@ -133,10 +133,10 @@ namespace Gtk {
 			Raw = gtk_image_new_from_surface(surface.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_get_pixbuf(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_pixbuf(IntPtr raw, IntPtr pixbuf);
 
 		[GLib.Property ("pixbuf")]
@@ -151,7 +151,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_file(IntPtr raw, IntPtr filename);
 
 		[GLib.Property ("file")]
@@ -214,10 +214,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_image_get_pixel_size(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_pixel_size(IntPtr raw, int pixel_size);
 
 		[GLib.Property ("pixel-size")]
@@ -292,7 +292,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_image_get_storage_type(IntPtr raw);
 
 		[GLib.Property ("storage-type")]
@@ -367,17 +367,17 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_clear(IntPtr raw);
 
 		public void Clear() {
 			gtk_image_clear(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_get_animation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_animation(IntPtr raw, IntPtr animation);
 
 		public Gdk.PixbufAnimation Animation { 
@@ -391,7 +391,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_get_gicon(IntPtr raw, out IntPtr gicon, out int size);
 
 		public void GetIcon(out GLib.IIcon gicon, out Gtk.IconSize size) {
@@ -402,7 +402,7 @@ namespace Gtk {
 			size = (Gtk.IconSize) native_size;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_get_icon_name(IntPtr raw, IntPtr icon_name, out int size);
 
 		public Gtk.IconSize GetIconName(string icon_name) {
@@ -415,7 +415,7 @@ namespace Gtk {
 			return size;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_get_icon_set(IntPtr raw, out IntPtr icon_set, out int size);
 
 		[Obsolete]
@@ -427,7 +427,7 @@ namespace Gtk {
 			size = (Gtk.IconSize) native_size;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_get_stock(IntPtr raw, out IntPtr stock_id, out int size);
 
 		[Obsolete]
@@ -439,7 +439,7 @@ namespace Gtk {
 			size = (Gtk.IconSize) native_size;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_get_type();
 
 		public static new GLib.GType GType { 
@@ -450,14 +450,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_gicon(IntPtr raw, IntPtr icon, int size);
 
 		public void SetFromIcon(GLib.IIcon icon, Gtk.IconSize size) {
 			gtk_image_set_from_gicon(Handle, icon == null ? IntPtr.Zero : ((icon is GLib.Object) ? (icon as GLib.Object).Handle : (icon as GLib.IconAdapter).Handle), (int) size);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_icon_name(IntPtr raw, IntPtr icon_name, int size);
 
 		public void SetFromIconName(string icon_name, Gtk.IconSize size) {
@@ -466,7 +466,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_icon_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_icon_set(IntPtr raw, IntPtr icon_set, int size);
 
 		[Obsolete]
@@ -474,7 +474,7 @@ namespace Gtk {
 			gtk_image_set_from_icon_set(Handle, icon_set == null ? IntPtr.Zero : icon_set.Handle, (int) size);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_resource(IntPtr raw, IntPtr resource_path);
 
 		public string FromResource { 
@@ -485,7 +485,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_stock(IntPtr raw, IntPtr stock_id, int size);
 
 		[Obsolete]
@@ -495,7 +495,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_stock_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_set_from_surface(IntPtr raw, IntPtr surface);
 
 		public Cairo.Surface FromSurface { 

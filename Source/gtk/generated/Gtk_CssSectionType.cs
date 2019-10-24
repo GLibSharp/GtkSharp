@@ -22,7 +22,7 @@ namespace Gtk {
 	}
 
 	internal class CssSectionTypeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_section_type_get_type ();
 
 		public static GLib.GType GType {

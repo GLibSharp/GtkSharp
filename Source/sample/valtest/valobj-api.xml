@@ -6,7 +6,7 @@
         Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
 
 -->
-  <namespace name="Gtksharp" library="libvalobj.dll">
+  <namespace name="Gtksharp" library="valobj.dll">
     <object name="Valobj" cname="GtksharpValobj" parent="GObject">
       <class_struct cname="GtksharpValobjClass">
         <field name="ParentClass" cname="parent_class" type="GObjectClass" />

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RecentManager (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_manager_new();
 
 		public RecentManager () : base (IntPtr.Zero)
@@ -164,7 +164,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_recent_manager_add_full(IntPtr raw, IntPtr uri, IntPtr recent_data);
 
 		public bool AddFull(string uri, Gtk.RecentData recent_data) {
@@ -177,7 +177,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_recent_manager_add_item(IntPtr raw, IntPtr uri);
 
 		public bool AddItem(string uri) {
@@ -188,7 +188,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_recent_manager_error_quark();
 
 		public static int ErrorQuark() {
@@ -197,7 +197,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_manager_get_default();
 
 		public static Gtk.RecentManager Default { 
@@ -208,7 +208,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_manager_get_items(IntPtr raw);
 
 		public Gtk.RecentInfo[] RecentItems { 
@@ -219,7 +219,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_manager_get_type();
 
 		public static new GLib.GType GType { 
@@ -230,7 +230,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_recent_manager_has_item(IntPtr raw, IntPtr uri);
 
 		public bool HasItem(string uri) {
@@ -241,7 +241,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_recent_manager_lookup_item(IntPtr raw, IntPtr uri, out IntPtr error);
 
 		public unsafe Gtk.RecentInfo LookupItem(string uri) {
@@ -254,7 +254,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_recent_manager_move_item(IntPtr raw, IntPtr uri, IntPtr new_uri, out IntPtr error);
 
 		public unsafe bool MoveItem(string uri, string new_uri) {
@@ -269,7 +269,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe int gtk_recent_manager_purge_items(IntPtr raw, out IntPtr error);
 
 		public unsafe int PurgeItems() {
@@ -280,7 +280,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_recent_manager_remove_item(IntPtr raw, IntPtr uri, out IntPtr error);
 
 		public unsafe bool RemoveItem(string uri) {

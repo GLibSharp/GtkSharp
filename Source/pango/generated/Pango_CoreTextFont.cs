@@ -18,7 +18,7 @@ namespace Pango {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_core_text_font_get_type();
 
 		public static new GLib.GType GType { 

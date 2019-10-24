@@ -18,7 +18,7 @@ namespace Pango {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_face_describe(IntPtr raw);
 
 		public Pango.FontDescription Describe() {
@@ -27,7 +27,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_face_get_face_name(IntPtr raw);
 
 		public string FaceName { 
@@ -38,7 +38,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_face_get_type();
 
 		public static new GLib.GType GType { 
@@ -49,7 +49,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_font_face_is_synthesized(IntPtr raw);
 
 		public bool IsSynthesized { 
@@ -60,7 +60,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_font_face_list_sizes(IntPtr raw, out int sizes, out int n_sizes);
 
 		public void ListSizes(out int sizes, out int n_sizes) {

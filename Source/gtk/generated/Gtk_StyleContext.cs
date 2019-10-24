@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public StyleContext (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_new();
 
 		public StyleContext () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_style_context_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_screen(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_screen(IntPtr raw, IntPtr screen);
 
 		[GLib.Property ("screen")]
@@ -58,10 +58,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_style_context_get_direction(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_direction(IntPtr raw, int direction);
 
 		[Obsolete]
@@ -77,10 +77,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_parent(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_parent(IntPtr raw, IntPtr parent);
 
 		[GLib.Property ("parent")]
@@ -214,7 +214,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_add_class(IntPtr raw, IntPtr class_name);
 
 		public void AddClass(string class_name) {
@@ -223,21 +223,21 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_class_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_add_provider(IntPtr raw, IntPtr provider, uint priority);
 
 		public void AddProvider(Gtk.IStyleProvider provider, uint priority) {
 			gtk_style_context_add_provider(Handle, provider == null ? IntPtr.Zero : ((provider is GLib.Object) ? (provider as GLib.Object).Handle : (provider as Gtk.StyleProviderAdapter).Handle), priority);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_add_provider_for_screen(IntPtr screen, IntPtr provider, uint priority);
 
 		public static void AddProviderForScreen(Gdk.Screen screen, Gtk.IStyleProvider provider, uint priority) {
 			gtk_style_context_add_provider_for_screen(screen == null ? IntPtr.Zero : screen.Handle, provider == null ? IntPtr.Zero : ((provider is GLib.Object) ? (provider as GLib.Object).Handle : (provider as Gtk.StyleProviderAdapter).Handle), priority);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_add_region(IntPtr raw, IntPtr region_name, int flags);
 
 		[Obsolete]
@@ -247,7 +247,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_region_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_cancel_animations(IntPtr raw, IntPtr region_id);
 
 		[Obsolete]
@@ -255,7 +255,7 @@ namespace Gtk {
 			gtk_style_context_cancel_animations(Handle, region_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_background_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -268,7 +268,7 @@ namespace Gtk {
 			return color;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_border(IntPtr raw, int state, IntPtr border);
 
 		public Gtk.Border GetBorder(Gtk.StateFlags state) {
@@ -280,7 +280,7 @@ namespace Gtk {
 			return border;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_border_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -293,7 +293,7 @@ namespace Gtk {
 			return color;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_color(IntPtr raw, int state, IntPtr color);
 
 		public Gdk.RGBA GetColor(Gtk.StateFlags state) {
@@ -305,7 +305,7 @@ namespace Gtk {
 			return color;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_font(IntPtr raw, int state);
 
 		[Obsolete]
@@ -315,10 +315,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_frame_clock(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_frame_clock(IntPtr raw, IntPtr frame_clock);
 
 		public Gdk.FrameClock FrameClock { 
@@ -332,10 +332,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_style_context_get_junction_sides(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_junction_sides(IntPtr raw, int sides);
 
 		public Gtk.JunctionSides JunctionSides { 
@@ -349,7 +349,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_margin(IntPtr raw, int state, IntPtr margin);
 
 		public Gtk.Border GetMargin(Gtk.StateFlags state) {
@@ -361,7 +361,7 @@ namespace Gtk {
 			return margin;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_padding(IntPtr raw, int state, IntPtr padding);
 
 		public Gtk.Border GetPadding(Gtk.StateFlags state) {
@@ -373,10 +373,10 @@ namespace Gtk {
 			return padding;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_path(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_path(IntPtr raw, IntPtr path);
 
 		public Gtk.WidgetPath Path { 
@@ -390,7 +390,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_property(IntPtr raw, IntPtr property, int state, IntPtr value);
 
 		public void GetProperty(string property, Gtk.StateFlags state, GLib.Value value) {
@@ -401,10 +401,10 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_style_context_get_scale(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_scale(IntPtr raw, int scale);
 
 		public int Scale { 
@@ -418,7 +418,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_section(IntPtr raw, IntPtr property);
 
 		public Gtk.CssSection GetSection(string property) {
@@ -429,10 +429,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_style_context_get_state(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_state(IntPtr raw, int flags);
 
 		public Gtk.StateFlags State { 
@@ -446,7 +446,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_get_style_property(IntPtr raw, IntPtr property_name, IntPtr value);
 
 		public GLib.Value GetStyleProperty(string property_name) {
@@ -460,7 +460,7 @@ namespace Gtk {
 			return value;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_get_type();
 
 		public static new GLib.GType GType { 
@@ -471,7 +471,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_context_has_class(IntPtr raw, IntPtr class_name);
 
 		public bool HasClass(string class_name) {
@@ -482,7 +482,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_context_has_region(IntPtr raw, IntPtr region_name, out int flags_return);
 
 		[Obsolete]
@@ -496,7 +496,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_invalidate(IntPtr raw);
 
 		[Obsolete]
@@ -504,7 +504,7 @@ namespace Gtk {
 			gtk_style_context_invalidate(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_list_classes(IntPtr raw);
 
 		public string[] ListClasses() {
@@ -513,7 +513,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_list_regions(IntPtr raw);
 
 		[Obsolete]
@@ -523,7 +523,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_context_lookup_color(IntPtr raw, IntPtr color_name, IntPtr color);
 
 		public bool LookupColor(string color_name, out Gdk.RGBA color) {
@@ -537,7 +537,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_lookup_icon_set(IntPtr raw, IntPtr stock_id);
 
 		[Obsolete]
@@ -549,7 +549,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_notify_state_change(IntPtr raw, IntPtr window, IntPtr region_id, int state, bool state_value);
 
 		[Obsolete]
@@ -557,7 +557,7 @@ namespace Gtk {
 			gtk_style_context_notify_state_change(Handle, window == null ? IntPtr.Zero : window.Handle, region_id, (int) state, state_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_pop_animatable_region(IntPtr raw);
 
 		[Obsolete]
@@ -565,7 +565,7 @@ namespace Gtk {
 			gtk_style_context_pop_animatable_region(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_push_animatable_region(IntPtr raw, IntPtr region_id);
 
 		[Obsolete]
@@ -573,7 +573,7 @@ namespace Gtk {
 			gtk_style_context_push_animatable_region(Handle, region_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_remove_class(IntPtr raw, IntPtr class_name);
 
 		public void RemoveClass(string class_name) {
@@ -582,21 +582,21 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_class_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_remove_provider(IntPtr raw, IntPtr provider);
 
 		public void RemoveProvider(Gtk.IStyleProvider provider) {
 			gtk_style_context_remove_provider(Handle, provider == null ? IntPtr.Zero : ((provider is GLib.Object) ? (provider as GLib.Object).Handle : (provider as Gtk.StyleProviderAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_remove_provider_for_screen(IntPtr screen, IntPtr provider);
 
 		public static void RemoveProviderForScreen(Gdk.Screen screen, Gtk.IStyleProvider provider) {
 			gtk_style_context_remove_provider_for_screen(screen == null ? IntPtr.Zero : screen.Handle, provider == null ? IntPtr.Zero : ((provider is GLib.Object) ? (provider as GLib.Object).Handle : (provider as Gtk.StyleProviderAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_remove_region(IntPtr raw, IntPtr region_name);
 
 		[Obsolete]
@@ -606,28 +606,28 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_region_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_reset_widgets(IntPtr screen);
 
 		public static void ResetWidgets(Gdk.Screen screen) {
 			gtk_style_context_reset_widgets(screen == null ? IntPtr.Zero : screen.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_restore(IntPtr raw);
 
 		public void Restore() {
 			gtk_style_context_restore(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_save(IntPtr raw);
 
 		public void Save() {
 			gtk_style_context_save(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_scroll_animations(IntPtr raw, IntPtr window, int dx, int dy);
 
 		[Obsolete]
@@ -635,7 +635,7 @@ namespace Gtk {
 			gtk_style_context_scroll_animations(Handle, window == null ? IntPtr.Zero : window.Handle, dx, dy);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_context_set_background(IntPtr raw, IntPtr window);
 
 		[Obsolete]
@@ -645,7 +645,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_style_context_state_is_running(IntPtr raw, int state, out double progress);
 
 		[Obsolete]
@@ -655,7 +655,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_context_to_string(IntPtr raw, int flags);
 
 		public string ToString(Gtk.StyleContextPrintFlags flags) {

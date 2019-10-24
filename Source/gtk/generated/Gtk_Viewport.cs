@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Viewport (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_viewport_new(IntPtr hadjustment, IntPtr vadjustment);
 
 		public Viewport (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment) : base (IntPtr.Zero)
@@ -35,10 +35,10 @@ namespace Gtk {
 			Raw = gtk_viewport_new(hadjustment == null ? IntPtr.Zero : hadjustment.Handle, vadjustment == null ? IntPtr.Zero : vadjustment.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_viewport_get_shadow_type(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_viewport_set_shadow_type(IntPtr raw, int type);
 
 		[GLib.Property ("shadow-type")]
@@ -101,7 +101,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_viewport_get_bin_window(IntPtr raw);
 
 		public Gdk.Window BinWindow { 
@@ -112,7 +112,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_viewport_get_type();
 
 		public static new GLib.GType GType { 
@@ -123,7 +123,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_viewport_get_view_window(IntPtr raw);
 
 		public Gdk.Window ViewWindow { 
@@ -134,7 +134,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_scrollable_get_border(IntPtr raw, IntPtr border);
 
 		public bool GetBorder(Gtk.Border border) {
@@ -145,10 +145,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scrollable_get_hadjustment(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_hadjustment(IntPtr raw, IntPtr hadjustment);
 
 		[GLib.Property ("hadjustment")]
@@ -163,10 +163,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scrollable_get_vadjustment(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_vadjustment(IntPtr raw, IntPtr vadjustment);
 
 		[GLib.Property ("vadjustment")]
@@ -181,10 +181,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_scrollable_get_hscroll_policy(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_hscroll_policy(IntPtr raw, int policy);
 
 		[GLib.Property ("hscroll-policy")]
@@ -199,10 +199,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_scrollable_get_vscroll_policy(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_vscroll_policy(IntPtr raw, int policy);
 
 		[GLib.Property ("vscroll-policy")]

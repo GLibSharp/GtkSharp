@@ -192,7 +192,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_table_cell_get_type ());
@@ -245,7 +245,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_column_header_cells(IntPtr raw);
 
 		public GLib.PtrArray ColumnHeaderCells { 
@@ -256,7 +256,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_cell_get_column_span(IntPtr raw);
 
 		public int ColumnSpan { 
@@ -267,7 +267,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_cell_get_position(IntPtr raw, out int row, out int column);
 
 		public bool GetPosition(out int row, out int column) {
@@ -276,7 +276,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_table_cell_get_row_column_span(IntPtr raw, out int row, out int column, out int row_span, out int column_span);
 
 		public bool GetRowColumnSpan(out int row, out int column, out int row_span, out int column_span) {
@@ -285,7 +285,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_row_header_cells(IntPtr raw);
 
 		public GLib.PtrArray RowHeaderCells { 
@@ -296,7 +296,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_table_cell_get_row_span(IntPtr raw);
 
 		public int RowSpan { 
@@ -307,7 +307,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_table_cell_get_table(IntPtr raw);
 
 		public Atk.Object Table { 

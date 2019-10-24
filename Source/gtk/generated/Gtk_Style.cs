@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Style (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_new();
 
 		public Style () : base (IntPtr.Zero)
@@ -2043,7 +2043,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_attach(IntPtr raw, IntPtr window);
 
 		[Obsolete]
@@ -2053,7 +2053,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_copy(IntPtr raw);
 
 		[Obsolete]
@@ -2063,7 +2063,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_detach(IntPtr raw);
 
 		[Obsolete]
@@ -2071,7 +2071,7 @@ namespace Gtk {
 			gtk_style_detach(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_style_get_type();
 
 		[Obsolete]
@@ -2083,7 +2083,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_style_set_background(IntPtr raw, IntPtr window, int state_type);
 
 		[Obsolete]
@@ -2091,7 +2091,7 @@ namespace Gtk {
 			gtk_style_set_background(Handle, window == null ? IntPtr.Zero : window.Handle, (int) state_type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paint_box_gap(IntPtr style, IntPtr cr, int state_type, int shadow_type, IntPtr widget, IntPtr detail, int x, int y, int width, int height, int gap_side, int gap_x, int gap_width);
 
 		[Obsolete]
@@ -2101,7 +2101,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_detail);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paint_shadow_gap(IntPtr style, IntPtr cr, int state_type, int shadow_type, IntPtr widget, IntPtr detail, int x, int y, int width, int height, int gap_side, int gap_x, int gap_width);
 
 		[Obsolete]

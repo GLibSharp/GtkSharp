@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public GestureLongPress (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_long_press_new(IntPtr widget);
 
 		public GestureLongPress (Gtk.Widget widget) : base (IntPtr.Zero)
@@ -172,7 +172,7 @@ namespace Gtk {
 			unmanaged (this.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_long_press_get_type();
 
 		public static new GLib.GType GType { 

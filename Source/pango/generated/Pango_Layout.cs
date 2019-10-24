@@ -13,7 +13,7 @@ namespace Pango {
 
 		public Layout (IntPtr raw) : base(raw) {}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_new(IntPtr context);
 
 		public Layout (Pango.Context context) : base (IntPtr.Zero)
@@ -42,14 +42,14 @@ namespace Pango {
 
 		// End of the ABI representation.
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_context_changed(IntPtr raw);
 
 		public void ContextChanged() {
 			pango_layout_context_changed(Handle);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_copy(IntPtr raw);
 
 		public Pango.Layout Copy() {
@@ -58,10 +58,10 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_alignment(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_alignment(IntPtr raw, int alignment);
 
 		public Pango.Alignment Alignment { 
@@ -75,10 +75,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_attributes(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_attributes(IntPtr raw, IntPtr attrs);
 
 		public Pango.AttrList Attributes { 
@@ -92,10 +92,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_layout_get_auto_dir(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_auto_dir(IntPtr raw, bool auto_dir);
 
 		public bool AutoDir { 
@@ -109,7 +109,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_baseline(IntPtr raw);
 
 		public int Baseline { 
@@ -120,7 +120,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_character_count(IntPtr raw);
 
 		public int CharacterCount { 
@@ -131,7 +131,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_context(IntPtr raw);
 
 		public Pango.Context Context { 
@@ -142,7 +142,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_get_cursor_pos(IntPtr raw, int index_, IntPtr strong_pos, IntPtr weak_pos);
 
 		public void GetCursorPos(int index_, out Pango.Rectangle strong_pos, out Pango.Rectangle weak_pos) {
@@ -155,10 +155,10 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_weak_pos);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_ellipsize(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_ellipsize(IntPtr raw, int ellipsize);
 
 		public Pango.EllipsizeMode Ellipsize { 
@@ -172,7 +172,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_get_extents(IntPtr raw, IntPtr ink_rect, IntPtr logical_rect);
 
 		public void GetExtents(out Pango.Rectangle ink_rect, out Pango.Rectangle logical_rect) {
@@ -185,10 +185,10 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_logical_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_font_description(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_font_description(IntPtr raw, IntPtr desc);
 
 		public Pango.FontDescription FontDescription { 
@@ -202,10 +202,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_height(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_height(IntPtr raw, int height);
 
 		public int Height { 
@@ -219,10 +219,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_indent(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_indent(IntPtr raw, int indent);
 
 		public int Indent { 
@@ -236,7 +236,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_iter(IntPtr raw);
 
 		public Pango.LayoutIter Iter { 
@@ -247,10 +247,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_layout_get_justify(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_justify(IntPtr raw, bool justify);
 
 		public bool Justify { 
@@ -264,7 +264,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_line(IntPtr raw, int line);
 
 		public Pango.LayoutLine GetLine(int line) {
@@ -273,7 +273,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_line_count(IntPtr raw);
 
 		public int LineCount { 
@@ -284,7 +284,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_line_readonly(IntPtr raw, int line);
 
 		public Pango.LayoutLine GetLineReadonly(int line) {
@@ -293,7 +293,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_lines_readonly(IntPtr raw);
 
 		public Pango.LayoutLine[] LinesReadOnly { 
@@ -304,7 +304,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_log_attrs_readonly(IntPtr raw, out int n_attrs);
 
 		public Pango.LogAttr GetLogAttrsReadonly(out int n_attrs) {
@@ -313,7 +313,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_get_pixel_extents(IntPtr raw, IntPtr ink_rect, IntPtr logical_rect);
 
 		public void GetPixelExtents(out Pango.Rectangle ink_rect, out Pango.Rectangle logical_rect) {
@@ -326,14 +326,14 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_logical_rect);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_get_pixel_size(IntPtr raw, out int width, out int height);
 
 		public void GetPixelSize(out int width, out int height) {
 			pango_layout_get_pixel_size(Handle, out width, out height);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint pango_layout_get_serial(IntPtr raw);
 
 		public uint Serial { 
@@ -344,10 +344,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_layout_get_single_paragraph_mode(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_single_paragraph_mode(IntPtr raw, bool setting);
 
 		public bool SingleParagraphMode { 
@@ -361,17 +361,17 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_get_size(IntPtr raw, out int width, out int height);
 
 		public void GetSize(out int width, out int height) {
 			pango_layout_get_size(Handle, out width, out height);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_spacing(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_spacing(IntPtr raw, int spacing);
 
 		public int Spacing { 
@@ -385,10 +385,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_tabs(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_tabs(IntPtr raw, IntPtr tabs);
 
 		public Pango.TabArray Tabs { 
@@ -402,7 +402,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_text(IntPtr raw);
 
 		public string Text { 
@@ -413,7 +413,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_get_type();
 
 		public static new GLib.GType GType { 
@@ -424,7 +424,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_unknown_glyphs_count(IntPtr raw);
 
 		public int UnknownGlyphsCount { 
@@ -435,10 +435,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_width(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_width(IntPtr raw, int width);
 
 		public int Width { 
@@ -452,10 +452,10 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int pango_layout_get_wrap(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_set_wrap(IntPtr raw, int wrap);
 
 		public Pango.WrapMode Wrap { 
@@ -469,14 +469,14 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_index_to_line_x(IntPtr raw, int index_, bool trailing, out int line, out int x_pos);
 
 		public void IndexToLineX(int index_, bool trailing, out int line, out int x_pos) {
 			pango_layout_index_to_line_x(Handle, index_, trailing, out line, out x_pos);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_index_to_pos(IntPtr raw, int index_, IntPtr pos);
 
 		public Pango.Rectangle IndexToPos(int index_) {
@@ -488,7 +488,7 @@ namespace Pango {
 			return pos;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_layout_is_ellipsized(IntPtr raw);
 
 		public bool IsEllipsized { 
@@ -499,7 +499,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_layout_is_wrapped(IntPtr raw);
 
 		public bool IsWrapped { 
@@ -510,14 +510,14 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_move_cursor_visually(IntPtr raw, bool strong, int old_index, int old_trailing, int direction, out int new_index, out int new_trailing);
 
 		public void MoveCursorVisually(bool strong, int old_index, int old_trailing, int direction, out int new_index, out int new_trailing) {
 			pango_layout_move_cursor_visually(Handle, strong, old_index, old_trailing, direction, out new_index, out new_trailing);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_layout_xy_to_index(IntPtr raw, int x, int y, out int index_, out int trailing);
 
 		public bool XyToIndex(int x, int y, out int index_, out int trailing) {

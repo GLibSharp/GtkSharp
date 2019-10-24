@@ -33,7 +33,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_best();
 
 		[Obsolete]
@@ -45,7 +45,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_best_depth();
 
 		[Obsolete]
@@ -57,7 +57,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_best_type();
 
 		[Obsolete]
@@ -69,7 +69,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_best_with_both(int depth, int visual_type);
 
 		[Obsolete]
@@ -79,7 +79,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_best_with_depth(int depth);
 
 		[Obsolete]
@@ -89,7 +89,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_best_with_type(int visual_type);
 
 		[Obsolete]
@@ -99,7 +99,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_bits_per_rgb(IntPtr raw);
 
 		[Obsolete]
@@ -111,14 +111,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_visual_get_blue_pixel_details(IntPtr raw, out uint mask, out int shift, out int precision);
 
 		public void GetBluePixelDetails(out uint mask, out int shift, out int precision) {
 			gdk_visual_get_blue_pixel_details(Handle, out mask, out shift, out precision);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_byte_order(IntPtr raw);
 
 		[Obsolete]
@@ -130,7 +130,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_colormap_size(IntPtr raw);
 
 		[Obsolete]
@@ -142,7 +142,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_depth(IntPtr raw);
 
 		public int Depth { 
@@ -153,21 +153,21 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_visual_get_green_pixel_details(IntPtr raw, out uint mask, out int shift, out int precision);
 
 		public void GetGreenPixelDetails(out uint mask, out int shift, out int precision) {
 			gdk_visual_get_green_pixel_details(Handle, out mask, out shift, out precision);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_visual_get_red_pixel_details(IntPtr raw, out uint mask, out int shift, out int precision);
 
 		public void GetRedPixelDetails(out uint mask, out int shift, out int precision) {
 			gdk_visual_get_red_pixel_details(Handle, out mask, out shift, out precision);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_screen(IntPtr raw);
 
 		public Gdk.Screen Screen { 
@@ -178,7 +178,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_system();
 
 		[Obsolete]
@@ -190,7 +190,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_get_type();
 
 		public static new GLib.GType GType { 
@@ -201,7 +201,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_visual_get_visual_type(IntPtr raw);
 
 		public Gdk.VisualType VisualType { 

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public TextTagTable (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_tag_table_new();
 
 		public TextTagTable () : base (IntPtr.Zero)
@@ -286,7 +286,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_text_tag_table_add(IntPtr raw, IntPtr tag);
 
 		public bool Add(Gtk.TextTag tag) {
@@ -295,7 +295,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_tag_table_foreach(IntPtr raw, GtkSharp.TextTagTableForeachNative func, IntPtr data);
 
 		public void Foreach(Gtk.TextTagTableForeach func) {
@@ -303,7 +303,7 @@ namespace Gtk {
 			gtk_text_tag_table_foreach(Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_text_tag_table_get_size(IntPtr raw);
 
 		public int Size { 
@@ -314,7 +314,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_tag_table_get_type();
 
 		public static new GLib.GType GType { 
@@ -325,7 +325,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_tag_table_lookup(IntPtr raw, IntPtr name);
 
 		public Gtk.TextTag Lookup(string name) {
@@ -336,7 +336,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_tag_table_remove(IntPtr raw, IntPtr tag);
 
 		public void Remove(Gtk.TextTag tag) {

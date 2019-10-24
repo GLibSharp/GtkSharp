@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ImageMenuItem (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_menu_item_new();
 
 		public ImageMenuItem () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_image_menu_item_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_menu_item_new_from_stock(IntPtr stock_id, IntPtr accel_group);
 
 		public ImageMenuItem (string stock_id, Gtk.AccelGroup accel_group) : base (IntPtr.Zero)
@@ -43,10 +43,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_stock_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_menu_item_get_image(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_menu_item_set_image(IntPtr raw, IntPtr image);
 
 		[Obsolete]
@@ -62,10 +62,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_image_menu_item_get_use_stock(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_menu_item_set_use_stock(IntPtr raw, bool use_stock);
 
 		[Obsolete]
@@ -81,10 +81,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_image_menu_item_get_always_show_image(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_menu_item_set_always_show_image(IntPtr raw, bool always_show);
 
 		[Obsolete]
@@ -100,7 +100,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_menu_item_set_accel_group(IntPtr raw, IntPtr accel_group);
 
 		[Obsolete]
@@ -159,7 +159,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_menu_item_get_type();
 
 		[Obsolete]

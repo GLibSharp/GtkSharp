@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public VScrollbar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_vscrollbar_new(IntPtr adjustment);
 
 		public VScrollbar (Gtk.Adjustment adjustment) : base (IntPtr.Zero)
@@ -46,7 +46,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_vscrollbar_get_type();
 
 		[Obsolete]

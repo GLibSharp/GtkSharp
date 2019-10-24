@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Grid (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_grid_new();
 
 		public Grid () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_grid_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_grid_get_row_spacing(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_set_row_spacing(IntPtr raw, uint spacing);
 
 		[GLib.Property ("row-spacing")]
@@ -43,10 +43,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_grid_get_column_spacing(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_set_column_spacing(IntPtr raw, uint spacing);
 
 		[GLib.Property ("column-spacing")]
@@ -61,10 +61,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_grid_get_row_homogeneous(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_set_row_homogeneous(IntPtr raw, bool homogeneous);
 
 		[GLib.Property ("row-homogeneous")]
@@ -79,10 +79,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_grid_get_column_homogeneous(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_set_column_homogeneous(IntPtr raw, bool homogeneous);
 
 		[GLib.Property ("column-homogeneous")]
@@ -97,10 +97,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_grid_get_baseline_row(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_set_baseline_row(IntPtr raw, int row);
 
 		[GLib.Property ("baseline-row")]
@@ -255,21 +255,21 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_attach(IntPtr raw, IntPtr child, int left, int top, int width, int height);
 
 		public void Attach(Gtk.Widget child, int left, int top, int width, int height) {
 			gtk_grid_attach(Handle, child == null ? IntPtr.Zero : child.Handle, left, top, width, height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_attach_next_to(IntPtr raw, IntPtr child, IntPtr sibling, int side, int width, int height);
 
 		public void AttachNextTo(Gtk.Widget child, Gtk.Widget sibling, Gtk.PositionType side, int width, int height) {
 			gtk_grid_attach_next_to(Handle, child == null ? IntPtr.Zero : child.Handle, sibling == null ? IntPtr.Zero : sibling.Handle, (int) side, width, height);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_grid_get_child_at(IntPtr raw, int left, int top);
 
 		public Gtk.Widget GetChildAt(int left, int top) {
@@ -278,7 +278,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_grid_get_row_baseline_position(IntPtr raw, int row);
 
 		public Gtk.BaselinePosition GetRowBaselinePosition(int row) {
@@ -287,7 +287,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_grid_get_type();
 
 		public static new GLib.GType GType { 
@@ -298,52 +298,52 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_insert_column(IntPtr raw, int position);
 
 		public void InsertColumn(int position) {
 			gtk_grid_insert_column(Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_insert_next_to(IntPtr raw, IntPtr sibling, int side);
 
 		public void InsertNextTo(Gtk.Widget sibling, Gtk.PositionType side) {
 			gtk_grid_insert_next_to(Handle, sibling == null ? IntPtr.Zero : sibling.Handle, (int) side);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_insert_row(IntPtr raw, int position);
 
 		public void InsertRow(int position) {
 			gtk_grid_insert_row(Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_remove_column(IntPtr raw, int position);
 
 		public void RemoveColumn(int position) {
 			gtk_grid_remove_column(Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_remove_row(IntPtr raw, int position);
 
 		public void RemoveRow(int position) {
 			gtk_grid_remove_row(Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_grid_set_row_baseline_position(IntPtr raw, int row, int pos);
 
 		public void SetRowBaselinePosition(int row, Gtk.BaselinePosition pos) {
 			gtk_grid_set_row_baseline_position(Handle, row, (int) pos);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_orientable_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_orientable_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]

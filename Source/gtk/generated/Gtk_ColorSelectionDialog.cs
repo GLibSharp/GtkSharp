@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ColorSelectionDialog (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_selection_dialog_new(IntPtr title);
 
 		public ColorSelectionDialog (string title) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_title);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_selection_dialog_get_color_selection(IntPtr raw);
 
 		[Obsolete]
@@ -122,7 +122,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_color_selection_dialog_get_type();
 
 		[Obsolete]

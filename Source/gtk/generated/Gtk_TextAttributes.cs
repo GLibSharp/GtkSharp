@@ -296,7 +296,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_attributes_copy(IntPtr raw);
 
 		public Gtk.TextAttributes Copy() {
@@ -305,14 +305,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_attributes_copy_values(IntPtr raw, IntPtr dest);
 
 		public void CopyValues(Gtk.TextAttributes dest) {
 			gtk_text_attributes_copy_values(Handle, dest == null ? IntPtr.Zero : dest.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_attributes_get_type();
 
 		public static GLib.GType GType { 
@@ -325,7 +325,7 @@ namespace Gtk {
 
 		public TextAttributes(IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_attributes_new();
 
 		public TextAttributes () 
@@ -333,7 +333,7 @@ namespace Gtk {
 			Raw = gtk_text_attributes_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_attributes_ref(IntPtr raw);
 
 		protected override void Ref (IntPtr raw)
@@ -344,7 +344,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_text_attributes_unref(IntPtr raw);
 
 		protected override void Unref (IntPtr raw)

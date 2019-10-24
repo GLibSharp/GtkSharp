@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Scale (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scale_new(int orientation, IntPtr adjustment);
 
 		public Scale (Gtk.Orientation orientation, Gtk.Adjustment adjustment) : base (IntPtr.Zero)
@@ -29,7 +29,7 @@ namespace Gtk {
 			Raw = gtk_scale_new((int) orientation, adjustment == null ? IntPtr.Zero : adjustment.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scale_new_with_range(int orientation, double min, double max, double step);
 
 		public Scale (Gtk.Orientation orientation, double min, double max, double step) : base (IntPtr.Zero)
@@ -43,10 +43,10 @@ namespace Gtk {
 			Raw = gtk_scale_new_with_range((int) orientation, min, max, step);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_scale_get_digits(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_set_digits(IntPtr raw, int digits);
 
 		[GLib.Property ("digits")]
@@ -61,10 +61,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_scale_get_draw_value(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_set_draw_value(IntPtr raw, bool draw_value);
 
 		[GLib.Property ("draw-value")]
@@ -79,10 +79,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_scale_get_has_origin(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_set_has_origin(IntPtr raw, bool has_origin);
 
 		[GLib.Property ("has-origin")]
@@ -97,10 +97,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_scale_get_value_pos(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_set_value_pos(IntPtr raw, int pos);
 
 		[GLib.Property ("value-pos")]
@@ -383,7 +383,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_add_mark(IntPtr raw, double value, int position, IntPtr markup);
 
 		public void AddMark(double value, Gtk.PositionType position, string markup) {
@@ -392,14 +392,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_markup);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_clear_marks(IntPtr raw);
 
 		public void ClearMarks() {
 			gtk_scale_clear_marks(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scale_get_layout(IntPtr raw);
 
 		public Pango.Layout Layout { 
@@ -410,14 +410,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scale_get_layout_offsets(IntPtr raw, out int x, out int y);
 
 		public void GetLayoutOffsets(out int x, out int y) {
 			gtk_scale_get_layout_offsets(Handle, out x, out y);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scale_get_type();
 
 		public static new GLib.GType GType { 

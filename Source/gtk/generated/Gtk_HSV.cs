@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public HSV (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_hsv_new();
 
 		public HSV () : base (IntPtr.Zero)
@@ -215,7 +215,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_hsv_get_color(IntPtr raw, out double h, out double s, out double v);
 
 		[Obsolete]
@@ -223,7 +223,7 @@ namespace Gtk {
 			gtk_hsv_get_color(Handle, out h, out s, out v);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_hsv_get_metrics(IntPtr raw, out int size, out int ring_width);
 
 		[Obsolete]
@@ -231,7 +231,7 @@ namespace Gtk {
 			gtk_hsv_get_metrics(Handle, out size, out ring_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_hsv_get_type();
 
 		[Obsolete]
@@ -243,7 +243,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_hsv_is_adjusting(IntPtr raw);
 
 		[Obsolete]
@@ -255,7 +255,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_hsv_set_color(IntPtr raw, double h, double s, double v);
 
 		[Obsolete]
@@ -263,7 +263,7 @@ namespace Gtk {
 			gtk_hsv_set_color(Handle, h, s, v);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_hsv_set_metrics(IntPtr raw, int size, int ring_width);
 
 		[Obsolete]
@@ -271,7 +271,7 @@ namespace Gtk {
 			gtk_hsv_set_metrics(Handle, size, ring_width);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_hsv_to_rgb(double h, double s, double v, out double r, out double g, out double b);
 
 		public static void ToRgb(double h, double s, double v, out double r, out double g, out double b) {

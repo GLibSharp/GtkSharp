@@ -18,10 +18,10 @@ namespace Pango {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_renderer_get_matrix(IntPtr raw);
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_set_matrix(IntPtr raw, IntPtr value);
 
 		public Pango.Matrix Matrix {
@@ -701,35 +701,35 @@ namespace Pango {
 
 		// End of the ABI representation.
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_activate(IntPtr raw);
 
 		public void Activate() {
 			pango_renderer_activate(Handle);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_deactivate(IntPtr raw);
 
 		public void Deactivate() {
 			pango_renderer_deactivate(Handle);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_error_underline(IntPtr raw, int x, int y, int width, int height);
 
 		public void DrawErrorUnderline(int x, int y, int width, int height) {
 			pango_renderer_draw_error_underline(Handle, x, y, width, height);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_glyph(IntPtr raw, IntPtr font, uint glyph, double x, double y);
 
 		public void DrawGlyph(Pango.Font font, uint glyph, double x, double y) {
 			pango_renderer_draw_glyph(Handle, font == null ? IntPtr.Zero : font.Handle, glyph, x, y);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_glyph_item(IntPtr raw, IntPtr text, IntPtr glyph_item, int x, int y);
 
 		public void DrawGlyphItem(string text, Pango.GlyphItem glyph_item, int x, int y) {
@@ -740,42 +740,42 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_glyph_item);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_glyphs(IntPtr raw, IntPtr font, IntPtr glyphs, int x, int y);
 
 		public void DrawGlyphs(Pango.Font font, Pango.GlyphString glyphs, int x, int y) {
 			pango_renderer_draw_glyphs(Handle, font == null ? IntPtr.Zero : font.Handle, glyphs == null ? IntPtr.Zero : glyphs.Handle, x, y);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_layout(IntPtr raw, IntPtr layout, int x, int y);
 
 		public void DrawLayout(Pango.Layout layout, int x, int y) {
 			pango_renderer_draw_layout(Handle, layout == null ? IntPtr.Zero : layout.Handle, x, y);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_layout_line(IntPtr raw, IntPtr line, int x, int y);
 
 		public void DrawLayoutLine(Pango.LayoutLine line, int x, int y) {
 			pango_renderer_draw_layout_line(Handle, line == null ? IntPtr.Zero : line.Handle, x, y);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_rectangle(IntPtr raw, int part, int x, int y, int width, int height);
 
 		public void DrawRectangle(Pango.RenderPart part, int x, int y, int width, int height) {
 			pango_renderer_draw_rectangle(Handle, (int) part, x, y, width, height);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_draw_trapezoid(IntPtr raw, int part, double y1_, double x11, double x21, double y2, double x12, double x22);
 
 		public void DrawTrapezoid(Pango.RenderPart part, double y1_, double x11, double x21, double y2, double x12, double x22) {
 			pango_renderer_draw_trapezoid(Handle, (int) part, y1_, x11, x21, y2, x12, x22);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern ushort pango_renderer_get_alpha(IntPtr raw, int part);
 
 		public ushort GetAlpha(Pango.RenderPart part) {
@@ -784,7 +784,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_renderer_get_color(IntPtr raw, int part);
 
 		public Pango.Color GetColor(Pango.RenderPart part) {
@@ -793,7 +793,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_renderer_get_layout(IntPtr raw);
 
 		public Pango.Layout Layout { 
@@ -804,7 +804,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_renderer_get_layout_line(IntPtr raw);
 
 		public Pango.LayoutLine LayoutLine { 
@@ -815,7 +815,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_renderer_get_type();
 
 		public static new GLib.GType GType { 
@@ -826,21 +826,21 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_part_changed(IntPtr raw, int part);
 
 		public void PartChanged(Pango.RenderPart part) {
 			pango_renderer_part_changed(Handle, (int) part);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_set_alpha(IntPtr raw, int part, ushort alpha);
 
 		public void SetAlpha(Pango.RenderPart part, ushort alpha) {
 			pango_renderer_set_alpha(Handle, (int) part, alpha);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_renderer_set_color(IntPtr raw, int part, IntPtr color);
 
 		public void SetColor(Pango.RenderPart part, Pango.Color color) {

@@ -126,7 +126,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_misc_get_alignment(IntPtr raw, out float xalign, out float yalign);
 
 		[Obsolete]
@@ -134,7 +134,7 @@ namespace Gtk {
 			gtk_misc_get_alignment(Handle, out xalign, out yalign);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_misc_get_padding(IntPtr raw, out int xpad, out int ypad);
 
 		[Obsolete]
@@ -142,7 +142,7 @@ namespace Gtk {
 			gtk_misc_get_padding(Handle, out xpad, out ypad);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_misc_get_type();
 
 		[Obsolete]
@@ -154,7 +154,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_misc_set_alignment(IntPtr raw, float xalign, float yalign);
 
 		[Obsolete]
@@ -162,7 +162,7 @@ namespace Gtk {
 			gtk_misc_set_alignment(Handle, xalign, yalign);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_misc_set_padding(IntPtr raw, int xpad, int ypad);
 
 		[Obsolete]

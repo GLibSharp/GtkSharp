@@ -17,7 +17,7 @@ namespace Gtk {
 	}
 
 	internal class TreeViewGridLinesGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_view_grid_lines_get_type ();
 
 		public static GLib.GType GType {

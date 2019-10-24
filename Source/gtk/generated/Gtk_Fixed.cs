@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Fixed (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_fixed_new();
 
 		public Fixed () : base (IntPtr.Zero)
@@ -114,7 +114,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_fixed_get_type();
 
 		public static new GLib.GType GType { 
@@ -125,14 +125,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_fixed_move(IntPtr raw, IntPtr widget, int x, int y);
 
 		public void Move(Gtk.Widget widget, int x, int y) {
 			gtk_fixed_move(Handle, widget == null ? IntPtr.Zero : widget.Handle, x, y);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_fixed_put(IntPtr raw, IntPtr widget, int x, int y);
 
 		public void Put(Gtk.Widget widget, int x, int y) {

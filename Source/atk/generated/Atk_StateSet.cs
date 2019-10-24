@@ -13,7 +13,7 @@ namespace Atk {
 
 		public StateSet (IntPtr raw) : base(raw) {}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_state_set_new();
 
 		public StateSet () : base (IntPtr.Zero)
@@ -40,7 +40,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_state_set_add_state(IntPtr raw, int type);
 
 		public bool AddState(Atk.StateType type) {
@@ -49,7 +49,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_state_set_add_states(IntPtr raw, out int types, int n_types);
 
 		public Atk.StateType AddStates(int n_types) {
@@ -60,7 +60,7 @@ namespace Atk {
 			return types;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_state_set_and_sets(IntPtr raw, IntPtr compare_set);
 
 		public Atk.StateSet AndSets(Atk.StateSet compare_set) {
@@ -69,14 +69,14 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_state_set_clear_states(IntPtr raw);
 
 		public void ClearStates() {
 			atk_state_set_clear_states(Handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_state_set_contains_state(IntPtr raw, int type);
 
 		public bool ContainsState(Atk.StateType type) {
@@ -85,7 +85,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_state_set_contains_states(IntPtr raw, out int types, int n_types);
 
 		public bool ContainsStates(out Atk.StateType types, int n_types) {
@@ -96,7 +96,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_state_set_get_type();
 
 		public static new GLib.GType GType { 
@@ -107,7 +107,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_state_set_is_empty(IntPtr raw);
 
 		public bool IsEmpty { 
@@ -118,7 +118,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_state_set_or_sets(IntPtr raw, IntPtr compare_set);
 
 		public Atk.StateSet OrSets(Atk.StateSet compare_set) {
@@ -127,7 +127,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_state_set_remove_state(IntPtr raw, int type);
 
 		public bool RemoveState(Atk.StateType type) {
@@ -136,7 +136,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_state_set_xor_sets(IntPtr raw, IntPtr compare_set);
 
 		public Atk.StateSet XorSets(Atk.StateSet compare_set) {

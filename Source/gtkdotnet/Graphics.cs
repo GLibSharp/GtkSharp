@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 namespace Gtk.DotNet {
 	public class Graphics {
 
-		private const string GdkNativeDll = "libgdk-3-0.dll";
+		private const string GdkNativeDll = "gdk-3-0.dll";
 		
 		private Graphics () {}
 

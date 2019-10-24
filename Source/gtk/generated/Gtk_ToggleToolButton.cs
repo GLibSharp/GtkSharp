@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ToggleToolButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toggle_tool_button_new();
 
 		public ToggleToolButton () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_toggle_tool_button_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toggle_tool_button_new_from_stock(IntPtr stock_id);
 
 		public ToggleToolButton (string stock_id) : base (IntPtr.Zero)
@@ -43,10 +43,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_stock_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_toggle_tool_button_get_active(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_toggle_tool_button_set_active(IntPtr raw, bool is_active);
 
 		[GLib.Property ("active")]
@@ -180,7 +180,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_toggle_tool_button_get_type();
 
 		public static new GLib.GType GType { 

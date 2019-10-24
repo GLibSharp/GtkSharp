@@ -1206,7 +1206,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_background_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -1216,7 +1216,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_border(IntPtr raw, int state, IntPtr border);
 
 		[Obsolete]
@@ -1226,7 +1226,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_border);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_border_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -1236,7 +1236,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_color(IntPtr raw, int state, IntPtr color);
 
 		[Obsolete]
@@ -1246,7 +1246,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_color);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_theming_engine_get_direction(IntPtr raw);
 
 		[Obsolete]
@@ -1258,7 +1258,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_theming_engine_get_font(IntPtr raw, int state);
 
 		[Obsolete]
@@ -1268,7 +1268,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_theming_engine_get_junction_sides(IntPtr raw);
 
 		[Obsolete]
@@ -1280,7 +1280,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_margin(IntPtr raw, int state, IntPtr margin);
 
 		[Obsolete]
@@ -1290,7 +1290,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_margin);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_padding(IntPtr raw, int state, IntPtr padding);
 
 		[Obsolete]
@@ -1300,7 +1300,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_padding);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_theming_engine_get_path(IntPtr raw);
 
 		[Obsolete]
@@ -1312,7 +1312,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_property(IntPtr raw, IntPtr property, int state, IntPtr value);
 
 		[Obsolete]
@@ -1324,7 +1324,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_theming_engine_get_screen(IntPtr raw);
 
 		[Obsolete]
@@ -1336,7 +1336,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_theming_engine_get_state(IntPtr raw);
 
 		[Obsolete]
@@ -1348,7 +1348,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_style_property(IntPtr raw, IntPtr property_name, IntPtr value);
 
 		[Obsolete]
@@ -1360,7 +1360,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_style_valist(IntPtr raw, IntPtr args);
 
 		[Obsolete]
@@ -1368,7 +1368,7 @@ namespace Gtk {
 			gtk_theming_engine_get_style_valist(Handle, args);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_theming_engine_get_type();
 
 		[Obsolete]
@@ -1380,7 +1380,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_get_valist(IntPtr raw, int state, IntPtr args);
 
 		[Obsolete]
@@ -1388,7 +1388,7 @@ namespace Gtk {
 			gtk_theming_engine_get_valist(Handle, (int) state, args);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_theming_engine_has_class(IntPtr raw, IntPtr style_class);
 
 		[Obsolete]
@@ -1400,7 +1400,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_theming_engine_has_region(IntPtr raw, IntPtr style_region, out int flags);
 
 		[Obsolete]
@@ -1414,7 +1414,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_theming_engine_load(IntPtr name);
 
 		[Obsolete]
@@ -1426,7 +1426,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_theming_engine_lookup_color(IntPtr raw, IntPtr color_name, IntPtr color);
 
 		[Obsolete]
@@ -1440,7 +1440,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_theming_engine_register_property(IntPtr name_space, GtkSharp.StylePropertyParserNative parse_func, IntPtr pspec);
 
 		[Obsolete]
@@ -1451,7 +1451,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name_space);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_theming_engine_state_is_running(IntPtr raw, int state, out double progress);
 
 		[Obsolete]

@@ -39,7 +39,7 @@ namespace Pango {
 	}
 
 	internal class AttrTypeGType {
-		[DllImport ("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_attr_type_get_type ();
 
 		public static GLib.GType GType {

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PageSetup (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_new();
 
 		public PageSetup () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_page_setup_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_page_setup_new_from_file(IntPtr file_name, out IntPtr error);
 
 		public unsafe PageSetup (string file_name) : base (IntPtr.Zero)
@@ -43,7 +43,7 @@ namespace Gtk {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_new_from_gvariant(IntPtr variant);
 
 		public PageSetup (GLib.Variant variant) : base (IntPtr.Zero)
@@ -57,7 +57,7 @@ namespace Gtk {
 			Raw = gtk_page_setup_new_from_gvariant(variant == null ? IntPtr.Zero : variant.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_page_setup_new_from_key_file(IntPtr key_file, IntPtr group_name, out IntPtr error);
 
 		public unsafe PageSetup (GLib.KeyFile key_file, string group_name) : base (IntPtr.Zero)
@@ -90,7 +90,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_copy(IntPtr raw);
 
 		public Gtk.PageSetup Copy() {
@@ -99,7 +99,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_bottom_margin(IntPtr raw, int unit);
 
 		public double GetBottomMargin(Gtk.Unit unit) {
@@ -108,7 +108,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_left_margin(IntPtr raw, int unit);
 
 		public double GetLeftMargin(Gtk.Unit unit) {
@@ -117,10 +117,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_page_setup_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_orientation(IntPtr raw, int orientation);
 
 		public Gtk.PageOrientation Orientation { 
@@ -134,7 +134,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_page_height(IntPtr raw, int unit);
 
 		public double GetPageHeight(Gtk.Unit unit) {
@@ -143,7 +143,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_page_width(IntPtr raw, int unit);
 
 		public double GetPageWidth(Gtk.Unit unit) {
@@ -152,7 +152,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_paper_height(IntPtr raw, int unit);
 
 		public double GetPaperHeight(Gtk.Unit unit) {
@@ -161,10 +161,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_get_paper_size(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_paper_size(IntPtr raw, IntPtr size);
 
 		public Gtk.PaperSize PaperSize { 
@@ -178,7 +178,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_paper_width(IntPtr raw, int unit);
 
 		public double GetPaperWidth(Gtk.Unit unit) {
@@ -187,7 +187,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_right_margin(IntPtr raw, int unit);
 
 		public double GetRightMargin(Gtk.Unit unit) {
@@ -196,7 +196,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_page_setup_get_top_margin(IntPtr raw, int unit);
 
 		public double GetTopMargin(Gtk.Unit unit) {
@@ -205,7 +205,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_get_type();
 
 		public static new GLib.GType GType { 
@@ -216,7 +216,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_page_setup_load_file(IntPtr raw, IntPtr file_name, out IntPtr error);
 
 		public unsafe bool LoadFile(string file_name) {
@@ -229,7 +229,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_page_setup_load_key_file(IntPtr raw, IntPtr key_file, IntPtr group_name, out IntPtr error);
 
 		public unsafe bool LoadKeyFile(GLib.KeyFile key_file, string group_name) {
@@ -242,21 +242,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_bottom_margin(IntPtr raw, double margin, int unit);
 
 		public void SetBottomMargin(double margin, Gtk.Unit unit) {
 			gtk_page_setup_set_bottom_margin(Handle, margin, (int) unit);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_left_margin(IntPtr raw, double margin, int unit);
 
 		public void SetLeftMargin(double margin, Gtk.Unit unit) {
 			gtk_page_setup_set_left_margin(Handle, margin, (int) unit);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_paper_size_and_default_margins(IntPtr raw, IntPtr size);
 
 		public Gtk.PaperSize PaperSizeAndDefaultMargins { 
@@ -265,21 +265,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_right_margin(IntPtr raw, double margin, int unit);
 
 		public void SetRightMargin(double margin, Gtk.Unit unit) {
 			gtk_page_setup_set_right_margin(Handle, margin, (int) unit);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_set_top_margin(IntPtr raw, double margin, int unit);
 
 		public void SetTopMargin(double margin, Gtk.Unit unit) {
 			gtk_page_setup_set_top_margin(Handle, margin, (int) unit);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_page_setup_to_file(IntPtr raw, IntPtr file_name, out IntPtr error);
 
 		public unsafe bool ToFile(string file_name) {
@@ -292,7 +292,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_page_setup_to_gvariant(IntPtr raw);
 
 		public GLib.Variant ToGvariant() {
@@ -301,7 +301,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_page_setup_to_key_file(IntPtr raw, IntPtr key_file, IntPtr group_name);
 
 		public void ToKeyFile(GLib.KeyFile key_file, string group_name) {

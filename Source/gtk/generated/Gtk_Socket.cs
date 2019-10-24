@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Socket (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_socket_new();
 
 		public Socket () : base (IntPtr.Zero)
@@ -45,14 +45,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_socket_add_id(IntPtr raw, UIntPtr window);
 
 		public void AddId(ulong window) {
 			gtk_socket_add_id(Handle, new UIntPtr (window));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern UIntPtr gtk_socket_get_id(IntPtr raw);
 
 		public ulong Id { 
@@ -63,7 +63,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_socket_get_plug_window(IntPtr raw);
 
 		public Gdk.Window PlugWindow { 
@@ -74,7 +74,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_socket_get_type();
 
 		public static new GLib.GType GType { 

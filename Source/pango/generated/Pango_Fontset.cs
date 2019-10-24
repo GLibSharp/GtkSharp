@@ -18,7 +18,7 @@ namespace Pango {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_fontset_foreach(IntPtr raw, PangoSharp.FontsetForeachFuncNative func, IntPtr data);
 
 		public void Foreach(Pango.FontsetForeachFunc func) {
@@ -26,7 +26,7 @@ namespace Pango {
 			pango_fontset_foreach(Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_fontset_get_font(IntPtr raw, uint wc);
 
 		public Pango.Font GetFont(uint wc) {
@@ -35,7 +35,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_fontset_get_metrics(IntPtr raw);
 
 		public Pango.FontMetrics Metrics { 
@@ -46,7 +46,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_fontset_get_type();
 
 		public static new GLib.GType GType { 

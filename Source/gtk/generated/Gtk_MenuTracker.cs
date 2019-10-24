@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public MenuTracker(IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_tracker_new(IntPtr observer, IntPtr model, bool with_separators, bool merge_sections, bool mac_os_mode, IntPtr action_namespace, GtkSharp.MenuTrackerInsertFuncNative insert_func, GtkSharp.MenuTrackerRemoveFuncNative remove_func, IntPtr user_data);
 
 		public MenuTracker (Gtk.IActionObservable observer, GLib.MenuModel model, bool with_separators, bool merge_sections, bool mac_os_mode, string action_namespace, Gtk.MenuTrackerInsertFunc insert_func, Gtk.MenuTrackerRemoveFunc remove_func) 
@@ -25,7 +25,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_action_namespace);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_menu_tracker_new_for_item_link(IntPtr item, IntPtr link_name, bool merge_sections, bool mac_os_mode, GtkSharp.MenuTrackerInsertFuncNative insert_func, GtkSharp.MenuTrackerRemoveFuncNative remove_func, IntPtr user_data);
 
 		public MenuTracker (Gtk.MenuTrackerItem item, string link_name, bool merge_sections, bool mac_os_mode, Gtk.MenuTrackerInsertFunc insert_func, Gtk.MenuTrackerRemoveFunc remove_func) 
@@ -37,7 +37,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_link_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_menu_tracker_free(IntPtr raw);
 
 		protected override void Free (IntPtr raw)

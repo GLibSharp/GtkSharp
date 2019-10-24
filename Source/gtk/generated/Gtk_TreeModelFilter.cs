@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public TreeModelFilter (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_filter_new(IntPtr child_model, IntPtr root);
 
 		public TreeModelFilter (Gtk.ITreeModel child_model, Gtk.TreePath root) : base (IntPtr.Zero)
@@ -236,14 +236,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_filter_clear_cache(IntPtr raw);
 
 		public void ClearCache() {
 			gtk_tree_model_filter_clear_cache(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_filter_convert_child_path_to_path(IntPtr raw, IntPtr child_path);
 
 		public Gtk.TreePath ConvertChildPathToPath(Gtk.TreePath child_path) {
@@ -252,7 +252,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_filter_convert_iter_to_child_iter(IntPtr raw, IntPtr child_iter, IntPtr filter_iter);
 
 		public Gtk.TreeIter ConvertIterToChildIter(Gtk.TreeIter filter_iter) {
@@ -266,7 +266,7 @@ namespace Gtk {
 			return child_iter;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_filter_convert_path_to_child_path(IntPtr raw, IntPtr filter_path);
 
 		public Gtk.TreePath ConvertPathToChildPath(Gtk.TreePath filter_path) {
@@ -275,7 +275,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_filter_get_model(IntPtr raw);
 
 		public Gtk.ITreeModel Model { 
@@ -286,7 +286,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_filter_get_type();
 
 		public static new GLib.GType GType { 
@@ -297,14 +297,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_filter_refilter(IntPtr raw);
 
 		public void Refilter() {
 			gtk_tree_model_filter_refilter(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_filter_set_visible_column(IntPtr raw, int column);
 
 		public int VisibleColumn { 
@@ -313,7 +313,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_filter_set_visible_func(IntPtr raw, GtkSharp.TreeModelFilterVisibleFuncNative func, IntPtr data, GLib.DestroyNotify destroy);
 
 		public Gtk.TreeModelFilterVisibleFunc VisibleFunc { 
@@ -332,7 +332,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_foreach(IntPtr raw, GtkSharp.TreeModelForeachFuncNative func, IntPtr user_data);
 
 		public void Foreach(Gtk.TreeModelForeachFunc func) {
@@ -340,7 +340,7 @@ namespace Gtk {
 			gtk_tree_model_foreach(Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_get_column_type(IntPtr raw, int index_);
 
 		public GLib.GType GetColumnType(int index_) {
@@ -349,7 +349,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tree_model_get_flags(IntPtr raw);
 
 		public Gtk.TreeModelFlags Flags { 
@@ -360,7 +360,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_get_iter(IntPtr raw, IntPtr iter, IntPtr path);
 
 		public bool GetIter(out Gtk.TreeIter iter, Gtk.TreePath path) {
@@ -372,7 +372,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_get_iter_first(IntPtr raw, IntPtr iter);
 
 		public bool GetIterFirst(out Gtk.TreeIter iter) {
@@ -384,7 +384,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_get_iter_from_string(IntPtr raw, IntPtr iter, IntPtr path_string);
 
 		public bool GetIterFromString(out Gtk.TreeIter iter, string path_string) {
@@ -398,7 +398,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tree_model_get_n_columns(IntPtr raw);
 
 		public int NColumns { 
@@ -409,7 +409,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_get_path(IntPtr raw, IntPtr iter);
 
 		public Gtk.TreePath GetPath(Gtk.TreeIter iter) {
@@ -420,7 +420,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_model_get_string_from_iter(IntPtr raw, IntPtr iter);
 
 		public string GetStringFromIter(Gtk.TreeIter iter) {
@@ -431,7 +431,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_get_valist(IntPtr raw, IntPtr iter, IntPtr var_args);
 
 		public void GetValist(Gtk.TreeIter iter, IntPtr var_args) {
@@ -440,7 +440,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_get_value(IntPtr raw, IntPtr iter, int column, IntPtr value);
 
 		public void GetValue(Gtk.TreeIter iter, int column, ref GLib.Value value) {
@@ -452,7 +452,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_iter_children(IntPtr raw, IntPtr iter, IntPtr parent);
 
 		public bool IterChildren(out Gtk.TreeIter iter, Gtk.TreeIter parent) {
@@ -466,7 +466,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_iter_has_child(IntPtr raw, IntPtr iter);
 
 		public bool IterHasChild(Gtk.TreeIter iter) {
@@ -477,7 +477,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tree_model_iter_n_children(IntPtr raw, IntPtr iter);
 
 		public int IterNChildren(Gtk.TreeIter iter) {
@@ -488,7 +488,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_iter_next(IntPtr raw, IntPtr iter);
 
 		public bool IterNext(ref Gtk.TreeIter iter) {
@@ -500,7 +500,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_iter_nth_child(IntPtr raw, IntPtr iter, IntPtr parent, int n);
 
 		public bool IterNthChild(out Gtk.TreeIter iter, Gtk.TreeIter parent, int n) {
@@ -514,7 +514,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_iter_parent(IntPtr raw, IntPtr iter, IntPtr child);
 
 		public bool IterParent(out Gtk.TreeIter iter, Gtk.TreeIter child) {
@@ -528,7 +528,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_model_iter_previous(IntPtr raw, IntPtr iter);
 
 		public bool IterPrevious(ref Gtk.TreeIter iter) {
@@ -540,7 +540,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_ref_node(IntPtr raw, IntPtr iter);
 
 		public void RefNode(Gtk.TreeIter iter) {
@@ -549,7 +549,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_row_changed(IntPtr raw, IntPtr path, IntPtr iter);
 
 		public void EmitRowChanged(Gtk.TreePath path, Gtk.TreeIter iter) {
@@ -558,14 +558,14 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_row_deleted(IntPtr raw, IntPtr path);
 
 		public void EmitRowDeleted(Gtk.TreePath path) {
 			gtk_tree_model_row_deleted(Handle, path == null ? IntPtr.Zero : path.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_row_has_child_toggled(IntPtr raw, IntPtr path, IntPtr iter);
 
 		public void EmitRowHasChildToggled(Gtk.TreePath path, Gtk.TreeIter iter) {
@@ -574,7 +574,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_row_inserted(IntPtr raw, IntPtr path, IntPtr iter);
 
 		public void EmitRowInserted(Gtk.TreePath path, Gtk.TreeIter iter) {
@@ -583,7 +583,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_rows_reordered(IntPtr raw, IntPtr path, IntPtr iter, int[] new_order);
 
 		public void EmitRowsReordered(Gtk.TreePath path, Gtk.TreeIter iter, int[] new_order) {
@@ -592,7 +592,7 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_iter);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_rows_reordered_with_length(IntPtr raw, IntPtr path, IntPtr iter, out int new_order, int length);
 
 		public int RowsReorderedWithLength(Gtk.TreePath path, Gtk.TreeIter iter, int length) {
@@ -603,7 +603,7 @@ namespace Gtk {
 			return new_order;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_model_unref_node(IntPtr raw, IntPtr iter);
 
 		public void UnrefNode(Gtk.TreeIter iter) {
@@ -862,7 +862,7 @@ namespace Gtk {
 				v.Dispose ();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_source_drag_data_delete(IntPtr raw, IntPtr path);
 
 		public bool DragDataDelete(Gtk.TreePath path) {
@@ -871,7 +871,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_source_drag_data_get(IntPtr raw, IntPtr path, IntPtr selection_data);
 
 		public bool DragDataGet(Gtk.TreePath path, Gtk.SelectionData selection_data) {
@@ -880,7 +880,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_source_row_draggable(IntPtr raw, IntPtr path);
 
 		public bool RowDraggable(Gtk.TreePath path) {

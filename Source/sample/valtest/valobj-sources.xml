@@ -1,6 +1,6 @@
 <gapi-parser-input>
     <api filename="valobj-api.xml">
-	<library name="libvalobj.dll">
+	<library name="valobj.dll">
 	    <namespace name="Gtksharp">
 		<dir>.</dir>
 	    </namespace>

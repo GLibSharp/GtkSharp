@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ToolPalette (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_new();
 
 		public ToolPalette () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_tool_palette_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_palette_get_icon_size(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_set_icon_size(IntPtr raw, int icon_size);
 
 		[GLib.Property ("icon-size")]
@@ -162,14 +162,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_add_drag_dest(IntPtr raw, IntPtr widget, int flags, int targets, int actions);
 
 		public void AddDragDest(Gtk.Widget widget, Gtk.DestDefaults flags, Gtk.ToolPaletteDragTargets targets, Gdk.DragAction actions) {
 			gtk_tool_palette_add_drag_dest(Handle, widget == null ? IntPtr.Zero : widget.Handle, (int) flags, (int) targets, (int) actions);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_get_drag_item(IntPtr raw, IntPtr selection);
 
 		public Gtk.Widget GetDragItem(Gtk.SelectionData selection) {
@@ -178,7 +178,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_get_drag_target_group();
 
 		public static Gtk.TargetEntry DragTargetGroup { 
@@ -189,7 +189,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_get_drag_target_item();
 
 		public static Gtk.TargetEntry DragTargetItem { 
@@ -200,7 +200,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_get_drop_group(IntPtr raw, int x, int y);
 
 		public Gtk.ToolItemGroup GetDropGroup(int x, int y) {
@@ -209,7 +209,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_get_drop_item(IntPtr raw, int x, int y);
 
 		public Gtk.ToolItem GetDropItem(int x, int y) {
@@ -218,7 +218,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tool_palette_get_exclusive(IntPtr raw, IntPtr group);
 
 		public bool GetExclusive(Gtk.ToolItemGroup group) {
@@ -227,7 +227,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tool_palette_get_expand(IntPtr raw, IntPtr group);
 
 		public bool GetExpand(Gtk.ToolItemGroup group) {
@@ -236,7 +236,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_palette_get_group_position(IntPtr raw, IntPtr group);
 
 		public int GetGroupPosition(Gtk.ToolItemGroup group) {
@@ -245,10 +245,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_tool_palette_get_style(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_set_style(IntPtr raw, int style);
 
 		public new Gtk.ToolbarStyle Style { 
@@ -262,7 +262,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tool_palette_get_type();
 
 		public static new GLib.GType GType { 
@@ -273,7 +273,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_set_drag_source(IntPtr raw, int targets);
 
 		public Gtk.ToolPaletteDragTargets DragSource { 
@@ -282,45 +282,45 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_set_exclusive(IntPtr raw, IntPtr group, bool exclusive);
 
 		public void SetExclusive(Gtk.ToolItemGroup group, bool exclusive) {
 			gtk_tool_palette_set_exclusive(Handle, group == null ? IntPtr.Zero : group.Handle, exclusive);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_set_expand(IntPtr raw, IntPtr group, bool expand);
 
 		public void SetExpand(Gtk.ToolItemGroup group, bool expand) {
 			gtk_tool_palette_set_expand(Handle, group == null ? IntPtr.Zero : group.Handle, expand);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_set_group_position(IntPtr raw, IntPtr group, int position);
 
 		public void SetGroupPosition(Gtk.ToolItemGroup group, int position) {
 			gtk_tool_palette_set_group_position(Handle, group == null ? IntPtr.Zero : group.Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_unset_icon_size(IntPtr raw);
 
 		public void UnsetIconSize() {
 			gtk_tool_palette_unset_icon_size(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tool_palette_unset_style(IntPtr raw);
 
 		public void UnsetStyle() {
 			gtk_tool_palette_unset_style(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_orientable_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_orientable_set_orientation(IntPtr raw, int orientation);
 
 		[GLib.Property ("orientation")]
@@ -335,7 +335,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_scrollable_get_border(IntPtr raw, IntPtr border);
 
 		public bool GetBorder(Gtk.Border border) {
@@ -346,10 +346,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scrollable_get_hadjustment(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_hadjustment(IntPtr raw, IntPtr hadjustment);
 
 		[GLib.Property ("hadjustment")]
@@ -364,10 +364,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_scrollable_get_vadjustment(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_vadjustment(IntPtr raw, IntPtr vadjustment);
 
 		[GLib.Property ("vadjustment")]
@@ -382,10 +382,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_scrollable_get_hscroll_policy(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_hscroll_policy(IntPtr raw, int policy);
 
 		[GLib.Property ("hscroll-policy")]
@@ -400,10 +400,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_scrollable_get_vscroll_policy(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_scrollable_set_vscroll_policy(IntPtr raw, int policy);
 
 		[GLib.Property ("vscroll-policy")]

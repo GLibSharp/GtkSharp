@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PrintUnixDialog (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_unix_dialog_new(IntPtr title, IntPtr parent);
 
 		public PrintUnixDialog (string title, Gtk.Window parent) : base (IntPtr.Zero)
@@ -35,10 +35,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_title);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_unix_dialog_get_page_setup(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_page_setup(IntPtr raw, IntPtr page_setup);
 
 		[GLib.Property ("page-setup")]
@@ -53,10 +53,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_unix_dialog_get_current_page(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_current_page(IntPtr raw, int current_page);
 
 		[GLib.Property ("current-page")]
@@ -86,7 +86,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_unix_dialog_get_selected_printer(IntPtr raw);
 
 		[GLib.Property ("selected-printer")]
@@ -98,10 +98,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_unix_dialog_get_manual_capabilities(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_manual_capabilities(IntPtr raw, int capabilities);
 
 		[GLib.Property ("manual-capabilities")]
@@ -116,10 +116,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_unix_dialog_get_support_selection(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_support_selection(IntPtr raw, bool support_selection);
 
 		[GLib.Property ("support-selection")]
@@ -134,10 +134,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_unix_dialog_get_has_selection(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_has_selection(IntPtr raw, bool has_selection);
 
 		[GLib.Property ("has-selection")]
@@ -152,10 +152,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_unix_dialog_get_embed_page_setup(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_embed_page_setup(IntPtr raw, bool embed);
 
 		[GLib.Property ("embed-page-setup")]
@@ -170,14 +170,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_add_custom_tab(IntPtr raw, IntPtr child, IntPtr tab_label);
 
 		public void AddCustomTab(Gtk.Widget child, Gtk.Widget tab_label) {
 			gtk_print_unix_dialog_add_custom_tab(Handle, child == null ? IntPtr.Zero : child.Handle, tab_label == null ? IntPtr.Zero : tab_label.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_unix_dialog_get_page_setup_set(IntPtr raw);
 
 		public bool PageSetupSet { 
@@ -188,10 +188,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_unix_dialog_get_settings(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_unix_dialog_set_settings(IntPtr raw, IntPtr settings);
 
 		public Gtk.PrintSettings Settings { 
@@ -205,7 +205,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_unix_dialog_get_type();
 
 		public static new GLib.GType GType { 

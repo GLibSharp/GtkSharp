@@ -16,7 +16,7 @@ namespace Gtk {
 	}
 
 	internal class SizeRequestModeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_size_request_mode_get_type ();
 
 		public static GLib.GType GType {

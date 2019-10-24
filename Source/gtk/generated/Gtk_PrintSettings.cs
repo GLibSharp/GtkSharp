@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PrintSettings (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_new();
 
 		public PrintSettings () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_print_settings_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_print_settings_new_from_file(IntPtr file_name, out IntPtr error);
 
 		public unsafe PrintSettings (string file_name) : base (IntPtr.Zero)
@@ -43,7 +43,7 @@ namespace Gtk {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_new_from_gvariant(IntPtr variant);
 
 		public PrintSettings (GLib.Variant variant) : base (IntPtr.Zero)
@@ -57,7 +57,7 @@ namespace Gtk {
 			Raw = gtk_print_settings_new_from_gvariant(variant == null ? IntPtr.Zero : variant.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr gtk_print_settings_new_from_key_file(IntPtr key_file, IntPtr group_name, out IntPtr error);
 
 		public unsafe PrintSettings (GLib.KeyFile key_file, string group_name) : base (IntPtr.Zero)
@@ -90,7 +90,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_copy(IntPtr raw);
 
 		public Gtk.PrintSettings Copy() {
@@ -99,7 +99,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_foreach(IntPtr raw, GtkSharp.PrintSettingsFuncNative func, IntPtr user_data);
 
 		public void Foreach(Gtk.PrintSettingsFunc func) {
@@ -107,7 +107,7 @@ namespace Gtk {
 			gtk_print_settings_foreach(Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get(IntPtr raw, IntPtr key);
 
 		public string Get(string key) {
@@ -118,7 +118,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_settings_get_bool(IntPtr raw, IntPtr key);
 
 		public bool GetBool(string key) {
@@ -129,10 +129,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_settings_get_collate(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_collate(IntPtr raw, bool collate);
 
 		public bool Collate { 
@@ -146,10 +146,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_default_source(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_default_source(IntPtr raw, IntPtr default_source);
 
 		public string DefaultSource { 
@@ -165,10 +165,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_dither(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_dither(IntPtr raw, IntPtr dither);
 
 		public string Dither { 
@@ -184,7 +184,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_double(IntPtr raw, IntPtr key);
 
 		public double GetDouble(string key) {
@@ -195,7 +195,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_double_with_default(IntPtr raw, IntPtr key, double def);
 
 		public double GetDoubleWithDefault(string key, double def) {
@@ -206,10 +206,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_duplex(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_duplex(IntPtr raw, int duplex);
 
 		public Gtk.PrintDuplex Duplex { 
@@ -223,10 +223,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_finishings(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_finishings(IntPtr raw, IntPtr finishings);
 
 		public string Finishings { 
@@ -242,7 +242,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_int(IntPtr raw, IntPtr key);
 
 		public int GetInt(string key) {
@@ -253,7 +253,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_int_with_default(IntPtr raw, IntPtr key, int def);
 
 		public int GetIntWithDefault(string key, int def) {
@@ -264,7 +264,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_length(IntPtr raw, IntPtr key, int unit);
 
 		public double GetLength(string key, Gtk.Unit unit) {
@@ -275,10 +275,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_media_type(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_media_type(IntPtr raw, IntPtr media_type);
 
 		public string MediaType { 
@@ -294,10 +294,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_n_copies(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_n_copies(IntPtr raw, int num_copies);
 
 		public int NCopies { 
@@ -311,10 +311,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_number_up(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_number_up(IntPtr raw, int number_up);
 
 		public int NumberUp { 
@@ -328,10 +328,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_number_up_layout(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_number_up_layout(IntPtr raw, int number_up_layout);
 
 		public Gtk.NumberUpLayout NumberUpLayout { 
@@ -345,10 +345,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_orientation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_orientation(IntPtr raw, int orientation);
 
 		public Gtk.PageOrientation Orientation { 
@@ -362,10 +362,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_output_bin(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_output_bin(IntPtr raw, IntPtr output_bin);
 
 		public string OutputBin { 
@@ -381,7 +381,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_page_ranges(IntPtr raw, out int num_ranges);
 
 		public Gtk.PageRange GetPageRanges(out int num_ranges) {
@@ -390,10 +390,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_page_set(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_page_set(IntPtr raw, int page_set);
 
 		public Gtk.PageSet PageSet { 
@@ -407,7 +407,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_paper_height(IntPtr raw, int unit);
 
 		public double GetPaperHeight(Gtk.Unit unit) {
@@ -416,10 +416,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_paper_size(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_paper_size(IntPtr raw, IntPtr paper_size);
 
 		public Gtk.PaperSize PaperSize { 
@@ -433,7 +433,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_paper_width(IntPtr raw, int unit);
 
 		public double GetPaperWidth(Gtk.Unit unit) {
@@ -442,10 +442,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_print_pages(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_print_pages(IntPtr raw, int pages);
 
 		public Gtk.PrintPages PrintPages { 
@@ -459,10 +459,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_printer(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_printer(IntPtr raw, IntPtr printer);
 
 		public string Printer { 
@@ -478,10 +478,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_printer_lpi(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_printer_lpi(IntPtr raw, double lpi);
 
 		public double PrinterLpi { 
@@ -495,10 +495,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_quality(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_quality(IntPtr raw, int quality);
 
 		public Gtk.PrintQuality Quality { 
@@ -512,10 +512,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_resolution(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_resolution(IntPtr raw, int resolution);
 
 		public int Resolution { 
@@ -529,7 +529,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_resolution_x(IntPtr raw);
 
 		public int ResolutionX { 
@@ -540,7 +540,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_print_settings_get_resolution_y(IntPtr raw);
 
 		public int ResolutionY { 
@@ -551,10 +551,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_settings_get_reverse(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_reverse(IntPtr raw, bool reverse);
 
 		public bool Reverse { 
@@ -568,10 +568,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gtk_print_settings_get_scale(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_scale(IntPtr raw, double scale);
 
 		public double Scale { 
@@ -585,7 +585,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_get_type();
 
 		public static new GLib.GType GType { 
@@ -596,10 +596,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_settings_get_use_color(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_use_color(IntPtr raw, bool use_color);
 
 		public bool UseColor { 
@@ -613,7 +613,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_print_settings_has_key(IntPtr raw, IntPtr key);
 
 		public bool HasKey(string key) {
@@ -624,7 +624,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_print_settings_load_file(IntPtr raw, IntPtr file_name, out IntPtr error);
 
 		public unsafe bool LoadFile(string file_name) {
@@ -637,7 +637,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_print_settings_load_key_file(IntPtr raw, IntPtr key_file, IntPtr group_name, out IntPtr error);
 
 		public unsafe bool LoadKeyFile(GLib.KeyFile key_file, string group_name) {
@@ -650,7 +650,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set(IntPtr raw, IntPtr key, IntPtr value);
 
 		public void Set(string key, string value) {
@@ -661,7 +661,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_value);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_bool(IntPtr raw, IntPtr key, bool value);
 
 		public void SetBool(string key, bool value) {
@@ -670,7 +670,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_key);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_double(IntPtr raw, IntPtr key, double value);
 
 		public void SetDouble(string key, double value) {
@@ -679,7 +679,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_key);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_int(IntPtr raw, IntPtr key, int value);
 
 		public void SetInt(string key, int value) {
@@ -688,7 +688,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_key);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_length(IntPtr raw, IntPtr key, double value, int unit);
 
 		public void SetLength(string key, double value, Gtk.Unit unit) {
@@ -697,7 +697,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_key);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_page_ranges(IntPtr raw, IntPtr page_ranges, int num_ranges);
 
 		public void SetPageRanges(Gtk.PageRange page_ranges, int num_ranges) {
@@ -706,28 +706,28 @@ namespace Gtk {
 			Marshal.FreeHGlobal (native_page_ranges);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_paper_height(IntPtr raw, double height, int unit);
 
 		public void SetPaperHeight(double height, Gtk.Unit unit) {
 			gtk_print_settings_set_paper_height(Handle, height, (int) unit);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_paper_width(IntPtr raw, double width, int unit);
 
 		public void SetPaperWidth(double width, Gtk.Unit unit) {
 			gtk_print_settings_set_paper_width(Handle, width, (int) unit);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_set_resolution_xy(IntPtr raw, int resolution_x, int resolution_y);
 
 		public void SetResolutionXy(int resolution_x, int resolution_y) {
 			gtk_print_settings_set_resolution_xy(Handle, resolution_x, resolution_y);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_print_settings_to_file(IntPtr raw, IntPtr file_name, out IntPtr error);
 
 		public unsafe bool ToFile(string file_name) {
@@ -740,7 +740,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_settings_to_gvariant(IntPtr raw);
 
 		public GLib.Variant ToGvariant() {
@@ -749,7 +749,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_to_key_file(IntPtr raw, IntPtr key_file, IntPtr group_name);
 
 		public void ToKeyFile(GLib.KeyFile key_file, string group_name) {
@@ -758,7 +758,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_group_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_settings_unset(IntPtr raw, IntPtr key);
 
 		public void Unset(string key) {

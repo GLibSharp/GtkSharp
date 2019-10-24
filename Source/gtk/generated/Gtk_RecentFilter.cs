@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RecentFilter (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_filter_new();
 
 		public RecentFilter () : base (IntPtr.Zero)
@@ -40,14 +40,14 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_age(IntPtr raw, int days);
 
 		public void AddAge(int days) {
 			gtk_recent_filter_add_age(Handle, days);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_application(IntPtr raw, IntPtr application);
 
 		public void AddApplication(string application) {
@@ -56,7 +56,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_application);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_custom(IntPtr raw, int needed, GtkSharp.RecentFilterFuncNative func, IntPtr data, GLib.DestroyNotify data_destroy);
 
 		public void AddCustom(Gtk.RecentFilterFlags needed, Gtk.RecentFilterFunc func) {
@@ -73,7 +73,7 @@ namespace Gtk {
 			gtk_recent_filter_add_custom(Handle, (int) needed, func_wrapper.NativeDelegate, data, data_destroy);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_group(IntPtr raw, IntPtr group);
 
 		public void AddGroup(string group) {
@@ -82,7 +82,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_group);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_mime_type(IntPtr raw, IntPtr mime_type);
 
 		public void AddMimeType(string mime_type) {
@@ -91,7 +91,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_mime_type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_pattern(IntPtr raw, IntPtr pattern);
 
 		public void AddPattern(string pattern) {
@@ -100,14 +100,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_pattern);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_add_pixbuf_formats(IntPtr raw);
 
 		public void AddPixbufFormats() {
 			gtk_recent_filter_add_pixbuf_formats(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_recent_filter_filter(IntPtr raw, IntPtr filter_info);
 
 		public bool Filter(Gtk.RecentFilterInfo filter_info) {
@@ -118,10 +118,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_filter_get_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_recent_filter_set_name(IntPtr raw, IntPtr name);
 
 		public string Name { 
@@ -137,7 +137,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_recent_filter_get_needed(IntPtr raw);
 
 		public Gtk.RecentFilterFlags Needed { 
@@ -148,7 +148,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_filter_get_type();
 
 		public static new GLib.GType GType { 

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Builder (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_new();
 
 		public Builder () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_builder_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_translation_domain(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_builder_set_translation_domain(IntPtr raw, IntPtr domain);
 
 		[GLib.Property ("translation-domain")]
@@ -193,7 +193,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_from_file(IntPtr raw, IntPtr filename, out IntPtr error);
 
 		public unsafe uint AddFromFile(string filename) {
@@ -206,7 +206,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_from_resource(IntPtr raw, IntPtr resource_path, out IntPtr error);
 
 		public unsafe uint AddFromResource(string resource_path) {
@@ -219,7 +219,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_from_string(IntPtr raw, IntPtr buffer, UIntPtr length, out IntPtr error);
 
 		public unsafe uint AddFromString(string buffer) {
@@ -232,7 +232,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_objects_from_file(IntPtr raw, IntPtr filename, IntPtr object_ids, out IntPtr error);
 
 		public unsafe uint AddObjectsFromFile(string filename, string object_ids) {
@@ -245,7 +245,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_objects_from_resource(IntPtr raw, IntPtr resource_path, IntPtr object_ids, out IntPtr error);
 
 		public unsafe uint AddObjectsFromResource(string resource_path, string object_ids) {
@@ -258,7 +258,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_objects_from_string(IntPtr raw, IntPtr buffer, UIntPtr length, IntPtr object_ids, out IntPtr error);
 
 		public unsafe uint AddObjectsFromString(string buffer, string object_ids) {
@@ -271,7 +271,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_builder_error_quark();
 
 		public static int ErrorQuark { 
@@ -282,7 +282,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_builder_expose_object(IntPtr raw, IntPtr name, IntPtr objekt);
 
 		public void ExposeObject(string name, GLib.Object objekt) {
@@ -291,7 +291,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_extend_with_template(IntPtr raw, IntPtr widget, IntPtr template_type, IntPtr buffer, UIntPtr length, out IntPtr error);
 
 		public unsafe uint ExtendWithTemplate(Gtk.Widget widget, GLib.GType template_type, string buffer) {
@@ -304,10 +304,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_application(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_builder_set_application(IntPtr raw, IntPtr application);
 
 		public Gtk.Application Application { 
@@ -321,7 +321,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_object(IntPtr raw, IntPtr name);
 
 		public GLib.Object GetObject(string name) {
@@ -332,7 +332,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_objects(IntPtr raw);
 
 		public GLib.Object[] Objects { 
@@ -343,7 +343,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_type();
 
 		public static new GLib.GType GType { 

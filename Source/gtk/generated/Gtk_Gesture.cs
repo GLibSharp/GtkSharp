@@ -28,10 +28,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_get_window(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_gesture_set_window(IntPtr raw, IntPtr window);
 
 		[GLib.Property ("window")]
@@ -96,7 +96,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_get_bounding_box(IntPtr raw, IntPtr rect);
 
 		public bool GetBoundingBox(Gdk.Rectangle rect) {
@@ -107,7 +107,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_get_bounding_box_center(IntPtr raw, out double x, out double y);
 
 		public bool GetBoundingBoxCenter(out double x, out double y) {
@@ -116,7 +116,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_get_device(IntPtr raw);
 
 		public Gdk.Device Device { 
@@ -127,7 +127,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_get_last_event(IntPtr raw, IntPtr sequence);
 
 		public Gdk.Event GetLastEvent(Gdk.EventSequence sequence) {
@@ -136,7 +136,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_get_last_updated_sequence(IntPtr raw);
 
 		public Gdk.EventSequence LastUpdatedSequence { 
@@ -147,7 +147,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_get_point(IntPtr raw, IntPtr sequence, out double x, out double y);
 
 		public bool GetPoint(Gdk.EventSequence sequence, out double x, out double y) {
@@ -156,7 +156,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_gesture_get_sequence_state(IntPtr raw, IntPtr sequence);
 
 		public Gtk.EventSequenceState GetSequenceState(Gdk.EventSequence sequence) {
@@ -165,7 +165,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_get_sequences(IntPtr raw);
 
 		public GLib.List Sequences { 
@@ -176,7 +176,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gesture_get_type();
 
 		public static new GLib.GType GType { 
@@ -187,14 +187,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_gesture_group(IntPtr raw, IntPtr gesture);
 
 		public void Group(Gtk.Gesture gesture) {
 			gtk_gesture_group(Handle, gesture == null ? IntPtr.Zero : gesture.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_handles_sequence(IntPtr raw, IntPtr sequence);
 
 		public bool HandlesSequence(Gdk.EventSequence sequence) {
@@ -203,7 +203,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_is_active(IntPtr raw);
 
 		public bool IsActive { 
@@ -214,7 +214,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_is_grouped_with(IntPtr raw, IntPtr other);
 
 		public bool IsGroupedWith(Gtk.Gesture other) {
@@ -223,7 +223,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_is_recognized(IntPtr raw);
 
 		public bool IsRecognized { 
@@ -234,7 +234,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_set_sequence_state(IntPtr raw, IntPtr sequence, int state);
 
 		public bool SetSequenceState(Gdk.EventSequence sequence, Gtk.EventSequenceState state) {
@@ -243,7 +243,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_gesture_set_state(IntPtr raw, int state);
 
 		public bool SetState(Gtk.EventSequenceState state) {
@@ -252,7 +252,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_gesture_ungroup(IntPtr raw);
 
 		public void Ungroup() {

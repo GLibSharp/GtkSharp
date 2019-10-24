@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public NumerableIcon (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_new(IntPtr base_icon);
 
 		public NumerableIcon (GLib.IIcon base_icon) : base (IntPtr.Zero)
@@ -27,7 +27,7 @@ namespace Gtk {
 			Raw = gtk_numerable_icon_new(base_icon == null ? IntPtr.Zero : ((base_icon is GLib.Object) ? (base_icon as GLib.Object).Handle : (base_icon as GLib.IconAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_new_with_style_context(IntPtr base_icon, IntPtr context);
 
 		public NumerableIcon (GLib.IIcon base_icon, Gtk.StyleContext context) : base (IntPtr.Zero)
@@ -41,10 +41,10 @@ namespace Gtk {
 			Raw = gtk_numerable_icon_new_with_style_context(base_icon == null ? IntPtr.Zero : ((base_icon is GLib.Object) ? (base_icon as GLib.Object).Handle : (base_icon as GLib.IconAdapter).Handle), context == null ? IntPtr.Zero : context.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_numerable_icon_get_count(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_numerable_icon_set_count(IntPtr raw, int count);
 
 		[Obsolete]
@@ -60,10 +60,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_get_label(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_numerable_icon_set_label(IntPtr raw, IntPtr label);
 
 		[Obsolete]
@@ -81,10 +81,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_get_style_context(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_numerable_icon_set_style_context(IntPtr raw, IntPtr style);
 
 		[Obsolete]
@@ -115,10 +115,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_get_background_icon_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_numerable_icon_set_background_icon_name(IntPtr raw, IntPtr icon_name);
 
 		[Obsolete]
@@ -160,10 +160,10 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_get_background_gicon(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_numerable_icon_set_background_gicon(IntPtr raw, IntPtr icon);
 
 		[Obsolete]
@@ -178,7 +178,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_numerable_icon_get_type();
 
 		[Obsolete]

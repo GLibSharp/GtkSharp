@@ -24,7 +24,7 @@ namespace Pango {
 			return (Pango.Color) Marshal.PtrToStructure (raw, typeof (Pango.Color));
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_color_get_type();
 
 		public static GLib.GType GType { 
@@ -35,7 +35,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_color_parse(IntPtr raw, IntPtr spec);
 
 		public bool Parse(string spec) {
@@ -50,7 +50,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_color_to_string(IntPtr raw);
 
 		public override string ToString() {

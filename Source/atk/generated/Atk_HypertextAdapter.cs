@@ -113,7 +113,7 @@ namespace Atk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_hypertext_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (atk_hypertext_get_type ());
@@ -176,7 +176,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_hypertext_get_link(IntPtr raw, int link_index);
 
 		public Atk.Hyperlink GetLink(int link_index) {
@@ -185,7 +185,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_hypertext_get_link_index(IntPtr raw, int char_index);
 
 		public int GetLinkIndex(int char_index) {
@@ -194,7 +194,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_hypertext_get_n_links(IntPtr raw);
 
 		public int NLinks { 

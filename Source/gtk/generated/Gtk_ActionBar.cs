@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ActionBar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_bar_new();
 
 		public ActionBar () : base (IntPtr.Zero)
@@ -114,10 +114,10 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_bar_get_center_widget(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_bar_set_center_widget(IntPtr raw, IntPtr center_widget);
 
 		public Gtk.Widget CenterWidget { 
@@ -131,7 +131,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_action_bar_get_type();
 
 		public static new GLib.GType GType { 
@@ -142,14 +142,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_bar_pack_end(IntPtr raw, IntPtr child);
 
 		public void PackEnd(Gtk.Widget child) {
 			gtk_action_bar_pack_end(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_action_bar_pack_start(IntPtr raw, IntPtr child);
 
 		public void PackStart(Gtk.Widget child) {

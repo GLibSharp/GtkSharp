@@ -33,7 +33,7 @@ namespace Pango {
 			return (Pango.GlyphItemIter) Marshal.PtrToStructure (raw, typeof (Pango.GlyphItemIter));
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_item_iter_get_type();
 
 		public static GLib.GType GType { 
@@ -44,7 +44,7 @@ namespace Pango {
 			}
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_glyph_item_iter_init_end(IntPtr raw, IntPtr glyph_item, IntPtr text);
 
 		public bool InitEnd(Pango.GlyphItem glyph_item, string text) {
@@ -61,7 +61,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_glyph_item_iter_init_start(IntPtr raw, IntPtr glyph_item, IntPtr text);
 
 		public bool InitStart(Pango.GlyphItem glyph_item, string text) {
@@ -78,7 +78,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_glyph_item_iter_next_cluster(IntPtr raw);
 
 		public bool NextCluster() {
@@ -91,7 +91,7 @@ namespace Pango {
 			return ret;
 		}
 
-		[DllImport("libpango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool pango_glyph_item_iter_prev_cluster(IntPtr raw);
 
 		public bool PrevCluster() {

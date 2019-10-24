@@ -13,7 +13,7 @@ namespace Atk {
 
 		public Plug (IntPtr raw) : base(raw) {}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_plug_new();
 
 		public Plug () : base (IntPtr.Zero)
@@ -107,7 +107,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_plug_get_id(IntPtr raw);
 
 		public string Id { 
@@ -118,7 +118,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_plug_get_type();
 
 		public static new GLib.GType GType { 
@@ -129,7 +129,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint atk_component_add_focus_handler(IntPtr raw, AtkSharp.FocusHandlerNative handler);
 
 		[Obsolete]
@@ -140,7 +140,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_contains(IntPtr raw, int x, int y, int coord_type);
 
 		public bool Contains(int x, int y, Atk.CoordType coord_type) {
@@ -149,7 +149,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double atk_component_get_alpha(IntPtr raw);
 
 		public double Alpha { 
@@ -160,14 +160,14 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_get_extents(IntPtr raw, out int x, out int y, out int width, out int height, int coord_type);
 
 		public void GetExtents(out int x, out int y, out int width, out int height, Atk.CoordType coord_type) {
 			atk_component_get_extents(Handle, out x, out y, out width, out height, (int) coord_type);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_component_get_layer(IntPtr raw);
 
 		public Atk.Layer Layer { 
@@ -178,7 +178,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_component_get_mdi_zorder(IntPtr raw);
 
 		public int MdiZorder { 
@@ -189,7 +189,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_get_position(IntPtr raw, out int x, out int y, int coord_type);
 
 		[Obsolete]
@@ -197,7 +197,7 @@ namespace Atk {
 			atk_component_get_position(Handle, out x, out y, (int) coord_type);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_get_size(IntPtr raw, out int width, out int height);
 
 		[Obsolete]
@@ -205,7 +205,7 @@ namespace Atk {
 			atk_component_get_size(Handle, out width, out height);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_grab_focus(IntPtr raw);
 
 		public bool GrabFocus() {
@@ -214,7 +214,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_component_ref_accessible_at_point(IntPtr raw, int x, int y, int coord_type);
 
 		public Atk.Object RefAccessibleAtPoint(int x, int y, Atk.CoordType coord_type) {
@@ -223,7 +223,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_component_remove_focus_handler(IntPtr raw, uint handler_id);
 
 		[Obsolete]
@@ -231,7 +231,7 @@ namespace Atk {
 			atk_component_remove_focus_handler(Handle, handler_id);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_set_extents(IntPtr raw, int x, int y, int width, int height, int coord_type);
 
 		public bool SetExtents(int x, int y, int width, int height, Atk.CoordType coord_type) {
@@ -240,7 +240,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_set_position(IntPtr raw, int x, int y, int coord_type);
 
 		public bool SetPosition(int x, int y, Atk.CoordType coord_type) {
@@ -249,7 +249,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_component_set_size(IntPtr raw, int width, int height);
 
 		public bool SetSize(int width, int height) {

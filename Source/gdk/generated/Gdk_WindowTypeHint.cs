@@ -27,7 +27,7 @@ namespace Gdk {
 	}
 
 	internal class WindowTypeHintGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_window_type_hint_get_type ();
 
 		public static GLib.GType GType {

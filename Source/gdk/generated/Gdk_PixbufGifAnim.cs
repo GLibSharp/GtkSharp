@@ -18,7 +18,7 @@ namespace Gdk {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_pixbuf_gif_anim_frame_composite(IntPtr raw, IntPtr frame);
 
 		public void FrameComposite(Gdk.PixbufFrame frame) {
@@ -27,7 +27,7 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_frame);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_gif_anim_get_type();
 
 		public static new GLib.GType GType { 

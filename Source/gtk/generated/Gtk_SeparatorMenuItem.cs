@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public SeparatorMenuItem (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_separator_menu_item_new();
 
 		public SeparatorMenuItem () : base (IntPtr.Zero)
@@ -73,7 +73,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_separator_menu_item_get_type();
 
 		public static new GLib.GType GType { 

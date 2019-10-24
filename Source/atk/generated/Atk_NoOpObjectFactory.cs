@@ -13,7 +13,7 @@ namespace Atk {
 
 		public NoOpObjectFactory (IntPtr raw) : base(raw) {}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_no_op_object_factory_new();
 
 		public NoOpObjectFactory () : base (IntPtr.Zero)
@@ -40,7 +40,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_no_op_object_factory_get_type();
 
 		public static new GLib.GType GType { 

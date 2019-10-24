@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public Notebook (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_new();
 
 		public Notebook () : base (IntPtr.Zero)
@@ -40,10 +40,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_get_tab_pos(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_tab_pos(IntPtr raw, int pos);
 
 		[GLib.Property ("tab-pos")]
@@ -58,10 +58,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_notebook_get_show_tabs(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_show_tabs(IntPtr raw, bool show_tabs);
 
 		[GLib.Property ("show-tabs")]
@@ -76,10 +76,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_notebook_get_show_border(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_show_border(IntPtr raw, bool show_border);
 
 		[GLib.Property ("show-border")]
@@ -94,10 +94,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_notebook_get_scrollable(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_scrollable(IntPtr raw, bool scrollable);
 
 		[GLib.Property ("scrollable")]
@@ -127,10 +127,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_group_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_group_name(IntPtr raw, IntPtr group_name);
 
 		[GLib.Property ("group-name")]
@@ -1224,7 +1224,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_append_page(IntPtr raw, IntPtr child, IntPtr tab_label);
 
 		public int AppendPage(Gtk.Widget child, Gtk.Widget tab_label) {
@@ -1233,7 +1233,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_append_page_menu(IntPtr raw, IntPtr child, IntPtr tab_label, IntPtr menu_label);
 
 		public int AppendPageMenu(Gtk.Widget child, Gtk.Widget tab_label, Gtk.Widget menu_label) {
@@ -1242,14 +1242,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_detach_tab(IntPtr raw, IntPtr child);
 
 		public void DetachTab(Gtk.Widget child) {
 			gtk_notebook_detach_tab(Handle, child == null ? IntPtr.Zero : child.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_action_widget(IntPtr raw, int pack_type);
 
 		public Gtk.Widget GetActionWidget(Gtk.PackType pack_type) {
@@ -1258,10 +1258,10 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_get_current_page(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_current_page(IntPtr raw, int page_num);
 
 		public int CurrentPage { 
@@ -1275,7 +1275,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_menu_label(IntPtr raw, IntPtr child);
 
 		public Gtk.Widget GetMenuLabel(Gtk.Widget child) {
@@ -1284,7 +1284,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_menu_label_text(IntPtr raw, IntPtr child);
 
 		public string GetMenuLabelText(Gtk.Widget child) {
@@ -1293,7 +1293,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_get_n_pages(IntPtr raw);
 
 		public int NPages { 
@@ -1304,7 +1304,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_nth_page(IntPtr raw, int page_num);
 
 		public Gtk.Widget GetNthPage(int page_num) {
@@ -1313,7 +1313,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_notebook_get_tab_detachable(IntPtr raw, IntPtr child);
 
 		public bool GetTabDetachable(Gtk.Widget child) {
@@ -1322,7 +1322,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern ushort gtk_notebook_get_tab_hborder(IntPtr raw);
 
 		[Obsolete]
@@ -1334,7 +1334,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_tab_label(IntPtr raw, IntPtr child);
 
 		public Gtk.Widget GetTabLabel(Gtk.Widget child) {
@@ -1343,7 +1343,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_tab_label_text(IntPtr raw, IntPtr child);
 
 		public string GetTabLabelText(Gtk.Widget child) {
@@ -1352,7 +1352,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_notebook_get_tab_reorderable(IntPtr raw, IntPtr child);
 
 		public bool GetTabReorderable(Gtk.Widget child) {
@@ -1361,7 +1361,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern ushort gtk_notebook_get_tab_vborder(IntPtr raw);
 
 		[Obsolete]
@@ -1373,7 +1373,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_notebook_get_type();
 
 		public static new GLib.GType GType { 
@@ -1384,7 +1384,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_insert_page(IntPtr raw, IntPtr child, IntPtr tab_label, int position);
 
 		public int InsertPage(Gtk.Widget child, Gtk.Widget tab_label, int position) {
@@ -1393,7 +1393,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_insert_page_menu(IntPtr raw, IntPtr child, IntPtr tab_label, IntPtr menu_label, int position);
 
 		public int InsertPageMenu(Gtk.Widget child, Gtk.Widget tab_label, Gtk.Widget menu_label, int position) {
@@ -1402,28 +1402,28 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_next_page(IntPtr raw);
 
 		public void NextPage() {
 			gtk_notebook_next_page(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_popup_disable(IntPtr raw);
 
 		public void PopupDisable() {
 			gtk_notebook_popup_disable(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_popup_enable(IntPtr raw);
 
 		public void PopupEnable() {
 			gtk_notebook_popup_enable(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_prepend_page(IntPtr raw, IntPtr child, IntPtr tab_label);
 
 		public int PrependPage(Gtk.Widget child, Gtk.Widget tab_label) {
@@ -1432,7 +1432,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_notebook_prepend_page_menu(IntPtr raw, IntPtr child, IntPtr tab_label, IntPtr menu_label);
 
 		public int PrependPageMenu(Gtk.Widget child, Gtk.Widget tab_label, Gtk.Widget menu_label) {
@@ -1441,42 +1441,42 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_prev_page(IntPtr raw);
 
 		public void PrevPage() {
 			gtk_notebook_prev_page(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_remove_page(IntPtr raw, int page_num);
 
 		public void RemovePage(int page_num) {
 			gtk_notebook_remove_page(Handle, page_num);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_reorder_child(IntPtr raw, IntPtr child, int position);
 
 		public void ReorderChild(Gtk.Widget child, int position) {
 			gtk_notebook_reorder_child(Handle, child == null ? IntPtr.Zero : child.Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_action_widget(IntPtr raw, IntPtr widget, int pack_type);
 
 		public void SetActionWidget(Gtk.Widget widget, Gtk.PackType pack_type) {
 			gtk_notebook_set_action_widget(Handle, widget == null ? IntPtr.Zero : widget.Handle, (int) pack_type);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_menu_label(IntPtr raw, IntPtr child, IntPtr menu_label);
 
 		public void SetMenuLabel(Gtk.Widget child, Gtk.Widget menu_label) {
 			gtk_notebook_set_menu_label(Handle, child == null ? IntPtr.Zero : child.Handle, menu_label == null ? IntPtr.Zero : menu_label.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_menu_label_text(IntPtr raw, IntPtr child, IntPtr menu_text);
 
 		public void SetMenuLabelText(Gtk.Widget child, string menu_text) {
@@ -1485,21 +1485,21 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_menu_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_tab_detachable(IntPtr raw, IntPtr child, bool detachable);
 
 		public void SetTabDetachable(Gtk.Widget child, bool detachable) {
 			gtk_notebook_set_tab_detachable(Handle, child == null ? IntPtr.Zero : child.Handle, detachable);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_tab_label(IntPtr raw, IntPtr child, IntPtr tab_label);
 
 		public void SetTabLabel(Gtk.Widget child, Gtk.Widget tab_label) {
 			gtk_notebook_set_tab_label(Handle, child == null ? IntPtr.Zero : child.Handle, tab_label == null ? IntPtr.Zero : tab_label.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_tab_label_text(IntPtr raw, IntPtr child, IntPtr tab_text);
 
 		public void SetTabLabelText(Gtk.Widget child, string tab_text) {
@@ -1508,7 +1508,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_tab_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_notebook_set_tab_reorderable(IntPtr raw, IntPtr child, bool reorderable);
 
 		public void SetTabReorderable(Gtk.Widget child, bool reorderable) {

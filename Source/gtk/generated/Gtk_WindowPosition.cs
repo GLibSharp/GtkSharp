@@ -18,7 +18,7 @@ namespace Gtk {
 	}
 
 	internal class WindowPositionGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_position_get_type ();
 
 		public static GLib.GType GType {

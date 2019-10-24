@@ -13,7 +13,7 @@ namespace Gdk {
 
 		public PixbufSimpleAnim (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_simple_anim_new(int width, int height, float rate);
 
 		public PixbufSimpleAnim (int width, int height, float rate) : base (IntPtr.Zero)
@@ -27,10 +27,10 @@ namespace Gdk {
 			Raw = gdk_pixbuf_simple_anim_new(width, height, rate);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_simple_anim_get_loop(IntPtr raw);
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_pixbuf_simple_anim_set_loop(IntPtr raw, bool loop);
 
 		[GLib.Property ("loop")]
@@ -45,14 +45,14 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_pixbuf_simple_anim_add_frame(IntPtr raw, IntPtr pixbuf);
 
 		public void AddFrame(Gdk.Pixbuf pixbuf) {
 			gdk_pixbuf_simple_anim_add_frame(Handle, pixbuf == null ? IntPtr.Zero : pixbuf.Handle);
 		}
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_pixbuf_simple_anim_get_type();
 
 		public static new GLib.GType GType { 

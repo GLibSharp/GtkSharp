@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RadioToolButton (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_tool_button_new_from_widget(IntPtr group);
 
 		public RadioToolButton (Gtk.RadioToolButton group) : base (IntPtr.Zero)
@@ -27,7 +27,7 @@ namespace Gtk {
 			Raw = gtk_radio_tool_button_new_from_widget(group == null ? IntPtr.Zero : group.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_tool_button_new_with_stock_from_widget(IntPtr group, IntPtr stock_id);
 
 		public RadioToolButton (Gtk.RadioToolButton group, string stock_id) : base (IntPtr.Zero)
@@ -95,7 +95,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_tool_button_get_type();
 
 		public static new GLib.GType GType { 

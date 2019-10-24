@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public SearchBar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_search_bar_new();
 
 		public SearchBar () : base (IntPtr.Zero)
@@ -40,10 +40,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_search_bar_get_show_close_button(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_search_bar_set_show_close_button(IntPtr raw, bool visible);
 
 		[GLib.Property ("show-close-button")]
@@ -106,17 +106,17 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_search_bar_connect_entry(IntPtr raw, IntPtr entry);
 
 		public void ConnectEntry(Gtk.Entry entry) {
 			gtk_search_bar_connect_entry(Handle, entry == null ? IntPtr.Zero : entry.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_search_bar_get_search_mode(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_search_bar_set_search_mode(IntPtr raw, bool search_mode);
 
 		public bool SearchMode { 
@@ -130,7 +130,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_search_bar_get_type();
 
 		public static new GLib.GType GType { 
@@ -141,7 +141,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_search_bar_handle_event(IntPtr raw, IntPtr evnt);
 
 		public bool HandleEvent(Gdk.Event evnt) {

@@ -70,7 +70,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_cell_editable_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_cell_editable_get_type ());
@@ -143,21 +143,21 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_editable_editing_done(IntPtr raw);
 
 		public void FinishEditing() {
 			gtk_cell_editable_editing_done(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_editable_remove_widget(IntPtr raw);
 
 		public void RemoveWidget() {
 			gtk_cell_editable_remove_widget(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_cell_editable_start_editing(IntPtr raw, IntPtr evnt);
 
 		public void StartEditing(Gdk.Event evnt) {

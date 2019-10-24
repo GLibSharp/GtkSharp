@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public RadioAction (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_action_new(IntPtr name, IntPtr label, IntPtr tooltip, IntPtr stock_id, int value);
 
 		public RadioAction (string name, string label, string tooltip, string stock_id, int value) : base (IntPtr.Zero)
@@ -60,10 +60,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_radio_action_get_current_value(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_radio_action_set_current_value(IntPtr raw, int current_value);
 
 		[Obsolete]
@@ -198,7 +198,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_radio_action_get_type();
 
 		[Obsolete]
@@ -210,7 +210,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_radio_action_join_group(IntPtr raw, IntPtr group_source);
 
 		[Obsolete]

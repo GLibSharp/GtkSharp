@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public FileChooserWidget (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_widget_new(int action);
 
 		public FileChooserWidget (Gtk.FileChooserAction action) : base (IntPtr.Zero)
@@ -814,7 +814,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_widget_get_type();
 
 		public static new GLib.GType GType { 
@@ -825,7 +825,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_add_choice(IntPtr raw, IntPtr id, IntPtr label, IntPtr options, IntPtr option_labels);
 
 		public void AddChoice(string id, string label, string options, string option_labels) {
@@ -840,14 +840,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_option_labels);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_add_filter(IntPtr raw, IntPtr filter);
 
 		public void AddFilter(Gtk.FileFilter filter) {
 			gtk_file_chooser_add_filter(Handle, filter == null ? IntPtr.Zero : filter.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_add_shortcut_folder(IntPtr raw, IntPtr folder, out IntPtr error);
 
 		public bool AddShortcutFolder(string folder) {
@@ -860,7 +860,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_add_shortcut_folder_uri(IntPtr raw, IntPtr uri, out IntPtr error);
 
 		public bool AddShortcutFolderUri(string uri) {
@@ -873,7 +873,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_choice(IntPtr raw, IntPtr id);
 
 		public string GetChoice(string id) {
@@ -884,7 +884,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_current_folder(IntPtr raw);
 
 		public string CurrentFolder { 
@@ -895,7 +895,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_current_folder_file(IntPtr raw);
 
 		public GLib.IFile CurrentFolderFile { 
@@ -906,7 +906,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_current_folder_uri(IntPtr raw);
 
 		public string CurrentFolderUri { 
@@ -917,10 +917,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_current_name(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_current_name(IntPtr raw, IntPtr name);
 
 		public string CurrentName { 
@@ -936,7 +936,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_file(IntPtr raw);
 
 		public GLib.IFile File { 
@@ -947,7 +947,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_filename(IntPtr raw);
 
 		public string Filename { 
@@ -958,7 +958,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_filenames(IntPtr raw);
 
 		public string[] Filenames { 
@@ -969,7 +969,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_files(IntPtr raw);
 
 		public GLib.IFile[] Files { 
@@ -980,7 +980,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_preview_file(IntPtr raw);
 
 		public GLib.IFile PreviewFile { 
@@ -991,7 +991,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_preview_filename(IntPtr raw);
 
 		public string PreviewFilename { 
@@ -1002,7 +1002,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_preview_uri(IntPtr raw);
 
 		public string PreviewUri { 
@@ -1013,7 +1013,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_uri(IntPtr raw);
 
 		public string Uri { 
@@ -1024,7 +1024,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_uris(IntPtr raw);
 
 		public string[] Uris { 
@@ -1035,7 +1035,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_list_filters(IntPtr raw);
 
 		public Gtk.FileFilter[] Filters { 
@@ -1046,7 +1046,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_list_shortcut_folder_uris(IntPtr raw);
 
 		public string[] ShortcutFolderUris { 
@@ -1057,7 +1057,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_list_shortcut_folders(IntPtr raw);
 
 		public string[] ShortcutFolders { 
@@ -1068,7 +1068,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_remove_choice(IntPtr raw, IntPtr id);
 
 		public void RemoveChoice(string id) {
@@ -1077,14 +1077,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_remove_filter(IntPtr raw, IntPtr filter);
 
 		public void RemoveFilter(Gtk.FileFilter filter) {
 			gtk_file_chooser_remove_filter(Handle, filter == null ? IntPtr.Zero : filter.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_remove_shortcut_folder(IntPtr raw, IntPtr folder, out IntPtr error);
 
 		public bool RemoveShortcutFolder(string folder) {
@@ -1097,7 +1097,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_remove_shortcut_folder_uri(IntPtr raw, IntPtr uri, out IntPtr error);
 
 		public bool RemoveShortcutFolderUri(string uri) {
@@ -1110,14 +1110,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_select_all(IntPtr raw);
 
 		public void SelectAll() {
 			gtk_file_chooser_select_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_select_file(IntPtr raw, IntPtr file, out IntPtr error);
 
 		public bool SelectFile(GLib.IFile file) {
@@ -1128,7 +1128,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_select_filename(IntPtr raw, IntPtr filename);
 
 		public bool SelectFilename(string filename) {
@@ -1139,7 +1139,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_select_uri(IntPtr raw, IntPtr uri);
 
 		public bool SelectUri(string uri) {
@@ -1150,7 +1150,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_choice(IntPtr raw, IntPtr id, IntPtr option);
 
 		public void SetChoice(string id, string option) {
@@ -1161,7 +1161,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_option);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_set_current_folder(IntPtr raw, IntPtr filename);
 
 		public bool SetCurrentFolder(string filename) {
@@ -1172,7 +1172,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_set_current_folder_file(IntPtr raw, IntPtr file, out IntPtr error);
 
 		public bool SetCurrentFolderFile(GLib.IFile file) {
@@ -1183,7 +1183,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_set_current_folder_uri(IntPtr raw, IntPtr uri);
 
 		public bool SetCurrentFolderUri(string uri) {
@@ -1194,7 +1194,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_set_file(IntPtr raw, IntPtr file, out IntPtr error);
 
 		public bool SetFile(GLib.IFile file) {
@@ -1205,7 +1205,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_set_filename(IntPtr raw, IntPtr filename);
 
 		public bool SetFilename(string filename) {
@@ -1216,7 +1216,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_set_uri(IntPtr raw, IntPtr uri);
 
 		public bool SetUri(string uri) {
@@ -1227,21 +1227,21 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_unselect_all(IntPtr raw);
 
 		public void UnselectAll() {
 			gtk_file_chooser_unselect_all(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_unselect_file(IntPtr raw, IntPtr file);
 
 		public void UnselectFile(GLib.IFile file) {
 			gtk_file_chooser_unselect_file(Handle, file == null ? IntPtr.Zero : ((file is GLib.Object) ? (file as GLib.Object).Handle : (file as GLib.FileAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_unselect_filename(IntPtr raw, IntPtr filename);
 
 		public void UnselectFilename(string filename) {
@@ -1250,7 +1250,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_filename);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_unselect_uri(IntPtr raw, IntPtr uri);
 
 		public void UnselectUri(string uri) {
@@ -1259,10 +1259,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_uri);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_file_chooser_get_action(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_action(IntPtr raw, int action);
 
 		[GLib.Property ("action")]
@@ -1277,10 +1277,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_filter(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_filter(IntPtr raw, IntPtr filter);
 
 		[GLib.Property ("filter")]
@@ -1295,10 +1295,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_local_only(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_local_only(IntPtr raw, bool local_only);
 
 		[GLib.Property ("local-only")]
@@ -1313,10 +1313,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_preview_widget(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_preview_widget(IntPtr raw, IntPtr preview_widget);
 
 		[GLib.Property ("preview-widget")]
@@ -1331,10 +1331,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_preview_widget_active(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_preview_widget_active(IntPtr raw, bool active);
 
 		[GLib.Property ("preview-widget-active")]
@@ -1349,10 +1349,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_use_preview_label(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_use_preview_label(IntPtr raw, bool use_label);
 
 		[GLib.Property ("use-preview-label")]
@@ -1367,10 +1367,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_get_extra_widget(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_extra_widget(IntPtr raw, IntPtr extra_widget);
 
 		[GLib.Property ("extra-widget")]
@@ -1385,10 +1385,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_select_multiple(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_select_multiple(IntPtr raw, bool select_multiple);
 
 		[GLib.Property ("select-multiple")]
@@ -1403,10 +1403,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_show_hidden(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_show_hidden(IntPtr raw, bool show_hidden);
 
 		[GLib.Property ("show-hidden")]
@@ -1421,10 +1421,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_do_overwrite_confirmation(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_do_overwrite_confirmation(IntPtr raw, bool do_overwrite_confirmation);
 
 		[GLib.Property ("do-overwrite-confirmation")]
@@ -1439,10 +1439,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_file_chooser_get_create_folders(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_file_chooser_set_create_folders(IntPtr raw, bool create_folders);
 
 		[GLib.Property ("create-folders")]

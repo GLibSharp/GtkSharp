@@ -19,7 +19,7 @@ namespace Gtk {
 	}
 
 	internal class DirectionTypeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_direction_type_get_type ();
 
 		public static GLib.GType GType {

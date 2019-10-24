@@ -112,7 +112,7 @@ namespace Gtk {
 			implementor = GLib.Object.GetObject (handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_drag_source_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (gtk_tree_drag_source_get_type ());
@@ -165,7 +165,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_source_drag_data_delete(IntPtr raw, IntPtr path);
 
 		public bool DragDataDelete(Gtk.TreePath path) {
@@ -174,7 +174,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_source_drag_data_get(IntPtr raw, IntPtr path, IntPtr selection_data);
 
 		public bool DragDataGet(Gtk.TreePath path, Gtk.SelectionData selection_data) {
@@ -183,7 +183,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_tree_drag_source_row_draggable(IntPtr raw, IntPtr path);
 
 		public bool RowDraggable(Gtk.TreePath path) {

@@ -23,7 +23,7 @@ namespace Gtk {
 			return (Gtk.Requisition) Marshal.PtrToStructure (raw, typeof (Gtk.Requisition));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_requisition_new();
 
 		public static Requisition New()
@@ -32,7 +32,7 @@ namespace Gtk {
 			return result;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_requisition_get_type();
 
 		public static GLib.GType GType { 

@@ -23,7 +23,7 @@ namespace Gtk {
 	}
 
 	internal class InputPurposeGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_input_purpose_get_type ();
 
 		public static GLib.GType GType {

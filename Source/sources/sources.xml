@@ -91,14 +91,14 @@
     </library>
   </api>
   <api filename="../atk/atk-api.raw">
-    <library name="libatk-1.0-0.dll">
+    <library name="atk-1.0-0.dll">
       <namespace name="Atk">
         <dir>atk-2.22.0/atk</dir>
       </namespace>
     </library>
   </api>
   <api filename="../pango/pango-api.raw">
-    <library name="libpango-1.0-0.dll">
+    <library name="pango-1.0-0.dll">
       <namespace name="Pango">
         <directory path="pango-1.40.3/pango">
           <exclude>pangoatsui.c</exclude>
@@ -140,7 +140,7 @@
     </library>
   </api>
   <api filename="../gdk/gdk-api.raw">
-    <library name="libgdk-3-0.dll">
+    <library name="gdk-3-0.dll">
       <namespace name="Gdk">
         <directory path="gtk+-3.22.6/gdk">
           <exclude>gdkalias.h</exclude>
@@ -150,7 +150,7 @@
 	<directory path="gtk+-3.22.6/gdk/deprecated" />
       </namespace>
     </library>
-    <library name="libgdk_pixbuf-2.0-0.dll">
+    <library name="gdk_pixbuf-2.0-0.dll">
       <namespace name="Gdk">
         <directory path="gdk-pixbuf-2.36.2/gdk-pixbuf">
           <exclude>io-gdip-native.h</exclude>
@@ -165,7 +165,7 @@
     </library>
   </api>
   <api filename="../gtk/gtk-api.raw">
-    <library name="libgtk-3-0.dll">
+    <library name="gtk-3-0.dll">
       <namespace name="Gtk">
         <directory path="gtk+-3.22.6/gtk">
           <!-- Internal stuff -->

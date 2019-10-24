@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public IconFactory (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_factory_new();
 
 		public IconFactory () : base (IntPtr.Zero)
@@ -73,7 +73,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_factory_add(IntPtr raw, IntPtr stock_id, IntPtr icon_set);
 
 		[Obsolete]
@@ -83,7 +83,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_stock_id);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_factory_add_default(IntPtr raw);
 
 		[Obsolete]
@@ -91,7 +91,7 @@ namespace Gtk {
 			gtk_icon_factory_add_default(Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_factory_get_type();
 
 		[Obsolete]
@@ -103,7 +103,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_factory_lookup(IntPtr raw, IntPtr stock_id);
 
 		[Obsolete]
@@ -115,7 +115,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_factory_lookup_default(IntPtr stock_id);
 
 		[Obsolete]
@@ -127,7 +127,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_factory_remove_default(IntPtr raw);
 
 		[Obsolete]

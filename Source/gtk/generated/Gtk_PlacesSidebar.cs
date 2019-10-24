@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public PlacesSidebar (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_places_sidebar_new();
 
 		public PlacesSidebar () : base (IntPtr.Zero)
@@ -25,10 +25,10 @@ namespace Gtk {
 			Raw = gtk_places_sidebar_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_places_sidebar_get_location(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_location(IntPtr raw, IntPtr location);
 
 		[GLib.Property ("location")]
@@ -43,10 +43,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gtk_places_sidebar_get_open_flags(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_open_flags(IntPtr raw, int flags);
 
 		[GLib.Property ("open-flags")]
@@ -61,10 +61,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_show_recent(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_show_recent(IntPtr raw, bool show_recent);
 
 		[GLib.Property ("show-recent")]
@@ -79,10 +79,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_show_desktop(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_show_desktop(IntPtr raw, bool show_desktop);
 
 		[GLib.Property ("show-desktop")]
@@ -97,10 +97,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_show_connect_to_server(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_show_connect_to_server(IntPtr raw, bool show_connect_to_server);
 
 		[Obsolete]
@@ -116,10 +116,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_show_enter_location(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_show_enter_location(IntPtr raw, bool show_enter_location);
 
 		[GLib.Property ("show-enter-location")]
@@ -134,10 +134,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_local_only(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_local_only(IntPtr raw, bool local_only);
 
 		[GLib.Property ("local-only")]
@@ -152,10 +152,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_show_trash(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_show_trash(IntPtr raw, bool show_trash);
 
 		[GLib.Property ("show-trash")]
@@ -170,10 +170,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_places_sidebar_get_show_other_locations(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_show_other_locations(IntPtr raw, bool show_other_locations);
 
 		[GLib.Property ("show-other-locations")]
@@ -384,14 +384,14 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_add_shortcut(IntPtr raw, IntPtr location);
 
 		public void AddShortcut(GLib.IFile location) {
 			gtk_places_sidebar_add_shortcut(Handle, location == null ? IntPtr.Zero : ((location is GLib.Object) ? (location as GLib.Object).Handle : (location as GLib.FileAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_places_sidebar_get_nth_bookmark(IntPtr raw, int n);
 
 		public GLib.IFile GetNthBookmark(int n) {
@@ -400,7 +400,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_places_sidebar_get_type();
 
 		public static new GLib.GType GType { 
@@ -411,7 +411,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_places_sidebar_list_shortcuts(IntPtr raw);
 
 		public GLib.SList ListShortcuts() {
@@ -420,14 +420,14 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_remove_shortcut(IntPtr raw, IntPtr location);
 
 		public void RemoveShortcut(GLib.IFile location) {
 			gtk_places_sidebar_remove_shortcut(Handle, location == null ? IntPtr.Zero : ((location is GLib.Object) ? (location as GLib.Object).Handle : (location as GLib.FileAdapter).Handle));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_places_sidebar_set_drop_targets_visible(IntPtr raw, bool visible, IntPtr context);
 
 		public void SetDropTargetsVisible(bool visible, Gdk.DragContext context) {

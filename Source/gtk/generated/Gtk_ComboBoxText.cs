@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public ComboBoxText (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_combo_box_text_new();
 
 		public ComboBoxText () : base (IntPtr.Zero)
@@ -25,7 +25,7 @@ namespace Gtk {
 			Raw = gtk_combo_box_text_new();
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_combo_box_text_new_with_entry();
 
 		public static new ComboBoxText NewWithEntry()
@@ -82,7 +82,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_append(IntPtr raw, IntPtr id, IntPtr text);
 
 		public void Append(string id, string text) {
@@ -93,7 +93,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_append_text(IntPtr raw, IntPtr text);
 
 		public void AppendText(string text) {
@@ -102,7 +102,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_combo_box_text_get_active_text(IntPtr raw);
 
 		public string ActiveText { 
@@ -113,7 +113,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_combo_box_text_get_type();
 
 		public static new GLib.GType GType { 
@@ -124,7 +124,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_insert(IntPtr raw, int position, IntPtr id, IntPtr text);
 
 		public void Insert(int position, string id, string text) {
@@ -135,7 +135,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_insert_text(IntPtr raw, int position, IntPtr text);
 
 		public void InsertText(int position, string text) {
@@ -144,7 +144,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_prepend(IntPtr raw, IntPtr id, IntPtr text);
 
 		public void Prepend(string id, string text) {
@@ -155,7 +155,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_prepend_text(IntPtr raw, IntPtr text);
 
 		public void PrependText(string text) {
@@ -164,14 +164,14 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_text);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_remove(IntPtr raw, int position);
 
 		public void Remove(int position) {
 			gtk_combo_box_text_remove(Handle, position);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_combo_box_text_remove_all(IntPtr raw);
 
 		public void RemoveAll() {

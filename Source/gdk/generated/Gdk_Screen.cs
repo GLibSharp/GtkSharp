@@ -2320,7 +2320,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_active_window(IntPtr raw);
 
 		[Obsolete]
@@ -2332,7 +2332,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_default();
 
 		public static Gdk.Screen Default { 
@@ -2343,7 +2343,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_display(IntPtr raw);
 
 		public Gdk.Display Display { 
@@ -2354,7 +2354,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_height(IntPtr raw);
 
 		[Obsolete]
@@ -2366,7 +2366,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_height_mm(IntPtr raw);
 
 		[Obsolete]
@@ -2378,7 +2378,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_monitor_at_point(IntPtr raw, int x, int y);
 
 		[Obsolete]
@@ -2388,7 +2388,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_monitor_at_window(IntPtr raw, IntPtr window);
 
 		[Obsolete]
@@ -2398,7 +2398,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_screen_get_monitor_geometry(IntPtr raw, int monitor_num, IntPtr dest);
 
 		[Obsolete]
@@ -2411,7 +2411,7 @@ namespace Gdk {
 			return dest;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_monitor_height_mm(IntPtr raw, int monitor_num);
 
 		[Obsolete]
@@ -2421,7 +2421,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_monitor_plug_name(IntPtr raw, int monitor_num);
 
 		[Obsolete]
@@ -2431,7 +2431,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_monitor_scale_factor(IntPtr raw, int monitor_num);
 
 		[Obsolete]
@@ -2441,7 +2441,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_monitor_width_mm(IntPtr raw, int monitor_num);
 
 		[Obsolete]
@@ -2451,7 +2451,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_screen_get_monitor_workarea(IntPtr raw, int monitor_num, IntPtr dest);
 
 		[Obsolete]
@@ -2461,7 +2461,7 @@ namespace Gdk {
 			Marshal.FreeHGlobal (native_dest);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_n_monitors(IntPtr raw);
 
 		[Obsolete]
@@ -2473,7 +2473,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_number(IntPtr raw);
 
 		[Obsolete]
@@ -2485,7 +2485,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_primary_monitor(IntPtr raw);
 
 		[Obsolete]
@@ -2497,10 +2497,10 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern double gdk_screen_get_resolution(IntPtr raw);
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_screen_set_resolution(IntPtr raw, double dpi);
 
 		public double Resolution { 
@@ -2514,7 +2514,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_rgba_visual(IntPtr raw);
 
 		public Gdk.Visual RgbaVisual { 
@@ -2525,7 +2525,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_root_window(IntPtr raw);
 
 		public Gdk.Window RootWindow { 
@@ -2536,7 +2536,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_screen_get_setting(IntPtr raw, IntPtr name, IntPtr value);
 
 		public bool GetSetting(string name, GLib.Value value) {
@@ -2549,7 +2549,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_system_visual(IntPtr raw);
 
 		public Gdk.Visual SystemVisual { 
@@ -2560,7 +2560,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_type();
 
 		public static new GLib.GType GType { 
@@ -2571,7 +2571,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_width(IntPtr raw);
 
 		[Obsolete]
@@ -2583,7 +2583,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_screen_get_width_mm(IntPtr raw);
 
 		[Obsolete]
@@ -2595,7 +2595,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_get_window_stack(IntPtr raw);
 
 		public Gdk.Window[] WindowStack { 
@@ -2606,7 +2606,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_screen_is_composited(IntPtr raw);
 
 		public bool IsComposited { 
@@ -2617,7 +2617,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_screen_make_display_name(IntPtr raw);
 
 		[Obsolete]

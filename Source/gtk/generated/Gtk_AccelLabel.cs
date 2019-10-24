@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public AccelLabel (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_label_new(IntPtr str1ng);
 
 		public AccelLabel (string str1ng) : base (IntPtr.Zero)
@@ -31,7 +31,7 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_str1ng);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_label_set_accel_closure(IntPtr raw, IntPtr accel_closure);
 
 		[GLib.Property ("accel-closure")]
@@ -47,10 +47,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_label_get_accel_widget(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_label_set_accel_widget(IntPtr raw, IntPtr accel_widget);
 
 		[GLib.Property ("accel-widget")]
@@ -161,7 +161,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_label_get_accel(IntPtr raw, out uint accelerator_key, out int accelerator_mods);
 
 		public void GetAccel(out uint accelerator_key, out Gdk.ModifierType accelerator_mods) {
@@ -170,7 +170,7 @@ namespace Gtk {
 			accelerator_mods = (Gdk.ModifierType) native_accelerator_mods;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_accel_label_get_accel_width(IntPtr raw);
 
 		public uint AccelWidth { 
@@ -181,7 +181,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_accel_label_get_type();
 
 		public static new GLib.GType GType { 
@@ -192,7 +192,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_accel_label_refetch(IntPtr raw);
 
 		public bool Refetch() {
@@ -201,7 +201,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_accel_label_set_accel(IntPtr raw, uint accelerator_key, int accelerator_mods);
 
 		public void SetAccel(uint accelerator_key, Gdk.ModifierType accelerator_mods) {

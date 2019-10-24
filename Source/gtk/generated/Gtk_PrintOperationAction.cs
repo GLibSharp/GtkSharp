@@ -17,7 +17,7 @@ namespace Gtk {
 	}
 
 	internal class PrintOperationActionGType {
-		[DllImport ("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_print_operation_action_get_type ();
 
 		public static GLib.GType GType {

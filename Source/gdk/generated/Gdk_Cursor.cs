@@ -13,7 +13,7 @@ namespace Gdk {
 
 		public Cursor (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_new(int cursor_type);
 
 		public Cursor (Gdk.CursorType cursor_type) : base (IntPtr.Zero)
@@ -29,7 +29,7 @@ namespace Gdk {
 			Raw = gdk_cursor_new((int) cursor_type);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_new_for_display(IntPtr display, int cursor_type);
 
 		public Cursor (Gdk.Display display, Gdk.CursorType cursor_type) : base (IntPtr.Zero)
@@ -49,7 +49,7 @@ namespace Gdk {
 			Raw = gdk_cursor_new_for_display(display == null ? IntPtr.Zero : display.Handle, (int) cursor_type);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_new_from_name(IntPtr display, IntPtr name);
 
 		public Cursor (Gdk.Display display, string name) : base (IntPtr.Zero)
@@ -69,7 +69,7 @@ namespace Gdk {
 			GLib.Marshaller.Free (native_name);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_new_from_pixbuf(IntPtr display, IntPtr pixbuf, int x, int y);
 
 		public Cursor (Gdk.Display display, Gdk.Pixbuf pixbuf, int x, int y) : base (IntPtr.Zero)
@@ -87,7 +87,7 @@ namespace Gdk {
 			Raw = gdk_cursor_new_from_pixbuf(display == null ? IntPtr.Zero : display.Handle, pixbuf == null ? IntPtr.Zero : pixbuf.Handle, x, y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_new_from_surface(IntPtr display, IntPtr surface, double x, double y);
 
 		public Cursor (Gdk.Display display, Cairo.Surface surface, double x, double y) : base (IntPtr.Zero)
@@ -105,7 +105,7 @@ namespace Gdk {
 			Raw = gdk_cursor_new_from_surface(display == null ? IntPtr.Zero : display.Handle, surface.Handle, x, y);
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int gdk_cursor_get_cursor_type(IntPtr raw);
 
 		[GLib.Property ("cursor-type")]
@@ -117,7 +117,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_get_display(IntPtr raw);
 
 		[GLib.Property ("display")]
@@ -211,7 +211,7 @@ namespace Gdk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_get_image(IntPtr raw);
 
 		public Gdk.Pixbuf Image { 
@@ -222,7 +222,7 @@ namespace Gdk {
 			}
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_get_surface(IntPtr raw, out double x_hot, out double y_hot);
 
 		public Cairo.Surface GetSurface(out double x_hot, out double y_hot) {
@@ -231,7 +231,7 @@ namespace Gdk {
 			return ret;
 		}
 
-		[DllImport("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_cursor_get_type();
 
 		public static new GLib.GType GType { 

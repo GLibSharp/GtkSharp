@@ -23,7 +23,7 @@ namespace Gdk {
 	}
 
 	internal class GravityGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_gravity_get_type ();
 
 		public static GLib.GType GType {

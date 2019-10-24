@@ -26,7 +26,7 @@ namespace Gtk {
 			return (Gtk.PrintWin32Devnames) Marshal.PtrToStructure (raw, typeof (Gtk.PrintWin32Devnames));
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_print_win32_devnames_free(IntPtr raw);
 
 		public void Free() {

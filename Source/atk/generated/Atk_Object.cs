@@ -228,10 +228,10 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_get_description(IntPtr raw);
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_set_description(IntPtr raw, IntPtr description);
 
 		public string Description {
@@ -247,10 +247,10 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_get_name(IntPtr raw);
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_set_name(IntPtr raw, IntPtr name);
 
 		public string Name {
@@ -266,10 +266,10 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_object_get_role(IntPtr raw);
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_set_role(IntPtr raw, int role);
 
 		public Atk.Role Role {
@@ -1981,7 +1981,7 @@ namespace Atk {
 
 		// End of the ABI representation.
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_object_add_relationship(IntPtr raw, int relationship, IntPtr target);
 
 		public bool AddRelationship(Atk.RelationType relationship, Atk.Object target) {
@@ -1990,7 +1990,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint atk_object_connect_property_change_handler(IntPtr raw, AtkSharp.PropertyChangeHandlerNative handler);
 
 		[Obsolete]
@@ -2001,7 +2001,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_get_attributes(IntPtr raw);
 
 		public Atk.Attribute[] Attributes { 
@@ -2012,7 +2012,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_object_get_index_in_parent(IntPtr raw);
 
 		public int IndexInParent { 
@@ -2023,7 +2023,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int atk_object_get_n_accessible_children(IntPtr raw);
 
 		public int NAccessibleChildren { 
@@ -2034,7 +2034,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_get_object_locale(IntPtr raw);
 
 		public string ObjectLocale { 
@@ -2045,10 +2045,10 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_get_parent(IntPtr raw);
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_set_parent(IntPtr raw, IntPtr parent);
 
 		public Atk.Object Parent { 
@@ -2062,7 +2062,7 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_get_type();
 
 		public static new GLib.GType GType { 
@@ -2073,21 +2073,21 @@ namespace Atk {
 			}
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_initialize(IntPtr raw, IntPtr data);
 
 		public void Initialize(IntPtr data) {
 			atk_object_initialize(Handle, data);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_notify_state_change(IntPtr raw, ulong state, bool value);
 
 		public void NotifyStateChange(ulong state, bool value) {
 			atk_object_notify_state_change(Handle, state, value);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_peek_parent(IntPtr raw);
 
 		public Atk.Object PeekParent() {
@@ -2096,7 +2096,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_ref_accessible_child(IntPtr raw, int i);
 
 		public Atk.Object RefAccessibleChild(int i) {
@@ -2105,7 +2105,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_ref_relation_set(IntPtr raw);
 
 		public Atk.RelationSet RefRelationSet() {
@@ -2114,7 +2114,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_object_ref_state_set(IntPtr raw);
 
 		public Atk.StateSet RefStateSet() {
@@ -2123,7 +2123,7 @@ namespace Atk {
 			return ret;
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_object_remove_property_change_handler(IntPtr raw, uint handler_id);
 
 		[Obsolete]
@@ -2131,7 +2131,7 @@ namespace Atk {
 			atk_object_remove_property_change_handler(Handle, handler_id);
 		}
 
-		[DllImport("libatk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool atk_object_remove_relationship(IntPtr raw, int relationship, IntPtr target);
 
 		public bool RemoveRelationship(Atk.RelationType relationship, Atk.Object target) {

@@ -13,7 +13,7 @@ namespace Gtk {
 
 		public MountOperation (IntPtr raw) : base(raw) {}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_mount_operation_new(IntPtr parent);
 
 		public MountOperation (Gtk.Window parent) : base (IntPtr.Zero)
@@ -31,10 +31,10 @@ namespace Gtk {
 			Raw = gtk_mount_operation_new(parent == null ? IntPtr.Zero : parent.Handle);
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_mount_operation_get_parent(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_mount_operation_set_parent(IntPtr raw, IntPtr parent);
 
 		[GLib.Property ("parent")]
@@ -49,7 +49,7 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_mount_operation_is_showing(IntPtr raw);
 
 		[GLib.Property ("is-showing")]
@@ -61,10 +61,10 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_mount_operation_get_screen(IntPtr raw);
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_mount_operation_set_screen(IntPtr raw, IntPtr screen);
 
 		[GLib.Property ("screen")]
@@ -127,7 +127,7 @@ namespace Gtk {
 
 		// End of the ABI representation.
 
-		[DllImport("libgtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_mount_operation_get_type();
 
 		public static new GLib.GType GType { 

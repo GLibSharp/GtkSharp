@@ -19,7 +19,7 @@ namespace Gdk {
 	}
 
 	internal class VisualTypeGType {
-		[DllImport ("libgdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_visual_type_get_type ();
 
 		public static GLib.GType GType {
