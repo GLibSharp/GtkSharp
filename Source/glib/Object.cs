@@ -81,7 +81,13 @@ namespace GLib {
 		static extern IntPtr g_object_ref (IntPtr raw);
 
 		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_ref_sink (IntPtr raw);
+
+		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_object_unref (IntPtr raw);
+
+		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool g_object_is_floating (IntPtr raw);
 		
 		public static Object TryGetObject (IntPtr o)
 		{
@@ -123,14 +129,25 @@ namespace GLib {
 				return obj;
 			}
 
-			if (!owned_ref)
+			bool unexpected_owned_floating = false;
+			// If we don't get an owned reference here then we need to increase the
+			// reference count as CreateObject() always takes an owned reference.
+			// If we get a floating reference passed, however, then we assume that
+			// we actually own it and have to sink the floating reference, which
+			// will happen in the setter for Raw later.
+			if (!owned_ref && !g_object_is_floating(o))
 				g_object_ref (o);
+			else if (owned_ref && g_object_is_floating(o))
+				unexpected_owned_floating = true;
 
 			obj = GLib.ObjectManager.CreateObject(o); 
 			if (obj == null) {
 				g_object_unref (o);
 				return null;
 			}
+
+			if (unexpected_owned_floating)
+				Console.Error.WriteLine ("Unexpected owned floating reference of " + obj.GetType() + " instance. This will be leaked");
 
 			return obj;
 		}
@@ -670,6 +687,13 @@ namespace GLib {
 							tref.Dispose ();
 							tref = null;
 						}
+					}
+
+					// All references that we get here are assumed to be owned by us. If we
+					// get a floating reference then we should take ownership of it by
+					// sinking it.
+					if (value != IntPtr.Zero && g_object_is_floating(value)) {
+						g_object_ref_sink(value);
 					}
 
 					handle = value;
