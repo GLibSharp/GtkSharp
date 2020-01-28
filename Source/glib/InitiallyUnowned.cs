@@ -41,17 +41,6 @@ namespace GLib {
 		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void g_object_ref_sink (IntPtr raw);
 
-		protected override IntPtr Raw {
-			get {
-				return base.Raw;
-			}
-			set {
-				if (value != IntPtr.Zero)
-					g_object_ref_sink (value);
-				base.Raw = value;
-			}
-		}
-
 		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_object_is_floating (IntPtr raw);
 
