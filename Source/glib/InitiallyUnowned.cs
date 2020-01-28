@@ -27,9 +27,14 @@ namespace GLib {
 
 		protected InitiallyUnowned (IntPtr raw) : base (raw) {}
 
+		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr g_initially_unowned_get_type ();
+
 		public new static GLib.GType GType {
 			get {
-				return GType.Object;
+				IntPtr raw_ret = g_initially_unowned_get_type();
+				GLib.GType ret = new GLib.GType(raw_ret);
+				return ret;
 			}
 		}
 
