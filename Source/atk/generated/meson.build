@@ -99,7 +99,7 @@ generated_sources = [
     'Atk_IAction.cs',
 ]
 
-source_gen = custom_target('atk_generated',
+run_target('update_' + pkg + '_code',
         command: [
             generate_api,
             '--api-raw', raw_api_fname,
@@ -107,35 +107,19 @@ source_gen = custom_target('atk_generated',
             '--metadata', metadata_fname,
             '--gapi-codegen', gapi_codegen.full_path(),
             '--extra-includes', glib_api_includes,
-            '--out', meson.current_build_dir(),
+            '--out', meson.current_source_dir(),
             '--files', ';'.join(generated_sources),
             '--assembly-name', assembly_name,
             '--abi-includes', 'atk/atk.h',
             '--abi-cs-usings', 'Atk,GLib',
         ],
-        depends: [gapi_codegen, gapi_fixup],
-        input: raw_api_fname,
-        output: generated_sources,
-)
+        depends: [gapi_codegen, gapi_fixup],)
+pkgs += [pkg]
+source_gen = files(generated_sources)
+c_abi = files(assembly_name + '-abi.c')
+cs_abi = files(assembly_name + '-abi.cs')
 
-c_abi = custom_target(assembly_name + '_c_abi',
-        input: raw_api_fname,
-        output: assembly_name + '-abi.c',
-        command: [generate_api, '--fake'],
-        depends: [source_gen])
-
-cs_abi = custom_target(assembly_name + '_cs_abi',
-        input: raw_api_fname,
-        output: assembly_name + '-abi.cs',
-        command: [generate_api, '--fake'],
-        depends: [source_gen])
-
-
-api_xml = custom_target(pkg + '_api_xml',
-        input: raw_api_fname,
-        output: pkg + '-api.xml',
-        command: [generate_api, '--fake'],
-        depends: [source_gen],
-        install: install,
-        install_dir: gapi_xml_installdir)
-atk_api_includes = join_paths(meson.current_build_dir(), 'atk-api.xml')
+atk_api_includes = join_paths(meson.current_source_dir(), 'atk-api.xml')
+if install
+    install_data(atk_api_includes, install_dir: gapi_xml_installdir)
+endif
