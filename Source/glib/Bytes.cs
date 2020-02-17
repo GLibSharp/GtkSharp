@@ -149,6 +149,7 @@ namespace GLib {
 		class FinalizerInfo
 		{
 			IntPtr handle;
+			public uint timeoutHandlerId;
 
 			public FinalizerInfo (IntPtr handle)
 			{
@@ -158,7 +159,7 @@ namespace GLib {
 			public bool Handler ()
 			{
 				g_bytes_unref (handle);
-                GLib.Timeout.Remove(timeoutHandlerId);
+				GLib.Timeout.Remove(timeoutHandlerId);
 				return false;
 			}
 		}
