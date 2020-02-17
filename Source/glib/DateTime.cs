@@ -486,6 +486,7 @@ namespace GLib {
 
 		class FinalizerInfo {
 			IntPtr handle;
+			public uint timeoutHandlerId;
 
 			public FinalizerInfo (IntPtr handle)
 			{
@@ -495,6 +496,7 @@ namespace GLib {
 			public bool Handler ()
 			{
 				g_date_time_unref (handle);
+				GLib.Timeout.Remove(timeoutHandlerId);
 				return false;
 			}
 		}
@@ -504,7 +506,7 @@ namespace GLib {
 			if (!Owned)
 				return;
 			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
+			info.timeoutHandlerId = GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 #endregion

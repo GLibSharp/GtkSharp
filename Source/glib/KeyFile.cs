@@ -48,6 +48,7 @@ namespace GLib {
 
 		class FinalizerInfo {
 			IntPtr handle;
+			public uint timeoutHandlerId;
 
 			public FinalizerInfo (IntPtr handle)
 			{
@@ -57,6 +58,7 @@ namespace GLib {
 			public bool Handler ()
 			{
 				g_key_file_free (handle);
+				GLib.Timeout.Remove(timeoutHandlerId);
 				return false;
 			}
 		}
@@ -66,7 +68,7 @@ namespace GLib {
 			if (!owned)
 				return;
 			FinalizerInfo info = new FinalizerInfo (Handle);
-			Timeout.Add (50, new TimeoutHandler (info.Handler));
+			info.timeoutHandlerId = Timeout.Add (50, new TimeoutHandler (info.Handler));
 		}
 
 		public KeyFile (IntPtr handle) : this (handle, false) {}
