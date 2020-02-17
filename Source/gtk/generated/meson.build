@@ -1058,12 +1058,10 @@ generated_sources = [
     'Gtk_MapEventHandler.cs',
 ]
 
-source_gen = custom_target(assembly_name + 'codegen',
-    input: raw_api_fname,
-    output: generated_sources,
+run_target('update_' + pkg + '_code',
     command: [
         generate_api,
-        '--api-raw', '@INPUT@',
+        '--api-raw', raw_api_fname,
         '--gapi-fixup', gapi_fixup.full_path(),
         '--metadata', metadata,
         '--symbols', symbols,
@@ -1075,31 +1073,19 @@ source_gen = custom_target(assembly_name + 'codegen',
         '--extra-includes', gdk_api_includes,
         '--extra-includes', atk_api_includes,
         '--abi-includes', abi_includes,
-        '--out', meson.current_build_dir(),
+        '--out', meson.current_source_dir(),
         '--files', ';'.join(generated_sources),
         '--assembly-name', assembly_name,
         '--abi-cs-usings', 'Gtk,GLib',
         '--schema', schema,
     ],
     depends: [gapi_codegen, gapi_fixup])
+pkgs += [pkg]
+source_gen = files(generated_sources)
+c_abi = files(assembly_name + '-abi.c')
+cs_abi = files(assembly_name + '-abi.cs')
+gtk_api_includes = join_paths(meson.current_source_dir(), 'gtk-api.xml')
+if install
+    install_data(gtk_api_includes, install_dir: gapi_xml_installdir)
+endif
 
-c_abi = custom_target(assembly_name + '_c_abi',
-        input: raw_api_fname,
-        output: assembly_name + '-abi.c',
-        command: [generate_api, '--fake'],
-        depends: [source_gen])
-
-cs_abi = custom_target(assembly_name + '_cs_abi',
-        input: raw_api_fname,
-        output: assembly_name + '-abi.cs',
-        command: [generate_api, '--fake'],
-        depends: [source_gen])
-
-api_xml = custom_target(pkg + '_api_xml',
-        input: raw_api_fname,
-        output: pkg + '-api.xml',
-        command: [generate_api, '--fake'],
-        depends: [source_gen],
-        install: install,
-        install_dir: gapi_xml_installdir)
-gtk_api_includes = join_paths(meson.current_build_dir(), 'gtk-api.xml')
