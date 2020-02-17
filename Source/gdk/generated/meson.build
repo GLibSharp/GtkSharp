@@ -192,12 +192,10 @@ generated_sources = [
     'GLib_GLibSharp.GSourceFuncNative.cs',
 ]
 
-source_gen = custom_target(assembly_name + 'codegen',
-    input: raw_api_fname,
-    output: generated_sources,
+run_target('update_' + pkg + '_code',
     command: [
         generate_api,
-        '--api-raw', '@INPUT@',
+        '--api-raw', raw_api_fname,
         '--gapi-fixup', gapi_fixup.full_path(),
         '--metadata', metadata_fname,
         '--symbols', symbols,
@@ -206,18 +204,16 @@ source_gen = custom_target(assembly_name + 'codegen',
         '--extra-includes', pango_api_includes,
         '--extra-includes', gio_api_includes,
         '--extra-includes', cairo_api_includes,
-        '--out', meson.current_build_dir(),
+        '--out', meson.current_source_dir(),
         '--files', ';'.join(generated_sources),
         '--assembly-name', assembly_name,
         '--schema', schema,
     ],
     depends: [gapi_codegen, gapi_fixup])
 
-api_xml = custom_target(pkg + '_api_xml',
-        input: raw_api_fname,
-        output: pkg + '-api.xml',
-        command: [generate_api, '--fake'],
-        depends: [source_gen],
-        install: install,
-        install_dir: gapi_xml_installdir)
-gdk_api_includes = join_paths(meson.current_build_dir(), 'gdk-api.xml')
+pkgs += [pkg]
+source_gen = files(generated_sources)
+gdk_api_includes = join_paths(meson.current_source_dir(), 'gdk-api.xml')
+if install
+    install_data(gdk_api_includes, install_dir: gapi_xml_installdir)
+endif
