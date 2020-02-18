@@ -70,8 +70,8 @@ namespace GLib {
 		}
 		
 		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_idle_add (IdleHandlerInternal d, IntPtr data);
-
+		static extern uint g_idle_add_full(int priority, IdleHandlerInternal d, IntPtr data, DestroyNotify notify);
+		
 		public static uint Add (IdleHandler hndlr)
 		{
 			IdleProxy p = new IdleProxy (hndlr);
@@ -80,22 +80,6 @@ namespace GLib {
 				var gch = GCHandle.Alloc(p);
 				var userData = GCHandle.ToIntPtr(gch);
 				p.ID = g_idle_add_full (0, (IdleHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
-				Source.AddSourceHandler (p.ID, p);
-			}
-
-			return p.ID;
-		}
-
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_idle_add_full (int priority, IdleHandlerInternal d, IntPtr data, DestroyNotify notify);
-
-		public static uint Add (IdleHandler hndlr, Priority priority)
-		{
-			IdleProxy p = new IdleProxy (hndlr);
-			lock (p)
-			{
-				p.ID = g_idle_add_full ((int)priority, (IdleHandlerInternal)p.proxy_handler, IntPtr.Zero, null);
-				Source.AddSourceHandler (p.ID, p);
 			}
 
 			return p.ID;
@@ -104,11 +88,6 @@ namespace GLib {
 		public static void Remove (uint id)
 		{
 			Source.Remove (id);
-		}
-
-		public static bool Remove (IdleHandler hndlr)
-		{
-			return Source.RemoveSourceHandler (hndlr);
 		}
 	}
 }

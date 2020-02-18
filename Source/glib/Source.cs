@@ -62,15 +62,12 @@ namespace GLib {
 
 		internal void Remove ()
 		{
-			Source.RemoveSourceHandler (ID);
 			real_handler = null;
 			proxy_handler = null;
 		}
 	}
 
 	public partial class Source : GLib.Opaque {
-
-		private static IDictionary<uint, SourceProxy> source_handlers = new Dictionary<uint, SourceProxy> ();
 
 		private Source () {}
 
@@ -110,57 +107,12 @@ namespace GLib {
 			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
-		internal static void AddSourceHandler (uint id, SourceProxy proxy)
-		{
-			lock (Source.source_handlers) {
-				source_handlers [id] = proxy;
-			}
-		}
-
-		internal static void RemoveSourceHandler (uint id)
-		{
-			lock (Source.source_handlers) {
-				source_handlers.Remove (id);
-			}
-		}
-
-		internal static bool RemoveSourceHandler (Delegate hndlr)
-		{
-			bool result = false;
-			List<uint> keys = new List<uint> ();
-
-			lock (source_handlers) {
-				foreach (uint code in source_handlers.Keys) {
-					var p = Source.source_handlers [code];
-
-					if (p != null && p.real_handler == hndlr) {
-						keys.Add (code);
-						result = g_source_remove (code);
-					}
-				}
-
-				foreach (var key in keys) {
-					Source.RemoveSourceHandler (key);
-				}
-			}
-
-			return result;
-		}
-
 		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_source_remove (uint tag);
 
 		public static bool Remove (uint tag)
 		{
-			// g_source_remove always returns true, so we follow that
-			bool ret = true;
-
-			lock (Source.source_handlers) {
-				if (source_handlers.Remove (tag)) {
-					ret = g_source_remove (tag);
-				}
-			}
-			return ret;
+			return g_source_remove (tag);
 		}
 
 		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
