@@ -65,7 +65,7 @@ namespace GLib {
 		
 		private Timeout () {} 
 		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_timeout_add (uint interval, TimeoutHandlerInternal d, IntPtr data);
+		static extern uint g_timeout_add_full(int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
 
 		public static uint Add (uint interval, TimeoutHandler hndlr)
 		{
@@ -75,37 +75,22 @@ namespace GLib {
 				var gch = GCHandle.Alloc(p);
 				var userData = GCHandle.ToIntPtr(gch);
 				p.ID = g_timeout_add_full (0, interval, (TimeoutHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
-				Source.AddSourceHandler (p.ID, p);
 			}
 
 			return p.ID;
 		}
 
 		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_timeout_add_full (int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
-
-		public static uint Add (uint interval, TimeoutHandler hndlr, Priority priority)
-		{
-			TimeoutProxy p = new TimeoutProxy (hndlr);
-			lock (p)
-			{
-				p.ID = g_timeout_add_full ((int)priority, interval, (TimeoutHandlerInternal) p.proxy_handler, IntPtr.Zero, null);
-				Source.AddSourceHandler (p.ID, p);
-			}
-
-			return p.ID;
-		}
-
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_timeout_add_seconds (uint interval, TimeoutHandlerInternal d, IntPtr data);
+		static extern uint g_timeout_add_seconds_full (int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
 
 		public static uint AddSeconds (uint interval, TimeoutHandler hndlr)
 		{
 			TimeoutProxy p = new TimeoutProxy (hndlr);
 			lock (p)
 			{
-				p.ID = g_timeout_add_seconds (interval, (TimeoutHandlerInternal) p.proxy_handler, IntPtr.Zero);
-				Source.AddSourceHandler (p.ID, p);
+				var gch = GCHandle.Alloc(p);
+				var userData = GCHandle.ToIntPtr(gch);
+				p.ID = g_timeout_add_seconds_full (0, interval, (TimeoutHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
 			}
 
 			return p.ID;
@@ -114,11 +99,6 @@ namespace GLib {
 		public static void Remove (uint id)
 		{
 			Source.Remove (id);
-		}
-
-		public static bool Remove (TimeoutHandler hndlr)
-		{
-			return Source.RemoveSourceHandler (hndlr);
 		}
 	}
 }
