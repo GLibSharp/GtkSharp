@@ -167,7 +167,11 @@ namespace GtkSharp.Generation {
 				sw.WriteLine ("\t\t\tif (!Owned)");
 				sw.WriteLine ("\t\t\t\treturn;");
 				sw.WriteLine ("\t\t\tFinalizerInfo info = new FinalizerInfo (Handle);");
-				sw.WriteLine ("\t\t\tGLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));");
+				sw.WriteLine ("\t\t\tif (ForceFinalizeInMainThread) {");
+				sw.WriteLine ("\t\t\t\tGLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));");
+				sw.WriteLine ("\t\t\t} else {");
+				sw.WriteLine ("\t\t\t\tinfo.Handler();");
+				sw.WriteLine ("\t\t\t}");
 				sw.WriteLine ("\t\t}");
 				sw.WriteLine ();
 			}
