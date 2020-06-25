@@ -160,7 +160,11 @@ namespace Pango {
 			if (!Owned)
 				return;
 			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
+			if (ForceFinalizeInMainThread) {
+				GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
+			} else {
+				info.Handler();
+			}
 		}
 
 
