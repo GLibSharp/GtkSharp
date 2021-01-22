@@ -107,7 +107,7 @@ namespace GLib {
 		public static void Register (GType native_type, System.Type type, bool managed)
 		{
 			lock (types) {
-				if (native_type != GType.Pointer && native_type != GType.Boxed && native_type != ManagedValue.GType)
+				if (native_type != GType.Boxed && native_type != ManagedValue.GType)
 					types[native_type.Val] = type;
 				if (type != null)
 					gtypes[type] = native_type;
@@ -137,7 +137,6 @@ namespace GLib {
 			Register (GType.String, typeof (string));
 			Register (GType.Pointer, typeof (IntPtr));
 			Register (GType.Object, typeof (GLib.Object));
-			Register (GType.Pointer, typeof (IntPtr));
 			Register (GType.Variant, typeof (GLib.Variant));
 
 			// One-way mapping
