@@ -179,6 +179,12 @@ namespace GLib {
 			if (string.IsNullOrEmpty (cname))
 				return null;
 
+			// The qualified name for unmanaged GError can't be inferred since
+			// it's binded to the managed type GException
+			if (cname == "GError") {
+				return "GLib.GException";
+			}
+
 			for (int i = 1; i < cname.Length; i++) {
 				if (System.Char.IsUpper (cname[i])) {
 					if (i == 1 && cname [0] == 'G')
