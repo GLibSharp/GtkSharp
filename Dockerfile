@@ -1,4 +1,4 @@
-FROM base/devel
+FROM archlinux/archlinux:base-devel-20210627.0.27153
 
 RUN pacman -Syy --noconfirm
 RUN pacman -Syu --noconfirm
