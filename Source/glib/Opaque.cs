@@ -30,6 +30,8 @@ namespace GLib {
 
 	public class Opaque : IWrapper, IDisposable {
 
+		public static bool ForceFinalizeInMainThread = true;
+
 		IntPtr _obj;
 		bool owned;
 
