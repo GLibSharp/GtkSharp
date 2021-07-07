@@ -106,7 +106,9 @@ namespace GtkSharp.Generation {
 				}
 			}
 
-			bool finalizer_needed = false;
+			// GtkWidgetPath has both gtk_widget_path_unref and gtk_widget_path_free
+			// If this happens add only one and prefer unref over free
+			bool disposeUnmanagedFuncAdded = false;
 
 			if (unref != null) {
 				unref.GenerateImport (sw);
@@ -118,13 +120,18 @@ namespace GtkSharp.Generation {
 				sw.WriteLine ("\t\t\t}");
 				sw.WriteLine ("\t\t}");
 				sw.WriteLine ();
-
+				sw.WriteLine ("\t\tprotected override Action<IntPtr> DisposeUnmanagedFunc {");
+				sw.WriteLine ("\t\t\tget {");
+				sw.WriteLine ("\t\t\t\treturn " + unref.CName + ";");
+				sw.WriteLine ("\t\t\t}");
+				sw.WriteLine ("\t\t}");
+				sw.WriteLine ();
+				disposeUnmanagedFuncAdded = true;
 				if (unref.IsDeprecated) {
 					sw.WriteLine ("\t\t[Obsolete(\"" + QualifiedName + " is now refcounted automatically\")]");
 					sw.WriteLine ("\t\tpublic void Unref () {}");
 					sw.WriteLine ();
 				}
-				finalizer_needed = true;
 			}
 
 			if (dispose != null) {
@@ -134,43 +141,22 @@ namespace GtkSharp.Generation {
 				sw.WriteLine ("\t\t\t" + dispose.CName + " (raw);");
 				sw.WriteLine ("\t\t}");
 				sw.WriteLine ();
+				if (!disposeUnmanagedFuncAdded) {
+					sw.WriteLine ("\t\tprotected override Action<IntPtr> DisposeUnmanagedFunc {");
+					sw.WriteLine ("\t\t\tget {");
+					sw.WriteLine ("\t\t\t\treturn " + dispose.CName + ";");
+					sw.WriteLine ("\t\t\t}");
+					sw.WriteLine ("\t\t}");
+					sw.WriteLine ();
+				}
 
 				if (dispose.IsDeprecated) {
 					sw.WriteLine ("\t\t[Obsolete(\"" + QualifiedName + " is now freed automatically\")]");
 					sw.WriteLine ("\t\tpublic void " + dispose.Name + " () {}");
 					sw.WriteLine ();
 				}
-				finalizer_needed = true;
 			}
 
-			if (finalizer_needed) {
-				sw.WriteLine ("\t\tclass FinalizerInfo {");
-				sw.WriteLine ("\t\t\tIntPtr handle;");
-				sw.WriteLine ();
-				sw.WriteLine ("\t\t\tpublic FinalizerInfo (IntPtr handle)");
-				sw.WriteLine ("\t\t\t{");
-				sw.WriteLine ("\t\t\t\tthis.handle = handle;");
-				sw.WriteLine ("\t\t\t}");
-				sw.WriteLine ();
-				sw.WriteLine ("\t\t\tpublic bool Handler ()");
-				sw.WriteLine ("\t\t\t{");
-				if (dispose != null)
-					sw.WriteLine ("\t\t\t\t{0} (handle);", dispose.CName);
-				else if (unref != null)
-					sw.WriteLine ("\t\t\t\t{0} (handle);", unref.CName);
-				sw.WriteLine ("\t\t\t\treturn false;");
-				sw.WriteLine ("\t\t\t}");
-				sw.WriteLine ("\t\t}");
-				sw.WriteLine ();
-				sw.WriteLine ("\t\t~{0} ()", Name);
-				sw.WriteLine ("\t\t{");
-				sw.WriteLine ("\t\t\tif (!Owned)");
-				sw.WriteLine ("\t\t\t\treturn;");
-				sw.WriteLine ("\t\t\tFinalizerInfo info = new FinalizerInfo (Handle);");
-				sw.WriteLine ("\t\t\tGLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));");
-				sw.WriteLine ("\t\t}");
-				sw.WriteLine ();
-			}
 
 #if false
 			Method copy = Methods ["Copy"] as Method;

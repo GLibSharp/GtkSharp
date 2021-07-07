@@ -81,13 +81,77 @@ namespace GLib {
 					Ref (_obj);
 				}
 			}
-		}       
+		}
 
-		public virtual void Dispose ()
+		#region IDisposable implementation
+		class FinalizerInfo
+		{
+			IntPtr handle;
+			Action<IntPtr> unrefFunc;
+
+			public FinalizerInfo (Action<IntPtr> unrefFunc, IntPtr handle)
+			{
+				this.handle = handle;
+				this.unrefFunc = unrefFunc;
+			}
+
+			public bool Handler ()
+			{
+				unrefFunc (handle);
+				return false;
+			}
+		}
+
+		~Opaque ()
+		{
+			Dispose (false);
+		}
+
+		public void Dispose ()
 		{
 			Raw = IntPtr.Zero;
+			Dispose (true);
 			GC.SuppressFinalize (this);
 		}
+
+		protected void Dispose (bool disposing)
+		{
+			if (Disposed)
+				return;
+			Disposed = true;
+			if (disposing) {
+				DisposeManagedResources ();
+			}
+			DisposeUnmanagedResources ();
+		}
+
+		/// <summary>
+		/// Disposes the managed resources.
+		/// This method is intended to be overriden.
+		/// </summary>
+		protected virtual void DisposeManagedResources ()
+		{
+		}
+
+		/// <summary>
+		/// Disposes the unmanaged resources.
+		/// This method is intended to be overriden.
+		/// </summary>
+		protected virtual void DisposeUnmanagedResources ()
+		{
+			if (!Owned || DisposeUnmanagedFunc == null)
+				return;
+			FinalizerInfo info = new FinalizerInfo (DisposeUnmanagedFunc, Handle);
+			Timeout.Add (50, new TimeoutHandler (info.Handler));
+		}
+
+		protected internal bool Disposed { get; private set; } = false;
+
+		protected virtual Action<IntPtr> DisposeUnmanagedFunc { get; }
+
+		#endregion
+
+
 
 		// These take an IntPtr arg so we don't get conflicts if we need
 		// to have an "[Obsolete] public void Ref ()"
