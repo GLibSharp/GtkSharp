@@ -32,6 +32,8 @@ namespace GLib {
 
 		IntPtr _obj;
 		bool owned;
+		bool disposing;
+		bool setOwnedRecursionGuard;
 
 		public static Opaque GetOpaque (IntPtr o, Type type, bool owned)
 		{
@@ -42,7 +44,9 @@ namespace GLib {
 			if (owned) {
 				if (opaque.owned) {
 					// The constructor took a Ref it shouldn't have, so undo it
+					opaque.setOwnedRecursionGuard = true;
 					opaque.Unref (o);
+					opaque.setOwnedRecursionGuard = false;
 				}
 				opaque.owned = true;
 			} else 
@@ -85,6 +89,7 @@ namespace GLib {
 
 		public virtual void Dispose ()
 		{
+			disposing = true;
 			Raw = IntPtr.Zero;
 			GC.SuppressFinalize (this);
 		}
@@ -119,6 +124,14 @@ namespace GLib {
 				return owned;
 			}
 			set {
+				// unref if Owned is set to false without disposing this object
+				if (setOwnedRecursionGuard) return;
+				if (owned && !value && _obj != IntPtr.Zero && !disposing) {
+					setOwnedRecursionGuard = true;
+					this.Unref(_obj);
+					setOwnedRecursionGuard = false;
+				}
+
 				owned = value;
 			}
 		}
