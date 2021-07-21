@@ -75,6 +75,8 @@ namespace GLib {
 				tref.QueueUnref ();
 		}
 
+		public static explicit operator IntPtr (Object o) => o.Handle;
+
 		public static bool WarnOnFinalize { get; set; }
 
 		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
