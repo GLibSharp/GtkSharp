@@ -89,6 +89,8 @@ namespace GtkSharp.Generation {
 				string name = BaseName;
 				if (name.Length <= 3)
 					return false;
+				if (name == "GetHandle")
+					return false;
 				if (name.StartsWith ("Get") || name.StartsWith ("Has"))
 					return Char.IsUpper (name [3]);
 				else if (name.StartsWith ("Is"))
@@ -103,7 +105,8 @@ namespace GtkSharp.Generation {
 				string name = BaseName;
 				if (name.Length <= 3)
 					return false;
-
+				if (name == "SetHandle")
+					return false;
 				return name.StartsWith ("Set") && Char.IsUpper (name [3]);
 			}
 		}
