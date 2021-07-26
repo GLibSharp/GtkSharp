@@ -52,6 +52,11 @@ namespace GtkSharp.Generation {
 				}
 				members.Add (result + ",");
 			}
+			if (enum_type == String.Empty && elem.HasAttribute ("type")) {
+				if (elem.GetAttribute ("type") == "flags") {
+					enum_type = " : uint";
+				}
+			}
 			if (elem.HasAttribute ("enum_type"))
 				enum_type = " : " + elem.GetAttribute ("enum_type");
 		}
