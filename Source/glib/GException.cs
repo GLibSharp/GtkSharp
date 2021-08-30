@@ -23,14 +23,20 @@ namespace GLib {
 
 	using System;
 	using System.Runtime.InteropServices;
-	
-	public class GException : Exception
-	{
-		IntPtr errptr;
-	
-		public GException (IntPtr errptr) : base ()
-		{
-			this.errptr = errptr;
+
+	public class GException : Exception {
+
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_error_free(IntPtr errptr);
+
+		public GException(IntPtr errptr, bool owned = true) : base() {
+			GError err = (GError)Marshal.PtrToStructure(errptr, typeof(GError));
+			Code = err.Code;
+			Domain = err.Domain;
+			Message = Marshaller.Utf8PtrToString(err.Msg);
+			if (owned) {
+				g_error_free(errptr);
+			}
 		}
 
 		struct GError {
@@ -39,33 +45,11 @@ namespace GLib {
 			public IntPtr Msg;
 		}
 
-		public int Code {
-			get {
-				GError err = (GError) Marshal.PtrToStructure (errptr, typeof (GError));
-				return err.Code;
-			}
-		}
+		public int Code { get; }
 
-		public int Domain {
-			get {
-				GError err = (GError) Marshal.PtrToStructure (errptr, typeof (GError));
-				return err.Domain;
-			}
-		}
+		public int Domain { get; }
 
-		public override string Message {
-			get {
-				GError err = (GError) Marshal.PtrToStructure (errptr, typeof (GError));
-				return Marshaller.Utf8PtrToString (err.Msg);
-			}
-		}
-
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_clear_error (ref IntPtr errptr);
-		~GException ()
-		{
-			g_clear_error (ref errptr);
-		}
+		public override string Message { get; }
 	}
 }
 
