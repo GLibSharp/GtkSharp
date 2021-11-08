@@ -413,5 +413,5 @@ pkgs += [pkg]
 source_gen = files(generated_sources)
 gio_api_includes = join_paths(meson.current_source_dir(), 'gio-api.xml')
 if install
-    install_data(gdk_api_includes, install_dir: gapi_xml_installdir)
+    install_data(gio_api_includes, install_dir: gapi_xml_installdir)
 endif
