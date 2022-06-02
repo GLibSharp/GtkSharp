@@ -3,6 +3,10 @@ assembly_name = 'cairo-sharp'
 raw_api_fname = join_paths(meson.current_source_dir(), 'cairo-api.raw')
 metadata_fname = join_paths(meson.current_source_dir(), 'cairo.metadata')
 
+configure_file(input: assembly_name + '.dll.config.in',
+        output: assembly_name + '.dll.config',
+        configuration : remap_dl_data)
+
 sources = [
     'Antialias.cs',
     'Cairo.cs',
