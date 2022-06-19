@@ -50,6 +50,8 @@ if __name__ == "__main__":
         '--outdir=' + opts.out,
         '--assembly-name=' + opts.assembly_name,
         '--glue-includes=' + opts.abi_includes,
+        '--glue-filename=' +  os.path.join(opts.out, opts.assembly_name + "-glue.c"),
+        '--gluelib-name=' + opts.assembly_name + "-glue",
         '--abi-c-filename=' + os.path.join(opts.out, opts.assembly_name + "-abi.c"),
         '--abi-cs-filename=' + os.path.join(opts.out, opts.assembly_name + "-abi.cs"),
     ]
