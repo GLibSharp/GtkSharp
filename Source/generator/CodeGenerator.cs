@@ -44,10 +44,6 @@ namespace GtkSharp.Generation {
 			string glue_includes = "";
 			string gluelib_name = "";
 			string schema_name = "";
-
-			SymbolTable table = SymbolTable.Table;
-			var gens = new List<IGeneratable>();
-
 			var filenames = new List<string>();
 			var includes = new List<string>();
 
@@ -96,14 +92,23 @@ namespace GtkSharp.Generation {
 				return 0;
 			}
 
-			if (filenames.Count == 0) {
-				Console.WriteLine("You need to specify a file to process using the --generate option.");
-				Console.WriteLine("Try `gapi-codegen --help' for more information.");
+			if (extra.Exists(v => { return v.StartsWith("--customdir"); })) {
+				Console.WriteLine("Using .custom files is not supported anymore, use partial classes instead.");
 				return 64;
 			}
 
-			if (extra.Exists(v => { return v.StartsWith("--customdir"); })) {
-				Console.WriteLine("Using .custom files is not supported anymore, use partial classes instead.");
+			return GenerateCode(dir, assembly_name, gapidir, abi_cs_usings, abi_cs_file, abi_c_file, glue_filename, glue_includes, gluelib_name, schema_name, filenames, includes);
+		}
+
+		public static int GenerateCode(string dir, string assembly_name, string gapidir, string abi_cs_usings,
+			string abi_cs_file, string abi_c_file, string glue_filename, string glue_includes, string gluelib_name,
+			string schema_name, List<string> filenames, List<string> includes) {
+			SymbolTable table = SymbolTable.Table;
+			var gens = new List<IGeneratable>();
+
+			if (filenames.Count == 0) {
+				Console.WriteLine("You need to specify a file to process using the --generate option.");
+				Console.WriteLine("Try `gapi-codegen --help' for more information.");
 				return 64;
 			}
 
