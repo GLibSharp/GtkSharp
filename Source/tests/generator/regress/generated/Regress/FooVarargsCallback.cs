@@ -5,6 +5,6 @@ namespace Regress {
 
 	using System;
 
-	public delegate void FooVarargsCallback(string param, IntPtr ...);
+	public delegate void FooVarargsCallback(string param, IntPtr _va_list);
 
 }
