@@ -33,17 +33,17 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			Assert.AreEqual(Statistics.EnumCount, 22);
-			Assert.AreEqual(Statistics.StructCount, 20);
+			Assert.AreEqual(Statistics.StructCount, 21);
 			Assert.AreEqual(Statistics.BoxedCount, 9);
 			Assert.AreEqual(Statistics.OpaqueCount, 5);
 			Assert.AreEqual(Statistics.IFaceCount, 3);
 			Assert.AreEqual(Statistics.ObjectCount, 12);
-			Assert.AreEqual(Statistics.CBCount, 18);
-			Assert.AreEqual(Statistics.PropCount, 21);
-			Assert.AreEqual(Statistics.SignalCount, 14);
-			Assert.AreEqual(Statistics.MethodCount, 267);
-			Assert.AreEqual(Statistics.CtorCount, 24);
-			Assert.AreEqual(Statistics.ThrottledCount, 47);
+			Assert.AreEqual(Statistics.CBCount, 20);
+			Assert.AreEqual(Statistics.PropCount, 22);
+			Assert.AreEqual(Statistics.SignalCount, 17);
+			Assert.AreEqual(Statistics.MethodCount, 306);
+			Assert.AreEqual(Statistics.CtorCount, 25);
+			Assert.AreEqual(Statistics.ThrottledCount, 17);
 		}
 
 
@@ -52,8 +52,8 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			var result = Compile(tempDir, "regress-sharp.dll");
-			Assert.AreEqual(446, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
-			Assert.AreEqual(15, result.warnings.Count(d => d.Severity == DiagnosticSeverity.Warning));
+			Assert.AreEqual(85, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
+			Assert.AreEqual(5, result.warnings.Count(d => d.Severity == DiagnosticSeverity.Warning));
 		}
 
 		[Test]

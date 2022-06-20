@@ -10,12 +10,14 @@ namespace Regress {
 
 		event System.EventHandler DestroyEvent;
 		void DoBar();
+		void DoBaz(IntPtr cb, IntPtr user_data);
 	}
 
 	[GLib.GInterface (typeof (FooSubInterfaceAdapter))]
 	public partial interface IFooSubInterfaceImplementor : GLib.IWrapper {
 
 		void DoBar ();
+		void DoBaz (IntPtr cb);
 	}
 #endregion
 }

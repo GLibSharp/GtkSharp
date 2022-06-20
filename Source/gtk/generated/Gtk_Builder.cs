@@ -194,6 +194,15 @@ namespace Gtk {
 		// End of the ABI representation.
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void gtk_builder_add_callback_symbol(IntPtr raw, IntPtr callback_name, IntPtr callback_symbol);
+
+		public void AddCallbackSymbol(string callback_name, IntPtr callback_symbol) {
+			IntPtr native_callback_name = GLib.Marshaller.StringToPtrGStrdup (callback_name);
+			gtk_builder_add_callback_symbol(Handle, native_callback_name, callback_symbol);
+			GLib.Marshaller.Free (native_callback_name);
+		}
+
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe uint gtk_builder_add_from_file(IntPtr raw, IntPtr filename, out IntPtr error);
 
 		public unsafe uint AddFromFile(string filename) {
@@ -352,6 +361,17 @@ namespace Gtk {
 				GLib.GType ret = new GLib.GType(raw_ret);
 				return ret;
 			}
+		}
+
+		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_builder_lookup_callback_symbol(IntPtr raw, IntPtr callback_name);
+
+		public IntPtr LookupCallbackSymbol(string callback_name) {
+			IntPtr native_callback_name = GLib.Marshaller.StringToPtrGStrdup (callback_name);
+			IntPtr raw_ret = gtk_builder_lookup_callback_symbol(Handle, native_callback_name);
+			IntPtr ret = raw_ret;
+			GLib.Marshaller.Free (native_callback_name);
+			return ret;
 		}
 
 

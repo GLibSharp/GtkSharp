@@ -151,10 +151,54 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_annotation_test_parsing_bug630862();
+
+		public static GLib.Object AnnotationTestParsingBug630862() {
+			IntPtr raw_ret = regress_annotation_test_parsing_bug630862();
+			GLib.Object ret = GLib.Object.GetObject (raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_annotation_transfer_floating(IntPtr _object);
+
+		public static GLib.Object AnnotationTransferFloating(GLib.Object _object) {
+			IntPtr raw_ret = regress_annotation_transfer_floating(_object == null ? IntPtr.Zero : _object.Handle);
+			GLib.Object ret = GLib.Object.GetObject (raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_annotation_versioned();
 
 		public static void AnnotationVersioned() {
 			regress_annotation_versioned();
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_atest_error_quark();
+
+		public static int AtestErrorQuark() {
+			int raw_ret = regress_atest_error_quark();
+			int ret = raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_foo_destroy_notify_callback(RegressSharp.FooCallbackNative cb, IntPtr data, GLib.DestroyNotify destroy);
+
+		public static void FooDestroyNotifyCallback(Regress.FooCallback cb) {
+			RegressSharp.FooCallbackWrapper cb_wrapper = new RegressSharp.FooCallbackWrapper (cb);
+			IntPtr data;
+			GLib.DestroyNotify destroy;
+			if (cb == null) {
+				data = IntPtr.Zero;
+				destroy = null;
+			} else {
+				data = (IntPtr) GCHandle.Alloc (cb_wrapper);
+				destroy = GLib.DestroyHelper.NotifyHandler;
+			}
+			regress_foo_destroy_notify_callback(cb_wrapper.NativeDelegate, data, destroy);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -172,6 +216,15 @@ namespace Regress {
 		public static Regress.FooEnumType FooEnumTypeReturnv(int x) {
 			int raw_ret = regress_foo_enum_type_returnv(x);
 			Regress.FooEnumType ret = (Regress.FooEnumType) raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_foo_error_quark();
+
+		public static int FooErrorQuark() {
+			int raw_ret = regress_foo_error_quark();
+			int ret = raw_ret;
 			return ret;
 		}
 
@@ -310,6 +363,17 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_get_variant();
+
+		public static GLib.Variant Variant { 
+			get {
+				IntPtr raw_ret = regress_get_variant();
+				GLib.Variant ret = new GLib.Variant(raw_ret);
+				return ret;
+			}
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_global_get_flags_out(out int v);
 
 		public static Regress.TestFlags GetFlagsOut() {
@@ -342,6 +406,15 @@ namespace Regress {
 			set {
 				regress_set_abort_on_error(value);
 			}
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_abc_error_quark();
+
+		public static int TestAbcErrorQuark() {
+			int raw_ret = regress_test_abc_error_quark();
+			int ret = raw_ret;
+			return ret;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -619,6 +692,41 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_callback_destroy_notify(RegressSharp.TestCallbackUserDataNative cb, IntPtr user_data, GLib.DestroyNotify notify);
+
+		public static int TestCallbackDestroyNotify(Regress.TestCallbackUserData cb) {
+			RegressSharp.TestCallbackUserDataWrapper cb_wrapper = new RegressSharp.TestCallbackUserDataWrapper (cb);
+			IntPtr user_data;
+			GLib.DestroyNotify notify;
+			if (cb == null) {
+				user_data = IntPtr.Zero;
+				notify = null;
+			} else {
+				user_data = (IntPtr) GCHandle.Alloc (cb_wrapper);
+				notify = GLib.DestroyHelper.NotifyHandler;
+			}
+			int raw_ret = regress_test_callback_destroy_notify(cb_wrapper.NativeDelegate, user_data, notify);
+			int ret = raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_callback_destroy_notify_no_user_data(RegressSharp.TestCallbackUserDataNative cb, GLib.DestroyNotify notify);
+
+		public static int TestCallbackDestroyNotifyNoUserData(Regress.TestCallbackUserData cb) {
+			RegressSharp.TestCallbackUserDataWrapper cb_wrapper = new RegressSharp.TestCallbackUserDataWrapper (cb);
+			GLib.DestroyNotify notify;
+			if (cb == null) {
+				notify = null;
+			} else {
+				notify = GLib.DestroyHelper.NotifyHandler;
+			}
+			int raw_ret = regress_test_callback_destroy_notify_no_user_data(cb_wrapper.NativeDelegate, notify);
+			int ret = raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_test_callback_return_full(RegressSharp.TestCallbackReturnFullNative cb);
 
 		public static void TestCallbackReturnFull(Regress.TestCallbackReturnFull cb) {
@@ -655,11 +763,60 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_closure(IntPtr closure);
+
+		public static int TestClosure(IntPtr closure) {
+			int raw_ret = regress_test_closure(closure);
+			int ret = raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_closure_one_arg(IntPtr closure, int arg);
+
+		public static int TestClosureOneArg(IntPtr closure, int arg) {
+			int raw_ret = regress_test_closure_one_arg(closure, arg);
+			int ret = raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_closure_variant(IntPtr closure, IntPtr arg);
+
+		public static GLib.Variant TestClosureVariant(IntPtr closure, GLib.Variant arg) {
+			IntPtr raw_ret = regress_test_closure_variant(closure, arg == null ? IntPtr.Zero : arg.Handle);
+			GLib.Variant ret = new GLib.Variant(raw_ret);
+			return ret;
+		}
+
+		public static GLib.Variant TestClosureVariant(IntPtr closure) {
+			return TestClosureVariant (closure, null);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_create_fundamental_hidden_class_instance();
 
 		public static Regress.TestFundamentalObject TestCreateFundamentalHiddenClassInstance() {
 			IntPtr raw_ret = regress_test_create_fundamental_hidden_class_instance();
 			Regress.TestFundamentalObject ret = raw_ret == IntPtr.Zero ? null : (Regress.TestFundamentalObject) GLib.Opaque.GetOpaque (raw_ret, typeof (Regress.TestFundamentalObject), true);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_date_in_gvalue();
+
+		public static GLib.Value TestDateInGvalue() {
+			IntPtr raw_ret = regress_test_date_in_gvalue();
+			GLib.Value ret = (GLib.Value) Marshal.PtrToStructure (raw_ret, typeof (GLib.Value));
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_def_error_quark();
+
+		public static int TestDefErrorQuark() {
+			int raw_ret = regress_test_def_error_quark();
+			int ret = raw_ret;
 			return ret;
 		}
 
@@ -678,6 +835,15 @@ namespace Regress {
 		public static string TestEnumParam(Regress.TestEnum e) {
 			IntPtr raw_ret = regress_test_enum_param((int) e);
 			string ret = GLib.Marshaller.Utf8PtrToString (raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_error_quark();
+
+		public static int TestErrorQuark() {
+			int raw_ret = regress_test_error_quark();
+			int ret = raw_ret;
 			return ret;
 		}
 
@@ -715,6 +881,14 @@ namespace Regress {
 			IntPtr raw_ret = regress_test_garray_full_return();
 			GLib.PtrArray[] ret = GLib.Marshaller.NullTermPtrToStringArray (raw_ret, true);
 			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_test_gerror_callback(RegressSharp.TestCallbackGErrorNative cb);
+
+		public static void TestGerrorCallback(Regress.TestCallbackGError cb) {
+			RegressSharp.TestCallbackGErrorWrapper cb_wrapper = new RegressSharp.TestCallbackGErrorWrapper (cb);
+			regress_test_gerror_callback(cb_wrapper.NativeDelegate);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -991,6 +1165,51 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_gvariant_as();
+
+		public static GLib.Variant TestGvariantAs() {
+			IntPtr raw_ret = regress_test_gvariant_as();
+			GLib.Variant ret = new GLib.Variant(raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_gvariant_asv();
+
+		public static GLib.Variant TestGvariantAsv() {
+			IntPtr raw_ret = regress_test_gvariant_asv();
+			GLib.Variant ret = new GLib.Variant(raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_gvariant_i();
+
+		public static GLib.Variant TestGvariantI() {
+			IntPtr raw_ret = regress_test_gvariant_i();
+			GLib.Variant ret = new GLib.Variant(raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_gvariant_s();
+
+		public static GLib.Variant TestGvariantS() {
+			IntPtr raw_ret = regress_test_gvariant_s();
+			GLib.Variant ret = new GLib.Variant(raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_gvariant_v();
+
+		public static GLib.Variant TestGvariantV() {
+			IntPtr raw_ret = regress_test_gvariant_v();
+			GLib.Variant ret = new GLib.Variant(raw_ret);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_test_hash_table_callback(System.IntPtr data, RegressSharp.TestCallbackHashtableNative cb);
 
 		public static void TestHashTableCallback(System.IntPtr data, Regress.TestCallbackHashtable cb) {
@@ -1055,6 +1274,17 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_int_value_arg(IntPtr v);
+
+		public static int TestIntValueArg(GLib.Value v) {
+			IntPtr native_v = GLib.Marshaller.StructureToPtrAlloc (v);
+			int raw_ret = regress_test_int_value_arg(native_v);
+			int ret = raw_ret;
+			Marshal.FreeHGlobal (native_v);
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_long(IntPtr in_param);
 
 		public static long TestLong(long in_param) {
@@ -1108,6 +1338,31 @@ namespace Regress {
 
 		public static void TestNoptrCallback() {
 			TestNoptrCallback (null);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_test_null_gerror_callback(RegressSharp.TestCallbackGErrorNative cb);
+
+		public static void TestNullGerrorCallback(Regress.TestCallbackGError cb) {
+			RegressSharp.TestCallbackGErrorWrapper cb_wrapper = new RegressSharp.TestCallbackGErrorWrapper (cb);
+			regress_test_null_gerror_callback(cb_wrapper.NativeDelegate);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_null_strv_in_gvalue();
+
+		public static GLib.Value TestNullStrvInGvalue() {
+			IntPtr raw_ret = regress_test_null_strv_in_gvalue();
+			GLib.Value ret = (GLib.Value) Marshal.PtrToStructure (raw_ret, typeof (GLib.Value));
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_test_owned_gerror_callback(RegressSharp.TestCallbackOwnedGErrorNative cb);
+
+		public static void TestOwnedGerrorCallback(Regress.TestCallbackOwnedGError cb) {
+			RegressSharp.TestCallbackOwnedGErrorWrapper cb_wrapper = new RegressSharp.TestCallbackOwnedGErrorWrapper (cb);
+			regress_test_owned_gerror_callback(cb_wrapper.NativeDelegate);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -1205,6 +1460,15 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_strv_in_gvalue();
+
+		public static GLib.Value TestStrvInGvalue() {
+			IntPtr raw_ret = regress_test_strv_in_gvalue();
+			GLib.Value ret = (GLib.Value) Marshal.PtrToStructure (raw_ret, typeof (GLib.Value));
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_strv_out();
 
 		public static string[] TestStrvOut() {
@@ -1268,6 +1532,25 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_test_torture_signature_2(int x, RegressSharp.TestCallbackUserDataNative cb, IntPtr user_data, GLib.DestroyNotify notify, out double y, out int z, IntPtr foo, out int q, uint m);
+
+		public static void TestTortureSignature2(int x, Regress.TestCallbackUserData cb, out double y, out int z, string foo, out int q, uint m) {
+			RegressSharp.TestCallbackUserDataWrapper cb_wrapper = new RegressSharp.TestCallbackUserDataWrapper (cb);
+			IntPtr user_data;
+			GLib.DestroyNotify notify;
+			if (cb == null) {
+				user_data = IntPtr.Zero;
+				notify = null;
+			} else {
+				user_data = (IntPtr) GCHandle.Alloc (cb_wrapper);
+				notify = GLib.DestroyHelper.NotifyHandler;
+			}
+			IntPtr native_foo = GLib.Marshaller.StringToPtrGStrdup (foo);
+			regress_test_torture_signature_2(x, cb_wrapper.NativeDelegate, user_data, notify, out y, out z, native_foo, out q, m);
+			GLib.Marshaller.Free (native_foo);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint regress_test_uint(uint in_param);
 
 		public static uint TestUint(uint in_param) {
@@ -1318,6 +1601,15 @@ namespace Regress {
 		public static ulong TestUlong(ulong in_param) {
 			UIntPtr raw_ret = regress_test_ulong(new UIntPtr (in_param));
 			ulong ret = (ulong) raw_ret;
+			return ret;
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern int regress_test_unconventional_error_quark();
+
+		public static int TestUnconventionalErrorQuark() {
+			int raw_ret = regress_test_unconventional_error_quark();
+			int ret = raw_ret;
 			return ret;
 		}
 
@@ -1439,6 +1731,15 @@ namespace Regress {
 			regress_test_utf8_out_out(out native_out0, out native_out1);
 			out0 = GLib.Marshaller.PtrToStringGFree(native_out0);
 			out1 = GLib.Marshaller.PtrToStringGFree(native_out1);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr regress_test_value_return(int i);
+
+		public static GLib.Value TestValueReturn(int i) {
+			IntPtr raw_ret = regress_test_value_return(i);
+			GLib.Value ret = (GLib.Value) Marshal.PtrToStructure (raw_ret, typeof (GLib.Value));
+			return ret;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
