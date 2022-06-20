@@ -53,6 +53,21 @@ namespace Regress {
 			}
 		}
 
+
+		// Internal representation of the wrapped structure ABI.
+		static GLib.AbiStruct _class_abi = null;
+		static public new GLib.AbiStruct class_abi {
+			get {
+				if (_class_abi == null)
+					_class_abi = new GLib.AbiStruct (Regress.TestObj.class_abi.Fields);
+
+				return _class_abi;
+			}
+		}
+
+
+		// End of the ABI representation.
+
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_sub_obj_get_type();
 
@@ -162,6 +177,52 @@ namespace Regress {
 			foreach (GLib.Value v in vals)
 				v.Dispose ();
 		}
+
+
+		// Internal representation of the wrapped structure ABI.
+		static GLib.AbiStruct _abi_info = null;
+		static public new GLib.AbiStruct abi_info {
+			get {
+				if (_abi_info == null)
+					_abi_info = new GLib.AbiStruct (new List<GLib.AbiField>{ 
+						new GLib.AbiField("number"
+							, Regress.TestObj.abi_info.Fields
+							, (uint) Marshal.SizeOf(typeof(int)) // number
+							, null
+							, "boolean"
+							, (long) Marshal.OffsetOf(typeof(RegressTestSubObj_numberAlign), "number")
+							, 0
+							),
+						new GLib.AbiField("boolean"
+							, -1
+							, (uint) Marshal.SizeOf(typeof(bool)) // boolean
+							, "number"
+							, null
+							, (long) Marshal.OffsetOf(typeof(RegressTestSubObj_booleanAlign), "boolean")
+							, 0
+							),
+					});
+
+				return _abi_info;
+			}
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RegressTestSubObj_numberAlign
+		{
+			sbyte f1;
+			private int number;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RegressTestSubObj_booleanAlign
+		{
+			sbyte f1;
+			private bool boolean;
+		}
+
+
+		// End of the ABI representation.
 
 #endregion
 	}

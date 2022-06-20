@@ -24,8 +24,9 @@ namespace GtkSharp.Generation {
 
 	using System;
 	using System.Collections.Generic;
+    using System.Linq;
 
-	public class SymbolTable {
+    public class SymbolTable {
 		
 		static SymbolTable table = null;
 		static LogWriter log = new LogWriter ("SymbolTable");
@@ -174,8 +175,17 @@ namespace GtkSharp.Generation {
 			AddType (new SimpleGen ("GBoxedCopyFunc", "IntPtr", "IntPtr.Zero"));
 			AddType (new SimpleGen ("GBoxedFreeFunc", "IntPtr", "IntPtr.Zero"));
 			AddType (new SimpleGen ("GHookFinalizeFunc", "IntPtr", "IntPtr.Zero"));
+			AddType (new SimpleGen ("GCallback", "IntPtr", "IntPtr.Zero"));
+
+			// Alias types that do not match the correct name in manually generated glib-sharp bindings
+			AddType(new AliasGen("GObject.Object", "GObject"));
+			AddType(new AliasGen("GObject.Callback", "GCallback"));
+			AddType(new AliasGen("GObject.Value", "GValue"));
+			AddType(new AliasGen("GObject.Closure", "GClosure"));
+			AddType(new AliasGen("GLib.Error", "GError"));
+			AddType(new AliasGen("GLib.Quark", "GQuark"));
 		}
-		
+
 		public void AddType (IGeneratable gen)
 		{
 			log.Info("Adding " + gen.CName + " = " + gen);
@@ -203,7 +213,7 @@ namespace GtkSharp.Generation {
 		
 		public IGeneratable this [string ctype] {
 			get {
-				return DeAlias (ctype);
+				return ResolveType (ctype);
 			}
 		}
 
@@ -236,21 +246,27 @@ namespace GtkSharp.Generation {
 			return trim_type;
 		}
 
-		private IGeneratable DeAlias (string type)
+		private IGeneratable ResolveType(string type)
 		{
-			type = Trim (type);
-			IGeneratable cur_type = null;
-			while (types.TryGetValue (type, out cur_type) && cur_type is AliasGen) {
-				IGeneratable igen = cur_type as AliasGen;
-
-				IGeneratable new_type;
-				if (!types.TryGetValue (igen.Name, out new_type))
-					new_type = null;
-
-				types [type] = new_type;
-				type = igen.Name;
+			type = Trim(type);
+			if (!types.TryGetValue(type, out IGeneratable cur_type))
+            {
+				cur_type = types.Values.FirstOrDefault(t => t.QualifiedName == type);
+				if (cur_type != null)
+                {
+					types[type] = cur_type;
+                }
+            }
+		
+			if (cur_type is AliasGen)
+			{
+				cur_type = ResolveType(cur_type.Name);
+				if (cur_type != null)
+				{
+					types[type] = cur_type;
+				}
 			}
-
+			
 			return cur_type;
 		}
 

@@ -13,7 +13,7 @@ namespace Regress {
 		struct RegressFooSubInterfaceIface {
 			IntPtr DestroyEvent;
 			public DoBarNativeDelegate DoBar;
-			IntPtr DoBaz;
+			public DoBazNativeDelegate DoBaz;
 		}
 
 		static RegressFooSubInterfaceIface iface;
@@ -22,6 +22,7 @@ namespace Regress {
 		{
 			GLib.GType.Register (_gtype, typeof (FooSubInterfaceAdapter));
 			iface.DoBar = new DoBarNativeDelegate (DoBar_cb);
+			iface.DoBaz = new DoBazNativeDelegate (DoBaz_cb);
 		}
 
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
@@ -37,6 +38,19 @@ namespace Regress {
 			}
 		}
 
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
+		delegate void DoBazNativeDelegate (IntPtr inst, IntPtr cb, IntPtr user_data);
+
+		static void DoBaz_cb (IntPtr inst, IntPtr cb, IntPtr user_data)
+		{
+			try {
+				IFooSubInterfaceImplementor __obj = GLib.Object.GetObject (inst, false) as IFooSubInterfaceImplementor;
+				__obj.DoBaz (cb);
+			} catch (Exception e) {
+				GLib.ExceptionManager.RaiseUnhandledException (e, false);
+			}
+		}
+
 		static int class_offset = 2 * IntPtr.Size;
 
 		static void Initialize (IntPtr ptr, IntPtr data)
@@ -44,6 +58,7 @@ namespace Regress {
 			IntPtr ifaceptr = new IntPtr (ptr.ToInt64 () + class_offset);
 			RegressFooSubInterfaceIface native_iface = (RegressFooSubInterfaceIface) Marshal.PtrToStructure (ifaceptr, typeof (RegressFooSubInterfaceIface));
 			native_iface.DoBar = iface.DoBar;
+			native_iface.DoBaz = iface.DoBaz;
 			Marshal.StructureToPtr (native_iface, ifaceptr, false);
 		}
 
@@ -138,6 +153,13 @@ namespace Regress {
 
 		public void DoBar() {
 			regress_foo_sub_interface_do_bar(Handle);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_foo_sub_interface_do_baz(IntPtr raw, IntPtr cb, IntPtr user_data);
+
+		public void DoBaz(IntPtr cb, IntPtr user_data) {
+			regress_foo_sub_interface_do_baz(Handle, cb, user_data);
 		}
 
 #endregion

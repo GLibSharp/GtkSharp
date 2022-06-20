@@ -3,47 +3,28 @@
 
 #include <regress.h>
 
+guint regresssharp_regress_annotationobject_get_parent_instance_offset (void);
+
+guint
+regresssharp_regress_annotationobject_get_parent_instance_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressAnnotationObject, parent_instance);
+}
+
+guint regresssharp_regress_fooobject_get_parent_instance_offset (void);
+
+guint
+regresssharp_regress_fooobject_get_parent_instance_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressFooObject, parent_instance);
+}
+
 guint regresssharp_regress_fooobject_get_some_int_offset (void);
 
 guint
 regresssharp_regress_fooobject_get_some_int_offset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressFooObject, some_int);
-}
-
-void regresssharp_fooobject_override_virtual_method (RegressFooObjectClass *class_struct, gpointer cb);
-
-void
-regresssharp_fooobject_override_virtual_method (RegressFooObjectClass *class_struct, gpointer cb)
-{
-	class_struct->virtual_method = cb;
-}
-
-gboolean regresssharp_fooobject_invoke_virtual_method (RegressFooObjectClass *class_struct, RegressFooObject* inst, gint first_param);
-
-gboolean
-regresssharp_fooobject_invoke_virtual_method (RegressFooObjectClass *class_struct, RegressFooObject* inst, gint first_param)
-{
-	if (class_struct->virtual_method)
-		return (* class_struct->virtual_method) (inst, first_param);
-	return FALSE;
-}
-
-void regresssharp_fooobject_override_read_fn (RegressFooObjectClass *class_struct, gpointer cb);
-
-void
-regresssharp_fooobject_override_read_fn (RegressFooObjectClass *class_struct, gpointer cb)
-{
-	class_struct->read_fn = cb;
-}
-
-void regresssharp_fooobject_invoke_read_fn (RegressFooObjectClass *class_struct, RegressFooObject* inst, gint offset, gint length);
-
-void
-regresssharp_fooobject_invoke_read_fn (RegressFooObjectClass *class_struct, RegressFooObject* inst, gint offset, gint length)
-{
-	if (class_struct->read_fn)
-		(* class_struct->read_fn) (inst, offset, length);
 }
 
 guint regresssharp_regress_foosubobject_get_parent_instance_offset (void);
@@ -84,6 +65,30 @@ guint
 regresssharp_regress_testfundamentalsubobject_get_data_offset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalSubObject, data);
+}
+
+guint regresssharp_regress_testinheritdrawable_get_parent_instance_offset (void);
+
+guint
+regresssharp_regress_testinheritdrawable_get_parent_instance_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressTestInheritDrawable, parent_instance);
+}
+
+guint regresssharp_regress_testobj_get_parent_instance_offset (void);
+
+guint
+regresssharp_regress_testobj_get_parent_instance_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressTestObj, parent_instance);
+}
+
+guint regresssharp_regress_testobj_get_bare_offset (void);
+
+guint
+regresssharp_regress_testobj_get_bare_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressTestObj, bare);
 }
 
 guint regresssharp_regress_testobj_get_boxed_offset (void);
@@ -164,6 +169,14 @@ guint
 regresssharp_regress_testsubobj_get_parent_instance_offset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestSubObj, parent_instance);
+}
+
+guint regresssharp_regress_testwi8021x_get_parent_instance_offset (void);
+
+guint
+regresssharp_regress_testwi8021x_get_parent_instance_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressTestWi8021x, parent_instance);
 }
 
 guint regresssharp_regress_testwi8021x_get_testbool_offset (void);
