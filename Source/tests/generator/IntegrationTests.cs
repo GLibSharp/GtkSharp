@@ -17,6 +17,7 @@ namespace IntegrationTests {
 			testDir = TestContext.CurrentContext.TestDirectory;
 			tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 			Directory.CreateDirectory(tempDir);
+			Statistics.Reset();
 		}
 
 		[TearDown]
