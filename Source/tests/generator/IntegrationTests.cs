@@ -2,6 +2,7 @@ using GtkSharp.Generation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -127,7 +128,7 @@ namespace IntegrationTests {
 					   allowUnsafe: true));
 			var result = compilation.Emit(Path.Combine(tempDir, dllName));
 			foreach (var diag in result.Diagnostics) {
-				Trace.WriteLine(diag);
+				Console.WriteLine(diag);
 			}
 			return result;
 
