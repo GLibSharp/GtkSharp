@@ -61,6 +61,7 @@ namespace IntegrationTests
 
         private int GenerateCode()
         {
+            Statistics.Reset();
             return CodeGenerator.GenerateCode(
                 dir: tempDir,
                 assembly_name: "regress-sharp",
