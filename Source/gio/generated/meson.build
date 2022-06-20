@@ -393,6 +393,7 @@ generated_sources = [
     'GLib_AppInfoAdapter.cs',
     'GLib_RemoteActionGroup.cs',
     'GLib_IAction.cs',
+    'GLib_ContextSpecificGroup.cs',
 ]
 
 run_target('update_' + pkg + '_code',

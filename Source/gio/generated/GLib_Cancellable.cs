@@ -160,6 +160,15 @@ namespace GLib {
 		}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern UIntPtr g_cancellable_connect(IntPtr raw, IntPtr cb, IntPtr data, GLib.DestroyNotify data_destroy_func);
+
+		public ulong Connect(IntPtr cb, IntPtr data, GLib.DestroyNotify data_destroy_func) {
+			UIntPtr raw_ret = g_cancellable_connect(Handle, cb, data, data_destroy_func);
+			ulong ret = (ulong) raw_ret;
+			return ret;
+		}
+
+		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_cancellable_disconnect(IntPtr raw, UIntPtr handler_id);
 
 		public void Disconnect(ulong handler_id) {
