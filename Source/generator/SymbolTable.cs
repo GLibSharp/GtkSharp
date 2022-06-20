@@ -450,6 +450,8 @@ namespace GtkSharp.Generation {
 				return "for_each";
 			case "remove":
 				return "_remove";
+			case "...":
+				return "_va_list";
 			default:
 				break;
 			}
