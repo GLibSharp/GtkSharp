@@ -48,22 +48,6 @@ namespace Regress {
 			}
 		}
 
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr regress_test_fundamental_object_ref(IntPtr raw);
-
-		public Regress.TestFundamentalObject Ref() {
-			IntPtr raw_ret = regress_test_fundamental_object_ref(Handle);
-			Regress.TestFundamentalObject ret = raw_ret == IntPtr.Zero ? null : (Regress.TestFundamentalObject) GLib.Opaque.GetOpaque (raw_ret, typeof (Regress.TestFundamentalObject), true);
-			return ret;
-		}
-
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_fundamental_object_unref(IntPtr raw);
-
-		public void Unref() {
-			regress_test_fundamental_object_unref(Handle);
-		}
-
 		public TestFundamentalObject(IntPtr raw) : base(raw) {}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]

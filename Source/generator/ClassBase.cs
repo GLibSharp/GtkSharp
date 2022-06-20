@@ -114,6 +114,10 @@ namespace GtkSharp.Generation {
 				switch (node.Name) {
 					case "method":
 						name = member.GetAttribute("name");
+						// FIXME: bindinate generates twice the _ref and and _unref methods
+						if (methods.ContainsKey(name) && (name == "Ref" || name == "Unref")) {
+							continue;
+						}
 						while (methods.ContainsKey(name))
 							name += "mangled";
 						methods.Add(name, new Method(member, this));
