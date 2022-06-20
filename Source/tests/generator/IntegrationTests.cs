@@ -2,8 +2,8 @@ using GtkSharp.Generation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -113,7 +113,7 @@ namespace IntegrationTests
             var result = compilation.Emit (Path.Combine(tempDir, "regress-sharp.dll"));
             foreach (var diag in result.Diagnostics)
             {
-                Trace.WriteLine(diag);
+                Console.WriteLine(diag);
             }
             Assert.AreEqual(450, result.Diagnostics.Count (d => d.Severity == DiagnosticSeverity.Error));
             Assert.AreEqual(42, result.Diagnostics.Count(d => d.Severity == DiagnosticSeverity.Warning));
