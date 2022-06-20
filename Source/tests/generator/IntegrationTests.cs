@@ -4,7 +4,6 @@ using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -41,7 +40,7 @@ namespace IntegrationTests {
 			Assert.AreEqual(Statistics.CBCount, 20);
 			Assert.AreEqual(Statistics.PropCount, 22);
 			Assert.AreEqual(Statistics.SignalCount, 17);
-			Assert.AreEqual(Statistics.MethodCount, 306);
+			Assert.AreEqual(Statistics.MethodCount, 304);
 			Assert.AreEqual(Statistics.CtorCount, 25);
 			Assert.AreEqual(Statistics.ThrottledCount, 17);
 		}
@@ -52,7 +51,7 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			var result = Compile(tempDir, "regress-sharp.dll");
-			Assert.AreEqual(65, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
+			Assert.AreEqual(58, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
 			Assert.AreEqual(5, result.warnings.Count(d => d.Severity == DiagnosticSeverity.Warning));
 		}
 
