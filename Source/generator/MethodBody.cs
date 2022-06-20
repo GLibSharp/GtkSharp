@@ -25,8 +25,9 @@ namespace GtkSharp.Generation {
 	using System;
 	using System.Collections;
 	using System.IO;
+    using System.Linq;
 
-	public class MethodBody  {
+    public class MethodBody  {
 		
 		Parameters parameters;
 		LogWriter log;
@@ -104,28 +105,50 @@ namespace GtkSharp.Generation {
 					CallbackGen cbgen = gen as CallbackGen;
 					string wrapper = cbgen.GenWrapper(gen_info);
 
-					int closure = i + 1;
-					if (p.Closure >= 0)
-						closure = p.Closure;
-
-					int destroyNotify = i + 2;
-					if (p.DestroyNotify >= 0)
-						destroyNotify = p.DestroyNotify;
+					Parameter closureParam = null;
+					if (p.Closure != -1)
+					{
+						closureParam = parameters[p.Closure];
+					}
+					Parameter destroyNotifyParam = null;
+					if (p.DestroyNotify != -1)
+					{
+						destroyNotifyParam = parameters [p.DestroyNotify];
+					}
 
 					switch (p.Scope) {
 					case "notified":
-						sw.WriteLine (indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
-						sw.WriteLine (indent + "\t\t\tIntPtr {0};", parameters [closure].Name);
-						sw.WriteLine (indent + "\t\t\t{0} {1};", parameters [destroyNotify].CSType, parameters [destroyNotify].Name);
-						sw.WriteLine (indent + "\t\t\tif ({0} == null) {{", name);
-						sw.WriteLine (indent + "\t\t\t\t{0} = IntPtr.Zero;", parameters [closure].Name);
-						sw.WriteLine (indent + "\t\t\t\t{0} = null;", parameters [destroyNotify].Name);
-						sw.WriteLine (indent + "\t\t\t} else {");
-						sw.WriteLine (indent + "\t\t\t\t{0} = (IntPtr) GCHandle.Alloc ({1}_wrapper);", parameters [closure].Name, name);
-						sw.WriteLine (indent + "\t\t\t\t{0} = GLib.DestroyHelper.NotifyHandler;", parameters [destroyNotify].Name, parameters [destroyNotify].CSType);
-						sw.WriteLine (indent + "\t\t\t}");
-						break;
-
+							{
+								sw.WriteLine(indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
+								if (closureParam != null)
+								{
+									sw.WriteLine(indent + "\t\t\tIntPtr {0};", closureParam.Name);
+								}
+								if (destroyNotifyParam != null)
+                                {
+									sw.WriteLine(indent + "\t\t\t{0} {1};", destroyNotifyParam.CSType, destroyNotifyParam.Name);
+								}
+								sw.WriteLine(indent + "\t\t\tif ({0} == null) {{", name);
+								if (closureParam != null)
+                                {
+									sw.WriteLine(indent + "\t\t\t\t{0} = IntPtr.Zero;", closureParam.Name);
+								}
+								if (destroyNotifyParam != null)
+                                {
+									sw.WriteLine(indent + "\t\t\t\t{0} = null;", destroyNotifyParam.Name);
+								}
+								sw.WriteLine(indent + "\t\t\t} else {");
+								if (closureParam != null)
+								{
+									sw.WriteLine(indent + "\t\t\t\t{0} = (IntPtr) GCHandle.Alloc ({1}_wrapper);", closureParam.Name, name);
+								}
+								if (destroyNotifyParam != null)
+								{
+									sw.WriteLine(indent + "\t\t\t\t{0} = GLib.DestroyHelper.NotifyHandler;", destroyNotifyParam.Name, destroyNotifyParam.CSType);
+								}
+								sw.WriteLine(indent + "\t\t\t}");
+								break;
+							}
 					case "async":
 						sw.WriteLine (indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
 						sw.WriteLine (indent + "\t\t\t{0}_wrapper.PersistUntilCalled ();", name);
