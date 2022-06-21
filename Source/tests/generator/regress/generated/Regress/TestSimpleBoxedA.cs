@@ -65,11 +65,6 @@ namespace Regress {
 			target = New (native);
 		}
 
-		public bool Equals (TestSimpleBoxedA other)
-		{
-			return true && SomeInt.Equals (other.SomeInt) && SomeInt8.Equals (other.SomeInt8) && SomeDouble.Equals (other.SomeDouble) && SomeEnum.Equals (other.SomeEnum);
-		}
-
 		public override bool Equals (object other)
 		{
 			return other is TestSimpleBoxedA && Equals ((TestSimpleBoxedA) other);
