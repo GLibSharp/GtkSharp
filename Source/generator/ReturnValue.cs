@@ -196,6 +196,12 @@ namespace GtkSharp.Generation {
 				return false;
 			}
 
+			if (is_array && is_null_term && string.IsNullOrEmpty(ElementType) && CSType != "string[]")
+			{
+				log.Warn("Returns {0} with unknown element type. Add element_type attribute with gapi-fixup.", CType);
+				return false;
+			}
+
 			return true;
 		}
 	}
