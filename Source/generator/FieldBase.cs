@@ -39,7 +39,7 @@ namespace GtkSharp.Generation {
 		public virtual bool Validate (LogWriter log)
 		{
 			log.Member = Name;
-			if (!Ignored && !Hidden && CSType == "") {
+			if (!Ignored && !Hidden && CSType == "" || CType == "") {
 				if (Name == "Priv")
 					return false;
 				log.Warn ("field has unknown type: " + CType);
