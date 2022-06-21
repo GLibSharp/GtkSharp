@@ -18,21 +18,6 @@ namespace Regress {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[GLib.Property ("function-property")]
-		public Regress.AnnotationCallback FunctionProperty {
-			get {
-				GLib.Value val = GetProperty ("function-property");
-				Regress.AnnotationCallback ret = (Regress.AnnotationCallback) val;
-				val.Dispose ();
-				return ret;
-			}
-			set {
-				GLib.Value val = new GLib.Value(value);
-				SetProperty("function-property", val);
-				val.Dispose ();
-			}
-		}
-
 		[Obsolete]
 		[GLib.Property ("string-property")]
 		public string StringProperty {
