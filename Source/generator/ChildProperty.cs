@@ -32,11 +32,11 @@ namespace GtkSharp.Generation {
 			return "[Gtk.ChildProperty (" + qpname + ")]";
 		}
 
-		protected override string RawGetter (string qpname) {
+		protected override string RawGetter (string qpname, ClassBase implementor) {
 			return "parent.ChildGetProperty (child, " + qpname + ")";
 		}
 
-		protected override string RawSetter (string qpname) {
+		protected override string RawSetter (string qpname, ClassBase implementor) {
 			return "parent.ChildSetProperty(child, " + qpname + ", val)";
 		}
 
