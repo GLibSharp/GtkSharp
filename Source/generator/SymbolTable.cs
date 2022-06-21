@@ -25,12 +25,12 @@ namespace GtkSharp.Generation {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 
 	public class SymbolTable {
 
 		static SymbolTable table = null;
 		static LogWriter log = new LogWriter("SymbolTable");
-
 		IDictionary<string, IGeneratable> types = new Dictionary<string, IGeneratable>();
 
 		public static SymbolTable Table {
@@ -210,6 +210,31 @@ namespace GtkSharp.Generation {
 		public IGeneratable this[string ctype] {
 			get {
 				return ResolveType(ctype);
+			}
+		}
+
+		public string GetTypeFromIntegerValue(string value) {
+			foreach (Match match in Regex.Matches(value, "[0-9]+([UL]{1,2})", RegexOptions.IgnoreCase)) {
+				switch (match.Groups[1].Value.ToUpper()) {
+					case "U":
+						return "uint";
+					case "L":
+						return "int";
+					case "UL":
+						return "ulong";
+				}
+			}
+
+			if (int.TryParse(value, out int out_int)) {
+				return "int";
+			} else if (uint.TryParse(value, out uint out_uint)) {
+				return "uint";
+			} else if (long.TryParse(value, out long out_long)) {
+				return "long";
+			} else if (ulong.TryParse(value, out ulong out_ulong)) {
+				return "ulong";
+			} else {
+				throw new Exception($"Can't parse {value}");
 			}
 		}
 
