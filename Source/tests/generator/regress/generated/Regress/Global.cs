@@ -75,7 +75,7 @@ namespace Regress {
 			IntPtr[] native_argv = new IntPtr [cnt_argv];
 			for (int i = 0; i < cnt_argv; i++)
 				native_argv [i] = GLib.Marshaller.StringToPtrGStrdup(argv[i]);
-			regress_annotation_init(ref argc, native_argv);
+			regress_annotation_init(ref argc, ref native_argv);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -147,7 +147,7 @@ namespace Regress {
 			for (int i = 0; i < cnt_out_param; i++)
 				native_out_param [i] = GLib.Marshaller.StringToPtrGStrdup(out_param[i]);
 			native_out_param [cnt_out_param] = IntPtr.Zero;
-			regress_annotation_string_zero_terminated_out(native_out_param);
+			regress_annotation_string_zero_terminated_out(ref native_out_param);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -433,7 +433,7 @@ namespace Regress {
 		public static Regress.TestObj[] TestArrayFixedOutObjects() {
 			Regress.TestObj[] objs;
 			objs = new IntPtr[2];
-			regress_test_array_fixed_out_objects(native_objs);
+			regress_test_array_fixed_out_objects(out native_objs);
 			return objs;
 		}
 
@@ -529,7 +529,7 @@ namespace Regress {
 		static extern void regress_test_array_int_inout(int n_ints, int[] ints);
 
 		public static void TestArrayIntInout(ref int[] ints) {
-			regress_test_array_int_inout((ints == null ? 0 : ints.Length), ints);
+			regress_test_array_int_inout((ints == null ? 0 : ints.Length), ref ints);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -547,7 +547,7 @@ namespace Regress {
 		static extern void regress_test_array_int_null_out(out int[] arr, out int len);
 
 		public static void TestArrayIntNullOut(out int[] arr, out int len) {
-			regress_test_array_int_null_out(arr, out len);
+			regress_test_array_int_null_out(out arr, out len);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -555,7 +555,7 @@ namespace Regress {
 
 		public static int[] TestArrayIntOut() {
 			int[] ints;
-			regress_test_array_int_out((ints == null ? 0 : ints.Length), ints);
+			regress_test_array_int_out((ints == null ? 0 : ints.Length), out ints);
 			return ints;
 		}
 
@@ -585,7 +585,7 @@ namespace Regress {
 		static extern void regress_test_array_struct_out(out Regress.TestStructA[] arr, out int len);
 
 		public static void TestArrayStructOut(out Regress.TestStructA[] arr, out int len) {
-			regress_test_array_struct_out(arr, out len);
+			regress_test_array_struct_out(out arr, out len);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -593,7 +593,7 @@ namespace Regress {
 
 		public static void TestArrayStructOutCallerAlloc(out Regress.TestStructA[] arr, out ulong len) {
 			UIntPtr native_len;
-			regress_test_array_struct_out_caller_alloc(arr, out native_len);
+			regress_test_array_struct_out_caller_alloc(out arr, out native_len);
 			len = (ulong) native_len;
 		}
 
@@ -602,7 +602,7 @@ namespace Regress {
 
 		public static void TestArrayStructOutContainer(out Regress.TestStructA[] arr, out ulong len) {
 			UIntPtr native_len;
-			regress_test_array_struct_out_container(arr, out native_len);
+			regress_test_array_struct_out_container(out arr, out native_len);
 			len = (ulong) native_len;
 		}
 
@@ -621,7 +621,7 @@ namespace Regress {
 
 		public static void TestArrayStructOutNone(out Regress.TestStructA[] arr, out ulong len) {
 			UIntPtr native_len;
-			regress_test_array_struct_out_none(arr, out native_len);
+			regress_test_array_struct_out_none(out arr, out native_len);
 			len = (ulong) native_len;
 		}
 
@@ -1496,7 +1496,7 @@ namespace Regress {
 			for (int i = 0; i < cnt_retp; i++)
 				native_retp [i] = GLib.Marshaller.StringToPtrGStrdup(retp[i]);
 			native_retp [cnt_retp] = IntPtr.Zero;
-			regress_test_strv_outarg(native_retp);
+			regress_test_strv_outarg(out native_retp);
 			return retp;
 		}
 
