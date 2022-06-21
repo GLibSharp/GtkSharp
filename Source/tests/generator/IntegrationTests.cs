@@ -111,12 +111,21 @@ namespace IntegrationTests
                        OutputKind.DynamicallyLinkedLibrary,
                        allowUnsafe:true));
             var result = compilation.Emit (Path.Combine(tempDir, "regress-sharp.dll"));
-            foreach (var diag in result.Diagnostics)
+            var errors = result.Diagnostics
+                .Where(d => d.Severity == DiagnosticSeverity.Error);
+            var warnings = result.Diagnostics
+                .Where(d => d.Severity == DiagnosticSeverity.Warning)
+                .Where(d => d.Id != "CS1701");
+            foreach (var diag in errors)
             {
                 Console.WriteLine(diag);
             }
-            Assert.AreEqual(450, result.Diagnostics.Count (d => d.Severity == DiagnosticSeverity.Error));
-            Assert.AreEqual(42, result.Diagnostics.Count(d => d.Severity == DiagnosticSeverity.Warning));
+            foreach (var diag in warnings)
+            {
+                Console.WriteLine(diag);
+            }
+            Assert.AreEqual(448, errors.Count());
+            Assert.AreEqual(15, warnings.Count());
         }
     }
 }
