@@ -47,7 +47,7 @@ namespace IntegrationTests
             Assert.AreEqual(Statistics.SignalCount, 17);
             Assert.AreEqual(Statistics.MethodCount, 301);
             Assert.AreEqual(Statistics.CtorCount, 25);
-            Assert.AreEqual(Statistics.ThrottledCount, 17);
+            Assert.AreEqual(Statistics.ThrottledCount, 16);
         }
 
 
@@ -124,8 +124,8 @@ namespace IntegrationTests
             {
                 Console.WriteLine(diag);
             }
-            Assert.AreEqual(29, errors.Count());
-            Assert.AreEqual(5, warnings.Count());
+            Assert.AreEqual(26, errors.Count());
+            Assert.AreEqual(4, warnings.Count());
         }
     }
 }

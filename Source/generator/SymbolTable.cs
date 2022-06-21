@@ -183,6 +183,8 @@ namespace GtkSharp.Generation {
 			AddType(new AliasGen("GObject.Callback", "GCallback"));
 			AddType(new AliasGen("GObject.Value", "GValue"));
 			AddType(new AliasGen("GObject.Closure", "GClosure"));
+			AddType(new AliasGen("GObject.InitiallyUnowned", "GInitiallyUnowned"));
+
 			AddType(new AliasGen("GLib.Error", "GError"));
 			AddType(new AliasGen("GLib.Quark", "GQuark"));
 		}
