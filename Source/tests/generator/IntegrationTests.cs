@@ -52,8 +52,8 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			var result = Compile(tempDir, "regress-sharp.dll");
-			Assert.AreEqual(446, result.Diagnostics.Count(d => d.Severity == DiagnosticSeverity.Error));
-			Assert.AreEqual(42, result.Diagnostics.Count(d => d.Severity == DiagnosticSeverity.Warning));
+			Assert.AreEqual(446, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
+			Assert.AreEqual(15, result.warnings.Count(d => d.Severity == DiagnosticSeverity.Warning));
 		}
 
 		[Test]
@@ -96,7 +96,7 @@ namespace IntegrationTests {
 				);
 		}
 
-		Microsoft.CodeAnalysis.Emit.EmitResult Compile(string sourcesDir, string dllName) {
+		(List<Diagnostic> errors, List<Diagnostic> warnings) Compile(string sourcesDir, string dllName) {
 			DirectoryInfo d = new DirectoryInfo(sourcesDir);
 			string[] sourceFiles = d.EnumerateFiles("*.cs", SearchOption.AllDirectories)
 				.Select(a => a.FullName).ToArray();
@@ -127,11 +127,20 @@ namespace IntegrationTests {
 					   OutputKind.DynamicallyLinkedLibrary,
 					   allowUnsafe: true));
 			var result = compilation.Emit(Path.Combine(tempDir, dllName));
-			foreach (var diag in result.Diagnostics) {
+			var errors = result.Diagnostics
+				.Where(d => d.Severity == DiagnosticSeverity.Error)
+				.ToList();
+			var warnings = result.Diagnostics
+				.Where(d => d.Severity == DiagnosticSeverity.Warning)
+				.Where(d => d.Id != "CS1701")
+				.ToList();
+			foreach (var diag in errors) {
 				Console.WriteLine(diag);
 			}
-			return result;
-
+			foreach (var diag in warnings) {
+				Console.WriteLine(diag);
+			}
+			return (errors, warnings);
 		}
 	}
 }
