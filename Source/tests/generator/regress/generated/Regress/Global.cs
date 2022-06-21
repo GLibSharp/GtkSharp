@@ -254,15 +254,6 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr regress_foo_test_array();
-
-		public static IntPtr[] FooTestArray() {
-			IntPtr raw_ret = regress_foo_test_array();
-			IntPtr[] ret = GLib.Marshaller.NullTermPtrToStringArray (raw_ret, false);
-			return ret;
-		}
-
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_foo_test_const_char_param(IntPtr param);
 
 		public static void FooTestConstCharParam(string param) {
@@ -862,24 +853,6 @@ namespace Regress {
 		public static float TestFloat(float in_param) {
 			float raw_ret = regress_test_float(in_param);
 			float ret = raw_ret;
-			return ret;
-		}
-
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr regress_test_garray_container_return();
-
-		public static GLib.PtrArray[] TestGarrayContainerReturn() {
-			IntPtr raw_ret = regress_test_garray_container_return();
-			GLib.PtrArray[] ret = GLib.Marshaller.NullTermPtrToStringArray (raw_ret, false);
-			return ret;
-		}
-
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr regress_test_garray_full_return();
-
-		public static GLib.PtrArray[] TestGarrayFullReturn() {
-			IntPtr raw_ret = regress_test_garray_full_return();
-			GLib.PtrArray[] ret = GLib.Marshaller.NullTermPtrToStringArray (raw_ret, true);
 			return ret;
 		}
 
