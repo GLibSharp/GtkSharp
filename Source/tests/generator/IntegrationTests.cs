@@ -51,7 +51,7 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			var result = Compile(tempDir, "regress-sharp.dll");
-			Assert.AreEqual(16, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
+			Assert.AreEqual(14, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
 			Assert.AreEqual(4, result.warnings.Count(d => d.Severity == DiagnosticSeverity.Warning));
 		}
 

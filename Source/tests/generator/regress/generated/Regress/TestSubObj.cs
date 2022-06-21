@@ -105,14 +105,14 @@ namespace Regress {
 		[GLib.Property ("number")]
 		public int Number {
 			get {
-				GLib.Value val = implementor.GetProperty ("number");
+				GLib.Value val = GetProperty ("number");
 				int ret = (int) val;
 				val.Dispose ();
 				return ret;
 			}
 			set {
 				GLib.Value val = new GLib.Value(value);
-				implementor.SetProperty("number", val);
+				SetProperty("number", val);
 				val.Dispose ();
 			}
 		}
