@@ -32,11 +32,23 @@ namespace GtkSharp.Generation {
 		public Property(XmlElement elem, ClassBase container_type) : base(elem, container_type) { }
 
 		public bool Validate(LogWriter log) {
-			if (CSType == "" && !Hidden) {
+			if (Hidden) {
+				return true;
+			}
+
+			if (CSType == "") {
 				log.Member = Name;
 				log.Warn("property has unknown type '{0}' ", CType);
 				Statistics.ThrottledCount++;
 				return false;
+			}
+
+			if (SymbolTable.Table.IsCallback(CType)) {
+				log.Member = Name;
+				log.Warn($"{CType} properties are not supported", CType);
+				Statistics.ThrottledCount++;
+				return false;
+
 			}
 
 			return true;
