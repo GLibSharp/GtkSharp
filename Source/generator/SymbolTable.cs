@@ -31,6 +31,7 @@ namespace GtkSharp.Generation {
 
 		static SymbolTable table = null;
 		static LogWriter log = new LogWriter("SymbolTable");
+
 		IDictionary<string, IGeneratable> types = new Dictionary<string, IGeneratable>();
 
 		public static SymbolTable Table {
@@ -181,6 +182,8 @@ namespace GtkSharp.Generation {
 			AddType(new AliasGen("GObject.Callback", "GCallback"));
 			AddType(new AliasGen("GObject.Value", "GValue"));
 			AddType(new AliasGen("GObject.Closure", "GClosure"));
+			AddType(new AliasGen("GObject.InitiallyUnowned", "GInitiallyUnowned"));
+
 			AddType(new AliasGen("GLib.Error", "GError"));
 			AddType(new AliasGen("GLib.Quark", "GQuark"));
 		}
@@ -212,6 +215,7 @@ namespace GtkSharp.Generation {
 				return ResolveType(ctype);
 			}
 		}
+
 
 		public string GetTypeFromIntegerValue(string value) {
 			foreach (Match match in Regex.Matches(value, "[0-9]+([UL]{1,2})", RegexOptions.IgnoreCase)) {

@@ -35,6 +35,14 @@ regresssharp_regress_foosubobject_get_parent_instance_offset (void)
 	return (guint)G_STRUCT_OFFSET (RegressFooSubobject, parent_instance);
 }
 
+guint regresssharp_regress_testfloating_get_parent_instance_offset (void);
+
+guint
+regresssharp_regress_testfloating_get_parent_instance_offset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressTestFloating, parent_instance);
+}
+
 guint regresssharp_regress_testfundamentalobject_get_refcount_offset (void);
 
 guint
