@@ -27,11 +27,12 @@ namespace Regress {
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_fundamental_sub_object_no_get_set_func_new(IntPtr data);
 
-		public TestFundamentalSubObjectNoGetSetFunc (string data) 
+		public static TestFundamentalSubObjectNoGetSetFunc New(string data)
 		{
 			IntPtr native_data = GLib.Marshaller.StringToPtrGStrdup (data);
-			Raw = regress_test_fundamental_sub_object_no_get_set_func_new(native_data);
+			TestFundamentalSubObjectNoGetSetFunc result = new TestFundamentalSubObjectNoGetSetFunc (regress_test_fundamental_sub_object_no_get_set_func_new(native_data));
 			GLib.Marshaller.Free (native_data);
+			return result;
 		}
 
 

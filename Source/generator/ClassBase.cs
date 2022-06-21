@@ -28,7 +28,8 @@ namespace GtkSharp.Generation {
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.IO;
-	using System.Xml;
+    using System.Linq;
+    using System.Xml;
 
 	public abstract class ClassBase : GenBase {
 		private IDictionary<string, Property> props = new Dictionary<string, Property> ();
@@ -46,12 +47,6 @@ namespace GtkSharp.Generation {
 		private Dictionary<string, Ctor> clash_map;
 		private bool deprecated = false;
 		private bool isabstract = false;
-		public bool nameConstructors {
-			get {
-				return Elem.GetAttributeAsBoolean("name_constructors");
-			}
-		}
-
 
 		public IDictionary<string, Method> Methods {
 			get {
@@ -574,16 +569,18 @@ namespace GtkSharp.Generation {
 			clash_map = new Dictionary<string, Ctor>();
 
 			foreach (Ctor ctor in ctors) {
-				if (nameConstructors) {
-					ctor.IsStatic = true;
-					if (Parent != null && Parent.HasStaticCtor (ctor.StaticName))
-						ctor.Modifiers = "new ";
-				} else if (clash_map.ContainsKey (ctor.Signature.Types)) {
-					Ctor clash = clash_map [ctor.Signature.Types];
+				if (clash_map.ContainsKey(ctor.Signature.Types))
+				{
+					Ctor clash = clash_map[ctor.Signature.Types];
 					Ctor alter = ctor.Preferred ? clash : ctor;
 					alter.IsStatic = true;
-					if (Parent != null && Parent.HasStaticCtor (alter.StaticName))
+					if (Parent != null && Parent.HasStaticCtor(alter.StaticName))
 						alter.Modifiers = "new ";
+				} else if (Parent != null && ctor.Parameters.Count > 0)
+				{
+					ctor.IsStatic = true;
+					if (Parent != null && Parent.HasStaticCtor(ctor.StaticName))
+						ctor.Modifiers = "new ";
 				} else
 					clash_map [ctor.Signature.Types] = ctor;
 

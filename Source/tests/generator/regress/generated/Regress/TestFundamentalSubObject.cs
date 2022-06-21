@@ -53,11 +53,12 @@ namespace Regress {
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_fundamental_sub_object_new(IntPtr data);
 
-		public TestFundamentalSubObject (string data) 
+		public static TestFundamentalSubObject New(string data)
 		{
 			IntPtr native_data = GLib.Marshaller.StringToPtrGStrdup (data);
-			Raw = regress_test_fundamental_sub_object_new(native_data);
+			TestFundamentalSubObject result = new TestFundamentalSubObject (regress_test_fundamental_sub_object_new(native_data));
 			GLib.Marshaller.Free (native_data);
+			return result;
 		}
 
 #endregion
