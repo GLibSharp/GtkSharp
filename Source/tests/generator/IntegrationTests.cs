@@ -124,7 +124,7 @@ namespace IntegrationTests
             {
                 Console.WriteLine(diag);
             }
-            Assert.AreEqual(56, errors.Count());
+            Assert.AreEqual(50, errors.Count());
             Assert.AreEqual(5, warnings.Count());
         }
     }
