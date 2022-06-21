@@ -34,6 +34,8 @@ namespace GtkSharp.Generation {
 
 		public EnumGen (XmlElement ns, XmlElement elem) : base (ns, elem)
 		{
+			string candidateEnumType = null;
+
 			foreach (XmlElement member in elem.ChildNodes) {
 				if (member.Name != "member")
 					continue;
@@ -41,24 +43,34 @@ namespace GtkSharp.Generation {
 				string result = "\t\t" + member.GetAttribute("name");
 				if (member.HasAttribute ("value")) {
 					string value = member.GetAttribute ("value").Trim ();
-					foreach (Match match in Regex.Matches (value, "[0-9]+([UL]{1,2})", RegexOptions.IgnoreCase)) {
-						switch (match.Groups[1].Value.ToUpper ()) {
-							case "U": enum_type = " : uint"; break;
-							case "L": enum_type = " : long"; break;
-							case "UL": enum_type = " : ulong"; break;
-						}
-					}
+					var valueType = SymbolTable.Table.GetTypeFromIntegerValue(value);
+					// Update the enum_type with the highest 
+					if (candidateEnumType == null ||
+						valueType == "uint" && candidateEnumType == "int" ||
+						valueType == "long" && candidateEnumType != "ulong" ||
+						valueType == "ulong")
+                    {
+						candidateEnumType = valueType;
+                    }
 					result += " = " + value;
 				}
 				members.Add (result + ",");
 			}
-			if (enum_type == String.Empty && elem.HasAttribute ("type")) {
-				if (elem.GetAttribute ("type") == "flags") {
-					enum_type = " : uint";
-				}
+
+			if (elem.HasAttribute("enum_type"))
+			{
+				enum_type = " : " + elem.GetAttribute("enum_type");
+				return;
+			} else if (elem.HasAttribute("type") && (elem.GetAttribute("type") == "flags"))
+			{
+				enum_type = " : uint";
+				return;
 			}
-			if (elem.HasAttribute ("enum_type"))
-				enum_type = " : " + elem.GetAttribute ("enum_type");
+
+			if (candidateEnumType != null && candidateEnumType != "int")
+            {
+				enum_type = $" : {candidateEnumType}";
+			}
 		}
 
 		public override bool Validate ()
