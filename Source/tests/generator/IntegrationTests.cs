@@ -32,7 +32,7 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			Assert.AreEqual(Statistics.EnumCount, 22);
-			Assert.AreEqual(Statistics.StructCount, 21);
+			Assert.AreEqual(Statistics.StructCount, 20);
 			Assert.AreEqual(Statistics.BoxedCount, 9);
 			Assert.AreEqual(Statistics.OpaqueCount, 5);
 			Assert.AreEqual(Statistics.IFaceCount, 3);
@@ -42,7 +42,7 @@ namespace IntegrationTests {
 			Assert.AreEqual(Statistics.SignalCount, 17);
 			Assert.AreEqual(Statistics.MethodCount, 300);
 			Assert.AreEqual(Statistics.CtorCount, 25);
-			Assert.AreEqual(Statistics.ThrottledCount, 17);
+			Assert.AreEqual(Statistics.ThrottledCount, 18);
 		}
 
 
@@ -51,7 +51,7 @@ namespace IntegrationTests {
 			int res = GenerateRegressCode();
 			Assert.AreEqual(0, res);
 			var result = Compile(tempDir, "regress-sharp.dll");
-			Assert.AreEqual(17, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
+			Assert.AreEqual(16, result.errors.Count(d => d.Severity == DiagnosticSeverity.Error));
 			Assert.AreEqual(4, result.warnings.Count(d => d.Severity == DiagnosticSeverity.Warning));
 		}
 
