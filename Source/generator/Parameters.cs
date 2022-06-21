@@ -242,6 +242,14 @@ namespace GtkSharp.Generation {
 				} else if (gen is CallbackGen) {
 					has_cb = true;
 				}
+
+				if (p is ArrayCountPair && p.CSType == "[]")
+                {
+					log.Warn($"Unknown type {p.CType} on parameter {p.Name}");
+					Clear();
+					return false;
+				}
+
 				param_list.Add (p);
 			}
 
