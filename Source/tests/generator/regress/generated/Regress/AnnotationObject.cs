@@ -561,7 +561,7 @@ namespace Regress {
 			IntPtr[] native_argv = new IntPtr [cnt_argv];
 			for (int i = 0; i < cnt_argv; i++)
 				native_argv [i] = GLib.Marshaller.StringToPtrGStrdup(argv[i]);
-			regress_annotation_object_parse_args(Handle, ref argc, native_argv);
+			regress_annotation_object_parse_args(Handle, ref argc, ref native_argv);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]

@@ -42,7 +42,7 @@ namespace RegressSharp {
 
 		void InvokeNative (ref int[] ints, ref int length)
 		{
-			native_cb (ints, ref length);
+			native_cb (ref ints, ref length);
 		}
 	}
 

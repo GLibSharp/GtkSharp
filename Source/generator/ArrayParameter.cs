@@ -81,12 +81,22 @@ namespace GtkSharp.Generation {
 
 		public override string CallString {
 			get {
-				if (CSType != MarshalType)
-					return "native_" + CallName;
-				else if (FixedArrayLength.HasValue)
+				string callString;
+
+				if (FixedArrayLength.HasValue)
 					return base.CallString;
-				else
-					return CallName;
+
+				if (CSType != MarshalType) {
+					callString = "native_" + CallName;
+				} else {
+					callString = CallName;
+				}
+
+				if (!string.IsNullOrEmpty(PassAs)) {
+					callString = $"{PassAs} {callString}";
+				}
+
+				return callString;
 			}
 		}
 
