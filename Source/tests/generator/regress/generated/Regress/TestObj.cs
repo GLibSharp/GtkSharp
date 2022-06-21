@@ -1558,7 +1558,7 @@ namespace Regress {
 					_abi_info = new GLib.AbiStruct (new List<GLib.AbiField>{ 
 						new GLib.AbiField("bare"
 							, GLib.Object.abi_info.Fields
-							, (uint) Marshal.SizeOf(typeof()) // bare
+							, (uint) Marshal.SizeOf(typeof(GLib.Object)) // bare
 							, null
 							, "boxed"
 							, (long) Marshal.OffsetOf(typeof(RegressTestObj_bareAlign), "bare")
