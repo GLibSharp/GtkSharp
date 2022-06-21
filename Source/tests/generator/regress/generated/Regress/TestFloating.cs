@@ -33,7 +33,7 @@ namespace Regress {
 			get {
 				unsafe {
 					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + parent_instance_offset);
-					return GLib.Object.GetObject ((*raw_ptr));
+					return (GLib.InitiallyUnowned) GLib.Object.GetObject ((*raw_ptr));
 				}
 			}
 		}
