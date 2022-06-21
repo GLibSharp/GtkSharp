@@ -123,13 +123,6 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_annotation_string_array_length(uint n_properties, [] properties);
-
-		public static void AnnotationStringArrayLength([] properties) {
-			regress_annotation_string_array_length((uint) (properties == null ? 0 : properties.Length), properties);
-		}
-
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_annotation_string_zero_terminated();
 
 		public static string[] AnnotationStringZeroTerminated() {
