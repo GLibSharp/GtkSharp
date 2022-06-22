@@ -56,26 +56,35 @@ namespace GtkSharp.Generation {
 
 		public override string[] Prepare {
 			get {
-				if (CSType == MarshalType && !FixedArrayLength.HasValue)
-					return new string [0];
-
 				var result = new List<string> ();
 
-				if (FixedArrayLength.HasValue) {
-					result.Add (String.Format ("{0} = new {1}[{2}];", Name, MarshalType.TrimEnd ('[', ']'), FixedArrayLength));
-					return result.ToArray ();
-				}
-				result.Add (String.Format ("int cnt_{0} = {0} == null ? 0 : {0}.Length;", CallName));
-				result.Add (String.Format ("{0}[] native_{1} = new {0} [cnt_{1}" + (NullTerminated ? " + 1" : "") + "];", MarshalType.TrimEnd('[', ']'), CallName));
-				result.Add (String.Format ("for (int i = 0; i < cnt_{0}; i++)", CallName));
-				IGeneratable gen = Generatable;
-				if (gen is IManualMarshaler)
-					result.Add (String.Format ("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative (CallName + "[i]")));
-				else
-					result.Add (String.Format ("\tnative_{0} [i] = {1};", CallName, gen.CallByName (CallName + "[i]")));
+				if (CSType != MarshalType) {
+ 					if (FixedArrayLength.HasValue) {
+						result.Add (String.Format ("{0} = new {1}[{2}];", Name, MarshalType.TrimEnd ('[', ']'), FixedArrayLength));
+						return result.ToArray ();
+					}
+					result.Add (String.Format ("int cnt_{0} = {0} == null ? 0 : {0}.Length;", CallName));
+					result.Add (String.Format ("{0}[] native_{1} = new {0} [cnt_{1}" + (NullTerminated ? " + 1" : "") + "];", MarshalType.TrimEnd('[', ']'), CallName));
+					result.Add (String.Format ("for (int i = 0; i < cnt_{0}; i++)", CallName));
+					IGeneratable gen = Generatable;
+					if (gen is IManualMarshaler)
+						result.Add (String.Format ("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative (CallName + "[i]")));
+					else
+						result.Add (String.Format ("\tnative_{0} [i] = {1};", CallName, gen.CallByName (CallName + "[i]")));
 
-				if (NullTerminated)
-					result.Add (String.Format ("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+					if (NullTerminated)
+						result.Add (String.Format ("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+				} else
+				{
+					if (PassAs == "out")
+					{
+						if (FixedArrayLength.HasValue)
+						{
+							// FIXME: caller-allocates annotation is not supported by bindinate, we always allocate just in case
+							result.Add(String.Format("{0} = new {1}[{2}];", Name, MarshalType.TrimEnd('[', ']'), FixedArrayLength));
+						}
+					}
+				}
 				return result.ToArray ();
 			}
 		}
