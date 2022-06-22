@@ -28,7 +28,7 @@ namespace Atk {
 			IntPtr[] native_targets = new IntPtr [cnt_targets];
 			for (int i = 0; i < cnt_targets; i++)
 				native_targets [i] = targets[i] == null ? IntPtr.Zero : targets[i].Handle;
-			Raw = atk_relation_new(native_targets, (targets == null ? 0 : targets.Length), (int) relationship);
+			Raw = atk_relation_new(native_targets, cnt_targets, (int) relationship);
 		}
 
 		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]

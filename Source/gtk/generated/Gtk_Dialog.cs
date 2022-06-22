@@ -368,7 +368,8 @@ namespace Gtk {
 		[Obsolete]
 		public int[] AlternativeButtonOrder { 
 			set {
-				gtk_dialog_set_alternative_button_order_from_array(Handle, (value == null ? 0 : value.Length), value);
+				int cnt_value = (value == null ? 0 : value.Length);
+				gtk_dialog_set_alternative_button_order_from_array(Handle, cnt_value,  value);
 			}
 		}
 

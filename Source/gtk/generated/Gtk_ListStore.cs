@@ -223,7 +223,7 @@ namespace Gtk {
 				IntPtr[] native_value = new IntPtr [cnt_value];
 				for (int i = 0; i < cnt_value; i++)
 					native_value [i] = value[i].Val;
-				gtk_list_store_set_column_types(Handle, (value == null ? 0 : value.Length), native_value);
+				gtk_list_store_set_column_types(Handle, cnt_value,  native_value);
 			}
 		}
 

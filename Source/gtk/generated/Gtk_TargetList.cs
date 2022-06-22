@@ -36,7 +36,8 @@ namespace Gtk {
 		static extern void gtk_target_list_add_table(IntPtr raw, Gtk.TargetEntry[] targets, uint n_targets);
 
 		public void AddTable(Gtk.TargetEntry[] targets) {
-			gtk_target_list_add_table(Handle, targets, (uint) (targets == null ? 0 : targets.Length));
+			uint cnt_targets = (uint)(targets == null ? 0 : targets.Length);
+			gtk_target_list_add_table(Handle, targets, cnt_targets);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]

@@ -391,14 +391,16 @@ namespace Regress {
 		static extern void regress_annotation_object_compute_sum_n(IntPtr raw, int[] nums, int n_nums);
 
 		public void ComputeSumN(int[] nums) {
-			regress_annotation_object_compute_sum_n(Handle, nums, (nums == null ? 0 : nums.Length));
+			int cnt_nums = (nums == null ? 0 : nums.Length);
+			regress_annotation_object_compute_sum_n(Handle, nums, cnt_nums);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_annotation_object_compute_sum_nz(IntPtr raw, int[] nums, int n_nums);
 
 		public void ComputeSumNz(int[] nums) {
-			regress_annotation_object_compute_sum_nz(Handle, nums, (nums == null ? 0 : nums.Length));
+			int cnt_nums = (nums == null ? 0 : nums.Length);
+			regress_annotation_object_compute_sum_nz(Handle, nums, cnt_nums);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
