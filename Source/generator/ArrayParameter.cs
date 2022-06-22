@@ -125,64 +125,55 @@ namespace GtkSharp.Generation {
 
 	public class ArrayCountPair : ArrayParameter {
 
-		XmlElement count_elem;
+		Parameter count_param;
 		bool invert;
 
 		public ArrayCountPair (XmlElement array_elem, XmlElement count_elem, bool invert) : base (array_elem)
 		{
-			this.count_elem = count_elem;
+			count_param = new Parameter(count_elem);
 			this.invert = invert;
-		}
-
-		string CountNativeType {
-			get {
-				return SymbolTable.Table.GetMarshalType(count_elem.GetAttribute("type"));
-			}
-		}
-
-		string CountType {
-			get {
-				return SymbolTable.Table.GetCSType(count_elem.GetAttribute("type"));
-			}
 		}
 
 		string CountCast {
 			get {
-				if (CountType == "int")
-					return String.Empty;
+				if (count_param.CSType == "int")
+					return string.Empty;
 				else
-					return "(" + CountType + ") ";
+					return $"({count_param.CSType})";
 			}
 		}
 
-		string CountName {
-			get {
-				return SymbolTable.Table.MangleName (count_elem.GetAttribute("name"));
+        public override string[] Prepare
+        {
+			get
+            {
+				if (CSType == MarshalType && !FixedArrayLength.HasValue)
+                {
+					return new string[] { $"{count_param.CSType} cnt_{CallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);" };
+				}
+				else
+                {
+					return base.Prepare;
+                }
 			}
-		}
+        }
 
-		string CallCount (string name)
-		{
-			string result = CountCast + "(" + name + " == null ? 0 : " + name + ".Length)";
-			IGeneratable gen = SymbolTable.Table[count_elem.GetAttribute("type")];
-			return gen.CallByName (result);
-		}
-
-		public override string CallString {
+        public override string CallString {
 			get {
+				string pass_ass = string.IsNullOrEmpty(count_param.PassAs) ? "" : $"{count_param.PassAs} ";
 				if (invert)
-					return CallCount (CallName) + ", " + base.CallString;
+					return $"{pass_ass}cnt_{CallName},  {base.CallString}";
 				else
-					return base.CallString + ", " + CallCount (CallName);
+					return $"{base.CallString}, {pass_ass}cnt_{CallName}";
 			}
 		}
 
 		public override string NativeSignature {
 			get {
 				if (invert)
-					return CountNativeType + " " + CountName + ", " + MarshalType + " " + Name;
+					return $"{count_param.NativeSignature}, {base.NativeSignature}";
 				else
-					return MarshalType + " " + Name + ", " + CountNativeType + " " + CountName;
+					return $"{base.NativeSignature}, {count_param.NativeSignature}";
 			}
 		}
 	}
