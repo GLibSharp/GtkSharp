@@ -372,7 +372,6 @@ namespace Regress {
 		static extern void regress_has_parameter_named_attrs(int foo, IntPtr[] attributes);
 
 		public static void HasParameterNamedAttrs(int foo, IntPtr[] attributes) {
-			attributes = new IntPtr[32];
 			regress_has_parameter_named_attrs(foo, attributes);
 		}
 
@@ -425,7 +424,6 @@ namespace Regress {
 		static extern int regress_test_array_fixed_size_int_in(int[] ints);
 
 		public static int TestArrayFixedSizeIntIn(int[] ints) {
-			ints = new int[5];
 			int raw_ret = regress_test_array_fixed_size_int_in(ints);
 			int ret = raw_ret;
 			return ret;
@@ -554,7 +552,6 @@ namespace Regress {
 		static extern void regress_test_array_static_in_int(int[] x);
 
 		public static void TestArrayStaticInInt(int[] x) {
-			x = new int[10];
 			regress_test_array_static_in_int(x);
 		}
 
