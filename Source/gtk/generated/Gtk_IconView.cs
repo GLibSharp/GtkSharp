@@ -1011,14 +1011,16 @@ namespace Gtk {
 		static extern void gtk_icon_view_enable_model_drag_dest(IntPtr raw, Gtk.TargetEntry[] targets, int n_targets, int actions);
 
 		public void EnableModelDragDest(Gtk.TargetEntry[] targets, Gdk.DragAction actions) {
-			gtk_icon_view_enable_model_drag_dest(Handle, targets, (targets == null ? 0 : targets.Length), (int) actions);
+			int cnt_targets = (targets == null ? 0 : targets.Length);
+			gtk_icon_view_enable_model_drag_dest(Handle, targets, cnt_targets, (int) actions);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_view_enable_model_drag_source(IntPtr raw, int start_button_mask, Gtk.TargetEntry[] targets, int n_targets, int actions);
 
 		public void EnableModelDragSource(Gdk.ModifierType start_button_mask, Gtk.TargetEntry[] targets, Gdk.DragAction actions) {
-			gtk_icon_view_enable_model_drag_source(Handle, (int) start_button_mask, targets, (targets == null ? 0 : targets.Length), (int) actions);
+			int cnt_targets = (targets == null ? 0 : targets.Length);
+			gtk_icon_view_enable_model_drag_source(Handle, (int) start_button_mask, targets, cnt_targets, (int) actions);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
