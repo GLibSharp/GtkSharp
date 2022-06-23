@@ -29,3 +29,5 @@ jobs:
         run: meson compile -C builddir
       - name: Install
         run: meson install -C builddir
+      - name: Build dotnet
+        run: dotnet build Source/gtk-sharp.sln /p:Platform="Any CPU"
