@@ -1,10 +1,18 @@
 name: Continous Integration
 on: [pull_request]
 jobs:
-  Build:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      matrix:
+        config:
+          - { os: ubuntu-latest, arch: x64, name: ubuntu-x64 }
+          - { os: macos-latest, arch: x64, name: macos-x64 }
+          - { os: windows-latest, arch: x64, name: windows-x64 }
+    runs-on: ${{ matrix.config.os }}
     steps:
       - uses: actions/checkout@v2
+      - name: Enable Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1.10.0
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
