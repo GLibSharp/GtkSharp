@@ -13,5 +13,11 @@ jobs:
         run: dotnet tool install -g dotnet-format
 #      - name: Check format
 #        run: sh scripts/format-csharp --check
+      - name: Install Deps
+        run: pip3 install meson ninja
+      - name: Configure
+        run: meson builddir
       - name: Build
-        run: sh dbuild.sh
+        run: meson compile -C builddir
+      - name: Install
+        run: meson install -C builddir
