@@ -1,0 +1,5 @@
+[wrap-git]
+directory=glib
+url=https://gitlab.gnome.org/GNOME/glib.git
+push-url=ssh://git.gnome.org/git/glib
+revision=origin/glib-2-72
