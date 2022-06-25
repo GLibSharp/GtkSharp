@@ -257,6 +257,9 @@ namespace GtkSharp.Generation {
 			    has_cb && Count > 2 && this [Count - 3].Generatable is CallbackGen && this [Count - 2].IsUserData && this [Count - 1].IsDestroyNotify)
 				this [Count - 3].Scope = "notified";
 
+			if (IsAccessor) {
+				AccessorParam.IsAccessor = true;
+			}
 			valid = true;
 			return true;
 		}
