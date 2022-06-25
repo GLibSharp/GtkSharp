@@ -297,7 +297,6 @@ namespace Gdk {
 				native_data [i] = GLib.Marshaller.StringToPtrGStrdup (data[i]);
 			Raw = gdk_pixbuf_new_from_xpm_data(native_data);
 			for (int i = 0; i < native_data.Length; i++) {
-				data [i] = GLib.Marshaller.Utf8PtrToString (native_data[i]);
 				GLib.Marshaller.Free (native_data[i]);
 			}
 		}

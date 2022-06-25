@@ -35,7 +35,6 @@ namespace Gtk {
 			native_icons [cnt_icons] = IntPtr.Zero;
 			Raw = gtk_scale_button_new((int) size, min, max, step, native_icons);
 			for (int i = 0; i < native_icons.Length - 1; i++) {
-				icons [i] = GLib.Marshaller.Utf8PtrToString (native_icons[i]);
 				GLib.Marshaller.Free (native_icons[i]);
 			}
 		}
@@ -110,7 +109,6 @@ namespace Gtk {
 				native_value [cnt_value] = IntPtr.Zero;
 				gtk_scale_button_set_icons(Handle, native_value);
 				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
 					GLib.Marshaller.Free (native_value[i]);
 				}
 			}

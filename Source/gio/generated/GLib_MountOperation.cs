@@ -316,7 +316,6 @@ namespace GLib {
 			unmanaged (this.Handle, native_message, native_choices);
 			GLib.Marshaller.Free (native_message);
 			for (int i = 0; i < native_choices.Length; i++) {
-				choices [i] = GLib.Marshaller.Utf8PtrToString (native_choices[i]);
 				GLib.Marshaller.Free (native_choices[i]);
 			}
 		}
@@ -485,7 +484,6 @@ namespace GLib {
 			unmanaged (this.Handle, native_message, processes, native_choices);
 			GLib.Marshaller.Free (native_message);
 			for (int i = 0; i < native_choices.Length; i++) {
-				choices [i] = GLib.Marshaller.Utf8PtrToString (native_choices[i]);
 				GLib.Marshaller.Free (native_choices[i]);
 			}
 		}

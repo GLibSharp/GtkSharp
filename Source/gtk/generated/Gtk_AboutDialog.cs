@@ -204,7 +204,6 @@ namespace Gtk {
 				native_value [cnt_value] = IntPtr.Zero;
 				gtk_about_dialog_set_authors(Handle, native_value);
 				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
 					GLib.Marshaller.Free (native_value[i]);
 				}
 			}
@@ -231,7 +230,6 @@ namespace Gtk {
 				native_value [cnt_value] = IntPtr.Zero;
 				gtk_about_dialog_set_documenters(Handle, native_value);
 				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
 					GLib.Marshaller.Free (native_value[i]);
 				}
 			}
@@ -258,7 +256,6 @@ namespace Gtk {
 				native_value [cnt_value] = IntPtr.Zero;
 				gtk_about_dialog_set_artists(Handle, native_value);
 				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
 					GLib.Marshaller.Free (native_value[i]);
 				}
 			}

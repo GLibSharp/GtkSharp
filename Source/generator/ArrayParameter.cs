@@ -57,28 +57,29 @@ namespace GtkSharp.Generation {
 			get {
 				var result = new List<string>();
 
-				if (CSType != MarshalType) {
-					if (FixedArrayLength.HasValue) {
-						result.Add(String.Format("{0} = new {1}[{2}];", Name, MarshalType.TrimEnd('[', ']'), FixedArrayLength));
-						return result.ToArray();
-					}
-					result.Add(String.Format("int cnt_{0} = {0} == null ? 0 : {0}.Length;", CallName));
-					result.Add(String.Format("{0}[] native_{1} = new {0} [cnt_{1}" + (NullTerminated ? " + 1" : "") + "];", MarshalType.TrimEnd('[', ']'), CallName));
-					result.Add(String.Format("for (int i = 0; i < cnt_{0}; i++)", CallName));
-					IGeneratable gen = Generatable;
-					if (gen is IManualMarshaler)
-						result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative(CallName + "[i]")));
-					else
-						result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, gen.CallByName(CallName + "[i]")));
 
-					if (NullTerminated)
-						result.Add(String.Format("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
-				} else {
-					if (PassAs == "out") {
+				if (CSType != MarshalType) {
+					var marshalType = MarshalType.TrimEnd('[', ']');
+					if (PassAs != "out") {
 						if (FixedArrayLength.HasValue) {
-							// FIXME: caller-allocates annotation is not supported by bindinate, we always allocate just in case
-							result.Add(String.Format("{0} = new {1}[{2}];", Name, MarshalType.TrimEnd('[', ']'), FixedArrayLength));
+							result.Add(String.Format($"int cnt_{CallName} = {FixedArrayLength};"));
+						} else {
+							result.Add(String.Format($"int cnt_{CallName} = {CallName} == null ? 0 : {CallName}.Length;"));
 						}
+
+						// Allocate native
+						result.Add(String.Format($"{marshalType}[] native_{CallName} = new {marshalType} [cnt_{CallName}{(NullTerminated ? " + 1" : "")}];"));
+						result.Add(String.Format("for (int i = 0; i < cnt_{0}; i++)", CallName));
+						IGeneratable gen = Generatable;
+						if (gen is IManualMarshaler)
+							result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative(CallName + "[i]")));
+						else
+							result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, gen.CallByName(CallName + "[i]")));
+
+						if (NullTerminated)
+							result.Add(String.Format("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+					} else {
+						result.Add(String.Format($"{marshalType}[] native_{CallName};"));
 					}
 				}
 				return result.ToArray();
@@ -112,16 +113,35 @@ namespace GtkSharp.Generation {
 					return new string[0];
 
 				IGeneratable gen = Generatable;
-				if (gen is IManualMarshaler) {
-					string[] result = new string[4];
-					result[0] = "for (int i = 0; i < native_" + CallName + ".Length" + (NullTerminated ? " - 1" : "") + "; i++) {";
-					result[1] = "\t" + CallName + " [i] = " + Generatable.FromNative("native_" + CallName + "[i]") + ";";
-					result[2] = "\t" + (gen as IManualMarshaler).ReleaseNative("native_" + CallName + "[i]") + ";";
-					result[3] = "}";
-					return result;
+				var result = new List<string>();
+
+				if (string.IsNullOrEmpty(PassAs)) {
+					if (gen is IManualMarshaler) {
+						// Free manually allocated native pointers
+						result.Add("for (int i = 0; i < native_" + CallName + ".Length" + (NullTerminated ? " - 1" : "") + "; i++) {");
+						result.Add("\t" + (gen as IManualMarshaler).ReleaseNative("native_" + CallName + "[i]") + ";");
+						result.Add("}");
+					}
+					return result.ToArray();
 				}
 
-				return new string[0];
+				if (PassAs == "out") {
+					if (FixedArrayLength.HasValue) {
+						result.Add(String.Format($"int cnt_{CallName} = {FixedArrayLength};"));
+					} else {
+						result.Add(String.Format($"int cnt_{CallName} = native_{CallName} == null ? 0 : native_{CallName}.Length;"));
+					}
+					// Allocate managed
+					result.Add(String.Format($"{Name} = new {CSType.TrimEnd('[', ']')}[cnt_{CallName}];"));
+				}
+
+				result.Add("for (int i = 0; i < native_" + CallName + ".Length" + (NullTerminated ? " - 1" : "") + "; i++) {");
+				result.Add("\t" + CallName + " [i] = " + Generatable.FromNative("native_" + CallName + "[i]") + ";");
+				if (gen is IManualMarshaler) {
+					result.Add("\t" + (gen as IManualMarshaler).ReleaseNative("native_" + CallName + "[i]") + ";");
+				}
+				result.Add("}");
+				return result.ToArray();
 			}
 		}
 	}
@@ -148,7 +168,13 @@ namespace GtkSharp.Generation {
 		public override string[] Prepare {
 			get {
 				if (CSType == MarshalType && !FixedArrayLength.HasValue) {
-					return new string[] { $"{count_param.CSType} cnt_{CallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);" };
+					var result = new List<string>();
+					if (PassAs == "out") {
+						result.Add($"{count_param.CSType} cnt_{CallName};");
+					} else {
+						result.Add($"{count_param.CSType} cnt_{CallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
+					}
+					return result.ToArray();
 				} else {
 					return base.Prepare;
 				}

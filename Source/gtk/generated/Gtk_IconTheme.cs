@@ -184,7 +184,6 @@ namespace Gtk {
 			IntPtr raw_ret = gtk_icon_theme_choose_icon(Handle, native_icon_names, size, (int) flags);
 			Gtk.IconInfo ret = GLib.Object.GetObject(raw_ret) as Gtk.IconInfo;
 			for (int i = 0; i < native_icon_names.Length - 1; i++) {
-				icon_names [i] = GLib.Marshaller.Utf8PtrToString (native_icon_names[i]);
 				GLib.Marshaller.Free (native_icon_names[i]);
 			}
 			return ret;
@@ -201,7 +200,6 @@ namespace Gtk {
 			IntPtr raw_ret = gtk_icon_theme_choose_icon_for_scale(Handle, native_icon_names, size, scale, (int) flags);
 			Gtk.IconInfo ret = GLib.Object.GetObject(raw_ret) as Gtk.IconInfo;
 			for (int i = 0; i < native_icon_names.Length; i++) {
-				icon_names [i] = GLib.Marshaller.Utf8PtrToString (native_icon_names[i]);
 				GLib.Marshaller.Free (native_icon_names[i]);
 			}
 			return ret;
