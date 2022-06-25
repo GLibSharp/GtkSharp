@@ -977,7 +977,6 @@ namespace GLib {
 			bool ret = raw_ret;
 			GLib.Marshaller.Free (native_key);
 			for (int i = 0; i < native_value.Length - 1; i++) {
-				value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
 				GLib.Marshaller.Free (native_value[i]);
 			}
 			return ret;

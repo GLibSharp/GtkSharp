@@ -275,6 +275,8 @@ namespace GtkSharp.Generation {
 			}
 		}
 
+		public bool IsAccessor { get; set; }
+
 		public virtual string[] Prepare {
 			get {
 				IGeneratable gen = Generatable;
