@@ -23,6 +23,7 @@ if __name__ == "__main__":
     parser.add_argument("--symbols")
     parser.add_argument("--schema")
     parser.add_argument("--fake", action='store_true')
+    parser.add_argument("--skip-files-check", action='store_true')
 
     opts = parser.parse_args()
     if opts.fake:
@@ -66,25 +67,27 @@ if __name__ == "__main__":
 
     subprocess.check_call(launcher + cmd)
 
-    # WORKAROUND: Moving files into the out directory with special names
-    # as meson doesn't like path separator in output names.
-    regex = re.compile('_')
-    dirs = set()
-    for _f in opts.files.split(';'):
-        fpath = os.path.join(opts.out, regex.sub("/", _f, 1))
-        dirs.add(os.path.dirname(fpath))
-        _f = os.path.join(opts.out, _f)
-        shutil.move(fpath, _f)
+    if opts.files:
+        # WORKAROUND: Moving files into the out directory with special names
+        # as meson doesn't like path separator in output names.
+        regex = re.compile('_')
+        dirs = set()
+        for _f in opts.files.split(';'):
+            fpath = os.path.join(opts.out, regex.sub("/", _f, 1))
+            dirs.add(os.path.dirname(fpath))
+            _f = os.path.join(opts.out, _f)
+            shutil.move(fpath, _f)
 
-    missing_files = []
-    for _dir in dirs:
-        missing_files.extend(glob.glob(os.path.join(_dir, '*.cs')))
+    if not opts.skip_files_check:
+        missing_files = []
+        for _dir in dirs:
+            missing_files.extend(glob.glob(os.path.join(_dir, '*.cs')))
 
-    if missing_files:
-        print("Following files were generated but not listed:\n    %s" %
-              '\n    '.join(["'%s_%s'," % (m.split(os.path.sep)[-2], m.split(os.path.sep)[-1])
-             for m in missing_files]))
-        exit(1)
+        if missing_files:
+            print("Following files were generated but not listed:\n    %s" %
+                '\n    '.join(["'%s_%s'," % (m.split(os.path.sep)[-2], m.split(os.path.sep)[-1])
+                for m in missing_files]))
+            exit(1)
 
-    for _dir in dirs:
-        shutil.rmtree(_dir)
+        for _dir in dirs:
+            shutil.rmtree(_dir)
