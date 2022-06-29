@@ -288,7 +288,7 @@ namespace GtkSharp.Generation {
 				} else if (PassAs == "out" && CSType != MarshalType) {
 					return new string[] { gen.MarshalType + " native_" + CallName + ";" };
 				} else if (PassAs == "ref" && CSType != MarshalType) {
-					return new string[] { gen.MarshalType + " native_" + CallName + " = (" + gen.MarshalType + ") " + CallName + ";" };
+					return new string[] { gen.MarshalType + " native_" + CallName + " = " + gen.CallByName(CallName) + " ;" };
 				} else if (gen is OpaqueGen && Owned) {
 					return new string[] { CallName + ".Owned = false;" };
 				}

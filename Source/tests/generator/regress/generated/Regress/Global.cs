@@ -1641,7 +1641,7 @@ namespace Regress {
 		static extern void regress_test_utf8_inout(ref IntPtr inout);
 
 		public static void TestUtf8Inout(ref string inout) {
-			IntPtr native_inout = (IntPtr) inout;
+			IntPtr native_inout = GLib.Marshaller.StringToPtrGStrdup(inout) ;
 			regress_test_utf8_inout(ref native_inout);
 			inout = GLib.Marshaller.PtrToStringGFree(native_inout);
 		}
