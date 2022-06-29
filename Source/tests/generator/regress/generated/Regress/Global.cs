@@ -35,30 +35,6 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_annotation_custom_destroy(RegressSharp.AnnotationCallbackNative cb, RegressSharp.AnnotationNotifyFuncNative destroy, IntPtr data);
-
-		public static void AnnotationCustomDestroy(Regress.AnnotationCallback cb) {
-			RegressSharp.AnnotationCallbackWrapper cb_wrapper = new RegressSharp.AnnotationCallbackWrapper (cb);
-			IntPtr data;
-			Regress.AnnotationNotifyFunc destroy;
-			if (cb == null) {
-				data = IntPtr.Zero;
-				destroy = null;
-			} else {
-				data = (IntPtr) GCHandle.Alloc (cb_wrapper);
-				destroy = GLib.DestroyHelper.NotifyHandler;
-			}
-			RegressSharp.AnnotationNotifyFuncWrapper destroy_wrapper = new RegressSharp.AnnotationNotifyFuncWrapper (destroy);
-			IntPtr data;
-			if (destroy == null) {
-				data = IntPtr.Zero;
-			} else {
-				data = (IntPtr) GCHandle.Alloc (destroy_wrapper);
-			}
-			regress_annotation_custom_destroy(cb_wrapper.NativeDelegate, destroy_wrapper.NativeDelegate, data);
-		}
-
-		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_annotation_get_source_file();
 
 		public static string AnnotationGetSourceFile() {

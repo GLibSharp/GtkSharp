@@ -33,6 +33,10 @@ namespace GtkSharp.Generation {
 		public Parameter (XmlElement e)
 		{
 			elem = e;
+
+			if (CSType == "GLib.DestroyNotify") {
+				IsDestroyNotify = true;
+			}
 		}
 
 		string call_name;
@@ -125,9 +129,7 @@ namespace GtkSharp.Generation {
 		}
 
 		public bool IsDestroyNotify {
-			get {
-				return CType == "GDestroyNotify";
-			}
+			get; set;
 		}
 
 		public bool IsLength {
