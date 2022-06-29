@@ -21,8 +21,11 @@ jobs:
         run: dotnet tool install -g dotnet-format
 #      - name: Check format
 #        run: sh scripts/format-csharp --check
-      - name: Install Deps
+      - name: Install Python Deps
         run: pip3 install meson ninja
+      - name: Install Windows Deps
+        if: matrix.config.os == 'windows-latest'
+        run: choco install winflexbison3 -y
       - name: Configure
         run: meson builddir
       - name: Build
