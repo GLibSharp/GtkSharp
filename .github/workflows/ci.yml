@@ -21,6 +21,9 @@ jobs:
         run: dotnet format Source/gtk-sharp.sln --verify-no-changes
       - name: Install Deps
         run: pip3 install meson ninja
+      - name: Install Windows Deps
+        if: matrix.config.os == 'windows-latest'
+        run: choco install winflexbison3 -y
       - name: Configure
         run: meson builddir
       - name: Build
