@@ -180,11 +180,30 @@ namespace GtkSharp.Generation {
 			if (elem == null)
 				return false;
 
+			int destroyNotifyIdx = -1;
+
 			for (int i = first_is_instance ? 1 : 0; i < elem.ChildNodes.Count; i++) {
 				XmlElement parm = elem.ChildNodes[i] as XmlElement;
 				if (parm == null || parm.Name != "parameter")
 					continue;
+
+				bool isDestroyNotify = false;
+				if (i == destroyNotifyIdx) {
+					isDestroyNotify = true;
+				}
 				Parameter p = new Parameter(parm);
+
+				destroyNotifyIdx = p.DestroyNotify;
+
+				if (isDestroyNotify) {
+					p.IsDestroyNotify = true;
+				}
+
+				if (p.IsDestroyNotify && p.CSType != "GLib.DestroyNotify") {
+					log.Warn("Custom destroy notify is not supported, bind manually.");
+					Clear();
+					return false;
+				}
 
 				if (p.IsEllipsis) {
 					log.Warn("Ellipsis parameter: hide and bind manually if no alternative exists. ");
