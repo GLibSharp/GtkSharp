@@ -39,18 +39,19 @@ namespace GLib {
 				return null;
 
 			Opaque opaque = (Opaque)Activator.CreateInstance (type, new object[] { o });
-			if (owned) {
-				if (opaque.owned) {
+			if (opaque.owned) {
 					// The constructor took a Ref it shouldn't have, so undo it
 					opaque.Unref (o);
-				}
+			}
+			if (owned) {
 				opaque.owned = true;
-			} else 
+			} else {
 				opaque = opaque.Copy (o);
+			}
 
 			return opaque;
   		}
-  
+
 		public Opaque ()
 		{
 			owned = true;
