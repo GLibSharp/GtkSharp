@@ -16,43 +16,50 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrSize : Attribute {
+    public class AttrSize : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_size_new (int size);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_size_new(int size);
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_size_new_absolute (int size);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_size_new_absolute(int size);
 
-		public AttrSize (int size) : this (pango_attr_size_new (size)) {}
+        public AttrSize(int size) : this(pango_attr_size_new(size)) { }
 
-		public AttrSize (int size, bool absolute) : this (absolute ? pango_attr_size_new (size) : pango_attr_size_new_absolute (size)) {}
+        public AttrSize(int size, bool absolute) : this(absolute ? pango_attr_size_new(size) : pango_attr_size_new_absolute(size)) { }
 
-		internal AttrSize (IntPtr raw) : base (raw) {}
+        internal AttrSize(IntPtr raw) : base(raw) { }
 
-		new struct NativeStruct {
-			Attribute.NativeStruct attr;
-			public int sz;
-			public uint absolute;
-		}
+        new struct NativeStruct
+        {
+            Attribute.NativeStruct attr;
+            public int sz;
+            public uint absolute;
+        }
 
-		public int Size {
-			get {
-				NativeStruct native = (NativeStruct) Marshal.PtrToStructure (Handle, typeof (NativeStruct));
-				return native.sz;
-			}
-		}
+        public int Size
+        {
+            get
+            {
+                NativeStruct native = (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct));
+                return native.sz;
+            }
+        }
 
-		public bool Absolute {
-			get {
-				NativeStruct native = (NativeStruct) Marshal.PtrToStructure (Handle, typeof (NativeStruct));
-				return native.absolute != 0;
-			}
-		}
-	}
+        public bool Absolute
+        {
+            get
+            {
+                NativeStruct native = (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct));
+                return native.absolute != 0;
+            }
+        }
+    }
 }

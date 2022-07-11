@@ -19,35 +19,40 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	public sealed class DefaultSignalHandlerAttribute : Attribute 
-	{
-		private string method;
-		private System.Type type;
+    public sealed class DefaultSignalHandlerAttribute : Attribute
+    {
+        private string method;
+        private System.Type type;
 
-		public DefaultSignalHandlerAttribute () {}
+        public DefaultSignalHandlerAttribute() { }
 
-		public string ConnectionMethod 
-		{
-			get {
-				return method;
-			}
-			set {
-				method = value;
-			}
-		}
+        public string ConnectionMethod
+        {
+            get
+            {
+                return method;
+            }
+            set
+            {
+                method = value;
+            }
+        }
 
-		public System.Type Type 
-		{
-			get {
-				return type;
-			}
-			set {
-				type = value;
-			}
-		}
-	}
+        public System.Type Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
+    }
 }

@@ -31,11 +31,11 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum HintMetrics
-	{
-		Default,
-		Off,
-		On,
-	}
+    [Serializable]
+    public enum HintMetrics
+    {
+        Default,
+        Off,
+        On,
+    }
 }

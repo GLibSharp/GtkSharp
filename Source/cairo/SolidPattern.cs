@@ -29,45 +29,48 @@
 
 using System;
 
-namespace Cairo {
+namespace Cairo
+{
 
-	public class SolidPattern : Pattern
-	{
-		internal SolidPattern (IntPtr handle, bool owned) : base (handle, owned)
-		{
-		}
+    public class SolidPattern : Pattern
+    {
+        internal SolidPattern(IntPtr handle, bool owned) : base(handle, owned)
+        {
+        }
 
-		public SolidPattern (Color color)
-			: base (NativeMethods.cairo_pattern_create_rgba (color.R, color.G, color.B, color.A), true)
-		{
-		}
+        public SolidPattern(Color color)
+            : base(NativeMethods.cairo_pattern_create_rgba(color.R, color.G, color.B, color.A), true)
+        {
+        }
 
-		public SolidPattern (double r, double g, double b)
-			: base (NativeMethods.cairo_pattern_create_rgb (r, g, b), true)
-		{
-		}
+        public SolidPattern(double r, double g, double b)
+            : base(NativeMethods.cairo_pattern_create_rgb(r, g, b), true)
+        {
+        }
 
-		public SolidPattern (double r, double g, double b, double a)
-			: base (NativeMethods.cairo_pattern_create_rgba (r, g, b, a), true)
-		{
-		}
+        public SolidPattern(double r, double g, double b, double a)
+            : base(NativeMethods.cairo_pattern_create_rgba(r, g, b, a), true)
+        {
+        }
 
-		public SolidPattern (Color color, bool solid)
-			: base (solid
-					? NativeMethods.cairo_pattern_create_rgb (color.R, color.G, color.B)
-					: NativeMethods.cairo_pattern_create_rgba (color.R, color.G, color.B, color.A),
-				true)
-		{
-		}
+        public SolidPattern(Color color, bool solid)
+            : base(solid
+                    ? NativeMethods.cairo_pattern_create_rgb(color.R, color.G, color.B)
+                    : NativeMethods.cairo_pattern_create_rgba(color.R, color.G, color.B, color.A),
+                true)
+        {
+        }
 
-		public Color Color {
-			get {
-				CheckDisposed ();
-				double red, green, blue, alpha;
-				NativeMethods.cairo_pattern_get_rgba  (Handle, out red, out green, out blue, out alpha);
-				return new Color (red, green, blue, alpha);
-			}
-		}
-	}
+        public Color Color
+        {
+            get
+            {
+                CheckDisposed();
+                double red, green, blue, alpha;
+                NativeMethods.cairo_pattern_get_rgba(Handle, out red, out green, out blue, out alpha);
+                return new Color(red, green, blue, alpha);
+            }
+        }
+    }
 }
 

@@ -20,14 +20,17 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
-		
-	using System;
-		
-	public partial class ScrolledWindow {
-			
-		public ScrolledWindow () : this (null, null) {
-			SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
-		}
-	}
+namespace Gtk
+{
+
+    using System;
+
+    public partial class ScrolledWindow
+    {
+
+        public ScrolledWindow() : this(null, null)
+        {
+            SetPolicy(PolicyType.Automatic, PolicyType.Automatic);
+        }
+    }
 }

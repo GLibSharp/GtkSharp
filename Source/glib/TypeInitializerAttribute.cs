@@ -19,30 +19,33 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	[AttributeUsage (AttributeTargets.Class)]
-	public sealed class TypeInitializerAttribute : Attribute 
-	{
-		string method_name;
-		Type type;
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class TypeInitializerAttribute : Attribute
+    {
+        string method_name;
+        Type type;
 
-		public TypeInitializerAttribute (Type type, string method_name) 
-		{
-			this.type = type;
-			this.method_name = method_name;
-		}
+        public TypeInitializerAttribute(Type type, string method_name)
+        {
+            this.type = type;
+            this.method_name = method_name;
+        }
 
-		public string MethodName {
-			get { return method_name; }
-			set { method_name = value; }
-		}
+        public string MethodName
+        {
+            get { return method_name; }
+            set { method_name = value; }
+        }
 
-		public Type Type {
-			get { return type; }
-			set { type = value; }
-		}
-	}
+        public Type Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+    }
 }

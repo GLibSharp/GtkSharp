@@ -19,65 +19,77 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventConfigure : Event {
+    public class EventConfigure : Event
+    {
 
-		public EventConfigure (IntPtr raw) : base (raw) {} 
+        public EventConfigure(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public int x;
-			public int y;
-			public int width;
-			public int height;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public int x;
+            public int y;
+            public int width;
+            public int height;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public int Height {
-			get { return Native.height; }
-			set {
-				NativeStruct native = Native;
-				native.height = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public int Height
+        {
+            get { return Native.height; }
+            set
+            {
+                NativeStruct native = Native;
+                native.height = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public int Width {
-			get { return Native.width; }
-			set {
-				NativeStruct native = Native;
-				native.width = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public int Width
+        {
+            get { return Native.width; }
+            set
+            {
+                NativeStruct native = Native;
+                native.width = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public int X {
-			get { return Native.x; }
-			set {
-				NativeStruct native = Native;
-				native.x = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public int X
+        {
+            get { return Native.x; }
+            set
+            {
+                NativeStruct native = Native;
+                native.x = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public int Y {
-			get { return Native.y; }
-			set {
-				NativeStruct native = Native;
-				native.y = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public int Y
+        {
+            get { return Native.y; }
+            set
+            {
+                NativeStruct native = Native;
+                native.y = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

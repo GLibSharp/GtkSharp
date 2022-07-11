@@ -19,89 +19,103 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
+    using System;
 
-	public abstract class SimpleBase : IGeneratable  {
-		
-		string type;
-		string ctype;
-		string ns = String.Empty;
-		string default_value = String.Empty;
+    public abstract class SimpleBase : IGeneratable
+    {
 
-		public SimpleBase (string ctype, string type, string default_value)
-		{
-			string[] toks = type.Split('.');
-			this.ctype = ctype;
-			this.type = toks[toks.Length - 1];
-			if (toks.Length > 2)
-				this.ns = String.Join (".", toks, 0, toks.Length - 1);
-			else if (toks.Length == 2)
-				this.ns = toks[0];
-			this.default_value = default_value;
-		}
-		
-		public string CName {
-			get {
-				return ctype;
-			}
-		}
+        string type;
+        string ctype;
+        string ns = String.Empty;
+        string default_value = String.Empty;
 
-		public string Name {
-			get {
-				return type;
-			}
-		}
+        public SimpleBase(string ctype, string type, string default_value)
+        {
+            string[] toks = type.Split('.');
+            this.ctype = ctype;
+            this.type = toks[toks.Length - 1];
+            if (toks.Length > 2)
+                this.ns = String.Join(".", toks, 0, toks.Length - 1);
+            else if (toks.Length == 2)
+                this.ns = toks[0];
+            this.default_value = default_value;
+        }
 
-		public string QualifiedName {
-			get {
-				return ns == String.Empty ? type : ns + "." + type;
-			}
-		}
+        public string CName
+        {
+            get
+            {
+                return ctype;
+            }
+        }
 
-		public virtual string MarshalType {
-			get {
-				return QualifiedName;
-			}
-		}
+        public string Name
+        {
+            get
+            {
+                return type;
+            }
+        }
 
-		public virtual string DefaultValue {
-			get {
-				return default_value;
-			}
-		}
+        public string QualifiedName
+        {
+            get
+            {
+                return ns == String.Empty ? type : ns + "." + type;
+            }
+        }
 
-		public virtual string CallByName (string var)
-		{
-			return var;
-		}
-		
-		public virtual string FromNative(string var)
-		{
-			return var;
-		}
+        public virtual string MarshalType
+        {
+            get
+            {
+                return QualifiedName;
+            }
+        }
 
-		public bool Validate ()
-		{
-			return true;
-		}
+        public virtual string DefaultValue
+        {
+            get
+            {
+                return default_value;
+            }
+        }
 
-		public void Generate ()
-		{
-		}
-		
-		public void Generate (GenerationInfo gen_info)
-		{
-		}
+        public virtual string CallByName(string var)
+        {
+            return var;
+        }
 
-		public virtual string GenerateGetSizeOf () {
-			return null;
-		}
+        public virtual string FromNative(string var)
+        {
+            return var;
+        }
 
-		public virtual string GenerateAlign () {
-			return null;
-		}
-	}
+        public bool Validate()
+        {
+            return true;
+        }
+
+        public void Generate()
+        {
+        }
+
+        public void Generate(GenerationInfo gen_info)
+        {
+        }
+
+        public virtual string GenerateGetSizeOf()
+        {
+            return null;
+        }
+
+        public virtual string GenerateAlign()
+        {
+            return null;
+        }
+    }
 }
 

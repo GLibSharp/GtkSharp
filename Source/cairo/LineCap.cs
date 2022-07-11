@@ -31,11 +31,11 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum LineCap
-	{
-		Butt,
-		Round,
-		Square,
-	}
+    [Serializable]
+    public enum LineCap
+    {
+        Butt,
+        Round,
+        Square,
+    }
 }

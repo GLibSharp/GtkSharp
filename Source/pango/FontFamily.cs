@@ -18,42 +18,48 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class FontFamily {
+    public partial class FontFamily
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_font_family_list_faces(IntPtr raw, out IntPtr faces, out int n_faces);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void pango_font_family_list_faces(IntPtr raw, out IntPtr faces, out int n_faces);
 
-		public FontFace [] Faces {
-			get {
-				int count;
-				IntPtr array_ptr;
-				pango_font_family_list_faces (Handle, out array_ptr, out count);
-				if (array_ptr == IntPtr.Zero)
-					return new FontFace [0];
-				FontFace [] result = new FontFace [count];
-				for (int i = 0; i < count; i++) {
-					IntPtr fam_ptr = Marshal.ReadIntPtr (array_ptr, i * IntPtr.Size);
-					result [i] = GLib.Object.GetObject (fam_ptr) as FontFace;
-				}
+        public FontFace[] Faces
+        {
+            get
+            {
+                int count;
+                IntPtr array_ptr;
+                pango_font_family_list_faces(Handle, out array_ptr, out count);
+                if (array_ptr == IntPtr.Zero)
+                    return new FontFace[0];
+                FontFace[] result = new FontFace[count];
+                for (int i = 0; i < count; i++)
+                {
+                    IntPtr fam_ptr = Marshal.ReadIntPtr(array_ptr, i * IntPtr.Size);
+                    result[i] = GLib.Object.GetObject(fam_ptr) as FontFace;
+                }
 
-				GLib.Marshaller.Free (array_ptr);
-				return result;
-			}
-		}
+                GLib.Marshaller.Free(array_ptr);
+                return result;
+            }
+        }
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_font_family_list_faces(IntPtr raw, IntPtr faces, out int n_faces);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void pango_font_family_list_faces(IntPtr raw, IntPtr faces, out int n_faces);
 
-		[Obsolete]
-		public int ListFaces(Pango.FontFace faces) {
-			int n_faces;
-			pango_font_family_list_faces(Handle, faces.Handle, out n_faces);
-			return n_faces;
-		}
-	}
+        [Obsolete]
+        public int ListFaces(Pango.FontFace faces)
+        {
+            int n_faces;
+            pango_font_family_list_faces(Handle, faces.Handle, out n_faces);
+            return n_faces;
+        }
+    }
 }

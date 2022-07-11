@@ -20,74 +20,84 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class Global
-	{
+    public class Global
+    {
 
-		//this is a static class
-		private Global () {}
+        //this is a static class
+        private Global() { }
 
-		internal const string GLibNativeDll = "glib-2.0-0.dll";
-		internal const string GObjectNativeDll = "gobject-2.0-0.dll";
+        internal const string GLibNativeDll = "glib-2.0-0.dll";
+        internal const string GObjectNativeDll = "gobject-2.0-0.dll";
 
-		internal static bool IsWindowsPlatform {
-			get {
-				switch (Environment.OSVersion.Platform) {
-				case PlatformID.Win32NT:
-				case PlatformID.Win32S:
-				case PlatformID.Win32Windows:
-				case PlatformID.WinCE:
-					return true;
-				default:
-					return false;
-				}
-			}
-		}
+        internal static bool IsWindowsPlatform
+        {
+            get
+            {
+                switch (Environment.OSVersion.Platform)
+                {
+                    case PlatformID.Win32NT:
+                    case PlatformID.Win32S:
+                    case PlatformID.Win32Windows:
+                    case PlatformID.WinCE:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
 
-		public static string ProgramName {
-			get {
-				return GLib.Marshaller.Utf8PtrToString (g_get_prgname());
-			}
-			set { 
-				IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (value);
-				g_set_prgname (native_name);
-				GLib.Marshaller.Free (native_name);
-			}
-		}
+        public static string ProgramName
+        {
+            get
+            {
+                return GLib.Marshaller.Utf8PtrToString(g_get_prgname());
+            }
+            set
+            {
+                IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(value);
+                g_set_prgname(native_name);
+                GLib.Marshaller.Free(native_name);
+            }
+        }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_set_prgname (IntPtr name);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_set_prgname(IntPtr name);
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_get_prgname ();
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_get_prgname();
 
-		public static string ApplicationName {
-			get {
-				return GLib.Marshaller.Utf8PtrToString (g_get_application_name());	
-			}
-			set {
-				IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (value);
-				g_set_application_name (native_name);
-				GLib.Marshaller.Free (native_name);				
-			}
-		}
+        public static string ApplicationName
+        {
+            get
+            {
+                return GLib.Marshaller.Utf8PtrToString(g_get_application_name());
+            }
+            set
+            {
+                IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(value);
+                g_set_application_name(native_name);
+                GLib.Marshaller.Free(native_name);
+            }
+        }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_set_application_name (IntPtr name);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_set_application_name(IntPtr name);
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_get_application_name ();
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_get_application_name();
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_format_size_for_display (long size);
-		
-		static public string FormatSizeForDisplay (long size)
-		{
-			return Marshaller.PtrToStringGFree (g_format_size_for_display (size));
-		}
-	}
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_format_size_for_display(long size);
+
+        static public string FormatSizeForDisplay(long size)
+        {
+            return Marshaller.PtrToStringGFree(g_format_size_for_display(size));
+        }
+    }
 }

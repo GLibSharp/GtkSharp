@@ -18,19 +18,23 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class RecentManager {
+    public partial class RecentManager
+    {
 
-		[Obsolete("Replaced by RecentItems property")]
-		public GLib.List Items { 
-			get {
-				IntPtr raw_ret = gtk_recent_manager_get_items(Handle);
-				GLib.List ret = new GLib.List(raw_ret, typeof (Gtk.RecentInfo), true, true);
-				return ret;
-			}
-		}
-	}
+        [Obsolete("Replaced by RecentItems property")]
+        public GLib.List Items
+        {
+            get
+            {
+                IntPtr raw_ret = gtk_recent_manager_get_items(Handle);
+                GLib.List ret = new GLib.List(raw_ret, typeof(Gtk.RecentInfo), true, true);
+                return ret;
+            }
+        }
+    }
 }

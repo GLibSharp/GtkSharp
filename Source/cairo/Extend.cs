@@ -34,12 +34,12 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum Extend
-	{
-		None,
-		Repeat,
-		Reflect,
-		Pad,
-	}
+    [Serializable]
+    public enum Extend
+    {
+        None,
+        Repeat,
+        Reflect,
+        Pad,
+    }
 }

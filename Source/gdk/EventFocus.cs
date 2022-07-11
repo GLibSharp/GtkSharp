@@ -19,35 +19,41 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventFocus : Event {
+    public class EventFocus : Event
+    {
 
-		public EventFocus (IntPtr raw) : base (raw) {} 
+        public EventFocus(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public short _in;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public short _in;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public bool In {
-			get { return Native._in != 0; }
-			set {
-				NativeStruct native = Native;
-				native._in = (short) (value ? 1 : 0);
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public bool In
+        {
+            get { return Native._in != 0; }
+            set
+            {
+                NativeStruct native = Native;
+                native._in = (short)(value ? 1 : 0);
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

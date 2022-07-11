@@ -19,16 +19,17 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	
-	public class MissingIntPtrCtorException : Exception
-	{
-		public MissingIntPtrCtorException (string msg) : base (msg)
-		{
-		}
+    using System;
 
-	}
+    public class MissingIntPtrCtorException : Exception
+    {
+        public MissingIntPtrCtorException(string msg) : base(msg)
+        {
+        }
+
+    }
 }
 

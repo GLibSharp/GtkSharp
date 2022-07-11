@@ -17,26 +17,31 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	[AttributeUsage (AttributeTargets.Interface)]
-	public sealed class GInterfaceAttribute : Attribute {
-		Type adapter_type;
+    [AttributeUsage(AttributeTargets.Interface)]
+    public sealed class GInterfaceAttribute : Attribute
+    {
+        Type adapter_type;
 
-		public GInterfaceAttribute (Type adapter_type)
-		{
-			this.adapter_type = adapter_type;
-		}
+        public GInterfaceAttribute(Type adapter_type)
+        {
+            this.adapter_type = adapter_type;
+        }
 
-		public Type AdapterType {
-			get {
-				return adapter_type;
-			}
-			set {
-				adapter_type = value;
-			}
-		}
-	}
+        public Type AdapterType
+        {
+            get
+            {
+                return adapter_type;
+            }
+            set
+            {
+                adapter_type = value;
+            }
+        }
+    }
 }

@@ -20,29 +20,31 @@
 
 using System;
 
-namespace Gtk {
-	public struct ActionEntry {
-		public string name;
-		public string stock_id;
-		public string label;
-		public string tooltip;
-		public string accelerator;
-		public EventHandler activated;
-		
-		public ActionEntry (string name, string stock_id)
-			: this (name, stock_id, null, null, null, null) {}
-		
-		public ActionEntry (string name, string stock_id, EventHandler activated)
-			: this (name, stock_id, null, null, null, activated) {}
-		
-		public ActionEntry (string name, string stock_id, string label, string accelerator, string tooltip, EventHandler activated)
-		{
-			this.name = name;
-			this.stock_id = stock_id;
-			this.label = label;
-			this.accelerator = accelerator;
-			this.tooltip = tooltip;
-			this.activated = activated;
-		}
-	}
+namespace Gtk
+{
+    public struct ActionEntry
+    {
+        public string name;
+        public string stock_id;
+        public string label;
+        public string tooltip;
+        public string accelerator;
+        public EventHandler activated;
+
+        public ActionEntry(string name, string stock_id)
+            : this(name, stock_id, null, null, null, null) { }
+
+        public ActionEntry(string name, string stock_id, EventHandler activated)
+            : this(name, stock_id, null, null, null, activated) { }
+
+        public ActionEntry(string name, string stock_id, string label, string accelerator, string tooltip, EventHandler activated)
+        {
+            this.name = name;
+            this.stock_id = stock_id;
+            this.label = label;
+            this.accelerator = accelerator;
+            this.tooltip = tooltip;
+            this.activated = activated;
+        }
+    }
 }

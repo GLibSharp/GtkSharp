@@ -30,13 +30,13 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum SubpixelOrder
-	{
-		Default,
-		Rgb,
-		Bgr,
-		Vrgb,
-		Vbgr,
-	}
+    [Serializable]
+    public enum SubpixelOrder
+    {
+        Default,
+        Rgb,
+        Bgr,
+        Vrgb,
+        Vbgr,
+    }
 }

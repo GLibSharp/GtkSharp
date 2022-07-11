@@ -20,48 +20,56 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
-	using System;
+namespace GLib
+{
+    using System;
 
-	public class SignalArgs : EventArgs {
+    public class SignalArgs : EventArgs
+    {
 
-		private object _ret;
-		private object[] _args;
+        private object _ret;
+        private object[] _args;
 
-		public SignalArgs()
-		{
-			_ret = null;
-			_args = null;
-		}
+        public SignalArgs()
+        {
+            _ret = null;
+            _args = null;
+        }
 
-		public SignalArgs(object retval)
-		{
-			_ret = retval;
-			_args = null;
-		}
+        public SignalArgs(object retval)
+        {
+            _ret = retval;
+            _args = null;
+        }
 
-		public SignalArgs(object retval, object[] args)
-		{
-			_ret = retval;
-			_args = args;
-		}
+        public SignalArgs(object retval, object[] args)
+        {
+            _ret = retval;
+            _args = args;
+        }
 
-		public object[] Args {
-			get {
-				return _args;
-			}
-			set {
-				_args = value;
-			}
-		}
+        public object[] Args
+        {
+            get
+            {
+                return _args;
+            }
+            set
+            {
+                _args = value;
+            }
+        }
 
-		public object RetVal {
-			get {
-				return _ret;
-			}
-			set {
-				_ret = value;
-			}
-		}
-	}
+        public object RetVal
+        {
+            get
+            {
+                return _ret;
+            }
+            set
+            {
+                _ret = value;
+            }
+        }
+    }
 }

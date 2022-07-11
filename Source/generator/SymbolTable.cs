@@ -20,68 +20,72 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class SymbolTable {
-		
-		static SymbolTable table = null;
-		static LogWriter log = new LogWriter ("SymbolTable");
+    public class SymbolTable
+    {
 
-		IDictionary<string, IGeneratable> types = new Dictionary<string, IGeneratable> ();
-		
-		public static SymbolTable Table {
-			get {
-				if (table == null)
-					table = new SymbolTable ();
+        static SymbolTable table = null;
+        static LogWriter log = new LogWriter("SymbolTable");
 
-				return table;
-			}
-		}
+        IDictionary<string, IGeneratable> types = new Dictionary<string, IGeneratable>();
 
-		public SymbolTable ()
-		{
-			// Simple easily mapped types
-			AddType (new SimpleGen ("void", "void", String.Empty));
-			AddType (new SimpleGen ("gpointer", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("AtkFunction", "IntPtr", "IntPtr.Zero")); // function definition used for padding
-			AddType (new SimpleGen ("gboolean", "bool", "false"));
-			AddType (new SimpleGen ("gint", "int", "0"));
-			AddType (new SimpleGen ("guint", "uint", "0"));
-			AddType (new SimpleGen ("int", "int", "0"));
-			AddType (new SimpleGen ("unsigned", "uint", "0"));
-			AddType (new SimpleGen ("unsigned int", "uint", "0"));
-			AddType (new SimpleGen ("unsigned-int", "uint", "0"));
-			AddType (new SimpleGen ("gshort", "short", "0"));
-			AddType (new SimpleGen ("gushort", "ushort", "0"));
-			AddType (new SimpleGen ("short", "short", "0"));
-			AddType (new SimpleGen ("guchar", "byte", "0"));
-			AddType (new SimpleGen ("unsigned char", "byte", "0"));
-			AddType (new SimpleGen ("unsigned-char", "byte", "0"));
-			AddType (new SimpleGen ("guint1", "bool", "false"));
-			AddType (new SimpleGen ("uint1", "bool", "false"));
-			AddType (new SimpleGen ("gint8", "sbyte", "0"));
-			AddType (new SimpleGen ("guint8", "byte", "0"));
-			AddType (new SimpleGen ("gint16", "short", "0"));
-			AddType (new SimpleGen ("guint16", "ushort", "0"));
-			AddType (new SimpleGen ("gint32", "int", "0"));
-			AddType (new SimpleGen ("guint32", "uint", "0"));
-			AddType (new SimpleGen ("gint64", "long", "0"));
-			AddType (new SimpleGen ("guint64", "ulong", "0"));
-			AddType (new SimpleGen ("unsigned long long", "ulong", "0"));
-			AddType (new SimpleGen ("long long", "long", "0"));
-			AddType (new SimpleGen ("gfloat", "float", "0.0"));
-			AddType (new SimpleGen ("float", "float", "0.0"));
-			AddType (new SimpleGen ("gdouble", "double", "0.0"));
-			AddType (new SimpleGen ("double", "double", "0.0"));
-			AddType (new SimpleGen ("goffset", "long", "0"));
-			AddType (new SimpleGen ("GQuark", "int", "0"));
+        public static SymbolTable Table
+        {
+            get
+            {
+                if (table == null)
+                    table = new SymbolTable();
 
-			// platform specific integer types.
+                return table;
+            }
+        }
+
+        public SymbolTable()
+        {
+            // Simple easily mapped types
+            AddType(new SimpleGen("void", "void", String.Empty));
+            AddType(new SimpleGen("gpointer", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("AtkFunction", "IntPtr", "IntPtr.Zero")); // function definition used for padding
+            AddType(new SimpleGen("gboolean", "bool", "false"));
+            AddType(new SimpleGen("gint", "int", "0"));
+            AddType(new SimpleGen("guint", "uint", "0"));
+            AddType(new SimpleGen("int", "int", "0"));
+            AddType(new SimpleGen("unsigned", "uint", "0"));
+            AddType(new SimpleGen("unsigned int", "uint", "0"));
+            AddType(new SimpleGen("unsigned-int", "uint", "0"));
+            AddType(new SimpleGen("gshort", "short", "0"));
+            AddType(new SimpleGen("gushort", "ushort", "0"));
+            AddType(new SimpleGen("short", "short", "0"));
+            AddType(new SimpleGen("guchar", "byte", "0"));
+            AddType(new SimpleGen("unsigned char", "byte", "0"));
+            AddType(new SimpleGen("unsigned-char", "byte", "0"));
+            AddType(new SimpleGen("guint1", "bool", "false"));
+            AddType(new SimpleGen("uint1", "bool", "false"));
+            AddType(new SimpleGen("gint8", "sbyte", "0"));
+            AddType(new SimpleGen("guint8", "byte", "0"));
+            AddType(new SimpleGen("gint16", "short", "0"));
+            AddType(new SimpleGen("guint16", "ushort", "0"));
+            AddType(new SimpleGen("gint32", "int", "0"));
+            AddType(new SimpleGen("guint32", "uint", "0"));
+            AddType(new SimpleGen("gint64", "long", "0"));
+            AddType(new SimpleGen("guint64", "ulong", "0"));
+            AddType(new SimpleGen("unsigned long long", "ulong", "0"));
+            AddType(new SimpleGen("long long", "long", "0"));
+            AddType(new SimpleGen("gfloat", "float", "0.0"));
+            AddType(new SimpleGen("float", "float", "0.0"));
+            AddType(new SimpleGen("gdouble", "double", "0.0"));
+            AddType(new SimpleGen("double", "double", "0.0"));
+            AddType(new SimpleGen("goffset", "long", "0"));
+            AddType(new SimpleGen("GQuark", "int", "0"));
+
+            // platform specific integer types.
 #if WIN64LONGS
 			AddType (new SimpleGen ("long", "int", "0"));
 			AddType (new SimpleGen ("glong", "int", "0"));
@@ -91,413 +95,421 @@ namespace GtkSharp.Generation {
 			AddType (new SimpleGen ("gintptr", "int", "0"));
 			AddType (new SimpleGen ("guintptr", "uint", "0"));
 #else
-			AddType (new LPGen ("long"));
-			AddType (new LPGen ("glong"));
-			AddType (new LPGen ("gintptr"));
-			AddType (new LPUGen ("ulong"));
-			AddType (new LPUGen ("gulong"));
-			AddType (new LPUGen ("unsigned long"));
-			AddType (new LPUGen ("guintptr"));
+            AddType(new LPGen("long"));
+            AddType(new LPGen("glong"));
+            AddType(new LPGen("gintptr"));
+            AddType(new LPUGen("ulong"));
+            AddType(new LPUGen("gulong"));
+            AddType(new LPUGen("unsigned long"));
+            AddType(new LPUGen("guintptr"));
 #endif
 
-			AddType (new LPGen ("ssize_t"));
-			AddType (new LPGen ("gssize"));
-			AddType (new LPUGen ("size_t"));
-			AddType (new LPUGen ("gsize"));
+            AddType(new LPGen("ssize_t"));
+            AddType(new LPGen("gssize"));
+            AddType(new LPUGen("size_t"));
+            AddType(new LPUGen("gsize"));
 
 #if OFF_T_8
 			AddType (new AliasGen ("off_t", "long"));
 #else
-			AddType (new LPGen ("off_t"));
+            AddType(new LPGen("off_t"));
 #endif
 
-			// string types
-			AddType (new ConstStringGen ("const-gchar"));
-			AddType (new ConstStringGen ("const-xmlChar"));
-			AddType (new ConstStringGen ("const-char"));
-			AddType (new ConstFilenameGen ("const-gfilename"));
-			AddType (new MarshalGen ("gfilename", "string", "IntPtr", "GLib.Marshaller.StringToFilenamePtr({0})", "GLib.Marshaller.FilenamePtrToStringGFree({0})"));
-			AddType (new MarshalGen ("gchar", "string", "IntPtr", "GLib.Marshaller.StringToPtrGStrdup({0})", "GLib.Marshaller.PtrToStringGFree({0})"));
-			AddType (new MarshalGen ("char", "string", "IntPtr", "GLib.Marshaller.StringToPtrGStrdup({0})", "GLib.Marshaller.PtrToStringGFree({0})"));
-			AddType (new SimpleGen ("GStrv", "string[]", "null"));
+            // string types
+            AddType(new ConstStringGen("const-gchar"));
+            AddType(new ConstStringGen("const-xmlChar"));
+            AddType(new ConstStringGen("const-char"));
+            AddType(new ConstFilenameGen("const-gfilename"));
+            AddType(new MarshalGen("gfilename", "string", "IntPtr", "GLib.Marshaller.StringToFilenamePtr({0})", "GLib.Marshaller.FilenamePtrToStringGFree({0})"));
+            AddType(new MarshalGen("gchar", "string", "IntPtr", "GLib.Marshaller.StringToPtrGStrdup({0})", "GLib.Marshaller.PtrToStringGFree({0})"));
+            AddType(new MarshalGen("char", "string", "IntPtr", "GLib.Marshaller.StringToPtrGStrdup({0})", "GLib.Marshaller.PtrToStringGFree({0})"));
+            AddType(new SimpleGen("GStrv", "string[]", "null"));
 
-			// manually wrapped types requiring more complex marshaling
-			AddType (new ManualGen ("GInitiallyUnowned", "GLib.InitiallyUnowned", "(GLib.InitiallyUnowned) GLib.Object.GetObject ({0})"));
-			AddType (new ManualGen ("GObject", "GLib.Object", "GLib.Object.GetObject ({0})", "GLib.Object"));
-			AddType (new ManualGen ("GList", "GLib.List"));
-			AddType (new ManualGen ("GPtrArray", "GLib.PtrArray"));
-			AddType (new ManualGen ("GSList", "GLib.SList"));
-			AddType (new ManualGen ("GVariant", "GLib.Variant"));
-			AddType (new ManualGen ("GVariantType", "GLib.VariantType"));
-			AddType (new ManualGen ("GValueArray", "GLib.ValueArray"));
-			AddType (new ManualGen ("GMutex", "GLib.Mutex",
-						"new GLib.Mutex({0})",
-						"GLib.Mutex.ABI"));
+            // manually wrapped types requiring more complex marshaling
+            AddType(new ManualGen("GInitiallyUnowned", "GLib.InitiallyUnowned", "(GLib.InitiallyUnowned) GLib.Object.GetObject ({0})"));
+            AddType(new ManualGen("GObject", "GLib.Object", "GLib.Object.GetObject ({0})", "GLib.Object"));
+            AddType(new ManualGen("GList", "GLib.List"));
+            AddType(new ManualGen("GPtrArray", "GLib.PtrArray"));
+            AddType(new ManualGen("GSList", "GLib.SList"));
+            AddType(new ManualGen("GVariant", "GLib.Variant"));
+            AddType(new ManualGen("GVariantType", "GLib.VariantType"));
+            AddType(new ManualGen("GValueArray", "GLib.ValueArray"));
+            AddType(new ManualGen("GMutex", "GLib.Mutex",
+                        "new GLib.Mutex({0})",
+                        "GLib.Mutex.ABI"));
 
-			AddType (new ManualGen ("GRecMutex",
-						"GLib.RecMutex",
-						"new GLib.RecMutex({0})",
-						"GLib.RecMutex.ABI"));
-			AddType (new ManualGen ("GCond", "GLib.Cond",
-						"new GLib.Cond({0})",
-						"GLib.Cond.ABI"));
-			AddType (new ManualGen ("GDateTime", "GLib.DateTime"));
-			AddType (new ManualGen ("GDate", "GLib.Date"));
-			AddType (new ManualGen ("GSource", "GLib.Source"));
-			AddType (new ManualGen ("GMainContext", "GLib.MainContext"));
-			AddType (new SimpleGen ("GPollFD", "GLib.PollFD", "GLib.PollFD.Zero"));
-			AddType (new MarshalGen ("gunichar", "char", "uint", "GLib.Marshaller.CharToGUnichar ({0})", "GLib.Marshaller.GUnicharToChar ({0})"));
-			AddType (new MarshalGen ("time_t", "System.DateTime", "IntPtr", "GLib.Marshaller.DateTimeTotime_t ({0})", "GLib.Marshaller.time_tToDateTime ({0})"));
-			AddType (new MarshalGen ("GString", "string", "IntPtr", "new GLib.GString ({0}).Handle", "GLib.GString.PtrToString ({0})"));
-			AddType (new MarshalGen ("GType", "GLib.GType", "IntPtr", "{0}.Val", "new GLib.GType({0})", "GLib.GType.None"));
-			AddType (new ByRefGen ("GValue", "GLib.Value"));
-			AddType (new SimpleGen ("GDestroyNotify", "GLib.DestroyNotify", "null",
-						"(uint) Marshal.SizeOf(typeof(IntPtr))"));
-			AddType (new SimpleGen ("GThread", "GLib.Thread", "null"));
-			AddType (new ManualGen ("GBytes", "GLib.Bytes"));
-			AddType (new SimpleGen ("GHookList", "GLib.HookList", "null",
-						"GLib.HookList.abi_info.Size"));
+            AddType(new ManualGen("GRecMutex",
+                        "GLib.RecMutex",
+                        "new GLib.RecMutex({0})",
+                        "GLib.RecMutex.ABI"));
+            AddType(new ManualGen("GCond", "GLib.Cond",
+                        "new GLib.Cond({0})",
+                        "GLib.Cond.ABI"));
+            AddType(new ManualGen("GDateTime", "GLib.DateTime"));
+            AddType(new ManualGen("GDate", "GLib.Date"));
+            AddType(new ManualGen("GSource", "GLib.Source"));
+            AddType(new ManualGen("GMainContext", "GLib.MainContext"));
+            AddType(new SimpleGen("GPollFD", "GLib.PollFD", "GLib.PollFD.Zero"));
+            AddType(new MarshalGen("gunichar", "char", "uint", "GLib.Marshaller.CharToGUnichar ({0})", "GLib.Marshaller.GUnicharToChar ({0})"));
+            AddType(new MarshalGen("time_t", "System.DateTime", "IntPtr", "GLib.Marshaller.DateTimeTotime_t ({0})", "GLib.Marshaller.time_tToDateTime ({0})"));
+            AddType(new MarshalGen("GString", "string", "IntPtr", "new GLib.GString ({0}).Handle", "GLib.GString.PtrToString ({0})"));
+            AddType(new MarshalGen("GType", "GLib.GType", "IntPtr", "{0}.Val", "new GLib.GType({0})", "GLib.GType.None"));
+            AddType(new ByRefGen("GValue", "GLib.Value"));
+            AddType(new SimpleGen("GDestroyNotify", "GLib.DestroyNotify", "null",
+                        "(uint) Marshal.SizeOf(typeof(IntPtr))"));
+            AddType(new SimpleGen("GThread", "GLib.Thread", "null"));
+            AddType(new ManualGen("GBytes", "GLib.Bytes"));
+            AddType(new SimpleGen("GHookList", "GLib.HookList", "null",
+                        "GLib.HookList.abi_info.Size"));
 
-			// FIXME: These ought to be handled properly.
-			AddType (new SimpleGen ("GC", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GError", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GMemChunk", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GTimeVal", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GClosure", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GArray", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GByteArray", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GData", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GIOChannel", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GTypeModule", "GLib.Object", "null"));
-			AddType (new SimpleGen ("GHashTable", "System.IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("va_list", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GParamSpec", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("gconstpointer", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GBoxedCopyFunc", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GBoxedFreeFunc", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GHookFinalizeFunc", "IntPtr", "IntPtr.Zero"));
-			AddType (new SimpleGen ("GCallback", "IntPtr", "IntPtr.Zero"));
+            // FIXME: These ought to be handled properly.
+            AddType(new SimpleGen("GC", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GError", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GMemChunk", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GTimeVal", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GClosure", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GArray", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GByteArray", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GData", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GIOChannel", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GTypeModule", "GLib.Object", "null"));
+            AddType(new SimpleGen("GHashTable", "System.IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("va_list", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GParamSpec", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("gconstpointer", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GBoxedCopyFunc", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GBoxedFreeFunc", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GHookFinalizeFunc", "IntPtr", "IntPtr.Zero"));
+            AddType(new SimpleGen("GCallback", "IntPtr", "IntPtr.Zero"));
 
-			// Alias types that do not match the correct name in manually generated glib-sharp bindings
-			AddType(new AliasGen("GObject.Object", "GObject"));
-			AddType(new AliasGen("GObject.Callback", "GCallback"));
-			AddType(new AliasGen("GObject.Value", "GValue"));
-			AddType(new AliasGen("GObject.Closure", "GClosure"));
-			AddType(new AliasGen("GObject.InitiallyUnowned", "GInitiallyUnowned"));
+            // Alias types that do not match the correct name in manually generated glib-sharp bindings
+            AddType(new AliasGen("GObject.Object", "GObject"));
+            AddType(new AliasGen("GObject.Callback", "GCallback"));
+            AddType(new AliasGen("GObject.Value", "GValue"));
+            AddType(new AliasGen("GObject.Closure", "GClosure"));
+            AddType(new AliasGen("GObject.InitiallyUnowned", "GInitiallyUnowned"));
 
-			AddType(new AliasGen("GLib.Error", "GError"));
-			AddType(new AliasGen("GLib.Quark", "GQuark"));
-		}
+            AddType(new AliasGen("GLib.Error", "GError"));
+            AddType(new AliasGen("GLib.Quark", "GQuark"));
+        }
 
-		public void AddType (IGeneratable gen)
-		{
-			log.Info("Adding " + gen.CName + " = " + gen);
-			types [gen.CName] = gen;
-		}
-		
-		public void AddTypes (IGeneratable[] gens)
-		{
-			foreach (IGeneratable gen in gens)
-				AddType(gen);
-		}
-		
-		public int Count {
-			get
-			{
-				return types.Count;
-			}
-		}
-		
-		public IEnumerable<IGeneratable> Generatables {
-			get {
-				return types.Values;
-			}
-		}
-		
-		public IGeneratable this [string ctype] {
-			get {
-				return ResolveType (ctype);
-			}
-		}
-
-
-		public string GetTypeFromIntegerValue (string value)
+        public void AddType(IGeneratable gen)
         {
-			foreach (Match match in Regex.Matches(value, "[0-9]+([UL]{1,2})", RegexOptions.IgnoreCase))
-			{
-				switch (match.Groups[1].Value.ToUpper())
-				{
-					case "U": 
-						return "uint";
-					case "L":
-						return "int";
-					case "UL":
-						return "ulong";					
-				}
-			}
+            log.Info("Adding " + gen.CName + " = " + gen);
+            types[gen.CName] = gen;
+        }
 
-			if (int.TryParse(value, out int out_int))
-			{
-				return "int";
-			}
-			else if (uint.TryParse(value, out uint out_uint))
-			{
-				return "uint";
-			}
-			else if (long.TryParse(value, out long out_long))
-			{
-				return "long";
-			}
-			else if (ulong.TryParse(value, out ulong out_ulong))
-			{
-				return "ulong";
-			}
-			else
-			{
-				throw new Exception($"Can't parse {value}");
-			}
-		}
+        public void AddTypes(IGeneratable[] gens)
+        {
+            foreach (IGeneratable gen in gens)
+                AddType(gen);
+        }
 
-		private bool IsConstString (string type)
-		{
-			switch (type) {
-			case "const-gchar":
-			case "const-char":
-			case "const-xmlChar":
-			case "const-gfilename":
-				return true;
-			default:
-				return false;
-			}
-		}
-
-		private string Trim(string type)
-		{
-			// HACK: If we don't detect this here, there is no
-			// way of indicating it in the symbol table
-			if (type == "void*" || type == "const-void*") return "gpointer";
-
-			string trim_type = type.TrimEnd('*');
-
-			if (IsConstString (trim_type))
-				return trim_type;
-			
-			if (trim_type.StartsWith("const-")) return trim_type.Substring(6);
-			if (trim_type.StartsWith("const ")) return trim_type.Substring(6);
-			return trim_type;
-		}
-
-		private IGeneratable ResolveType(string type)
-		{
-			type = Trim(type);
-			if (!types.TryGetValue(type, out IGeneratable cur_type))
+        public int Count
+        {
+            get
             {
-				cur_type = types.Values.FirstOrDefault(t => t.QualifiedName == type);
-				if (cur_type != null)
+                return types.Count;
+            }
+        }
+
+        public IEnumerable<IGeneratable> Generatables
+        {
+            get
+            {
+                return types.Values;
+            }
+        }
+
+        public IGeneratable this[string ctype]
+        {
+            get
+            {
+                return ResolveType(ctype);
+            }
+        }
+
+
+        public string GetTypeFromIntegerValue(string value)
+        {
+            foreach (Match match in Regex.Matches(value, "[0-9]+([UL]{1,2})", RegexOptions.IgnoreCase))
+            {
+                switch (match.Groups[1].Value.ToUpper())
                 {
-					types[type] = cur_type;
+                    case "U":
+                        return "uint";
+                    case "L":
+                        return "int";
+                    case "UL":
+                        return "ulong";
                 }
             }
-		
-			if (cur_type is AliasGen)
-			{
-				cur_type = ResolveType(cur_type.Name);
-				if (cur_type != null)
-				{
-					types[type] = cur_type;
-				}
-			}
-			
-			return cur_type;
-		}
 
-		public string FromNative(string c_type, string val)
-		{
-			IGeneratable gen = this[c_type];
-			if (gen == null)
-				return "";
-			return gen.FromNative (val);
-		}
+            if (int.TryParse(value, out int out_int))
+            {
+                return "int";
+            }
+            else if (uint.TryParse(value, out uint out_uint))
+            {
+                return "uint";
+            }
+            else if (long.TryParse(value, out long out_long))
+            {
+                return "long";
+            }
+            else if (ulong.TryParse(value, out ulong out_ulong))
+            {
+                return "ulong";
+            }
+            else
+            {
+                throw new Exception($"Can't parse {value}");
+            }
+        }
 
-		public string GetCSType(string c_type, bool default_pointer)
-		{
-			IGeneratable gen = this[c_type];
-			if (gen == null) {
-				if (c_type.EndsWith("*") && default_pointer)
-					return "IntPtr";
+        private bool IsConstString(string type)
+        {
+            switch (type)
+            {
+                case "const-gchar":
+                case "const-char":
+                case "const-xmlChar":
+                case "const-gfilename":
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
-				return "";
-			}
+        private string Trim(string type)
+        {
+            // HACK: If we don't detect this here, there is no
+            // way of indicating it in the symbol table
+            if (type == "void*" || type == "const-void*") return "gpointer";
 
-			return gen.QualifiedName;
-		}
+            string trim_type = type.TrimEnd('*');
 
-		public string GetCSType(string c_type)
-		{
-			return GetCSType(c_type, false);
-		}
-		
-		public string GetName(string c_type)
-		{
-			IGeneratable gen = this[c_type];
-			if (gen == null)
-				return "";
-			return gen.Name;
-		}
-		
-		public string GetMarshalType(string c_type)
-		{
-			IGeneratable gen = this[c_type];
-			if (gen == null)
-				return "";
-			return gen.MarshalType;
-		}
-		
-		public string CallByName(string c_type, string var_name)
-		{
-			IGeneratable gen = this[c_type];
-			if (gen == null)
-				return "";
-			return gen.CallByName(var_name);
-		}
-	
-		public bool IsOpaque(string c_type)
-		{
-			if (this[c_type] is OpaqueGen)
-				return true;
+            if (IsConstString(trim_type))
+                return trim_type;
 
-			return false;
-		}
-	
-		public bool IsBoxed(string c_type)
-		{
-			if (this[c_type] is BoxedGen)
-				return true;
+            if (trim_type.StartsWith("const-")) return trim_type.Substring(6);
+            if (trim_type.StartsWith("const ")) return trim_type.Substring(6);
+            return trim_type;
+        }
 
-			return false;
-		}
-		
-		public bool IsStruct(string c_type)
-		{
-			if (this[c_type] is StructGen)
-				return true;
+        private IGeneratable ResolveType(string type)
+        {
+            type = Trim(type);
+            if (!types.TryGetValue(type, out IGeneratable cur_type))
+            {
+                cur_type = types.Values.FirstOrDefault(t => t.QualifiedName == type);
+                if (cur_type != null)
+                {
+                    types[type] = cur_type;
+                }
+            }
 
-			return false;
-		}
+            if (cur_type is AliasGen)
+            {
+                cur_type = ResolveType(cur_type.Name);
+                if (cur_type != null)
+                {
+                    types[type] = cur_type;
+                }
+            }
 
-		public bool IsUnion (string c_type)
-		{
-			if (this[c_type] is UnionGen)
-				return true;
-			return false;
-		}
-	
-		public bool IsEnum(string c_type)
-		{
-			if (this[c_type] is EnumGen)
-				return true;
+            return cur_type;
+        }
 
-			return false;
-		}
-	
-		public bool IsEnumFlags(string c_type)
-		{
-			EnumGen gen = this [c_type] as EnumGen;
-			return (gen != null && gen.Elem.GetAttribute ("type") == "flags");
-		}
-	
-		public bool IsInterface(string c_type)
-		{
-			if (this[c_type] is InterfaceGen)
-				return true;
+        public string FromNative(string c_type, string val)
+        {
+            IGeneratable gen = this[c_type];
+            if (gen == null)
+                return "";
+            return gen.FromNative(val);
+        }
 
-			return false;
-		}
-		
-		public ClassBase GetClassGen(string c_type)
-		{
-			return this[c_type] as ClassBase;
-		}
+        public string GetCSType(string c_type, bool default_pointer)
+        {
+            IGeneratable gen = this[c_type];
+            if (gen == null)
+            {
+                if (c_type.EndsWith("*") && default_pointer)
+                    return "IntPtr";
 
-		public InterfaceGen GetInterfaceGen (string c_type)
-		{
-			return this[c_type] as InterfaceGen;
-		}
+                return "";
+            }
 
-		public bool IsObject(string c_type)
-		{
-			if (this[c_type] is ObjectGen)
-				return true;
+            return gen.QualifiedName;
+        }
 
-			return false;
-		}
+        public string GetCSType(string c_type)
+        {
+            return GetCSType(c_type, false);
+        }
 
-		public bool IsCallback(string c_type)
-		{
-			if (this[c_type] is CallbackGen)
-				return true;
+        public string GetName(string c_type)
+        {
+            IGeneratable gen = this[c_type];
+            if (gen == null)
+                return "";
+            return gen.Name;
+        }
 
-			return false;
-		}
+        public string GetMarshalType(string c_type)
+        {
+            IGeneratable gen = this[c_type];
+            if (gen == null)
+                return "";
+            return gen.MarshalType;
+        }
 
-		public bool IsManuallyWrapped(string c_type)
-		{
-			if (this[c_type] is ManualGen)
-				return true;
+        public string CallByName(string c_type, string var_name)
+        {
+            IGeneratable gen = this[c_type];
+            if (gen == null)
+                return "";
+            return gen.CallByName(var_name);
+        }
 
-			return false;
-		}
+        public bool IsOpaque(string c_type)
+        {
+            if (this[c_type] is OpaqueGen)
+                return true;
 
-		public string MangleName(string name)
-		{
-			switch (name) {
-			case "string":
-				return "str1ng";
-			case "event":
-				return "evnt";
-			case "null":
-				return "is_null";
-			case "object":
-				return "objekt";
-			case "params":
-				return "parms";
-			case "ref":
-				return "reference";
-			case "in":
-				return "in_param";
-			case "out":
-				return "out_param";
-			case "fixed":
-				return "mfixed";
-			case "byte":
-				return "_byte";
-			case "new":
-				return "_new";
-			case "base":
-				return "_base";
-			case "lock":
-				return "_lock";
-			case "callback":
-				return "cb";
-			case "readonly":
-				return "read_only";
-			case "interface":
-				return "iface";
-			case "internal":
-				return "_internal";
-			case "where":
-				return "wh3r3";
-			case "foreach":
-				return "for_each";
-			case "remove":
-				return "_remove";
-			case "...":
-				return "_va_list";
-			default:
-				break;
-			}
+            return false;
+        }
 
-			return name;
-		}
-	}
+        public bool IsBoxed(string c_type)
+        {
+            if (this[c_type] is BoxedGen)
+                return true;
+
+            return false;
+        }
+
+        public bool IsStruct(string c_type)
+        {
+            if (this[c_type] is StructGen)
+                return true;
+
+            return false;
+        }
+
+        public bool IsUnion(string c_type)
+        {
+            if (this[c_type] is UnionGen)
+                return true;
+            return false;
+        }
+
+        public bool IsEnum(string c_type)
+        {
+            if (this[c_type] is EnumGen)
+                return true;
+
+            return false;
+        }
+
+        public bool IsEnumFlags(string c_type)
+        {
+            EnumGen gen = this[c_type] as EnumGen;
+            return (gen != null && gen.Elem.GetAttribute("type") == "flags");
+        }
+
+        public bool IsInterface(string c_type)
+        {
+            if (this[c_type] is InterfaceGen)
+                return true;
+
+            return false;
+        }
+
+        public ClassBase GetClassGen(string c_type)
+        {
+            return this[c_type] as ClassBase;
+        }
+
+        public InterfaceGen GetInterfaceGen(string c_type)
+        {
+            return this[c_type] as InterfaceGen;
+        }
+
+        public bool IsObject(string c_type)
+        {
+            if (this[c_type] is ObjectGen)
+                return true;
+
+            return false;
+        }
+
+        public bool IsCallback(string c_type)
+        {
+            if (this[c_type] is CallbackGen)
+                return true;
+
+            return false;
+        }
+
+        public bool IsManuallyWrapped(string c_type)
+        {
+            if (this[c_type] is ManualGen)
+                return true;
+
+            return false;
+        }
+
+        public string MangleName(string name)
+        {
+            switch (name)
+            {
+                case "string":
+                    return "str1ng";
+                case "event":
+                    return "evnt";
+                case "null":
+                    return "is_null";
+                case "object":
+                    return "objekt";
+                case "params":
+                    return "parms";
+                case "ref":
+                    return "reference";
+                case "in":
+                    return "in_param";
+                case "out":
+                    return "out_param";
+                case "fixed":
+                    return "mfixed";
+                case "byte":
+                    return "_byte";
+                case "new":
+                    return "_new";
+                case "base":
+                    return "_base";
+                case "lock":
+                    return "_lock";
+                case "callback":
+                    return "cb";
+                case "readonly":
+                    return "read_only";
+                case "interface":
+                    return "iface";
+                case "internal":
+                    return "_internal";
+                case "where":
+                    return "wh3r3";
+                case "foreach":
+                    return "for_each";
+                case "remove":
+                    return "_remove";
+                case "...":
+                    return "_va_list";
+                default:
+                    break;
+            }
+
+            return name;
+        }
+    }
 }

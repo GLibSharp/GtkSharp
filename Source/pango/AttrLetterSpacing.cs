@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrLetterSpacing : Attribute {
+    public class AttrLetterSpacing : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_letter_spacing_new (int letter_spacing);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_letter_spacing_new(int letter_spacing);
 
-		public AttrLetterSpacing (int letter_spacing) : this (pango_attr_letter_spacing_new (letter_spacing)) {}
+        public AttrLetterSpacing(int letter_spacing) : this(pango_attr_letter_spacing_new(letter_spacing)) { }
 
-		internal AttrLetterSpacing (IntPtr raw) : base (raw) {}
+        internal AttrLetterSpacing(IntPtr raw) : base(raw) { }
 
-		public int LetterSpacing {
-			get {
-				return AttrInt.New (Handle).Value;
-			}
-		}
-	}
+        public int LetterSpacing
+        {
+            get
+            {
+                return AttrInt.New(Handle).Value;
+            }
+        }
+    }
 }

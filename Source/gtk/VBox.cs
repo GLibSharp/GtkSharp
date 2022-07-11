@@ -13,13 +13,15 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class VBox {
+    public partial class VBox
+    {
 
-		public VBox () : this (false, 0) {}
+        public VBox() : this(false, 0) { }
 
-	}
+    }
 }

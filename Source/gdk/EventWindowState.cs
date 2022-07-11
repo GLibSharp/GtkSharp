@@ -19,45 +19,53 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventWindowState : Event {
+    public class EventWindowState : Event
+    {
 
-		public EventWindowState (IntPtr raw) : base (raw) {} 
+        public EventWindowState(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public WindowState changed_mask;
-			public WindowState new_window_state;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public WindowState changed_mask;
+            public WindowState new_window_state;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public WindowState ChangedMask {
-			get { return Native.changed_mask; }
-			set {
-				NativeStruct native = Native;
-				native.changed_mask = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public WindowState ChangedMask
+        {
+            get { return Native.changed_mask; }
+            set
+            {
+                NativeStruct native = Native;
+                native.changed_mask = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public WindowState NewWindowState {
-			get { return Native.new_window_state; }
-			set {
-				NativeStruct native = Native;
-				native.new_window_state = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public WindowState NewWindowState
+        {
+            get { return Native.new_window_state; }
+            set
+            {
+                NativeStruct native = Native;
+                native.new_window_state = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

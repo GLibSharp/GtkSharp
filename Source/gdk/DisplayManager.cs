@@ -18,27 +18,29 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class DisplayManager {
+    public partial class DisplayManager
+    {
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gdk_display_manager_list_displays (IntPtr raw);
+        [DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gdk_display_manager_list_displays(IntPtr raw);
 
-		public Display[] ListDisplays ()
-		{
-			IntPtr raw_ret = gdk_display_manager_list_displays (Handle);
-			if (raw_ret == IntPtr.Zero)
-				return new Display [0];
-			GLib.SList list = new GLib.SList(raw_ret);
-			Display[] result = new Display [list.Count];
-			for (int i = 0; i < list.Count; i++)
-				result [i] = list [i] as Display;
-			return result;
-		}
-	}
+        public Display[] ListDisplays()
+        {
+            IntPtr raw_ret = gdk_display_manager_list_displays(Handle);
+            if (raw_ret == IntPtr.Zero)
+                return new Display[0];
+            GLib.SList list = new GLib.SList(raw_ret);
+            Display[] result = new Display[list.Count];
+            for (int i = 0; i < list.Count; i++)
+                result[i] = list[i] as Display;
+            return result;
+        }
+    }
 }
 

@@ -28,15 +28,16 @@
 
 using System;
 
-namespace Cairo {
+namespace Cairo
+{
 
-	[Serializable]
-	public enum PatternType
-	{
-		Solid,
-		Surface,
-		Linear,
-		Radial,
-	}
+    [Serializable]
+    public enum PatternType
+    {
+        Solid,
+        Surface,
+        Linear,
+        Radial,
+    }
 }
 

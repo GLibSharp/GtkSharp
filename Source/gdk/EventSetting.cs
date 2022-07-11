@@ -19,46 +19,54 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventSetting : Event {
+    public class EventSetting : Event
+    {
 
-		public EventSetting (IntPtr raw) : base (raw) {} 
+        public EventSetting(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public SettingAction action;
-			public IntPtr name;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public SettingAction action;
+            public IntPtr name;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public SettingAction Action {
-			get { return Native.action; }
-			set {
-				NativeStruct native = Native;
-				native.action = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public SettingAction Action
+        {
+            get { return Native.action; }
+            set
+            {
+                NativeStruct native = Native;
+                native.action = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public string Name {
-			get { return GLib.Marshaller.Utf8PtrToString (Native.name); }
-			set {
-				NativeStruct native = Native;
-				GLib.Marshaller.Free (native.name);
-				native.name = GLib.Marshaller.StringToPtrGStrdup (value);
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public string Name
+        {
+            get { return GLib.Marshaller.Utf8PtrToString(Native.name); }
+            set
+            {
+                NativeStruct native = Native;
+                GLib.Marshaller.Free(native.name);
+                native.name = GLib.Marshaller.StringToPtrGStrdup(value);
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

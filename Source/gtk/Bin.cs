@@ -18,31 +18,36 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Bin {
+    public partial class Bin
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_bin_get_child(IntPtr raw);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_bin_get_child(IntPtr raw);
 
-		public new Gtk.Widget Child { 
-			get {
-				IntPtr raw_ret = gtk_bin_get_child(Handle);
-				Gtk.Widget ret;
-				if (raw_ret == IntPtr.Zero)
-					ret = null;
-				else
-					ret = (Gtk.Widget) GLib.Object.GetObject(raw_ret);
-				return ret;
-			}
-			set {
-				GLib.Value val = new GLib.Value(value);
-				SetProperty("child", val);
-				val.Dispose ();
-			}
-		}
-	}
+        public new Gtk.Widget Child
+        {
+            get
+            {
+                IntPtr raw_ret = gtk_bin_get_child(Handle);
+                Gtk.Widget ret;
+                if (raw_ret == IntPtr.Zero)
+                    ret = null;
+                else
+                    ret = (Gtk.Widget)GLib.Object.GetObject(raw_ret);
+                return ret;
+            }
+            set
+            {
+                GLib.Value val = new GLib.Value(value);
+                SetProperty("child", val);
+                val.Dispose();
+            }
+        }
+    }
 }

@@ -20,38 +20,46 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
+    using System;
 
-	public partial struct PixbufFrame {
+    public partial struct PixbufFrame
+    {
 
-		[Obsolete ("Replaced by Pixbuf property.")]
-		public Gdk.Pixbuf pixbuf {
-			get { 
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(_pixbuf);
-				return ret;
-			}
-			set { _pixbuf = value.Handle; }
-		}
+        [Obsolete("Replaced by Pixbuf property.")]
+        public Gdk.Pixbuf pixbuf
+        {
+            get
+            {
+                Gdk.Pixbuf ret = (Gdk.Pixbuf)GLib.Object.GetObject(_pixbuf);
+                return ret;
+            }
+            set { _pixbuf = value.Handle; }
+        }
 
-		[Obsolete ("Replaced by Composited property.")]
-		public Gdk.Pixbuf composited {
-			get { 
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(_composited);
-				return ret;
-			}
-			set { _composited = value.Handle; }
-		}
+        [Obsolete("Replaced by Composited property.")]
+        public Gdk.Pixbuf composited
+        {
+            get
+            {
+                Gdk.Pixbuf ret = (Gdk.Pixbuf)GLib.Object.GetObject(_composited);
+                return ret;
+            }
+            set { _composited = value.Handle; }
+        }
 
-		[Obsolete ("Replaced by Revert property.")]
-		public Gdk.Pixbuf revert {
-			get { 
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(_revert);
-				return ret;
-			}
-			set { _revert = value.Handle; }
-		}
-	}
+        [Obsolete("Replaced by Revert property.")]
+        public Gdk.Pixbuf revert
+        {
+            get
+            {
+                Gdk.Pixbuf ret = (Gdk.Pixbuf)GLib.Object.GetObject(_revert);
+                return ret;
+            }
+            set { _revert = value.Handle; }
+        }
+    }
 }
 

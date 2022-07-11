@@ -18,30 +18,33 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class HScale {
+    public partial class HScale
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_hscale_new_with_range (double min, double max, double step);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_hscale_new_with_range(double min, double max, double step);
 
-		public HScale (double min, double max, double step) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (HScale)) {
-				Adjustment adj = new Adjustment (min, min, max, step, 10 * step, 0);
-				string[] names = new string [1];
-				GLib.Value[] vals = new GLib.Value [1];
-				names [0] = "adjustment";
-				vals [0] = new GLib.Value (adj);
-				CreateNativeObject (names, vals);
-				vals [0].Dispose ();
-				return;
-			}
+        public HScale(double min, double max, double step) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(HScale))
+            {
+                Adjustment adj = new Adjustment(min, min, max, step, 10 * step, 0);
+                string[] names = new string[1];
+                GLib.Value[] vals = new GLib.Value[1];
+                names[0] = "adjustment";
+                vals[0] = new GLib.Value(adj);
+                CreateNativeObject(names, vals);
+                vals[0].Dispose();
+                return;
+            }
 
-			Raw = gtk_hscale_new_with_range (min, max, step);
-		}
-	}
+            Raw = gtk_hscale_new_with_range(min, max, step);
+        }
+    }
 }

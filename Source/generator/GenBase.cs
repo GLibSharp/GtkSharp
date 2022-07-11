@@ -20,97 +20,117 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.IO;
-	using System.Xml;
+    using System;
+    using System.IO;
+    using System.Xml;
 
-	public abstract class GenBase : IGeneratable {
-		
-		private XmlElement ns;
-		private XmlElement elem;
+    public abstract class GenBase : IGeneratable
+    {
 
-		protected GenBase (XmlElement ns, XmlElement elem)
-		{
-			this.ns = ns;
-			this.elem = elem;
-		}
+        private XmlElement ns;
+        private XmlElement elem;
 
-		public string CName {
-			get {
-				return elem.GetAttribute ("cname");
-			}
-		}
+        protected GenBase(XmlElement ns, XmlElement elem)
+        {
+            this.ns = ns;
+            this.elem = elem;
+        }
 
-		public XmlElement Elem {
-			get {
-				return elem;
-			}
-		}
+        public string CName
+        {
+            get
+            {
+                return elem.GetAttribute("cname");
+            }
+        }
 
-		public int ParserVersion {
-			get {
-				XmlElement root = elem.OwnerDocument.DocumentElement;
-				return root.HasAttribute ("parser_version") ? int.Parse (root.GetAttribute ("parser_version")) : 1;
-			}
-		}
+        public XmlElement Elem
+        {
+            get
+            {
+                return elem;
+            }
+        }
 
-		public bool IsInternal {
-			get {
-				return elem.GetAttributeAsBoolean ("internal");
-			}
-		}
+        public int ParserVersion
+        {
+            get
+            {
+                XmlElement root = elem.OwnerDocument.DocumentElement;
+                return root.HasAttribute("parser_version") ? int.Parse(root.GetAttribute("parser_version")) : 1;
+            }
+        }
 
-		public string LibraryName {
-			get {
-				return ns.GetAttribute ("library");
-			}
-		}
+        public bool IsInternal
+        {
+            get
+            {
+                return elem.GetAttributeAsBoolean("internal");
+            }
+        }
 
-		public abstract string MarshalType { get; }
+        public string LibraryName
+        {
+            get
+            {
+                return ns.GetAttribute("library");
+            }
+        }
 
-		public virtual string Name {
-			get {
-				return elem.GetAttribute ("name");
-			}
-		}
+        public abstract string MarshalType { get; }
 
-		public string NS {
-			get {
-				return ns.GetAttribute ("name");
-			}
-		}
+        public virtual string Name
+        {
+            get
+            {
+                return elem.GetAttribute("name");
+            }
+        }
 
-		public abstract string DefaultValue { get; }
+        public string NS
+        {
+            get
+            {
+                return ns.GetAttribute("name");
+            }
+        }
 
-		public string QualifiedName {
-			get {
-				return NS + "." + Name;
-			}
-		}
+        public abstract string DefaultValue { get; }
 
-		public abstract string CallByName (string var);
+        public string QualifiedName
+        {
+            get
+            {
+                return NS + "." + Name;
+            }
+        }
 
-		public abstract string FromNative (string var);
+        public abstract string CallByName(string var);
 
-		public abstract bool Validate ();
+        public abstract string FromNative(string var);
 
-		public virtual string GenerateGetSizeOf () {
-			return null;
-		}
+        public abstract bool Validate();
 
-		public virtual string GenerateAlign () {
-			return null;
-		}
+        public virtual string GenerateGetSizeOf()
+        {
+            return null;
+        }
 
-		public void Generate ()
-		{
-			GenerationInfo geninfo = new GenerationInfo (ns);
-			Generate (geninfo);
-		}
+        public virtual string GenerateAlign()
+        {
+            return null;
+        }
 
-		public abstract void Generate (GenerationInfo geninfo);
-	}
+        public void Generate()
+        {
+            GenerationInfo geninfo = new GenerationInfo(ns);
+            Generate(geninfo);
+        }
+
+        public abstract void Generate(GenerationInfo geninfo);
+    }
 }
 

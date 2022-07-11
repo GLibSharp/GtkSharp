@@ -18,42 +18,48 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Context {
+    public partial class Context
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_context_list_families(IntPtr raw, out IntPtr families, out int n_families);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void pango_context_list_families(IntPtr raw, out IntPtr families, out int n_families);
 
-		public FontFamily [] Families {
-			get {
-				int count;
-				IntPtr array_ptr;
-				pango_context_list_families (Handle, out array_ptr, out count);
-				if (array_ptr == IntPtr.Zero)
-					return new FontFamily [0];
-				FontFamily [] result = new FontFamily [count];
-				for (int i = 0; i < count; i++) {
-					IntPtr fam_ptr = Marshal.ReadIntPtr (array_ptr, i * IntPtr.Size);
-					result [i] = GLib.Object.GetObject (fam_ptr) as FontFamily;
-				}
+        public FontFamily[] Families
+        {
+            get
+            {
+                int count;
+                IntPtr array_ptr;
+                pango_context_list_families(Handle, out array_ptr, out count);
+                if (array_ptr == IntPtr.Zero)
+                    return new FontFamily[0];
+                FontFamily[] result = new FontFamily[count];
+                for (int i = 0; i < count; i++)
+                {
+                    IntPtr fam_ptr = Marshal.ReadIntPtr(array_ptr, i * IntPtr.Size);
+                    result[i] = GLib.Object.GetObject(fam_ptr) as FontFamily;
+                }
 
-				GLib.Marshaller.Free (array_ptr);
-				return result;
-			}
-		}
+                GLib.Marshaller.Free(array_ptr);
+                return result;
+            }
+        }
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_context_list_families(IntPtr raw, IntPtr families, out int n_families);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void pango_context_list_families(IntPtr raw, IntPtr families, out int n_families);
 
-		[Obsolete]
-		public int ListFamilies(Pango.FontFamily families) {
-			int n_families;
-			pango_context_list_families(Handle, families.Handle, out n_families);
-			return n_families;
-		}
-	}
+        [Obsolete]
+        public int ListFamilies(Pango.FontFamily families)
+        {
+            int n_families;
+            pango_context_list_families(Handle, families.Handle, out n_families);
+            return n_families;
+        }
+    }
 }

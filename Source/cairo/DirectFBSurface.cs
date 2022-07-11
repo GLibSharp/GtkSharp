@@ -28,16 +28,17 @@
 
 using System;
 
-namespace Cairo {
-	public class DirectFBSurface : Surface
-	{
-		internal DirectFBSurface (IntPtr handle, bool owns) : base (handle, owns)
-		{
-		}
+namespace Cairo
+{
+    public class DirectFBSurface : Surface
+    {
+        internal DirectFBSurface(IntPtr handle, bool owns) : base(handle, owns)
+        {
+        }
 
-		public DirectFBSurface (IntPtr dfb, IntPtr dfb_surface)
-			: base (NativeMethods.cairo_directfb_surface_create (dfb, dfb_surface), true)
-		{
-		}
-	}
+        public DirectFBSurface(IntPtr dfb, IntPtr dfb_surface)
+            : base(NativeMethods.cairo_directfb_surface_create(dfb, dfb_surface), true)
+        {
+        }
+    }
 }

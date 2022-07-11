@@ -18,35 +18,38 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class IconView {
+    public partial class IconView
+    {
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
-			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+        public void SetAttributes(CellRenderer cell, params object[] attrs)
+        {
+            if (attrs.Length % 2 != 0)
+                throw new ArgumentException("attrs should contain pairs of attribute/col");
 
-			ClearAttributes (cell);
-			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
-			}
-		}
+            ClearAttributes(cell);
+            for (int i = 0; i < attrs.Length - 1; i += 2)
+            {
+                AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
+            }
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_icon_view_scroll_to_path(IntPtr raw, IntPtr path, bool use_align, float row_align, float col_align);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_icon_view_scroll_to_path(IntPtr raw, IntPtr path, bool use_align, float row_align, float col_align);
 
-		public void ScrollToPath (Gtk.TreePath path) 
-		{
-			gtk_icon_view_scroll_to_path(Handle, path == null ? IntPtr.Zero : path.Handle, false, 0.0f, 0.0f);
-		}
+        public void ScrollToPath(Gtk.TreePath path)
+        {
+            gtk_icon_view_scroll_to_path(Handle, path == null ? IntPtr.Zero : path.Handle, false, 0.0f, 0.0f);
+        }
 
-		public void ScrollToPath (Gtk.TreePath path, float row_align, float col_align) 
-		{
-			gtk_icon_view_scroll_to_path(Handle, path == null ? IntPtr.Zero : path.Handle, true, row_align, col_align);
-		}
-	}
+        public void ScrollToPath(Gtk.TreePath path, float row_align, float col_align)
+        {
+            gtk_icon_view_scroll_to_path(Handle, path == null ? IntPtr.Zero : path.Handle, true, row_align, col_align);
+        }
+    }
 }

@@ -18,30 +18,32 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class AttrList {
+    public partial class AttrList
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attribute_copy (IntPtr raw);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attribute_copy(IntPtr raw);
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_attr_list_insert (IntPtr raw, IntPtr attr);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void pango_attr_list_insert(IntPtr raw, IntPtr attr);
 
-		public void Insert (Pango.Attribute attr) 
-		{
-			pango_attr_list_insert (Handle, pango_attribute_copy (attr.Handle));
-		}
+        public void Insert(Pango.Attribute attr)
+        {
+            pango_attr_list_insert(Handle, pango_attribute_copy(attr.Handle));
+        }
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_attr_list_insert_before (IntPtr raw, IntPtr attr);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern void pango_attr_list_insert_before(IntPtr raw, IntPtr attr);
 
-		public void InsertBefore (Pango.Attribute attr)
-		{
-			pango_attr_list_insert_before (Handle, pango_attribute_copy (attr.Handle));
-		}
-	}
+        public void InsertBefore(Pango.Attribute attr)
+        {
+            pango_attr_list_insert_before(Handle, pango_attribute_copy(attr.Handle));
+        }
+    }
 }

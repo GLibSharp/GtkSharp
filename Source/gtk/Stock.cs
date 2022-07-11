@@ -18,56 +18,60 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Stock {
+    public partial class Stock
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_stock_list_ids ();
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_stock_list_ids();
 
-		public static string[] ListIds ()
-		{
-			IntPtr raw_ret = gtk_stock_list_ids ();
-			if (raw_ret == IntPtr.Zero)
-				return new string [0];
-			GLib.SList list = new GLib.SList(raw_ret, typeof (string));
-			string[] result = new string [list.Count];
-			for (int i = 0; i < list.Count; i++)
-				result [i] = (string) list [i];
-			return result;
-		}
+        public static string[] ListIds()
+        {
+            IntPtr raw_ret = gtk_stock_list_ids();
+            if (raw_ret == IntPtr.Zero)
+                return new string[0];
+            GLib.SList list = new GLib.SList(raw_ret, typeof(string));
+            string[] result = new string[list.Count];
+            for (int i = 0; i < list.Count; i++)
+                result[i] = (string)list[i];
+            return result;
+        }
 
-		[StructLayout(LayoutKind.Sequential)]
-		struct ConstStockItem {
-			public IntPtr StockId;
-			public IntPtr Label;
-			public Gdk.ModifierType Modifier;
-			public uint Keyval;
-			public IntPtr TranslationDomain;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct ConstStockItem
+        {
+            public IntPtr StockId;
+            public IntPtr Label;
+            public Gdk.ModifierType Modifier;
+            public uint Keyval;
+            public IntPtr TranslationDomain;
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool gtk_stock_lookup (IntPtr stock_id, out ConstStockItem item);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern bool gtk_stock_lookup(IntPtr stock_id, out ConstStockItem item);
 
-		public static Gtk.StockItem Lookup (string stock_id) {
-			ConstStockItem const_item;
+        public static Gtk.StockItem Lookup(string stock_id)
+        {
+            ConstStockItem const_item;
 
-			IntPtr native_id = GLib.Marshaller.StringToPtrGStrdup (stock_id);
-			bool result = gtk_stock_lookup (native_id, out const_item);
-			GLib.Marshaller.Free (native_id);
-			if (!result)
-				return Gtk.StockItem.Zero;
+            IntPtr native_id = GLib.Marshaller.StringToPtrGStrdup(stock_id);
+            bool result = gtk_stock_lookup(native_id, out const_item);
+            GLib.Marshaller.Free(native_id);
+            if (!result)
+                return Gtk.StockItem.Zero;
 
-			Gtk.StockItem item = new Gtk.StockItem ();
-			item.StockId = GLib.Marshaller.Utf8PtrToString (const_item.StockId);
-			item.Label = GLib.Marshaller.Utf8PtrToString (const_item.Label);
-			item.Modifier = const_item.Modifier;
-			item.Keyval = const_item.Keyval;
-			item.TranslationDomain = GLib.Marshaller.Utf8PtrToString (const_item.TranslationDomain);
-			return item;
-		}
-	}
+            Gtk.StockItem item = new Gtk.StockItem();
+            item.StockId = GLib.Marshaller.Utf8PtrToString(const_item.StockId);
+            item.Label = GLib.Marshaller.Utf8PtrToString(const_item.Label);
+            item.Modifier = const_item.Modifier;
+            item.Keyval = const_item.Keyval;
+            item.TranslationDomain = GLib.Marshaller.Utf8PtrToString(const_item.TranslationDomain);
+            return item;
+        }
+    }
 }

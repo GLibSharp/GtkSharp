@@ -19,37 +19,42 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class GException : Exception {
+    public class GException : Exception
+    {
 
-		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_error_free(IntPtr errptr);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_error_free(IntPtr errptr);
 
-		public GException(IntPtr errptr, bool owned = true) : base() {
-			GError err = (GError)Marshal.PtrToStructure(errptr, typeof(GError));
-			Code = err.Code;
-			Domain = err.Domain;
-			Message = Marshaller.Utf8PtrToString(err.Msg);
-			if (owned) {
-				g_error_free(errptr);
-			}
-		}
+        public GException(IntPtr errptr, bool owned = true) : base()
+        {
+            GError err = (GError)Marshal.PtrToStructure(errptr, typeof(GError));
+            Code = err.Code;
+            Domain = err.Domain;
+            Message = Marshaller.Utf8PtrToString(err.Msg);
+            if (owned)
+            {
+                g_error_free(errptr);
+            }
+        }
 
-		struct GError {
-			public int Domain;
-			public int Code;
-			public IntPtr Msg;
-		}
+        struct GError
+        {
+            public int Domain;
+            public int Code;
+            public IntPtr Msg;
+        }
 
-		public int Code { get; }
+        public int Code { get; }
 
-		public int Domain { get; }
+        public int Domain { get; }
 
-		public override string Message { get; }
-	}
+        public override string Message { get; }
+    }
 }
 

@@ -21,34 +21,38 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
+    using System;
 
-	public class ConstStringGen : SimpleBase, IManualMarshaler {
-		
-		public ConstStringGen (string ctype) : base (ctype, "string", "null") {}
+    public class ConstStringGen : SimpleBase, IManualMarshaler
+    {
 
-		public override string MarshalType {
-			get {
-				return "IntPtr";
-			}
-		}
-		
-		public override string FromNative (string var)
-		{
-			return "GLib.Marshaller.Utf8PtrToString (" + var + ")";
-		}
+        public ConstStringGen(string ctype) : base(ctype, "string", "null") { }
 
-		public string AllocNative (string managed_var)
-		{
-			return "GLib.Marshaller.StringToPtrGStrdup (" + managed_var + ")";
-		}
+        public override string MarshalType
+        {
+            get
+            {
+                return "IntPtr";
+            }
+        }
 
-		public string ReleaseNative (string native_var)
-		{
-			return "GLib.Marshaller.Free (" + native_var + ")";
-		}
-	}
+        public override string FromNative(string var)
+        {
+            return "GLib.Marshaller.Utf8PtrToString (" + var + ")";
+        }
+
+        public string AllocNative(string managed_var)
+        {
+            return "GLib.Marshaller.StringToPtrGStrdup (" + managed_var + ")";
+        }
+
+        public string ReleaseNative(string native_var)
+        {
+            return "GLib.Marshaller.Free (" + native_var + ")";
+        }
+    }
 }
 

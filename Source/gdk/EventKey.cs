@@ -19,81 +19,96 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventKey : Event {
+    public class EventKey : Event
+    {
 
-		public EventKey (IntPtr raw) : base (raw) {} 
+        public EventKey(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public uint time;
-			public uint state;
-			public uint keyval;
-			int length;
-			IntPtr _string;
-			public ushort hardware_keycode;
-			public byte group;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public uint time;
+            public uint state;
+            public uint keyval;
+            int length;
+            IntPtr _string;
+            public ushort hardware_keycode;
+            public byte group;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public byte Group {
-			get { return Native.group; }
-			set {
-				NativeStruct native = Native;
-				native.group = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public byte Group
+        {
+            get { return Native.group; }
+            set
+            {
+                NativeStruct native = Native;
+                native.group = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public ushort HardwareKeycode {
-			get { return Native.hardware_keycode; }
-			set {
-				NativeStruct native = Native;
-				native.hardware_keycode = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public ushort HardwareKeycode
+        {
+            get { return Native.hardware_keycode; }
+            set
+            {
+                NativeStruct native = Native;
+                native.hardware_keycode = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public Key Key {
-			get { return (Key) KeyValue; }
-		}
+        public Key Key
+        {
+            get { return (Key)KeyValue; }
+        }
 
-		public uint KeyValue {
-			get { return Native.keyval; }
-			set {
-				NativeStruct native = Native;
-				native.keyval = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public uint KeyValue
+        {
+            get { return Native.keyval; }
+            set
+            {
+                NativeStruct native = Native;
+                native.keyval = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public ModifierType State {
-			get { return (ModifierType) Native.state; }
-			set {
-				NativeStruct native = Native;
-				native.state = (uint) value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public ModifierType State
+        {
+            get { return (ModifierType)Native.state; }
+            set
+            {
+                NativeStruct native = Native;
+                native.state = (uint)value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public uint Time {
-			get { return Native.time; }
-			set {
-				NativeStruct native = Native;
-				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public uint Time
+        {
+            get { return Native.time; }
+            set
+            {
+                NativeStruct native = Native;
+                native.time = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

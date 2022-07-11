@@ -16,25 +16,27 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
+    using System;
 
-	public partial class Item {
+    public partial class Item
+    {
 
-		[Obsolete("Pango.Item is a reference type now, use null")]
-		public static Item Zero = null;
+        [Obsolete("Pango.Item is a reference type now, use null")]
+        public static Item Zero = null;
 
-		[Obsolete("Replaced by Item(IntPtr) constructor")]
-		public static Item New (IntPtr raw)
-		{
-			return new Item (raw);
-		}
+        [Obsolete("Replaced by Item(IntPtr) constructor")]
+        public static Item New(IntPtr raw)
+        {
+            return new Item(raw);
+        }
 
-		[Obsolete("Replaced by Item() constructor")]
-		public static Item New ()
-		{
-			return new Item ();
-		}
-	}
+        [Obsolete("Replaced by Item() constructor")]
+        public static Item New()
+        {
+            return new Item();
+        }
+    }
 }

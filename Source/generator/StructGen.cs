@@ -19,34 +19,37 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.IO;
-	using System.Xml;
+    using System;
+    using System.IO;
+    using System.Xml;
 
-	public class StructGen : StructBase {
-		
-		public StructGen (XmlElement ns, XmlElement elem) : base (ns, elem) {}
-		
-		public override void Generate (GenerationInfo gen_info)
-		{
-			gen_info.CurrentType = QualifiedName;
+    public class StructGen : StructBase
+    {
 
-			StreamWriter sw = gen_info.Writer = gen_info.OpenStream (Name, NS);
-			base.Generate (gen_info);
-			if (GetMethod ("GetType") == null && GetMethod ("GetGType") == null) {
-				sw.WriteLine ("\t\tprivate static GLib.GType GType {");
-				sw.WriteLine ("\t\t\tget { return GLib.GType.Pointer; }");
-				sw.WriteLine ("\t\t}");
-			}
-			sw.WriteLine ("#endregion");
-			sw.WriteLine ("\t}");
-			sw.WriteLine ("}");
-			sw.Close ();
-			gen_info.Writer = null;
-			Statistics.StructCount++;
-		}
-	}
+        public StructGen(XmlElement ns, XmlElement elem) : base(ns, elem) { }
+
+        public override void Generate(GenerationInfo gen_info)
+        {
+            gen_info.CurrentType = QualifiedName;
+
+            StreamWriter sw = gen_info.Writer = gen_info.OpenStream(Name, NS);
+            base.Generate(gen_info);
+            if (GetMethod("GetType") == null && GetMethod("GetGType") == null)
+            {
+                sw.WriteLine("\t\tprivate static GLib.GType GType {");
+                sw.WriteLine("\t\t\tget { return GLib.GType.Pointer; }");
+                sw.WriteLine("\t\t}");
+            }
+            sw.WriteLine("#endregion");
+            sw.WriteLine("\t}");
+            sw.WriteLine("}");
+            sw.Close();
+            gen_info.Writer = null;
+            Statistics.StructCount++;
+        }
+    }
 }
 

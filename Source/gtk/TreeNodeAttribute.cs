@@ -19,28 +19,34 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	[AttributeUsage(AttributeTargets.Class)]
-	public sealed class TreeNodeAttribute : Attribute {
-		bool list_only;
-		
-		[Obsolete ("This is no longer needed; it gets detected by Gtk#")]
-		public int ColumnCount {
-			get { return 0; }
-			set { }
-		}
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class TreeNodeAttribute : Attribute
+    {
+        bool list_only;
 
-		public bool ListOnly {
-			get {
-				return list_only;
-			}
-			set {
-				list_only = value;
-			}
-		}
-	}
+        [Obsolete("This is no longer needed; it gets detected by Gtk#")]
+        public int ColumnCount
+        {
+            get { return 0; }
+            set { }
+        }
+
+        public bool ListOnly
+        {
+            get
+            {
+                return list_only;
+            }
+            set
+            {
+                list_only = value;
+            }
+        }
+    }
 }
 

@@ -32,10 +32,10 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum FillRule
-	{
-		Winding,
-		EvenOdd
-	}
+    [Serializable]
+    public enum FillRule
+    {
+        Winding,
+        EvenOdd
+    }
 }

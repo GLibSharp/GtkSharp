@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrUnderline : Attribute {
+    public class AttrUnderline : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_underline_new (Pango.Underline underline);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_underline_new(Pango.Underline underline);
 
-		public AttrUnderline (Pango.Underline underline) : this (pango_attr_underline_new (underline)) {}
+        public AttrUnderline(Pango.Underline underline) : this(pango_attr_underline_new(underline)) { }
 
-		internal AttrUnderline (IntPtr raw) : base (raw) {}
+        internal AttrUnderline(IntPtr raw) : base(raw) { }
 
-		public Pango.Underline Underline {
-			get {
-				return (Pango.Underline) (AttrInt.New (Handle).Value);
-			}
-		}
-	}
+        public Pango.Underline Underline
+        {
+            get
+            {
+                return (Pango.Underline)(AttrInt.New(Handle).Value);
+            }
+        }
+    }
 }

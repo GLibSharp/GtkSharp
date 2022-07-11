@@ -19,230 +19,250 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Runtime.InteropServices;
 
-	public class ValueArray : IDisposable, ICollection, ICloneable, IWrapper {
+    public class ValueArray : IDisposable, ICollection, ICloneable, IWrapper
+    {
 
-		private IntPtr handle = IntPtr.Zero;
+        private IntPtr handle = IntPtr.Zero;
 
-		static private IList<IntPtr> PendingFrees = new List<IntPtr> ();
-		static private bool idle_queued = false;
+        static private IList<IntPtr> PendingFrees = new List<IntPtr>();
+        static private bool idle_queued = false;
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_value_array_new (uint n_preallocs);
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_value_array_new(uint n_preallocs);
 
-		public ValueArray (uint n_preallocs)
-		{
-			handle = g_value_array_new (n_preallocs);
-		}
+        public ValueArray(uint n_preallocs)
+        {
+            handle = g_value_array_new(n_preallocs);
+        }
 
-		public ValueArray (IntPtr raw)
-		{
-			handle = g_value_array_copy (raw);
-		}
-		
-		~ValueArray ()
-		{
-			Dispose (false);
-		}
-		
-		// IDisposable
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
+        public ValueArray(IntPtr raw)
+        {
+            handle = g_value_array_copy(raw);
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_value_array_free (IntPtr raw);
+        ~ValueArray()
+        {
+            Dispose(false);
+        }
 
-		void Dispose (bool disposing)
-		{
-			if (Handle == IntPtr.Zero)
-				return;
+        // IDisposable
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-			lock (PendingFrees) {
-				PendingFrees.Add (handle);
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_value_array_free(IntPtr raw);
 
-				if (! idle_queued) {
-					Timeout.Add (50, new TimeoutHandler (PerformFrees));
-					idle_queued = true;
-				}
-			}
+        void Dispose(bool disposing)
+        {
+            if (Handle == IntPtr.Zero)
+                return;
 
-			handle = IntPtr.Zero;
-		}
+            lock (PendingFrees)
+            {
+                PendingFrees.Add(handle);
 
-		static bool PerformFrees ()
-		{
-			IntPtr[] handles;
+                if (!idle_queued)
+                {
+                    Timeout.Add(50, new TimeoutHandler(PerformFrees));
+                    idle_queued = true;
+                }
+            }
 
-			lock (PendingFrees) {
-				idle_queued = false;
+            handle = IntPtr.Zero;
+        }
 
-				handles = new IntPtr [PendingFrees.Count];
-				PendingFrees.CopyTo (handles, 0);
-				PendingFrees.Clear ();
-			}
+        static bool PerformFrees()
+        {
+            IntPtr[] handles;
 
-			foreach (IntPtr h in handles)
-				g_value_array_free (h);
+            lock (PendingFrees)
+            {
+                idle_queued = false;
 
-			return false;
-		}
-		
-		public IntPtr Handle {
-			get {
-				return handle;
-			}
-		}
+                handles = new IntPtr[PendingFrees.Count];
+                PendingFrees.CopyTo(handles, 0);
+                PendingFrees.Clear();
+            }
 
-		struct NativeStruct {
-			public uint n_values;
-			public IntPtr values;
-			public uint n_prealloced;
-		}
+            foreach (IntPtr h in handles)
+                g_value_array_free(h);
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+            return false;
+        }
 
-		public IntPtr ArrayPtr {
-			get { return Native.values; }
-		}
+        public IntPtr Handle
+        {
+            get
+            {
+                return handle;
+            }
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_value_array_append (IntPtr raw, ref GLib.Value val);
+        struct NativeStruct
+        {
+            public uint n_values;
+            public IntPtr values;
+            public uint n_prealloced;
+        }
 
-		public void Append (GLib.Value val)
-		{
-			g_value_array_append (Handle, ref val);
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_value_array_insert (IntPtr raw, uint idx, ref GLib.Value val);
+        public IntPtr ArrayPtr
+        {
+            get { return Native.values; }
+        }
 
-		public void Insert (uint idx, GLib.Value val)
-		{
-			g_value_array_insert (Handle, idx, ref val);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_value_array_append(IntPtr raw, ref GLib.Value val);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_value_array_prepend (IntPtr raw, ref GLib.Value val);
+        public void Append(GLib.Value val)
+        {
+            g_value_array_append(Handle, ref val);
+        }
 
-		public void Prepend (GLib.Value val)
-		{
-			g_value_array_prepend (Handle, ref val);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_value_array_insert(IntPtr raw, uint idx, ref GLib.Value val);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_value_array_remove (IntPtr raw, uint idx);
+        public void Insert(uint idx, GLib.Value val)
+        {
+            g_value_array_insert(Handle, idx, ref val);
+        }
 
-		public void Remove (uint idx)
-		{
-			g_value_array_remove (Handle, idx);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_value_array_prepend(IntPtr raw, ref GLib.Value val);
 
-		// ICollection
-		public int Count {
-			get { return (int) Native.n_values; }
-		}
+        public void Prepend(GLib.Value val)
+        {
+            g_value_array_prepend(Handle, ref val);
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_value_array_get_nth (IntPtr raw, uint idx);
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_value_array_remove(IntPtr raw, uint idx);
 
-		public object this [int index] { 
-			get { 
-				IntPtr raw_val = g_value_array_get_nth (Handle, (uint) index);
-				return Marshal.PtrToStructure (raw_val, typeof (GLib.Value));
-			}
-		}
+        public void Remove(uint idx)
+        {
+            g_value_array_remove(Handle, idx);
+        }
 
-		// Synchronization could be tricky here. Hmm.
-		public bool IsSynchronized {
-			get { return false; }
-		}
+        // ICollection
+        public int Count
+        {
+            get { return (int)Native.n_values; }
+        }
 
-		public object SyncRoot {
-			get { return null; }
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_value_array_get_nth(IntPtr raw, uint idx);
 
-		public void CopyTo (Array array, int index)
-		{
-			if (array == null)
-				throw new ArgumentNullException ("Array can't be null.");
+        public object this[int index]
+        {
+            get
+            {
+                IntPtr raw_val = g_value_array_get_nth(Handle, (uint)index);
+                return Marshal.PtrToStructure(raw_val, typeof(GLib.Value));
+            }
+        }
 
-			if (index < 0)
-				throw new ArgumentOutOfRangeException ("Index must be greater than 0.");
+        // Synchronization could be tricky here. Hmm.
+        public bool IsSynchronized
+        {
+            get { return false; }
+        }
 
-			if (index + Count < array.Length)
-				throw new ArgumentException ("Array not large enough to copy into starting at index.");
-			
-			for (int i = 0; i < Count; i++)
-				((IList) array) [index + i] = this [i];
-		}
+        public object SyncRoot
+        {
+            get { return null; }
+        }
 
-		private class ListEnumerator : IEnumerator
-		{
-			private int current = -1;
-			private ValueArray vals;
+        public void CopyTo(Array array, int index)
+        {
+            if (array == null)
+                throw new ArgumentNullException("Array can't be null.");
 
-			public ListEnumerator (ValueArray vals)
-			{
-				this.vals = vals;
-			}
+            if (index < 0)
+                throw new ArgumentOutOfRangeException("Index must be greater than 0.");
 
-			public object Current {
-				get {
-					if (current == -1)
-						return null;
-					return vals [current];
-				}
-			}
+            if (index + Count < array.Length)
+                throw new ArgumentException("Array not large enough to copy into starting at index.");
 
-			public bool MoveNext ()
-			{
-				if (++current >= vals.Count) {
-					current = -1;
-					return false;
-				}
+            for (int i = 0; i < Count; i++)
+                ((IList)array)[index + i] = this[i];
+        }
 
-				return true;
-			}
+        private class ListEnumerator : IEnumerator
+        {
+            private int current = -1;
+            private ValueArray vals;
 
-			public void Reset ()
-			{
-				current = -1;
-			}
-		}
-		
-		// IEnumerable
-		public IEnumerator GetEnumerator ()
-		{
-			return new ListEnumerator (this);
-		}
+            public ListEnumerator(ValueArray vals)
+            {
+                this.vals = vals;
+            }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_value_array_copy (IntPtr raw);
+            public object Current
+            {
+                get
+                {
+                    if (current == -1)
+                        return null;
+                    return vals[current];
+                }
+            }
 
-		// ICloneable
-		public object Clone ()
-		{
-			return new ValueArray (g_value_array_copy (Handle));
-		}
+            public bool MoveNext()
+            {
+                if (++current >= vals.Count)
+                {
+                    current = -1;
+                    return false;
+                }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_value_array_get_type ();
+                return true;
+            }
 
-		public static GLib.GType GType {
-			get {
-				return new GLib.GType (g_value_array_get_type ());
-			}
-		}
-	}
+            public void Reset()
+            {
+                current = -1;
+            }
+        }
+
+        // IEnumerable
+        public IEnumerator GetEnumerator()
+        {
+            return new ListEnumerator(this);
+        }
+
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_value_array_copy(IntPtr raw);
+
+        // ICloneable
+        public object Clone()
+        {
+            return new ValueArray(g_value_array_copy(Handle));
+        }
+
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_value_array_get_type();
+
+        public static GLib.GType GType
+        {
+            get
+            {
+                return new GLib.GType(g_value_array_get_type());
+            }
+        }
+    }
 }

@@ -20,32 +20,35 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
+    using System;
 
-	public class OwnableGen : SimpleBase, IOwnable {
-		
-		public OwnableGen (string ctype, string type) : base (ctype, type, "null") {}
+    public class OwnableGen : SimpleBase, IOwnable
+    {
 
-		public override string MarshalType {
-			get { return "IntPtr"; }
-		}
+        public OwnableGen(string ctype, string type) : base(ctype, type, "null") { }
 
-		public override string CallByName (string var_name)
-		{
-			return var_name + " == null ? IntPtr.Zero : " + var_name + ".Handle";
-		}
-		
-		public override string FromNative (string var)
-		{
-			return String.Format ("new {0} ({1})", QualifiedName, var);
-		}
-		
-		public string FromNative (string var, bool owned)
-		{
-			return String.Format ("new {0} ({1}, {2})", QualifiedName, var, owned ? "true" : "false");
-		}
-	}
+        public override string MarshalType
+        {
+            get { return "IntPtr"; }
+        }
+
+        public override string CallByName(string var_name)
+        {
+            return var_name + " == null ? IntPtr.Zero : " + var_name + ".Handle";
+        }
+
+        public override string FromNative(string var)
+        {
+            return String.Format("new {0} ({1})", QualifiedName, var);
+        }
+
+        public string FromNative(string var, bool owned)
+        {
+            return String.Format("new {0} ({1}, {2})", QualifiedName, var, owned ? "true" : "false");
+        }
+    }
 }
 

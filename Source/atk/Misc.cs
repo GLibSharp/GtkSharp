@@ -21,19 +21,21 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Atk {
+namespace Atk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Misc {
+    public partial class Misc
+    {
 
-		[DllImport("atksharpglue-3")]
-		static extern void atksharp_misc_set_singleton_instance (IntPtr misc);
-		
-		public static void SetSingletonInstance (Misc misc)
-		{
-			atksharp_misc_set_singleton_instance (misc.Handle);
-		}
-	}
+        [DllImport("atksharpglue-3")]
+        static extern void atksharp_misc_set_singleton_instance(IntPtr misc);
+
+        public static void SetSingletonInstance(Misc misc)
+        {
+            atksharp_misc_set_singleton_instance(misc.Handle);
+        }
+    }
 }

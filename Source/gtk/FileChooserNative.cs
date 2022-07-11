@@ -18,33 +18,35 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class FileChooserNative : Gtk.NativeDialog, Gtk.IFileChooser {
+    public partial class FileChooserNative : Gtk.NativeDialog, Gtk.IFileChooser
+    {
 
-		public FileChooserNative (IntPtr raw) : base(raw) {}
+        public FileChooserNative(IntPtr raw) : base(raw) { }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_file_chooser_native_new(IntPtr title, IntPtr parent, int action, IntPtr accept_label, IntPtr cancel_label);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_file_chooser_native_new(IntPtr title, IntPtr parent, int action, IntPtr accept_label, IntPtr cancel_label);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern string gtk_file_chooser_native_get_accept_label(IntPtr self);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern string gtk_file_chooser_native_get_accept_label(IntPtr self);
 
-                [DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-                static extern string gtk_file_chooser_native_set_accept_label(IntPtr self, string accept_label);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern string gtk_file_chooser_native_set_accept_label(IntPtr self, string accept_label);
 
-                [DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-                static extern string gtk_file_chooser_native_get_cancel_label(IntPtr self);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern string gtk_file_chooser_native_get_cancel_label(IntPtr self);
 
-                [DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-                static extern string gtk_file_chooser_native_set_cancel_label(IntPtr self, string cancel_label);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern string gtk_file_chooser_native_set_cancel_label(IntPtr self, string cancel_label);
 
-                public FileChooserNative (string title, Gtk.Window parent, Gtk.FileChooserAction action, string accept_label, string cancel_label) : base(FileChooserNativeCreate(title, parent, action, accept_label, cancel_label))
-                {
-			/*
+        public FileChooserNative(string title, Gtk.Window parent, Gtk.FileChooserAction action, string accept_label, string cancel_label) : base(FileChooserNativeCreate(title, parent, action, accept_label, cancel_label))
+        {
+            /*
                         if (GetType () != typeof (FileChooserNative)) {
                                 var vals = new List<GLib.Value> ();
                                 var names = new List<string> ();
@@ -62,27 +64,27 @@ namespace Gtk {
                                 return;
                         }
 			*/
-		}
+        }
 
-		static IntPtr FileChooserNativeCreate (string title, Gtk.Window parent, Gtk.FileChooserAction action, string accept_label, string cancel_label)
-		{
-                        IntPtr native_title = GLib.Marshaller.StringToPtrGStrdup (title);
-			IntPtr native_accept_label = IntPtr.Zero;
-			if (accept_label != null)
-	                        native_accept_label = GLib.Marshaller.StringToPtrGStrdup (accept_label);
-			IntPtr native_cancel_label = IntPtr.Zero;
-			if (cancel_label != null)
-	                        native_cancel_label = GLib.Marshaller.StringToPtrGStrdup (cancel_label);
+        static IntPtr FileChooserNativeCreate(string title, Gtk.Window parent, Gtk.FileChooserAction action, string accept_label, string cancel_label)
+        {
+            IntPtr native_title = GLib.Marshaller.StringToPtrGStrdup(title);
+            IntPtr native_accept_label = IntPtr.Zero;
+            if (accept_label != null)
+                native_accept_label = GLib.Marshaller.StringToPtrGStrdup(accept_label);
+            IntPtr native_cancel_label = IntPtr.Zero;
+            if (cancel_label != null)
+                native_cancel_label = GLib.Marshaller.StringToPtrGStrdup(cancel_label);
 
-                        IntPtr raw = gtk_file_chooser_native_new(native_title, parent.Handle, (int) action, native_accept_label, native_cancel_label);
+            IntPtr raw = gtk_file_chooser_native_new(native_title, parent.Handle, (int)action, native_accept_label, native_cancel_label);
 
-                        /*GLib.Marshaller.Free (native_title);
-			if (accept_label != null)
-                        	GLib.Marshaller.Free (native_accept_label);
-			if (cancel_label != null)
-                        	GLib.Marshaller.Free (native_cancel_label);*/
+            /*GLib.Marshaller.Free (native_title);
+if (accept_label != null)
+                GLib.Marshaller.Free (native_accept_label);
+if (cancel_label != null)
+                GLib.Marshaller.Free (native_cancel_label);*/
 
-			return raw;
-                }
-	}
+            return raw;
+        }
+    }
 }

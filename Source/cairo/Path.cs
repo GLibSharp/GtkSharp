@@ -32,45 +32,46 @@ using System;
 using System.Runtime.InteropServices;
 using Cairo;
 
-namespace Cairo {
+namespace Cairo
+{
 
-	public class Path : IDisposable
-	{
-		IntPtr handle = IntPtr.Zero;
+    public class Path : IDisposable
+    {
+        IntPtr handle = IntPtr.Zero;
 
-		internal Path (IntPtr handle)
-		{
-			if (handle == IntPtr.Zero)
-				throw new ArgumentException ("handle should not be NULL", "handle");
+        internal Path(IntPtr handle)
+        {
+            if (handle == IntPtr.Zero)
+                throw new ArgumentException("handle should not be NULL", "handle");
 
-			this.handle = handle;
-			if (CairoDebug.Enabled)
-				CairoDebug.OnAllocated (handle);
-		}
+            this.handle = handle;
+            if (CairoDebug.Enabled)
+                CairoDebug.OnAllocated(handle);
+        }
 
-		~Path ()
-		{
-			Dispose (false);
-		}
+        ~Path()
+        {
+            Dispose(false);
+        }
 
-		public IntPtr Handle { get { return handle; } }
+        public IntPtr Handle { get { return handle; } }
 
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		protected virtual void Dispose (bool disposing)
-		{
-			if (!disposing || CairoDebug.Enabled)
-				CairoDebug.OnDisposed<Path> (handle, disposing);
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing || CairoDebug.Enabled)
+                CairoDebug.OnDisposed<Path>(handle, disposing);
 
-			if (handle == IntPtr.Zero)
-				return;
+            if (handle == IntPtr.Zero)
+                return;
 
-			NativeMethods.cairo_path_destroy (handle);
-			handle = IntPtr.Zero;
-		}
-	}
+            NativeMethods.cairo_path_destroy(handle);
+            handle = IntPtr.Zero;
+        }
+    }
 }

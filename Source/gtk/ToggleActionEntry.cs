@@ -20,36 +20,38 @@
 
 using System;
 
-namespace Gtk {
-	public struct ToggleActionEntry {
-		public string name;
-		public string stock_id;
-		public string label;
-		public string tooltip;
-		public string accelerator;
-		public EventHandler activated;
-		public bool active;
-		
-		public ToggleActionEntry (string name, string stock_id)
-			: this (name, stock_id, null, null, null, null, false) {}
-		
-		public ToggleActionEntry (string name, string stock_id, EventHandler activated)
-			: this (name, stock_id, null, null, null, activated, false) {}
-		
-		public ToggleActionEntry (string name, string stock_id, EventHandler activated, bool active)
-			: this (name, stock_id, null, null, null, activated, active) {}
-		
-		public ToggleActionEntry (string name, string stock_id, string label,
-					  string accelerator, string tooltip,
-					  EventHandler activated, bool active)
-		{
-			this.name = name;
-			this.stock_id = stock_id;
-			this.label = label;
-			this.accelerator = accelerator;
-			this.tooltip = tooltip;
-			this.activated = activated;
-			this.active = active;
-		}
-	}
+namespace Gtk
+{
+    public struct ToggleActionEntry
+    {
+        public string name;
+        public string stock_id;
+        public string label;
+        public string tooltip;
+        public string accelerator;
+        public EventHandler activated;
+        public bool active;
+
+        public ToggleActionEntry(string name, string stock_id)
+            : this(name, stock_id, null, null, null, null, false) { }
+
+        public ToggleActionEntry(string name, string stock_id, EventHandler activated)
+            : this(name, stock_id, null, null, null, activated, false) { }
+
+        public ToggleActionEntry(string name, string stock_id, EventHandler activated, bool active)
+            : this(name, stock_id, null, null, null, activated, active) { }
+
+        public ToggleActionEntry(string name, string stock_id, string label,
+                      string accelerator, string tooltip,
+                      EventHandler activated, bool active)
+        {
+            this.name = name;
+            this.stock_id = stock_id;
+            this.label = label;
+            this.accelerator = accelerator;
+            this.tooltip = tooltip;
+            this.activated = activated;
+            this.active = active;
+        }
+    }
 }

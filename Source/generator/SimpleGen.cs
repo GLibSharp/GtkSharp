@@ -19,21 +19,25 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
+    using System;
 
-	public class SimpleGen : SimpleBase {
-		string size_of;
+    public class SimpleGen : SimpleBase
+    {
+        string size_of;
 
-		public SimpleGen (string ctype, string type, string default_value) : base (ctype, type, default_value) {}
-		public SimpleGen (string ctype, string type, string default_value, string size_of) : base (ctype, type, default_value) {
-			this.size_of = size_of;
-		}
+        public SimpleGen(string ctype, string type, string default_value) : base(ctype, type, default_value) { }
+        public SimpleGen(string ctype, string type, string default_value, string size_of) : base(ctype, type, default_value)
+        {
+            this.size_of = size_of;
+        }
 
-		public override string GenerateGetSizeOf () {
-			return size_of;
-		}
-	}
+        public override string GenerateGetSizeOf()
+        {
+            return size_of;
+        }
+    }
 }
 

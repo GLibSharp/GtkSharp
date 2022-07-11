@@ -19,12 +19,13 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	public sealed class ConnectBeforeAttribute : Attribute 
-	{
-		public ConnectBeforeAttribute () {}
-	}
+    public sealed class ConnectBeforeAttribute : Attribute
+    {
+        public ConnectBeforeAttribute() { }
+    }
 }

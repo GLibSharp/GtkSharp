@@ -31,13 +31,13 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum HintStyle
-	{
-		Default,
-		None,
-		Slight,
-		Medium,
-		Full,
-	}
+    [Serializable]
+    public enum HintStyle
+    {
+        Default,
+        None,
+        Slight,
+        Medium,
+        Full,
+    }
 }

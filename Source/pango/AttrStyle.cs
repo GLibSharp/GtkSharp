@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrStyle : Attribute {
+    public class AttrStyle : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_style_new (Pango.Style style);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_style_new(Pango.Style style);
 
-		public AttrStyle (Pango.Style style) : this (pango_attr_style_new (style)) {}
+        public AttrStyle(Pango.Style style) : this(pango_attr_style_new(style)) { }
 
-		internal AttrStyle (IntPtr raw) : base (raw) {}
+        internal AttrStyle(IntPtr raw) : base(raw) { }
 
-		public Pango.Style Style {
-			get {
-				return (Pango.Style) (AttrInt.New (Handle).Value);
-			}
-		}
-	}
+        public Pango.Style Style
+        {
+            get
+            {
+                return (Pango.Style)(AttrInt.New(Handle).Value);
+            }
+        }
+    }
 }

@@ -22,13 +22,15 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class Frame {
+    public partial class Frame
+    {
 
-		public Frame() : this (null) {}
+        public Frame() : this(null) { }
 
-	}
+    }
 }

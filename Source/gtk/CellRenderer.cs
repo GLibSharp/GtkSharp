@@ -21,88 +21,93 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class CellRenderer {
+    public partial class CellRenderer
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_cell_renderer_start_editing (IntPtr handle, IntPtr evnt, IntPtr widget, IntPtr path, ref Gdk.Rectangle bg_area, ref Gdk.Rectangle cell_area, int flags);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_cell_renderer_start_editing(IntPtr handle, IntPtr evnt, IntPtr widget, IntPtr path, ref Gdk.Rectangle bg_area, ref Gdk.Rectangle cell_area, int flags);
 
-		public ICellEditable StartEditing (Widget widget, Gdk.Event evnt, string path, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, CellRendererState flags)
-		{
-			IntPtr native = GLib.Marshaller.StringToPtrGStrdup (path);
-			IntPtr raw_ret = gtk_cell_renderer_start_editing (Handle, evnt != null ? evnt.Handle : IntPtr.Zero, widget.Handle, native, ref background_area, ref cell_area, (int) flags);
-			GLib.Marshaller.Free (native);
-			var ret = (ICellEditable) GLib.Object.GetObject (raw_ret);
-			return ret;
-		}
+        public ICellEditable StartEditing(Widget widget, Gdk.Event evnt, string path, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, CellRendererState flags)
+        {
+            IntPtr native = GLib.Marshaller.StringToPtrGStrdup(path);
+            IntPtr raw_ret = gtk_cell_renderer_start_editing(Handle, evnt != null ? evnt.Handle : IntPtr.Zero, widget.Handle, native, ref background_area, ref cell_area, (int)flags);
+            GLib.Marshaller.Free(native);
+            var ret = (ICellEditable)GLib.Object.GetObject(raw_ret);
+            return ret;
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_cell_renderer_render (IntPtr handle, IntPtr drawable, IntPtr widget, ref Gdk.Rectangle bg_area, ref Gdk.Rectangle cell_area, ref Gdk.Rectangle expose_area, int flags);
-		
-		public void Render (Cairo.Context context, Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gdk.Rectangle expose_area, CellRendererState flags)
-		{
-			gtk_cell_renderer_render (Handle, context == null ? IntPtr.Zero : context.Handle, widget == null ? IntPtr.Zero : widget.Handle, ref background_area, ref cell_area, ref expose_area, (int) flags);
-		}
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_cell_renderer_render(IntPtr handle, IntPtr drawable, IntPtr widget, ref Gdk.Rectangle bg_area, ref Gdk.Rectangle cell_area, ref Gdk.Rectangle expose_area, int flags);
 
-		// We have to implement this VM manually because x_offset, y_offset, width and height params may be NULL and therefore cannot be treated as "out int"
-		// TODO: Implement "nullable" attribute for value type parameters in GAPI
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void OnGetSizeDelegate (IntPtr item, IntPtr widget, IntPtr cell_area_ptr, IntPtr x_offset, IntPtr y_offset, IntPtr width, IntPtr height);
+        public void Render(Cairo.Context context, Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gdk.Rectangle expose_area, CellRendererState flags)
+        {
+            gtk_cell_renderer_render(Handle, context == null ? IntPtr.Zero : context.Handle, widget == null ? IntPtr.Zero : widget.Handle, ref background_area, ref cell_area, ref expose_area, (int)flags);
+        }
 
-		static void OnGetSize_cb (IntPtr item, IntPtr widget, IntPtr cell_area_ptr, IntPtr x_offset, IntPtr y_offset, IntPtr width, IntPtr height)
-		{
-			try {
-				CellRenderer obj = GLib.Object.GetObject (item, false) as CellRenderer;
-				Gtk.Widget widg = GLib.Object.GetObject (widget, false) as Gtk.Widget;
-				Gdk.Rectangle cell_area = Gdk.Rectangle.Zero;
-				if (cell_area_ptr != IntPtr.Zero)
-					cell_area = Gdk.Rectangle.New (cell_area_ptr);
-				int a, b, c, d;
+        // We have to implement this VM manually because x_offset, y_offset, width and height params may be NULL and therefore cannot be treated as "out int"
+        // TODO: Implement "nullable" attribute for value type parameters in GAPI
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        delegate void OnGetSizeDelegate(IntPtr item, IntPtr widget, IntPtr cell_area_ptr, IntPtr x_offset, IntPtr y_offset, IntPtr width, IntPtr height);
 
-				obj.OnGetSize (widg, ref cell_area, out a, out b, out c, out d);
-				if (x_offset != IntPtr.Zero)
-					Marshal.WriteInt32 (x_offset, a);
-				if (y_offset != IntPtr.Zero)
-					Marshal.WriteInt32 (y_offset, b);
-				if (width != IntPtr.Zero)
-					Marshal.WriteInt32 (width, c);
-				if (height != IntPtr.Zero)
-					Marshal.WriteInt32 (height, d);
-			} catch (Exception e) {
-				GLib.ExceptionManager.RaiseUnhandledException (e, false);
-			}
-		}
+        static void OnGetSize_cb(IntPtr item, IntPtr widget, IntPtr cell_area_ptr, IntPtr x_offset, IntPtr y_offset, IntPtr width, IntPtr height)
+        {
+            try
+            {
+                CellRenderer obj = GLib.Object.GetObject(item, false) as CellRenderer;
+                Gtk.Widget widg = GLib.Object.GetObject(widget, false) as Gtk.Widget;
+                Gdk.Rectangle cell_area = Gdk.Rectangle.Zero;
+                if (cell_area_ptr != IntPtr.Zero)
+                    cell_area = Gdk.Rectangle.New(cell_area_ptr);
+                int a, b, c, d;
 
-		[DllImport("gtksharpglue-3")]
-		static extern void gtksharp_cellrenderer_override_get_size (IntPtr gtype, OnGetSizeDelegate cb);
+                obj.OnGetSize(widg, ref cell_area, out a, out b, out c, out d);
+                if (x_offset != IntPtr.Zero)
+                    Marshal.WriteInt32(x_offset, a);
+                if (y_offset != IntPtr.Zero)
+                    Marshal.WriteInt32(y_offset, b);
+                if (width != IntPtr.Zero)
+                    Marshal.WriteInt32(width, c);
+                if (height != IntPtr.Zero)
+                    Marshal.WriteInt32(height, d);
+            }
+            catch (Exception e)
+            {
+                GLib.ExceptionManager.RaiseUnhandledException(e, false);
+            }
+        }
 
-		static OnGetSizeDelegate OnGetSizeCallback;
-		static void OverrideOnGetSize (GLib.GType gtype)
-		{
-			if (OnGetSizeCallback == null)
-				OnGetSizeCallback = new OnGetSizeDelegate (OnGetSize_cb);
-			gtksharp_cellrenderer_override_get_size (gtype.Val, OnGetSizeCallback);
-		}
+        [DllImport("gtksharpglue-3")]
+        static extern void gtksharp_cellrenderer_override_get_size(IntPtr gtype, OnGetSizeDelegate cb);
 
-		[GLib.DefaultSignalHandler (Type=typeof(Gtk.CellRenderer), ConnectionMethod="OverrideOnGetSize")] 
-		protected virtual void OnGetSize (Gtk.Widget widget, ref Gdk.Rectangle cell_area, out int x_offset, out int y_offset, out int width, out int height) 
-		{
-			InternalOnGetSize (widget, ref cell_area, out x_offset, out y_offset, out width, out height);
-		}
+        static OnGetSizeDelegate OnGetSizeCallback;
+        static void OverrideOnGetSize(GLib.GType gtype)
+        {
+            if (OnGetSizeCallback == null)
+                OnGetSizeCallback = new OnGetSizeDelegate(OnGetSize_cb);
+            gtksharp_cellrenderer_override_get_size(gtype.Val, OnGetSizeCallback);
+        }
 
-		[DllImport("gtksharpglue-3")]
-		static extern void gtksharp_cellrenderer_base_get_size (IntPtr cell, IntPtr widget, IntPtr cell_area, out int x_offset, out int y_offset, out int width, out int height);
+        [GLib.DefaultSignalHandler(Type = typeof(Gtk.CellRenderer), ConnectionMethod = "OverrideOnGetSize")]
+        protected virtual void OnGetSize(Gtk.Widget widget, ref Gdk.Rectangle cell_area, out int x_offset, out int y_offset, out int width, out int height)
+        {
+            InternalOnGetSize(widget, ref cell_area, out x_offset, out y_offset, out width, out height);
+        }
 
-		private void InternalOnGetSize (Gtk.Widget widget, ref Gdk.Rectangle cell_area, out int x_offset, out int y_offset, out int width, out int height) 
-		{
-			IntPtr native_cell_area = GLib.Marshaller.StructureToPtrAlloc (cell_area);
-			gtksharp_cellrenderer_base_get_size (Handle, widget == null ? IntPtr.Zero : widget.Handle, native_cell_area, out x_offset, out y_offset, out width, out height);
-			cell_area = Gdk.Rectangle.New (native_cell_area);
-			Marshal.FreeHGlobal (native_cell_area);
-		}
-	}
+        [DllImport("gtksharpglue-3")]
+        static extern void gtksharp_cellrenderer_base_get_size(IntPtr cell, IntPtr widget, IntPtr cell_area, out int x_offset, out int y_offset, out int width, out int height);
+
+        private void InternalOnGetSize(Gtk.Widget widget, ref Gdk.Rectangle cell_area, out int x_offset, out int y_offset, out int width, out int height)
+        {
+            IntPtr native_cell_area = GLib.Marshaller.StructureToPtrAlloc(cell_area);
+            gtksharp_cellrenderer_base_get_size(Handle, widget == null ? IntPtr.Zero : widget.Handle, native_cell_area, out x_offset, out y_offset, out width, out height);
+            cell_area = Gdk.Rectangle.New(native_cell_area);
+            Marshal.FreeHGlobal(native_cell_area);
+        }
+    }
 }

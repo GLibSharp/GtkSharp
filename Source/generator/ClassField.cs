@@ -17,31 +17,35 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Collections;
-	using System.IO;
-	using System.Xml;
+    using System;
+    using System.Collections;
+    using System.IO;
+    using System.Xml;
 
-	public class ClassField : StructField {
-		protected new ObjectBase container_type;
+    public class ClassField : StructField
+    {
+        protected new ObjectBase container_type;
 
-		public ClassField (XmlElement elem, ObjectBase container_type) : base (elem, container_type) {
-			this.container_type = container_type;
-		}
+        public ClassField(XmlElement elem, ObjectBase container_type) : base(elem, container_type)
+        {
+            this.container_type = container_type;
+        }
 
-		public override bool Validate (LogWriter log)
-		{
-			if (!base.Validate (log))
-				return false;
+        public override bool Validate(LogWriter log)
+        {
+            if (!base.Validate(log))
+                return false;
 
-			if (IsBitfield) {
-				log.Warn ("bitfields are not supported");
-				return false;
-			}
+            if (IsBitfield)
+            {
+                log.Warn("bitfields are not supported");
+                return false;
+            }
 
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

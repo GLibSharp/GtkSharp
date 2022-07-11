@@ -17,26 +17,31 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	[AttributeUsage (AttributeTargets.Enum)]
-	public sealed class GTypeAttribute : Attribute {
-		Type wrapper_type;
+    [AttributeUsage(AttributeTargets.Enum)]
+    public sealed class GTypeAttribute : Attribute
+    {
+        Type wrapper_type;
 
-		public GTypeAttribute (Type wrapper_type)
-		{
-			this.wrapper_type = wrapper_type;
-		}
+        public GTypeAttribute(Type wrapper_type)
+        {
+            this.wrapper_type = wrapper_type;
+        }
 
-		public Type WrapperType {
-			get {
-				return wrapper_type;
-			}
-			set {
-				wrapper_type = value;
-			}
-		}
-	}
+        public Type WrapperType
+        {
+            get
+            {
+                return wrapper_type;
+            }
+            set
+            {
+                wrapper_type = value;
+            }
+        }
+    }
 }

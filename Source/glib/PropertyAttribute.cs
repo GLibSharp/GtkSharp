@@ -17,53 +17,64 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	public sealed class PropertyAttribute : Attribute {
+    public sealed class PropertyAttribute : Attribute
+    {
 
-		string blurb;
-		string nickname;
-		string name;
+        string blurb;
+        string nickname;
+        string name;
 
-		public PropertyAttribute (string name)
-		{
-			this.name = name;
-		}
+        public PropertyAttribute(string name)
+        {
+            this.name = name;
+        }
 
-		public PropertyAttribute (string name, string nickname, string blurb)
-		{
-			this.name = name;
-			this.nickname = nickname;
-			this.blurb = blurb;
-		}
+        public PropertyAttribute(string name, string nickname, string blurb)
+        {
+            this.name = name;
+            this.nickname = nickname;
+            this.blurb = blurb;
+        }
 
-		public string Blurb {
-			get {
-				return blurb;
-			}
-			set {
-				blurb = value;
-			}
-		}
+        public string Blurb
+        {
+            get
+            {
+                return blurb;
+            }
+            set
+            {
+                blurb = value;
+            }
+        }
 
-		public string Name {
-			get {
-				return name;
-			}
-			set {
-				name = value;
-			}
-		}
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
 
-		public string Nickname {
-			get {
-				return nickname;
-			}
-			set {
-				nickname = value;
-			}
-		}
-	}
+        public string Nickname
+        {
+            get
+            {
+                return nickname;
+            }
+            set
+            {
+                nickname = value;
+            }
+        }
+    }
 }

@@ -15,30 +15,33 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class Entry {
+    public partial class Entry
+    {
 
-		public int InsertText (string new_text)
-		{
-			int position = 0;
+        public int InsertText(string new_text)
+        {
+            int position = 0;
 
-			InsertText (new_text, ref position);
+            InsertText(new_text, ref position);
 
-			return position;
-		}
+            return position;
+        }
 
-		public Entry(string initialText): this()
-		{
-			Text = initialText;
-		}
+        public Entry(string initialText) : this()
+        {
+            Text = initialText;
+        }
 
-		[Obsolete("Replaced by IsEditable property")]
-		public bool Editable {
-			get { return IsEditable; }
-			set { IsEditable = value; }
-		}
-	}
+        [Obsolete("Replaced by IsEditable property")]
+        public bool Editable
+        {
+            get { return IsEditable; }
+            set { IsEditable = value; }
+        }
+    }
 }

@@ -31,12 +31,12 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum LineJoin
-	{
-		Miter,
-		Round,
-		Bevel
-	}
+    [Serializable]
+    public enum LineJoin
+    {
+        Miter,
+        Round,
+        Bevel
+    }
 }
 

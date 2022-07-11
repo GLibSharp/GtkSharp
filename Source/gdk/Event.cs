@@ -21,136 +21,149 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class Event : GLib.IWrapper {
+    public class Event : GLib.IWrapper
+    {
 
-		IntPtr raw;
+        IntPtr raw;
 
-		public Event(IntPtr raw) 
-		{
-			this.raw = raw;
-		}
+        public Event(IntPtr raw)
+        {
+            this.raw = raw;
+        }
 
-		public IntPtr Handle {
-			get { return raw; }
-		}
+        public IntPtr Handle
+        {
+            get { return raw; }
+        }
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gdk_event_get_type ();
+        [DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gdk_event_get_type();
 
-		public static GLib.GType GType {
-			get { return new GLib.GType (gdk_event_get_type ()); }
-		}
+        public static GLib.GType GType
+        {
+            get { return new GLib.GType(gdk_event_get_type()); }
+        }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			public EventType type;
-			public IntPtr window;
-			public sbyte send_event;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            public EventType type;
+            public IntPtr window;
+            public sbyte send_event;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (raw, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(raw, typeof(NativeStruct)); }
+        }
 
-		public EventType Type {
-			get { return Native.type; }
-			set {
-				NativeStruct native = Native;
-				native.type = value;
-				Marshal.StructureToPtr (native, raw, false);
-			}
-		}
+        public EventType Type
+        {
+            get { return Native.type; }
+            set
+            {
+                NativeStruct native = Native;
+                native.type = value;
+                Marshal.StructureToPtr(native, raw, false);
+            }
+        }
 
-		public Window Window {
-			get { return GLib.Object.GetObject (Native.window, false) as Window; }
-			set {
-				NativeStruct native = Native;
-				native.window = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, raw, false);
-			}
-		}
+        public Window Window
+        {
+            get { return GLib.Object.GetObject(Native.window, false) as Window; }
+            set
+            {
+                NativeStruct native = Native;
+                native.window = value == null ? IntPtr.Zero : value.Handle;
+                Marshal.StructureToPtr(native, raw, false);
+            }
+        }
 
-		public bool SendEvent {
-			get { return Native.send_event != 0; }
-			set {
-				NativeStruct native = Native;
-				native.send_event = (sbyte) (value ? 1 : 0);
-				Marshal.StructureToPtr (native, raw, false);
-			}
-		}
+        public bool SendEvent
+        {
+            get { return Native.send_event != 0; }
+            set
+            {
+                NativeStruct native = Native;
+                native.send_event = (sbyte)(value ? 1 : 0);
+                Marshal.StructureToPtr(native, raw, false);
+            }
+        }
 
-		public static Event New (IntPtr raw)
-		{
-			return GetEvent (raw);
-		}
+        public static Event New(IntPtr raw)
+        {
+            return GetEvent(raw);
+        }
 
-		public static Event GetEvent (IntPtr raw)
-		{
-			if (raw == IntPtr.Zero)
-				return null;
+        public static Event GetEvent(IntPtr raw)
+        {
+            if (raw == IntPtr.Zero)
+                return null;
 
-			NativeStruct native = (NativeStruct) Marshal.PtrToStructure (raw, typeof(NativeStruct));
-			switch (native.type) {
-			case EventType.Expose:
-				return new EventExpose (raw);
-			case EventType.MotionNotify:
-				return new EventMotion (raw);
-			case EventType.ButtonPress:
-			case EventType.TwoButtonPress:
-			case EventType.ThreeButtonPress:
-			case EventType.ButtonRelease:
-				return new EventButton (raw);
-			case EventType.KeyPress:
-			case EventType.KeyRelease:
-				return new EventKey (raw);
-			case EventType.EnterNotify:
-			case EventType.LeaveNotify:
-				return new EventCrossing (raw);
-			case EventType.FocusChange:
-				return new EventFocus (raw);
-			case EventType.Configure:
-				return new EventConfigure (raw);
-			case EventType.PropertyNotify:
-				return new EventProperty (raw);
-			case EventType.SelectionClear:
-			case EventType.SelectionRequest:
-			case EventType.SelectionNotify:
-				return new EventSelection (raw);
-			case EventType.ProximityIn:
-			case EventType.ProximityOut:
-				return new EventProximity (raw);
-			case EventType.DragEnter:
-			case EventType.DragLeave:
-			case EventType.DragMotion:
-			case EventType.DragStatus:
-			case EventType.DropStart:
-			case EventType.DropFinished:
-				return new EventDND (raw);
-			case EventType.VisibilityNotify:
-				return new EventVisibility (raw);
-			case EventType.Scroll:
-				return new EventScroll (raw);
-			case EventType.WindowState:
-				return new EventWindowState (raw);
-			case EventType.Setting:
-				return new EventSetting (raw);
-			case EventType.OwnerChange:
-				return new EventOwnerChange (raw);
-			case EventType.GrabBroken:
-				return new EventGrabBroken (raw);
-			case EventType.Map:
-			case EventType.Unmap:
-			case EventType.Delete:
-			case EventType.Destroy:
-			default:
-				return new Gdk.Event (raw);
-			}
-		}
-	}
+            NativeStruct native = (NativeStruct)Marshal.PtrToStructure(raw, typeof(NativeStruct));
+            switch (native.type)
+            {
+                case EventType.Expose:
+                    return new EventExpose(raw);
+                case EventType.MotionNotify:
+                    return new EventMotion(raw);
+                case EventType.ButtonPress:
+                case EventType.TwoButtonPress:
+                case EventType.ThreeButtonPress:
+                case EventType.ButtonRelease:
+                    return new EventButton(raw);
+                case EventType.KeyPress:
+                case EventType.KeyRelease:
+                    return new EventKey(raw);
+                case EventType.EnterNotify:
+                case EventType.LeaveNotify:
+                    return new EventCrossing(raw);
+                case EventType.FocusChange:
+                    return new EventFocus(raw);
+                case EventType.Configure:
+                    return new EventConfigure(raw);
+                case EventType.PropertyNotify:
+                    return new EventProperty(raw);
+                case EventType.SelectionClear:
+                case EventType.SelectionRequest:
+                case EventType.SelectionNotify:
+                    return new EventSelection(raw);
+                case EventType.ProximityIn:
+                case EventType.ProximityOut:
+                    return new EventProximity(raw);
+                case EventType.DragEnter:
+                case EventType.DragLeave:
+                case EventType.DragMotion:
+                case EventType.DragStatus:
+                case EventType.DropStart:
+                case EventType.DropFinished:
+                    return new EventDND(raw);
+                case EventType.VisibilityNotify:
+                    return new EventVisibility(raw);
+                case EventType.Scroll:
+                    return new EventScroll(raw);
+                case EventType.WindowState:
+                    return new EventWindowState(raw);
+                case EventType.Setting:
+                    return new EventSetting(raw);
+                case EventType.OwnerChange:
+                    return new EventOwnerChange(raw);
+                case EventType.GrabBroken:
+                    return new EventGrabBroken(raw);
+                case EventType.Map:
+                case EventType.Unmap:
+                case EventType.Delete:
+                case EventType.Destroy:
+                default:
+                    return new Gdk.Event(raw);
+            }
+        }
+    }
 }
 

@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrGravity : Attribute {
+    public class AttrGravity : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_gravity_new (int gravity);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_gravity_new(int gravity);
 
-		public AttrGravity (Gravity gravity) : this (pango_attr_gravity_new ((int) gravity)) {}
+        public AttrGravity(Gravity gravity) : this(pango_attr_gravity_new((int)gravity)) { }
 
-		internal AttrGravity (IntPtr raw) : base (raw) {}
+        internal AttrGravity(IntPtr raw) : base(raw) { }
 
-		public Gravity Gravity {
-			get {
-				return (Gravity) (AttrInt.New (Handle).Value);
-			}
-		}
-	}
+        public Gravity Gravity
+        {
+            get
+            {
+                return (Gravity)(AttrInt.New(Handle).Value);
+            }
+        }
+    }
 }

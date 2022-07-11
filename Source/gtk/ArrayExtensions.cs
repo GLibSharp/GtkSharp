@@ -18,18 +18,19 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
-	using System;
+namespace Gtk
+{
+    using System;
 
-	static class ArrayExtensions
-	{
-		public static object[] Explode (this Array arr)
-		{
-			if (arr == null)
-				return null;
-			var ret = new object [arr.Length];
-			arr.CopyTo (ret, 0);
-			return ret;
-		}
-	}
+    static class ArrayExtensions
+    {
+        public static object[] Explode(this Array arr)
+        {
+            if (arr == null)
+                return null;
+            var ret = new object[arr.Length];
+            arr.CopyTo(ret, 0);
+            return ret;
+        }
+    }
 }

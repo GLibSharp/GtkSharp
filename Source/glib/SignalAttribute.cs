@@ -1,9 +1,9 @@
 // SignalAttribute.cs
 //
 // Author:
-//   Ricardo Fernández Pascual <ric@users.sourceforge.net>
+//   Ricardo Fernï¿½ndez Pascual <ric@users.sourceforge.net>
 //
-// Copyright (c) Ricardo Fernández Pascual <ric@users.sourceforge.net>
+// Copyright (c) Ricardo Fernï¿½ndez Pascual <ric@users.sourceforge.net>
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of version 2 of the Lesser GNU General 
@@ -20,28 +20,30 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	[Serializable]
-	[AttributeUsage (AttributeTargets.Event, Inherited=false)]
-	public sealed class SignalAttribute : Attribute 
-	{
-		private string cname;
+    [Serializable]
+    [AttributeUsage(AttributeTargets.Event, Inherited = false)]
+    public sealed class SignalAttribute : Attribute
+    {
+        private string cname;
 
-		public SignalAttribute (string cname)
-		{
-			this.cname = cname;
-		}
+        public SignalAttribute(string cname)
+        {
+            this.cname = cname;
+        }
 
-		private SignalAttribute () {}
+        private SignalAttribute() { }
 
-		public string CName 
-		{
-			get {
-				return cname;
-			}
-		}
-	}
+        public string CName
+        {
+            get
+            {
+                return cname;
+            }
+        }
+    }
 }

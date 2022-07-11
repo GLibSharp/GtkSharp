@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrWeight : Attribute {
+    public class AttrWeight : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_weight_new (Pango.Weight weight);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_weight_new(Pango.Weight weight);
 
-		public AttrWeight (Pango.Weight weight) : this (pango_attr_weight_new (weight)) {}
+        public AttrWeight(Pango.Weight weight) : this(pango_attr_weight_new(weight)) { }
 
-		internal AttrWeight (IntPtr raw) : base (raw) {}
+        internal AttrWeight(IntPtr raw) : base(raw) { }
 
-		public Pango.Weight Weight {
-			get {
-				return (Pango.Weight) (AttrInt.New (Handle).Value);
-			}
-		}
-	}
+        public Pango.Weight Weight
+        {
+            get
+            {
+                return (Pango.Weight)(AttrInt.New(Handle).Value);
+            }
+        }
+    }
 }

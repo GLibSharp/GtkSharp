@@ -18,31 +18,36 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Printer {
+    public partial class Printer
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_enumerate_printers (GtkSharp.PrinterFuncNative func, IntPtr func_data, GLib.DestroyNotify destroy, bool wait);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_enumerate_printers(GtkSharp.PrinterFuncNative func, IntPtr func_data, GLib.DestroyNotify destroy, bool wait);
 
-		public static void EnumeratePrinters (Gtk.PrinterFunc func, bool wait) 
-		{
-			GtkSharp.PrinterFuncWrapper func_wrapper;
-			IntPtr func_data;
-			GLib.DestroyNotify destroy;
-			if (func == null) {
-				func_wrapper = null;
-				func_data = IntPtr.Zero;
-				destroy = null;
-			} else {
-				func_wrapper = new GtkSharp.PrinterFuncWrapper (func);
-				func_data = (IntPtr) GCHandle.Alloc (func_wrapper);
-				destroy = GLib.DestroyHelper.NotifyHandler;
-			}
-			gtk_enumerate_printers (func_wrapper.NativeDelegate, func_data, destroy, wait);
-		}
-	}
+        public static void EnumeratePrinters(Gtk.PrinterFunc func, bool wait)
+        {
+            GtkSharp.PrinterFuncWrapper func_wrapper;
+            IntPtr func_data;
+            GLib.DestroyNotify destroy;
+            if (func == null)
+            {
+                func_wrapper = null;
+                func_data = IntPtr.Zero;
+                destroy = null;
+            }
+            else
+            {
+                func_wrapper = new GtkSharp.PrinterFuncWrapper(func);
+                func_data = (IntPtr)GCHandle.Alloc(func_wrapper);
+                destroy = GLib.DestroyHelper.NotifyHandler;
+            }
+            gtk_enumerate_printers(func_wrapper.NativeDelegate, func_data, destroy, wait);
+        }
+    }
 }

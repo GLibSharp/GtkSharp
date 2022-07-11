@@ -33,24 +33,24 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum Operator
-	{
-		Clear,
-		Source,
-		Over,
-		In,
-		Out,
-		Atop,
+    [Serializable]
+    public enum Operator
+    {
+        Clear,
+        Source,
+        Over,
+        In,
+        Out,
+        Atop,
 
-		Dest,
-		DestOver,
-		DestIn,
-		DestOut,
-		DestAtop,
-		
-		Xor,
-		Add,
-		Saturate,
-	}
+        Dest,
+        DestOver,
+        DestIn,
+        DestOut,
+        DestAtop,
+
+        Xor,
+        Add,
+        Saturate,
+    }
 }

@@ -19,63 +19,68 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Runtime.InteropServices;
-	
-	public class Argv {
+    using System;
+    using System.Runtime.InteropServices;
 
-		IntPtr[] arg_ptrs;
-		IntPtr handle;
-		bool add_progname = false;
+    public class Argv
+    {
 
-		~Argv ()
-		{
-			Marshaller.Free (arg_ptrs);
-			Marshaller.Free (handle);
-		}
-				
-		public Argv (string[] args) : this (args, false) {}
-		
-		public Argv (string[] args, bool add_program_name)
-		{
-			add_progname = add_program_name;
-			if (add_progname) {
-				string[] full = new string [args.Length + 1];
-				full [0] = System.Environment.GetCommandLineArgs ()[0];
-				args.CopyTo (full, 1);
-				args = full;
-			}
+        IntPtr[] arg_ptrs;
+        IntPtr handle;
+        bool add_progname = false;
 
-			arg_ptrs = new IntPtr [args.Length];
+        ~Argv()
+        {
+            Marshaller.Free(arg_ptrs);
+            Marshaller.Free(handle);
+        }
 
-			for (int i = 0; i < args.Length; i++)
-				arg_ptrs [i] = Marshaller.StringToPtrGStrdup (args[i]);
-				
-			handle = Marshaller.Malloc ((ulong)(IntPtr.Size * args.Length));
+        public Argv(string[] args) : this(args, false) { }
 
-			for (int i = 0; i < args.Length; i++)
-				Marshal.WriteIntPtr (handle, i * IntPtr.Size, arg_ptrs [i]);
-		}
+        public Argv(string[] args, bool add_program_name)
+        {
+            add_progname = add_program_name;
+            if (add_progname)
+            {
+                string[] full = new string[args.Length + 1];
+                full[0] = System.Environment.GetCommandLineArgs()[0];
+                args.CopyTo(full, 1);
+                args = full;
+            }
 
-		public IntPtr Handle {
-			get {
-				return handle;
-			}
-		}
+            arg_ptrs = new IntPtr[args.Length];
 
-		public string[] GetArgs (int argc)
-		{
-			int count = add_progname ? argc - 1 : argc;
-			int idx = add_progname ? 1 : 0;
-			string[] result = new string [count];
+            for (int i = 0; i < args.Length; i++)
+                arg_ptrs[i] = Marshaller.StringToPtrGStrdup(args[i]);
 
-			for (int i = 0; i < count; i++, idx++) 
-				result [i] = Marshaller.Utf8PtrToString (Marshal.ReadIntPtr (handle, idx * IntPtr.Size));
+            handle = Marshaller.Malloc((ulong)(IntPtr.Size * args.Length));
 
-			return result;
-		}
-	}
+            for (int i = 0; i < args.Length; i++)
+                Marshal.WriteIntPtr(handle, i * IntPtr.Size, arg_ptrs[i]);
+        }
+
+        public IntPtr Handle
+        {
+            get
+            {
+                return handle;
+            }
+        }
+
+        public string[] GetArgs(int argc)
+        {
+            int count = add_progname ? argc - 1 : argc;
+            int idx = add_progname ? 1 : 0;
+            string[] result = new string[count];
+
+            for (int i = 0; i < count; i++, idx++)
+                result[i] = Marshaller.Utf8PtrToString(Marshal.ReadIntPtr(handle, idx * IntPtr.Size));
+
+            return result;
+        }
+    }
 }
 

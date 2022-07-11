@@ -13,17 +13,19 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial struct AccelKey {
+    public partial struct AccelKey
+    {
 
-		public AccelKey (Gdk.Key key, Gdk.ModifierType mods, Gtk.AccelFlags flags)
-		{
-			this.Key = key;
-			this.AccelMods = mods;
-			this.AccelFlags = (ushort)flags;
-		}
-	}
+        public AccelKey(Gdk.Key key, Gdk.ModifierType mods, Gtk.AccelFlags flags)
+        {
+            this.Key = key;
+            this.AccelMods = mods;
+            this.AccelFlags = (ushort)flags;
+        }
+    }
 }

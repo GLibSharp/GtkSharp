@@ -21,133 +21,148 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class PixbufLoader {
+    public partial class PixbufLoader
+    {
 
-		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_ref (IntPtr handle);
+        [DllImport("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_object_ref(IntPtr handle);
 
-		internal IntPtr PixbufHandle {
-			get {
-				return g_object_ref (gdk_pixbuf_loader_get_pixbuf (Handle));
-			}
-		}
+        internal IntPtr PixbufHandle
+        {
+            get
+            {
+                return g_object_ref(gdk_pixbuf_loader_get_pixbuf(Handle));
+            }
+        }
 
-		internal IntPtr AnimationHandle {
-			get {
-				return g_object_ref (gdk_pixbuf_loader_get_animation (Handle));
-			}
-		}
+        internal IntPtr AnimationHandle
+        {
+            get
+            {
+                return g_object_ref(gdk_pixbuf_loader_get_animation(Handle));
+            }
+        }
 
-  		public bool Write (byte[] bytes)
-  		{
-			return this.Write (bytes, (ulong) bytes.Length);
-  		}
-  
-		[Obsolete ("Replaced by Write (byte[], ulong) for 64 bit portability")]
-		public bool Write (byte[] bytes, uint count)
-		{
-			return this.Write (bytes, (ulong) count);
-		}
+        public bool Write(byte[] bytes)
+        {
+            return this.Write(bytes, (ulong)bytes.Length);
+        }
 
-		private void LoadFromStream (System.IO.Stream input)
-		{
-			byte [] buffer = new byte [8192];
-			int n;
+        [Obsolete("Replaced by Write (byte[], ulong) for 64 bit portability")]
+        public bool Write(byte[] bytes, uint count)
+        {
+            return this.Write(bytes, (ulong)count);
+        }
 
-			while ((n = input.Read (buffer, 0, 8192)) != 0)
-				Write (buffer, (uint) n);
-		}
-		
-		public PixbufLoader (string file, int width, int height) : this ()
-		{
-			SetSize(width, height);
-			
-			using(System.IO.FileStream stream = new System.IO.FileStream(file, System.IO.FileMode.Open, System.IO.FileAccess.Read))
-			{
-				InitFromStream(stream);
-			}
-		}
-		
-		public PixbufLoader (System.IO.Stream stream) : this ()
-		{
-			InitFromStream(stream);
-		}
-		
-		private void InitFromStream (System.IO.Stream stream)
-		{
-			if (stream == null)
-				throw new ArgumentNullException ("stream");
+        private void LoadFromStream(System.IO.Stream input)
+        {
+            byte[] buffer = new byte[8192];
+            int n;
 
-			try {
-				LoadFromStream (stream);
-			} finally {
-				Close ();
-			}
-		}
-		
-		public PixbufLoader (System.IO.Stream stream, int width, int height) : this()
-		{
-			SetSize(width, height);
-			InitFromStream(stream);
-		}
+            while ((n = input.Read(buffer, 0, 8192)) != 0)
+                Write(buffer, (uint)n);
+        }
 
-		public PixbufLoader (System.Reflection.Assembly assembly, string resource) : this ()
-		{
-			InitFromAssemblyResource(assembly == null ? System.Reflection.Assembly.GetCallingAssembly () : assembly, resource);
-		}
-		
-		private void InitFromAssemblyResource(System.Reflection.Assembly assembly, string resource)
-		{
-			if (assembly == null)
-				throw new ArgumentNullException ("assembly");
+        public PixbufLoader(string file, int width, int height) : this()
+        {
+            SetSize(width, height);
 
-			System.IO.Stream s = assembly.GetManifestResourceStream (resource);
-			if (s == null)
-				throw new ArgumentException ("'" + resource + "' is not a valid resource name of assembly '" + assembly + "'.");
+            using (System.IO.FileStream stream = new System.IO.FileStream(file, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                InitFromStream(stream);
+            }
+        }
 
-			try {
-				LoadFromStream (s);
-			} finally {
-				Close ();
-			}
-		}
-		
-		public PixbufLoader (System.Reflection.Assembly assembly, string resource, int width, int height) : this ()
-		{
-			SetSize(width, height);
-			InitFromAssemblyResource(assembly == null ? System.Reflection.Assembly.GetCallingAssembly () : assembly, resource);
-		}
-		
-		public PixbufLoader (byte[] buffer) : this()
-		{
-			InitFromBuffer(buffer);
-		}
-		
-		private void InitFromBuffer (byte[] buffer)
-		{
-			try {
-				Write (buffer, (uint)buffer.Length);
-			} finally {
-				Close ();
-			}
-		}
-		
-		
-		public PixbufLoader (byte[] buffer, int width, int height) : this()
-		{
-			SetSize(width, height);
-			InitFromBuffer(buffer);
-		}
+        public PixbufLoader(System.IO.Stream stream) : this()
+        {
+            InitFromStream(stream);
+        }
 
-		static public PixbufLoader LoadFromResource (string resource)
-		{
-			return new PixbufLoader (System.Reflection.Assembly.GetCallingAssembly (), resource);
-		}
-	}
+        private void InitFromStream(System.IO.Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
+            try
+            {
+                LoadFromStream(stream);
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public PixbufLoader(System.IO.Stream stream, int width, int height) : this()
+        {
+            SetSize(width, height);
+            InitFromStream(stream);
+        }
+
+        public PixbufLoader(System.Reflection.Assembly assembly, string resource) : this()
+        {
+            InitFromAssemblyResource(assembly == null ? System.Reflection.Assembly.GetCallingAssembly() : assembly, resource);
+        }
+
+        private void InitFromAssemblyResource(System.Reflection.Assembly assembly, string resource)
+        {
+            if (assembly == null)
+                throw new ArgumentNullException("assembly");
+
+            System.IO.Stream s = assembly.GetManifestResourceStream(resource);
+            if (s == null)
+                throw new ArgumentException("'" + resource + "' is not a valid resource name of assembly '" + assembly + "'.");
+
+            try
+            {
+                LoadFromStream(s);
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public PixbufLoader(System.Reflection.Assembly assembly, string resource, int width, int height) : this()
+        {
+            SetSize(width, height);
+            InitFromAssemblyResource(assembly == null ? System.Reflection.Assembly.GetCallingAssembly() : assembly, resource);
+        }
+
+        public PixbufLoader(byte[] buffer) : this()
+        {
+            InitFromBuffer(buffer);
+        }
+
+        private void InitFromBuffer(byte[] buffer)
+        {
+            try
+            {
+                Write(buffer, (uint)buffer.Length);
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+
+        public PixbufLoader(byte[] buffer, int width, int height) : this()
+        {
+            SetSize(width, height);
+            InitFromBuffer(buffer);
+        }
+
+        static public PixbufLoader LoadFromResource(string resource)
+        {
+            return new PixbufLoader(System.Reflection.Assembly.GetCallingAssembly(), resource);
+        }
+    }
 }
 

@@ -19,40 +19,44 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
+    using System;
 
-	public class MarshalGen : SimpleBase {
-		
-		string mtype;
-		string call_fmt;
-		string from_fmt;
+    public class MarshalGen : SimpleBase
+    {
 
-		public MarshalGen (string ctype, string type, string mtype, string call_fmt, string from_fmt, string default_value) : base (ctype, type, default_value)
-		{
-			this.mtype = mtype;
-			this.call_fmt = call_fmt;
-			this.from_fmt = from_fmt;
-		}
-		
-		public MarshalGen (string ctype, string type, string mtype, string call_fmt, string from_fmt) : this (ctype, type, mtype, call_fmt, from_fmt, "null") { }
+        string mtype;
+        string call_fmt;
+        string from_fmt;
 
-		public override string MarshalType {
-			get {
-				return mtype;
-			}
-		}
+        public MarshalGen(string ctype, string type, string mtype, string call_fmt, string from_fmt, string default_value) : base(ctype, type, default_value)
+        {
+            this.mtype = mtype;
+            this.call_fmt = call_fmt;
+            this.from_fmt = from_fmt;
+        }
 
-		public override string CallByName (string var)
-		{
-			return String.Format (call_fmt, var);
-		}
-		
-		public override string FromNative (string var)
-		{
-			return String.Format (from_fmt, var);
-		}
-	}
+        public MarshalGen(string ctype, string type, string mtype, string call_fmt, string from_fmt) : this(ctype, type, mtype, call_fmt, from_fmt, "null") { }
+
+        public override string MarshalType
+        {
+            get
+            {
+                return mtype;
+            }
+        }
+
+        public override string CallByName(string var)
+        {
+            return String.Format(call_fmt, var);
+        }
+
+        public override string FromNative(string var)
+        {
+            return String.Format(from_fmt, var);
+        }
+    }
 }
 

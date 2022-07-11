@@ -20,51 +20,60 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class ComboBox {
+    public partial class ComboBox
+    {
 
-		public ComboBox (string[] entries) : this (new ListStore (typeof (string)))
-		{
-			ListStore store = Model as ListStore;
-			CellRendererText cell = new CellRendererText ();
-			PackStart (cell, true);
-			SetAttributes (cell, "text", 0);
-			foreach (string entry in entries)
-				store.AppendValues (entry);
-		}
+        public ComboBox(string[] entries) : this(new ListStore(typeof(string)))
+        {
+            ListStore store = Model as ListStore;
+            CellRendererText cell = new CellRendererText();
+            PackStart(cell, true);
+            SetAttributes(cell, "text", 0);
+            foreach (string entry in entries)
+                store.AppendValues(entry);
+        }
 
-		protected ComboBox (bool with_entry) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (ComboBox)) {
-				CreateNativeObject (new string[] { "has-entry" }, new GLib.Value[] { new GLib.Value (with_entry) });
-				return;
-			}
-				
-			if (with_entry) {
-				Raw = gtk_combo_box_new_with_entry ();
-			} else {
-				Raw = gtk_combo_box_new ();
-			}
-		}
+        protected ComboBox(bool with_entry) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(ComboBox))
+            {
+                CreateNativeObject(new string[] { "has-entry" }, new GLib.Value[] { new GLib.Value(with_entry) });
+                return;
+            }
 
-		public Gtk.Entry Entry {
-			get {
-				return (Gtk.Entry)Child;
-			}
-		}
+            if (with_entry)
+            {
+                Raw = gtk_combo_box_new_with_entry();
+            }
+            else
+            {
+                Raw = gtk_combo_box_new();
+            }
+        }
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
-			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+        public Gtk.Entry Entry
+        {
+            get
+            {
+                return (Gtk.Entry)Child;
+            }
+        }
 
-			ClearAttributes (cell);
-			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
-			}
-		}
-	}
+        public void SetAttributes(CellRenderer cell, params object[] attrs)
+        {
+            if (attrs.Length % 2 != 0)
+                throw new ArgumentException("attrs should contain pairs of attribute/col");
+
+            ClearAttributes(cell);
+            for (int i = 0; i < attrs.Length - 1; i += 2)
+            {
+                AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
+            }
+        }
+    }
 }

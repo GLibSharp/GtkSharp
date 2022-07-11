@@ -17,24 +17,29 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
-	using System;
+namespace Gtk
+{
+    using System;
 
-	public sealed class ChildPropertyAttribute : Attribute {
-		string name;
+    public sealed class ChildPropertyAttribute : Attribute
+    {
+        string name;
 
-		public ChildPropertyAttribute (string name)
-		{
-			this.name = name;
-		}
+        public ChildPropertyAttribute(string name)
+        {
+            this.name = name;
+        }
 
-		public string Name {
-			get {
-				return name;
-			}
-			set {
-				name = value;
-			}
-		}
-	}
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+    }
 }

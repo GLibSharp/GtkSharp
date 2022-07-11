@@ -16,18 +16,20 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	internal struct AttrInt {
-		Attribute.NativeStruct attr;
-		public int Value;
+    internal struct AttrInt
+    {
+        Attribute.NativeStruct attr;
+        public int Value;
 
-		public static AttrInt New (IntPtr raw)
-		{
-			return (AttrInt) Marshal.PtrToStructure (raw, typeof (AttrInt));
-		}
-	}
+        public static AttrInt New(IntPtr raw)
+        {
+            return (AttrInt)Marshal.PtrToStructure(raw, typeof(AttrInt));
+        }
+    }
 }

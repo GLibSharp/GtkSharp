@@ -20,270 +20,299 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Collections;
+    using System.Runtime.InteropServices;
 
-	public abstract class ListBase : IDisposable, ICollection, GLib.IWrapper, ICloneable {
+    public abstract class ListBase : IDisposable, ICollection, GLib.IWrapper, ICloneable
+    {
 
-		private IntPtr list_ptr = IntPtr.Zero;
-		private int length = -1;
-		private bool managed = false;
-		internal bool elements_owned = false;
-		protected System.Type element_type = null;
+        private IntPtr list_ptr = IntPtr.Zero;
+        private int length = -1;
+        private bool managed = false;
+        internal bool elements_owned = false;
+        protected System.Type element_type = null;
 
-		abstract internal IntPtr NthData (uint index);
-		abstract internal int Length (IntPtr list);
-		abstract internal void Free (IntPtr list);
-		abstract internal IntPtr Append (IntPtr current, IntPtr raw);
-		abstract internal IntPtr Prepend (IntPtr current, IntPtr raw);
+        abstract internal IntPtr NthData(uint index);
+        abstract internal int Length(IntPtr list);
+        abstract internal void Free(IntPtr list);
+        abstract internal IntPtr Append(IntPtr current, IntPtr raw);
+        abstract internal IntPtr Prepend(IntPtr current, IntPtr raw);
 
-		internal ListBase (IntPtr list, System.Type element_type, bool owned, bool elements_owned)
-		{
-			list_ptr = list;
-			this.element_type = element_type;
-			managed = owned;
-			this.elements_owned = elements_owned;
-		}
-		
-		~ListBase ()
-		{
-			Dispose (false);
-		}
-		
-		[Obsolete ("Replaced by owned parameter on ctor.")]
-		public bool Managed {
-			set { managed = value; }
-		}
-		
-		public IntPtr Handle {
-			get {
-				return list_ptr;
-			}
-		}
+        internal ListBase(IntPtr list, System.Type element_type, bool owned, bool elements_owned)
+        {
+            list_ptr = list;
+            this.element_type = element_type;
+            managed = owned;
+            this.elements_owned = elements_owned;
+        }
 
-		public void Append (IntPtr raw)
-		{
-			list_ptr = Append (list_ptr, raw);
-		}
+        ~ListBase()
+        {
+            Dispose(false);
+        }
 
-		public void Append (string item)
-		{
-			this.Append (Marshaller.StringToPtrGStrdup (item));
-		}
+        [Obsolete("Replaced by owned parameter on ctor.")]
+        public bool Managed
+        {
+            set { managed = value; }
+        }
 
-		public void Append (object item)
-		{
-			this.Append (AllocNativeElement (item));
-		}
+        public IntPtr Handle
+        {
+            get
+            {
+                return list_ptr;
+            }
+        }
 
-		public void Prepend (IntPtr raw)
-		{
-			list_ptr = Prepend (list_ptr, raw);
-		}
+        public void Append(IntPtr raw)
+        {
+            list_ptr = Append(list_ptr, raw);
+        }
 
-		// ICollection
-		public int Count {
-			get {
-				if (length == -1)
-					length = Length (list_ptr);
-				return length;
-			}
-		}
+        public void Append(string item)
+        {
+            this.Append(Marshaller.StringToPtrGStrdup(item));
+        }
 
-		public object this [int index] { 
-			get { 
-				IntPtr data = NthData ((uint) index);
-				object ret = null;
-				ret = DataMarshal (data);
-				return ret;
-			}
-		}
+        public void Append(object item)
+        {
+            this.Append(AllocNativeElement(item));
+        }
 
-		// Synchronization could be tricky here. Hmm.
-		public bool IsSynchronized {
-			get { return false; }
-		}
+        public void Prepend(IntPtr raw)
+        {
+            list_ptr = Prepend(list_ptr, raw);
+        }
 
-		public object SyncRoot {
-			get { return null; }
-		}
+        // ICollection
+        public int Count
+        {
+            get
+            {
+                if (length == -1)
+                    length = Length(list_ptr);
+                return length;
+            }
+        }
 
-		public void CopyTo (Array array, int index)
-		{
-			object[] orig = new object[Count];
-			int i = 0;
-			foreach (object o in this)
-				orig [i++] = o;
-			
-			orig.CopyTo (array, index); 
-		}
+        public object this[int index]
+        {
+            get
+            {
+                IntPtr data = NthData((uint)index);
+                object ret = null;
+                ret = DataMarshal(data);
+                return ret;
+            }
+        }
 
-		public class FilenameString {
-			private FilenameString () {}
-		}
+        // Synchronization could be tricky here. Hmm.
+        public bool IsSynchronized
+        {
+            get { return false; }
+        }
 
-		IntPtr AllocNativeElement (object element)
-		{
-			if (element_type == null) {
-				if (element is IWrapper)
-					return (element as IWrapper).Handle;
-				else
-					return (IntPtr) GCHandle.Alloc (element);
-			} else {
-				if (element_type == typeof (string))
-					return Marshaller.StringToPtrGStrdup (element as string);
-				else if (element_type == typeof (FilenameString))
-					return Marshaller.StringToFilenamePtr (element as string);
-				else if (element_type == typeof (IntPtr))
-					return (IntPtr) GCHandle.Alloc (element);
-				else if (typeof (IWrapper).IsAssignableFrom (element_type))
-					return (element as IWrapper).Handle;
-				else if (element_type == typeof (int))
-					return new IntPtr ((int) element);
-				else if (element_type.IsValueType)
-					return Marshaller.StructureToPtrAlloc (element);
-			}
-			return IntPtr.Zero;
-		}
+        public object SyncRoot
+        {
+            get { return null; }
+        }
 
-		internal object DataMarshal (IntPtr data) 
-		{
-			object ret = null;
-			if (element_type != null) {
-				if (element_type == typeof (string))
-					ret = Marshaller.Utf8PtrToString (data);
-				else if (element_type == typeof (FilenameString))
-					ret = Marshaller.FilenamePtrToString (data);
-				else if (element_type == typeof (IntPtr))
-					ret = data;
-				else if (element_type.IsSubclassOf (typeof (GLib.Object)))
-					ret = GLib.Object.GetObject (data, false);
-				else if (element_type.IsSubclassOf (typeof (GLib.Opaque)))
-					ret = GLib.Opaque.GetOpaque (data, element_type, elements_owned);
-				else if (element_type == typeof (int))
-					ret = (int) data;
-				else if (element_type.IsValueType)
-					ret = Marshal.PtrToStructure (data, element_type);
-				else if (element_type.IsInterface) {
-					Type adapter_type = element_type.Assembly.GetType (InterfaceToAdapterTypeName (element_type));
-					System.Reflection.MethodInfo method = adapter_type.GetMethod ("GetObject", new Type[] {typeof(IntPtr), typeof(bool)});
-					ret = method.Invoke (null, new object[] {data, false});
-				} else
-					ret = Activator.CreateInstance (element_type, new object[] {data});
+        public void CopyTo(Array array, int index)
+        {
+            object[] orig = new object[Count];
+            int i = 0;
+            foreach (object o in this)
+                orig[i++] = o;
 
-			} else if (Object.IsObject (data))
-				ret = GLib.Object.GetObject (data, false);
+            orig.CopyTo(array, index);
+        }
 
-			return ret;
-		}
+        public class FilenameString
+        {
+            private FilenameString() { }
+        }
 
-		static string InterfaceToAdapterTypeName (Type type)
-		{
-			string fullname = type.Namespace;
-			if (!String.IsNullOrEmpty (fullname)) {
-				fullname += ".";
-			}
-			fullname += type.Name.Substring (1); // IActivatable -> Activatable
-			return fullname + "Adapter";
-		}
+        IntPtr AllocNativeElement(object element)
+        {
+            if (element_type == null)
+            {
+                if (element is IWrapper)
+                    return (element as IWrapper).Handle;
+                else
+                    return (IntPtr)GCHandle.Alloc(element);
+            }
+            else
+            {
+                if (element_type == typeof(string))
+                    return Marshaller.StringToPtrGStrdup(element as string);
+                else if (element_type == typeof(FilenameString))
+                    return Marshaller.StringToFilenamePtr(element as string);
+                else if (element_type == typeof(IntPtr))
+                    return (IntPtr)GCHandle.Alloc(element);
+                else if (typeof(IWrapper).IsAssignableFrom(element_type))
+                    return (element as IWrapper).Handle;
+                else if (element_type == typeof(int))
+                    return new IntPtr((int)element);
+                else if (element_type.IsValueType)
+                    return Marshaller.StructureToPtrAlloc(element);
+            }
+            return IntPtr.Zero;
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_unref (IntPtr item);
+        internal object DataMarshal(IntPtr data)
+        {
+            object ret = null;
+            if (element_type != null)
+            {
+                if (element_type == typeof(string))
+                    ret = Marshaller.Utf8PtrToString(data);
+                else if (element_type == typeof(FilenameString))
+                    ret = Marshaller.FilenamePtrToString(data);
+                else if (element_type == typeof(IntPtr))
+                    ret = data;
+                else if (element_type.IsSubclassOf(typeof(GLib.Object)))
+                    ret = GLib.Object.GetObject(data, false);
+                else if (element_type.IsSubclassOf(typeof(GLib.Opaque)))
+                    ret = GLib.Opaque.GetOpaque(data, element_type, elements_owned);
+                else if (element_type == typeof(int))
+                    ret = (int)data;
+                else if (element_type.IsValueType)
+                    ret = Marshal.PtrToStructure(data, element_type);
+                else if (element_type.IsInterface)
+                {
+                    Type adapter_type = element_type.Assembly.GetType(InterfaceToAdapterTypeName(element_type));
+                    System.Reflection.MethodInfo method = adapter_type.GetMethod("GetObject", new Type[] { typeof(IntPtr), typeof(bool) });
+                    ret = method.Invoke(null, new object[] { data, false });
+                }
+                else
+                    ret = Activator.CreateInstance(element_type, new object[] { data });
 
-		public void Empty ()
-		{
-			if (elements_owned) {
-				for (uint i = 0; i < Count; i++) {
-					if (typeof (GLib.Opaque).IsAssignableFrom (element_type)) {
-						GLib.Opaque.GetOpaque (NthData (i), element_type, true).Dispose ();
-					} else if (typeof (GLib.IWrapper).IsAssignableFrom (element_type)) {
-						g_object_unref (NthData (i));
-					} else {
-						Marshaller.Free (NthData (i));
-					}
-				}
-			}
+            }
+            else if (Object.IsObject(data))
+                ret = GLib.Object.GetObject(data, false);
 
-			if (managed)
-				FreeList ();
-		}
+            return ret;
+        }
 
-		IntPtr GetData (IntPtr current)
-		{
-			// data field is at offset 0 for GList and GSList
-			return Marshal.ReadIntPtr (current);
-		}
+        static string InterfaceToAdapterTypeName(Type type)
+        {
+            string fullname = type.Namespace;
+            if (!String.IsNullOrEmpty(fullname))
+            {
+                fullname += ".";
+            }
+            fullname += type.Name.Substring(1); // IActivatable -> Activatable
+            return fullname + "Adapter";
+        }
 
-		IntPtr Next (IntPtr current)
-		{
-			// next field follows gpointer data field for GList and GSList
-			return Marshal.ReadIntPtr (current, IntPtr.Size);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_object_unref(IntPtr item);
 
-		private class ListEnumerator : IEnumerator
-		{
-			private IntPtr current = IntPtr.Zero;
-			private ListBase list;
+        public void Empty()
+        {
+            if (elements_owned)
+            {
+                for (uint i = 0; i < Count; i++)
+                {
+                    if (typeof(GLib.Opaque).IsAssignableFrom(element_type))
+                    {
+                        GLib.Opaque.GetOpaque(NthData(i), element_type, true).Dispose();
+                    }
+                    else if (typeof(GLib.IWrapper).IsAssignableFrom(element_type))
+                    {
+                        g_object_unref(NthData(i));
+                    }
+                    else
+                    {
+                        Marshaller.Free(NthData(i));
+                    }
+                }
+            }
 
-			public ListEnumerator (ListBase list)
-			{
-				this.list = list;
-			}
+            if (managed)
+                FreeList();
+        }
 
-			public object Current {
-				get {
-					IntPtr data = list.GetData (current);
-					object ret = null;
-					ret = list.DataMarshal (data);
-					return ret;
-				}
-			}
+        IntPtr GetData(IntPtr current)
+        {
+            // data field is at offset 0 for GList and GSList
+            return Marshal.ReadIntPtr(current);
+        }
 
-			public bool MoveNext ()
-			{
-				if (current == IntPtr.Zero)
-					current = list.list_ptr;
-				else
-					current = list.Next (current);
-				return (current != IntPtr.Zero);
-			}
+        IntPtr Next(IntPtr current)
+        {
+            // next field follows gpointer data field for GList and GSList
+            return Marshal.ReadIntPtr(current, IntPtr.Size);
+        }
 
-			public void Reset ()
-			{
-				current = IntPtr.Zero;
-			}
-		}
-		
-		// IEnumerable
-		public IEnumerator GetEnumerator ()
-		{
-			return new ListEnumerator (this);
-		}
+        private class ListEnumerator : IEnumerator
+        {
+            private IntPtr current = IntPtr.Zero;
+            private ListBase list;
 
-		// IDisposable
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
+            public ListEnumerator(ListBase list)
+            {
+                this.list = list;
+            }
 
-		protected virtual void Dispose (bool disposing)
-		{
-			Empty ();
-		}
-		
-		void FreeList ()
-		{
-			if (list_ptr != IntPtr.Zero)
-				Free (list_ptr);
-			list_ptr = IntPtr.Zero;
-			length = -1;
-		}
+            public object Current
+            {
+                get
+                {
+                    IntPtr data = list.GetData(current);
+                    object ret = null;
+                    ret = list.DataMarshal(data);
+                    return ret;
+                }
+            }
 
-		// ICloneable
-		abstract public object Clone ();
-	}
+            public bool MoveNext()
+            {
+                if (current == IntPtr.Zero)
+                    current = list.list_ptr;
+                else
+                    current = list.Next(current);
+                return (current != IntPtr.Zero);
+            }
+
+            public void Reset()
+            {
+                current = IntPtr.Zero;
+            }
+        }
+
+        // IEnumerable
+        public IEnumerator GetEnumerator()
+        {
+            return new ListEnumerator(this);
+        }
+
+        // IDisposable
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            Empty();
+        }
+
+        void FreeList()
+        {
+            if (list_ptr != IntPtr.Zero)
+                Free(list_ptr);
+            list_ptr = IntPtr.Zero;
+            length = -1;
+        }
+
+        // ICloneable
+        abstract public object Clone();
+    }
 }

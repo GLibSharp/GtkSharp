@@ -32,10 +32,10 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum FontWeight
-	{
-		Normal,
-		Bold,
-	}
+    [Serializable]
+    public enum FontWeight
+    {
+        Normal,
+        Bold,
+    }
 }

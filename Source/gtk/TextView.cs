@@ -19,25 +19,28 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class TextView {
-				
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_text_view_new_with_buffer (IntPtr buffer);
+    public partial class TextView
+    {
 
-		public TextView (TextBuffer buffer) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (TextView)) {
-				CreateNativeObject (new string [0], new GLib.Value [0]);
-				Buffer = buffer;
-				return;
-			}
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_text_view_new_with_buffer(IntPtr buffer);
 
-			Raw = gtk_text_view_new_with_buffer (buffer.Handle);
-		}
-	}
+        public TextView(TextBuffer buffer) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(TextView))
+            {
+                CreateNativeObject(new string[0], new GLib.Value[0]);
+                Buffer = buffer;
+                return;
+            }
+
+            Raw = gtk_text_view_new_with_buffer(buffer.Handle);
+        }
+    }
 }

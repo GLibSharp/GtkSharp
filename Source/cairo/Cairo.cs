@@ -36,18 +36,23 @@ using System.Runtime.InteropServices;
 
 namespace Cairo
 {
-	public static class CairoAPI {
-		static public int Version {
-			get {
-				return Cairo.NativeMethods.cairo_version ();
-			}
-		}
+    public static class CairoAPI
+    {
+        static public int Version
+        {
+            get
+            {
+                return Cairo.NativeMethods.cairo_version();
+            }
+        }
 
-		static public string VersionString {
-			get {
-				IntPtr x = Cairo.NativeMethods.cairo_version_string ();
-				return Marshal.PtrToStringAnsi (x);
-			}
-		}
-	}
+        static public string VersionString
+        {
+            get
+            {
+                IntPtr x = Cairo.NativeMethods.cairo_version_string();
+                return Marshal.PtrToStringAnsi(x);
+            }
+        }
+    }
 }

@@ -22,124 +22,148 @@
 // packing with union and bit fields. It basically uses the same
 // logic as what is done inside csharp implementation (marshal.c in
 // the mono codebase) but handling more things.
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Reflection;
-	using System.Runtime.InteropServices;
-	using System.Linq;
-	using System.Collections.Specialized;
-	using System.CodeDom.Compiler;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Linq;
+    using System.Collections.Specialized;
+    using System.CodeDom.Compiler;
 
-	public class AbiStruct {
-		public OrderedDictionary Fields = null;
+    public class AbiStruct
+    {
+        public OrderedDictionary Fields = null;
 
-		public AbiStruct(OrderedDictionary fields) {
-			Fields = fields;
-		}
-		public AbiStruct(List<GLib.AbiField> fields) {
-			Fields = new OrderedDictionary();
+        public AbiStruct(OrderedDictionary fields)
+        {
+            Fields = fields;
+        }
+        public AbiStruct(List<GLib.AbiField> fields)
+        {
+            Fields = new OrderedDictionary();
 
-			foreach (var field in fields)
-				Fields[field.Name] = field;
+            foreach (var field in fields)
+                Fields[field.Name] = field;
 
-			Load();
-		}
+            Load();
+        }
 
-		static uint GetMinAlign(OrderedDictionary fields) {
-			uint align = 1;
+        static uint GetMinAlign(OrderedDictionary fields)
+        {
+            uint align = 1;
 
-			for (var i = 0; i < fields.Count; i++) {
-				var field = ((GLib.AbiField) fields[i]);
+            for (var i = 0; i < fields.Count; i++)
+            {
+                var field = ((GLib.AbiField)fields[i]);
 
-				if (field.Parent_fields != null) {
-					align = Math.Max(align, GetMinAlign(field.Parent_fields));
-				}
-				align = Math.Max(align, field.GetAlign());
-			}
+                if (field.Parent_fields != null)
+                {
+                    align = Math.Max(align, GetMinAlign(field.Parent_fields));
+                }
+                align = Math.Max(align, field.GetAlign());
+            }
 
-			return align;
-		}
+            return align;
+        }
 
-		public uint Align {
-			get {
-				return GetMinAlign(Fields);
-			}
-		}
+        public uint Align
+        {
+            get
+            {
+                return GetMinAlign(Fields);
+            }
+        }
 
-		void Load () {
-			long bitfields_offset = -1;
-			long bitfields_size = -1;
+        void Load()
+        {
+            long bitfields_offset = -1;
+            long bitfields_size = -1;
 
-			for (var i = 0; i < Fields.Count; i++ ) {
-				var field = (AbiField) Fields[i];
-				field.container = this;
-				var align = field.GetAlign();
+            for (var i = 0; i < Fields.Count; i++)
+            {
+                var field = (AbiField)Fields[i];
+                field.container = this;
+                var align = field.GetAlign();
 
-				if (field.InUnion())
-					continue;
+                if (field.InUnion())
+                    continue;
 
-				if (field.Prev_name != null) {
-					field.Offset = ((AbiField)Fields[field.Prev_name]).GetEnd();
-				} else if (field.Parent_fields != null) {
-					field.Offset = GetStructureSize(field.Parent_fields);
-				}
+                if (field.Prev_name != null)
+                {
+                    field.Offset = ((AbiField)Fields[field.Prev_name]).GetEnd();
+                }
+                else if (field.Parent_fields != null)
+                {
+                    field.Offset = GetStructureSize(field.Parent_fields);
+                }
 
-				field.Offset += align - 1;
-				field.Offset &= ~(align - 1);
+                field.Offset += align - 1;
+                field.Offset &= ~(align - 1);
 
-				if (field.Bits > 0) {
-					// Pack all following bitfields into the same area.
-					if (bitfields_offset == -1) {
-						uint nbits = 0;
+                if (field.Bits > 0)
+                {
+                    // Pack all following bitfields into the same area.
+                    if (bitfields_offset == -1)
+                    {
+                        uint nbits = 0;
 
-						bitfields_offset = field.Offset;
-						for (var j = i + 1; j < Fields.Count; j++ ) {
-							var nfield = (AbiField) Fields[j];
-							if (nfield.Bits > 0)
-								nbits += nfield.Bits;
-						}
+                        bitfields_offset = field.Offset;
+                        for (var j = i + 1; j < Fields.Count; j++)
+                        {
+                            var nfield = (AbiField)Fields[j];
+                            if (nfield.Bits > 0)
+                                nbits += nfield.Bits;
+                        }
 
-						bitfields_size = (long) (Math.Ceiling((double) field.Bits / (double) 8));
-					}
+                        bitfields_size = (long)(Math.Ceiling((double)field.Bits / (double)8));
+                    }
 
-					field.Offset = (uint) bitfields_offset;
-					field.Natural_size = (uint) bitfields_size;
-				} else {
-					bitfields_offset = bitfields_size = -1;
-				}
+                    field.Offset = (uint)bitfields_offset;
+                    field.Natural_size = (uint)bitfields_size;
+                }
+                else
+                {
+                    bitfields_offset = bitfields_size = -1;
+                }
 
-			}
-		}
+            }
+        }
 
-		public uint GetFieldOffset(string field) {
-			return ((AbiField) Fields[field]).GetOffset();
-		}
+        public uint GetFieldOffset(string field)
+        {
+            return ((AbiField)Fields[field]).GetOffset();
+        }
 
-		static uint GetStructureSize(OrderedDictionary fields) {
-			uint size = 0;
-			uint min_align = GetMinAlign(fields);
+        static uint GetStructureSize(OrderedDictionary fields)
+        {
+            uint size = 0;
+            uint min_align = GetMinAlign(fields);
 
-			for (var i = 0; i < fields.Count; i++) {
-				var field = ((GLib.AbiField) fields[i]);
+            for (var i = 0; i < fields.Count; i++)
+            {
+                var field = ((GLib.AbiField)fields[i]);
 
-				if (field.InUnion())
-					continue;
+                if (field.InUnion())
+                    continue;
 
-				var tsize = (uint) (Math.Ceiling((double) (field.GetEnd() / (double) min_align)) * (double) min_align);
+                var tsize = (uint)(Math.Ceiling((double)(field.GetEnd() / (double)min_align)) * (double)min_align);
 
-				size = Math.Max(tsize, size);
-			}
+                size = Math.Max(tsize, size);
+            }
 
-			return size;
-		}
+            return size;
+        }
 
-		public uint Size {
-			get {
+        public uint Size
+        {
+            get
+            {
 
-				return GetStructureSize(Fields);
-			}
-		}
-	}
+                return GetStructureSize(Fields);
+            }
+        }
+    }
 }

@@ -18,39 +18,43 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial struct GlyphItem {
+    public partial struct GlyphItem
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_glyph_item_apply_attrs(ref Pango.GlyphItem raw, IntPtr text, IntPtr list);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_glyph_item_apply_attrs(ref Pango.GlyphItem raw, IntPtr text, IntPtr list);
 
-		public GlyphItem[] ApplyAttrs (string text, Pango.AttrList list)
-		{
-			IntPtr native_text = GLib.Marshaller.StringToPtrGStrdup (text);
-			IntPtr list_handle = pango_glyph_item_apply_attrs (ref this, native_text, list.Handle);
-			GLib.Marshaller.Free (native_text);
-			if (list_handle == IntPtr.Zero)
-				return new GlyphItem [0];
-			GLib.SList item_list = new GLib.SList (list_handle, typeof (GlyphItem));
-			GlyphItem[] result = new GlyphItem [item_list.Count];
-			int i = 0;
-			foreach (GlyphItem item in item_list)
-				result [i++] = item;
-			return result;
-		}
+        public GlyphItem[] ApplyAttrs(string text, Pango.AttrList list)
+        {
+            IntPtr native_text = GLib.Marshaller.StringToPtrGStrdup(text);
+            IntPtr list_handle = pango_glyph_item_apply_attrs(ref this, native_text, list.Handle);
+            GLib.Marshaller.Free(native_text);
+            if (list_handle == IntPtr.Zero)
+                return new GlyphItem[0];
+            GLib.SList item_list = new GLib.SList(list_handle, typeof(GlyphItem));
+            GlyphItem[] result = new GlyphItem[item_list.Count];
+            int i = 0;
+            foreach (GlyphItem item in item_list)
+                result[i++] = item;
+            return result;
+        }
 
-		[Obsolete ("Replaced by Glyphs property")]
-		public Pango.GlyphString glyphs {
-			get { return Glyphs; }
-		}
+        [Obsolete("Replaced by Glyphs property")]
+        public Pango.GlyphString glyphs
+        {
+            get { return Glyphs; }
+        }
 
-		[Obsolete ("Replaced by Item property")]
-		public Pango.Item item {
-			get { return Item; }
-		}
-	}
+        [Obsolete("Replaced by Item property")]
+        public Pango.Item item
+        {
+            get { return Item; }
+        }
+    }
 }

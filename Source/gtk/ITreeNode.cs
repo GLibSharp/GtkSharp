@@ -19,30 +19,32 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public delegate void TreeNodeAddedHandler (object o, ITreeNode child);
+    public delegate void TreeNodeAddedHandler(object o, ITreeNode child);
 
-	public delegate void TreeNodeRemovedHandler (object o, ITreeNode child, int old_position);
+    public delegate void TreeNodeRemovedHandler(object o, ITreeNode child, int old_position);
 
-	public interface ITreeNode {
+    public interface ITreeNode
+    {
 
-		int ID { get; }
+        int ID { get; }
 
-		ITreeNode Parent { get; }
+        ITreeNode Parent { get; }
 
-		int ChildCount { get; }
+        int ChildCount { get; }
 
-		ITreeNode this [int index] { get; }
+        ITreeNode this[int index] { get; }
 
-		int IndexOf (object o);
+        int IndexOf(object o);
 
-		event EventHandler Changed;
+        event EventHandler Changed;
 
-		event TreeNodeAddedHandler ChildAdded;
+        event TreeNodeAddedHandler ChildAdded;
 
-		event TreeNodeRemovedHandler ChildRemoved;
-	}
+        event TreeNodeRemovedHandler ChildRemoved;
+    }
 }

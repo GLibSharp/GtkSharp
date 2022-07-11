@@ -21,32 +21,37 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class FileChooserDialog {
+    public partial class FileChooserDialog
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_file_chooser_dialog_new(IntPtr title, IntPtr parent, int action, IntPtr nil);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_file_chooser_dialog_new(IntPtr title, IntPtr parent, int action, IntPtr nil);
 
-		public FileChooserDialog (string title, Window parent, FileChooserAction action, params object[] button_data) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (FileChooserDialog)) {
-				CreateNativeObject (new string[0], new GLib.Value[0]);
-				Title = title;
-				if (parent != null)
-					TransientFor = parent;
-				Action = action;
-			} else {
-				IntPtr native = GLib.Marshaller.StringToPtrGStrdup (title);
-				Raw = gtk_file_chooser_dialog_new (native, parent == null ? IntPtr.Zero : parent.Handle, (int)action, IntPtr.Zero);
-				GLib.Marshaller.Free (native);
-			}
+        public FileChooserDialog(string title, Window parent, FileChooserAction action, params object[] button_data) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(FileChooserDialog))
+            {
+                CreateNativeObject(new string[0], new GLib.Value[0]);
+                Title = title;
+                if (parent != null)
+                    TransientFor = parent;
+                Action = action;
+            }
+            else
+            {
+                IntPtr native = GLib.Marshaller.StringToPtrGStrdup(title);
+                Raw = gtk_file_chooser_dialog_new(native, parent == null ? IntPtr.Zero : parent.Handle, (int)action, IntPtr.Zero);
+                GLib.Marshaller.Free(native);
+            }
 
-			for (int i = 0; i < button_data.Length - 1; i += 2)
-				AddButton ((string) button_data [i], (int) button_data [i + 1]);
-		}
-	}
+            for (int i = 0; i < button_data.Length - 1; i += 2)
+                AddButton((string)button_data[i], (int)button_data[i + 1]);
+        }
+    }
 }

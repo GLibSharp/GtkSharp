@@ -18,17 +18,21 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
-		
-	using System;
+namespace Gtk
+{
 
-	public partial class Settings {
-		
-		[Obsolete ("Removed from C API, returns IntPtr.Zero")]
-		public IntPtr ColorHash {
-			get {
-				return IntPtr.Zero;
-			}
-		}
-	}
+    using System;
+
+    public partial class Settings
+    {
+
+        [Obsolete("Removed from C API, returns IntPtr.Zero")]
+        public IntPtr ColorHash
+        {
+            get
+            {
+                return IntPtr.Zero;
+            }
+        }
+    }
 }

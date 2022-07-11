@@ -24,71 +24,77 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.InteropServices;
 
-	public delegate bool IdleHandler ();
+    public delegate bool IdleHandler();
 
-	public class Idle {
+    public class Idle
+    {
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate bool IdleHandlerInternal ();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        delegate bool IdleHandlerInternal();
 
-		internal class IdleProxy : SourceProxy {
-			public IdleProxy (IdleHandler real)
-			{
-				real_handler = real;
-				proxy_handler = new IdleHandlerInternal (Handler);
-			}
+        internal class IdleProxy : SourceProxy
+        {
+            public IdleProxy(IdleHandler real)
+            {
+                real_handler = real;
+                proxy_handler = new IdleHandlerInternal(Handler);
+            }
 
-			public bool Handler ()
-			{
-				try {
-					IdleHandler idle_handler = (IdleHandler) real_handler;
+            public bool Handler()
+            {
+                try
+                {
+                    IdleHandler idle_handler = (IdleHandler)real_handler;
 
-					bool cont = idle_handler ();
-					if (!cont)
-					{
-						lock (this)
-						{
-							Dispose ();
-						}
-					}
-					return cont;
-				} catch (Exception e) {
-					ExceptionManager.RaiseUnhandledException (e, false);
-				}
-				return false;
-			}
-		}
-		
-		private Idle ()
-		{
-		}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_idle_add_full(int priority, IdleHandlerInternal d, IntPtr data, DestroyNotify notify);
-		
-		public static uint Add (IdleHandler hndlr)
-		{
-			IdleProxy p = new IdleProxy (hndlr);
-			lock (p)
-			{
-				var gch = GCHandle.Alloc(p);
-				var userData = GCHandle.ToIntPtr(gch);
-				p.ID = g_idle_add_full (0, (IdleHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
-			}
+                    bool cont = idle_handler();
+                    if (!cont)
+                    {
+                        lock (this)
+                        {
+                            Dispose();
+                        }
+                    }
+                    return cont;
+                }
+                catch (Exception e)
+                {
+                    ExceptionManager.RaiseUnhandledException(e, false);
+                }
+                return false;
+            }
+        }
 
-			return p.ID;
-		}
-		
-		public static void Remove (uint id)
-		{
-			Source.Remove (id);
-		}
-	}
+        private Idle()
+        {
+        }
+
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern uint g_idle_add_full(int priority, IdleHandlerInternal d, IntPtr data, DestroyNotify notify);
+
+        public static uint Add(IdleHandler hndlr)
+        {
+            IdleProxy p = new IdleProxy(hndlr);
+            lock (p)
+            {
+                var gch = GCHandle.Alloc(p);
+                var userData = GCHandle.ToIntPtr(gch);
+                p.ID = g_idle_add_full(0, (IdleHandlerInternal)p.proxy_handler, userData, DestroyHelper.NotifyHandler);
+            }
+
+            return p.ID;
+        }
+
+        public static void Remove(uint id)
+        {
+            Source.Remove(id);
+        }
+    }
 }
 

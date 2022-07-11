@@ -16,18 +16,20 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	internal struct AttrColor {
-		Attribute.NativeStruct attr;
-		public Color Color;
+    internal struct AttrColor
+    {
+        Attribute.NativeStruct attr;
+        public Color Color;
 
-		public static AttrColor New (IntPtr raw)
-		{
-			return (AttrColor) Marshal.PtrToStructure (raw, typeof (AttrColor));
-		}
-	}
+        public static AttrColor New(IntPtr raw)
+        {
+            return (AttrColor)Marshal.PtrToStructure(raw, typeof(AttrColor));
+        }
+    }
 }

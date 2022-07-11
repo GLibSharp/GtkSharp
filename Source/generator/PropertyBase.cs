@@ -18,99 +18,118 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Xml;
+    using System;
+    using System.Xml;
 
-	public abstract class PropertyBase {
+    public abstract class PropertyBase
+    {
 
-		protected XmlElement elem;
-		public ClassBase container_type;
+        protected XmlElement elem;
+        public ClassBase container_type;
 
-		public PropertyBase (XmlElement elem, ClassBase container_type)
-		{
-			this.elem = elem;
-			this.container_type = container_type;
-		}
+        public PropertyBase(XmlElement elem, ClassBase container_type)
+        {
+            this.elem = elem;
+            this.container_type = container_type;
+        }
 
-		public string Name {
-			get {
-				return elem.GetAttribute ("name");
-			}
-		}
+        public string Name
+        {
+            get
+            {
+                return elem.GetAttribute("name");
+            }
+        }
 
-		public virtual string CName {
-			get {
-				return elem.GetAttribute ("cname");
-			}
-		}
+        public virtual string CName
+        {
+            get
+            {
+                return elem.GetAttribute("cname");
+            }
+        }
 
-		protected string ctype;
-		public virtual string CType {
-			get {
-				if (ctype == null) {
-					if (elem.GetAttribute("bits") == "1")
-						ctype = "gboolean";
-					else
-						ctype = elem.GetAttribute("type");
-				}
-				return ctype;
-			}
-		}
+        protected string ctype;
+        public virtual string CType
+        {
+            get
+            {
+                if (ctype == null)
+                {
+                    if (elem.GetAttribute("bits") == "1")
+                        ctype = "gboolean";
+                    else
+                        ctype = elem.GetAttribute("type");
+                }
+                return ctype;
+            }
+        }
 
-		protected string cstype;
-		public string CSType {
-			get {
-				if (Getter != null)
-					return Getter.Signature.IsAccessor ? Getter.Signature.AccessorType : Getter.ReturnType;
-				else if (Setter != null)
-					return Setter.Signature.Types;
-				else if (cstype == null)
-					cstype = SymbolTable.Table.GetCSType (CType);
-				return cstype;
-			}
-		}
+        protected string cstype;
+        public string CSType
+        {
+            get
+            {
+                if (Getter != null)
+                    return Getter.Signature.IsAccessor ? Getter.Signature.AccessorType : Getter.ReturnType;
+                else if (Setter != null)
+                    return Setter.Signature.Types;
+                else if (cstype == null)
+                    cstype = SymbolTable.Table.GetCSType(CType);
+                return cstype;
+            }
+        }
 
-		public virtual bool Hidden {
-			get {
-				return elem.GetAttributeAsBoolean ("hidden");
-			}
-		}
+        public virtual bool Hidden
+        {
+            get
+            {
+                return elem.GetAttributeAsBoolean("hidden");
+            }
+        }
 
-		protected bool IsNew {
-			get {
-				return elem.GetAttributeAsBoolean ("new_flag");
-			}
-		}
+        protected bool IsNew
+        {
+            get
+            {
+                return elem.GetAttributeAsBoolean("new_flag");
+            }
+        }
 
-		protected Method Getter {
-			get {
-				Method getter = container_type.GetMethod ("Get" + Name);
-				if (getter != null && getter.Name == "Get" + Name && getter.IsGetter)
-					return getter;
-				else
-					return null;
-			}
-		}
+        protected Method Getter
+        {
+            get
+            {
+                Method getter = container_type.GetMethod("Get" + Name);
+                if (getter != null && getter.Name == "Get" + Name && getter.IsGetter)
+                    return getter;
+                else
+                    return null;
+            }
+        }
 
-		protected Method Setter {
-			get {
-				Method setter = container_type.GetMethod ("Set" + Name);
-				if (setter != null && setter.Name == "Set" + Name && setter.IsSetter && (Getter == null || setter.Signature.Types == CSType))
-					return setter;
-				else
-					return null;
-			}
-		}
+        protected Method Setter
+        {
+            get
+            {
+                Method setter = container_type.GetMethod("Set" + Name);
+                if (setter != null && setter.Name == "Set" + Name && setter.IsSetter && (Getter == null || setter.Signature.Types == CSType))
+                    return setter;
+                else
+                    return null;
+            }
+        }
 
-		protected virtual void GenerateImports (GenerationInfo gen_info, string indent)
-		{
-			if (Getter != null)
-				Getter.GenerateImport (gen_info.Writer);
-			if (Setter != null)
-				Setter.GenerateImport (gen_info.Writer);
-		}
-	}
+        protected virtual void GenerateImports(GenerationInfo gen_info, string indent)
+        {
+            if (Getter != null)
+                Getter.GenerateImport(gen_info.Writer);
+            if (Setter != null)
+                Setter.GenerateImport(gen_info.Writer);
+        }
+    }
 }
 

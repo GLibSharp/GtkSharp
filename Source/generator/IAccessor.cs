@@ -19,11 +19,13 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	public interface IAccessor  {
+    public interface IAccessor
+    {
 
-		void WriteAccessors (System.IO.TextWriter sw, string indentation, string field_name);
+        void WriteAccessors(System.IO.TextWriter sw, string indentation, string field_name);
 
-	}
+    }
 }

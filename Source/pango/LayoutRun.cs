@@ -16,20 +16,24 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
+    using System;
 
-	public partial struct LayoutRun {
+    public partial struct LayoutRun
+    {
 
-		[Obsolete ("Replaced by Glyphs property")]
-		public Pango.GlyphString glyphs {
-			get { return Glyphs; }
-		}
+        [Obsolete("Replaced by Glyphs property")]
+        public Pango.GlyphString glyphs
+        {
+            get { return Glyphs; }
+        }
 
-		[Obsolete ("Replaced by Item property")]
-		public Pango.Item item {
-			get { return Item; }
-		}
-	}
+        [Obsolete("Replaced by Item property")]
+        public Pango.Item item
+        {
+            get { return Item; }
+        }
+    }
 }

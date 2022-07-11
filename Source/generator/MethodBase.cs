@@ -20,169 +20,203 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Xml;
+    using System;
+    using System.Xml;
 
-	public abstract class MethodBase  {
+    public abstract class MethodBase
+    {
 
-		protected XmlElement elem;
-		protected ClassBase container_type;
-		protected Parameters parms;
-		string mods = String.Empty;
-		string name;
-		private string protection = "public";
+        protected XmlElement elem;
+        protected ClassBase container_type;
+        protected Parameters parms;
+        string mods = String.Empty;
+        string name;
+        private string protection = "public";
 
-		protected MethodBase (XmlElement elem, ClassBase container_type)
-		{
-			this.elem = elem;
-			this.container_type = container_type;
-			this.name = elem.GetAttribute ("name");
-			parms = new Parameters (elem ["parameters"]);
-			IsStatic = elem.GetAttribute ("shared") == "true";
-			if (elem.GetAttributeAsBoolean ("new_flag"))
-				mods = "new ";
-			if (elem.HasAttribute ("accessibility")) {
-				string attr = elem.GetAttribute ("accessibility");
-				switch (attr) {
-					case "public":
-					case "protected":
-					case "internal":
-					case "private":
-					case "protected internal":
-						protection = attr;
-						break;
-				}
-			}
-		}
+        protected MethodBase(XmlElement elem, ClassBase container_type)
+        {
+            this.elem = elem;
+            this.container_type = container_type;
+            this.name = elem.GetAttribute("name");
+            parms = new Parameters(elem["parameters"]);
+            IsStatic = elem.GetAttribute("shared") == "true";
+            if (elem.GetAttributeAsBoolean("new_flag"))
+                mods = "new ";
+            if (elem.HasAttribute("accessibility"))
+            {
+                string attr = elem.GetAttribute("accessibility");
+                switch (attr)
+                {
+                    case "public":
+                    case "protected":
+                    case "internal":
+                    case "private":
+                    case "protected internal":
+                        protection = attr;
+                        break;
+                }
+            }
+        }
 
-		protected string BaseName {
-			get {
-				string name = Name;
-				int idx = Name.LastIndexOf (".");
-				if (idx > 0)
-					name = Name.Substring (idx + 1);
-				return name;
-			}
-		}
+        protected string BaseName
+        {
+            get
+            {
+                string name = Name;
+                int idx = Name.LastIndexOf(".");
+                if (idx > 0)
+                    name = Name.Substring(idx + 1);
+                return name;
+            }
+        }
 
-		MethodBody body;
-		public MethodBody Body {
-			get {
-				if (body == null) {
-					LogWriter log = new LogWriter (Name);
-					body = new MethodBody (parms, log);
-				}
-				return body;
-			}
-		}
+        MethodBody body;
+        public MethodBody Body
+        {
+            get
+            {
+                if (body == null)
+                {
+                    LogWriter log = new LogWriter(Name);
+                    body = new MethodBody(parms, log);
+                }
+                return body;
+            }
+        }
 
-		public virtual string CName {
-			get {
-				return SymbolTable.Table.MangleName (elem.GetAttribute ("cname"));
-			}
-		}
+        public virtual string CName
+        {
+            get
+            {
+                return SymbolTable.Table.MangleName(elem.GetAttribute("cname"));
+            }
+        }
 
-		protected bool HasGetterName {
-			get {
-				string name = BaseName;
-				if (name.Length <= 3)
-					return false;
-				if (name == "GetHandle")
-					return false;
-				if (name.StartsWith ("Get") || name.StartsWith ("Has"))
-					return Char.IsUpper (name [3]);
-				else if (name.StartsWith ("Is"))
-					return Char.IsUpper (name [2]);
-				else
-					return false;
-			}
-		}
+        protected bool HasGetterName
+        {
+            get
+            {
+                string name = BaseName;
+                if (name.Length <= 3)
+                    return false;
+                if (name == "GetHandle")
+                    return false;
+                if (name.StartsWith("Get") || name.StartsWith("Has"))
+                    return Char.IsUpper(name[3]);
+                else if (name.StartsWith("Is"))
+                    return Char.IsUpper(name[2]);
+                else
+                    return false;
+            }
+        }
 
-		protected bool HasSetterName {
-			get {
-				string name = BaseName;
-				if (name.Length <= 3)
-					return false;
-				if (name == "SetHandle")
-					return false;
-				return name.StartsWith ("Set") && Char.IsUpper (name [3]);
-			}
-		}
+        protected bool HasSetterName
+        {
+            get
+            {
+                string name = BaseName;
+                if (name.Length <= 3)
+                    return false;
+                if (name == "SetHandle")
+                    return false;
+                return name.StartsWith("Set") && Char.IsUpper(name[3]);
+            }
+        }
 
-		public bool IsStatic {
-			get {
-				return parms.Static;
-			}
-			set {
-				parms.Static = value;
-			}
-		}
+        public bool IsStatic
+        {
+            get
+            {
+                return parms.Static;
+            }
+            set
+            {
+                parms.Static = value;
+            }
+        }
 
-		public string LibraryName {
-			get {
-				if (elem.HasAttribute ("library"))
-					return elem.GetAttribute ("library");
-				return container_type.LibraryName;
-			}
-		}
+        public string LibraryName
+        {
+            get
+            {
+                if (elem.HasAttribute("library"))
+                    return elem.GetAttribute("library");
+                return container_type.LibraryName;
+            }
+        }
 
-		public string Modifiers {
-			get {
-				return mods;
-			}
-			set {
-				mods = value;
-			}
-		}
+        public string Modifiers
+        {
+            get
+            {
+                return mods;
+            }
+            set
+            {
+                mods = value;
+            }
+        }
 
-		public string Name {
-			get {
-				return name;
-			}
-			set {
-				name = value;
-			}
-		}
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
 
-		public Parameters Parameters {
-			get {
-				return parms;
-			}
-		}
+        public Parameters Parameters
+        {
+            get
+            {
+                return parms;
+            }
+        }
 
-	
-		public string Protection {
-			get { return protection; }
-			set { protection = value; }
-		}
 
-		protected string Safety {
-			get {
-				return Body.ThrowsException && !(container_type is InterfaceGen) ? "unsafe " : "";
-			}
-		}
+        public string Protection
+        {
+            get { return protection; }
+            set { protection = value; }
+        }
 
-		Signature sig;
-		public Signature Signature {
-			get {
-				if (sig == null)
-					sig = new Signature (parms);
-				return sig;
-			}
-		}
+        protected string Safety
+        {
+            get
+            {
+                return Body.ThrowsException && !(container_type is InterfaceGen) ? "unsafe " : "";
+            }
+        }
 
-		public virtual bool Validate (LogWriter log)
-		{
-			log.Member = Name;
-			if (!parms.Validate (log)) {
-				Statistics.ThrottledCount++;
-				return false;
-			}
+        Signature sig;
+        public Signature Signature
+        {
+            get
+            {
+                if (sig == null)
+                    sig = new Signature(parms);
+                return sig;
+            }
+        }
 
-			return true;
-		}
-	}
+        public virtual bool Validate(LogWriter log)
+        {
+            log.Member = Name;
+            if (!parms.Validate(log))
+            {
+                Statistics.ThrottledCount++;
+                return false;
+            }
+
+            return true;
+        }
+    }
 }
 

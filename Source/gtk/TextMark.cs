@@ -18,15 +18,17 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class TextMark {
+    public partial class TextMark
+    {
 
-		protected TextMark () : base (IntPtr.Zero)
-		{
-			CreateNativeObject (new string [0], new GLib.Value [0]);
-		}
-	}
+        protected TextMark() : base(IntPtr.Zero)
+        {
+            CreateNativeObject(new string[0], new GLib.Value[0]);
+        }
+    }
 }

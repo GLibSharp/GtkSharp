@@ -18,23 +18,25 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
+    using System;
 
-	public partial struct Matrix {
+    public partial struct Matrix
+    {
 
-		static Matrix ()
-		{
-			Identity.Xx = 1.0;
-			Identity.Xy = 0.0;
-			Identity.Yx = 0.0;
-			Identity.Yy = 1.0;
-			Identity.X0 = 0.0;
-			Identity.Y0 = 0.0;
-		}
+        static Matrix()
+        {
+            Identity.Xx = 1.0;
+            Identity.Xy = 0.0;
+            Identity.Yx = 0.0;
+            Identity.Yy = 1.0;
+            Identity.X0 = 0.0;
+            Identity.Y0 = 0.0;
+        }
 
-		public static Matrix Identity;
+        public static Matrix Identity;
 
-	}
+    }
 }

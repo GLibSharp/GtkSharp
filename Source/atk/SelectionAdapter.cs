@@ -21,12 +21,14 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Atk {
-	public partial class SelectionAdapter {
+namespace Atk
+{
+    public partial class SelectionAdapter
+    {
 
-		public void EmitSelectionChanged ()
-		{
-			GLib.Signal.Emit (GLib.Object.GetObject (Handle), "selection_changed");
-		}
-	}
+        public void EmitSelectionChanged()
+        {
+            GLib.Signal.Emit(GLib.Object.GetObject(Handle), "selection_changed");
+        }
+    }
 }

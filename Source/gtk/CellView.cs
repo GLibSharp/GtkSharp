@@ -20,21 +20,24 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class CellView {
+    public partial class CellView
+    {
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
-			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+        public void SetAttributes(CellRenderer cell, params object[] attrs)
+        {
+            if (attrs.Length % 2 != 0)
+                throw new ArgumentException("attrs should contain pairs of attribute/col");
 
-			ClearAttributes (cell);
-			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
-			}
-		}
-	}
+            ClearAttributes(cell);
+            for (int i = 0; i < attrs.Length - 1; i += 2)
+            {
+                AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
+            }
+        }
+    }
 }

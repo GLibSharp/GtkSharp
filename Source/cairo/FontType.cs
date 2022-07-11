@@ -28,14 +28,15 @@
 
 using System;
 
-namespace Cairo {
+namespace Cairo
+{
 
-	[Serializable]
-	public enum FontType
-	{
-		Toy,
-		FreeType,
-		Win32,
-		Atsui,
-	}
+    [Serializable]
+    public enum FontType
+    {
+        Toy,
+        FreeType,
+        Win32,
+        Atsui,
+    }
 }

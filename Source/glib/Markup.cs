@@ -23,24 +23,26 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace GLib {
+namespace GLib
+{
 
 
-	public class Markup {
-		private Markup () {}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_markup_escape_text (IntPtr text, int len);
-		
-		static public string EscapeText (string s)
-		{
-			if (s == null)
-				return String.Empty;
+    public class Markup
+    {
+        private Markup() { }
 
-			IntPtr native = Marshaller.StringToPtrGStrdup (s);
-			string result = Marshaller.PtrToStringGFree (g_markup_escape_text (native, -1));
-			Marshaller.Free (native);
-			return result;
-		}
-	}
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_markup_escape_text(IntPtr text, int len);
+
+        static public string EscapeText(string s)
+        {
+            if (s == null)
+                return String.Empty;
+
+            IntPtr native = Marshaller.StringToPtrGStrdup(s);
+            string result = Marshaller.PtrToStringGFree(g_markup_escape_text(native, -1));
+            Marshaller.Free(native);
+            return result;
+        }
+    }
 }

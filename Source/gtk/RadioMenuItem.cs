@@ -19,82 +19,93 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class RadioMenuItem {
+    public partial class RadioMenuItem
+    {
 
-		public RadioMenuItem (string label) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (RadioMenuItem)) {
-				CreateNativeObject (new string [0], new GLib.Value [0]);
-				AccelLabel al = new AccelLabel ("");
-				al.TextWithMnemonic = label;
-				al.SetAlignment (0.0f, 0.5f);
-				Add (al);
-				al.AccelWidget = this;
-				return;
-			}
+        public RadioMenuItem(string label) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(RadioMenuItem))
+            {
+                CreateNativeObject(new string[0], new GLib.Value[0]);
+                AccelLabel al = new AccelLabel("");
+                al.TextWithMnemonic = label;
+                al.SetAlignment(0.0f, 0.5f);
+                Add(al);
+                al.AccelWidget = this;
+                return;
+            }
 
-			IntPtr label_as_native = GLib.Marshaller.StringToPtrGStrdup (label);
-			Raw = gtk_radio_menu_item_new_with_mnemonic (IntPtr.Zero, label_as_native);
-			GLib.Marshaller.Free (label_as_native);
-		}
+            IntPtr label_as_native = GLib.Marshaller.StringToPtrGStrdup(label);
+            Raw = gtk_radio_menu_item_new_with_mnemonic(IntPtr.Zero, label_as_native);
+            GLib.Marshaller.Free(label_as_native);
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_radio_menu_item_new_with_mnemonic(IntPtr group, IntPtr label);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_radio_menu_item_new_with_mnemonic(IntPtr group, IntPtr label);
 
-		public RadioMenuItem (RadioMenuItem[] group, string label) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (RadioMenuItem)) {
-				CreateNativeObject (new string [0], new GLib.Value [0]);
-				AccelLabel al = new AccelLabel ("");
-				al.TextWithMnemonic = label;
-				al.SetAlignment (0.0f, 0.5f);
-				Add (al);
-				al.AccelWidget = this;
-				Group = group;
-				return;
-			}
-			IntPtr native_label = GLib.Marshaller.StringToPtrGStrdup (label);
-			IntPtr native_group = IntPtr.Zero;
-			if (group != null) {
-				GLib.List list = new GLib.List(IntPtr.Zero);
-				foreach (RadioMenuItem item in group) {
-					list.Append (item.Handle);
-				}
-				native_group = list.Handle;
-			}
-			Raw = gtk_radio_menu_item_new_with_mnemonic(native_group, native_label);
-			GLib.Marshaller.Free (native_label);
-		}
+        public RadioMenuItem(RadioMenuItem[] group, string label) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(RadioMenuItem))
+            {
+                CreateNativeObject(new string[0], new GLib.Value[0]);
+                AccelLabel al = new AccelLabel("");
+                al.TextWithMnemonic = label;
+                al.SetAlignment(0.0f, 0.5f);
+                Add(al);
+                al.AccelWidget = this;
+                Group = group;
+                return;
+            }
+            IntPtr native_label = GLib.Marshaller.StringToPtrGStrdup(label);
+            IntPtr native_group = IntPtr.Zero;
+            if (group != null)
+            {
+                GLib.List list = new GLib.List(IntPtr.Zero);
+                foreach (RadioMenuItem item in group)
+                {
+                    list.Append(item.Handle);
+                }
+                native_group = list.Handle;
+            }
+            Raw = gtk_radio_menu_item_new_with_mnemonic(native_group, native_label);
+            GLib.Marshaller.Free(native_label);
+        }
 
-		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_radio_menu_item_get_group(IntPtr raw);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_radio_menu_item_get_group(IntPtr raw);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_radio_menu_item_set_group(IntPtr raw, IntPtr list);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_radio_menu_item_set_group(IntPtr raw, IntPtr list);
 
-		[GLib.Property ("group")]
-		public RadioMenuItem[] Group {
-			get  {
-				IntPtr raw_ret = gtk_radio_menu_item_get_group(Handle);
-				RadioMenuItem[] ret = (RadioMenuItem[]) GLib.Marshaller.ListPtrToArray (raw_ret, typeof(GLib.SList), false, false, typeof(RadioMenuItem));
-				return ret;
-			}
-			set {
-				IntPtr native_group = IntPtr.Zero;
-				if (value != null) {
-					GLib.List list = new GLib.List(IntPtr.Zero);
-					foreach (RadioMenuItem item in value) {
-						list.Append (item.Handle);
-					}
-					native_group = list.Handle;
-				}
-				gtk_radio_menu_item_set_group(Handle, native_group);
-			}
-		}
-	}
+        [GLib.Property("group")]
+        public RadioMenuItem[] Group
+        {
+            get
+            {
+                IntPtr raw_ret = gtk_radio_menu_item_get_group(Handle);
+                RadioMenuItem[] ret = (RadioMenuItem[])GLib.Marshaller.ListPtrToArray(raw_ret, typeof(GLib.SList), false, false, typeof(RadioMenuItem));
+                return ret;
+            }
+            set
+            {
+                IntPtr native_group = IntPtr.Zero;
+                if (value != null)
+                {
+                    GLib.List list = new GLib.List(IntPtr.Zero);
+                    foreach (RadioMenuItem item in value)
+                    {
+                        list.Append(item.Handle);
+                    }
+                    native_group = list.Handle;
+                }
+                gtk_radio_menu_item_set_group(Handle, native_group);
+            }
+        }
+    }
 }

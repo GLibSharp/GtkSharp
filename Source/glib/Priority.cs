@@ -19,13 +19,14 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace GLib {
-	public enum Priority
-	{
-		High = -100,
-		Default = 0,
-		HighIdle = 100,
-		DefaultIdle = 200,
-		Low = 300,
-	}
+namespace GLib
+{
+    public enum Priority
+    {
+        High = -100,
+        Default = 0,
+        HighIdle = 100,
+        DefaultIdle = 200,
+        Low = 300,
+    }
 }

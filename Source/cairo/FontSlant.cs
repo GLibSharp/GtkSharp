@@ -32,11 +32,11 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum FontSlant
-	{
-		Normal,
-		Italic,
-		Oblique
-	}
+    [Serializable]
+    public enum FontSlant
+    {
+        Normal,
+        Italic,
+        Oblique
+    }
 }

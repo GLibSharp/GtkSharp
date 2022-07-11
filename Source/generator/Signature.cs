@@ -19,147 +19,166 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Xml;
+    using System;
+    using System.Collections.Generic;
+    using System.Xml;
 
-	public class Signature  {
-		
-		private IList<Parameter> parms = new List<Parameter> ();
+    public class Signature
+    {
 
-		public Signature (Parameters parms)
-		{
-			foreach (Parameter p in parms) {
-				if (!parms.IsHidden (p))
-					this.parms.Add (p);
-			}
-		}
+        private IList<Parameter> parms = new List<Parameter>();
 
-		public override string ToString ()
-		{
-			if (parms.Count == 0)
-				return "";
+        public Signature(Parameters parms)
+        {
+            foreach (Parameter p in parms)
+            {
+                if (!parms.IsHidden(p))
+                    this.parms.Add(p);
+            }
+        }
 
-			string[] result = new string [parms.Count];
-			int i = 0;
+        public override string ToString()
+        {
+            if (parms.Count == 0)
+                return "";
 
-			foreach (Parameter p in parms) {
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				result [i++] += p.CSType + " " + p.Name;
-			}
+            string[] result = new string[parms.Count];
+            int i = 0;
 
-			return String.Join (", ", result);
-		}
+            foreach (Parameter p in parms)
+            {
+                result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+                result[i++] += p.CSType + " " + p.Name;
+            }
 
-		public string Types {
-			get {
-				if (parms.Count == 0)
-					return "";
+            return String.Join(", ", result);
+        }
 
-				string[] result = new string [parms.Count];
-				int i = 0;
+        public string Types
+        {
+            get
+            {
+                if (parms.Count == 0)
+                    return "";
 
-				foreach (Parameter p in parms)
-					result [i++] = p.CSType;
+                string[] result = new string[parms.Count];
+                int i = 0;
 
-				return String.Join (":", result);
-			}
-		}
+                foreach (Parameter p in parms)
+                    result[i++] = p.CSType;
 
-		public bool IsAccessor {
-			get {
-				int count = 0;
-				foreach (Parameter p in parms) {
-					if (p.PassAs == "out")
-						count++;
-					
-					if (count > 1)
-						return false;
-				}
-				return count == 1;
-			}
-		}
+                return String.Join(":", result);
+            }
+        }
 
-		public string AccessorType {
-			get {
-				foreach (Parameter p in parms)
-					if (p.PassAs == "out")
-						return p.CSType;
-				
-				return null;
-			}
-		}
+        public bool IsAccessor
+        {
+            get
+            {
+                int count = 0;
+                foreach (Parameter p in parms)
+                {
+                    if (p.PassAs == "out")
+                        count++;
 
-		public string AccessorName {
-			get {
-				foreach (Parameter p in parms)
-					if (p.PassAs == "out")
-						return p.Name;
-				
-				return null;
-			}
-		}
+                    if (count > 1)
+                        return false;
+                }
+                return count == 1;
+            }
+        }
 
-		public string AsAccessor {
-			get {
-				string[] result = new string [parms.Count - 1];
-				int i = 0;
+        public string AccessorType
+        {
+            get
+            {
+                foreach (Parameter p in parms)
+                    if (p.PassAs == "out")
+                        return p.CSType;
 
-				foreach (Parameter p in parms) {
-					if (p.PassAs == "out")
-						continue;
+                return null;
+            }
+        }
 
-					result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-					result [i++] += p.CSType + " " + p.Name;
-				}
-				
-				return String.Join (", ", result);
-			}
-		}
+        public string AccessorName
+        {
+            get
+            {
+                foreach (Parameter p in parms)
+                    if (p.PassAs == "out")
+                        return p.Name;
 
-		public string WithoutOptional ()
-		{
-			if (parms.Count == 0)
-				return String.Empty;
+                return null;
+            }
+        }
 
-			var result = new string [parms.Count];
-			int i = 0;
+        public string AsAccessor
+        {
+            get
+            {
+                string[] result = new string[parms.Count - 1];
+                int i = 0;
 
-			foreach (Parameter p in parms) {
-				if (p.IsOptional && p.PassAs == String.Empty)
-					continue;
-				result [i] = p.PassAs != String.Empty ? p.PassAs + " " : String.Empty;
-				result [i++] += p.CSType + " " + p.Name;
-			}
+                foreach (Parameter p in parms)
+                {
+                    if (p.PassAs == "out")
+                        continue;
 
-			return String.Join (", ", result, 0, i);
-		}
+                    result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+                    result[i++] += p.CSType + " " + p.Name;
+                }
 
-		public string CallWithoutOptionals ()
-		{
-			if (parms.Count == 0)
-				return String.Empty;
+                return String.Join(", ", result);
+            }
+        }
 
-			var result = new string [parms.Count];
-			int i = 0;
+        public string WithoutOptional()
+        {
+            if (parms.Count == 0)
+                return String.Empty;
 
-			foreach (Parameter p in parms) {
+            var result = new string[parms.Count];
+            int i = 0;
 
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				if (p.IsOptional && p.PassAs == String.Empty) {
-					if (p.IsArray)
-						result [i++] += "null";
-					else
-						result [i++] += p.Generatable.DefaultValue;
-				}
-				else
-					result [i++] += p.Name;
-			}
+            foreach (Parameter p in parms)
+            {
+                if (p.IsOptional && p.PassAs == String.Empty)
+                    continue;
+                result[i] = p.PassAs != String.Empty ? p.PassAs + " " : String.Empty;
+                result[i++] += p.CSType + " " + p.Name;
+            }
 
-			return String.Join (", ", result);
-		}
-	}
+            return String.Join(", ", result, 0, i);
+        }
+
+        public string CallWithoutOptionals()
+        {
+            if (parms.Count == 0)
+                return String.Empty;
+
+            var result = new string[parms.Count];
+            int i = 0;
+
+            foreach (Parameter p in parms)
+            {
+
+                result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+                if (p.IsOptional && p.PassAs == String.Empty)
+                {
+                    if (p.IsArray)
+                        result[i++] += "null";
+                    else
+                        result[i++] += p.Generatable.DefaultValue;
+                }
+                else
+                    result[i++] += p.Name;
+            }
+
+            return String.Join(", ", result);
+        }
+    }
 }
 

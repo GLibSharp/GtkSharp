@@ -424,26 +424,6 @@ namespace Regress {
 			}
 		}
 
-		[GLib.Signal("sig-with-int64-prop")]
-		public event Regress.SigWithInt64PropHandler SigWithInt64Prop {
-			add {
-				this.AddSignalHandler ("sig-with-int64-prop", value, typeof (Regress.SigWithInt64PropArgs));
-			}
-			remove {
-				this.RemoveSignalHandler ("sig-with-int64-prop", value);
-			}
-		}
-
-		[GLib.Signal("all")]
-		public event System.EventHandler All {
-			add {
-				this.AddSignalHandler ("all", value);
-			}
-			remove {
-				this.RemoveSignalHandler ("all", value);
-			}
-		}
-
 		[GLib.Signal("test-with-static-scope-arg")]
 		public event Regress.TestWithStaticScopeArgHandler TestWithStaticScopeArg {
 			add {
@@ -464,6 +444,16 @@ namespace Regress {
 			}
 		}
 
+		[GLib.Signal("sig-with-inout-int")]
+		public event Regress.SigWithInoutIntHandler SigWithInoutInt {
+			add {
+				this.AddSignalHandler ("sig-with-inout-int", value, typeof (Regress.SigWithInoutIntArgs));
+			}
+			remove {
+				this.RemoveSignalHandler ("sig-with-inout-int", value);
+			}
+		}
+
 		[GLib.Signal("sig-with-array-len-prop")]
 		public event Regress.SigWithArrayLenPropHandler SigWithArrayLenProp {
 			add {
@@ -474,16 +464,6 @@ namespace Regress {
 			}
 		}
 
-		[GLib.Signal("first")]
-		public event System.EventHandler First {
-			add {
-				this.AddSignalHandler ("first", value);
-			}
-			remove {
-				this.RemoveSignalHandler ("first", value);
-			}
-		}
-
 		[GLib.Signal("test")]
 		public event System.EventHandler Test {
 			add {
@@ -491,26 +471,6 @@ namespace Regress {
 			}
 			remove {
 				this.RemoveSignalHandler ("test", value);
-			}
-		}
-
-		[GLib.Signal("cleanup")]
-		public event System.EventHandler Cleanup {
-			add {
-				this.AddSignalHandler ("cleanup", value);
-			}
-			remove {
-				this.RemoveSignalHandler ("cleanup", value);
-			}
-		}
-
-		[GLib.Signal("sig-with-inout-int")]
-		public event Regress.SigWithInoutIntHandler SigWithInoutInt {
-			add {
-				this.AddSignalHandler ("sig-with-inout-int", value, typeof (Regress.SigWithInoutIntArgs));
-			}
-			remove {
-				this.RemoveSignalHandler ("sig-with-inout-int", value);
 			}
 		}
 
@@ -531,6 +491,46 @@ namespace Regress {
 			}
 			remove {
 				this.RemoveSignalHandler ("sig-with-obj", value);
+			}
+		}
+
+		[GLib.Signal("sig-with-int64-prop")]
+		public event Regress.SigWithInt64PropHandler SigWithInt64Prop {
+			add {
+				this.AddSignalHandler ("sig-with-int64-prop", value, typeof (Regress.SigWithInt64PropArgs));
+			}
+			remove {
+				this.RemoveSignalHandler ("sig-with-int64-prop", value);
+			}
+		}
+
+		[GLib.Signal("first")]
+		public event System.EventHandler First {
+			add {
+				this.AddSignalHandler ("first", value);
+			}
+			remove {
+				this.RemoveSignalHandler ("first", value);
+			}
+		}
+
+		[GLib.Signal("all")]
+		public event System.EventHandler All {
+			add {
+				this.AddSignalHandler ("all", value);
+			}
+			remove {
+				this.RemoveSignalHandler ("all", value);
+			}
+		}
+
+		[GLib.Signal("cleanup")]
+		public event System.EventHandler Cleanup {
+			add {
+				this.AddSignalHandler ("cleanup", value);
+			}
+			remove {
+				this.RemoveSignalHandler ("cleanup", value);
 			}
 		}
 

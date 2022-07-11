@@ -19,45 +19,53 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventProximity : Event {
+    public class EventProximity : Event
+    {
 
-		public EventProximity (IntPtr raw) : base (raw) {} 
+        public EventProximity(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public uint time;
-			public IntPtr device;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public uint time;
+            public IntPtr device;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public Device Device {
-			get { return GLib.Object.GetObject (Native.device, false) as Device; }
-			set {
-				NativeStruct native = Native;
-				native.device = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public Device Device
+        {
+            get { return GLib.Object.GetObject(Native.device, false) as Device; }
+            set
+            {
+                NativeStruct native = Native;
+                native.device = value == null ? IntPtr.Zero : value.Handle;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public uint Time {
-			get { return Native.time; }
-			set {
-				NativeStruct native = Native;
-				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public uint Time
+        {
+            get { return Native.time; }
+            set
+            {
+                NativeStruct native = Native;
+                native.time = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

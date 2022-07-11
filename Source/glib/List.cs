@@ -19,79 +19,81 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class List : ListBase {
+    public class List : ListBase
+    {
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_list_copy (IntPtr l);
-		
-		public override object Clone ()
-		{
-			return new List (g_list_copy (Handle));
-		}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern int g_list_length (IntPtr l);
-		
-		internal override int Length (IntPtr list)
-		{
-			return g_list_length (list);
-		}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_list_free(IntPtr l);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_list_copy(IntPtr l);
 
-		internal override void Free (IntPtr list)
-		{
-			if (list != IntPtr.Zero)
-				g_list_free (list);
-		}
+        public override object Clone()
+        {
+            return new List(g_list_copy(Handle));
+        }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_list_append (IntPtr l, IntPtr raw);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern int g_list_length(IntPtr l);
 
-		internal override IntPtr Append (IntPtr list, IntPtr raw)
-		{
-			return g_list_append (list, raw);
-		}
+        internal override int Length(IntPtr list)
+        {
+            return g_list_length(list);
+        }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_list_prepend (IntPtr l, IntPtr raw);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_list_free(IntPtr l);
 
-		internal override IntPtr Prepend (IntPtr list, IntPtr raw)
-		{
-			return g_list_prepend (list, raw);
-		}
+        internal override void Free(IntPtr list)
+        {
+            if (list != IntPtr.Zero)
+                g_list_free(list);
+        }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-	        static extern IntPtr g_list_nth_data (IntPtr l, uint n);
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_list_append(IntPtr l, IntPtr raw);
 
-		internal override IntPtr NthData (uint n)
-		{
-			return g_list_nth_data (Handle, n);
-		}
+        internal override IntPtr Append(IntPtr list, IntPtr raw)
+        {
+            return g_list_append(list, raw);
+        }
 
-		public List (IntPtr raw) : this (raw, null) {}
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_list_prepend(IntPtr l, IntPtr raw);
 
-		public List (System.Type element_type) : this (IntPtr.Zero, element_type) {}
+        internal override IntPtr Prepend(IntPtr list, IntPtr raw)
+        {
+            return g_list_prepend(list, raw);
+        }
 
-		public List (IntPtr raw, System.Type element_type) : this (raw, element_type, false, false) {}
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_list_nth_data(IntPtr l, uint n);
 
-		public List (IntPtr raw, System.Type element_type, bool owned, bool elements_owned) : base (raw, element_type, owned, elements_owned) {}
+        internal override IntPtr NthData(uint n)
+        {
+            return g_list_nth_data(Handle, n);
+        }
 
-		public List (object[] elements, System.Type element_type, bool owned, bool elements_owned) : this (IntPtr.Zero, element_type, owned, elements_owned) 
-		{
-			foreach (object o in elements)
-				Append (o);
-		}
-		public List (Array elements, System.Type element_type, bool owned, bool elements_owned) : this (IntPtr.Zero, element_type, owned, elements_owned) 
-		{
-			foreach (object o in elements)
-				Append (o);
-		}
-	}
+        public List(IntPtr raw) : this(raw, null) { }
+
+        public List(System.Type element_type) : this(IntPtr.Zero, element_type) { }
+
+        public List(IntPtr raw, System.Type element_type) : this(raw, element_type, false, false) { }
+
+        public List(IntPtr raw, System.Type element_type, bool owned, bool elements_owned) : base(raw, element_type, owned, elements_owned) { }
+
+        public List(object[] elements, System.Type element_type, bool owned, bool elements_owned) : this(IntPtr.Zero, element_type, owned, elements_owned)
+        {
+            foreach (object o in elements)
+                Append(o);
+        }
+        public List(Array elements, System.Type element_type, bool owned, bool elements_owned) : this(IntPtr.Zero, element_type, owned, elements_owned)
+        {
+            foreach (object o in elements)
+                Append(o);
+        }
+    }
 }

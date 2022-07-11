@@ -24,77 +24,88 @@ using System.Collections;
 
 namespace Gtk
 {
-	internal class TreeEnumerator : IEnumerator
-	{
-		private Gtk.TreeIter iter;
-		private Gtk.ITreeModel model;
-		private bool reset = true;
-		private bool changed = false;
-		
-		public TreeEnumerator (ITreeModel model)
-		{
-			this.model = model;
-			
-			model.RowChanged += new RowChangedHandler (row_changed);
-			model.RowDeleted += new RowDeletedHandler (row_deleted);
-			model.RowInserted += new RowInsertedHandler (row_inserted);
-			model.RowsReordered += new RowsReorderedHandler (rows_reordered);
-		}
-		
-		public object Current
-		{
-			get {
-				if (reset == false) {
-					object[] row = new object[model.NColumns];
-					for (int x = 0; x < model.NColumns; x++) {
-						row[x] = model.GetValue(iter, x);
-					}
-					return row;
-				} else {
-					throw new InvalidOperationException("Enumerator not started.");
-				}
-			}
-		}
-		
-		public bool MoveNext()
-		{
-			if (changed == false) {
-				if (reset == true) {
-					reset = false;
-					return model.GetIterFirst(out iter);
-				} else {
-					return model.IterNext(ref iter);
-				}
-			} else {
-				throw new InvalidOperationException("List has changed.");
-			}
-		}
-		
-		public void Reset()
-		{
-			reset = true;
-			changed = false;
-		}
-		
-		private void row_changed(object o, RowChangedArgs args)
-		{
-			changed = true;
-		}
-		
-		private void row_deleted(object o, RowDeletedArgs args)
-		{
-			changed = true;
-		}
-		
-		private void row_inserted(object o, RowInsertedArgs args)
-		{
-			changed = true;
-		}
-		
-		private void rows_reordered(object o, RowsReorderedArgs args)
-		{
-			changed = true;
-		}
-	}
+    internal class TreeEnumerator : IEnumerator
+    {
+        private Gtk.TreeIter iter;
+        private Gtk.ITreeModel model;
+        private bool reset = true;
+        private bool changed = false;
+
+        public TreeEnumerator(ITreeModel model)
+        {
+            this.model = model;
+
+            model.RowChanged += new RowChangedHandler(row_changed);
+            model.RowDeleted += new RowDeletedHandler(row_deleted);
+            model.RowInserted += new RowInsertedHandler(row_inserted);
+            model.RowsReordered += new RowsReorderedHandler(rows_reordered);
+        }
+
+        public object Current
+        {
+            get
+            {
+                if (reset == false)
+                {
+                    object[] row = new object[model.NColumns];
+                    for (int x = 0; x < model.NColumns; x++)
+                    {
+                        row[x] = model.GetValue(iter, x);
+                    }
+                    return row;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Enumerator not started.");
+                }
+            }
+        }
+
+        public bool MoveNext()
+        {
+            if (changed == false)
+            {
+                if (reset == true)
+                {
+                    reset = false;
+                    return model.GetIterFirst(out iter);
+                }
+                else
+                {
+                    return model.IterNext(ref iter);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("List has changed.");
+            }
+        }
+
+        public void Reset()
+        {
+            reset = true;
+            changed = false;
+        }
+
+        private void row_changed(object o, RowChangedArgs args)
+        {
+            changed = true;
+        }
+
+        private void row_deleted(object o, RowDeletedArgs args)
+        {
+            changed = true;
+        }
+
+        private void row_inserted(object o, RowInsertedArgs args)
+        {
+            changed = true;
+        }
+
+        private void rows_reordered(object o, RowsReorderedArgs args)
+        {
+            changed = true;
+        }
+    }
 }
 

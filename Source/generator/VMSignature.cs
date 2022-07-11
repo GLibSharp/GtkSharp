@@ -19,73 +19,78 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Xml;
+    using System;
+    using System.Collections.Generic;
+    using System.Xml;
 
-	public class VMSignature  {
-		
-		private IList<Parameter> parms = new List<Parameter> ();
+    public class VMSignature
+    {
 
-		public VMSignature (Parameters parms)
-		{
-			bool has_cb = parms.HideData;
-			for (int i = 0; i < parms.Count; i++) {
-				Parameter p = parms [i];
+        private IList<Parameter> parms = new List<Parameter>();
 
-				if (i > 0 && p.IsLength && parms [i - 1].IsString)
-					continue;
+        public VMSignature(Parameters parms)
+        {
+            bool has_cb = parms.HideData;
+            for (int i = 0; i < parms.Count; i++)
+            {
+                Parameter p = parms[i];
 
-				if (p.IsCount && ((i > 0 && parms [i - 1].IsArray) || (i < parms.Count - 1 && parms [i + 1].IsArray)))
-					continue;
+                if (i > 0 && p.IsLength && parms[i - 1].IsString)
+                    continue;
 
-				has_cb = has_cb || p.Generatable is CallbackGen;
-				if (p.IsUserData && has_cb)
-					continue;
+                if (p.IsCount && ((i > 0 && parms[i - 1].IsArray) || (i < parms.Count - 1 && parms[i + 1].IsArray)))
+                    continue;
 
-				if (p.CType == "GError**")
-					continue;
+                has_cb = has_cb || p.Generatable is CallbackGen;
+                if (p.IsUserData && has_cb)
+                    continue;
 
-				if (p.Scope == "notified")
-					i += 2;
+                if (p.CType == "GError**")
+                    continue;
 
-				this.parms.Add (p);
-			}
-		}
+                if (p.Scope == "notified")
+                    i += 2;
 
-		public string GetCallString (bool use_place_holders)
-		{
-			if (parms.Count == 0)
-				return "";
+                this.parms.Add(p);
+            }
+        }
 
-			string[] result = new string [parms.Count];
-			int i = 0;
-			foreach (Parameter p in parms) {
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				result [i] += use_place_holders ? "{" + i + "}" : p.Name;
-				i++;
-			}
+        public string GetCallString(bool use_place_holders)
+        {
+            if (parms.Count == 0)
+                return "";
 
-			return String.Join (", ", result);
-		}
+            string[] result = new string[parms.Count];
+            int i = 0;
+            foreach (Parameter p in parms)
+            {
+                result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+                result[i] += use_place_holders ? "{" + i + "}" : p.Name;
+                i++;
+            }
 
-		public override string ToString ()
-		{
-			if (parms.Count == 0)
-				return "";
+            return String.Join(", ", result);
+        }
 
-			string[] result = new string [parms.Count];
-			int i = 0;
+        public override string ToString()
+        {
+            if (parms.Count == 0)
+                return "";
 
-			foreach (Parameter p in parms) {
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				result [i++] += p.CSType + " " + p.Name;
-			}
+            string[] result = new string[parms.Count];
+            int i = 0;
 
-			return String.Join (", ", result);
-		}
-	}
+            foreach (Parameter p in parms)
+            {
+                result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+                result[i++] += p.CSType + " " + p.Name;
+            }
+
+            return String.Join(", ", result);
+        }
+    }
 }
 

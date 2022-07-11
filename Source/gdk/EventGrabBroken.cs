@@ -19,55 +19,65 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventGrabBroken : Event {
+    public class EventGrabBroken : Event
+    {
 
-		public EventGrabBroken (IntPtr raw) : base (raw) {} 
+        public EventGrabBroken(IntPtr raw) : base(raw) { }
 
-		[StructLayout(LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public bool keyboard;
-			public bool _implicit;
-			public IntPtr grab_window;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public bool keyboard;
+            public bool _implicit;
+            public IntPtr grab_window;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public bool Keyboard {
-			get { return Native.keyboard; }
-			set {
-				NativeStruct native = Native;
-				native.keyboard = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public bool Keyboard
+        {
+            get { return Native.keyboard; }
+            set
+            {
+                NativeStruct native = Native;
+                native.keyboard = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public bool Implicit {
-			get { return Native._implicit; }
-			set {
-				NativeStruct native = Native;
-				native._implicit = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public bool Implicit
+        {
+            get { return Native._implicit; }
+            set
+            {
+                NativeStruct native = Native;
+                native._implicit = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public Window GrabWindow {
-			get { return GLib.Object.GetObject(Native.grab_window, false) as Window; }
-			set {
-				NativeStruct native = Native;
-				native.grab_window = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public Window GrabWindow
+        {
+            get { return GLib.Object.GetObject(Native.grab_window, false) as Window; }
+            set
+            {
+                NativeStruct native = Native;
+                native.grab_window = value == null ? IntPtr.Zero : value.Handle;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

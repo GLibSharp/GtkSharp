@@ -21,95 +21,105 @@
 
 using System;
 
-namespace Gdk {
-	
-	public struct Size { 
-		
-		int width, height;
+namespace Gdk
+{
 
-		public static readonly Size Empty;
+    public struct Size
+    {
 
-		public static Size operator + (Size sz1, Size sz2)
-		{
-			return new Size (sz1.Width + sz2.Width, 
-					 sz1.Height + sz2.Height);
-		}
-		
-		public static bool operator == (Size sz_a, Size sz_b)
-		{
-			return ((sz_a.Width == sz_b.Width) && 
-				(sz_a.Height == sz_b.Height));
-		}
-		
-		public static bool operator != (Size sz_a, Size sz_b)
-		{
-			return ((sz_a.Width != sz_b.Width) || 
-				(sz_a.Height != sz_b.Height));
-		}
-		
-		public static Size operator - (Size sz1, Size sz2)
-		{
-			return new Size (sz1.Width - sz2.Width, 
-					 sz1.Height - sz2.Height);
-		}
-		
-		public static explicit operator Point (Size sz)
-		{
-			return new Point (sz.Width, sz.Height);
-		}
+        int width, height;
 
-		public Size (Point pt)
-		{
-			width = pt.X;
-			height = pt.Y;
-		}
+        public static readonly Size Empty;
 
-		public Size (int width, int height)
-		{
-			this.width = width;
-			this.height = height;
-		}
+        public static Size operator +(Size sz1, Size sz2)
+        {
+            return new Size(sz1.Width + sz2.Width,
+                     sz1.Height + sz2.Height);
+        }
 
-		public bool IsEmpty {
-			get {
-				return ((width == 0) && (height == 0));
-			}
-		}
+        public static bool operator ==(Size sz_a, Size sz_b)
+        {
+            return ((sz_a.Width == sz_b.Width) &&
+                (sz_a.Height == sz_b.Height));
+        }
 
-		public int Width {
-			get {
-				return width;
-			}
-			set {
-				width = value;
-			}
-		}
+        public static bool operator !=(Size sz_a, Size sz_b)
+        {
+            return ((sz_a.Width != sz_b.Width) ||
+                (sz_a.Height != sz_b.Height));
+        }
 
-		public int Height {
-			get {
-				return height;
-			}
-			set {
-				height = value;
-			}
-		}
+        public static Size operator -(Size sz1, Size sz2)
+        {
+            return new Size(sz1.Width - sz2.Width,
+                     sz1.Height - sz2.Height);
+        }
 
-		public override bool Equals (object o)
-		{
-			if (!(o is Size))
-				return false;
+        public static explicit operator Point(Size sz)
+        {
+            return new Point(sz.Width, sz.Height);
+        }
 
-			return (this == (Size) o);
-		}
+        public Size(Point pt)
+        {
+            width = pt.X;
+            height = pt.Y;
+        }
 
-		public override int GetHashCode ()
-		{
-			return width^height;
-		}
+        public Size(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+        }
 
-		public override string ToString ()
-		{
-			return String.Format ("{{Width={0}, Height={1}}}", width, height);
-		}
-	}
+        public bool IsEmpty
+        {
+            get
+            {
+                return ((width == 0) && (height == 0));
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return width;
+            }
+            set
+            {
+                width = value;
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return height;
+            }
+            set
+            {
+                height = value;
+            }
+        }
+
+        public override bool Equals(object o)
+        {
+            if (!(o is Size))
+                return false;
+
+            return (this == (Size)o);
+        }
+
+        public override int GetHashCode()
+        {
+            return width ^ height;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{{Width={0}, Height={1}}}", width, height);
+        }
+    }
 }

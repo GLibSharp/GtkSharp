@@ -19,50 +19,60 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-	public sealed class BindingAttribute : Attribute {
-		Gdk.Key key;
-		Gdk.ModifierType mod;
-		string handler;
-		object[] parms;
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public sealed class BindingAttribute : Attribute
+    {
+        Gdk.Key key;
+        Gdk.ModifierType mod;
+        string handler;
+        object[] parms;
 
-		public BindingAttribute (Gdk.Key key, string handler, params object[] parms) : this (key, 0, handler, parms) {}
+        public BindingAttribute(Gdk.Key key, string handler, params object[] parms) : this(key, 0, handler, parms) { }
 
-		public BindingAttribute (Gdk.Key key, Gdk.ModifierType mod, string handler, params object[] parms)
-		{
-			this.key = key;
-			this.mod = mod;
-			this.handler = handler;
-			this.parms = parms;
-		}
+        public BindingAttribute(Gdk.Key key, Gdk.ModifierType mod, string handler, params object[] parms)
+        {
+            this.key = key;
+            this.mod = mod;
+            this.handler = handler;
+            this.parms = parms;
+        }
 
-		public Gdk.Key Key {
-			get {
-				return key;
-			}
-		}
+        public Gdk.Key Key
+        {
+            get
+            {
+                return key;
+            }
+        }
 
-		public Gdk.ModifierType Mod {
-			get {
-				return mod;
-			}
-		}
+        public Gdk.ModifierType Mod
+        {
+            get
+            {
+                return mod;
+            }
+        }
 
-		public string Handler {
-			get {
-				return handler;
-			}
-		}
+        public string Handler
+        {
+            get
+            {
+                return handler;
+            }
+        }
 
-		public object[] Parms {
-			get {
-				return parms;
-			}
-		}
-	}
+        public object[] Parms
+        {
+            get
+            {
+                return parms;
+            }
+        }
+    }
 }
 

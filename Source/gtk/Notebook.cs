@@ -19,25 +19,29 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Notebook {
+    public partial class Notebook
+    {
 
-		public Widget CurrentPageWidget {
-			get {
-				return GetNthPage (CurrentPage);
-			}
-		}
+        public Widget CurrentPageWidget
+        {
+            get
+            {
+                return GetNthPage(CurrentPage);
+            }
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern int gtk_notebook_page_num (IntPtr handle, IntPtr child);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern int gtk_notebook_page_num(IntPtr handle, IntPtr child);
 
-		public int PageNum (Widget child)
-		{
-			return gtk_notebook_page_num (Handle, child.Handle);
-		}
-	}
+        public int PageNum(Widget child)
+        {
+            return gtk_notebook_page_num(Handle, child.Handle);
+        }
+    }
 }

@@ -19,21 +19,23 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
+    using System;
 
-	public partial class LayoutLine {
+    public partial class LayoutLine
+    {
 
 #if NOT_BROKEN
 		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_line_get_x_ranges(IntPtr raw, int start_index, int end_index, out IntPtr ranges_handle, out int n_ranges);
 #endif
 
-		public void GetXRanges(int start_index, int end_index, out int[][] ranges)
-		{
-			// FIXME: this is broken
-			throw new NotImplementedException ();
+        public void GetXRanges(int start_index, int end_index, out int[][] ranges)
+        {
+            // FIXME: this is broken
+            throw new NotImplementedException();
 #if NOT_BROKEN
 			int count;
 			IntPtr array_ptr;
@@ -48,6 +50,6 @@ namespace Pango {
 			Marshal.Copy (array_ptr, ranges, 0, count);
 			GLib.Marshaller.Free (array_ptr);
 #endif
-		}
-	}
+        }
+    }
 }

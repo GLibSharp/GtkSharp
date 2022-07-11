@@ -19,36 +19,45 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public delegate void RowsReorderedHandler (object o, RowsReorderedArgs args);
+    public delegate void RowsReorderedHandler(object o, RowsReorderedArgs args);
 
-	public class RowsReorderedArgs : GLib.SignalArgs {
+    public class RowsReorderedArgs : GLib.SignalArgs
+    {
 
-		public Gtk.TreePath Path{
-			get {
-				return (Gtk.TreePath) Args[0];
-			}
-		}
+        public Gtk.TreePath Path
+        {
+            get
+            {
+                return (Gtk.TreePath)Args[0];
+            }
+        }
 
-		public Gtk.TreeIter Iter{
-			get {
-				return (Gtk.TreeIter) Args[1];
-			}
-		}
+        public Gtk.TreeIter Iter
+        {
+            get
+            {
+                return (Gtk.TreeIter)Args[1];
+            }
+        }
 
-		[Obsolete ("Replaced by NewChildOrder property")]
-		public int NewOrder{
-			set { }
-		}
+        [Obsolete("Replaced by NewChildOrder property")]
+        public int NewOrder
+        {
+            set { }
+        }
 
 
-		public int[] NewChildOrder {
-			get {
-				return (int[]) Args[2];
-			}
-		}
-	}
+        public int[] NewChildOrder
+        {
+            get
+            {
+                return (int[])Args[2];
+            }
+        }
+    }
 }

@@ -14,14 +14,16 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	public partial class Atom {
+    public partial class Atom
+    {
 
-		public static implicit operator string (Gdk.Atom atom)
-		{
-			return atom.Name;
-		}
-	}
+        public static implicit operator string(Gdk.Atom atom)
+        {
+            return atom.Name;
+        }
+    }
 }
 

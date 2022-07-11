@@ -11,7 +11,7 @@ namespace IntegrationTests
 {
     public class Tests
     {
-        string testDir=".";
+        string testDir = ".";
         string tempDir = ".";
 
         [SetUp]
@@ -28,11 +28,12 @@ namespace IntegrationTests
             try
             {
                 Directory.Delete(tempDir, true);
-            } catch { }
+            }
+            catch { }
         }
 
         [Test]
-        public void GenerateCode_Regress_CodeIsGeneratedCorrectly ()
+        public void GenerateCode_Regress_CodeIsGeneratedCorrectly()
         {
             int res = GenerateCode();
             Assert.AreEqual(0, res);
@@ -109,8 +110,8 @@ namespace IntegrationTests
                    references,
                    new CSharpCompilationOptions(
                        OutputKind.DynamicallyLinkedLibrary,
-                       allowUnsafe:true));
-            var result = compilation.Emit (Path.Combine(tempDir, "regress-sharp.dll"));
+                       allowUnsafe: true));
+            var result = compilation.Emit(Path.Combine(tempDir, "regress-sharp.dll"));
             var errors = result.Diagnostics
                 .Where(d => d.Severity == DiagnosticSeverity.Error);
             var warnings = result.Diagnostics

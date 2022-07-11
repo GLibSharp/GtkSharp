@@ -22,156 +22,174 @@
 // packing with union and bit fields. It basically uses the same
 // logic as what is done inside csharp implementation (marshal.c in
 // the mono codebase) but handling more things.
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Reflection;
-	using System.Runtime.InteropServices;
-	using System.Linq;
-	using System.Collections.Specialized;
-	using System.CodeDom.Compiler;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Linq;
+    using System.Collections.Specialized;
+    using System.CodeDom.Compiler;
 
-	public class AbiField {
-		public string Prev_name;
-		public string Next_name;
-		public string Name;
-		public long Offset;
-		public long Align;
-		public uint Natural_size;
-		public AbiStruct container;
-		public OrderedDictionary Parent_fields; // field_name<string> -> AbiField<> dictionary.
-		List<List<string>> Union_fields;
+    public class AbiField
+    {
+        public string Prev_name;
+        public string Next_name;
+        public string Name;
+        public long Offset;
+        public long Align;
+        public uint Natural_size;
+        public AbiStruct container;
+        public OrderedDictionary Parent_fields; // field_name<string> -> AbiField<> dictionary.
+        List<List<string>> Union_fields;
 
-		long End;
-		long Size;
-		public uint Bits;
+        long End;
+        long Size;
+        public uint Bits;
 
-		public AbiField(string name,
-				long offset,
-				uint natural_size,
-				string prev_fieldname,
-				string next_fieldname,
-				long align,
-				uint bits)
-		{
-			Name = name;
-			Offset = offset;
-			Natural_size = natural_size;
-			Prev_name = prev_fieldname;
-			Next_name = next_fieldname;
-			End = -1;
-			Size = -1;
-			Union_fields = null;
-			Align = (long) align;
-			Bits = bits;
+        public AbiField(string name,
+                long offset,
+                uint natural_size,
+                string prev_fieldname,
+                string next_fieldname,
+                long align,
+                uint bits)
+        {
+            Name = name;
+            Offset = offset;
+            Natural_size = natural_size;
+            Prev_name = prev_fieldname;
+            Next_name = next_fieldname;
+            End = -1;
+            Size = -1;
+            Union_fields = null;
+            Align = (long)align;
+            Bits = bits;
 
-			if (Bits > 0) {
-				var nbytes = (uint) (Math.Ceiling((double) Bits / (double) 8));
+            if (Bits > 0)
+            {
+                var nbytes = (uint)(Math.Ceiling((double)Bits / (double)8));
 
-				if (nbytes < GetSize())
-					Align = 1;
-				else // Like if no bitfields were used.
-					Bits = 0;
-			}
-		}
+                if (nbytes < GetSize())
+                    Align = 1;
+                else // Like if no bitfields were used.
+                    Bits = 0;
+            }
+        }
 
-		public AbiField(string name,
-				OrderedDictionary parent_fields,
-				uint natural_size,
-				string prev_fieldname,
-				string next_fieldname,
-				long align,
-				uint bits): this (name, -1,
-					natural_size, prev_fieldname, next_fieldname, align, bits)
-		{
-			Parent_fields = parent_fields;
-		}
+        public AbiField(string name,
+                OrderedDictionary parent_fields,
+                uint natural_size,
+                string prev_fieldname,
+                string next_fieldname,
+                long align,
+                uint bits) : this(name, -1,
+                    natural_size, prev_fieldname, next_fieldname, align, bits)
+        {
+            Parent_fields = parent_fields;
+        }
 
 
-		public AbiField(string name,
-				long offset,
-				List<List<string>> fields_lists,
-				string prev_fieldname,
-				string next_fieldname, uint bits): this(name,
-					offset, (uint) 0, prev_fieldname, next_fieldname,
-					-1, bits)
-		{
-			Union_fields = fields_lists;
-		}
+        public AbiField(string name,
+                long offset,
+                List<List<string>> fields_lists,
+                string prev_fieldname,
+                string next_fieldname, uint bits) : this(name,
+                    offset, (uint)0, prev_fieldname, next_fieldname,
+                    -1, bits)
+        {
+            Union_fields = fields_lists;
+        }
 
-		public uint GetEnd() {
-			if (End == -1)
-				End = (long) GetOffset() + GetSize();
+        public uint GetEnd()
+        {
+            if (End == -1)
+                End = (long)GetOffset() + GetSize();
 
-			return (uint) End;
-		}
+            return (uint)End;
+        }
 
-		public uint GetOffset() {
-			return (uint) Offset;
-		}
+        public uint GetOffset()
+        {
+            return (uint)Offset;
+        }
 
-		public bool InUnion () {
-			return Name.Contains(".");
-		}
+        public bool InUnion()
+        {
+            return Name.Contains(".");
+        }
 
-		public uint GetAlign () {
-			if (Union_fields != null) {
-				uint align = 1;
+        public uint GetAlign()
+        {
+            if (Union_fields != null)
+            {
+                uint align = 1;
 
-				foreach (var fieldnames in Union_fields) {
-					foreach (var fieldname in fieldnames) {
-						var field = (AbiField) container.Fields[fieldname];
-						align = Math.Max(align, field.GetAlign());
-					}
-				}
+                foreach (var fieldnames in Union_fields)
+                {
+                    foreach (var fieldname in fieldnames)
+                    {
+                        var field = (AbiField)container.Fields[fieldname];
+                        align = Math.Max(align, field.GetAlign());
+                    }
+                }
 
-				return align;
+                return align;
 
-			}
+            }
 
-			return (uint) Align;
-		}
+            return (uint)Align;
+        }
 
-		public uint GetUnionSize() {
-			uint size = 0;
+        public uint GetUnionSize()
+        {
+            uint size = 0;
 
-			foreach (var fieldnames in Union_fields) {
+            foreach (var fieldnames in Union_fields)
+            {
 
-				foreach (var fieldname in fieldnames) {
-					var field = ((AbiField) container.Fields[fieldname]);
-					var align = field.GetAlign();
+                foreach (var fieldname in fieldnames)
+                {
+                    var field = ((AbiField)container.Fields[fieldname]);
+                    var align = field.GetAlign();
 
-					if (field.Prev_name != null) {
-						var prev = ((AbiField)container.Fields[field.Prev_name]);
+                    if (field.Prev_name != null)
+                    {
+                        var prev = ((AbiField)container.Fields[field.Prev_name]);
 
-						if (!prev.InUnion())
-							field.Offset = Offset;
-						else
-							field.Offset = prev.GetEnd();
-					}
+                        if (!prev.InUnion())
+                            field.Offset = Offset;
+                        else
+                            field.Offset = prev.GetEnd();
+                    }
 
-					field.Offset += align - 1;
-					field.Offset &= ~(align - 1);
+                    field.Offset += align - 1;
+                    field.Offset &= ~(align - 1);
 
-					size = Math.Max(size, field.GetEnd() - (uint) Offset);
-				}
-			}
+                    size = Math.Max(size, field.GetEnd() - (uint)Offset);
+                }
+            }
 
-			return size;
-		}
+            return size;
+        }
 
-		public uint GetSize() {
-			if (Size != -1)
-				return (uint) Size;
+        public uint GetSize()
+        {
+            if (Size != -1)
+                return (uint)Size;
 
-			if (Union_fields != null) {
-				Size = GetUnionSize();
-			} else {
-				Size = Natural_size;
-			}
+            if (Union_fields != null)
+            {
+                Size = GetUnionSize();
+            }
+            else
+            {
+                Size = Natural_size;
+            }
 
-			return (uint) Size;
-		}
-	}
+            return (uint)Size;
+        }
+    }
 }

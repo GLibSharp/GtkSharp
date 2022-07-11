@@ -18,16 +18,18 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class Init {
+    public partial class Init
+    {
 
-		public static bool Check (ref string[] argv)
-		{
-			return Application.InitCheck (Environment.CommandLine, ref argv);
-		}
+        public static bool Check(ref string[] argv)
+        {
+            return Application.InitCheck(Environment.CommandLine, ref argv);
+        }
 
-	}
+    }
 }

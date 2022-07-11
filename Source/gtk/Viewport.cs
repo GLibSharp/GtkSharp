@@ -15,14 +15,17 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class Viewport {
+    public partial class Viewport
+    {
 
-		// Make a default constructor that wraps typical usage.
-		public Viewport (): this (null, null) {
-		}
-	}
+        // Make a default constructor that wraps typical usage.
+        public Viewport() : this(null, null)
+        {
+        }
+    }
 }

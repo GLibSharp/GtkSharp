@@ -19,116 +19,126 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Collections;
-	using System.Threading;
+    using System;
+    using System.Collections;
+    using System.Threading;
 
-	public abstract class TreeNode : ITreeNode {
+    public abstract class TreeNode : ITreeNode
+    {
 
-		// Only use interlocked operations
-		static int next_idx = 0;
+        // Only use interlocked operations
+        static int next_idx = 0;
 
-		int id;
-		ITreeNode parent;
-		ArrayList children = new ArrayList ();
+        int id;
+        ITreeNode parent;
+        ArrayList children = new ArrayList();
 
-		public TreeNode ()
-		{
-			id = Interlocked.Increment (ref next_idx);
-		}
+        public TreeNode()
+        {
+            id = Interlocked.Increment(ref next_idx);
+        }
 
-		public int ID {
-			get {
-				return id;
-			}
-		}
+        public int ID
+        {
+            get
+            {
+                return id;
+            }
+        }
 
-		public ITreeNode Parent {
-			get {
-				return parent;
-			}
-		}
+        public ITreeNode Parent
+        {
+            get
+            {
+                return parent;
+            }
+        }
 
-		public int ChildCount {
-			get {
-				return children.Count;
-			}
-		}
+        public int ChildCount
+        {
+            get
+            {
+                return children.Count;
+            }
+        }
 
-		public int IndexOf (object o) 
-		{
-			return children.IndexOf (o);
-		}
+        public int IndexOf(object o)
+        {
+            return children.IndexOf(o);
+        }
 
-		internal void SetParent (ITreeNode parent)
-		{
-			this.parent = parent;
-		}
+        internal void SetParent(ITreeNode parent)
+        {
+            this.parent = parent;
+        }
 
-		public ITreeNode this [int index] {
-			get {
-				if (index >= ChildCount)
-					return null;
+        public ITreeNode this[int index]
+        {
+            get
+            {
+                if (index >= ChildCount)
+                    return null;
 
-				return children [index] as ITreeNode;
-			}
-		}
+                return children[index] as ITreeNode;
+            }
+        }
 
-		public event EventHandler Changed;
+        public event EventHandler Changed;
 
-		protected void OnChanged ()
-		{
-			if (Changed == null)
-				return;
+        protected void OnChanged()
+        {
+            if (Changed == null)
+                return;
 
-			Changed (this, new EventArgs ());
-		}
+            Changed(this, new EventArgs());
+        }
 
-		public event TreeNodeAddedHandler ChildAdded;
+        public event TreeNodeAddedHandler ChildAdded;
 
-		private void OnChildAdded (ITreeNode child)
-		{
-			if (ChildAdded == null)
-				return;
+        private void OnChildAdded(ITreeNode child)
+        {
+            if (ChildAdded == null)
+                return;
 
-			ChildAdded (this, child);
-		}
+            ChildAdded(this, child);
+        }
 
-		public event TreeNodeRemovedHandler ChildRemoved;
+        public event TreeNodeRemovedHandler ChildRemoved;
 
-		private void OnChildRemoved (TreeNode child, int old_position)
-		{
-			if (ChildRemoved == null)
-				return;
+        private void OnChildRemoved(TreeNode child, int old_position)
+        {
+            if (ChildRemoved == null)
+                return;
 
-			ChildRemoved (this, child, old_position);
-		}
+            ChildRemoved(this, child, old_position);
+        }
 
-		public void AddChild (TreeNode child)
-		{
-			children.Add (child);
-			child.SetParent (this);
-			OnChildAdded (child);
-		}
+        public void AddChild(TreeNode child)
+        {
+            children.Add(child);
+            child.SetParent(this);
+            OnChildAdded(child);
+        }
 
-		public void AddChild (TreeNode child, int position)
-		{
-			children.Insert (position, child);
-			child.SetParent (this);
-			OnChildAdded (child);
-		}
+        public void AddChild(TreeNode child, int position)
+        {
+            children.Insert(position, child);
+            child.SetParent(this);
+            OnChildAdded(child);
+        }
 
-		public void RemoveChild (TreeNode child)
-		{
-			int idx = children.IndexOf (child);
-			if (idx < 0)
-				return;
+        public void RemoveChild(TreeNode child)
+        {
+            int idx = children.IndexOf(child);
+            if (idx < 0)
+                return;
 
-			children.Remove (child);
-			child.SetParent (null);
-			OnChildRemoved (child, idx);
-		}
-	}
+            children.Remove(child);
+            child.SetParent(null);
+            OnChildRemoved(child, idx);
+        }
+    }
 }

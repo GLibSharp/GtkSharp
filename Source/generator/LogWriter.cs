@@ -22,54 +22,60 @@
 
 using System;
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	public class LogWriter {
-		
-		string type;
-		string member;
-		int level;
+    public class LogWriter
+    {
 
-		public LogWriter () {
-			var l = Environment.GetEnvironmentVariable("CODEGEN_DEBUG");
+        string type;
+        string member;
+        int level;
 
-			level = 1;
-			if (l != null) {
-				level = Int32.Parse(l);
-			}
-		}
+        public LogWriter()
+        {
+            var l = Environment.GetEnvironmentVariable("CODEGEN_DEBUG");
 
-		public LogWriter (string type): this()
-		{
-			this.type = type;
-		}
+            level = 1;
+            if (l != null)
+            {
+                level = Int32.Parse(l);
+            }
+        }
 
-		public string Member {
-			get { return member; }
-			set { member = value; }
-		}
+        public LogWriter(string type) : this()
+        {
+            this.type = type;
+        }
 
-		public string Type {
-			get { return type; }
-			set { type = value; }
-		}
+        public string Member
+        {
+            get { return member; }
+            set { member = value; }
+        }
 
-		public void Warn (string format, params object[] args)
-		{
-			Warn (String.Format (format, args));
-		}
+        public string Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
 
-		public void Warn (string warning)
-		{
-			if (level > 0)
-				Console.WriteLine ("WARN: {0}{1} - {2}", Type, String.IsNullOrEmpty (Member) ? String.Empty : "." + Member, warning);
-		}
+        public void Warn(string format, params object[] args)
+        {
+            Warn(String.Format(format, args));
+        }
 
-		public void Info (string info)
-		{
-			if (level > 1)
-				Console.WriteLine ("INFO: {0}{1} - {2}", Type, String.IsNullOrEmpty (Member) ? String.Empty : "." + Member, info);
-		}
-	}
+        public void Warn(string warning)
+        {
+            if (level > 0)
+                Console.WriteLine("WARN: {0}{1} - {2}", Type, String.IsNullOrEmpty(Member) ? String.Empty : "." + Member, warning);
+        }
+
+        public void Info(string info)
+        {
+            if (level > 1)
+                Console.WriteLine("INFO: {0}{1} - {2}", Type, String.IsNullOrEmpty(Member) ? String.Empty : "." + Member, info);
+        }
+    }
 }
 

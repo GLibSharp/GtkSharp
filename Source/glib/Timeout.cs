@@ -22,84 +22,90 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.InteropServices;
 
-	public delegate bool TimeoutHandler ();
+    public delegate bool TimeoutHandler();
 
-	public class Timeout {
+    public class Timeout
+    {
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate bool TimeoutHandlerInternal ();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        delegate bool TimeoutHandlerInternal();
 
-		internal class TimeoutProxy : SourceProxy {
-			public TimeoutProxy (TimeoutHandler real)
-			{
-				real_handler = real;
-				proxy_handler = new TimeoutHandlerInternal (Handler);
-			}
+        internal class TimeoutProxy : SourceProxy
+        {
+            public TimeoutProxy(TimeoutHandler real)
+            {
+                real_handler = real;
+                proxy_handler = new TimeoutHandlerInternal(Handler);
+            }
 
-			public bool Handler ()
-			{
-				try {
-					TimeoutHandler timeout_handler = (TimeoutHandler) real_handler;
+            public bool Handler()
+            {
+                try
+                {
+                    TimeoutHandler timeout_handler = (TimeoutHandler)real_handler;
 
-					bool cont = timeout_handler ();
-					if (!cont)
-					{
-						lock (this)
-						{
-							Dispose ();
-						}
-					}
-					return cont;
-				} catch (Exception e) {
-					ExceptionManager.RaiseUnhandledException (e, false);
-				}
-				return false;
-			}
-		}
-		
-		private Timeout () {} 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_timeout_add_full(int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
+                    bool cont = timeout_handler();
+                    if (!cont)
+                    {
+                        lock (this)
+                        {
+                            Dispose();
+                        }
+                    }
+                    return cont;
+                }
+                catch (Exception e)
+                {
+                    ExceptionManager.RaiseUnhandledException(e, false);
+                }
+                return false;
+            }
+        }
 
-		public static uint Add (uint interval, TimeoutHandler hndlr)
-		{
-			TimeoutProxy p = new TimeoutProxy (hndlr);
-			lock (p)
-			{
-				var gch = GCHandle.Alloc(p);
-				var userData = GCHandle.ToIntPtr(gch);
-				p.ID = g_timeout_add_full (0, interval, (TimeoutHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
-			}
+        private Timeout() { }
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern uint g_timeout_add_full(int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
 
-			return p.ID;
-		}
+        public static uint Add(uint interval, TimeoutHandler hndlr)
+        {
+            TimeoutProxy p = new TimeoutProxy(hndlr);
+            lock (p)
+            {
+                var gch = GCHandle.Alloc(p);
+                var userData = GCHandle.ToIntPtr(gch);
+                p.ID = g_timeout_add_full(0, interval, (TimeoutHandlerInternal)p.proxy_handler, userData, DestroyHelper.NotifyHandler);
+            }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_timeout_add_seconds_full (int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
+            return p.ID;
+        }
 
-		public static uint AddSeconds (uint interval, TimeoutHandler hndlr)
-		{
-			TimeoutProxy p = new TimeoutProxy (hndlr);
-			lock (p)
-			{
-				var gch = GCHandle.Alloc(p);
-				var userData = GCHandle.ToIntPtr(gch);
-				p.ID = g_timeout_add_seconds_full (0, interval, (TimeoutHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
-			}
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern uint g_timeout_add_seconds_full(int priority, uint interval, TimeoutHandlerInternal d, IntPtr data, DestroyNotify notify);
 
-			return p.ID;
-		}
+        public static uint AddSeconds(uint interval, TimeoutHandler hndlr)
+        {
+            TimeoutProxy p = new TimeoutProxy(hndlr);
+            lock (p)
+            {
+                var gch = GCHandle.Alloc(p);
+                var userData = GCHandle.ToIntPtr(gch);
+                p.ID = g_timeout_add_seconds_full(0, interval, (TimeoutHandlerInternal)p.proxy_handler, userData, DestroyHelper.NotifyHandler);
+            }
 
-		public static void Remove (uint id)
-		{
-			Source.Remove (id);
-		}
-	}
+            return p.ID;
+        }
+
+        public static void Remove(uint id)
+        {
+            Source.Remove(id);
+        }
+    }
 }
 

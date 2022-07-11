@@ -18,59 +18,64 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class UIManager {
+    public partial class UIManager
+    {
 
-		public uint AddUiFromResource (string resource)
-		{
-			if (resource == null)
-				throw new ArgumentNullException ("resource");
-			
-			System.IO.Stream s = System.Reflection.Assembly.GetCallingAssembly ().GetManifestResourceStream (resource);
-			if (s == null)
-				throw new ArgumentException ("resource must be a valid resource name of 'assembly'.");
+        public uint AddUiFromResource(string resource)
+        {
+            if (resource == null)
+                throw new ArgumentNullException("resource");
 
-			return AddUiFromString (new System.IO.StreamReader (s).ReadToEnd ());
-		}
+            System.IO.Stream s = System.Reflection.Assembly.GetCallingAssembly().GetManifestResourceStream(resource);
+            if (s == null)
+                throw new ArgumentException("resource must be a valid resource name of 'assembly'.");
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint gtk_ui_manager_new_merge_id (IntPtr raw);
+            return AddUiFromString(new System.IO.StreamReader(s).ReadToEnd());
+        }
 
-		public uint NewMergeId ()
-		{
-			return gtk_ui_manager_new_merge_id (Handle);
-		}
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern uint gtk_ui_manager_new_merge_id(IntPtr raw);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_ui_manager_get_toplevels (IntPtr raw, int types);
+        public uint NewMergeId()
+        {
+            return gtk_ui_manager_new_merge_id(Handle);
+        }
 
-		public Widget[] GetToplevels (Gtk.UIManagerItemType types) {
-			IntPtr raw_ret = gtk_ui_manager_get_toplevels (Handle, (int) types);
-			GLib.SList list = new GLib.SList (raw_ret);
- 			Widget[] result = new Widget [list.Count];
-			for (int i = 0; i < list.Count; i++)
-				result [i] = list [i] as Widget;
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_ui_manager_get_toplevels(IntPtr raw, int types);
 
-			return result;
-		}
+        public Widget[] GetToplevels(Gtk.UIManagerItemType types)
+        {
+            IntPtr raw_ret = gtk_ui_manager_get_toplevels(Handle, (int)types);
+            GLib.SList list = new GLib.SList(raw_ret);
+            Widget[] result = new Widget[list.Count];
+            for (int i = 0; i < list.Count; i++)
+                result[i] = list[i] as Widget;
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_ui_manager_get_action_groups (IntPtr raw);
+            return result;
+        }
 
-		public ActionGroup[] ActionGroups { 
-			get {
-				IntPtr raw_ret = gtk_ui_manager_get_action_groups (Handle);
-				GLib.List list = new GLib.List(raw_ret);
- 				ActionGroup[] result = new ActionGroup [list.Count];
-				for (int i = 0; i < list.Count; i++)
-					result [i] = list [i] as ActionGroup;
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_ui_manager_get_action_groups(IntPtr raw);
 
-				return result;
-			}
-		}
-	}
+        public ActionGroup[] ActionGroups
+        {
+            get
+            {
+                IntPtr raw_ret = gtk_ui_manager_get_action_groups(Handle);
+                GLib.List list = new GLib.List(raw_ret);
+                ActionGroup[] result = new ActionGroup[list.Count];
+                for (int i = 0; i < list.Count; i++)
+                    result[i] = list[i] as ActionGroup;
+
+                return result;
+            }
+        }
+    }
 }

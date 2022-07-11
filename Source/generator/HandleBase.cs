@@ -19,62 +19,70 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.IO;
-	using System.Xml;
+    using System;
+    using System.IO;
+    using System.Xml;
 
-	public abstract class HandleBase : ClassBase, IAccessor, IOwnable {
+    public abstract class HandleBase : ClassBase, IAccessor, IOwnable
+    {
 
-		protected HandleBase (XmlElement ns, XmlElement elem) : base (ns, elem) {}
-					
-		public override string AssignToName {
-			get {
-				return "Raw";
-			}
-		}
+        protected HandleBase(XmlElement ns, XmlElement elem) : base(ns, elem) { }
 
-		public override string GenerateGetSizeOf () {
-			return NS + "." + Name + ".abi_info.Size";
-		}
+        public override string AssignToName
+        {
+            get
+            {
+                return "Raw";
+            }
+        }
 
-		public override string GenerateAlign () {
-			return NS + "." + Name + ".abi_info.Align";
-		}
+        public override string GenerateGetSizeOf()
+        {
+            return NS + "." + Name + ".abi_info.Size";
+        }
+
+        public override string GenerateAlign()
+        {
+            return NS + "." + Name + ".abi_info.Align";
+        }
 
 
-		public override string MarshalType {
-			get {
-				return "IntPtr";
-			}
-		}
+        public override string MarshalType
+        {
+            get
+            {
+                return "IntPtr";
+            }
+        }
 
-		public override string CallByName (string name)
-		{
-			return name + " == null ? IntPtr.Zero : " + name + ".Handle";
-		}
+        public override string CallByName(string name)
+        {
+            return name + " == null ? IntPtr.Zero : " + name + ".Handle";
+        }
 
-		public override string CallByName ()
-		{
-			return "Handle";
-		}
+        public override string CallByName()
+        {
+            return "Handle";
+        }
 
-		public abstract string FromNative (string var, bool owned);
+        public abstract string FromNative(string var, bool owned);
 
-		public override string FromNative (string var)
-		{
-			return FromNative (var, false);
-		}
+        public override string FromNative(string var)
+        {
+            return FromNative(var, false);
+        }
 
-		public void WriteAccessors (TextWriter sw, string indent, string var)
-		{
-			sw.WriteLine (indent + "get {");
-			sw.WriteLine (indent + "\treturn " + FromNative (var, false) + ";");
-			sw.WriteLine (indent + "}");
-			sw.WriteLine (indent + "set {");
-			sw.WriteLine (indent + "\t" + var + " = " + CallByName ("value") + ";");
-			sw.WriteLine (indent + "}");
-		}
-	}
+        public void WriteAccessors(TextWriter sw, string indent, string var)
+        {
+            sw.WriteLine(indent + "get {");
+            sw.WriteLine(indent + "\treturn " + FromNative(var, false) + ";");
+            sw.WriteLine(indent + "}");
+            sw.WriteLine(indent + "set {");
+            sw.WriteLine(indent + "\t" + var + " = " + CallByName("value") + ";");
+            sw.WriteLine(indent + "}");
+        }
+    }
 }

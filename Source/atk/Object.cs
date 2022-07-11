@@ -21,35 +21,38 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Atk {
+namespace Atk
+{
 
-	public partial class Object {
+    public partial class Object
+    {
 
-		protected void EmitChildrenChanged (ChildrenChangedDetail detail, uint child_index, Atk.Object child)
-		{
-			GLib.Signal.Emit (this, 
-				"children-changed::" + detail.ToString ().ToLower (), 
-				child_index, child.Handle);
-		}
-		
-		protected enum ChildrenChangedDetail
-		{
-			Add,
-			Remove
-		}
+        protected void EmitChildrenChanged(ChildrenChangedDetail detail, uint child_index, Atk.Object child)
+        {
+            GLib.Signal.Emit(this,
+                "children-changed::" + detail.ToString().ToLower(),
+                child_index, child.Handle);
+        }
 
-		protected void EmitVisibleDataChanged ()
-		{
-			GLib.Signal.Emit (this, "visible-data-changed");
-		}
-		
-		public void NotifyStateChange (Atk.StateType state, bool value) {
-			NotifyStateChange ((ulong)state, value);
-		}
+        protected enum ChildrenChangedDetail
+        {
+            Add,
+            Remove
+        }
 
-		protected void EmitFocusEvent (bool gained)
-		{
-			GLib.Signal.Emit (this, "focus-event", gained);
-		}
-	}
+        protected void EmitVisibleDataChanged()
+        {
+            GLib.Signal.Emit(this, "visible-data-changed");
+        }
+
+        public void NotifyStateChange(Atk.StateType state, bool value)
+        {
+            NotifyStateChange((ulong)state, value);
+        }
+
+        protected void EmitFocusEvent(bool gained)
+        {
+            GLib.Signal.Emit(this, "focus-event", gained);
+        }
+    }
 }

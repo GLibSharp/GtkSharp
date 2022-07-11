@@ -19,251 +19,270 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Collections;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Collections;
+    using System.Runtime.InteropServices;
 
-	public class PtrArray : IDisposable, ICollection, ICloneable, IWrapper {
+    public class PtrArray : IDisposable, ICollection, ICloneable, IWrapper
+    {
 
-		private IntPtr handle = IntPtr.Zero;
-		private bool managed = false;
-		internal bool elements_owned = false;
-		protected System.Type element_type = null;
+        private IntPtr handle = IntPtr.Zero;
+        private bool managed = false;
+        internal bool elements_owned = false;
+        protected System.Type element_type = null;
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_ptr_array_sized_new (uint n_preallocs);
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_ptr_array_sized_new(uint n_preallocs);
 
-		public PtrArray (uint n_preallocs, System.Type element_type, bool owned, bool elements_owned)
-		{
-			handle = g_ptr_array_sized_new (n_preallocs);
-			this.element_type = element_type;
-			managed = owned;
-			this.elements_owned = elements_owned;
-		}
+        public PtrArray(uint n_preallocs, System.Type element_type, bool owned, bool elements_owned)
+        {
+            handle = g_ptr_array_sized_new(n_preallocs);
+            this.element_type = element_type;
+            managed = owned;
+            this.elements_owned = elements_owned;
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_ptr_array_new ();
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_ptr_array_new();
 
-		public PtrArray (System.Type element_type, bool owned, bool elements_owned)
-		{
-			handle = g_ptr_array_new ();
-			this.element_type = element_type;
-			managed = owned;
-			this.elements_owned = elements_owned;
-		}
+        public PtrArray(System.Type element_type, bool owned, bool elements_owned)
+        {
+            handle = g_ptr_array_new();
+            this.element_type = element_type;
+            managed = owned;
+            this.elements_owned = elements_owned;
+        }
 
-		internal PtrArray (IntPtr raw, System.Type element_type, bool owned, bool elements_owned)
-		{
-			handle = raw;
-			this.element_type = element_type;
-			managed = owned;
-			this.elements_owned = elements_owned;
-		}
-		public PtrArray (IntPtr raw, System.Type element_type) : this (raw, element_type, false, false) {}
-		
-		public PtrArray (IntPtr raw) : this (raw, null) {}
+        internal PtrArray(IntPtr raw, System.Type element_type, bool owned, bool elements_owned)
+        {
+            handle = raw;
+            this.element_type = element_type;
+            managed = owned;
+            this.elements_owned = elements_owned;
+        }
+        public PtrArray(IntPtr raw, System.Type element_type) : this(raw, element_type, false, false) { }
 
-		~PtrArray ()
-		{
-			Dispose (false);
-		}
+        public PtrArray(IntPtr raw) : this(raw, null) { }
 
-		// IDisposable
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
+        ~PtrArray()
+        {
+            Dispose(false);
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_ptr_array_free (IntPtr raw, bool free_seg);
+        // IDisposable
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_unref (IntPtr item);
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_ptr_array_free(IntPtr raw, bool free_seg);
 
-		void Dispose (bool disposing)
-		{
-			if (Handle == IntPtr.Zero)
-				return;
+        [DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_object_unref(IntPtr item);
 
-			if (elements_owned) {
-				int count = Count;
-				for (uint i = 0; i < count; i++)
-					if (typeof (GLib.Object).IsAssignableFrom (element_type))
-						g_object_unref (NthData (i));
-					else if (typeof (GLib.Opaque).IsAssignableFrom (element_type))
-						GLib.Opaque.GetOpaque (NthData (i), element_type, true).Dispose ();
-					else 
-						Marshaller.Free (NthData (i));
-			}
+        void Dispose(bool disposing)
+        {
+            if (Handle == IntPtr.Zero)
+                return;
 
-			if (managed)
-				g_ptr_array_free (Handle, true);
+            if (elements_owned)
+            {
+                int count = Count;
+                for (uint i = 0; i < count; i++)
+                    if (typeof(GLib.Object).IsAssignableFrom(element_type))
+                        g_object_unref(NthData(i));
+                    else if (typeof(GLib.Opaque).IsAssignableFrom(element_type))
+                        GLib.Opaque.GetOpaque(NthData(i), element_type, true).Dispose();
+                    else
+                        Marshaller.Free(NthData(i));
+            }
 
-			handle = IntPtr.Zero;
-		}
+            if (managed)
+                g_ptr_array_free(Handle, true);
 
-		public IntPtr Handle {
-			get {
-				return handle;
-			}
-		}
+            handle = IntPtr.Zero;
+        }
 
-		public IntPtr ArrayPtr {
-			get {
-				return Marshal.ReadIntPtr (Handle);
-			}
-		}
+        public IntPtr Handle
+        {
+            get
+            {
+                return handle;
+            }
+        }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_ptr_array_add (IntPtr raw, IntPtr val);
+        public IntPtr ArrayPtr
+        {
+            get
+            {
+                return Marshal.ReadIntPtr(Handle);
+            }
+        }
 
-		public void Add (IntPtr val)
-		{
-			g_ptr_array_add (Handle, val);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_ptr_array_add(IntPtr raw, IntPtr val);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_ptr_array_remove (IntPtr raw, IntPtr data);
+        public void Add(IntPtr val)
+        {
+            g_ptr_array_add(Handle, val);
+        }
 
-		public void Remove (IntPtr data)
-		{
-			g_ptr_array_remove (Handle, data);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_ptr_array_remove(IntPtr raw, IntPtr data);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_ptr_array_remove_range (IntPtr raw, uint index, uint length);
+        public void Remove(IntPtr data)
+        {
+            g_ptr_array_remove(Handle, data);
+        }
 
-		public void RemoveRange (IntPtr data, uint index, uint length)
-		{
-			g_ptr_array_remove_range (Handle, index, length);
-		}
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void g_ptr_array_remove_range(IntPtr raw, uint index, uint length);
 
-		struct GPtrArray {
-			public IntPtr pdata;
-			public uint len;
-		}
+        public void RemoveRange(IntPtr data, uint index, uint length)
+        {
+            g_ptr_array_remove_range(Handle, index, length);
+        }
 
-		// ICollection
-		public int Count {
-			get {
-				GPtrArray native = (GPtrArray) Marshal.PtrToStructure (Handle, typeof (GPtrArray));
-				return (int) native.len;
-			}
-		}
+        struct GPtrArray
+        {
+            public IntPtr pdata;
+            public uint len;
+        }
 
-		public object this [int index] { 
-			get {
-				IntPtr data = NthData ((uint) index);
-				object ret = null;
-				ret = DataMarshal (data);
-				return ret;
-			}
-		}
+        // ICollection
+        public int Count
+        {
+            get
+            {
+                GPtrArray native = (GPtrArray)Marshal.PtrToStructure(Handle, typeof(GPtrArray));
+                return (int)native.len;
+            }
+        }
 
-		internal object DataMarshal (IntPtr data) 
-		{
-			object ret = null;
-			if (element_type != null) {
-				if (element_type == typeof (string))
-					ret = Marshaller.Utf8PtrToString (data);
-				else if (element_type == typeof (IntPtr))
-					ret = data;
-				else if (element_type.IsSubclassOf (typeof (GLib.Object)))
-					ret = GLib.Object.GetObject (data, false);
-				else if (element_type.IsSubclassOf (typeof (GLib.Opaque)))
-					ret = GLib.Opaque.GetOpaque (data, element_type, elements_owned);
-				else if (element_type == typeof (int))
-					ret = (int) data;
-				else if (element_type.IsValueType)
-					ret = Marshal.PtrToStructure (data, element_type);
-				else
-					ret = Activator.CreateInstance (element_type, new object[] {data});
+        public object this[int index]
+        {
+            get
+            {
+                IntPtr data = NthData((uint)index);
+                object ret = null;
+                ret = DataMarshal(data);
+                return ret;
+            }
+        }
 
-			} else if (Object.IsObject (data))
-				ret = GLib.Object.GetObject (data, false);
+        internal object DataMarshal(IntPtr data)
+        {
+            object ret = null;
+            if (element_type != null)
+            {
+                if (element_type == typeof(string))
+                    ret = Marshaller.Utf8PtrToString(data);
+                else if (element_type == typeof(IntPtr))
+                    ret = data;
+                else if (element_type.IsSubclassOf(typeof(GLib.Object)))
+                    ret = GLib.Object.GetObject(data, false);
+                else if (element_type.IsSubclassOf(typeof(GLib.Opaque)))
+                    ret = GLib.Opaque.GetOpaque(data, element_type, elements_owned);
+                else if (element_type == typeof(int))
+                    ret = (int)data;
+                else if (element_type.IsValueType)
+                    ret = Marshal.PtrToStructure(data, element_type);
+                else
+                    ret = Activator.CreateInstance(element_type, new object[] { data });
 
-			return ret;
-		}
+            }
+            else if (Object.IsObject(data))
+                ret = GLib.Object.GetObject(data, false);
 
-		internal IntPtr NthData (uint index)
-		{
-			return Marshal.ReadIntPtr (ArrayPtr, (int) index * IntPtr.Size);;
-		}
+            return ret;
+        }
 
-		// Synchronization could be tricky here. Hmm.
-		public bool IsSynchronized {
-			get { return false; }
-		}
+        internal IntPtr NthData(uint index)
+        {
+            return Marshal.ReadIntPtr(ArrayPtr, (int)index * IntPtr.Size); ;
+        }
 
-		public object SyncRoot {
-			get { return null; }
-		}
+        // Synchronization could be tricky here. Hmm.
+        public bool IsSynchronized
+        {
+            get { return false; }
+        }
 
-		public void CopyTo (Array array, int index)
-		{
-			if (array == null)
-				throw new ArgumentNullException ("Array can't be null.");
+        public object SyncRoot
+        {
+            get { return null; }
+        }
 
-			if (index < 0)
-				throw new ArgumentOutOfRangeException ("Index must be greater than 0.");
+        public void CopyTo(Array array, int index)
+        {
+            if (array == null)
+                throw new ArgumentNullException("Array can't be null.");
 
-			if (index + Count < array.Length)
-				throw new ArgumentException ("Array not large enough to copy into starting at index.");
-			
-			for (int i = 0; i < Count; i++)
-				((IList) array) [index + i] = this [i];
-		}
+            if (index < 0)
+                throw new ArgumentOutOfRangeException("Index must be greater than 0.");
 
-		private class ListEnumerator : IEnumerator
-		{
-			private int current = -1;
-			private PtrArray vals;
+            if (index + Count < array.Length)
+                throw new ArgumentException("Array not large enough to copy into starting at index.");
 
-			public ListEnumerator (PtrArray vals)
-			{
-				this.vals = vals;
-			}
+            for (int i = 0; i < Count; i++)
+                ((IList)array)[index + i] = this[i];
+        }
 
-			public object Current {
-				get {
-					if (current == -1)
-						return null;
-					return vals [current];
-				}
-			}
+        private class ListEnumerator : IEnumerator
+        {
+            private int current = -1;
+            private PtrArray vals;
 
-			public bool MoveNext ()
-			{
-				if (++current >= vals.Count) {
-					current = -1;
-					return false;
-				}
+            public ListEnumerator(PtrArray vals)
+            {
+                this.vals = vals;
+            }
 
-				return true;
-			}
+            public object Current
+            {
+                get
+                {
+                    if (current == -1)
+                        return null;
+                    return vals[current];
+                }
+            }
 
-			public void Reset ()
-			{
-				current = -1;
-			}
-		}
-		
-		// IEnumerable
-		public IEnumerator GetEnumerator ()
-		{
-			return new ListEnumerator (this);
-		}
+            public bool MoveNext()
+            {
+                if (++current >= vals.Count)
+                {
+                    current = -1;
+                    return false;
+                }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_ptr_array_copy (IntPtr raw);
+                return true;
+            }
 
-		// ICloneable
-		public object Clone ()
-		{
-			return new PtrArray (g_ptr_array_copy (Handle), element_type, false, false);
-		}
-	}
+            public void Reset()
+            {
+                current = -1;
+            }
+        }
+
+        // IEnumerable
+        public IEnumerator GetEnumerator()
+        {
+            return new ListEnumerator(this);
+        }
+
+        [DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr g_ptr_array_copy(IntPtr raw);
+
+        // ICloneable
+        public object Clone()
+        {
+            return new PtrArray(g_ptr_array_copy(Handle), element_type, false, false);
+        }
+    }
 }

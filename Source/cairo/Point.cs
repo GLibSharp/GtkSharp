@@ -34,24 +34,27 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace Cairo {
-	public struct Point
-	{
-		public Point (int x, int y)
-		{
-			this.x = x;
-			this.y = y;
-		}
+namespace Cairo
+{
+    public struct Point
+    {
+        public Point(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
 
-		int x, y;
-		public int X {
-			get { return x; }
-			set { x = value; }
-		}
+        int x, y;
+        public int X
+        {
+            get { return x; }
+            set { x = value; }
+        }
 
-		public int Y {
-			get { return y; }
-			set { y = value; }
-		}
-	}
+        public int Y
+        {
+            get { return y; }
+            set { y = value; }
+        }
+    }
 }

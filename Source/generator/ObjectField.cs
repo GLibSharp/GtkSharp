@@ -17,36 +17,44 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Collections;
-	using System.IO;
-	using System.Xml;
+    using System;
+    using System.Collections;
+    using System.IO;
+    using System.Xml;
 
-	public class ObjectField : FieldBase {
+    public class ObjectField : FieldBase
+    {
 
-		public ObjectField (XmlElement elem, ClassBase container_type) : base (elem, container_type){
-			if (CType == "char*" || CType == "gchar*")
-				ctype = "const-" + CType;
-		}
+        public ObjectField(XmlElement elem, ClassBase container_type) : base(elem, container_type)
+        {
+            if (CType == "char*" || CType == "gchar*")
+                ctype = "const-" + CType;
+        }
 
-		public ObjectField (XmlElement elem, ClassBase container_type, FieldBase abi_field) : base (elem, container_type) {
-			if (CType == "char*" || CType == "gchar*")
-				ctype = "const-" + CType;
-		}
+        public ObjectField(XmlElement elem, ClassBase container_type, FieldBase abi_field) : base(elem, container_type)
+        {
+            if (CType == "char*" || CType == "gchar*")
+                ctype = "const-" + CType;
+        }
 
-		internal override bool Writable {
-			get {
-				return elem.GetAttributeAsBoolean ("writeable");
-			}
-		}
+        internal override bool Writable
+        {
+            get
+            {
+                return elem.GetAttributeAsBoolean("writeable");
+            }
+        }
 
-		protected override string DefaultAccess {
-			get {
-				return "private";
-			}
-		}
-	}
+        protected override string DefaultAccess
+        {
+            get
+            {
+                return "private";
+            }
+        }
+    }
 }
 

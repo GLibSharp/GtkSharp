@@ -19,43 +19,49 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-	public delegate void GInterfaceInitHandler (IntPtr iface_ptr, IntPtr data);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void GInterfaceInitHandler(IntPtr iface_ptr, IntPtr data);
 
-	[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-	internal delegate void GInterfaceFinalizeHandler (IntPtr iface_ptr, IntPtr data);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    internal delegate void GInterfaceFinalizeHandler(IntPtr iface_ptr, IntPtr data);
 
-	internal struct GInterfaceInfo {
-		internal GInterfaceInitHandler InitHandler;
-		internal GInterfaceFinalizeHandler FinalizeHandler;
-		internal IntPtr Data;
-	}
+    internal struct GInterfaceInfo
+    {
+        internal GInterfaceInitHandler InitHandler;
+        internal GInterfaceFinalizeHandler FinalizeHandler;
+        internal IntPtr Data;
+    }
 
-	public abstract class GInterfaceAdapter {
+    public abstract class GInterfaceAdapter
+    {
 
-		GInterfaceInfo info;
+        GInterfaceInfo info;
 
-		protected GInterfaceAdapter ()
-		{
-		}
+        protected GInterfaceAdapter()
+        {
+        }
 
-		protected GInterfaceInitHandler InitHandler {
-			set {
-				info.InitHandler = value;
-			}
-		}
+        protected GInterfaceInitHandler InitHandler
+        {
+            set
+            {
+                info.InitHandler = value;
+            }
+        }
 
-		public abstract GType GInterfaceGType { get; }
+        public abstract GType GInterfaceGType { get; }
 
-		public abstract IntPtr Handle { get; }
+        public abstract IntPtr Handle { get; }
 
-		internal GInterfaceInfo Info {
-			get { return info; }
-		}
-	}
+        internal GInterfaceInfo Info
+        {
+            get { return info; }
+        }
+    }
 }

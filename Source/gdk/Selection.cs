@@ -20,17 +20,19 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
+    using System;
 
-	public partial class Selection {
+    public partial class Selection
+    {
 
-		public static Atom Primary = new Atom (new IntPtr (1));
+        public static Atom Primary = new Atom(new IntPtr(1));
 
-		public static Atom Secondary = new Atom (new IntPtr (2));
+        public static Atom Secondary = new Atom(new IntPtr(2));
 
-		public static Atom Clipboard = new Atom (new IntPtr (69));
-	}
+        public static Atom Clipboard = new Atom(new IntPtr(69));
+    }
 }
 

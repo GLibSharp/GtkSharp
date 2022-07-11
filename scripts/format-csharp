@@ -8,4 +8,5 @@ dotnet-format Source/gtk-sharp.sln --exclude \
     gio/generated \
     gtk/generated \
     pango/generated \
+    git tests/generator/regress/generated/Regress/ \
     $@

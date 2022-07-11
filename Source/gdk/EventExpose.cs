@@ -19,55 +19,65 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventExpose : Event {
+    public class EventExpose : Event
+    {
 
-		public EventExpose (IntPtr raw) : base (raw) {} 
+        public EventExpose(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public Rectangle area;
-			public IntPtr region;
-			public int count;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public Rectangle area;
+            public IntPtr region;
+            public int count;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public Rectangle Area {
-			get { return Native.area; }
-			set {
-				NativeStruct native = Native;
-				native.area = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public Rectangle Area
+        {
+            get { return Native.area; }
+            set
+            {
+                NativeStruct native = Native;
+                native.area = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public Cairo.Region Region {
-			get { return new Cairo.Region (Native.region); }
-			set {
-				NativeStruct native = Native;
-				native.region = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public Cairo.Region Region
+        {
+            get { return new Cairo.Region(Native.region); }
+            set
+            {
+                NativeStruct native = Native;
+                native.region = value == null ? IntPtr.Zero : value.Handle;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public int Count {
-			get { return Native.count; }
-			set {
-				NativeStruct native = Native;
-				native.count = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public int Count
+        {
+            get { return Native.count; }
+            set
+            {
+                NativeStruct native = Native;
+                native.count = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

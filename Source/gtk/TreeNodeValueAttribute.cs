@@ -19,19 +19,22 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	[AttributeUsage (AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
-	public sealed class TreeNodeValueAttribute : Attribute {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
+    public sealed class TreeNodeValueAttribute : Attribute
+    {
 
-		int col;
+        int col;
 
-		public int Column {
-			get { return col; }
-			set { col = value; }
-		}
-	}
+        public int Column
+        {
+            get { return col; }
+            set { col = value; }
+        }
+    }
 }
 

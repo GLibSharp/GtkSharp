@@ -34,31 +34,31 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum Status
-	{
-		Success = 0,
-		NoMemory,
-		InvalidRestore,
-		InvalidPopGroup,
-		NoCurrentPoint,
-		InvalidMatrix,
-		InvalidStatus,
-		NullPointer,
-		InvalidString,
-		InvalidPathData,
-		ReadError,
-		WriteError,
-		SurfaceFinished,
-		SurfaceTypeMismatch,
-		PatternTypeMismatch,
-		InvalidContent,
-		InvalidFormat,
-		InvalidVisual,
-		FileNotFound,
-		InvalidDash,
-		InvalidDscComment,
-		InvalidIndex,
-		ClipNotRepresentable,
-	}
+    [Serializable]
+    public enum Status
+    {
+        Success = 0,
+        NoMemory,
+        InvalidRestore,
+        InvalidPopGroup,
+        NoCurrentPoint,
+        InvalidMatrix,
+        InvalidStatus,
+        NullPointer,
+        InvalidString,
+        InvalidPathData,
+        ReadError,
+        WriteError,
+        SurfaceFinished,
+        SurfaceTypeMismatch,
+        PatternTypeMismatch,
+        InvalidContent,
+        InvalidFormat,
+        InvalidVisual,
+        FileNotFound,
+        InvalidDash,
+        InvalidDscComment,
+        InvalidIndex,
+        ClipNotRepresentable,
+    }
 }

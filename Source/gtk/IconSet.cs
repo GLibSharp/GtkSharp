@@ -13,37 +13,42 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class IconSet {
+    public partial class IconSet
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		unsafe static extern void gtk_icon_set_get_sizes (
-			IntPtr raw, out int *pointer_to_enum, out int n_sizes);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        unsafe static extern void gtk_icon_set_get_sizes(
+            IntPtr raw, out int* pointer_to_enum, out int n_sizes);
 
-		/// <summary> Sizes Property </summary>
-		/// <remarks> To be completed </remarks>
-		public Gtk.IconSize [] Sizes {
-			get {
+        /// <summary> Sizes Property </summary>
+        /// <remarks> To be completed </remarks>
+        public Gtk.IconSize[] Sizes
+        {
+            get
+            {
 
-				Gtk.IconSize [] retval;
+                Gtk.IconSize[] retval;
 
-				unsafe {
-					int length;
-					int *pointer_to_enum;
-					gtk_icon_set_get_sizes (Handle, out pointer_to_enum, out length);
-					retval = new Gtk.IconSize [length];
-					for (int i = 0; i < length; i++)
-						retval [i] = (Gtk.IconSize) pointer_to_enum [i];
+                unsafe
+                {
+                    int length;
+                    int* pointer_to_enum;
+                    gtk_icon_set_get_sizes(Handle, out pointer_to_enum, out length);
+                    retval = new Gtk.IconSize[length];
+                    for (int i = 0; i < length; i++)
+                        retval[i] = (Gtk.IconSize)pointer_to_enum[i];
 
-					GLib.Marshaller.Free ((IntPtr)pointer_to_enum);
-				}
+                    GLib.Marshaller.Free((IntPtr)pointer_to_enum);
+                }
 
-				return retval;
-			}
-		}
-	}
+                return retval;
+            }
+        }
+    }
 }

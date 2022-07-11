@@ -28,17 +28,18 @@
 
 using System;
 
-namespace Cairo {
-	
-	public class Win32Surface : Surface
-	{
-		internal Win32Surface (IntPtr handle, bool owns) : base (handle, owns)
-		{
-		}
-		
-		public Win32Surface (IntPtr hdc)
-			: base (NativeMethods.cairo_win32_surface_create (hdc), true)
-		{
-		}
-	}
+namespace Cairo
+{
+
+    public class Win32Surface : Surface
+    {
+        internal Win32Surface(IntPtr handle, bool owns) : base(handle, owns)
+        {
+        }
+
+        public Win32Surface(IntPtr hdc)
+            : base(NativeMethods.cairo_win32_surface_create(hdc), true)
+        {
+        }
+    }
 }

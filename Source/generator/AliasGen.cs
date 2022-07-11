@@ -18,13 +18,15 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
+    using System;
 
-	public class AliasGen : SimpleBase {
-		
-		public AliasGen (string ctype, string type) : base (ctype, type, String.Empty) {}
-	}
+    public class AliasGen : SimpleBase
+    {
+
+        public AliasGen(string ctype, string type) : base(ctype, type, String.Empty) { }
+    }
 }
 

@@ -19,17 +19,19 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial struct TargetEntry {
+    public partial struct TargetEntry
+    {
 
-		public TargetEntry (string target, Gtk.TargetFlags flags, uint info)
-		{
-			this.Target = target;
-			this.Flags = flags;
-			this.Info = info;
-		}
-	}
+        public TargetEntry(string target, Gtk.TargetFlags flags, uint info)
+        {
+            this.Target = target;
+            this.Flags = flags;
+            this.Info = info;
+        }
+    }
 }

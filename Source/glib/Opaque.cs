@@ -24,180 +24,199 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib {
+namespace GLib
+{
 
-	using System;
+    using System;
 
-	public class Opaque : IWrapper, IDisposable {
+    public class Opaque : IWrapper, IDisposable
+    {
 
-		IntPtr _obj;
-		bool owned;
+        IntPtr _obj;
+        bool owned;
 
-		public static Opaque GetOpaque (IntPtr o, Type type, bool owned)
-		{
-			if (o == IntPtr.Zero)
-				return null;
+        public static Opaque GetOpaque(IntPtr o, Type type, bool owned)
+        {
+            if (o == IntPtr.Zero)
+                return null;
 
-			Opaque opaque = (Opaque)Activator.CreateInstance (type, new object[] { o });
-			if (owned) {
-				if (opaque.owned) {
-					// The constructor took a Ref it shouldn't have, so undo it
-					opaque.Unref (o);
-				}
-				opaque.owned = true;
-			} else 
-				opaque = opaque.Copy (o);
+            Opaque opaque = (Opaque)Activator.CreateInstance(type, new object[] { o });
+            if (owned)
+            {
+                if (opaque.owned)
+                {
+                    // The constructor took a Ref it shouldn't have, so undo it
+                    opaque.Unref(o);
+                }
+                opaque.owned = true;
+            }
+            else
+                opaque = opaque.Copy(o);
 
-			return opaque;
-  		}
-  
-		public Opaque ()
-		{
-			owned = true;
-		}
+            return opaque;
+        }
 
-		public Opaque (IntPtr raw)
-		{
-			owned = false;
-			Raw = raw;
-		}
+        public Opaque()
+        {
+            owned = true;
+        }
 
-		protected IntPtr Raw {
-			get {
-				return _obj;
-			}
-			set {
-				if (_obj == value) {
-					return;
-				}
+        public Opaque(IntPtr raw)
+        {
+            owned = false;
+            Raw = raw;
+        }
 
-				if (_obj != IntPtr.Zero) {
-					Unref (_obj);
-					if (owned)
-						Free (_obj);
-				}
-				_obj = value;
-				if (_obj != IntPtr.Zero) {
-					Ref (_obj);
-				}
-			}
-		}
+        protected IntPtr Raw
+        {
+            get
+            {
+                return _obj;
+            }
+            set
+            {
+                if (_obj == value)
+                {
+                    return;
+                }
 
-		#region IDisposable implementation
-		class FinalizerInfo
-		{
-			IntPtr handle;
-			Action<IntPtr> unrefFunc;
+                if (_obj != IntPtr.Zero)
+                {
+                    Unref(_obj);
+                    if (owned)
+                        Free(_obj);
+                }
+                _obj = value;
+                if (_obj != IntPtr.Zero)
+                {
+                    Ref(_obj);
+                }
+            }
+        }
 
-			public FinalizerInfo (Action<IntPtr> unrefFunc, IntPtr handle)
-			{
-				this.handle = handle;
-				this.unrefFunc = unrefFunc;
-			}
+        #region IDisposable implementation
+        class FinalizerInfo
+        {
+            IntPtr handle;
+            Action<IntPtr> unrefFunc;
 
-			public bool Handler ()
-			{
-				unrefFunc (handle);
-				return false;
-			}
-		}
+            public FinalizerInfo(Action<IntPtr> unrefFunc, IntPtr handle)
+            {
+                this.handle = handle;
+                this.unrefFunc = unrefFunc;
+            }
 
-		~Opaque ()
-		{
-			Dispose (false);
-		}
+            public bool Handler()
+            {
+                unrefFunc(handle);
+                return false;
+            }
+        }
 
-		public void Dispose ()
-		{
-			Raw = IntPtr.Zero;
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
+        ~Opaque()
+        {
+            Dispose(false);
+        }
 
-		protected void Dispose (bool disposing)
-		{
-			if (Disposed)
-				return;
-			Disposed = true;
-			if (disposing) {
-				DisposeManagedResources ();
-			}
-			DisposeUnmanagedResources ();
-		}
+        public void Dispose()
+        {
+            Raw = IntPtr.Zero;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		/// <summary>
-		/// Disposes the managed resources.
-		/// This method is intended to be overriden.
-		/// </summary>
-		protected virtual void DisposeManagedResources ()
-		{
-		}
+        protected void Dispose(bool disposing)
+        {
+            if (Disposed)
+                return;
+            Disposed = true;
+            if (disposing)
+            {
+                DisposeManagedResources();
+            }
+            DisposeUnmanagedResources();
+        }
 
-		/// <summary>
-		/// Disposes the unmanaged resources.
-		/// This method is intended to be overriden.
-		/// </summary>
-		protected virtual void DisposeUnmanagedResources ()
-		{
-			if (!Owned || DisposeUnmanagedFunc == null)
-				return;
-			FinalizerInfo info = new FinalizerInfo (DisposeUnmanagedFunc, Handle);
-			Timeout.Add (50, new TimeoutHandler (info.Handler));
-		}
+        /// <summary>
+        /// Disposes the managed resources.
+        /// This method is intended to be overriden.
+        /// </summary>
+        protected virtual void DisposeManagedResources()
+        {
+        }
 
-		protected internal bool Disposed { get; private set; } = false;
+        /// <summary>
+        /// Disposes the unmanaged resources.
+        /// This method is intended to be overriden.
+        /// </summary>
+        protected virtual void DisposeUnmanagedResources()
+        {
+            if (!Owned || DisposeUnmanagedFunc == null)
+                return;
+            FinalizerInfo info = new FinalizerInfo(DisposeUnmanagedFunc, Handle);
+            Timeout.Add(50, new TimeoutHandler(info.Handler));
+        }
 
-		protected virtual Action<IntPtr> DisposeUnmanagedFunc { get; }
+        protected internal bool Disposed { get; private set; } = false;
 
-		#endregion
+        protected virtual Action<IntPtr> DisposeUnmanagedFunc { get; }
+
+        #endregion
 
 
 
-		// These take an IntPtr arg so we don't get conflicts if we need
-		// to have an "[Obsolete] public void Ref ()"
+        // These take an IntPtr arg so we don't get conflicts if we need
+        // to have an "[Obsolete] public void Ref ()"
 
-		protected virtual void Ref (IntPtr raw) {}
-		protected virtual void Unref (IntPtr raw) {}
-		protected virtual void Free (IntPtr raw) {}
-		protected virtual Opaque Copy (IntPtr raw) 
-		{
-			return this;
-		}
+        protected virtual void Ref(IntPtr raw) { }
+        protected virtual void Unref(IntPtr raw) { }
+        protected virtual void Free(IntPtr raw) { }
+        protected virtual Opaque Copy(IntPtr raw)
+        {
+            return this;
+        }
 
-		public IntPtr Handle {
-			get {
-				return _obj;
-			}
-		}
+        public IntPtr Handle
+        {
+            get
+            {
+                return _obj;
+            }
+        }
 
-		public IntPtr OwnedCopy {
-			get {
-				Opaque result = Copy (Handle);
-				result.Owned = false;
-				return result.Handle;
-			}
-		}
+        public IntPtr OwnedCopy
+        {
+            get
+            {
+                Opaque result = Copy(Handle);
+                result.Owned = false;
+                return result.Handle;
+            }
+        }
 
-		public bool Owned {
-			get {
-				return owned;
-			}
-			set {
-				owned = value;
-			}
-		}
+        public bool Owned
+        {
+            get
+            {
+                return owned;
+            }
+            set
+            {
+                owned = value;
+            }
+        }
 
-		public override bool Equals (object o)
-		{
-			if (!(o is Opaque))
-				return false;
+        public override bool Equals(object o)
+        {
+            if (!(o is Opaque))
+                return false;
 
-			return (Handle == ((Opaque) o).Handle);
-		}
+            return (Handle == ((Opaque)o).Handle);
+        }
 
-		public override int GetHashCode ()
-		{
-			return Handle.GetHashCode ();
-		}
-	}
+        public override int GetHashCode()
+        {
+            return Handle.GetHashCode();
+        }
+    }
 }

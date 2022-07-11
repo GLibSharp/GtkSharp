@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrFallback : Attribute {
+    public class AttrFallback : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_fallback_new (bool fallback);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_fallback_new(bool fallback);
 
-		public AttrFallback (bool fallback) : this (pango_attr_fallback_new (fallback)) {}
+        public AttrFallback(bool fallback) : this(pango_attr_fallback_new(fallback)) { }
 
-		internal AttrFallback (IntPtr raw) : base (raw) {}
+        internal AttrFallback(IntPtr raw) : base(raw) { }
 
-		public bool Fallback {
-			get {
-				return AttrInt.New (Handle).Value != 0;
-			}
-		}
-	}
+        public bool Fallback
+        {
+            get
+            {
+                return AttrInt.New(Handle).Value != 0;
+            }
+        }
+    }
 }

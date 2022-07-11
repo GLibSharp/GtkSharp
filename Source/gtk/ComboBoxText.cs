@@ -18,31 +18,39 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial class ComboBoxText {
+    public partial class ComboBoxText
+    {
 
-		protected ComboBoxText (bool has_entry) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (ComboBoxText)) {
-				CreateNativeObject (new string[] { "has-entry", "entry-text-column", "id-column" },
-									new GLib.Value[] { new GLib.Value (has_entry), new GLib.Value (0), new GLib.Value (1) });
-				return;
-			}
-				
-			if (has_entry) {
-				Raw = gtk_combo_box_text_new_with_entry ();
-			} else {
-				Raw = gtk_combo_box_text_new ();
-			}
-		}
+        protected ComboBoxText(bool has_entry) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(ComboBoxText))
+            {
+                CreateNativeObject(new string[] { "has-entry", "entry-text-column", "id-column" },
+                                    new GLib.Value[] { new GLib.Value(has_entry), new GLib.Value(0), new GLib.Value(1) });
+                return;
+            }
 
-		public Gtk.Entry Entry {
-			get {
-				return (Gtk.Entry)Child;
-			}
-		}
-	}
+            if (has_entry)
+            {
+                Raw = gtk_combo_box_text_new_with_entry();
+            }
+            else
+            {
+                Raw = gtk_combo_box_text_new();
+            }
+        }
+
+        public Gtk.Entry Entry
+        {
+            get
+            {
+                return (Gtk.Entry)Child;
+            }
+        }
+    }
 }

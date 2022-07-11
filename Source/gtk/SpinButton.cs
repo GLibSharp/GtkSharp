@@ -19,30 +19,33 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
-		
-	using System;
-	using System.Runtime.InteropServices;
+namespace Gtk
+{
 
-	public partial class SpinButton {
-				
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_spin_button_new_with_range (double min, double max, double step);
+    using System;
+    using System.Runtime.InteropServices;
 
-		public SpinButton (double min, double max, double step) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (SpinButton)) {
-				Adjustment adj = new Adjustment (min, min, max, step, 10 * step, 0);
-				string[] names = new string [1];
-				GLib.Value[] vals = new GLib.Value [1];
-				names [0] = "adjustment";
-				vals [0] = new GLib.Value (adj);
-				CreateNativeObject (names, vals);
-				vals [0].Dispose ();
-				return;
-			}
+    public partial class SpinButton
+    {
 
-			Raw = gtk_spin_button_new_with_range (min, max, step);
-		}
-	}
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_spin_button_new_with_range(double min, double max, double step);
+
+        public SpinButton(double min, double max, double step) : base(IntPtr.Zero)
+        {
+            if (GetType() != typeof(SpinButton))
+            {
+                Adjustment adj = new Adjustment(min, min, max, step, 10 * step, 0);
+                string[] names = new string[1];
+                GLib.Value[] vals = new GLib.Value[1];
+                names[0] = "adjustment";
+                vals[0] = new GLib.Value(adj);
+                CreateNativeObject(names, vals);
+                vals[0].Dispose();
+                return;
+            }
+
+            Raw = gtk_spin_button_new_with_range(min, max, step);
+        }
+    }
 }

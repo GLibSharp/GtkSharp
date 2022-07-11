@@ -20,111 +20,120 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.InteropServices;
 
-	public partial class IconTheme {
+    public partial class IconTheme
+    {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_icon_theme_list_icons (IntPtr raw, IntPtr context);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_icon_theme_list_icons(IntPtr raw, IntPtr context);
 
-		public string[] ListIcons (string context)
-		{
-			IntPtr native = GLib.Marshaller.StringToPtrGStrdup (context);
-			IntPtr list_ptr = gtk_icon_theme_list_icons (Handle, native);
-			GLib.Marshaller.Free (native);
-			if (list_ptr == IntPtr.Zero)
-				return new string [0];
+        public string[] ListIcons(string context)
+        {
+            IntPtr native = GLib.Marshaller.StringToPtrGStrdup(context);
+            IntPtr list_ptr = gtk_icon_theme_list_icons(Handle, native);
+            GLib.Marshaller.Free(native);
+            if (list_ptr == IntPtr.Zero)
+                return new string[0];
 
-			GLib.List list = new GLib.List (list_ptr, typeof (string), true, true);
-			string[] result = new string [list.Count];
-			int i = 0;
-			foreach (string val in list)
-				result [i++] = val;
-			return result;
-		}
+            GLib.List list = new GLib.List(list_ptr, typeof(string), true, true);
+            string[] result = new string[list.Count];
+            int i = 0;
+            foreach (string val in list)
+                result[i++] = val;
+            return result;
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_icon_theme_get_search_path(IntPtr raw, out IntPtr path, out int n_elements);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_icon_theme_get_search_path(IntPtr raw, out IntPtr path, out int n_elements);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_icon_theme_set_search_path(IntPtr raw, IntPtr[] path, int n_elements);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_icon_theme_set_search_path(IntPtr raw, IntPtr[] path, int n_elements);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_icon_theme_get_search_path_utf8(IntPtr raw, out IntPtr path, out int n_elements);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_icon_theme_get_search_path_utf8(IntPtr raw, out IntPtr path, out int n_elements);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_icon_theme_set_search_path_utf8(IntPtr raw, IntPtr[] path, int n_elements);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gtk_icon_theme_set_search_path_utf8(IntPtr raw, IntPtr[] path, int n_elements);
 
-		bool IsWindowsPlatform {
-			get {
-				switch (Environment.OSVersion.Platform) {
-				case PlatformID.Win32NT:
-				case PlatformID.Win32S:
-				case PlatformID.Win32Windows:
-				case PlatformID.WinCE:
-					return true;
-				default:
-					return false;
-				}
-			}
-		}
+        bool IsWindowsPlatform
+        {
+            get
+            {
+                switch (Environment.OSVersion.Platform)
+                {
+                    case PlatformID.Win32NT:
+                    case PlatformID.Win32S:
+                    case PlatformID.Win32Windows:
+                    case PlatformID.WinCE:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
 
-		public string[] SearchPath {
-			get {
-				int length;
-				IntPtr raw_ret;
-				if (IsWindowsPlatform)
-					gtk_icon_theme_get_search_path_utf8 (Handle, out raw_ret, out length);
-				else
-					gtk_icon_theme_get_search_path (Handle, out raw_ret, out length);
+        public string[] SearchPath
+        {
+            get
+            {
+                int length;
+                IntPtr raw_ret;
+                if (IsWindowsPlatform)
+                    gtk_icon_theme_get_search_path_utf8(Handle, out raw_ret, out length);
+                else
+                    gtk_icon_theme_get_search_path(Handle, out raw_ret, out length);
 
-				return GLib.Marshaller.NullTermPtrToStringArray (raw_ret, true);
-			}
+                return GLib.Marshaller.NullTermPtrToStringArray(raw_ret, true);
+            }
 
-			set {
-				IntPtr[] native_path;
-				if (value == null)
-					native_path = new IntPtr [0];
-				else
-					native_path = GLib.Marshaller.StringArrayToNullTermPointer (value);
+            set
+            {
+                IntPtr[] native_path;
+                if (value == null)
+                    native_path = new IntPtr[0];
+                else
+                    native_path = GLib.Marshaller.StringArrayToNullTermPointer(value);
 
-				if (IsWindowsPlatform)
-					gtk_icon_theme_set_search_path_utf8 (Handle, native_path, value.Length);
-				else
-					gtk_icon_theme_set_search_path (Handle, native_path, value.Length);
+                if (IsWindowsPlatform)
+                    gtk_icon_theme_set_search_path_utf8(Handle, native_path, value.Length);
+                else
+                    gtk_icon_theme_set_search_path(Handle, native_path, value.Length);
 
-				GLib.Marshaller.Free (native_path);
-			}
-		}
+                GLib.Marshaller.Free(native_path);
+            }
+        }
 
-		[Obsolete ("Replaced by SearchPath property.")]
-		public void SetSearchPath (string[] path)
-		{
-			SearchPath = path;
-		}
+        [Obsolete("Replaced by SearchPath property.")]
+        public void SetSearchPath(string[] path)
+        {
+            SearchPath = path;
+        }
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_icon_theme_get_icon_sizes (IntPtr raw, IntPtr icon_name);
+        [DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr gtk_icon_theme_get_icon_sizes(IntPtr raw, IntPtr icon_name);
 
-		public int[] GetIconSizes (string icon_name) 
-		{
-			IntPtr icon_name_as_native = GLib.Marshaller.StringToPtrGStrdup (icon_name);
-			IntPtr raw_ret = gtk_icon_theme_get_icon_sizes(Handle, icon_name_as_native);
-			var result = new List<int> ();
-			int offset = 0;
-			int size = Marshal.ReadInt32 (raw_ret, offset);
-			while (size != 0) {
-				result.Add (size);
-				offset += 4;
-				size = Marshal.ReadInt32 (raw_ret, offset);
-			}
-			GLib.Marshaller.Free (icon_name_as_native);
-			GLib.Marshaller.Free (raw_ret);
-			return result.ToArray ();
-		}
-	}
+        public int[] GetIconSizes(string icon_name)
+        {
+            IntPtr icon_name_as_native = GLib.Marshaller.StringToPtrGStrdup(icon_name);
+            IntPtr raw_ret = gtk_icon_theme_get_icon_sizes(Handle, icon_name_as_native);
+            var result = new List<int>();
+            int offset = 0;
+            int size = Marshal.ReadInt32(raw_ret, offset);
+            while (size != 0)
+            {
+                result.Add(size);
+                offset += 4;
+                size = Marshal.ReadInt32(raw_ret, offset);
+            }
+            GLib.Marshaller.Free(icon_name_as_native);
+            GLib.Marshaller.Free(raw_ret);
+            return result.ToArray();
+        }
+    }
 }

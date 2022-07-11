@@ -28,21 +28,22 @@
 
 using System;
 
-namespace Cairo {
+namespace Cairo
+{
 
-	[Serializable]
-	public enum SurfaceType
-	{
-		Image,
-		Pdf,
-		PS,
-		Xlib,
-		Xcb,
-		Glitz,
-		Quartz,
-		Win32,
-		BeOS,
-		DirectFB,
-		Svg,
-	}
+    [Serializable]
+    public enum SurfaceType
+    {
+        Image,
+        Pdf,
+        PS,
+        Xlib,
+        Xcb,
+        Glitz,
+        Quartz,
+        Win32,
+        BeOS,
+        DirectFB,
+        Svg,
+    }
 }

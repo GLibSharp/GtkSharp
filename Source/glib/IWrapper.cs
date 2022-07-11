@@ -21,10 +21,10 @@
 
 namespace GLib
 {
-	using System;
+    using System;
 
-	public interface IWrapper
-	{
-		IntPtr Handle { get; }
-	}
+    public interface IWrapper
+    {
+        IntPtr Handle { get; }
+    }
 }

@@ -19,40 +19,44 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.IO;
+    using System;
+    using System.IO;
 
-	public class LPUGen : SimpleGen, IAccessor {
-		
-		public LPUGen (string ctype) : base (ctype, "ulong", "0") {}
+    public class LPUGen : SimpleGen, IAccessor
+    {
 
-		public override string MarshalType {
-			get {
-				return "UIntPtr";
-			}
-		}
+        public LPUGen(string ctype) : base(ctype, "ulong", "0") { }
 
-		public override string CallByName (string var_name)
-		{
-			return "new UIntPtr (" + var_name + ")";
-		}
-		
-		public override string FromNative(string var)
-		{
-			return "(ulong) " + var;
-		}
+        public override string MarshalType
+        {
+            get
+            {
+                return "UIntPtr";
+            }
+        }
 
-		public void WriteAccessors (TextWriter sw, string indent, string var)
-		{
-			sw.WriteLine (indent + "get {");
-			sw.WriteLine (indent + "\treturn " + FromNative (var) + ";");
-			sw.WriteLine (indent + "}");
-			sw.WriteLine (indent + "set {");
-			sw.WriteLine (indent + "\t" + var + " = " + CallByName ("value") + ";");
-			sw.WriteLine (indent + "}");
-		}
-	}
+        public override string CallByName(string var_name)
+        {
+            return "new UIntPtr (" + var_name + ")";
+        }
+
+        public override string FromNative(string var)
+        {
+            return "(ulong) " + var;
+        }
+
+        public void WriteAccessors(TextWriter sw, string indent, string var)
+        {
+            sw.WriteLine(indent + "get {");
+            sw.WriteLine(indent + "\treturn " + FromNative(var) + ";");
+            sw.WriteLine(indent + "}");
+            sw.WriteLine(indent + "set {");
+            sw.WriteLine(indent + "\t" + var + " = " + CallByName("value") + ";");
+            sw.WriteLine(indent + "}");
+        }
+    }
 }
 

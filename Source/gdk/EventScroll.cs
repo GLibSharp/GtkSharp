@@ -19,105 +19,125 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class EventScroll : Event {
+    public class EventScroll : Event
+    {
 
-		public EventScroll (IntPtr raw) : base (raw) {} 
+        public EventScroll(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
-		struct NativeStruct {
-			EventType type;
-			IntPtr window;
-			sbyte send_event;
-			public uint time;
-			public double x;
-			public double y;
-			public uint state;
-			public ScrollDirection direction;
-			public IntPtr device;
-			public double x_root;
-			public double y_root;
-		}
+        [StructLayout(LayoutKind.Sequential)]
+        struct NativeStruct
+        {
+            EventType type;
+            IntPtr window;
+            sbyte send_event;
+            public uint time;
+            public double x;
+            public double y;
+            public uint state;
+            public ScrollDirection direction;
+            public IntPtr device;
+            public double x_root;
+            public double y_root;
+        }
 
-		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
-		}
+        NativeStruct Native
+        {
+            get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
+        }
 
-		public Device Device {
-			get { return GLib.Object.GetObject (Native.device, false) as Device; }
-			set {
-				NativeStruct native = Native;
-				native.device = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public Device Device
+        {
+            get { return GLib.Object.GetObject(Native.device, false) as Device; }
+            set
+            {
+                NativeStruct native = Native;
+                native.device = value == null ? IntPtr.Zero : value.Handle;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public ScrollDirection Direction {
-			get { return Native.direction; }
-			set {
-				NativeStruct native = Native;
-				native.direction = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public ScrollDirection Direction
+        {
+            get { return Native.direction; }
+            set
+            {
+                NativeStruct native = Native;
+                native.direction = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public ModifierType State {
-			get { return (ModifierType) Native.state; }
-			set {
-				NativeStruct native = Native;
-				native.state = (uint) value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public ModifierType State
+        {
+            get { return (ModifierType)Native.state; }
+            set
+            {
+                NativeStruct native = Native;
+                native.state = (uint)value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public uint Time {
-			get { return Native.time; }
-			set {
-				NativeStruct native = Native;
-				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public uint Time
+        {
+            get { return Native.time; }
+            set
+            {
+                NativeStruct native = Native;
+                native.time = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public double X {
-			get { return Native.x; }
-			set {
-				NativeStruct native = Native;
-				native.x = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public double X
+        {
+            get { return Native.x; }
+            set
+            {
+                NativeStruct native = Native;
+                native.x = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public double XRoot {
-			get { return Native.x_root; }
-			set {
-				NativeStruct native = Native;
-				native.x_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public double XRoot
+        {
+            get { return Native.x_root; }
+            set
+            {
+                NativeStruct native = Native;
+                native.x_root = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public double Y {
-			get { return Native.y; }
-			set {
-				NativeStruct native = Native;
-				native.y = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
+        public double Y
+        {
+            get { return Native.y; }
+            set
+            {
+                NativeStruct native = Native;
+                native.y = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
 
-		public double YRoot {
-			get { return Native.y_root; }
-			set {
-				NativeStruct native = Native;
-				native.y_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
-			}
-		}
-	}
+        public double YRoot
+        {
+            get { return Native.y_root; }
+            set
+            {
+                NativeStruct native = Native;
+                native.y_root = value;
+                Marshal.StructureToPtr(native, Handle, false);
+            }
+        }
+    }
 }
 

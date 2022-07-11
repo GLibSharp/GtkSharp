@@ -18,19 +18,21 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public partial struct StockItem {
+    public partial struct StockItem
+    {
 
-		public StockItem (string stock_id, string label, uint keyval, Gdk.ModifierType modifier, string domain)
-		{
-			this.StockId = stock_id;
-			this.Label = label;
-			this.Keyval = keyval;
-			this.Modifier = modifier;
-			this.TranslationDomain = domain;
-		}
-	}
+        public StockItem(string stock_id, string label, uint keyval, Gdk.ModifierType modifier, string domain)
+        {
+            this.StockId = stock_id;
+            this.Label = label;
+            this.Keyval = keyval;
+            this.Modifier = modifier;
+            this.TranslationDomain = domain;
+        }
+    }
 }

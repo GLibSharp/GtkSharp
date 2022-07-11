@@ -32,14 +32,14 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum Filter
-	{
-		Fast,
-		Good,
-		Best,
-		Nearest,
-		Bilinear,
-		Gaussian,
-	}
+    [Serializable]
+    public enum Filter
+    {
+        Fast,
+        Good,
+        Best,
+        Nearest,
+        Bilinear,
+        Gaussian,
+    }
 }

@@ -19,14 +19,16 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	public interface IManualMarshaler  {
+    public interface IManualMarshaler
+    {
 
-		string AllocNative (string managed_var);
+        string AllocNative(string managed_var);
 
-		string ReleaseNative (string native_var);
+        string ReleaseNative(string native_var);
 
-	}
+    }
 }
 

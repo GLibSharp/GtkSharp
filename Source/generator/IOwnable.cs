@@ -15,10 +15,12 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	public interface IOwnable {
+    public interface IOwnable
+    {
 
-		string FromNative (string var, bool owned);
-	}
+        string FromNative(string var, bool owned);
+    }
 }

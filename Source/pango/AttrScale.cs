@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrScale : Attribute {
+    public class AttrScale : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_scale_new (double scale);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_scale_new(double scale);
 
-		public AttrScale (double scale) : this (pango_attr_scale_new (scale)) {}
+        public AttrScale(double scale) : this(pango_attr_scale_new(scale)) { }
 
-		internal AttrScale (IntPtr raw) : base (raw) {}
+        internal AttrScale(IntPtr raw) : base(raw) { }
 
-		public double Scale {
-			get {
-				return AttrFloat.New (Handle).Value;
-			}
-		}
-	}
+        public double Scale
+        {
+            get
+            {
+                return AttrFloat.New(Handle).Value;
+            }
+        }
+    }
 }

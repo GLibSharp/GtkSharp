@@ -21,14 +21,16 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Atk {
-	public partial class TextAdapter {
+namespace Atk
+{
+    public partial class TextAdapter
+    {
 
-		public void EmitTextChanged (TextChangedDetail detail, int position, int length)
-		{
-			GLib.Signal.Emit (GLib.Object.GetObject (Handle),
-			                  "text_changed::" + detail.ToString ().ToLower (),
-			                  position, length);
-		}
-	}
+        public void EmitTextChanged(TextChangedDetail detail, int position, int length)
+        {
+            GLib.Signal.Emit(GLib.Object.GetObject(Handle),
+                              "text_changed::" + detail.ToString().ToLower(),
+                              position, length);
+        }
+    }
 }

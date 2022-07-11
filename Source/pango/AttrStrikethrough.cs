@@ -16,24 +16,28 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class AttrStrikethrough : Attribute {
+    public class AttrStrikethrough : Attribute
+    {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_strikethrough_new (bool strikethrough);
+        [DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr pango_attr_strikethrough_new(bool strikethrough);
 
-		public AttrStrikethrough (bool strikethrough) : this (pango_attr_strikethrough_new (strikethrough)) {}
+        public AttrStrikethrough(bool strikethrough) : this(pango_attr_strikethrough_new(strikethrough)) { }
 
-		internal AttrStrikethrough (IntPtr raw) : base (raw) {}
+        internal AttrStrikethrough(IntPtr raw) : base(raw) { }
 
-		public bool Strikethrough {
-			get {
-				return AttrInt.New (Handle).Value != 0;
-			}
-		}
-	}
+        public bool Strikethrough
+        {
+            get
+            {
+                return AttrInt.New(Handle).Value != 0;
+            }
+        }
+    }
 }

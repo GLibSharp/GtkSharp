@@ -28,14 +28,15 @@
 
 using System;
 
-namespace Cairo {
+namespace Cairo
+{
 
-	[Serializable]
-	public enum SvgVersion
-	{
-		// FIXME: yuck
-		OnePointOne = 0,
-		OnePointTwo,
-	}
+    [Serializable]
+    public enum SvgVersion
+    {
+        // FIXME: yuck
+        OnePointOne = 0,
+        OnePointTwo,
+    }
 }
 

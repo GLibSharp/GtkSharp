@@ -18,18 +18,20 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace GLib {
-	public partial interface IFile : GLib.IWrapper {
-		bool Exists
-		{
-			get;
-		}
-		
-		System.Uri Uri
-		{
-			get;
-		}
-		
-		bool Delete();
-	}
+namespace GLib
+{
+    public partial interface IFile : GLib.IWrapper
+    {
+        bool Exists
+        {
+            get;
+        }
+
+        System.Uri Uri
+        {
+            get;
+        }
+
+        bool Delete();
+    }
 }

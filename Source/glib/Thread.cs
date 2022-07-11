@@ -21,24 +21,24 @@
 
 namespace GLib
 {
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public class Thread
-	{
-		private Thread () {}
+    public class Thread
+    {
+        private Thread() { }
 
-		[Obsolete ("This is no longer needed, GLib automatically initializes threads")]
-		public static void Init ()
-		{
-			// GLib automatically inits threads in 2.31 and above
-			// http://developer.gnome.org/glib/unstable/glib-Deprecated-Thread-APIs.html#g-thread-init
-		}
+        [Obsolete("This is no longer needed, GLib automatically initializes threads")]
+        public static void Init()
+        {
+            // GLib automatically inits threads in 2.31 and above
+            // http://developer.gnome.org/glib/unstable/glib-Deprecated-Thread-APIs.html#g-thread-init
+        }
 
-		public static bool Supported
-		{
-			get { return true; }
-		}
+        public static bool Supported
+        {
+            get { return true; }
+        }
 
-	}
+    }
 }

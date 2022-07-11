@@ -32,12 +32,12 @@ using System;
 
 namespace Cairo
 {
-	[Serializable]
-	public enum Antialias
-	{
-		Default,
-		None,
-		Gray,
-		Subpixel,
-	}
+    [Serializable]
+    public enum Antialias
+    {
+        Default,
+        None,
+        Gray,
+        Subpixel,
+    }
 }

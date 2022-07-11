@@ -18,35 +18,40 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System;
-	using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-	public partial class Device {
+    public partial class Device
+    {
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-                static extern void gdk_device_free_history(IntPtr events, int n_events);
+        [DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern void gdk_device_free_history(IntPtr events, int n_events);
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-                static extern bool gdk_device_get_history(IntPtr device, IntPtr window, uint start, uint stop, out IntPtr events, out int n_events);
+        [DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern bool gdk_device_get_history(IntPtr device, IntPtr window, uint start, uint stop, out IntPtr events, out int n_events);
 
-		public TimeCoord[] GetHistory (Gdk.Window window, uint start, uint stop)
-		{
-			IntPtr coords_handle;
-			int count;
+        public TimeCoord[] GetHistory(Gdk.Window window, uint start, uint stop)
+        {
+            IntPtr coords_handle;
+            int count;
 
-			if (gdk_device_get_history (Handle, window.Handle, start, stop, out coords_handle, out count)) {
-				TimeCoord[] result = new TimeCoord [count];
-				for (int i = 0; i < count; i++) {
-					IntPtr ptr = Marshal.ReadIntPtr (coords_handle, i + IntPtr.Size);
-					result [i] = TimeCoord.New (ptr);
-				}
-				gdk_device_free_history (coords_handle, count);
-				return result;
-			} else
-				return new TimeCoord [0];
-		}
-	}
+            if (gdk_device_get_history(Handle, window.Handle, start, stop, out coords_handle, out count))
+            {
+                TimeCoord[] result = new TimeCoord[count];
+                for (int i = 0; i < count; i++)
+                {
+                    IntPtr ptr = Marshal.ReadIntPtr(coords_handle, i + IntPtr.Size);
+                    result[i] = TimeCoord.New(ptr);
+                }
+                gdk_device_free_history(coords_handle, count);
+                return result;
+            }
+            else
+                return new TimeCoord[0];
+        }
+    }
 }
 

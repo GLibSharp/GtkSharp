@@ -62,26 +62,6 @@ namespace Regress {
 			}
 		}
 
-		[GLib.Signal("string-signal")]
-		public event Regress.StringSignalHandler StringSignal {
-			add {
-				this.AddSignalHandler ("string-signal", value, typeof (Regress.StringSignalArgs));
-			}
-			remove {
-				this.RemoveSignalHandler ("string-signal", value);
-			}
-		}
-
-		[GLib.Signal("attribute-signal")]
-		public event Regress.AttributeSignalHandler AttributeSignal {
-			add {
-				this.AddSignalHandler ("attribute-signal", value, typeof (Regress.AttributeSignalArgs));
-			}
-			remove {
-				this.RemoveSignalHandler ("attribute-signal", value);
-			}
-		}
-
 		[GLib.Signal("list-signal")]
 		public event Regress.ListSignalHandler ListSignal {
 			add {
@@ -92,6 +72,16 @@ namespace Regress {
 			}
 		}
 
+		[GLib.Signal("string-signal")]
+		public event Regress.StringSignalHandler StringSignal {
+			add {
+				this.AddSignalHandler ("string-signal", value, typeof (Regress.StringSignalArgs));
+			}
+			remove {
+				this.RemoveSignalHandler ("string-signal", value);
+			}
+		}
+
 		[GLib.Signal("doc-empty-arg-parsing")]
 		public event Regress.DocEmptyArgParsingHandler DocEmptyArgParsing {
 			add {
@@ -99,6 +89,16 @@ namespace Regress {
 			}
 			remove {
 				this.RemoveSignalHandler ("doc-empty-arg-parsing", value);
+			}
+		}
+
+		[GLib.Signal("attribute-signal")]
+		public event Regress.AttributeSignalHandler AttributeSignal {
+			add {
+				this.AddSignalHandler ("attribute-signal", value, typeof (Regress.AttributeSignalArgs));
+			}
+			remove {
+				this.RemoveSignalHandler ("attribute-signal", value);
 			}
 		}
 
@@ -549,6 +549,9 @@ namespace Regress {
 			for (int i = 0; i < cnt_argv; i++)
 				native_argv [i] = GLib.Marshaller.StringToPtrGStrdup(argv[i]);
 			regress_annotation_object_parse_args(Handle, ref argc, ref native_argv);
+			for (int i = 0; i < native_argv.Length; i++) {
+				argv [i] = GLib.Marshaller.PtrToStringGFree(native_argv[i]);
+			}
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]

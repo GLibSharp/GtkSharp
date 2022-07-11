@@ -20,18 +20,20 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GtkSharp.Generation {
+namespace GtkSharp.Generation
+{
 
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Xml;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Xml;
 
-	public class CodeGenerator  {
+    public class CodeGenerator
+    {
 
-		static LogWriter log = new LogWriter ("CodeGenerator");
+        static LogWriter log = new LogWriter("CodeGenerator");
 
-		public static int Main (string[] args)
+        public static int Main(string[] args)
         {
             bool show_help = false;
             bool all_opaque = true;
@@ -175,12 +177,12 @@ namespace GtkSharp.Generation {
             return 0;
         }
 
-        static void ShowHelp (OptionSet p)
-		{
-			Console.WriteLine ("Usage: gapi-codegen [OPTIONS]+");
-			Console.WriteLine ();
-			Console.WriteLine ("Options:");
-			p.WriteOptionDescriptions (Console.Out);
-		}
-	}
+        static void ShowHelp(OptionSet p)
+        {
+            Console.WriteLine("Usage: gapi-codegen [OPTIONS]+");
+            Console.WriteLine();
+            Console.WriteLine("Options:");
+            p.WriteOptionDescriptions(Console.Out);
+        }
+    }
 }

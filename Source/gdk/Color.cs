@@ -21,26 +21,29 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gdk {
+namespace Gdk
+{
 
-	using System.Runtime.InteropServices;
+    using System.Runtime.InteropServices;
 
-	public partial struct Color {
+    public partial struct Color
+    {
 
-		public Color (byte r, byte g, byte b)
-		{
-			Red = (ushort) (r << 8 | r);
-			Green = (ushort) (g << 8 | g);
-			Blue = (ushort) (b << 8 | b);
-			Pixel = 0;
-		}
+        public Color(byte r, byte g, byte b)
+        {
+            Red = (ushort)(r << 8 | r);
+            Green = (ushort)(g << 8 | g);
+            Blue = (ushort)(b << 8 | b);
+            Pixel = 0;
+        }
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint gdk_color_hash(ref Gdk.Color raw);
+        [DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+        static extern uint gdk_color_hash(ref Gdk.Color raw);
 
-		public override int GetHashCode() {
-			return (int) gdk_color_hash(ref this);
-		}
-	}
+        public override int GetHashCode()
+        {
+            return (int)gdk_color_hash(ref this);
+        }
+    }
 }
 

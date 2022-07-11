@@ -16,25 +16,27 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
+    using System;
 
-	public partial class GlyphString {
+    public partial class GlyphString
+    {
 
-		[Obsolete("Pango.GlyphString is a reference type now, use null")]
-		public static GlyphString Zero = null;
+        [Obsolete("Pango.GlyphString is a reference type now, use null")]
+        public static GlyphString Zero = null;
 
-		[Obsolete("Replaced by GlyphString(IntPtr) constructor")]
-		public static GlyphString New (IntPtr raw)
-		{
-			return new GlyphString (raw);
-		}
+        [Obsolete("Replaced by GlyphString(IntPtr) constructor")]
+        public static GlyphString New(IntPtr raw)
+        {
+            return new GlyphString(raw);
+        }
 
-		[Obsolete("Replaced by GlyphString() constructor")]
-		public static GlyphString New ()
-		{
-			return new GlyphString ();
-		}
-	}
+        [Obsolete("Replaced by GlyphString() constructor")]
+        public static GlyphString New()
+        {
+            return new GlyphString();
+        }
+    }
 }

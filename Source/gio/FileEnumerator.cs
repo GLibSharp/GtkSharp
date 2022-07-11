@@ -18,62 +18,66 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace GLib {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	
-	public partial class FileEnumerator : IEnumerable<FileInfo> {
-		public IEnumerator<FileInfo> GetEnumerator ()
-		{
-			return new Enumerator (this);
-		}
+namespace GLib
+{
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
-		IEnumerator IEnumerable.GetEnumerator ()
-		{
-			return GetEnumerator ();
-		}
+    public partial class FileEnumerator : IEnumerable<FileInfo>
+    {
+        public IEnumerator<FileInfo> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
 
-		public FileInfo NextFile ()
-		{
-			return NextFile ((Cancellable) null);
-		}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
-		class Enumerator : IEnumerator<FileInfo>
-		{
-			FileEnumerator file_enumerator;
+        public FileInfo NextFile()
+        {
+            return NextFile((Cancellable)null);
+        }
 
-			public Enumerator (FileEnumerator file_enumerator)
-			{
-				this.file_enumerator = file_enumerator;
-			}
+        class Enumerator : IEnumerator<FileInfo>
+        {
+            FileEnumerator file_enumerator;
 
-			void IDisposable.Dispose() { }
+            public Enumerator(FileEnumerator file_enumerator)
+            {
+                this.file_enumerator = file_enumerator;
+            }
 
-			FileInfo current;
-			public FileInfo Current {
-				get {
-					return current;
-				}
-			}
+            void IDisposable.Dispose() { }
 
-			object IEnumerator.Current
-			{
-				get { return Current; }
-			}
+            FileInfo current;
+            public FileInfo Current
+            {
+                get
+                {
+                    return current;
+                }
+            }
 
-			public bool MoveNext ()
-			{
-				current = file_enumerator.NextFile ();
-				if (current == null)
-					return false;
-				return true;
-			}
-		
-			public void Reset ()
-			{
-				throw new NotImplementedException ();
-			}
-		}
-	}
+            object IEnumerator.Current
+            {
+                get { return Current; }
+            }
+
+            public bool MoveNext()
+            {
+                current = file_enumerator.NextFile();
+                if (current == null)
+                    return false;
+                return true;
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
 }

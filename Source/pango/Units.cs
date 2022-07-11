@@ -18,22 +18,24 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Pango {
+namespace Pango
+{
 
-	using System;
+    using System;
 
-	public partial class Units {
+    public partial class Units
+    {
 
-		private Units () {}
-		
-		public static int FromPixels (int pixels)
-		{
-			return pixels * 1024;
-		}
+        private Units() { }
 
-		public static int ToPixels (int units)
-		{
-			return (units + 512) >> 10;
-		}
-	}
+        public static int FromPixels(int pixels)
+        {
+            return pixels * 1024;
+        }
+
+        public static int ToPixels(int units)
+        {
+            return (units + 512) >> 10;
+        }
+    }
 }

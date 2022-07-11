@@ -18,140 +18,152 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace Gtk {
+namespace Gtk
+{
 
-	using System;
+    using System;
 
-	public class NodeSelection {
+    public class NodeSelection
+    {
 
-		private TreeSelection selection;
-		
-		public event EventHandler Changed;
+        private TreeSelection selection;
 
-		internal NodeSelection (TreeSelection selection)
-		{
-			this.selection = selection;
+        public event EventHandler Changed;
 
-			selection.Changed += new EventHandler (ChangedHandler); 
-		}
+        internal NodeSelection(TreeSelection selection)
+        {
+            this.selection = selection;
 
-		private void ChangedHandler (object o, EventArgs args)
-		{
-			if (Changed != null)
-				Changed (this, args); 
-		}
-		
-		public bool NodeIsSelected (ITreeNode node)
-		{
-			return selection.IterIsSelected (NodeView.NodeStore.GetIter (node));
-		}
+            selection.Changed += new EventHandler(ChangedHandler);
+        }
 
-		public bool PathIsSelected (TreePath path)
-		{
-			return selection.PathIsSelected (path);
-		}
+        private void ChangedHandler(object o, EventArgs args)
+        {
+            if (Changed != null)
+                Changed(this, args);
+        }
 
-		public void SelectAll ()
-		{
-			selection.SelectAll ();
-		}
+        public bool NodeIsSelected(ITreeNode node)
+        {
+            return selection.IterIsSelected(NodeView.NodeStore.GetIter(node));
+        }
 
-		public void SelectNode (ITreeNode node)
-		{
-			selection.SelectIter (NodeView.NodeStore.GetIter (node));
-		}
+        public bool PathIsSelected(TreePath path)
+        {
+            return selection.PathIsSelected(path);
+        }
 
-		public void SelectPath (TreePath path)
-		{
-			selection.SelectPath (path);
-		}
+        public void SelectAll()
+        {
+            selection.SelectAll();
+        }
 
-		public void SelectRange (ITreeNode begin_node, ITreeNode end_node)
-		{
-			TreePath begin = NodeView.NodeStore.GetPath (begin_node);
-			TreePath end = NodeView.NodeStore.GetPath (end_node);
+        public void SelectNode(ITreeNode node)
+        {
+            selection.SelectIter(NodeView.NodeStore.GetIter(node));
+        }
 
-			selection.SelectRange (begin, end);
-		}
-		
-		public void UnselectAll ()
-		{
-			selection.UnselectAll ();
-		}
+        public void SelectPath(TreePath path)
+        {
+            selection.SelectPath(path);
+        }
 
-		public void UnselectNode (ITreeNode node)
-		{
-			selection.UnselectIter (NodeView.NodeStore.GetIter (node));
-		}
+        public void SelectRange(ITreeNode begin_node, ITreeNode end_node)
+        {
+            TreePath begin = NodeView.NodeStore.GetPath(begin_node);
+            TreePath end = NodeView.NodeStore.GetPath(end_node);
 
-		public void UnselectPath (TreePath path) 
-		{
-			selection.UnselectPath (path);
-		}
+            selection.SelectRange(begin, end);
+        }
 
-		public void UnselectRange (TreePath begin, TreePath end)
-		{
-			selection.UnselectRange (begin, end);
-		}
+        public void UnselectAll()
+        {
+            selection.UnselectAll();
+        }
 
-		public void UnselectRange (ITreeNode begin_node, ITreeNode end_node)
-		{
-			TreePath begin = NodeView.NodeStore.GetPath (begin_node);
-			TreePath end = NodeView.NodeStore.GetPath (end_node);
+        public void UnselectNode(ITreeNode node)
+        {
+            selection.UnselectIter(NodeView.NodeStore.GetIter(node));
+        }
 
-			selection.UnselectRange (begin, end);
-		}
+        public void UnselectPath(TreePath path)
+        {
+            selection.UnselectPath(path);
+        }
 
-		public SelectionMode Mode {
-			get { 
-				return selection.Mode; 
-			}
-			set { 
-				selection.Mode = value; 
-			}
-		}
-		
-		public NodeView NodeView {
-			get { 
-				return selection.TreeView as NodeView; 
-			}
-		}
+        public void UnselectRange(TreePath begin, TreePath end)
+        {
+            selection.UnselectRange(begin, end);
+        }
 
-		public ITreeNode[] SelectedNodes {
-			get {
-				TreePath [] paths = selection.GetSelectedRows ();
-				int length = paths.Length;
+        public void UnselectRange(ITreeNode begin_node, ITreeNode end_node)
+        {
+            TreePath begin = NodeView.NodeStore.GetPath(begin_node);
+            TreePath end = NodeView.NodeStore.GetPath(end_node);
 
-				ITreeNode [] results = new ITreeNode [length];
+            selection.UnselectRange(begin, end);
+        }
 
-				for (int i = 0; i < length; i++) 
-					results [i] = NodeView.NodeStore.GetNode (paths [i]);
+        public SelectionMode Mode
+        {
+            get
+            {
+                return selection.Mode;
+            }
+            set
+            {
+                selection.Mode = value;
+            }
+        }
 
-				return results;
-			}
-		}
+        public NodeView NodeView
+        {
+            get
+            {
+                return selection.TreeView as NodeView;
+            }
+        }
 
-		public ITreeNode SelectedNode {
-			get {
-				if (Mode == SelectionMode.Multiple)
-					throw new InvalidOperationException ("SelectedNode is not valid with multi-selection mode");
-				
-				ITreeNode [] sn = SelectedNodes;
-				if (sn.Length == 0)
-					return null;
-				return sn [0];
-			}
-			set {
-				// with multiple mode, the behavior
-				// here would be unclear. Does it just
-				// select the `value' node or does it
-				// make the `value' node the only
-				// selected node.
-				if (Mode == SelectionMode.Multiple)
-					throw new InvalidOperationException ("SelectedNode is not valid with multi-selection mode");
-				
-				SelectNode (value);
-			}
-		}
-	}
+        public ITreeNode[] SelectedNodes
+        {
+            get
+            {
+                TreePath[] paths = selection.GetSelectedRows();
+                int length = paths.Length;
+
+                ITreeNode[] results = new ITreeNode[length];
+
+                for (int i = 0; i < length; i++)
+                    results[i] = NodeView.NodeStore.GetNode(paths[i]);
+
+                return results;
+            }
+        }
+
+        public ITreeNode SelectedNode
+        {
+            get
+            {
+                if (Mode == SelectionMode.Multiple)
+                    throw new InvalidOperationException("SelectedNode is not valid with multi-selection mode");
+
+                ITreeNode[] sn = SelectedNodes;
+                if (sn.Length == 0)
+                    return null;
+                return sn[0];
+            }
+            set
+            {
+                // with multiple mode, the behavior
+                // here would be unclear. Does it just
+                // select the `value' node or does it
+                // make the `value' node the only
+                // selected node.
+                if (Mode == SelectionMode.Multiple)
+                    throw new InvalidOperationException("SelectedNode is not valid with multi-selection mode");
+
+                SelectNode(value);
+            }
+        }
+    }
 }

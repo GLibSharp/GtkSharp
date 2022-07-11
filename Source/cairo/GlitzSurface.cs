@@ -28,16 +28,17 @@
 
 using System;
 
-namespace Cairo {
-	public class GlitzSurface : Surface
-	{
-		internal GlitzSurface (IntPtr handle, bool owns) : base (handle, owns)
-		{
-		}
+namespace Cairo
+{
+    public class GlitzSurface : Surface
+    {
+        internal GlitzSurface(IntPtr handle, bool owns) : base(handle, owns)
+        {
+        }
 
-		public GlitzSurface (IntPtr glitz_surface)
-			: base (NativeMethods.cairo_glitz_surface_create (glitz_surface), true)
-		{
-		}
-	}
+        public GlitzSurface(IntPtr glitz_surface)
+            : base(NativeMethods.cairo_glitz_surface_create(glitz_surface), true)
+        {
+        }
+    }
 }
