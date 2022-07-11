@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void SigWithInt64PropHandler(object o, SigWithInt64PropArgs args);
 
 	public class SigWithInt64PropArgs : GLib.SignalArgs {
-		public long I{
+		public long I {
 			get {
-				return (long) Args [0];
+				return (long)Args[0];
 			}
 		}
 

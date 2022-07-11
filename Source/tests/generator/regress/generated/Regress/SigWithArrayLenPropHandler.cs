@@ -8,15 +8,15 @@ namespace Regress {
 	public delegate void SigWithArrayLenPropHandler(object o, SigWithArrayLenPropArgs args);
 
 	public class SigWithArrayLenPropArgs : GLib.SignalArgs {
-		public IntPtr[] Arr{
+		public IntPtr[] Arr {
 			get {
-				return (IntPtr[]) Args [0];
+				return (IntPtr[])Args[0];
 			}
 		}
 
-		public int Len{
+		public int Len {
 			get {
-				return (int) Args [1];
+				return (int)Args[1];
 			}
 		}
 

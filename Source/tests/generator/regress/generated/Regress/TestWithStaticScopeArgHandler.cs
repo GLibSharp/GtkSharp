@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void TestWithStaticScopeArgHandler(object o, TestWithStaticScopeArgArgs args);
 
 	public class TestWithStaticScopeArgArgs : GLib.SignalArgs {
-		public Regress.TestSimpleBoxedA Object{
+		public Regress.TestSimpleBoxedA Object {
 			get {
-				return (Regress.TestSimpleBoxedA) Args [0];
+				return (Regress.TestSimpleBoxedA)Args[0];
 			}
 		}
 

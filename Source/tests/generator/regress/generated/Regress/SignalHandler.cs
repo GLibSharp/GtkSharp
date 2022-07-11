@@ -8,15 +8,15 @@ namespace Regress {
 	public delegate void SignalHandler(object o, SignalArgs args);
 
 	public class SignalArgs : GLib.SignalArgs {
-		public GLib.Object Object{
+		public GLib.Object Object {
 			get {
-				return (GLib.Object) Args [0];
+				return (GLib.Object)Args[0];
 			}
 		}
 
-		public IntPtr P0{
+		public IntPtr P0 {
 			get {
-				return (IntPtr) Args [1];
+				return (IntPtr)Args[1];
 			}
 		}
 

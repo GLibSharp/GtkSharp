@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void SigWithGerrorHandler(object o, SigWithGerrorArgs args);
 
 	public class SigWithGerrorArgs : GLib.SignalArgs {
-		public IntPtr Error{
+		public IntPtr Error {
 			get {
-				return (IntPtr) Args [0];
+				return (IntPtr)Args[0];
 			}
 		}
 

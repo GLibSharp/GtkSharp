@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void SigWithInoutIntHandler(object o, SigWithInoutIntArgs args);
 
 	public class SigWithInoutIntArgs : GLib.SignalArgs {
-		public int Position{
+		public int Position {
 			get {
-				return (int) Args [0];
+				return (int)Args[0];
 			}
 			set {
 				Args[0] = (int)value;
