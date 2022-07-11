@@ -1,0 +1,9 @@
+[wrap-git]
+directory=gobject-introspection
+url=https://gitlab.gnome.org/GNOME/gobject-introspection.git
+push-url=git@gitlab.gnome.org:GNOME/gobject-introspection.git
+revision=cb723879c0fa3c776b2ddb43e9dd0ad1594828ca
+
+[provide]
+dependency_names = gobject-introspection-1.0
+program_names = g-ir-scanner, g-ir-compiler, g-ir-annotation-tool, g-ir-doc-tool, g-ir-inspect, g-ir-generate
