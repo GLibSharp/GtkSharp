@@ -350,7 +350,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_has_parameter_named_attrs(int foo, IntPtr[] attributes);
+		static extern void regress_has_parameter_named_attrs(int foo, [MarshalAs(UnmanagedType.LPArray, SizeConst=32)]IntPtr[] attributes);
 
 		public static void HasParameterNamedAttrs(int foo, IntPtr[] attributes) {
 			regress_has_parameter_named_attrs(foo, attributes);
@@ -392,7 +392,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_fixed_out_objects(out IntPtr[] objs);
+		static extern void regress_test_array_fixed_out_objects([MarshalAs(UnmanagedType.LPArray, SizeConst=2)]out IntPtr[] objs);
 
 		public static Regress.TestObj[] TestArrayFixedOutObjects() {
 			Regress.TestObj[] objs;
@@ -407,7 +407,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern int regress_test_array_fixed_size_int_in(int[] ints);
+		static extern int regress_test_array_fixed_size_int_in([MarshalAs(UnmanagedType.LPArray, SizeConst=5)]int[] ints);
 
 		public static int TestArrayFixedSizeIntIn(int[] ints) {
 			int raw_ret = regress_test_array_fixed_size_int_in(ints);
@@ -416,7 +416,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_fixed_size_int_out(out int[] ints);
+		static extern void regress_test_array_fixed_size_int_out([MarshalAs(UnmanagedType.LPArray, SizeConst=5)]out int[] ints);
 
 		public static int[] TestArrayFixedSizeIntOut() {
 			int[] ints;
@@ -425,7 +425,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern int regress_test_array_gint16_in(int n_ints, short[] ints);
+		static extern int regress_test_array_gint16_in(int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]short[] ints);
 
 		public static int TestArrayGint16In(short[] ints) {
 			int cnt_ints = (ints == null ? 0 : ints.Length);
@@ -435,7 +435,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern int regress_test_array_gint32_in(int n_ints, int[] ints);
+		static extern int regress_test_array_gint32_in(int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]int[] ints);
 
 		public static int TestArrayGint32In(int[] ints) {
 			int cnt_ints = (ints == null ? 0 : ints.Length);
@@ -445,7 +445,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern long regress_test_array_gint64_in(int n_ints, long[] ints);
+		static extern long regress_test_array_gint64_in(int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]long[] ints);
 
 		public static long TestArrayGint64In(long[] ints) {
 			int cnt_ints = (ints == null ? 0 : ints.Length);
@@ -455,7 +455,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern int regress_test_array_gint8_in(int n_ints, sbyte[] ints);
+		static extern int regress_test_array_gint8_in(int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]sbyte[] ints);
 
 		public static int TestArrayGint8In(sbyte[] ints) {
 			int cnt_ints = (ints == null ? 0 : ints.Length);
@@ -465,7 +465,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr regress_test_array_gtype_in(int n_types, IntPtr[] types);
+		static extern IntPtr regress_test_array_gtype_in(int n_types, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]IntPtr[] types);
 
 		public static string TestArrayGtypeIn(GLib.GType[] types) {
 			int cnt_types = types == null ? 0 : types.Length;
@@ -488,7 +488,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern int regress_test_array_int_in(int n_ints, int[] ints);
+		static extern int regress_test_array_int_in(int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]int[] ints);
 
 		public static int TestArrayIntIn(int[] ints) {
 			int cnt_ints = (ints == null ? 0 : ints.Length);
@@ -498,7 +498,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_int_inout(ref int n_ints, ref int[] ints);
+		static extern void regress_test_array_int_inout(ref int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]ref int[] ints);
 
 		public static void TestArrayIntInout(ref int[] ints) {
 			int cnt_ints = (ints == null ? 0 : ints.Length);
@@ -524,7 +524,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_int_out(out int n_ints, out int[] ints);
+		static extern void regress_test_array_int_out(out int n_ints, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]out int[] ints);
 
 		public static int[] TestArrayIntOut() {
 			int[] ints;
@@ -534,7 +534,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_static_in_int(int[] x);
+		static extern void regress_test_array_static_in_int([MarshalAs(UnmanagedType.LPArray, SizeConst=10)]int[] x);
 
 		public static void TestArrayStaticInInt(int[] x) {
 			regress_test_array_static_in_int(x);
@@ -580,7 +580,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_out_full_fixed(out Regress.TestStructA[] arr);
+		static extern void regress_test_array_struct_out_full_fixed([MarshalAs(UnmanagedType.LPArray, SizeConst=4)]out Regress.TestStructA[] arr);
 
 		public static Regress.TestStructA[] TestArrayStructOutFullFixed() {
 			Regress.TestStructA[] arr;

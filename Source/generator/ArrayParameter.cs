@@ -53,6 +53,16 @@ namespace GtkSharp.Generation {
 
 		public int? FixedArrayLength { get; private set; }
 
+		public override string NativeSignature {
+			get {
+				if (FixedArrayLength > 0) {
+					return $"[MarshalAs(UnmanagedType.LPArray, SizeConst={FixedArrayLength})]{base.NativeSignature}";
+				} else {
+					return base.NativeSignature;
+				}
+			}
+		}
+
 		public override string[] Prepare {
 			get {
 				var result = new List<string>();
@@ -150,10 +160,12 @@ namespace GtkSharp.Generation {
 
 		Parameter count_param;
 		bool invert;
+		int count_index;
 
-		public ArrayCountPair(XmlElement array_elem, XmlElement count_elem, bool invert) : base(array_elem) {
+		public ArrayCountPair(XmlElement array_elem, XmlElement count_elem, bool invert, int count_index) : base(array_elem) {
 			count_param = new Parameter(count_elem);
 			this.invert = invert;
+			this.count_index = count_index;
 		}
 
 		string CountCast {
@@ -193,10 +205,11 @@ namespace GtkSharp.Generation {
 
 		public override string NativeSignature {
 			get {
+				string nativeSignature = $"[MarshalAs(UnmanagedType.LPArray, SizeParamIndex={count_index})]{base.NativeSignature}";
 				if (invert)
-					return $"{count_param.NativeSignature}, {base.NativeSignature}";
+					return $"{count_param.NativeSignature}, {nativeSignature}";
 				else
-					return $"{base.NativeSignature}, {count_param.NativeSignature}";
+					return $"{nativeSignature}, {count_param.NativeSignature}";
 			}
 		}
 	}

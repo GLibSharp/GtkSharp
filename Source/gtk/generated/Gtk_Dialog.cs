@@ -363,7 +363,7 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_dialog_set_alternative_button_order_from_array(IntPtr raw, int n_params, int[] new_order);
+		static extern void gtk_dialog_set_alternative_button_order_from_array(IntPtr raw, int n_params, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]int[] new_order);
 
 		[Obsolete]
 		public int[] AlternativeButtonOrder { 

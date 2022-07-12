@@ -181,6 +181,7 @@ namespace GtkSharp.Generation {
 				return false;
 
 			int destroyNotifyIdx = -1;
+			int paramIdx = 0;
 
 			for (int i = first_is_instance ? 1 : 0; i < elem.ChildNodes.Count; i++) {
 				XmlElement parm = elem.ChildNodes[i] as XmlElement;
@@ -230,8 +231,9 @@ namespace GtkSharp.Generation {
 						if (next != null || next.Name == "parameter") {
 							Parameter c = new Parameter(next);
 							if (c.IsCount) {
-								p = new ArrayCountPair(parm, next, false);
+								p = new ArrayCountPair(parm, next, false, paramIdx);
 								i++;
+								paramIdx++;
 							}
 						}
 					}
@@ -242,8 +244,9 @@ namespace GtkSharp.Generation {
 						if (next != null || next.Name == "parameter") {
 							Parameter a = new Parameter(next);
 							if (a.IsArray) {
-								p = new ArrayCountPair(next, parm, true);
+								p = new ArrayCountPair(next, parm, true, paramIdx);
 								i++;
+								paramIdx++;
 							}
 						}
 					}
@@ -262,6 +265,7 @@ namespace GtkSharp.Generation {
 				}
 
 				param_list.Add(p);
+				paramIdx++;
 			}
 
 			if (Parser.GetVersion(elem.OwnerDocument.DocumentElement) < 3 &&
