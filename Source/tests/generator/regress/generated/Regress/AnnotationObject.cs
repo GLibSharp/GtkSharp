@@ -367,7 +367,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_annotation_object_compute_sum_n(IntPtr raw, int[] nums, int n_nums);
+		static extern void regress_annotation_object_compute_sum_n(IntPtr raw, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] int[] nums, int n_nums);
 
 		public void ComputeSumN(int[] nums) {
 			int cnt_nums = (nums == null ? 0 : nums.Length);
@@ -375,7 +375,7 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_annotation_object_compute_sum_nz(IntPtr raw, int[] nums, int n_nums);
+		static extern void regress_annotation_object_compute_sum_nz(IntPtr raw, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] int[] nums, int n_nums);
 
 		public void ComputeSumNz(int[] nums) {
 			int cnt_nums = (nums == null ? 0 : nums.Length);
