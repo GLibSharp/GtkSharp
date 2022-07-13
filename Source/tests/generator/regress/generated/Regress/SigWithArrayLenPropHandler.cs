@@ -14,11 +14,5 @@ namespace Regress {
 			}
 		}
 
-		public int Len{
-			get {
-				return (int) Args [1];
-			}
-		}
-
 	}
 }

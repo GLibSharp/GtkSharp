@@ -660,35 +660,33 @@ namespace Regress {
 			OverrideVirtualMethod (gtype, "sig-with-array-len-prop", callback);
 		}
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void SigWithArrayLenPropNativeDelegate (IntPtr inst, IntPtr[] arr, int len);
+		delegate void SigWithArrayLenPropNativeDelegate (IntPtr inst, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]IntPtr[] arr, int len);
 
-		static void SigWithArrayLenProp_cb (IntPtr inst, IntPtr[] arr, int len)
+		static void SigWithArrayLenProp_cb (IntPtr inst, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]IntPtr[] arr, int len)
 		{
 			try {
 				TestObj __obj = GLib.Object.GetObject (inst, false) as TestObj;
-				__obj.OnSigWithArrayLenProp (arr, len);
+				__obj.OnSigWithArrayLenProp (arr);
 			} catch (Exception e) {
 				GLib.ExceptionManager.RaiseUnhandledException (e, false);
 			}
 		}
 
 		[GLib.DefaultSignalHandler(Type=typeof(Regress.TestObj), ConnectionMethod="OverrideSigWithArrayLenProp")]
-		protected virtual void OnSigWithArrayLenProp (IntPtr[] arr, int len)
+		protected virtual void OnSigWithArrayLenProp (IntPtr[] arr)
 		{
-			InternalSigWithArrayLenProp (arr, len);
+			InternalSigWithArrayLenProp (arr);
 		}
 
-		private void InternalSigWithArrayLenProp (IntPtr[] arr, int len)
+		private void InternalSigWithArrayLenProp (IntPtr[] arr)
 		{
 			GLib.Value ret = GLib.Value.Empty;
-			GLib.ValueArray inst_and_params = new GLib.ValueArray (3);
-			GLib.Value[] vals = new GLib.Value [3];
+			GLib.ValueArray inst_and_params = new GLib.ValueArray (2);
+			GLib.Value[] vals = new GLib.Value [2];
 			vals [0] = new GLib.Value (this);
 			inst_and_params.Append (vals [0]);
 			vals [1] = new GLib.Value (arr);
 			inst_and_params.Append (vals [1]);
-			vals [2] = new GLib.Value (len);
-			inst_and_params.Append (vals [2]);
 			g_signal_chain_from_overridden (inst_and_params.ArrayPtr, ref ret);
 			foreach (GLib.Value v in vals)
 				v.Dispose ();

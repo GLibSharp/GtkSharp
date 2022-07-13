@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using static Regress.Global;
 
 namespace Generator.Tests {
-	public class UnitTests {
+	public class ArrayTests {
 
 		[OneTimeSetUp]
 		public void OneTimeSetUp() {
@@ -31,11 +31,12 @@ namespace Generator.Tests {
 			} catch { }
 		}
 
+		[Ignore("FIXME: wrapper uses PtrToStringGFree with unowned input strings")]
 		[Test]
 		public void Array_Callback() {
 			(int[] one, string[] two)? res = null;
 			TestCallbackArray cb = new TestCallbackArray(
-				(int[] one, ulong one_length, string[] two, int tow_length) => {
+				(int[] one, string[] two) => {
 					res = (one, two);
 					return 1;
 				}
@@ -47,13 +48,18 @@ namespace Generator.Tests {
 			Assert.That(ret, Is.EqualTo(2));
 		}
 
+		// This test can't work with the bindings since it expects the callback
+		// to modifiy the size of the array. The size of the inout array is defined
+		// by SizeParamIndex and can't be changed.
+		[Ignore("Not supported")]
 		[Test]
 		public void Array_Callback_InOut() {
 			var rets = new int[2];
 			var callbackCount = 0;
 
 			TestCallbackArrayInOut cb = new TestCallbackArrayInOut(
-				(ref int[] ints, ref int length) => {
+				(ref int[] ints) => {
+					var length = ints.Length;
 					rets[callbackCount] = length;
 					length--;
 					callbackCount++;
@@ -157,7 +163,7 @@ namespace Generator.Tests {
 
 		[Test]
 		public void Array_int_NullOut() {
-			TestArrayIntNullOut(out int[] arr, out int len);
+			int[] arr = TestArrayIntNullOut();
 			Assert.IsNull(arr);
 		}
 
@@ -174,7 +180,7 @@ namespace Generator.Tests {
 				new TestStructA {SomeInt = 201},
 				new TestStructA {SomeInt = 202}
 			};
-			TestArrayStructInFull(structs, (ulong)structs.Length);
+			TestArrayStructInFull(structs);
 		}
 
 		[Test]
@@ -184,13 +190,12 @@ namespace Generator.Tests {
 				new TestStructA {SomeInt = 302},
 				new TestStructA {SomeInt = 303},
 			};
-			TestArrayStructInNone(structs, (ulong)structs.Length);
+			TestArrayStructInNone(structs);
 		}
 
-		[Ignore("FIXME: array lenght parameter not supported")]
 		[Test]
 		public void Array_Struct_Out() {
-			TestArrayStructOut(out TestStructA[] structs, out int len);
+			TestStructA[] structs = TestArrayStructOut();
 			Assert.That(structs.Length, Is.EqualTo(3));
 			Assert.That(structs[0].SomeInt, Is.EqualTo(22));
 			Assert.That(structs[1].SomeInt, Is.EqualTo(33));
@@ -200,18 +205,16 @@ namespace Generator.Tests {
 		[Ignore("FIXME: caller-allocates not implemented")]
 		[Test]
 		public void Array_Struct_Out_CallerAlloc() {
-			TestArrayStructOutCallerAlloc(out TestStructA[] structs, out ulong len);
+			TestStructA[] structs = TestArrayStructOutCallerAlloc();
 			Assert.That(structs.Length, Is.EqualTo(3));
 			Assert.That(structs[0].SomeInt, Is.EqualTo(22));
 			Assert.That(structs[1].SomeInt, Is.EqualTo(33));
 			Assert.That(structs[2].SomeInt, Is.EqualTo(44));
 		}
 
-
-		[Ignore("FIXME: array lenght parameter not supported")]
 		[Test]
 		public void Array_Struct_Out_Container() {
-			TestArrayStructOutContainer(out TestStructA[] structs, out ulong len);
+			TestStructA[] structs = TestArrayStructOutContainer();
 			Assert.That(structs.Length, Is.EqualTo(5));
 			Assert.That(structs[0].SomeInt, Is.EqualTo(11));
 			Assert.That(structs[1].SomeInt, Is.EqualTo(13));
@@ -219,7 +222,6 @@ namespace Generator.Tests {
 			Assert.That(structs[3].SomeInt, Is.EqualTo(19));
 			Assert.That(structs[4].SomeInt, Is.EqualTo(23));
 		}
-
 
 		[Test]
 		public void Array_Struct_Out_Full_Fixed() {
@@ -235,7 +237,7 @@ namespace Generator.Tests {
 		[Ignore("FIXME: segfault, copy is needed with transfer none")]
 		[Test]
 		public void Array_Struct_Out_None() {
-			TestArrayStructOutNone(out TestStructA[] structs, out ulong len);
+			TestStructA[] structs = TestArrayStructOutNone();
 			Assert.That(structs.Length, Is.EqualTo(3));
 			Assert.That(structs[0].SomeInt, Is.EqualTo(111));
 			Assert.That(structs[1].SomeInt, Is.EqualTo(222));
