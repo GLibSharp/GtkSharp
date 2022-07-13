@@ -5,6 +5,6 @@ namespace Regress {
 
 	using System;
 
-	public delegate void TestCallbackArrayInOut(ref int[] ints, ref int length);
+	public delegate void TestCallbackArrayInOut(ref int[] ints);
 
 }

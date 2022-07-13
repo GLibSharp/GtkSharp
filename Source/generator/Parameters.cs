@@ -182,6 +182,9 @@ namespace GtkSharp.Generation {
 
 			int destroyNotifyIdx = -1;
 			int paramIdx = 0;
+			if (first_is_instance || (!Static && !HideData)) {
+				paramIdx++;
+			}
 
 			for (int i = first_is_instance ? 1 : 0; i < elem.ChildNodes.Count; i++) {
 				XmlElement parm = elem.ChildNodes[i] as XmlElement;
@@ -230,14 +233,14 @@ namespace GtkSharp.Generation {
 						XmlElement next = elem.ChildNodes[i + 1] as XmlElement;
 						if (next != null || next.Name == "parameter") {
 							Parameter c = new Parameter(next);
-							if (c.IsCount) {
-								p = new ArrayCountPair(parm, next, false, paramIdx);
+							if (c.IsCount || c.IsLength) {
+								p = new ArrayCountPair(parm, next, false, paramIdx + 1);
 								i++;
 								paramIdx++;
 							}
 						}
 					}
-				} else if (p.IsCount) {
+				} else if (p.IsCount || p.IsLength) {
 					p.IsCount = false;
 					if (i < elem.ChildNodes.Count - 1) {
 						XmlElement next = elem.ChildNodes[i + 1] as XmlElement;

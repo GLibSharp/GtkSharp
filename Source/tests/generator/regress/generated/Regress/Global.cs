@@ -506,21 +506,24 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_int_null_in(int[] arr, int len);
+		static extern void regress_test_array_int_null_in([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]int[] arr, int len);
 
-		public static void TestArrayIntNullIn(int[] arr, int len) {
-			regress_test_array_int_null_in(arr, len);
+		public static void TestArrayIntNullIn(int[] arr) {
+			int cnt_arr = (arr == null ? 0 : arr.Length);
+			regress_test_array_int_null_in(arr, cnt_arr);
 		}
 
-		public static void TestArrayIntNullIn(int len) {
-			TestArrayIntNullIn (null, len);
+		public static void TestArrayIntNullIn() {
+			TestArrayIntNullIn (null);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_int_null_out(out int[] arr, out int len);
+		static extern void regress_test_array_int_null_out([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]out int[] arr, out int len);
 
-		public static void TestArrayIntNullOut(out int[] arr, out int len) {
-			regress_test_array_int_null_out(out arr, out len);
+		public static int[] TestArrayIntNullOut() {
+			int[] arr;
+			regress_test_array_int_null_out(out arr, out int cnt_arr);
+			return arr;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -528,8 +531,7 @@ namespace Regress {
 
 		public static int[] TestArrayIntOut() {
 			int[] ints;
-			int cnt_ints;
-			regress_test_array_int_out(out cnt_ints,  out ints);
+			regress_test_array_int_out(out int cnt_ints,  out ints);
 			return ints;
 		}
 
@@ -541,42 +543,46 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_in_full(Regress.TestStructA[] arr, UIntPtr len);
+		static extern void regress_test_array_struct_in_full([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]Regress.TestStructA[] arr, UIntPtr len);
 
-		public static void TestArrayStructInFull(Regress.TestStructA[] arr, ulong len) {
-			regress_test_array_struct_in_full(arr, new UIntPtr (len));
+		public static void TestArrayStructInFull(Regress.TestStructA[] arr) {
+			ulong cnt_arr = (ulong)(arr == null ? 0 : arr.Length);
+			regress_test_array_struct_in_full(arr, new UIntPtr ((uint)cnt_arr));
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_in_none(Regress.TestStructA[] arr, UIntPtr len);
+		static extern void regress_test_array_struct_in_none([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]Regress.TestStructA[] arr, UIntPtr len);
 
-		public static void TestArrayStructInNone(Regress.TestStructA[] arr, ulong len) {
-			regress_test_array_struct_in_none(arr, new UIntPtr (len));
+		public static void TestArrayStructInNone(Regress.TestStructA[] arr) {
+			ulong cnt_arr = (ulong)(arr == null ? 0 : arr.Length);
+			regress_test_array_struct_in_none(arr, new UIntPtr ((uint)cnt_arr));
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_out(out Regress.TestStructA[] arr, out int len);
+		static extern void regress_test_array_struct_out([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]out Regress.TestStructA[] arr, out int len);
 
-		public static void TestArrayStructOut(out Regress.TestStructA[] arr, out int len) {
-			regress_test_array_struct_out(out arr, out len);
+		public static Regress.TestStructA[] TestArrayStructOut() {
+			Regress.TestStructA[] arr;
+			regress_test_array_struct_out(out arr, out int cnt_arr);
+			return arr;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_out_caller_alloc(out Regress.TestStructA[] arr, out UIntPtr len);
+		static extern void regress_test_array_struct_out_caller_alloc([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]out Regress.TestStructA[] arr, out UIntPtr len);
 
-		public static void TestArrayStructOutCallerAlloc(out Regress.TestStructA[] arr, out ulong len) {
-			UIntPtr native_len;
-			regress_test_array_struct_out_caller_alloc(out arr, out native_len);
-			len = (ulong) native_len;
+		public static Regress.TestStructA[] TestArrayStructOutCallerAlloc() {
+			Regress.TestStructA[] arr;
+			regress_test_array_struct_out_caller_alloc(out arr, out UIntPtr cnt_arr);
+			return arr;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_out_container(out Regress.TestStructA[] arr, out UIntPtr len);
+		static extern void regress_test_array_struct_out_container([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]out Regress.TestStructA[] arr, out UIntPtr len);
 
-		public static void TestArrayStructOutContainer(out Regress.TestStructA[] arr, out ulong len) {
-			UIntPtr native_len;
-			regress_test_array_struct_out_container(out arr, out native_len);
-			len = (ulong) native_len;
+		public static Regress.TestStructA[] TestArrayStructOutContainer() {
+			Regress.TestStructA[] arr;
+			regress_test_array_struct_out_container(out arr, out UIntPtr cnt_arr);
+			return arr;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -589,12 +595,12 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_array_struct_out_none(out Regress.TestStructA[] arr, out UIntPtr len);
+		static extern void regress_test_array_struct_out_none([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]out Regress.TestStructA[] arr, out UIntPtr len);
 
-		public static void TestArrayStructOutNone(out Regress.TestStructA[] arr, out ulong len) {
-			UIntPtr native_len;
-			regress_test_array_struct_out_none(out arr, out native_len);
-			len = (ulong) native_len;
+		public static Regress.TestStructA[] TestArrayStructOutNone() {
+			Regress.TestStructA[] arr;
+			regress_test_array_struct_out_none(out arr, out UIntPtr cnt_arr);
+			return arr;
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
