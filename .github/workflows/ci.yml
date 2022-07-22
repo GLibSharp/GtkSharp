@@ -25,7 +25,7 @@ jobs:
         if: matrix.config.os == 'windows-latest'
         run: choco install winflexbison3 -y
       - name: Configure
-        run: meson builddir
+        run: meson builddir --buildtype=release
       - name: Build
         run: meson compile -C builddir
       - name: Install
