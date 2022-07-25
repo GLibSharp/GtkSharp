@@ -77,7 +77,7 @@ namespace Generator.Tests {
 				} else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
 					libraryName = osToNameDict[OSPlatform.Windows];
 				} else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
-					libraryName = osToNameDict[OSPlatform.Windows];
+					libraryName = osToNameDict[OSPlatform.Linux];
 				} else {
 					throw new NotSupportedException("Operating system not supported");
 				}
