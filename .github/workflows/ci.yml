@@ -25,6 +25,11 @@ jobs:
       - name: Install Windows Deps
         if: matrix.config.os == 'windows-latest'
         run: choco install winflexbison3 -y
+      - name: Install macOS Deps
+        if: matrix.config.os == 'macos-latest'
+        run: |
+          brew update
+          brew install bison
       - name: Configure
         run: meson builddir --buildtype=release
       - name: Build
