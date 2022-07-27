@@ -7,7 +7,8 @@ jobs:
         config:
           - { os: ubuntu-latest, arch: x64, name: ubuntu-x64 }
           - { os: macos-latest, arch: x64, name: macos-x64 }
-          - { os: windows-latest, arch: x64, name: windows-x64 }
+          # Disable Windows until gobject-introspeciton build is fixed
+          # - { os: windows-latest, arch: x64, name: windows-x64 }
     runs-on: ${{ matrix.config.os }}
     steps:
       - uses: actions/checkout@v2
