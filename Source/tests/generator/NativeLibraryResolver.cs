@@ -71,6 +71,7 @@ namespace Generator.Tests {
 			IntPtr libHandle;
 			string libraryName = libName;
 
+			// Try with the full path in the user defined search dirs
 			if (LIBS_MAPPING.TryGetValue(libName, out var osToNameDict)) {
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
 					libraryName = osToNameDict[OSPlatform.OSX];
@@ -81,9 +82,13 @@ namespace Generator.Tests {
 				} else {
 					throw new NotSupportedException("Operating system not supported");
 				}
-				libraryName = Path.Join(searchDir, libraryName);
+				NativeLibrary.TryLoad(Path.Join(searchDir, libraryName), out libHandle);
+				if (libHandle != IntPtr.Zero) {
+					return libHandle;
+				}
 			}
 
+			// Try with the library name with the default search paths
 			if (searchPath != null) {
 				NativeLibrary.TryLoad(libraryName, assembly, searchPath, out libHandle);
 			} else {
