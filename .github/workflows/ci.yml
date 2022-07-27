@@ -24,7 +24,7 @@ jobs:
         run: pip3 install meson ninja
       - name: Install Windows Deps
         if: matrix.config.os == 'windows-latest'
-        run: choco install winflexbison3 -y
+        run: choco install winflexbison3 pkgconfiglite -y --allow-empty-checksum
       - name: Install macOS Deps
         if: matrix.config.os == 'macos-latest'
         run: |
