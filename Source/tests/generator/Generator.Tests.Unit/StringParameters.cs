@@ -54,7 +54,6 @@ namespace Generator.Tests {
 			var res = TestUtf8OutNonconstReturn(out string outParam);
 			Assert.That(res, Is.EqualTo("first"));
 			Assert.That(outParam, Is.EqualTo("second"));
-			//}
 		}
 
 		[Test]
@@ -93,7 +92,6 @@ namespace Generator.Tests {
 		}
 
 		[Test]
-		[Ignore("FIXME: Null-terminated out string arrays not implemented correctly")]
 		public void String_Strv_Out_Arg() {
 			var res = TestStrvOutarg();
 			Assert.That(res, Is.EqualTo(new string[3] { "1", "2", "3" }));

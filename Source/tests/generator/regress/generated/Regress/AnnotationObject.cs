@@ -391,16 +391,16 @@ namespace Regress {
 		static extern void regress_annotation_object_compute_sum_n(IntPtr raw, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]int[] nums, int n_nums);
 
 		public void ComputeSumN(int[] nums) {
-			int cnt_nums = (nums == null ? 0 : nums.Length);
-			regress_annotation_object_compute_sum_n(Handle, nums, cnt_nums);
+			int n_nums = (nums == null ? 0 : nums.Length);
+			regress_annotation_object_compute_sum_n(Handle, nums, n_nums);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_annotation_object_compute_sum_nz(IntPtr raw, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]int[] nums, int n_nums);
 
 		public void ComputeSumNz(int[] nums) {
-			int cnt_nums = (nums == null ? 0 : nums.Length);
-			regress_annotation_object_compute_sum_nz(Handle, nums, cnt_nums);
+			int n_nums = (nums == null ? 0 : nums.Length);
+			regress_annotation_object_compute_sum_nz(Handle, nums, n_nums);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -541,17 +541,14 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_annotation_object_parse_args(IntPtr raw, ref int argc, ref IntPtr[] argv);
+		static extern void regress_annotation_object_parse_args(IntPtr raw, ref int argc, ref IntPtr argv);
 
-		public void ParseArgs(ref int argc, ref string[] argv) {
-			int cnt_argv = argv == null ? 0 : argv.Length;
-			IntPtr[] native_argv = new IntPtr [cnt_argv];
-			for (int i = 0; i < cnt_argv; i++)
-				native_argv [i] = GLib.Marshaller.StringToPtrGStrdup(argv[i]);
+		public void ParseArgs(ref string[] argv) {
+			IntPtr native_argv = GLib.Marshaller.StringArrayToStrvPtr(argv, false);
+			int argc = (argv == null ? 0 : argv.Length);
 			regress_annotation_object_parse_args(Handle, ref argc, ref native_argv);
-			for (int i = 0; i < native_argv.Length; i++) {
-				argv [i] = GLib.Marshaller.PtrToStringGFree(native_argv[i]);
-			}
+			argv = GLib.Marshaller.PtrToStringArray (native_argv, argc, false);
+			GLib.Marshaller.StringArrayPtrFree (native_argv, argc);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -559,21 +556,20 @@ namespace Regress {
 
 		public byte[] Data { 
 			set {
-				ulong cnt_value = (ulong)(value == null ? 0 : value.Length);
-				regress_annotation_object_set_data(Handle, value, new UIntPtr ((uint)cnt_value));
+				ulong length = (ulong)(value == null ? 0 : value.Length);
+				regress_annotation_object_set_data(Handle, value, new UIntPtr ((uint)length));
 			}
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_annotation_object_set_data2(IntPtr raw, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]IntPtr[] data, UIntPtr length);
+		static extern void regress_annotation_object_set_data2(IntPtr raw, IntPtr data, UIntPtr length);
 
 		public string[] Data2 { 
 			set {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value];
-				for (int i = 0; i < cnt_value; i++)
-					native_value [i] = GLib.Marshaller.StringToPtrGStrdup(value[i]);
-				regress_annotation_object_set_data2(Handle, native_value, new UIntPtr ((uint)cnt_value));
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, false);
+				ulong length = (ulong)(value == null ? 0 : value.Length);
+				regress_annotation_object_set_data2(Handle, native_value, new UIntPtr ((uint)length));
+				GLib.Marshaller.StringArrayPtrFree (native_value, (int)length);
 			}
 		}
 
@@ -582,8 +578,8 @@ namespace Regress {
 
 		public IntPtr[] Data3 { 
 			set {
-				ulong cnt_value = (ulong)(value == null ? 0 : value.Length);
-				regress_annotation_object_set_data3(Handle, value, new UIntPtr ((uint)cnt_value));
+				ulong length = (ulong)(value == null ? 0 : value.Length);
+				regress_annotation_object_set_data3(Handle, value, new UIntPtr ((uint)length));
 			}
 		}
 
