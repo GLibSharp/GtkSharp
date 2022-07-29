@@ -29,33 +29,49 @@ namespace GtkSharp.Generation {
 	public class ArrayParameter : Parameter {
 
 		bool null_terminated;
+		protected IGeneratable generatable;
 
 		public ArrayParameter(XmlElement elem) : base(elem) {
 			null_terminated = elem.GetAttributeAsBoolean("null_term_array");
 			if (elem.HasAttribute("array_len"))
 				FixedArrayLength = Int32.Parse(elem.GetAttribute("array_len"));
+
+			if (elem.HasAttribute("array_length_param_index")) {
+				ArrayLengthParamIndex = int.Parse(elem.GetAttribute("array_length_param_index"));
+			} else {
+				ArrayLengthParamIndex = -1;
+			}
+
+			if (IsString) {
+				generatable = new ArrayStringGen(CType, this);
+			} else {
+				generatable = base.Generatable;
+			}
 		}
+
+		public int ArrayLengthParamIndex { get; }
+
+		public override IGeneratable Generatable => generatable;
 
 		public override string MarshalType {
 			get {
-				if (Generatable is StructBase)
+				if (Generatable is StructBase) {
 					return CSType;
-				else
+				} else {
 					return base.MarshalType;
+				}
 			}
 		}
 
-		bool NullTerminated {
-			get {
-				return null_terminated;
-			}
-		}
+		public bool NullTerminated => null_terminated;
+
+		public override bool IsString => CSType == "string[]";
 
 		public int? FixedArrayLength { get; private set; }
 
 		public override string NativeSignature {
 			get {
-				if (FixedArrayLength > 0) {
+				if (!IsString && FixedArrayLength > 0) {
 					return $"[MarshalAs(UnmanagedType.LPArray, SizeConst={FixedArrayLength})]{base.NativeSignature}";
 				} else {
 					return base.NativeSignature;
@@ -63,31 +79,26 @@ namespace GtkSharp.Generation {
 			}
 		}
 
+		public virtual string CountCallName => $"cnt_{CallName}";
+
 		public override string[] Prepare {
 			get {
-				var result = new List<string>();
+				if (IsString) {
+					return base.Prepare;
+				}
 
+				var result = new List<string>();
 
 				if (CSType != MarshalType) {
 					var marshalType = MarshalType.TrimEnd('[', ']');
 					if (PassAs != "out") {
 						if (FixedArrayLength.HasValue) {
-							result.Add(String.Format($"int cnt_{CallName} = {FixedArrayLength};"));
+							result.Add(String.Format($"int {CountCallName} = {FixedArrayLength};"));
 						} else {
-							result.Add(String.Format($"int cnt_{CallName} = {CallName} == null ? 0 : {CallName}.Length;"));
+							result.Add(String.Format($"int {CountCallName} = {CallName} == null ? 0 : {CallName}.Length;"));
 						}
 
-						// Allocate native
-						result.Add(String.Format($"{marshalType}[] native_{CallName} = new {marshalType} [cnt_{CallName}{(NullTerminated ? " + 1" : "")}];"));
-						result.Add(String.Format("for (int i = 0; i < cnt_{0}; i++)", CallName));
-						IGeneratable gen = Generatable;
-						if (gen is IManualMarshaler)
-							result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative(CallName + "[i]")));
-						else
-							result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, gen.CallByName(CallName + "[i]")));
-
-						if (NullTerminated)
-							result.Add(String.Format("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+						AllocateNative(result, marshalType);
 					} else {
 						result.Add(String.Format($"{marshalType}[] native_{CallName};"));
 					}
@@ -119,8 +130,12 @@ namespace GtkSharp.Generation {
 
 		public override string[] Finish {
 			get {
-				if (CSType == MarshalType)
+				if (IsString) {
+					return base.Finish;
+				}
+				if (CSType == MarshalType) {
 					return new string[0];
+				}
 
 				IGeneratable gen = Generatable;
 				var result = new List<string>();
@@ -137,12 +152,12 @@ namespace GtkSharp.Generation {
 
 				if (PassAs == "out") {
 					if (FixedArrayLength.HasValue) {
-						result.Add(String.Format($"int cnt_{CallName} = {FixedArrayLength};"));
+						result.Add(String.Format($"int {CountCallName} = {FixedArrayLength};"));
 					} else {
-						result.Add(String.Format($"int cnt_{CallName} = native_{CallName} == null ? 0 : native_{CallName}.Length;"));
+						result.Add(String.Format($"int {CountCallName} = native_{CallName} == null ? 0 : native_{CallName}.Length;"));
 					}
 					// Allocate managed
-					result.Add(String.Format($"{Name} = new {CSType.TrimEnd('[', ']')}[cnt_{CallName}];"));
+					result.Add(String.Format($"{Name} = new {CSType.TrimEnd('[', ']')}[{CountCallName}];"));
 				}
 
 				result.Add("for (int i = 0; i < native_" + CallName + ".Length" + (NullTerminated ? " - 1" : "") + "; i++) {");
@@ -154,6 +169,20 @@ namespace GtkSharp.Generation {
 				return result.ToArray();
 			}
 		}
+
+		protected void AllocateNative(List<string> result, string marshalType) {
+			// Allocate native
+			result.Add(String.Format($"{marshalType}[] native_{CallName} = new {marshalType} [{CountCallName}{(NullTerminated ? " + 1" : "")}];"));
+			result.Add(String.Format("for (int i = 0; i < {0}; i++)", CountCallName));
+			IGeneratable gen = Generatable;
+			if (gen is IManualMarshaler)
+				result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative(CallName + "[i]")));
+			else
+				result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, gen.CallByName(CallName + "[i]")));
+
+			if (NullTerminated)
+				result.Add(String.Format("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+		}
 	}
 
 	public class ArrayCountPair : ArrayParameter {
@@ -161,12 +190,18 @@ namespace GtkSharp.Generation {
 		Parameter count_param;
 		bool invert;
 		int count_index;
+		bool skip_count;
 
-		public ArrayCountPair(XmlElement array_elem, XmlElement count_elem, bool invert, int count_index) : base(array_elem) {
-			count_param = new Parameter(count_elem);
+		public ArrayCountPair(Parameter array_param, Parameter count_param, bool invert, int count_index, bool skip_count = false) : base(array_param.Element) {
+			this.count_param = count_param;
 			this.invert = invert;
 			this.count_index = count_index;
+			this.skip_count = skip_count;
 		}
+
+		public Parameter CountParameter => count_param;
+
+		public override string CountCallName => $"{CountParameter.CallName}";
 
 		string CountCast {
 			get {
@@ -179,11 +214,30 @@ namespace GtkSharp.Generation {
 
 		public override string[] Prepare {
 			get {
-				if (CSType == MarshalType && !FixedArrayLength.HasValue) {
+				if (IsString) {
 					var result = new List<string>();
-					if (PassAs != "out") {
-						result.Add($"{count_param.CSType} cnt_{CallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
+
+					result.AddRange(base.Prepare);
+
+					if (PassAs != "out" && !skip_count) {
+						result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
 					}
+					return result.ToArray();
+				} else if (CSType == MarshalType) {
+					var result = new List<string>();
+
+					if (PassAs != "out" && !skip_count) {
+						result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
+					}
+					return result.ToArray();
+				} else if (CSType != MarshalType) {
+					var result = new List<string>();
+					var marshalType = MarshalType.TrimEnd('[', ']');
+
+					if (!skip_count) {
+						result.Add(String.Format($"int {CountCallName} = {CallName} == null ? 0 : {CallName}.Length;"));
+					}
+					AllocateNative(result, marshalType);
 					return result.ToArray();
 				} else {
 					return base.Prepare;
@@ -197,31 +251,40 @@ namespace GtkSharp.Generation {
 				string count_param_call;
 
 				if (count_param.PassAs == "out") {
-					count_param_call = $"{pass_ass}{count_param.MarshalType} cnt_{CallName}";
+					count_param_call = $"{pass_ass}{count_param.MarshalType} {CountCallName}";
 				} else if (count_param.PassAs == "ref") {
-					count_param_call = $"{pass_ass}cnt_{CallName}";
+					count_param_call = $"{pass_ass}{CountCallName}";
 				} else {
-					var call_name = $"cnt_{CallName}";
+					var call_name = $"{CountCallName}";
 					if (count_param.Generatable is LPUGen) {
 						call_name = $"(uint){call_name}";
 					}
 					count_param_call = count_param.Generatable.CallByName(call_name);
 				}
 
-				if (invert)
-					return $"{count_param_call},  {base.CallString}";
-				else
+				if (skip_count) {
+					return base.CallString;
+				} else if (invert) {
+					return $"{count_param_call}, {base.CallString}";
+				} else {
 					return $"{base.CallString}, {count_param_call}";
+				}
 			}
 		}
 
 		public override string NativeSignature {
 			get {
-				string nativeSignature = $"[MarshalAs(UnmanagedType.LPArray, SizeParamIndex={count_index})]{base.NativeSignature}";
-				if (invert)
+				string nativeSignature = base.NativeSignature;
+				if (!IsString) {
+					nativeSignature = $"[MarshalAs(UnmanagedType.LPArray, SizeParamIndex={count_index})]{nativeSignature}";
+				}
+				if (skip_count) {
+					return nativeSignature;
+				} else if (invert) {
 					return $"{count_param.NativeSignature}, {nativeSignature}";
-				else
+				} else {
 					return $"{nativeSignature}, {count_param.NativeSignature}";
+				}
 			}
 		}
 	}

@@ -7,9 +7,9 @@
   <attr path="/api/namespace/boxed[@cname='GdkColor']/method[@name='Parse']/return-type" name="type">gboolean</attr>
   <attr path="/api/namespace/boxed[@cname='GdkColor']/method[@name='Parse']/*/*[@type='GdkColor*']" name="pass_as">ref</attr>
   <attr path="/api/namespace/boxed[@cname='GdkColor']/method[@name='ToString']" name="hidden">1</attr>
-  <attr path="/api/namespace/boxed[@cname='GdkPixbufFormat']/method[@cname='gdk_pixbuf_format_is_disabled']" name="name">GetDisabled</attr> 
-  <attr path="/api/namespace/boxed[@cname='GdkPixbufFormat']/method[@name='GetExtensions']/return-type" name="null_term_array">1</attr> 
-  <attr path="/api/namespace/boxed[@cname='GdkPixbufFormat']/method[@name='GetMimeTypes']/return-type" name="null_term_array">1</attr> 
+  <attr path="/api/namespace/boxed[@cname='GdkPixbufFormat']/method[@cname='gdk_pixbuf_format_is_disabled']" name="name">GetDisabled</attr>
+  <attr path="/api/namespace/boxed[@cname='GdkPixbufFormat']/method[@name='GetExtensions']/return-type" name="null_term_array">1</attr>
+  <attr path="/api/namespace/boxed[@cname='GdkPixbufFormat']/method[@name='GetMimeTypes']/return-type" name="null_term_array">1</attr>
   <attr path="/api/namespace/callback[@cname='GdkPixbufDestroyNotify']/*/*[@type='guchar*']" name="array">1</attr>
   <attr path="/api/namespace/class[@cname='GdkCairo_']" name="name">CairoHelper</attr>
   <attr path="/api/namespace/class[@cname='GdkCairo_']/method[@name='Create']/return-type" name="owned">true</attr>
@@ -87,6 +87,7 @@
   <attr path="/api/namespace/object[@cname='GdkPixbuf']/constructor[@cname='gdk_pixbuf_new_from_file']" name="preferred">1</attr>
   <attr path="/api/namespace/object[@cname='GdkPixbuf']/constructor[@cname='gdk_pixbuf_new_from_inline']/*/*[@name='data']" name="array">1</attr>
   <attr path="/api/namespace/object[@cname='GdkPixbuf']/constructor[@cname='gdk_pixbuf_new_from_xpm_data']/*/*[@name='data']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GdkPixbuf']/constructor[@cname='gdk_pixbuf_new_from_xpm_data']/*/*[@name='data']" name="null_term_array">true</attr>
   <attr path="/api/namespace/object[@cname='GdkPixbuf']/method[@name='AddAlpha']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GdkPixbuf']/method[@name='ApplyEmbeddedOrientation']/return-type" name="owned">true</attr>
   <attr path="/api/namespace/object[@cname='GdkPixbuf']/method[@name='CompositeColorSimple']" name="hidden">1</attr>
@@ -170,4 +171,3 @@
   <remove-node path="/api/namespace/alias[@name='Rectangle']" />
   <remove-node path="/api/namespace/class[@cname='GdkRectangle_']" />
 </metadata>
-

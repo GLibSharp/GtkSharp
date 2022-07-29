@@ -4,6 +4,7 @@ gapi_fixup = executable('gapi-fixup', 'gapi-fixup.cs',
 
 gapi_codegen = executable('gapi_codegen',
     'AliasGen.cs',
+    'ArrayStringGen.cs',
     'ArrayParameter.cs',
     'BoxedGen.cs',
     'ByRefGen.cs',

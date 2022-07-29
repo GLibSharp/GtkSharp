@@ -9983,7 +9983,7 @@
         <return-type type="void" />
         <parameters>
           <parameter type="gint" name="n_params" />
-          <parameter type="gint*" name="new_order" array="1" />
+          <parameter type="gint*" name="new_order" array="1" array_length_param_index="0" />
         </parameters>
       </method>
       <method name="SetDefaultResponse" cname="gtk_dialog_set_default_response">
@@ -13444,7 +13444,7 @@
       <method name="ChooseIconForScale" cname="gtk_icon_theme_choose_icon_for_scale">
         <return-type type="GtkIconInfo*" />
         <parameters>
-          <parameter type="const-gchar*" array="true" name="icon_names" />
+          <parameter type="const-gchar*" array="true" name="icon_names" null_term_array="1" />
           <parameter type="gint" name="size" />
           <parameter type="gint" name="scale" />
           <parameter type="GtkIconLookupFlags" name="flags" />
@@ -13698,7 +13698,7 @@
       <method name="EnableModelDragDest" cname="gtk_icon_view_enable_model_drag_dest">
         <return-type type="void" />
         <parameters>
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="1" />
           <parameter type="gint" name="n_targets" />
           <parameter type="GdkDragAction" name="actions" />
         </parameters>
@@ -13707,7 +13707,7 @@
         <return-type type="void" />
         <parameters>
           <parameter type="GdkModifierType" name="start_button_mask" />
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="2" />
           <parameter type="gint" name="n_targets" />
           <parameter type="GdkDragAction" name="actions" />
         </parameters>
@@ -15724,7 +15724,7 @@
         <return-type type="void" />
         <parameters>
           <parameter type="gint" name="n_columns" />
-          <parameter type="GType*" name="types" array="1" />
+          <parameter type="GType*" name="types" array="1" array_length_param_index="0" />
         </parameters>
       </method>
       <method name="SetValist" cname="gtk_list_store_set_valist">
@@ -26857,7 +26857,7 @@
         <return-type type="void" />
         <parameters>
           <parameter type="gint" name="n_columns" />
-          <parameter type="GType*" name="types" array="1" />
+          <parameter type="GType*" name="types" array="1" array_length_param_index="0" />
         </parameters>
       </method>
       <method name="SetValist" cname="gtk_tree_store_set_valist">
@@ -27142,7 +27142,7 @@
       <method name="EnableModelDragDest" cname="gtk_tree_view_enable_model_drag_dest">
         <return-type type="void" />
         <parameters>
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="1" />
           <parameter type="gint" name="n_targets" />
           <parameter type="GdkDragAction" name="actions" />
         </parameters>
@@ -27151,7 +27151,7 @@
         <return-type type="void" />
         <parameters>
           <parameter type="GdkModifierType" name="start_button_mask" />
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="2" />
           <parameter type="gint" name="n_targets" />
           <parameter type="GdkDragAction" name="actions" />
         </parameters>
@@ -32293,7 +32293,7 @@
       <method name="AddTable" cname="gtk_target_list_add_table">
         <return-type type="void" />
         <parameters>
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="1" />
           <parameter type="guint" name="n_targets" />
         </parameters>
       </method>
@@ -33691,7 +33691,7 @@
         <parameters>
           <parameter type="GtkWidget*" name="widget" />
           <parameter type="GtkDestDefaults" name="flags" />
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="3" />
           <parameter type="gint" name="n_targets" />
           <parameter type="GdkDragAction" name="actions" />
         </parameters>
@@ -33842,7 +33842,7 @@
         <parameters>
           <parameter type="GtkWidget*" name="widget" />
           <parameter type="GdkModifierType" name="start_button_mask" />
-          <parameter type="const-GtkTargetEntry*" name="targets" array="1" />
+          <parameter type="const-GtkTargetEntry*" name="targets" array="1" array_length_param_index="3" />
           <parameter type="gint" name="n_targets" />
           <parameter type="GdkDragAction" name="actions" />
         </parameters>

@@ -8515,7 +8515,7 @@
         <return-type type="void" />
         <parameters>
           <parameter type="const-char*" name="message" />
-          <parameter type="const-char*" array="true" name="choices" />
+          <parameter type="const-char*" array="true" name="choices" null_term_array="true" />
         </parameters>
       </signal>
       <signal name="Reply" cname="reply" when="LAST" field_name="reply">
@@ -8533,7 +8533,7 @@
         <parameters>
           <parameter type="const-gchar*" name="message" />
           <parameter type="GArray*" name="processes" />
-          <parameter type="const-gchar*" array="true" name="choices" />
+          <parameter type="const-gchar*" array="true" name="choices" null_term_array="true" />
         </parameters>
       </signal>
       <signal name="ShowUnmountProgress" cname="show-unmount-progress" when="LAST" field_name="show_unmount_progress">

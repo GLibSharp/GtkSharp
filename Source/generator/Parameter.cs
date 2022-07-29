@@ -75,7 +75,7 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public IGeneratable Generatable {
+		public virtual IGeneratable Generatable {
 			get {
 				return SymbolTable.Table[CType];
 			}
@@ -105,20 +105,7 @@ namespace GtkSharp.Generation {
 			get {
 				if (is_count_set)
 					return is_count;
-
-				if (Name.StartsWith("n_"))
-					switch (CSType) {
-						case "int":
-						case "uint":
-						case "long":
-						case "ulong":
-						case "short":
-						case "ushort":
-							return true;
-						default:
-							return false;
-					} else
-					return false;
+				return false;
 			}
 			set {
 				is_count_set = true;
@@ -154,7 +141,7 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public bool IsString {
+		public virtual bool IsString {
 			get {
 				return (CSType == "string");
 			}
@@ -171,7 +158,7 @@ namespace GtkSharp.Generation {
 				string type = SymbolTable.Table.GetMarshalType(elem.GetAttribute("type"));
 				if (type == "void" || Generatable is IManualMarshaler)
 					type = "IntPtr";
-				if (IsArray) {
+				if (IsArray && !(Generatable is ArrayStringGen)) {
 					type += "[]";
 					type = type.Replace("ref ", "");
 				}
@@ -365,6 +352,8 @@ namespace GtkSharp.Generation {
 
 			}
 		}
+
+		internal XmlElement Element => elem;
 	}
 
 	public class ErrorParameter : Parameter {

@@ -1417,9 +1417,10 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_test_obj_not_nullable_element_typed_gpointer_in(IntPtr raw, IntPtr[] input, uint count);
+		static extern void regress_test_obj_not_nullable_element_typed_gpointer_in(IntPtr raw, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]IntPtr[] input, uint count);
 
-		public void NotNullableElementTypedGpointerIn(IntPtr[] input, uint count) {
+		public void NotNullableElementTypedGpointerIn(IntPtr[] input) {
+			uint count = (uint)(input == null ? 0 : input.Length);
 			regress_test_obj_not_nullable_element_typed_gpointer_in(Handle, input, count);
 		}
 

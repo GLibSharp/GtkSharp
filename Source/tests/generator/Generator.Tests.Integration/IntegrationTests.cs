@@ -40,7 +40,7 @@ namespace IntegrationTests {
 			Assert.AreEqual(Statistics.CBCount, 20);
 			Assert.AreEqual(Statistics.PropCount, 21);
 			Assert.AreEqual(Statistics.SignalCount, 17);
-			Assert.AreEqual(Statistics.MethodCount, 299);
+			Assert.AreEqual(Statistics.MethodCount, 300);
 			Assert.AreEqual(Statistics.CtorCount, 25);
 			Assert.AreEqual(Statistics.ThrottledCount, 20);
 		}

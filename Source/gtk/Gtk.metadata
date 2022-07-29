@@ -69,8 +69,10 @@
   <attr path="/api/namespace/class[@cname='GtkBindings_']/method[@name='Activate']" name="name">BindingsActivate</attr>
   <attr path="/api/namespace/class[@cname='GtkCairo_']" name="name">CairoHelper</attr>
   <attr path="/api/namespace/class[@cname='GtkDrag_']/method[@name='DestSet']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/class[@cname='GtkDrag_']/method[@name='DestSet']/*/*[@name='targets']" name="array_length_param_index">3</attr>
   <attr path="/api/namespace/class[@cname='GtkDrag_']/method[@name='SetIconDefault']" name="hidden">1</attr>
-  <attr path="/api/namespace/class[@cname='GtkDrag_']/method[@name='SourceSet']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/class[@cname='GtkDrag_']/method[@name='SourceSet']/*/*[@name='targets']" name="array">1</attr>array
+  <attr path="/api/namespace/class[@cname='GtkDrag_']/method[@name='SourceSet']/*/*[@name='targets']" name="array_length_param_index">3</attr>
   <attr path="/api/namespace/class[@cname='GtkGlobal']/method[@name='EventsPending']/return-type" name="type">gboolean</attr>
   <attr path="/api/namespace/class[@cname='GtkGlobal']/method[@name='EventsPending']" name="name">GetEventsPending</attr>
   <attr path="/api/namespace/class[@cname='GtkGlobal']/method[@name='CheckVersion']/return-type" name="type">const-gchar*</attr>
@@ -116,14 +118,14 @@
   <attr path="/api/namespace/enum[@cname='GtkTextBufferTargetInfo']/member[@name='Text']" name="value">UInt32.MaxValue-2U</attr>
   <attr path="/api/namespace/enum[@cname='GtkToolbarSpaceStyle']" name="hidden">1</attr>
   <attr path="/api/namespace/enum[@cname='GtkWin32EmbedMessageType']" name="hidden">1</attr>
-  <attr path="/api/namespace/interface[@cname='GtkActionable']/property[@name='ActionName']" name="hidden">1</attr> 
-  <attr path="/api/namespace/interface[@cname='GtkBuildable']" name="hidden">1</attr> 
+  <attr path="/api/namespace/interface[@cname='GtkActionable']/property[@name='ActionName']" name="hidden">1</attr>
+  <attr path="/api/namespace/interface[@cname='GtkBuildable']" name="hidden">1</attr>
   <attr path="/api/namespace/interface[@cname='GtkCellEditable']/method[@name='EditingDone']" name="name">FinishEditing</attr>
   <attr path="/api/namespace/interface[@cname='GtkCellEditable']/signal[@name='RemoveWidget']" name="name">WidgetRemoved</attr>
   <attr path="/api/namespace/interface[@cname='GtkCellEditable']/property[@cname='editing-canceled']" name="hidden">1</attr>
-  <attr path="/api/namespace/interface[@cname='GtkCellLayout']/*[@name='GetCells']/return-type" name="element_type">GtkCellRenderer*</attr> 
-  <attr path="/api/namespace/interface[@cname='GtkCellLayout']/*[@name='GetCells']/return-type" name="owned">true</attr> 
-  <attr path="/api/namespace/interface[@cname='GtkCellLayout']/method[@name='SetAttributes']" name="hidden">1</attr> 
+  <attr path="/api/namespace/interface[@cname='GtkCellLayout']/*[@name='GetCells']/return-type" name="element_type">GtkCellRenderer*</attr>
+  <attr path="/api/namespace/interface[@cname='GtkCellLayout']/*[@name='GetCells']/return-type" name="owned">true</attr>
+  <attr path="/api/namespace/interface[@cname='GtkCellLayout']/method[@name='SetAttributes']" name="hidden">1</attr>
   <remove-node path="/api/namespace/interface[@cname='GtkColorChooser']/class_struct[@cname='GtkColorChooserInterface']/method[@vm='get_rgba']" />
   <remove-node path="/api/namespace/interface[@cname='GtkColorChooser']/class_struct[@cname='GtkColorChooserInterface']/method[@vm='set_rgba']" />
   <attr path="/api/namespace/interface[@cname='GtkColorChooser']/method[@cname='gtk_color_chooser_get_rgba']/*/parameter[@name='color']" name="pass_as">out</attr>
@@ -322,11 +324,11 @@
   <attr path="/api/namespace/object[@cname='GtkColorSelectionDialog']/property[@name='CancelButton']" name="type">GtkButton*</attr>
   <attr path="/api/namespace/object[@cname='GtkColorSelectionDialog']/property[@name='ColorSelection']" name="type">GtkColorSelection*</attr>
   <attr path="/api/namespace/object[@cname='GtkColorSelectionDialog']/property[@name='HelpButton']" name="type">GtkButton*</attr>
-  <attr path="/api/namespace/object[@cname='GtkComboBox']/method[@name='GetActiveIter']/*/*[@type='GtkTreeIter*']" name="pass_as">out</attr> 
-  <attr path="/api/namespace/object[@cname='GtkComboBox']/method[@name='GetTitle']" name="name">GetTearoffTitle</attr> 
-  <attr path="/api/namespace/object[@cname='GtkComboBox']/method[@name='SetTitle']" name="name">SetTearoffTitle</attr> 
-  <attr path="/api/namespace/object[@cname='GtkComboBox']/signal[@name='Popdown']" name="name">PoppedDown</attr> 
-  <attr path="/api/namespace/object[@cname='GtkComboBox']/signal[@name='Popup']" name="name">PoppedUp</attr> 
+  <attr path="/api/namespace/object[@cname='GtkComboBox']/method[@name='GetActiveIter']/*/*[@type='GtkTreeIter*']" name="pass_as">out</attr>
+  <attr path="/api/namespace/object[@cname='GtkComboBox']/method[@name='GetTitle']" name="name">GetTearoffTitle</attr>
+  <attr path="/api/namespace/object[@cname='GtkComboBox']/method[@name='SetTitle']" name="name">SetTearoffTitle</attr>
+  <attr path="/api/namespace/object[@cname='GtkComboBox']/signal[@name='Popdown']" name="name">PoppedDown</attr>
+  <attr path="/api/namespace/object[@cname='GtkComboBox']/signal[@name='Popup']" name="name">PoppedUp</attr>
   <attr path="/api/namespace/object[@cname='GtkContainer']/method[@name='AddWithProperties']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkContainer']/method[@name='ChildGet']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkContainer']/method[@name='ChildGetProperty']" name="hidden">1</attr>
@@ -357,6 +359,7 @@
   <remove-node path="/api/namespace/object[@cname='GtkDialog']/method[@name='SetAlternativeButtonOrder']" />
   <attr path="/api/namespace/object[@cname='GtkDialog']/method[@cname='gtk_dialog_set_alternative_button_order_from_array']" name="name">SetAlternativeButtonOrder</attr>
   <attr path="/api/namespace/object[@cname='GtkDialog']/method[@name='SetAlternativeButtonOrder']/*/*[@name='new_order']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkDialog']/method[@name='SetAlternativeButtonOrder']/*/*[@name='new_order']" name="array_length_param_index">0</attr>
   <attr path="/api/namespace/object[@cname='GtkEntry']/property[@name='Editable']" name="hidden">1</attr>
   <remove-node path="/api/namespace/object[@cname='GtkEntry']/property[@name='InvisibleChar']" />
   <remove-node path="/api/namespace/object[@cname='GtkEntry']/property[@name='InnerBorder']" />
@@ -381,6 +384,7 @@
   <attr path="/api/namespace/object[@cname='GtkHandleBox']/method[@name='GetChildDetached']" name="name">IsChildDetached</attr>
   <attr path="/api/namespace/object[@cname='GtkHScale']/constructor[@cname='gtk_hscale_new_with_range']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@name='ChooseIcon']/*/*[@name='icon_names']" name="null_term_array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@name='ChooseIconForScale']/*/*[@name='icon_names']" name="null_term_array">1</attr>
   <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@name='GetIconSizes']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@name='GetSearchPath']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@name='ListContexts']/return-type" name="element_type">gchar*</attr>
@@ -393,7 +397,9 @@
   <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@cname='gtk_icon_theme_lookup_by_gicon']" name="name">LookupIcon</attr>
   <attr path="/api/namespace/object[@cname='GtkIconTheme']/method[@name='SetSearchPath']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='EnableModelDragDest']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='EnableModelDragDest']/*/*[@name='targets']" name="array_length_param_index">1</attr>
   <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='EnableModelDragSource']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='EnableModelDragSource']/*/*[@name='targets']" name="array_length_param_index">2</attr>
   <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='GetCursor']/*/parameter" name="pass_as">out</attr>
   <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='GetCursor']/*/*[@name='path']" name="owned">true</attr>
   <attr path="/api/namespace/object[@cname='GtkIconView']/method[@name='GetDestItemAtPos']/*/*[@name='path']" name="pass_as">out</attr>
@@ -463,6 +469,7 @@
   <attr path="/api/namespace/object[@cname='GtkListStore']/method[@name='Reorder']/*/*[@name='new_order']" name="array">1</attr>
   <attr path="/api/namespace/object[@cname='GtkListStore']/method[@name='Set']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkListStore']/method[@name='SetColumnTypes']/*/*[@name='types']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkListStore']/method[@name='SetColumnTypes']/*/*[@name='types']" name="array_length_param_index">0</attr>
   <attr path="/api/namespace/object[@cname='GtkListStore']/method[@name='SetValuesv']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkMenuItem']/constructor[@cname='gtk_menu_item_new_with_mnemonic']" name="preferred">1</attr>
   <attr path="/api/namespace/object[@cname='GtkMenuItem']/constructor[@cname='gtk_menu_item_new_with_mnemonic']" name="hidden">1</attr>
@@ -680,11 +687,11 @@
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='GetSerializeFormats']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='GetStartIter']/*/*[@type='GtkTextIter*']" name="pass_as">out</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='Insert']" name="hidden">1</attr>
-  <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertAtCursor']" name="hidden">1</attr>  
+  <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertAtCursor']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertInteractive']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertInteractiveAtCursor']" name="hidden">1</attr>
-  <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertWithTags']" name="hidden">1</attr>  
-  <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertWithTagsByName']" name="hidden">1</attr>  
+  <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertWithTags']" name="hidden">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='InsertWithTagsByName']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='MoveMarkByName']" name="name">MoveMark</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='RemoveTagByName']" name="name">RemoveTag</attr>
   <attr path="/api/namespace/object[@cname='GtkTextBuffer']/method[@name='Serialize']" name="hidden">1</attr>
@@ -785,6 +792,7 @@
   <attr path="/api/namespace/object[@cname='GtkTreeStore']/method[@name='Set']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeStore']/method[@name='SetValuesv']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeStore']/method[@name='SetColumnTypes']/*/*[@name='types']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkTreeStore']/method[@name='SetColumnTypes']/*/*[@name='types']" name="array_length_param_index">0</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/constructor[@cname='gtk_tree_view_column_new_with_attributes']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='AddAttribute']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='Clear']" name="hidden">1</attr>
@@ -792,9 +800,11 @@
   <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='Clicked']" name="name">Click</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='PackEnd']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='PackStart']" name="hidden">1</attr>
-  <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='SetAttributes']" name="hidden">1</attr> 
+  <attr path="/api/namespace/object[@cname='GtkTreeViewColumn']/method[@name='SetAttributes']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='EnableModelDragDest']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='EnableModelDragDest']/*/*[@name='targets']" name="array_length_param_index">1</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='EnableModelDragSource']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='EnableModelDragSource']/*/*[@name='targets']" name="array_length_param_index">2</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='GetCellArea']/*/*[@name='rect']" name="pass_as">out</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='GetColumns']/return-type" name="element_type">GtkTreeViewColumn*</attr>
   <attr path="/api/namespace/object[@cname='GtkTreeView']/method[@name='GetColumns']/return-type" name="owned">true</attr>
@@ -961,6 +971,7 @@
   <attr path="/api/namespace/struct[@cname='GtkTableRowCol']" name="hidden">1</attr>
   <attr path="/api/namespace/*[@cname='GtkTargetList']/constructor[@cname='gtk_target_list_new']" name="hidden">1</attr>
   <attr path="/api/namespace/*[@cname='GtkTargetList']/method[@name='AddTable']/*/*[@name='targets']" name="array">1</attr>
+  <attr path="/api/namespace/*[@cname='GtkTargetList']/method[@name='AddTable']/*/*[@name='targets']" name="array_length_param_index">1</attr>
   <attr path="/api/namespace/*[@cname='GtkTargetList']/method[@name='AddTable']/*/*[@name='ntargets']" name="name">n_targets</attr>
   <attr path="/api/namespace/struct[@cname='GtkTextAppearance']" name="opaque">true</attr>
   <attr path="/api/namespace/struct[@cname='GtkTextAppearance']/field[@cname='underline']" name="type">PangoUnderline</attr>

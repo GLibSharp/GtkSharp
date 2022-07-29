@@ -42,8 +42,8 @@ namespace RegressSharp {
 
 		void InvokeNative (ref int[] ints)
 		{
-			int cnt_ints = (ints == null ? 0 : ints.Length);
-			native_cb (ref ints, ref cnt_ints);
+			int length = (ints == null ? 0 : ints.Length);
+			native_cb (ref ints, ref length);
 		}
 	}
 

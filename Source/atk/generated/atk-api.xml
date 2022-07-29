@@ -2777,7 +2777,7 @@
       </method>
       <constructor cname="atk_relation_new">
         <parameters>
-          <parameter type="AtkObject**" name="targets" array="1" />
+          <parameter type="AtkObject**" name="targets" array="1" array_length_param_index="1" />
           <parameter type="gint" name="n_targets" />
           <parameter type="AtkRelationType" name="relationship" />
         </parameters>
