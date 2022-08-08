@@ -74,7 +74,7 @@ version_data.set('PACKAGE_VERSION', pkg_version)
 
 install_infos = []
 nuget_infos = []
-lib_install_dir = join_paths(get_option('libdir'), 'mono', pkg_version)
+lib_install_dir = join_paths(get_option('prefix'), 'lib', 'mono', pkg_version)
 pkg_install_dir = join_paths(get_option('libdir'), 'pkgconfig')
 gapi_xml_installdir = join_paths(get_option('datadir'), 'gapi-3.0')
 
