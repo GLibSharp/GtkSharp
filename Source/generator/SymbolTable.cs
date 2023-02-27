@@ -238,7 +238,8 @@ namespace GtkSharp.Generation {
 			} else if (ulong.TryParse(value, out ulong out_ulong)) {
 				return "ulong";
 			} else {
-				throw new Exception($"Can't parse {value}");
+				log.Warn($"Can't parse enum value: {value}");
+				return "int";
 			}
 		}
 
