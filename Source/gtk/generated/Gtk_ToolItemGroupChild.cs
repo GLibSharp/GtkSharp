@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public ToolItemGroupChild(IntPtr raw) : base(raw) {}
 
+		protected ToolItemGroupChild() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

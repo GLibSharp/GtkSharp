@@ -87,6 +87,8 @@ namespace GLib {
 
 		public IOExtensionPoint(IntPtr raw) : base(raw) {}
 
+		protected IOExtensionPoint() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

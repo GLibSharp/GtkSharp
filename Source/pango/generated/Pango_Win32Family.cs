@@ -13,6 +13,8 @@ namespace Pango {
 
 		public Win32Family(IntPtr raw) : base(raw) {}
 
+		protected Win32Family() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

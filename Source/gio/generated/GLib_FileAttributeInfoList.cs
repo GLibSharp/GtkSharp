@@ -51,8 +51,6 @@ namespace GLib {
 			return ret;
 		}
 
-		public FileAttributeInfoList(IntPtr raw) : base(raw) {}
-
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_attribute_info_list_new();
 
@@ -60,6 +58,8 @@ namespace GLib {
 		{
 			Raw = g_file_attribute_info_list_new();
 		}
+
+		public FileAttributeInfoList(IntPtr raw) : base(raw) {}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_attribute_info_list_ref(IntPtr raw);

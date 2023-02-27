@@ -24,6 +24,7 @@ namespace GtkSharp.Generation {
 	using System;
 	using System.Collections;
 	using System.IO;
+	using System.Linq;
 	using System.Xml;
 
 	public class OpaqueGen : HandleBase {
@@ -220,13 +221,17 @@ namespace GtkSharp.Generation {
 		}
 
 		protected override void GenCtors(GenerationInfo gen_info) {
+			base.GenCtors(gen_info);
+
 			if (!DisableRawCtor) {
 				gen_info.Writer.WriteLine("\t\tpublic " + Name + "(IntPtr raw) : base(raw) {}");
 				gen_info.Writer.WriteLine();
 			}
 
-			base.GenCtors(gen_info);
+			if (!ctors.Any(c => c.Parameters.Count == 0)) {
+				gen_info.Writer.WriteLine("\t\tprotected " + Name + "() : base() {}");
+				gen_info.Writer.WriteLine();
+			}
 		}
-
 	}
 }

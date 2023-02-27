@@ -13,6 +13,8 @@ namespace Gdk {
 
 		public OffscreenWindowClass(IntPtr raw) : base(raw) {}
 
+		protected OffscreenWindowClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -13,6 +13,8 @@ namespace Pango {
 
 		public WidthIter(IntPtr raw) : base(raw) {}
 
+		protected WidthIter() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

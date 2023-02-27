@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public CssImageIconTheme(IntPtr raw) : base(raw) {}
 
+		protected CssImageIconTheme() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -13,6 +13,8 @@ namespace GLib {
 
 		public MessageToWriteData(IntPtr raw) : base(raw) {}
 
+		protected MessageToWriteData() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

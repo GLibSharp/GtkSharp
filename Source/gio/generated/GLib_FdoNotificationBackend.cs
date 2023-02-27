@@ -13,6 +13,8 @@ namespace GLib {
 
 		public FdoNotificationBackend(IntPtr raw) : base(raw) {}
 
+		protected FdoNotificationBackend() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -13,6 +13,8 @@ namespace Pango {
 
 		public FT2FontClass(IntPtr raw) : base(raw) {}
 
+		protected FT2FontClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

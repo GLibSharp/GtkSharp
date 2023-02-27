@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public RoundedBoxCorner(IntPtr raw) : base(raw) {}
 
+		protected RoundedBoxCorner() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

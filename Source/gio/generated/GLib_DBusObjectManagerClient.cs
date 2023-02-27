@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DBusObjectManagerClient(IntPtr raw) : base(raw) {}
 
+		protected DBusObjectManagerClient() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

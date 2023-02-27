@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public CssImageCrossFadeClass(IntPtr raw) : base(raw) {}
 
+		protected CssImageCrossFadeClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -100,8 +100,6 @@ namespace Pango {
 			return ret;
 		}
 
-		public Item(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_item_new();
 
@@ -109,6 +107,8 @@ namespace Pango {
 		{
 			Raw = pango_item_new();
 		}
+
+		public Item(IntPtr raw) : base(raw) {}
 
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_item_free(IntPtr raw);

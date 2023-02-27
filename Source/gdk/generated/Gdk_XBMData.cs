@@ -13,6 +13,8 @@ namespace Gdk {
 
 		public XBMData(IntPtr raw) : base(raw) {}
 
+		protected XBMData() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

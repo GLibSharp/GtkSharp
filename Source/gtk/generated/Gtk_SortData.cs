@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public SortData(IntPtr raw) : base(raw) {}
 
+		protected SortData() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

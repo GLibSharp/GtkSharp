@@ -87,8 +87,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public TreeRowReference(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_row_reference_new(IntPtr model, IntPtr path);
 
@@ -104,6 +102,10 @@ namespace Gtk {
 		{
 			Raw = gtk_tree_row_reference_new_proxy(proxy == null ? IntPtr.Zero : proxy.Handle, model == null ? IntPtr.Zero : ((model is GLib.Object) ? (model as GLib.Object).Handle : (model as Gtk.TreeModelAdapter).Handle), path == null ? IntPtr.Zero : path.Handle);
 		}
+
+		public TreeRowReference(IntPtr raw) : base(raw) {}
+
+		protected TreeRowReference() : base() {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_row_reference_free(IntPtr raw);

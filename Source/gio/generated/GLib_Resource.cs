@@ -98,8 +98,6 @@ namespace GLib {
 			return ret;
 		}
 
-		public Resource(IntPtr raw) : base(raw) {}
-
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe IntPtr g_resource_new_from_data(IntPtr data, out IntPtr error);
 
@@ -109,6 +107,10 @@ namespace GLib {
 			Raw = g_resource_new_from_data(data == null ? IntPtr.Zero : data.Handle, out error);
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 		}
+
+		public Resource(IntPtr raw) : base(raw) {}
+
+		protected Resource() : base() {}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_resource_ref(IntPtr raw);

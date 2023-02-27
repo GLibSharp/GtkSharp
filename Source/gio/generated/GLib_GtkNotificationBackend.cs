@@ -13,6 +13,8 @@ namespace GLib {
 
 		public GtkNotificationBackend(IntPtr raw) : base(raw) {}
 
+		protected GtkNotificationBackend() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

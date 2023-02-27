@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public Win32Theme(IntPtr raw) : base(raw) {}
 
+		protected Win32Theme() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

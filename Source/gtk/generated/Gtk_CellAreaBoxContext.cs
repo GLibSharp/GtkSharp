@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public CellAreaBoxContext(IntPtr raw) : base(raw) {}
 
+		protected CellAreaBoxContext() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

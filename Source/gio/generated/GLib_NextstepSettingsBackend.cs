@@ -13,6 +13,8 @@ namespace GLib {
 
 		public NextstepSettingsBackend(IntPtr raw) : base(raw) {}
 
+		protected NextstepSettingsBackend() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -194,8 +194,6 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_group_name);
 		}
 
-		public PaperSize(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_paper_size_new(IntPtr name);
 
@@ -259,6 +257,10 @@ namespace Gtk {
 			GLib.Marshaller.Free (native_ppd_name);
 			GLib.Marshaller.Free (native_ppd_display_name);
 		}
+
+		public PaperSize(IntPtr raw) : base(raw) {}
+
+		protected PaperSize() : base() {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_paper_size_free(IntPtr raw);

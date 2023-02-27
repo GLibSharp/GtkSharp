@@ -336,8 +336,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public WidgetPath(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_path_new();
 
@@ -345,6 +343,8 @@ namespace Gtk {
 		{
 			Raw = gtk_widget_path_new();
 		}
+
+		public WidgetPath(IntPtr raw) : base(raw) {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_path_ref(IntPtr raw);

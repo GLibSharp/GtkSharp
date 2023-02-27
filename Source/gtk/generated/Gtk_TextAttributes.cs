@@ -323,8 +323,6 @@ namespace Gtk {
 			}
 		}
 
-		public TextAttributes(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_attributes_new();
 
@@ -332,6 +330,8 @@ namespace Gtk {
 		{
 			Raw = gtk_text_attributes_new();
 		}
+
+		public TextAttributes(IntPtr raw) : base(raw) {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_text_attributes_ref(IntPtr raw);

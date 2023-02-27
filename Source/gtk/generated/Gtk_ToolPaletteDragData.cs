@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public ToolPaletteDragData(IntPtr raw) : base(raw) {}
 
+		protected ToolPaletteDragData() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

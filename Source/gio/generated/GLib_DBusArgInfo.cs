@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DBusArgInfo(IntPtr raw) : base(raw) {}
 
+		protected DBusArgInfo() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

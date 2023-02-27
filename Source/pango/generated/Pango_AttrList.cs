@@ -49,8 +49,6 @@ namespace Pango {
 			pango_attr_list_splice(Handle, other == null ? IntPtr.Zero : other.Handle, pos, len);
 		}
 
-		public AttrList(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_attr_list_new();
 
@@ -58,6 +56,8 @@ namespace Pango {
 		{
 			Raw = pango_attr_list_new();
 		}
+
+		public AttrList(IntPtr raw) : base(raw) {}
 
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_attr_list_ref(IntPtr raw);

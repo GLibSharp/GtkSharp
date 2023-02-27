@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public IconHelperClass(IntPtr raw) : base(raw) {}
 
+		protected IconHelperClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

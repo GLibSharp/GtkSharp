@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public LinesWindow(IntPtr raw) : base(raw) {}
 
+		protected LinesWindow() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

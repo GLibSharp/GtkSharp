@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public StyleCascadeIter(IntPtr raw) : base(raw) {}
 
+		protected StyleCascadeIter() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

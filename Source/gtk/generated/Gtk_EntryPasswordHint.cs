@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public EntryPasswordHint(IntPtr raw) : base(raw) {}
 
+		protected EntryPasswordHint() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public PropertyValue(IntPtr raw) : base(raw) {}
 
+		protected PropertyValue() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

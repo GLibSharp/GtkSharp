@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public TransitionInfo(IntPtr raw) : base(raw) {}
 
+		protected TransitionInfo() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

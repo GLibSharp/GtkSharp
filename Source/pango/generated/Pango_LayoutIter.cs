@@ -228,6 +228,8 @@ namespace Pango {
 
 		public LayoutIter(IntPtr raw) : base(raw) {}
 
+		protected LayoutIter() : base() {}
+
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_layout_iter_free(IntPtr raw);
 

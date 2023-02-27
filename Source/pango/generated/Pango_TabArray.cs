@@ -76,8 +76,6 @@ namespace Pango {
 			pango_tab_array_set_tab(Handle, tab_index, (int) alignment, location);
 		}
 
-		public TabArray(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_tab_array_new(int initial_size, bool positions_in_pixels);
 
@@ -85,6 +83,10 @@ namespace Pango {
 		{
 			Raw = pango_tab_array_new(initial_size, positions_in_pixels);
 		}
+
+		public TabArray(IntPtr raw) : base(raw) {}
+
+		protected TabArray() : base() {}
 
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_tab_array_free(IntPtr raw);

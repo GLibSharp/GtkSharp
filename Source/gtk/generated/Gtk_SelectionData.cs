@@ -129,10 +129,11 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_selection_data_set(IntPtr raw, IntPtr type, int format, byte[] data, int length);
+		static extern void gtk_selection_data_set(IntPtr raw, IntPtr type, int format, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)]byte[] data, int length);
 
-		public void Set(Gdk.Atom type, int format, byte[] data, int length) {
-			gtk_selection_data_set(Handle, type == null ? IntPtr.Zero : type.Handle, format, data, length);
+		public void Set(Gdk.Atom type, int format, byte[] data) {
+			int cnt_data = (data == null ? 0 : data.Length);
+			gtk_selection_data_set(Handle, type == null ? IntPtr.Zero : type.Handle, format, data, cnt_data);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -190,6 +191,8 @@ namespace Gtk {
 		}
 
 		public SelectionData(IntPtr raw) : base(raw) {}
+
+		protected SelectionData() : base() {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_selection_data_free(IntPtr raw);

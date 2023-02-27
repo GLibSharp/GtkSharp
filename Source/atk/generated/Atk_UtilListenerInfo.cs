@@ -13,6 +13,8 @@ namespace Atk {
 
 		public UtilListenerInfo(IntPtr raw) : base(raw) {}
 
+		protected UtilListenerInfo() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

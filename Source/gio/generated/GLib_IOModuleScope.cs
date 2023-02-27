@@ -20,8 +20,6 @@ namespace GLib {
 			GLib.Marshaller.Free (native_basename);
 		}
 
-		public IOModuleScope(IntPtr raw) : base(raw) {}
-
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_io_module_scope_new(int flags);
 
@@ -29,6 +27,10 @@ namespace GLib {
 		{
 			Raw = g_io_module_scope_new((int) flags);
 		}
+
+		public IOModuleScope(IntPtr raw) : base(raw) {}
+
+		protected IOModuleScope() : base() {}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_io_module_scope_free(IntPtr raw);

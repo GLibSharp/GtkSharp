@@ -13,6 +13,8 @@ namespace GLib {
 
 		public Socket(IntPtr raw) : base(raw) {}
 
+		protected Socket() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

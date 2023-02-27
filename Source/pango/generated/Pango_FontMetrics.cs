@@ -112,6 +112,8 @@ namespace Pango {
 
 		public FontMetrics(IntPtr raw) : base(raw) {}
 
+		protected FontMetrics() : base() {}
+
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_metrics_ref(IntPtr raw);
 

@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public TextPixbuf(IntPtr raw) : base(raw) {}
 
+		protected TextPixbuf() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

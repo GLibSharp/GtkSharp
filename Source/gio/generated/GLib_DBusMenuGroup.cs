@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DBusMenuGroup(IntPtr raw) : base(raw) {}
 
+		protected DBusMenuGroup() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

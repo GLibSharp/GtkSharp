@@ -64,8 +64,6 @@ namespace Atk {
 			}
 		}
 
-		public Range(IntPtr raw) : base(raw) {}
-
 		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr atk_range_new(double lower_limit, double upper_limit, IntPtr description);
 
@@ -75,6 +73,10 @@ namespace Atk {
 			Raw = atk_range_new(lower_limit, upper_limit, native_description);
 			GLib.Marshaller.Free (native_description);
 		}
+
+		public Range(IntPtr raw) : base(raw) {}
+
+		protected Range() : base() {}
 
 		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void atk_range_free(IntPtr raw);

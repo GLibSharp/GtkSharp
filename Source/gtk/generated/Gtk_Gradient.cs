@@ -33,8 +33,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public Gradient(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gradient_new_linear(double x0, double y0, double x1, double y1);
 
@@ -50,6 +48,10 @@ namespace Gtk {
 		{
 			Raw = gtk_gradient_new_radial(x0, y0, radius0, x1, y1, radius1);
 		}
+
+		public Gradient(IntPtr raw) : base(raw) {}
+
+		protected Gradient() : base() {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_gradient_ref(IntPtr raw);

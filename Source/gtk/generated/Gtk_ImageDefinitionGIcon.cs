@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public ImageDefinitionGIcon(IntPtr raw) : base(raw) {}
 
+		protected ImageDefinitionGIcon() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

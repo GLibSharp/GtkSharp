@@ -48,8 +48,6 @@ namespace Regress {
 			}
 		}
 
-		public TestFundamentalObject(IntPtr raw) : base(raw) { }
-
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_value_get_fundamental_object(IntPtr value);
 
@@ -58,6 +56,10 @@ namespace Regress {
 			Raw = regress_test_value_get_fundamental_object(native_value);
 			Marshal.FreeHGlobal(native_value);
 		}
+
+		public TestFundamentalObject(IntPtr raw) : base(raw) { }
+
+		protected TestFundamentalObject() : base() { }
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr regress_test_fundamental_object_ref(IntPtr raw);

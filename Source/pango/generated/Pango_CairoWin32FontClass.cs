@@ -13,6 +13,8 @@ namespace Pango {
 
 		public CairoWin32FontClass(IntPtr raw) : base(raw) {}
 
+		protected CairoWin32FontClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

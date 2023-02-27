@@ -20,8 +20,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public KineticScrolling(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_kinetic_scrolling_new(double lower, double upper, double overshoot_width, double decel_friction, double overshoot_friction, double initial_position, double initial_velocity);
 
@@ -29,6 +27,10 @@ namespace Gtk {
 		{
 			Raw = gtk_kinetic_scrolling_new(lower, upper, overshoot_width, decel_friction, overshoot_friction, initial_position, initial_velocity);
 		}
+
+		public KineticScrolling(IntPtr raw) : base(raw) {}
+
+		protected KineticScrolling() : base() {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_kinetic_scrolling_free(IntPtr raw);

@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public SymbolicPixbufCache(IntPtr raw) : base(raw) {}
 
+		protected SymbolicPixbufCache() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -20,6 +20,8 @@ namespace Gtk {
 
 		public TextLayout(IntPtr raw) : base(raw) {}
 
+		protected TextLayout() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

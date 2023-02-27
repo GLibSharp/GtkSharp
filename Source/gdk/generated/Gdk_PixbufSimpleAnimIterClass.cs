@@ -13,6 +13,8 @@ namespace Gdk {
 
 		public PixbufSimpleAnimIterClass(IntPtr raw) : base(raw) {}
 
+		protected PixbufSimpleAnimIterClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

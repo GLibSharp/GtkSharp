@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DBusConnectionClass(IntPtr raw) : base(raw) {}
 
+		protected DBusConnectionClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

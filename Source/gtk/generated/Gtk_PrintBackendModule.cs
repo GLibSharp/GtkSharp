@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public PrintBackendModule(IntPtr raw) : base(raw) {}
 
+		protected PrintBackendModule() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

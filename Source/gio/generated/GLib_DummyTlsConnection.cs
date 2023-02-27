@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DummyTlsConnection(IntPtr raw) : base(raw) {}
 
+		protected DummyTlsConnection() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

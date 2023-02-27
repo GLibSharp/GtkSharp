@@ -13,6 +13,8 @@ namespace Pango {
 
 		public FT2Family(IntPtr raw) : base(raw) {}
 
+		protected FT2Family() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

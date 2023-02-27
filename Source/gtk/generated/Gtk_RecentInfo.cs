@@ -275,6 +275,8 @@ namespace Gtk {
 
 		public RecentInfo(IntPtr raw) : base(raw) {}
 
+		protected RecentInfo() : base() {}
+
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_recent_info_ref(IntPtr raw);
 

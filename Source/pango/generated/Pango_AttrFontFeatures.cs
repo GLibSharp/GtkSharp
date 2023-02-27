@@ -30,8 +30,6 @@ namespace Pango {
 			}
 		}
 
-		public AttrFontFeatures(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_attr_font_features_new(IntPtr features);
 
@@ -41,6 +39,10 @@ namespace Pango {
 			Raw = pango_attr_font_features_new(native_features);
 			GLib.Marshaller.Free (native_features);
 		}
+
+		public AttrFontFeatures(IntPtr raw) : base(raw) {}
+
+		protected AttrFontFeatures() : base() {}
 
 #endregion
 	}

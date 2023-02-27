@@ -282,8 +282,6 @@ namespace Pango {
 			pango_font_description_unset_fields(Handle, (int) to_unset);
 		}
 
-		public FontDescription(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_description_new();
 
@@ -291,6 +289,8 @@ namespace Pango {
 		{
 			Raw = pango_font_description_new();
 		}
+
+		public FontDescription(IntPtr raw) : base(raw) {}
 
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_font_description_free(IntPtr raw);

@@ -215,7 +215,7 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_list_store_set_column_types(IntPtr raw, int n_columns, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]IntPtr[] types);
+		static extern void gtk_list_store_set_column_types(IntPtr raw, int n_columns, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]IntPtr[] types);
 
 		public GLib.GType[] ColumnTypes { 
 			set {

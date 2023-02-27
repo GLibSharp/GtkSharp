@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public AppChooserIface(IntPtr raw) : base(raw) {}
 
+		protected AppChooserIface() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

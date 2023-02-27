@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public Magnifier(IntPtr raw) : base(raw) {}
 
+		protected Magnifier() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

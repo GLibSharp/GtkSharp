@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public HashNode(IntPtr raw) : base(raw) {}
 
+		protected HashNode() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

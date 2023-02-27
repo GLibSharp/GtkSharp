@@ -133,8 +133,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public TreePath(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_path_new();
 
@@ -169,6 +167,8 @@ namespace Gtk {
 			Raw = gtk_tree_path_new_from_string(native_path);
 			GLib.Marshaller.Free (native_path);
 		}
+
+		public TreePath(IntPtr raw) : base(raw) {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_tree_path_free(IntPtr raw);

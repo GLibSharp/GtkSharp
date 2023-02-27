@@ -33,8 +33,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public SymbolicColor(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_symbolic_color_new_alpha(IntPtr color, double factor);
 
@@ -89,6 +87,10 @@ namespace Gtk {
 			Raw = gtk_symbolic_color_new_win32(native_theme_class, id);
 			GLib.Marshaller.Free (native_theme_class);
 		}
+
+		public SymbolicColor(IntPtr raw) : base(raw) {}
+
+		protected SymbolicColor() : base() {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_symbolic_color_ref(IntPtr raw);

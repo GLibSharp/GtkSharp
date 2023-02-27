@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public BorderImageSliceSize(IntPtr raw) : base(raw) {}
 
+		protected BorderImageSliceSize() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

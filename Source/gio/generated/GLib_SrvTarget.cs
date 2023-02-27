@@ -84,8 +84,6 @@ namespace GLib {
 			return ret;
 		}
 
-		public SrvTarget(IntPtr raw) : base(raw) {}
-
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_srv_target_new(IntPtr hostname, ushort port, ushort priority, ushort weight);
 
@@ -95,6 +93,10 @@ namespace GLib {
 			Raw = g_srv_target_new(native_hostname, port, priority, weight);
 			GLib.Marshaller.Free (native_hostname);
 		}
+
+		public SrvTarget(IntPtr raw) : base(raw) {}
+
+		protected SrvTarget() : base() {}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_srv_target_free(IntPtr raw);

@@ -13,6 +13,8 @@ namespace GLib {
 
 		public SettingsBackend(IntPtr raw) : base(raw) {}
 
+		protected SettingsBackend() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

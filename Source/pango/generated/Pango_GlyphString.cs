@@ -119,8 +119,6 @@ namespace Pango {
 			Marshal.FreeHGlobal (native_analysis);
 		}
 
-		public GlyphString(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_string_new();
 
@@ -128,6 +126,8 @@ namespace Pango {
 		{
 			Raw = pango_glyph_string_new();
 		}
+
+		public GlyphString(IntPtr raw) : base(raw) {}
 
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_glyph_string_free(IntPtr raw);

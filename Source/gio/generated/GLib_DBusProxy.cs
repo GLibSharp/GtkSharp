@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DBusProxy(IntPtr raw) : base(raw) {}
 
+		protected DBusProxy() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

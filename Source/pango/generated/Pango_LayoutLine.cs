@@ -113,6 +113,8 @@ namespace Pango {
 
 		public LayoutLine(IntPtr raw) : base(raw) {}
 
+		protected LayoutLine() : base() {}
+
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_layout_line_ref(IntPtr raw);
 

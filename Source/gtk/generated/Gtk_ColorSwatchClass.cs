@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public ColorSwatchClass(IntPtr raw) : base(raw) {}
 
+		protected ColorSwatchClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -13,6 +13,8 @@ namespace Gdk {
 
 		public LoadContext(IntPtr raw) : base(raw) {}
 
+		protected LoadContext() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

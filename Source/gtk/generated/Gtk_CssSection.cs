@@ -101,6 +101,8 @@ namespace Gtk {
 
 		public CssSection(IntPtr raw) : base(raw) {}
 
+		protected CssSection() : base() {}
+
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_css_section_ref(IntPtr raw);
 

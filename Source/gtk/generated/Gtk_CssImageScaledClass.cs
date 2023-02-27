@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public CssImageScaledClass(IntPtr raw) : base(raw) {}
 
+		protected CssImageScaledClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -138,6 +138,8 @@ namespace Gdk {
 
 		public PixbufFormat(IntPtr raw) : base(raw) {}
 
+		protected PixbufFormat() : base() {}
+
 		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_pixbuf_format_free(IntPtr raw);
 

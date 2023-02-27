@@ -199,8 +199,6 @@ namespace Gtk {
 			}
 		}
 
-		public IconSource(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_source_new();
 
@@ -208,6 +206,8 @@ namespace Gtk {
 		{
 			Raw = gtk_icon_source_new();
 		}
+
+		public IconSource(IntPtr raw) : base(raw) {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_source_free(IntPtr raw);

@@ -13,6 +13,8 @@ namespace GLib {
 
 		public Win32AppInfoFileExtensionClass(IntPtr raw) : base(raw) {}
 
+		protected Win32AppInfoFileExtensionClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

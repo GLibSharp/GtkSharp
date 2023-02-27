@@ -21,6 +21,8 @@ namespace GLib {
 
 		public IOSchedulerJob(IntPtr raw) : base(raw) {}
 
+		protected IOSchedulerJob() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

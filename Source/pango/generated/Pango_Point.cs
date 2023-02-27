@@ -13,6 +13,8 @@ namespace Pango {
 
 		public Point(IntPtr raw) : base(raw) {}
 
+		protected Point() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

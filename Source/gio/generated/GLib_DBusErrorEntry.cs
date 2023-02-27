@@ -13,6 +13,8 @@ namespace GLib {
 
 		public DBusErrorEntry(IntPtr raw) : base(raw) {}
 
+		protected DBusErrorEntry() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

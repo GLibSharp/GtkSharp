@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public SidebarRow(IntPtr raw) : base(raw) {}
 
+		protected SidebarRow() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

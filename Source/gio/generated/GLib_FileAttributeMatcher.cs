@@ -82,8 +82,6 @@ namespace GLib {
 			return ret;
 		}
 
-		public FileAttributeMatcher(IntPtr raw) : base(raw) {}
-
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_attribute_matcher_new(IntPtr attributes);
 
@@ -93,6 +91,10 @@ namespace GLib {
 			Raw = g_file_attribute_matcher_new(native_attributes);
 			GLib.Marshaller.Free (native_attributes);
 		}
+
+		public FileAttributeMatcher(IntPtr raw) : base(raw) {}
+
+		protected FileAttributeMatcher() : base() {}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_attribute_matcher_ref(IntPtr raw);

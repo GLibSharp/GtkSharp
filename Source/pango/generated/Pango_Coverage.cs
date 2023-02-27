@@ -52,8 +52,6 @@ namespace Pango {
 			pango_coverage_set(Handle, index_, (int) level);
 		}
 
-		public Coverage(IntPtr raw) : base(raw) {}
-
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_coverage_new();
 
@@ -61,6 +59,8 @@ namespace Pango {
 		{
 			Raw = pango_coverage_new();
 		}
+
+		public Coverage(IntPtr raw) : base(raw) {}
 
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_coverage_ref(IntPtr raw);

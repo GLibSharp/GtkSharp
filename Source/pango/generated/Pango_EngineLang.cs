@@ -13,6 +13,8 @@ namespace Pango {
 
 		public EngineLang(IntPtr raw) : base(raw) {}
 
+		protected EngineLang() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

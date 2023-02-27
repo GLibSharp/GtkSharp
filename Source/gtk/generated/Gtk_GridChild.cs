@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public GridChild(IntPtr raw) : base(raw) {}
 
+		protected GridChild() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

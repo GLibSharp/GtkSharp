@@ -13,6 +13,8 @@ namespace GLib {
 
 		public ResourceFileInputStream(IntPtr raw) : base(raw) {}
 
+		protected ResourceFileInputStream() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public ToolbarContent(IntPtr raw) : base(raw) {}
 
+		protected ToolbarContent() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

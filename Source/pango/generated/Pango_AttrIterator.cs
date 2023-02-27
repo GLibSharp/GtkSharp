@@ -38,6 +38,8 @@ namespace Pango {
 
 		public AttrIterator(IntPtr raw) : base(raw) {}
 
+		protected AttrIterator() : base() {}
+
 		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_attr_iterator_destroy(IntPtr raw);
 

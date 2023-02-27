@@ -90,6 +90,8 @@ namespace Gdk {
 
 		public FrameTimings(IntPtr raw) : base(raw) {}
 
+		protected FrameTimings() : base() {}
+
 		[DllImport("gdk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_frame_timings_ref(IntPtr raw);
 

@@ -13,6 +13,8 @@ namespace Pango {
 
 		public CairoRendererClass(IntPtr raw) : base(raw) {}
 
+		protected CairoRendererClass() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

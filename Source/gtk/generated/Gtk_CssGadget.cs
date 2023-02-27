@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public CssGadget(IntPtr raw) : base(raw) {}
 
+		protected CssGadget() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

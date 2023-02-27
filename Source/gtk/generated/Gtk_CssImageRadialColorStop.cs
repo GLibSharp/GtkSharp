@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public CssImageRadialColorStop(IntPtr raw) : base(raw) {}
 
+		protected CssImageRadialColorStop() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

@@ -73,8 +73,6 @@ namespace Gtk {
 			return ret;
 		}
 
-		public IconSet(IntPtr raw) : base(raw) {}
-
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_set_new();
 
@@ -90,6 +88,8 @@ namespace Gtk {
 		{
 			Raw = gtk_icon_set_new_from_pixbuf(pixbuf == null ? IntPtr.Zero : pixbuf.Handle);
 		}
+
+		public IconSet(IntPtr raw) : base(raw) {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_icon_set_ref(IntPtr raw);

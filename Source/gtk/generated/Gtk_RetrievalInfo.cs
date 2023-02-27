@@ -13,6 +13,8 @@ namespace Gtk {
 
 		public RetrievalInfo(IntPtr raw) : base(raw) {}
 
+		protected RetrievalInfo() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;

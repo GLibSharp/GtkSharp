@@ -13,6 +13,8 @@ namespace Gdk {
 
 		public TGAFooter(IntPtr raw) : base(raw) {}
 
+		protected TGAFooter() : base() {}
+
 
 		// Internal representation of the wrapped structure ABI.
 		static GLib.AbiStruct _abi_info = null;
