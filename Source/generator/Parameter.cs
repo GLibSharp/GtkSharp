@@ -105,20 +105,7 @@ namespace GtkSharp.Generation {
 			get {
 				if (is_count_set)
 					return is_count;
-
-				if (Name.StartsWith("n_"))
-					switch (CSType) {
-						case "int":
-						case "uint":
-						case "long":
-						case "ulong":
-						case "short":
-						case "ushort":
-							return true;
-						default:
-							return false;
-					} else
-					return false;
+				return false;
 			}
 			set {
 				is_count_set = true;
