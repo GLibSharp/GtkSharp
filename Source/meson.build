@@ -130,6 +130,7 @@ if cairo_dep.found()
 else
     message('Cairo not found, not building')
 endif
+cairo_gobject_dep = dependency('cairo-gobject', required: get_option('cairo'))
 
 pango_dep = dependency('pango', required: get_option('pango'))
 if pango_dep.found()

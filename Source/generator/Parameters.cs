@@ -265,7 +265,12 @@ namespace GtkSharp.Generation {
 		}
 
 		private void ProcessArrayParams(SortedDictionary<int, Parameter> rawParams) {
-			for (int i = 0; i < rawParams.Count; i++) {
+			SortedDictionary<int, Parameter> countParams = new SortedDictionary<int, Parameter>();
+
+			int paramsCount = rawParams.Count;
+
+			for (int i = 0; i < paramsCount; i++) {
+				bool skip_count_in_native = false;
 				if (!rawParams.TryGetValue(i, out Parameter param)) {
 					continue;
 				}
@@ -273,13 +278,22 @@ namespace GtkSharp.Generation {
 					continue;
 				}
 
-				// Create an ArrayParameter and replace it Dicctionary
+				// Create an ArrayParameter and replace it in the params dictionary
 				param = new ArrayParameter(param.Element);
 
-				// Check if the array lenght is provided in another parameter
+				// Check if the array length is provided in another parameter
 				var arrayLengthParamIndex = ((ArrayParameter)param).ArrayLengthParamIndex;
 				if (arrayLengthParamIndex != -1) {
-					var arrayLengthParam = rawParams[arrayLengthParamIndex];
+					Parameter arrayLengthParam;
+
+					if (!rawParams.TryGetValue(arrayLengthParamIndex, out arrayLengthParam)) {
+						if (!countParams.TryGetValue(arrayLengthParamIndex, out arrayLengthParam)) {
+							throw new Exception($"No count parameter found at index {arrayLengthParamIndex}");
+						}
+						skip_count_in_native = true;
+					} else {
+						countParams.Add(arrayLengthParamIndex, arrayLengthParam);
+					}
 					// Remove the param from the list
 					rawParams.Remove(arrayLengthParamIndex);
 
@@ -289,7 +303,7 @@ namespace GtkSharp.Generation {
 						arrayLengthParamIndex++;
 					}
 					// Create a new ArrayCountPair
-					param = new ArrayCountPair(param, arrayLengthParam, invert, arrayLengthParamIndex);
+					param = new ArrayCountPair(param, arrayLengthParam, invert, arrayLengthParamIndex, skip_count_in_native);
 				}
 				rawParams[i] = param;
 			}

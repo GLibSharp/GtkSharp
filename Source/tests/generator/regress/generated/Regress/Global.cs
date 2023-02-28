@@ -347,6 +347,14 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_misc_array_parameter_with_length_parameter_shared(int length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]byte[] array1, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]byte[] array2);
+
+		public static void MiscArrayParameterWithLengthParameterShared(byte[] array1, byte[] array2) {
+			int length = (array1 == null ? 0 : array1.Length);
+			regress_misc_array_parameter_with_length_parameter_shared(length, array1, array2);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
 		static extern void regress_set_abort_on_error(bool abort_on_error);
 
 		public static bool AbortOnError { 

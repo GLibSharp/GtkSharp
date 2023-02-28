@@ -1865,6 +1865,14 @@
           <parameter name="data" type="GPtrArray"/>
         </parameters>
       </method>
+      <method name="MiscArrayParameterWithLengthParameterShared" cname="regress_misc_array_parameter_with_length_parameter_shared" shared="true">
+        <return-type type="void" array_index="2"/>
+        <parameters>
+          <parameter name="length" type="gint" array_index="2"/>
+          <parameter name="array1" type="guint8*" array="true" array_length_param_index="0"/>
+          <parameter name="array2" type="guint8*" array="true" array_length_param_index="0"/>
+        </parameters>
+      </method>
       <method name="SetAbortOnError" cname="regress_set_abort_on_error" shared="true">
         <return-type type="void"/>
         <parameters>

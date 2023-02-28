@@ -98,17 +98,7 @@ namespace GtkSharp.Generation {
 							result.Add(String.Format($"int {CountCallName} = {CallName} == null ? 0 : {CallName}.Length;"));
 						}
 
-						// Allocate native
-						result.Add(String.Format($"{marshalType}[] native_{CallName} = new {marshalType} [{CountCallName}{(NullTerminated ? " + 1" : "")}];"));
-						result.Add(String.Format("for (int i = 0; i < {0}; i++)", CountCallName));
-						IGeneratable gen = Generatable;
-						if (gen is IManualMarshaler)
-							result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative(CallName + "[i]")));
-						else
-							result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, gen.CallByName(CallName + "[i]")));
-
-						if (NullTerminated)
-							result.Add(String.Format("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+						AllocateNative(result, marshalType);
 					} else {
 						result.Add(String.Format($"{marshalType}[] native_{CallName};"));
 					}
@@ -179,6 +169,20 @@ namespace GtkSharp.Generation {
 				return result.ToArray();
 			}
 		}
+
+		protected void AllocateNative(List<string> result, string marshalType) {
+			// Allocate native
+			result.Add(String.Format($"{marshalType}[] native_{CallName} = new {marshalType} [{CountCallName}{(NullTerminated ? " + 1" : "")}];"));
+			result.Add(String.Format("for (int i = 0; i < {0}; i++)", CountCallName));
+			IGeneratable gen = Generatable;
+			if (gen is IManualMarshaler)
+				result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, (gen as IManualMarshaler).AllocNative(CallName + "[i]")));
+			else
+				result.Add(String.Format("\tnative_{0} [i] = {1};", CallName, gen.CallByName(CallName + "[i]")));
+
+			if (NullTerminated)
+				result.Add(String.Format("native_{0} [cnt_{0}] = IntPtr.Zero;", CallName));
+		}
 	}
 
 	public class ArrayCountPair : ArrayParameter {
@@ -186,11 +190,13 @@ namespace GtkSharp.Generation {
 		Parameter count_param;
 		bool invert;
 		int count_index;
+		bool skip_count;
 
-		public ArrayCountPair(Parameter array_param, Parameter count_param, bool invert, int count_index) : base(array_param.Element) {
+		public ArrayCountPair(Parameter array_param, Parameter count_param, bool invert, int count_index, bool skip_count = false) : base(array_param.Element) {
 			this.count_param = count_param;
 			this.invert = invert;
 			this.count_index = count_index;
+			this.skip_count = skip_count;
 		}
 
 		public Parameter CountParameter => count_param;
@@ -213,16 +219,25 @@ namespace GtkSharp.Generation {
 
 					result.AddRange(base.Prepare);
 
-					if (PassAs != "out") {
+					if (PassAs != "out" && !skip_count) {
 						result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
 					}
 					return result.ToArray();
-				} else if (CSType == MarshalType && !FixedArrayLength.HasValue) {
+				} else if (CSType == MarshalType) {
 					var result = new List<string>();
 
-					if (PassAs != "out") {
+					if (PassAs != "out" && !skip_count) {
 						result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
 					}
+					return result.ToArray();
+				} else if (CSType != MarshalType) {
+					var result = new List<string>();
+					var marshalType = MarshalType.TrimEnd('[', ']');
+
+					if (!skip_count) {
+						result.Add(String.Format($"int {CountCallName} = {CallName} == null ? 0 : {CallName}.Length;"));
+					}
+					AllocateNative(result, marshalType);
 					return result.ToArray();
 				} else {
 					return base.Prepare;
@@ -247,10 +262,13 @@ namespace GtkSharp.Generation {
 					count_param_call = count_param.Generatable.CallByName(call_name);
 				}
 
-				if (invert)
+				if (skip_count) {
+					return base.CallString;
+				} else if (invert) {
 					return $"{count_param_call}, {base.CallString}";
-				else
+				} else {
 					return $"{base.CallString}, {count_param_call}";
+				}
 			}
 		}
 
@@ -260,10 +278,13 @@ namespace GtkSharp.Generation {
 				if (!IsString) {
 					nativeSignature = $"[MarshalAs(UnmanagedType.LPArray, SizeParamIndex={count_index})]{nativeSignature}";
 				}
-				if (invert)
+				if (skip_count) {
+					return nativeSignature;
+				} else if (invert) {
 					return $"{count_param.NativeSignature}, {nativeSignature}";
-				else
+				} else {
 					return $"{nativeSignature}, {count_param.NativeSignature}";
+				}
 			}
 		}
 	}
