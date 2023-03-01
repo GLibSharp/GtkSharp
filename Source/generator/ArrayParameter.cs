@@ -214,34 +214,21 @@ namespace GtkSharp.Generation {
 
 		public override string[] Prepare {
 			get {
-				if (IsString) {
-					var result = new List<string>();
+				var result = new List<string>();
 
-					result.AddRange(base.Prepare);
-
-					if (PassAs != "out" && !skip_count) {
-						result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
-					}
-					return result.ToArray();
-				} else if (CSType == MarshalType) {
-					var result = new List<string>();
-
-					if (PassAs != "out" && !skip_count) {
-						result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
-					}
-					return result.ToArray();
-				} else if (CSType != MarshalType) {
-					var result = new List<string>();
-					var marshalType = MarshalType.TrimEnd('[', ']');
-
-					if (!skip_count) {
-						result.Add(String.Format($"int {CountCallName} = {CallName} == null ? 0 : {CallName}.Length;"));
-					}
-					AllocateNative(result, marshalType);
-					return result.ToArray();
-				} else {
-					return base.Prepare;
+				if (PassAs != "out" && !skip_count) {
+					result.Add($"{count_param.CSType} {CountCallName} = {CountCast}({CallName} == null ? 0 : {CallName}.Length);");
 				}
+
+				if (CSType != MarshalType) {
+					if (IsString) {
+						result.AddRange(base.Prepare);
+					} else {
+						var marshalType = MarshalType.TrimEnd('[', ']');
+						AllocateNative(result, marshalType);
+					}
+				}
+				return result.ToArray();
 			}
 		}
 
