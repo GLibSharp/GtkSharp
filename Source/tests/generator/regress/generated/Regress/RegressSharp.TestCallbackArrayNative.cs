@@ -43,8 +43,8 @@ namespace RegressSharp {
 		int InvokeNative (int[] one, string[] two)
 		{
 			ulong one_length = (ulong)(one == null ? 0 : one.Length);
-			IntPtr native_two = GLib.Marshaller.StringArrayToStrvPtr(two, false);
 			int two_length = (two == null ? 0 : two.Length);
+			IntPtr native_two = GLib.Marshaller.StringArrayToStrvPtr(two, false);
 			int __result = native_cb (one, new UIntPtr ((uint)one_length), native_two, two_length);
 			GLib.Marshaller.StringArrayPtrFree (native_two, two_length);
 			return __result;

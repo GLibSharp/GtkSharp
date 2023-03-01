@@ -47,8 +47,8 @@ namespace Regress {
 		static extern void regress_annotation_init(ref int argc, ref IntPtr argv);
 
 		public static void AnnotationInit(ref string[] argv) {
-			IntPtr native_argv = GLib.Marshaller.StringArrayToStrvPtr(argv, false);
 			int argc = (argv == null ? 0 : argv.Length);
+			IntPtr native_argv = GLib.Marshaller.StringArrayToStrvPtr(argv, false);
 			regress_annotation_init(ref argc, ref native_argv);
 			argv = GLib.Marshaller.PtrToStringArray (native_argv, argc, false);
 			GLib.Marshaller.StringArrayPtrFree (native_argv, argc);
@@ -347,11 +347,29 @@ namespace Regress {
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
-		static extern void regress_misc_array_parameter_with_length_parameter_shared(int length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]byte[] array1, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]byte[] array2);
+		static extern void regress_misc_array_marshalling_with_uint_length([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]IntPtr[] formats, uint len, int layout);
 
-		public static void MiscArrayParameterWithLengthParameterShared(byte[] array1, byte[] array2) {
+		public static void MiscArrayMarshallingWithUintLength(Regress.FooObject[] formats, int layout) {
+			uint len = (uint)(formats == null ? 0 : formats.Length);
+			IntPtr[] native_formats = new IntPtr [len];
+			for (int i = 0; i < len; i++)
+				native_formats [i] = formats[i] == null ? IntPtr.Zero : formats[i].Handle;
+			regress_misc_array_marshalling_with_uint_length(native_formats, len, layout);
+		}
+
+		public static void MiscArrayMarshallingWithUintLength(int layout) {
+			MiscArrayMarshallingWithUintLength (null, layout);
+		}
+
+		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
+		static extern void regress_misc_array_parameter_with_length_parameter_shared(int length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]IntPtr[] array1, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]byte[] array2);
+
+		public static void MiscArrayParameterWithLengthParameterShared(Regress.FooObject[] array1, byte[] array2) {
 			int length = (array1 == null ? 0 : array1.Length);
-			regress_misc_array_parameter_with_length_parameter_shared(length, array1, array2);
+			IntPtr[] native_array1 = new IntPtr [length];
+			for (int i = 0; i < length; i++)
+				native_array1 [i] = array1[i] == null ? IntPtr.Zero : array1[i].Handle;
+			regress_misc_array_parameter_with_length_parameter_shared(length, native_array1, array2);
 		}
 
 		[DllImport("regress-1.0", CallingConvention = CallingConvention.Cdecl)]
@@ -459,7 +477,7 @@ namespace Regress {
 		static extern IntPtr regress_test_array_gtype_in(int n_types, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)]IntPtr[] types);
 
 		public static string TestArrayGtypeIn(GLib.GType[] types) {
-			int n_types = types == null ? 0 : types.Length;
+			int n_types = (types == null ? 0 : types.Length);
 			IntPtr[] native_types = new IntPtr [n_types];
 			for (int i = 0; i < n_types; i++)
 				native_types [i] = types[i].Val;

@@ -544,8 +544,8 @@ namespace Regress {
 		static extern void regress_annotation_object_parse_args(IntPtr raw, ref int argc, ref IntPtr argv);
 
 		public void ParseArgs(ref string[] argv) {
-			IntPtr native_argv = GLib.Marshaller.StringArrayToStrvPtr(argv, false);
 			int argc = (argv == null ? 0 : argv.Length);
+			IntPtr native_argv = GLib.Marshaller.StringArrayToStrvPtr(argv, false);
 			regress_annotation_object_parse_args(Handle, ref argc, ref native_argv);
 			argv = GLib.Marshaller.PtrToStringArray (native_argv, argc, false);
 			GLib.Marshaller.StringArrayPtrFree (native_argv, argc);
@@ -566,8 +566,8 @@ namespace Regress {
 
 		public string[] Data2 { 
 			set {
-				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, false);
 				ulong length = (ulong)(value == null ? 0 : value.Length);
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, false);
 				regress_annotation_object_set_data2(Handle, native_value, new UIntPtr ((uint)length));
 				GLib.Marshaller.StringArrayPtrFree (native_value, (int)length);
 			}
