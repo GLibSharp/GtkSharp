@@ -1,7 +1,8 @@
-﻿using static Regress.Global;
+﻿using System.Runtime.InteropServices;
+using static Regress.Global;
 
 namespace Generator.Tests {
-	public class StringParameters {
+	public class TestString {
 		const string utf8_const = "const ♥ utf8";
 		const string utf8_nonconst = "nonconst ♥ utf8";
 
@@ -45,15 +46,19 @@ namespace Generator.Tests {
 		[Test]
 		public void String_Utf8_Out_Out() {
 			TestUtf8OutOut(out string out0, out string out1);
-			Assert.That(out0, Is.EqualTo("first"));
-			Assert.That(out1, Is.EqualTo("second"));
+			Assert.Multiple(() => {
+				Assert.That(out0, Is.EqualTo("first"));
+				Assert.That(out1, Is.EqualTo("second"));
+			});
 		}
 
 		[Test]
 		public void String_Utf8_Out_Return_NonConst() {
 			var res = TestUtf8OutNonconstReturn(out string outParam);
-			Assert.That(res, Is.EqualTo("first"));
-			Assert.That(outParam, Is.EqualTo("second"));
+			Assert.Multiple(() => {
+				Assert.That(res, Is.EqualTo("first"));
+				Assert.That(outParam, Is.EqualTo("second"));
+			});
 		}
 
 		[Test]
@@ -95,6 +100,13 @@ namespace Generator.Tests {
 		public void String_Strv_Out_Arg() {
 			var res = TestStrvOutarg();
 			Assert.That(res, Is.EqualTo(new string[3] { "1", "2", "3" }));
+		}
+
+		[Test]
+		[Ignore("FIXME: fails in macOS with Invalid byte sequence in conversion input")]
+		public void String_Filename() {
+			var res = TestFilenameReturn();
+			//Assert.That(res, Is.EqualTo();
 		}
 	}
 }
