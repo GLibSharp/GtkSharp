@@ -36,59 +36,52 @@ namespace GtkSharp.Parsing {
 				return 0;
 			}
 
-			string api_filename = "";
-			XmlDocument api_doc = new XmlDocument();
-			XmlDocument meta_doc = new XmlDocument();
-			XmlDocument symbol_doc = new XmlDocument();
+			string meta_filename = String.Empty;
+			string api_filename = String.Empty;
+			string symbol_filename = String.Empty;
 
 			foreach (string arg in args) {
-
 				if (arg.StartsWith("--metadata=")) {
-
-					string meta_filename = arg.Substring(11);
-
-					try {
-						Stream stream = File.OpenRead(meta_filename);
-						meta_doc.Load(stream);
-						stream.Close();
-					} catch (XmlException e) {
-						Console.WriteLine("Invalid meta file.");
-						Console.WriteLine(e);
-						return 1;
-					}
-
+					meta_filename = arg.Substring(11);
 				} else if (arg.StartsWith("--api=")) {
-
 					api_filename = arg.Substring(6);
-
-					try {
-						Stream stream = File.OpenRead(api_filename);
-						api_doc.Load(stream);
-						stream.Close();
-					} catch (XmlException e) {
-						Console.WriteLine("Invalid api file.");
-						Console.WriteLine(e);
-						return 1;
-					}
-
 				} else if (arg.StartsWith("--symbols=")) {
-
-					string symbol_filename = arg.Substring(10);
-
-					try {
-						Stream stream = File.OpenRead(symbol_filename);
-						symbol_doc.Load(stream);
-						stream.Close();
-					} catch (XmlException e) {
-						Console.WriteLine("Invalid api file.");
-						Console.WriteLine(e);
-						return 1;
-					}
-
+					symbol_filename = arg.Substring(10);
 				} else {
 					Console.WriteLine("Usage: gapi-fixup --metadata=<filename> --api=<filename>");
 					return 1;
 				}
+			}
+			if (meta_filename == String.Empty || api_filename == String.Empty) {
+				Console.WriteLine("Usage: gapi-fixup --metadata=<filename> --api=<filename>");
+				return 1;
+			}
+
+			return FixupAPI(meta_filename, api_filename, symbol_filename);
+		}
+
+		public static int FixupAPI(string meta_filename, string api_filename, string symbol_filename = null) {
+			XmlDocument api_doc = new XmlDocument();
+			XmlDocument meta_doc = new XmlDocument();
+
+			try {
+				Stream stream = File.OpenRead(meta_filename);
+				meta_doc.Load(stream);
+				stream.Close();
+			} catch (XmlException e) {
+				Console.WriteLine("Invalid meta file.");
+				Console.WriteLine(e);
+				return 1;
+			}
+
+			try {
+				Stream stream = File.OpenRead(api_filename);
+				api_doc.Load(stream);
+				stream.Close();
+			} catch (XmlException e) {
+				Console.WriteLine("Invalid api file.");
+				Console.WriteLine(e);
+				return 1;
 			}
 
 			XPathNavigator meta_nav = meta_doc.CreateNavigator();
@@ -166,7 +159,6 @@ namespace GtkSharp.Parsing {
 					Console.WriteLine("Warning: <change-node-type path=\"{0}\"/> matched no nodes", path);
 			}
 
-
 			XPathNodeIterator attr_iter = meta_nav.Select("/metadata/attr");
 			while (attr_iter.MoveNext()) {
 				string path = attr_iter.Current.GetAttribute("path", "");
@@ -230,7 +222,18 @@ namespace GtkSharp.Parsing {
 					Console.WriteLine("Warning: <remove-attr path=\"{0}\"/> matched no nodes", path);
 			}
 
-			if (symbol_doc != null) {
+			if (!string.IsNullOrEmpty(symbol_filename)) {
+				XmlDocument symbol_doc = new XmlDocument();
+
+				try {
+					Stream stream = File.OpenRead(symbol_filename);
+					symbol_doc.Load(stream);
+					stream.Close();
+				} catch (XmlException e) {
+					Console.WriteLine("Invalid api file.");
+					Console.WriteLine(e);
+				}
+
 				XPathNavigator symbol_nav = symbol_doc.CreateNavigator();
 				XPathNodeIterator iter = symbol_nav.Select("/api/*");
 				while (iter.MoveNext()) {

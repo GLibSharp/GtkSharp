@@ -28,6 +28,7 @@ namespace Generator.Tests.Integration {
 		}
 
 		[Test]
+		[NonParallelizable]
 		public void GenerateCode_Regress_CodeIsGeneratedCorrectly() {
 			int res = GenerateCode();
 			Assert.AreEqual(0, res);
@@ -47,14 +48,18 @@ namespace Generator.Tests.Integration {
 
 
 		[Test]
+		[NonParallelizable]
 		public void GenerateCode_Regress_CodeCanBeCompiled() {
 			int res = GenerateCode();
 			Assert.AreEqual(0, res);
-			Compile(tempDir, "regress-sharp.dll");
+			var (errors, warnings) = Compile(tempDir, "regress-sharp.dll");
+			Assert.AreEqual(1, errors.Count());
+			Assert.AreEqual(4, warnings.Count());
 		}
 
 		private int GenerateCode() {
 			Statistics.Reset();
+
 			return CodeGenerator.GenerateCode(
 				dir: tempDir,
 				assembly_name: "regress-sharp",
@@ -70,7 +75,5 @@ namespace Generator.Tests.Integration {
 				includes: new List<string> { }
 				);
 		}
-
-
 	}
 }

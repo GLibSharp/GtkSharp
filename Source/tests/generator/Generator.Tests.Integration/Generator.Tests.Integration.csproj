@@ -31,8 +31,44 @@
 			<Link>regress-sharp-api.xml</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Include="..\..\..\gdk\Gdk.metadata">
+		  <Link>Gdk.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gdk\gdk-api.raw">
+		  <Link>gdk-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gio\Gio.metadata">
+		  <Link>Gio.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Include="..\..\..\gio\gio-api.raw">
 		  <Link>gio-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\atk\Atk.metadata">
+		  <Link>Atk.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\atk\atk-api.raw">
+		  <Link>atk-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\pango\pango-api.raw">
+		  <Link>pango-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\pango\Pango.metadata">
+		  <Link>Pango.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gtk\Gtk.metadata">
+		  <Link>Gtk.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gtk\gtk-api.raw">
+		  <Link>gtk-api.raw</Link>
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

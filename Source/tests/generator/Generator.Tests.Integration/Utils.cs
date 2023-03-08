@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Generator.Tests.Integration {
 	public static class Utils {
-		public static void Compile(string sourcesDir, string dllName) {
+		public static (IEnumerable<Diagnostic> errors, IEnumerable<Diagnostic> warnings) Compile(string sourcesDir, string dllName) {
 			DirectoryInfo d = new DirectoryInfo(sourcesDir);
 			string[] sourceFiles = d.EnumerateFiles("*.cs", SearchOption.AllDirectories)
 				.Select(a => a.FullName).ToArray();
@@ -50,8 +50,7 @@ namespace Generator.Tests.Integration {
 			foreach (var diag in warnings) {
 				Console.WriteLine(diag);
 			}
-			Assert.AreEqual(1, errors.Count());
-			Assert.AreEqual(4, warnings.Count());
+			return (errors, warnings);
 		}
 	}
 }
