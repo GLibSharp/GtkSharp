@@ -31,10 +31,6 @@
 			<Link>regress-sharp-api.xml</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Include="..\..\..\gio\gio-api.raw">
-		  <Link>gio-api.raw</Link>
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="glib-api.xml">
