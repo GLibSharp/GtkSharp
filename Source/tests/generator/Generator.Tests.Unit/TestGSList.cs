@@ -1,9 +1,8 @@
 ﻿using Regress;
-using System;
 
 namespace Generator.Tests {
 	[TestFixture]
-	public class GSList {
+	public class TestGSList {
 		[Test]
 		public void GSList_Nothing_Return() {
 			var res = Global.TestGslistNothingReturn();
@@ -64,10 +63,12 @@ namespace Generator.Tests {
 		}
 
 		static void CheckList(string[] res) {
-			Assert.That(res.Count, Is.EqualTo(3));
-			Assert.That(res[0], Is.EqualTo("1"));
-			Assert.That(res[1], Is.EqualTo("2"));
-			Assert.That(res[2], Is.EqualTo("3"));
+			Assert.Multiple(() => {
+				Assert.That(res.Count, Is.EqualTo(3));
+				Assert.That(res[0], Is.EqualTo("1"));
+				Assert.That(res[1], Is.EqualTo("2"));
+				Assert.That(res[2], Is.EqualTo("3"));
+			});
 		}
 
 		static GLib.SList CreateList() {

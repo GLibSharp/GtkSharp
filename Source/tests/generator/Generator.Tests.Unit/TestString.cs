@@ -1,7 +1,7 @@
 ﻿using static Regress.Global;
 
 namespace Generator.Tests {
-	public class StringParameters {
+	public class TestString {
 		const string utf8_const = "const ♥ utf8";
 		const string utf8_nonconst = "nonconst ♥ utf8";
 
@@ -45,15 +45,19 @@ namespace Generator.Tests {
 		[Test]
 		public void String_Utf8_Out_Out() {
 			TestUtf8OutOut(out string out0, out string out1);
-			Assert.That(out0, Is.EqualTo("first"));
-			Assert.That(out1, Is.EqualTo("second"));
+			Assert.Multiple(() => {
+				Assert.That(out0, Is.EqualTo("first"));
+				Assert.That(out1, Is.EqualTo("second"));
+			});
 		}
 
 		[Test]
 		public void String_Utf8_Out_Return_NonConst() {
 			var res = TestUtf8OutNonconstReturn(out string outParam);
-			Assert.That(res, Is.EqualTo("first"));
-			Assert.That(outParam, Is.EqualTo("second"));
+			Assert.Multiple(() => {
+				Assert.That(res, Is.EqualTo("first"));
+				Assert.That(outParam, Is.EqualTo("second"));
+			});
 		}
 
 		[Test]
