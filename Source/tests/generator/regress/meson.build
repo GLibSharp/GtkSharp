@@ -76,10 +76,10 @@ regress_gir = gnome.generate_gir(
   extra_args: custom_c_args + regress_c_args,
 )
 
-if bindinator.get_variable('found')
-  girs_dir = join_paths(meson.current_build_dir())
-  env = environment()
-  env.append('GI_TYPELIB_PATH', girs_dir)
+girs_dir = join_paths(meson.current_build_dir())
+env = environment()
+env.append('GI_TYPELIB_PATH', girs_dir)
+if bindinate_found
   run_target('bindinate_regress',
       command: [bindinate,
           '--name=regress',
