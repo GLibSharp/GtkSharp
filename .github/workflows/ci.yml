@@ -30,6 +30,7 @@ jobs:
         run: |
           brew update
           brew install bison
+          echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
       - name: Configure
         run: meson setup builddir --buildtype=release --prefix=${GITHUB_WORKSPACE}/install_prefix
       - name: Build
