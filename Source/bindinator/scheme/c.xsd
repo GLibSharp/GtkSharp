@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.gtk.org/introspection/c/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <xs:import namespace="http://www.gtk.org/introspection/core/1.0" schemaLocation="gir.xsd"/>
+  <xs:import namespace="http://www.gtk.org/introspection/glib/1.0" schemaLocation="glib.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:attributeGroup name="identifier-prefixes">
+    <xs:attribute name="identifier-prefixes" use="required" form="qualified" type="xs:NCName"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="symbol-prefixes">
+    <xs:attribute name="symbol-prefixes" use="required" form="qualified" type="xs:NCName"/>
+  </xs:attributeGroup>
+  <xs:element name="include">
+    <xs:complexType>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="identifier-prefixes1">
+    <xs:attribute name="identifier-prefixes" use="required" form="qualified"/>
+  </xs:attributeGroup>
+  <xs:attribute name="prefix" type="xs:NCName"/>
+  <xs:attributeGroup name="symbol-prefixes1">
+    <xs:attribute name="symbol-prefixes" use="required" form="qualified"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="type">
+    <xs:attribute name="type" use="required" form="qualified" type="xs:NCName"/>
+  </xs:attributeGroup>
+  <xs:attribute name="symbol-prefix" type="xs:NCName"/>
+  <xs:attribute name="identifier" type="xs:NCName"/>
+  <xs:attributeGroup name="type1">
+    <xs:attribute name="type" use="required" form="qualified"/>
+  </xs:attributeGroup>
+</xs:schema>

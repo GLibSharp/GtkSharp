@@ -112,14 +112,7 @@ endif
 
 subdir('parser')
 subdir('generator')
-
-bindinator = subproject('bindinator', default_options: ['gapi_fixup=@0@'.format(gapi_fixup)])
-if bindinator.get_variable('found')
-    bindinate = bindinator.get_variable('bindinate')
-else
-    warning('Bindinator not usable as some required dependencies are not avalaible.')
-endif
-
+subdir('bindinator')
 subdir('glib')
 subdir('gio')
 
