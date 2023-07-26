@@ -26,49 +26,46 @@ namespace Gdk {
 
 	public partial class Keymap {
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_get_entries_for_keycode(IntPtr raw, uint hardware_keycode, out IntPtr keys, out IntPtr keyvals, out int n_entries);
 
-		public void GetEntriesForKeycode(uint hardware_keycode, out Gdk.KeymapKey[] keys, out uint[] keyvals) 
-		{
+		public void GetEntriesForKeycode(uint hardware_keycode, out Gdk.KeymapKey[] keys, out uint[] keyvals) {
 			IntPtr key_ptr, keyval_ptr;
 			int count;
 			if (gdk_keymap_get_entries_for_keycode(Handle, hardware_keycode, out key_ptr, out keyval_ptr, out count)) {
-				keys = new KeymapKey [count];
-				keyvals = new uint [count];
-				int[] tmp = new int [count];
-				Marshal.Copy (keyval_ptr, tmp, 0, count);
+				keys = new KeymapKey[count];
+				keyvals = new uint[count];
+				int[] tmp = new int[count];
+				Marshal.Copy(keyval_ptr, tmp, 0, count);
 				for (int i = 0; i < count; i++) {
-					IntPtr ptr = new IntPtr ((long) key_ptr + i * Marshal.SizeOf (typeof (KeymapKey)));
-					keyvals [i] = (uint) tmp [i];
-					keys [i] = KeymapKey.New (ptr);
+					IntPtr ptr = new IntPtr((long)key_ptr + i * Marshal.SizeOf(typeof(KeymapKey)));
+					keyvals[i] = (uint)tmp[i];
+					keys[i] = KeymapKey.New(ptr);
 				}
-				GLib.Marshaller.Free (key_ptr);
-				GLib.Marshaller.Free (keyval_ptr);
+				GLib.Marshaller.Free(key_ptr);
+				GLib.Marshaller.Free(keyval_ptr);
 			} else {
-				keys = new KeymapKey [0];
-				keyvals = new uint [0];
+				keys = new KeymapKey[0];
+				keyvals = new uint[0];
 			}
 		}
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_keymap_get_entries_for_keyval(IntPtr raw, uint keyval, out IntPtr keys, out int n_keys);
 
-		public KeymapKey[] GetEntriesForKeyval (uint keyval) 
-		{
+		public KeymapKey[] GetEntriesForKeyval(uint keyval) {
 			IntPtr key_ptr;
 			int count;
 			if (gdk_keymap_get_entries_for_keyval(Handle, keyval, out key_ptr, out count)) {
-				KeymapKey[] result = new KeymapKey [count];
+				KeymapKey[] result = new KeymapKey[count];
 				for (int i = 0; i < count; i++) {
-					IntPtr ptr = new IntPtr ((long) key_ptr + i * Marshal.SizeOf (typeof (KeymapKey)));
-					result [i] = KeymapKey.New (ptr);
+					IntPtr ptr = new IntPtr((long)key_ptr + i * Marshal.SizeOf(typeof(KeymapKey)));
+					result[i] = KeymapKey.New(ptr);
 				}
-				GLib.Marshaller.Free (key_ptr);
+				GLib.Marshaller.Free(key_ptr);
 				return result;
 			} else
-				return new KeymapKey [0];
+				return new KeymapKey[0];
 		}
 	}
 }
-

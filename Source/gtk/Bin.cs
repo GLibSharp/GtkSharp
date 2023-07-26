@@ -25,23 +25,23 @@ namespace Gtk {
 
 	public partial class Bin {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_bin_get_child(IntPtr raw);
 
-		public new Gtk.Widget Child { 
+		public new Gtk.Widget Child {
 			get {
 				IntPtr raw_ret = gtk_bin_get_child(Handle);
 				Gtk.Widget ret;
 				if (raw_ret == IntPtr.Zero)
 					ret = null;
 				else
-					ret = (Gtk.Widget) GLib.Object.GetObject(raw_ret);
+					ret = (Gtk.Widget)GLib.Object.GetObject(raw_ret);
 				return ret;
 			}
 			set {
 				GLib.Value val = new GLib.Value(value);
 				SetProperty("child", val);
-				val.Dispose ();
+				val.Dispose();
 			}
 		}
 	}

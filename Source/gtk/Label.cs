@@ -24,7 +24,7 @@ namespace Gtk {
 
 	public partial class Label {
 
-		public Label () : this (null) {}
+		public Label() : this(null) { }
 
 	}
 }

@@ -31,127 +31,114 @@ using System;
 using System.Collections;
 
 namespace Cairo {
-   
-	public class Pattern : IDisposable
-	{
+
+	public class Pattern : IDisposable {
 		[Obsolete]
 		protected IntPtr pattern = IntPtr.Zero;
 
-		public static Pattern Lookup (IntPtr pattern, bool owner)
-		{
+		public static Pattern Lookup(IntPtr pattern, bool owner) {
 			if (pattern == IntPtr.Zero)
 				return null;
-			
-			PatternType pt = NativeMethods.cairo_pattern_get_type (pattern);
+
+			PatternType pt = NativeMethods.cairo_pattern_get_type(pattern);
 			switch (pt) {
-			case PatternType.Solid:
-				return new SolidPattern (pattern, owner);
-			case PatternType.Surface:
-				return new SurfacePattern (pattern, owner);
-			case PatternType.Linear:
-				return new LinearGradient (pattern, owner);
-			case PatternType.Radial:
-				return new RadialGradient (pattern, owner);
-			default:
-				return new Pattern (pattern, owner);
+				case PatternType.Solid:
+					return new SolidPattern(pattern, owner);
+				case PatternType.Surface:
+					return new SurfacePattern(pattern, owner);
+				case PatternType.Linear:
+					return new LinearGradient(pattern, owner);
+				case PatternType.Radial:
+					return new RadialGradient(pattern, owner);
+				default:
+					return new Pattern(pattern, owner);
 			}
 		}
 
 		[Obsolete]
-		protected Pattern ()
-		{
+		protected Pattern() {
 		}
-		
-		internal Pattern (IntPtr handle, bool owned)
-		{
+
+		internal Pattern(IntPtr handle, bool owned) {
 			if (handle == IntPtr.Zero)
-				throw new ArgumentException ("handle should not be NULL", "handle");
+				throw new ArgumentException("handle should not be NULL", "handle");
 
 			Handle = handle;
 			if (!owned)
-				NativeMethods.cairo_pattern_reference (handle);
+				NativeMethods.cairo_pattern_reference(handle);
 			if (CairoDebug.Enabled)
-				CairoDebug.OnAllocated (handle);
+				CairoDebug.OnAllocated(handle);
 		}
 
-		~Pattern ()
-		{
-			Dispose (false);
+		~Pattern() {
+			Dispose(false);
 		}
-		
-		[Obsolete ("Use the SurfacePattern constructor")]
-		public Pattern (Surface surface)
-			: this ( NativeMethods.cairo_pattern_create_for_surface (surface.Handle), true)
-		{
+
+		[Obsolete("Use the SurfacePattern constructor")]
+		public Pattern(Surface surface)
+			: this(NativeMethods.cairo_pattern_create_for_surface(surface.Handle), true) {
 		}
-		
+
 		[Obsolete]
-		protected void Reference ()
-		{
-			CheckDisposed ();
-			NativeMethods.cairo_pattern_reference (pattern);
+		protected void Reference() {
+			CheckDisposed();
+			NativeMethods.cairo_pattern_reference(pattern);
 		}
 
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
+		public void Dispose() {
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
-		protected virtual void Dispose (bool disposing)
-		{
+		protected virtual void Dispose(bool disposing) {
 			if (!disposing || CairoDebug.Enabled)
-				CairoDebug.OnDisposed<Pattern> (Handle, disposing);
+				CairoDebug.OnDisposed<Pattern>(Handle, disposing);
 
 			if (Handle == IntPtr.Zero)
 				return;
 
-			NativeMethods.cairo_pattern_destroy (Handle);
+			NativeMethods.cairo_pattern_destroy(Handle);
 			Handle = IntPtr.Zero;
 		}
 
-		protected void CheckDisposed ()
-		{
+		protected void CheckDisposed() {
 			if (Handle == IntPtr.Zero)
-				throw new ObjectDisposedException ("Object has already been disposed");
+				throw new ObjectDisposedException("Object has already been disposed");
 		}
 
-		[Obsolete ("Use Dispose()")]
-		public void Destroy ()
-		{
-			Dispose ();
+		[Obsolete("Use Dispose()")]
+		public void Destroy() {
+			Dispose();
 		}
 
-		public Status Status
-		{
+		public Status Status {
 			get {
-				CheckDisposed ();
-				return NativeMethods.cairo_pattern_status (Handle);
+				CheckDisposed();
+				return NativeMethods.cairo_pattern_status(Handle);
 			}
 		}
 
-		public Extend Extend
-		{
+		public Extend Extend {
 			get {
-				CheckDisposed ();
-				return NativeMethods.cairo_pattern_get_extend (Handle);
+				CheckDisposed();
+				return NativeMethods.cairo_pattern_get_extend(Handle);
 			}
 			set {
-				CheckDisposed ();
-				NativeMethods.cairo_pattern_set_extend (Handle, value);
+				CheckDisposed();
+				NativeMethods.cairo_pattern_set_extend(Handle, value);
 			}
 		}
 
 		public Matrix Matrix {
 			set {
-				CheckDisposed ();
-				NativeMethods.cairo_pattern_set_matrix (Handle, value);
+				CheckDisposed();
+				NativeMethods.cairo_pattern_set_matrix(Handle, value);
 			}
 
 			get {
-				CheckDisposed ();
-				Matrix m = new Matrix ();
-				NativeMethods.cairo_pattern_get_matrix (Handle, m);
+				CheckDisposed();
+				Matrix m = new Matrix();
+				NativeMethods.cairo_pattern_get_matrix(Handle, m);
 				return m;
 			}
 		}
@@ -170,10 +157,9 @@ namespace Cairo {
 
 		public PatternType PatternType {
 			get {
-				CheckDisposed ();
-				return NativeMethods.cairo_pattern_get_type (Handle);
+				CheckDisposed();
+				return NativeMethods.cairo_pattern_get_type(Handle);
 			}
 		}
 	}
 }
-

@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventCrossing : Event {
 
-		public EventCrossing (IntPtr raw) : base (raw) {} 
+		public EventCrossing(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -46,7 +46,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public NotifyType Detail {
@@ -54,7 +54,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.detail = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.focus = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -72,25 +72,25 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.mode = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public ModifierType State {
-			get { return (ModifierType) Native.state; }
+			get { return (ModifierType)Native.state; }
 			set {
 				NativeStruct native = Native;
-				native.state = (uint) value;
-				Marshal.StructureToPtr (native, Handle, false);
+				native.state = (uint)value;
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public Window SubWindow {
-			get { return GLib.Object.GetObject (Native.subwindow, false) as Window; }
+			get { return GLib.Object.GetObject(Native.subwindow, false) as Window; }
 			set {
 				NativeStruct native = Native;
 				native.subwindow = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -99,7 +99,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -108,7 +108,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.x = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.x_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.y = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -135,9 +135,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.y_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

@@ -22,12 +22,12 @@ namespace Pango {
 
 	public partial struct LayoutRun {
 
-		[Obsolete ("Replaced by Glyphs property")]
+		[Obsolete("Replaced by Glyphs property")]
 		public Pango.GlyphString glyphs {
 			get { return Glyphs; }
 		}
 
-		[Obsolete ("Replaced by Item property")]
+		[Obsolete("Replaced by Item property")]
 		public Pango.Item item {
 			get { return Item; }
 		}

@@ -26,20 +26,19 @@ namespace GtkSharp.Generation {
 
 	public class ChildProperty : Property {
 
-		public ChildProperty (XmlElement elem, ClassBase container_type) : base (elem, container_type) {}
+		public ChildProperty(XmlElement elem, ClassBase container_type) : base(elem, container_type) { }
 
-		protected override string PropertyAttribute (string qpname) {
+		protected override string PropertyAttribute(string qpname) {
 			return "[Gtk.ChildProperty (" + qpname + ")]";
 		}
 
-		protected override string RawGetter (string qpname) {
+		protected override string RawGetter(string qpname) {
 			return "parent.ChildGetProperty (child, " + qpname + ")";
 		}
 
-		protected override string RawSetter (string qpname) {
+		protected override string RawSetter(string qpname) {
 			return "parent.ChildSetProperty(child, " + qpname + ", val)";
 		}
 
 	}
 }
-

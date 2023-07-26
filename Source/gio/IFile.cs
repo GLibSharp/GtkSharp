@@ -20,16 +20,14 @@
 
 namespace GLib {
 	public partial interface IFile : GLib.IWrapper {
-		bool Exists
-		{
+		bool Exists {
 			get;
 		}
-		
-		System.Uri Uri
-		{
+
+		System.Uri Uri {
 			get;
 		}
-		
+
 		bool Delete();
 	}
 }

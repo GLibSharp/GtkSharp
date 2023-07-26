@@ -22,17 +22,15 @@ namespace GLib {
 
 	using System;
 
-	[AttributeUsage (AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 	public sealed class TypeNameAttribute : Attribute {
 		private readonly string name;
 
-		public TypeNameAttribute (string name)
-		{
+		public TypeNameAttribute(string name) {
 			this.name = name;
 		}
 
-		public string Name
-		{
+		public string Name {
 			get {
 				return name;
 			}

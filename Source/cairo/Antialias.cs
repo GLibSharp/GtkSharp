@@ -30,11 +30,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum Antialias
-	{
+	public enum Antialias {
 		Default,
 		None,
 		Gray,

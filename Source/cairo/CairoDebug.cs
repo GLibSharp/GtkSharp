@@ -30,52 +30,48 @@ using System;
 
 namespace Cairo {
 
-	static class CairoDebug
-	{
-		static System.Collections.Generic.Dictionary<IntPtr,string> traces;
+	static class CairoDebug {
+		static System.Collections.Generic.Dictionary<IntPtr, string> traces;
 
 		public static readonly bool Enabled;
 
-		static CairoDebug ()
-		{
-			var dbg = Environment.GetEnvironmentVariable ("MONO_CAIRO_DEBUG_DISPOSE");
+		static CairoDebug() {
+			var dbg = Environment.GetEnvironmentVariable("MONO_CAIRO_DEBUG_DISPOSE");
 			if (dbg == null)
 				return;
 			Enabled = true;
-			traces = new System.Collections.Generic.Dictionary<IntPtr,string> ();
+			traces = new System.Collections.Generic.Dictionary<IntPtr, string>();
 		}
 
-		public static void OnAllocated (IntPtr obj)
-		{
+		public static void OnAllocated(IntPtr obj) {
 			if (!Enabled)
-				throw new InvalidOperationException ();
+				throw new InvalidOperationException();
 
 			traces[obj] = Environment.StackTrace;
 		}
 
-		public static void OnDisposed<T> (IntPtr obj, bool disposing)
-		{
+		public static void OnDisposed<T>(IntPtr obj, bool disposing) {
 			if (disposing && !Enabled)
-				throw new InvalidOperationException ();
+				throw new InvalidOperationException();
 
 			if (Environment.HasShutdownStarted)
 				return;
 
 			if (!disposing) {
-				Console.Error.WriteLine ("{0} is leaking, programmer is missing a call to Dispose", typeof(T).FullName);
+				Console.Error.WriteLine("{0} is leaking, programmer is missing a call to Dispose", typeof(T).FullName);
 				if (Enabled) {
 					string val;
-					if (traces.TryGetValue (obj, out val)) {
-						Console.Error.WriteLine ("Allocated from:");
-						Console.Error.WriteLine (val);
+					if (traces.TryGetValue(obj, out val)) {
+						Console.Error.WriteLine("Allocated from:");
+						Console.Error.WriteLine(val);
 					}
 				} else {
-					Console.Error.WriteLine ("Set MONO_CAIRO_DEBUG_DISPOSE to track allocation traces");
+					Console.Error.WriteLine("Set MONO_CAIRO_DEBUG_DISPOSE to track allocation traces");
 				}
 			}
 
 			if (Enabled)
-				traces.Remove (obj);
+				traces.Remove(obj);
 		}
 	}
 

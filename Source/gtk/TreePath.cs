@@ -21,35 +21,32 @@ namespace Gtk {
 	public partial class TreePath {
 
 		// Patch submitted by malte on bug #49518
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_tree_path_get_indices(IntPtr raw);
 
-		public int [] Indices { 
+		public int[] Indices {
 			get {
 				IntPtr ptr = gtk_tree_path_get_indices(Handle);
-				int [] arr = new int [Depth];
-				Marshal.Copy (ptr, arr, 0, Depth);
+				int[] arr = new int[Depth];
+				Marshal.Copy(ptr, arr, 0, Depth);
 				return arr;
 			}
 		}
 
-		public TreePath (int[] indices) : this ()
-		{
+		public TreePath(int[] indices) : this() {
 			foreach (int i in indices)
-				AppendIndex (i);
+				AppendIndex(i);
 		}
 
-		public override bool Equals (object o)
-		{
+		public override bool Equals(object o) {
 			if (!(o is TreePath))
 				return false;
 
-			return (Compare (o as TreePath) == 0);
+			return (Compare(o as TreePath) == 0);
 		}
 
-		public override int GetHashCode ()
-		{
-			return ToString ().GetHashCode ();
+		public override int GetHashCode() {
+			return ToString().GetHashCode();
 		}
 	}
 }

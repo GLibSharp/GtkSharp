@@ -32,11 +32,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum Status
-	{
+	public enum Status {
 		Success = 0,
 		NoMemory,
 		InvalidRestore,

@@ -28,21 +28,20 @@ namespace GtkSharp.Generation {
 		protected XmlElement elem;
 		public ClassBase container_type;
 
-		public PropertyBase (XmlElement elem, ClassBase container_type)
-		{
+		public PropertyBase(XmlElement elem, ClassBase container_type) {
 			this.elem = elem;
 			this.container_type = container_type;
 		}
 
 		public string Name {
 			get {
-				return elem.GetAttribute ("name");
+				return elem.GetAttribute("name");
 			}
 		}
 
 		public virtual string CName {
 			get {
-				return elem.GetAttribute ("cname");
+				return elem.GetAttribute("cname");
 			}
 		}
 
@@ -67,26 +66,26 @@ namespace GtkSharp.Generation {
 				else if (Setter != null)
 					return Setter.Signature.Types;
 				else if (cstype == null)
-					cstype = SymbolTable.Table.GetCSType (CType);
+					cstype = SymbolTable.Table.GetCSType(CType);
 				return cstype;
 			}
 		}
 
 		public virtual bool Hidden {
 			get {
-				return elem.GetAttributeAsBoolean ("hidden");
+				return elem.GetAttributeAsBoolean("hidden");
 			}
 		}
 
 		protected bool IsNew {
 			get {
-				return elem.GetAttributeAsBoolean ("new_flag");
+				return elem.GetAttributeAsBoolean("new_flag");
 			}
 		}
 
 		protected Method Getter {
 			get {
-				Method getter = container_type.GetMethod ("Get" + Name);
+				Method getter = container_type.GetMethod("Get" + Name);
 				if (getter != null && getter.Name == "Get" + Name && getter.IsGetter)
 					return getter;
 				else
@@ -96,7 +95,7 @@ namespace GtkSharp.Generation {
 
 		protected Method Setter {
 			get {
-				Method setter = container_type.GetMethod ("Set" + Name);
+				Method setter = container_type.GetMethod("Set" + Name);
 				if (setter != null && setter.Name == "Set" + Name && setter.IsSetter && (Getter == null || setter.Signature.Types == CSType))
 					return setter;
 				else
@@ -104,13 +103,11 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		protected virtual void GenerateImports (GenerationInfo gen_info, string indent)
-		{
+		protected virtual void GenerateImports(GenerationInfo gen_info, string indent) {
 			if (Getter != null)
-				Getter.GenerateImport (gen_info.Writer);
+				Getter.GenerateImport(gen_info.Writer);
 			if (Setter != null)
-				Setter.GenerateImport (gen_info.Writer);
+				Setter.GenerateImport(gen_info.Writer);
 		}
 	}
 }
-

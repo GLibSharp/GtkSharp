@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventDND : Event {
 
-		public EventDND (IntPtr raw) : base (raw) {} 
+		public EventDND(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -40,15 +40,15 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public DragContext Context {
-			get { return GLib.Object.GetObject (Native.context, false) as DragContext; }
+			get { return GLib.Object.GetObject(Native.context, false) as DragContext; }
 			set {
 				NativeStruct native = Native;
 				native.context = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -57,7 +57,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.x_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -75,9 +75,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.y_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

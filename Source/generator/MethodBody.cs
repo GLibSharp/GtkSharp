@@ -26,37 +26,34 @@ namespace GtkSharp.Generation {
 	using System.Collections;
 	using System.IO;
 
-	public class MethodBody  {
-		
+	public class MethodBody {
+
 		Parameters parameters;
 		LogWriter log;
 
-		public MethodBody (Parameters parms, LogWriter _log)
-		{
+		public MethodBody(Parameters parms, LogWriter _log) {
 			parameters = parms;
 			log = _log;
 		}
 
-		private string CastFromInt (string type)
-		{
+		private string CastFromInt(string type) {
 			return type != "int" ? "(" + type + ") " : "";
 		}
 
-		public string GetCallString (bool is_set)
-		{
+		public string GetCallString(bool is_set) {
 			if (parameters.Count == 0)
 				return String.Empty;
 
-			string[] result = new string [parameters.Count];
+			string[] result = new string[parameters.Count];
 			for (int i = 0; i < parameters.Count; i++) {
-				Parameter p = parameters [i];
+				Parameter p = parameters[i];
 				IGeneratable igen = p.Generatable;
 
 				bool is_prop = is_set && i == 0;
 
-				if (i > 0 && parameters [i - 1].IsString && p.IsLength && p.PassAs == String.Empty) {
-					string string_name = (i == 1 && is_set) ? "value" : parameters [i - 1].Name;
-					result[i] = igen.CallByName (CastFromInt (p.CSType) + "System.Text.Encoding.UTF8.GetByteCount (" +  string_name + ")");
+				if (i > 0 && parameters[i - 1].IsString && p.IsLength && p.PassAs == String.Empty) {
+					string string_name = (i == 1 && is_set) ? "value" : parameters[i - 1].Name;
+					result[i] = igen.CallByName(CastFromInt(p.CSType) + "System.Text.Encoding.UTF8.GetByteCount (" + string_name + ")");
 					continue;
 				}
 
@@ -66,30 +63,28 @@ namespace GtkSharp.Generation {
 					p.CallName = p.Name;
 				string call_parm = p.CallString;
 
-				if (p.IsUserData && parameters.IsHidden (p) && !parameters.HideData &&
-					   (i == 0 || parameters [i - 1].Scope != "notified")) {
+				if (p.IsUserData && parameters.IsHidden(p) && !parameters.HideData &&
+					   (i == 0 || parameters[i - 1].Scope != "notified")) {
 					call_parm = "IntPtr.Zero";
 				}
 
-				result [i] += call_parm;
+				result[i] += call_parm;
 			}
 
-			return String.Join (", ", result);
+			return String.Join(", ", result);
 		}
 
-		public void Initialize (GenerationInfo gen_info)
-		{
-			Initialize (gen_info, false, false, String.Empty);
+		public void Initialize(GenerationInfo gen_info) {
+			Initialize(gen_info, false, false, String.Empty);
 		}
 
-		public void Initialize (GenerationInfo gen_info, bool is_get, bool is_set, string indent)
-		{
+		public void Initialize(GenerationInfo gen_info, bool is_get, bool is_set, string indent) {
 			if (parameters.Count == 0)
 				return;
 
 			StreamWriter sw = gen_info.Writer;
 			for (int i = 0; i < parameters.Count; i++) {
-				Parameter p = parameters [i];
+				Parameter p = parameters[i];
 
 				IGeneratable gen = p.Generatable;
 				string name = p.Name;
@@ -98,7 +93,7 @@ namespace GtkSharp.Generation {
 
 				p.CallName = name;
 				foreach (string prep in p.Prepare)
-					sw.WriteLine (indent + "\t\t\t" + prep);
+					sw.WriteLine(indent + "\t\t\t" + prep);
 
 				if (gen is CallbackGen) {
 					CallbackGen cbgen = gen as CallbackGen;
@@ -113,72 +108,68 @@ namespace GtkSharp.Generation {
 						destroyNotify = p.DestroyNotify;
 
 					switch (p.Scope) {
-					case "notified":
-						sw.WriteLine (indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
-						sw.WriteLine (indent + "\t\t\tIntPtr {0};", parameters [closure].Name);
-						sw.WriteLine (indent + "\t\t\t{0} {1};", parameters [destroyNotify].CSType, parameters [destroyNotify].Name);
-						sw.WriteLine (indent + "\t\t\tif ({0} == null) {{", name);
-						sw.WriteLine (indent + "\t\t\t\t{0} = IntPtr.Zero;", parameters [closure].Name);
-						sw.WriteLine (indent + "\t\t\t\t{0} = null;", parameters [destroyNotify].Name);
-						sw.WriteLine (indent + "\t\t\t} else {");
-						sw.WriteLine (indent + "\t\t\t\t{0} = (IntPtr) GCHandle.Alloc ({1}_wrapper);", parameters [closure].Name, name);
-						sw.WriteLine (indent + "\t\t\t\t{0} = GLib.DestroyHelper.NotifyHandler;", parameters [destroyNotify].Name, parameters [destroyNotify].CSType);
-						sw.WriteLine (indent + "\t\t\t}");
-						break;
+						case "notified":
+							sw.WriteLine(indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
+							sw.WriteLine(indent + "\t\t\tIntPtr {0};", parameters[closure].Name);
+							sw.WriteLine(indent + "\t\t\t{0} {1};", parameters[destroyNotify].CSType, parameters[destroyNotify].Name);
+							sw.WriteLine(indent + "\t\t\tif ({0} == null) {{", name);
+							sw.WriteLine(indent + "\t\t\t\t{0} = IntPtr.Zero;", parameters[closure].Name);
+							sw.WriteLine(indent + "\t\t\t\t{0} = null;", parameters[destroyNotify].Name);
+							sw.WriteLine(indent + "\t\t\t} else {");
+							sw.WriteLine(indent + "\t\t\t\t{0} = (IntPtr) GCHandle.Alloc ({1}_wrapper);", parameters[closure].Name, name);
+							sw.WriteLine(indent + "\t\t\t\t{0} = GLib.DestroyHelper.NotifyHandler;", parameters[destroyNotify].Name, parameters[destroyNotify].CSType);
+							sw.WriteLine(indent + "\t\t\t}");
+							break;
 
-					case "async":
-						sw.WriteLine (indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
-						sw.WriteLine (indent + "\t\t\t{0}_wrapper.PersistUntilCalled ();", name);
-						break;
-					case "call":
-					default:
-						if (p.Scope == String.Empty)
-							log.Warn (gen_info.CurrentMember + " - defaulting " + gen.Name + " param to 'call' scope. Specify callback scope (call|async|notified) attribute with fixup.");
-						sw.WriteLine (indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
-						break;
+						case "async":
+							sw.WriteLine(indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
+							sw.WriteLine(indent + "\t\t\t{0}_wrapper.PersistUntilCalled ();", name);
+							break;
+						case "call":
+						default:
+							if (p.Scope == String.Empty)
+								log.Warn(gen_info.CurrentMember + " - defaulting " + gen.Name + " param to 'call' scope. Specify callback scope (call|async|notified) attribute with fixup.");
+							sw.WriteLine(indent + "\t\t\t{0} {1}_wrapper = new {0} ({1});", wrapper, name);
+							break;
 					}
 				}
 			}
 
 			if (ThrowsException)
-				sw.WriteLine (indent + "\t\t\tIntPtr error = IntPtr.Zero;");
+				sw.WriteLine(indent + "\t\t\tIntPtr error = IntPtr.Zero;");
 		}
 
-		public void InitAccessor (StreamWriter sw, Signature sig, string indent)
-		{
-			sw.WriteLine (indent + "\t\t\t" + sig.AccessorType + " " + sig.AccessorName + ";");
+		public void InitAccessor(StreamWriter sw, Signature sig, string indent) {
+			sw.WriteLine(indent + "\t\t\t" + sig.AccessorType + " " + sig.AccessorName + ";");
 		}
 
-		public void Finish (StreamWriter sw, string indent)
-		{
+		public void Finish(StreamWriter sw, string indent) {
 			foreach (Parameter p in parameters) {
-				if (parameters.IsHidden (p))
+				if (parameters.IsHidden(p))
 					continue;
 				foreach (string s in p.Finish)
 					sw.WriteLine(indent + "\t\t\t" + s);
 			}
 		}
 
-		public void FinishAccessor (StreamWriter sw, Signature sig, string indent)
-		{
-			sw.WriteLine (indent + "\t\t\treturn " + sig.AccessorName + ";");
+		public void FinishAccessor(StreamWriter sw, Signature sig, string indent) {
+			sw.WriteLine(indent + "\t\t\treturn " + sig.AccessorName + ";");
 		}
 
-		public void HandleException (StreamWriter sw, string indent)
-		{
+		public void HandleException(StreamWriter sw, string indent) {
 			if (!ThrowsException)
 				return;
-			sw.WriteLine (indent + "\t\t\tif (error != IntPtr.Zero) throw new GLib.GException (error);");
+			sw.WriteLine(indent + "\t\t\tif (error != IntPtr.Zero) throw new GLib.GException (error);");
 		}
-		
+
 		public bool ThrowsException {
 			get {
 				int idx = parameters.Count - 1;
 
 				while (idx >= 0) {
-					if (parameters [idx].IsUserData)
+					if (parameters[idx].IsUserData)
 						idx--;
-					else if (parameters [idx].CType == "GError**")
+					else if (parameters[idx].CType == "GError**")
 						return true;
 					else
 						break;
@@ -188,4 +179,3 @@ namespace GtkSharp.Generation {
 		}
 	}
 }
-

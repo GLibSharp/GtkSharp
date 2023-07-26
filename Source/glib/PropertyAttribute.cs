@@ -27,13 +27,11 @@ namespace GLib {
 		string nickname;
 		string name;
 
-		public PropertyAttribute (string name)
-		{
+		public PropertyAttribute(string name) {
 			this.name = name;
 		}
 
-		public PropertyAttribute (string name, string nickname, string blurb)
-		{
+		public PropertyAttribute(string name, string nickname, string blurb) {
 			this.name = name;
 			this.nickname = nickname;
 			this.blurb = blurb;

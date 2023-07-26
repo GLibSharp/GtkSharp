@@ -23,15 +23,15 @@ namespace Pango {
 
 	public class AttrFontDesc : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_font_desc_new (IntPtr font_desc);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_font_desc_new(IntPtr font_desc);
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_font_description_copy(IntPtr raw);
 
-		public AttrFontDesc (Pango.FontDescription font_desc) : this (pango_attr_font_desc_new (pango_font_description_copy (font_desc.Handle))) {}
+		public AttrFontDesc(Pango.FontDescription font_desc) : this(pango_attr_font_desc_new(pango_font_description_copy(font_desc.Handle))) { }
 
-		internal AttrFontDesc (IntPtr raw) : base (raw) {}
+		internal AttrFontDesc(IntPtr raw) : base(raw) { }
 
 		new struct NativeStruct {
 			Attribute.NativeStruct attr;
@@ -40,8 +40,8 @@ namespace Pango {
 
 		public Pango.FontDescription Desc {
 			get {
-				NativeStruct native = (NativeStruct) Marshal.PtrToStructure (Handle, typeof (NativeStruct));
-				return new Pango.FontDescription (native.desc);
+				NativeStruct native = (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct));
+				return new Pango.FontDescription(native.desc);
 			}
 		}
 	}

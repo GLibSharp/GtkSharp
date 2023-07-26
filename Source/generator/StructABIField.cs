@@ -10,8 +10,8 @@ namespace GtkSharp.Generation {
 		public string parent_structure_name;
 		public string abi_info_name;
 
-		public StructABIField (XmlElement elem, ClassBase container_type,
-				string info_name) : base (elem, container_type) {
+		public StructABIField(XmlElement elem, ClassBase container_type,
+				string info_name) : base(elem, container_type) {
 			this.container_type = container_type;
 			this.getOffsetName = null;
 			this.abi_info_name = info_name;
@@ -21,12 +21,12 @@ namespace GtkSharp.Generation {
 
 			get {
 				if (parent_structure_name != null)
-					return parent_structure_name + '.' + elem.GetAttribute ("cname");
-				return elem.GetAttribute ("cname");
+					return parent_structure_name + '.' + elem.GetAttribute("cname");
+				return elem.GetAttribute("cname");
 			}
 		}
 
-		public override void Generate (GenerationInfo gen_info, string indent) {
+		public override void Generate(GenerationInfo gen_info, string indent) {
 			base.Generate(gen_info, indent);
 		}
 
@@ -44,19 +44,18 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public override bool Validate (LogWriter log)
-		{
+		public override bool Validate(LogWriter log) {
 			string cstype = SymbolTable.Table.GetCSType(CType, true);
 
 			if (elem.GetAttributeAsBoolean("is_callback"))
 				return true;
 
 			if (cstype == null || cstype == "") {
-				log.Warn (" field \"" + CName + "\" has no cstype, can't generate ABI field.");
+				log.Warn(" field \"" + CName + "\" has no cstype, can't generate ABI field.");
 				return false;
 			}
 
-			if (!base.Validate (log))
+			if (!base.Validate(log))
 				return false;
 
 			return true;
@@ -70,7 +69,7 @@ namespace GtkSharp.Generation {
 			return base.GenerateGetSizeOf(indent) + " // " + CName;
 		}
 
-		public virtual StructABIField Generate (GenerationInfo gen_info, string indent,
+		public virtual StructABIField Generate(GenerationInfo gen_info, string indent,
 				StructABIField prev_field, StructABIField next_field, string parent_name,
 				TextWriter structw) {
 			StreamWriter sw = gen_info.Writer;
@@ -119,7 +118,7 @@ namespace GtkSharp.Generation {
 					structw.WriteLine(tmpindent + "}");
 					structw.WriteLine();
 
-					var fieldname = SymbolTable.Table.MangleName (CName).Replace(".", "_");
+					var fieldname = SymbolTable.Table.MangleName(CName).Replace(".", "_");
 					if (IsArray && IsNullTermArray)
 						fieldname += "Ptr";
 					sw.WriteLine(indent + ", (long) Marshal.OffsetOf(typeof(" + alig_struct_name + "), \"" + fieldname + "\")");
@@ -133,7 +132,7 @@ namespace GtkSharp.Generation {
 			uint bits = 0;
 			var bitsstr = elem.GetAttribute("bits");
 			if (bitsstr != null && bitsstr != "")
-				bits = (uint) Int32.Parse(bitsstr);
+				bits = (uint)Int32.Parse(bitsstr);
 
 			sw.WriteLine(indent + ", " + bits);
 			sw.WriteLine(indent + "),");

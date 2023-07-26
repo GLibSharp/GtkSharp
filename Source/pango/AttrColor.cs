@@ -25,9 +25,8 @@ namespace Pango {
 		Attribute.NativeStruct attr;
 		public Color Color;
 
-		public static AttrColor New (IntPtr raw)
-		{
-			return (AttrColor) Marshal.PtrToStructure (raw, typeof (AttrColor));
+		public static AttrColor New(IntPtr raw) {
+			return (AttrColor)Marshal.PtrToStructure(raw, typeof(AttrColor));
 		}
 	}
 }

@@ -24,11 +24,10 @@
 namespace Atk {
 	public partial class TextAdapter {
 
-		public void EmitTextChanged (TextChangedDetail detail, int position, int length)
-		{
-			GLib.Signal.Emit (GLib.Object.GetObject (Handle),
-			                  "text_changed::" + detail.ToString ().ToLower (),
-			                  position, length);
+		public void EmitTextChanged(TextChangedDetail detail, int position, int length) {
+			GLib.Signal.Emit(GLib.Object.GetObject(Handle),
+							  "text_changed::" + detail.ToString().ToLower(),
+							  position, length);
 		}
 	}
 }

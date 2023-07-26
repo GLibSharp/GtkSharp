@@ -21,30 +21,28 @@
 namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
-	
+
 	public partial class FileAdapter {
-		public override string ToString ()
-		{
-			return Uri.ToString ();
+		public override string ToString() {
+			return Uri.ToString();
 		}
-		
+
 		public bool Exists {
-			get { return QueryExists (null); }
+			get { return QueryExists(null); }
 		}
-		
-		public bool Delete ()
-		{
-			return Delete (null);
+
+		public bool Delete() {
+			return Delete(null);
 		}
-		
-		[DllImport (GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
+
+		[DllImport(GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_uri(IntPtr raw);
-		
+
 		public System.Uri Uri {
 			get {
 				IntPtr raw_ret = g_file_get_uri(Handle);
 				string ret = GLib.Marshaller.PtrToStringGFree(raw_ret);
-				return new System.Uri (ret);
+				return new System.Uri(ret);
 			}
 		}
 	}

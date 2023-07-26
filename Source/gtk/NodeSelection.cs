@@ -25,107 +25,94 @@ namespace Gtk {
 	public class NodeSelection {
 
 		private TreeSelection selection;
-		
+
 		public event EventHandler Changed;
 
-		internal NodeSelection (TreeSelection selection)
-		{
+		internal NodeSelection(TreeSelection selection) {
 			this.selection = selection;
 
-			selection.Changed += new EventHandler (ChangedHandler); 
+			selection.Changed += new EventHandler(ChangedHandler);
 		}
 
-		private void ChangedHandler (object o, EventArgs args)
-		{
+		private void ChangedHandler(object o, EventArgs args) {
 			if (Changed != null)
-				Changed (this, args); 
-		}
-		
-		public bool NodeIsSelected (ITreeNode node)
-		{
-			return selection.IterIsSelected (NodeView.NodeStore.GetIter (node));
+				Changed(this, args);
 		}
 
-		public bool PathIsSelected (TreePath path)
-		{
-			return selection.PathIsSelected (path);
+		public bool NodeIsSelected(ITreeNode node) {
+			return selection.IterIsSelected(NodeView.NodeStore.GetIter(node));
 		}
 
-		public void SelectAll ()
-		{
-			selection.SelectAll ();
+		public bool PathIsSelected(TreePath path) {
+			return selection.PathIsSelected(path);
 		}
 
-		public void SelectNode (ITreeNode node)
-		{
-			selection.SelectIter (NodeView.NodeStore.GetIter (node));
+		public void SelectAll() {
+			selection.SelectAll();
 		}
 
-		public void SelectPath (TreePath path)
-		{
-			selection.SelectPath (path);
+		public void SelectNode(ITreeNode node) {
+			selection.SelectIter(NodeView.NodeStore.GetIter(node));
 		}
 
-		public void SelectRange (ITreeNode begin_node, ITreeNode end_node)
-		{
-			TreePath begin = NodeView.NodeStore.GetPath (begin_node);
-			TreePath end = NodeView.NodeStore.GetPath (end_node);
-
-			selection.SelectRange (begin, end);
-		}
-		
-		public void UnselectAll ()
-		{
-			selection.UnselectAll ();
+		public void SelectPath(TreePath path) {
+			selection.SelectPath(path);
 		}
 
-		public void UnselectNode (ITreeNode node)
-		{
-			selection.UnselectIter (NodeView.NodeStore.GetIter (node));
+		public void SelectRange(ITreeNode begin_node, ITreeNode end_node) {
+			TreePath begin = NodeView.NodeStore.GetPath(begin_node);
+			TreePath end = NodeView.NodeStore.GetPath(end_node);
+
+			selection.SelectRange(begin, end);
 		}
 
-		public void UnselectPath (TreePath path) 
-		{
-			selection.UnselectPath (path);
+		public void UnselectAll() {
+			selection.UnselectAll();
 		}
 
-		public void UnselectRange (TreePath begin, TreePath end)
-		{
-			selection.UnselectRange (begin, end);
+		public void UnselectNode(ITreeNode node) {
+			selection.UnselectIter(NodeView.NodeStore.GetIter(node));
 		}
 
-		public void UnselectRange (ITreeNode begin_node, ITreeNode end_node)
-		{
-			TreePath begin = NodeView.NodeStore.GetPath (begin_node);
-			TreePath end = NodeView.NodeStore.GetPath (end_node);
+		public void UnselectPath(TreePath path) {
+			selection.UnselectPath(path);
+		}
 
-			selection.UnselectRange (begin, end);
+		public void UnselectRange(TreePath begin, TreePath end) {
+			selection.UnselectRange(begin, end);
+		}
+
+		public void UnselectRange(ITreeNode begin_node, ITreeNode end_node) {
+			TreePath begin = NodeView.NodeStore.GetPath(begin_node);
+			TreePath end = NodeView.NodeStore.GetPath(end_node);
+
+			selection.UnselectRange(begin, end);
 		}
 
 		public SelectionMode Mode {
-			get { 
-				return selection.Mode; 
+			get {
+				return selection.Mode;
 			}
-			set { 
-				selection.Mode = value; 
+			set {
+				selection.Mode = value;
 			}
 		}
-		
+
 		public NodeView NodeView {
-			get { 
-				return selection.TreeView as NodeView; 
+			get {
+				return selection.TreeView as NodeView;
 			}
 		}
 
 		public ITreeNode[] SelectedNodes {
 			get {
-				TreePath [] paths = selection.GetSelectedRows ();
+				TreePath[] paths = selection.GetSelectedRows();
 				int length = paths.Length;
 
-				ITreeNode [] results = new ITreeNode [length];
+				ITreeNode[] results = new ITreeNode[length];
 
-				for (int i = 0; i < length; i++) 
-					results [i] = NodeView.NodeStore.GetNode (paths [i]);
+				for (int i = 0; i < length; i++)
+					results[i] = NodeView.NodeStore.GetNode(paths[i]);
 
 				return results;
 			}
@@ -134,12 +121,12 @@ namespace Gtk {
 		public ITreeNode SelectedNode {
 			get {
 				if (Mode == SelectionMode.Multiple)
-					throw new InvalidOperationException ("SelectedNode is not valid with multi-selection mode");
-				
-				ITreeNode [] sn = SelectedNodes;
+					throw new InvalidOperationException("SelectedNode is not valid with multi-selection mode");
+
+				ITreeNode[] sn = SelectedNodes;
 				if (sn.Length == 0)
 					return null;
-				return sn [0];
+				return sn[0];
 			}
 			set {
 				// with multiple mode, the behavior
@@ -148,9 +135,9 @@ namespace Gtk {
 				// make the `value' node the only
 				// selected node.
 				if (Mode == SelectionMode.Multiple)
-					throw new InvalidOperationException ("SelectedNode is not valid with multi-selection mode");
-				
-				SelectNode (value);
+					throw new InvalidOperationException("SelectedNode is not valid with multi-selection mode");
+
+				SelectNode(value);
 			}
 		}
 	}

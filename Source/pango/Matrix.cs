@@ -24,8 +24,7 @@ namespace Pango {
 
 	public partial struct Matrix {
 
-		static Matrix ()
-		{
+		static Matrix() {
 			Identity.Xx = 1.0;
 			Identity.Xy = 0.0;
 			Identity.Yx = 0.0;

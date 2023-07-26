@@ -25,18 +25,18 @@ namespace Gtk {
 
 	public partial class TextChildAnchor {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_text_child_anchor_get_widgets (IntPtr raw);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_text_child_anchor_get_widgets(IntPtr raw);
 
 		public Widget[] Widgets {
 			get {
-				IntPtr raw_ret = gtk_text_child_anchor_get_widgets (Handle);
+				IntPtr raw_ret = gtk_text_child_anchor_get_widgets(Handle);
 				if (raw_ret == IntPtr.Zero)
-					return new Widget [0];
+					return new Widget[0];
 				GLib.List list = new GLib.List(raw_ret);
-				Widget[] result = new Widget [list.Count];
+				Widget[] result = new Widget[list.Count];
 				for (int i = 0; i < list.Count; i++)
-					result [i] = list [i] as Widget;
+					result[i] = list[i] as Widget;
 				return result;
 			}
 		}

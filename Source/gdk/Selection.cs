@@ -26,11 +26,10 @@ namespace Gdk {
 
 	public partial class Selection {
 
-		public static Atom Primary = new Atom (new IntPtr (1));
+		public static Atom Primary = new Atom(new IntPtr(1));
 
-		public static Atom Secondary = new Atom (new IntPtr (2));
+		public static Atom Secondary = new Atom(new IntPtr(2));
 
-		public static Atom Clipboard = new Atom (new IntPtr (69));
+		public static Atom Clipboard = new Atom(new IntPtr(69));
 	}
 }
-

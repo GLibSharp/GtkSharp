@@ -23,20 +23,19 @@ namespace Pango {
 
 	public class AttrFamily : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_family_new (IntPtr family);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_family_new(IntPtr family);
 
-		public AttrFamily (string family) : base (NewAttrFamily (family)) {}
+		public AttrFamily(string family) : base(NewAttrFamily(family)) { }
 
-		static IntPtr NewAttrFamily (string family)
-		{
-			IntPtr family_raw = GLib.Marshaller.StringToPtrGStrdup (family);
-			IntPtr attr_raw = pango_attr_family_new (family_raw);
-			GLib.Marshaller.Free (family_raw);
+		static IntPtr NewAttrFamily(string family) {
+			IntPtr family_raw = GLib.Marshaller.StringToPtrGStrdup(family);
+			IntPtr attr_raw = pango_attr_family_new(family_raw);
+			GLib.Marshaller.Free(family_raw);
 			return attr_raw;
 		}
 
-		internal AttrFamily (IntPtr raw) : base (raw) {}
+		internal AttrFamily(IntPtr raw) : base(raw) { }
 
 		new struct NativeStruct {
 			Attribute.NativeStruct attr;
@@ -45,8 +44,8 @@ namespace Pango {
 
 		public string Family {
 			get {
-				NativeStruct native = (NativeStruct) Marshal.PtrToStructure (Handle, typeof (NativeStruct));
-				return GLib.Marshaller.Utf8PtrToString (native.value);
+				NativeStruct native = (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct));
+				return GLib.Marshaller.Utf8PtrToString(native.value);
 			}
 		}
 	}

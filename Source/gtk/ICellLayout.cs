@@ -24,7 +24,7 @@ namespace Gtk {
 
 	public partial interface ICellLayout {
 
-		void SetAttributes (CellRenderer renderer, object[] attrs);
+		void SetAttributes(CellRenderer renderer, object[] attrs);
 
 	}
 }

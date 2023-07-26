@@ -25,45 +25,41 @@ namespace Gtk {
 
 	public partial class TreeViewColumn {
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
+		public void SetAttributes(CellRenderer cell, params object[] attrs) {
 			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+				throw new ArgumentException("attrs should contain pairs of attribute/col");
 
-			ClearAttributes (cell);
+			ClearAttributes(cell);
 			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
+				AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
 			}
 		}
 
-		private void _NewWithAttributes (string title, Gtk.CellRenderer cell, Array attrs) {
+		private void _NewWithAttributes(string title, Gtk.CellRenderer cell, Array attrs) {
 			Title = title;
-			PackStart (cell, true);
+			PackStart(cell, true);
 			for (int i = 0; (i + 1) < attrs.Length; i += 2) {
-				AddAttribute (cell, (string) ((object[])attrs)[i], (int)((object[])attrs)[i + 1]);
+				AddAttribute(cell, (string)((object[])attrs)[i], (int)((object[])attrs)[i + 1]);
 			}
 		}
 
-		public TreeViewColumn (string title, Gtk.CellRenderer cell, Array attrs) : this ()
-		{
-			_NewWithAttributes (title, cell, attrs);
-		}
-		
-		public TreeViewColumn (string title, Gtk.CellRenderer cell, params object[] attrs) : this ()
-		{
-			_NewWithAttributes (title, cell, attrs);
+		public TreeViewColumn(string title, Gtk.CellRenderer cell, Array attrs) : this() {
+			_NewWithAttributes(title, cell, attrs);
 		}
 
-		public void SetCellDataFunc (CellRenderer cell_renderer, NodeCellDataFunc func)
-		{
+		public TreeViewColumn(string title, Gtk.CellRenderer cell, params object[] attrs) : this() {
+			_NewWithAttributes(title, cell, attrs);
+		}
+
+		public void SetCellDataFunc(CellRenderer cell_renderer, NodeCellDataFunc func) {
 			if (func == null) {
-				gtk_tree_view_column_set_cell_data_func (Handle, cell_renderer == null ? IntPtr.Zero : cell_renderer.Handle, (GtkSharp.TreeCellDataFuncNative) null, IntPtr.Zero, null);
+				gtk_tree_view_column_set_cell_data_func(Handle, cell_renderer == null ? IntPtr.Zero : cell_renderer.Handle, (GtkSharp.TreeCellDataFuncNative)null, IntPtr.Zero, null);
 				return;
 			}
 
-			NodeCellDataFuncWrapper func_wrapper = new NodeCellDataFuncWrapper (func);
-			GCHandle gch = GCHandle.Alloc (func_wrapper);
-			gtk_cell_layout_set_cell_data_func (Handle, cell_renderer == null ? IntPtr.Zero : cell_renderer.Handle, func_wrapper.NativeDelegate, (IntPtr) gch, GLib.DestroyHelper.NotifyHandler);
+			NodeCellDataFuncWrapper func_wrapper = new NodeCellDataFuncWrapper(func);
+			GCHandle gch = GCHandle.Alloc(func_wrapper);
+			gtk_cell_layout_set_cell_data_func(Handle, cell_renderer == null ? IntPtr.Zero : cell_renderer.Handle, func_wrapper.NativeDelegate, (IntPtr)gch, GLib.DestroyHelper.NotifyHandler);
 		}
 	}
 }

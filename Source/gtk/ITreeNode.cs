@@ -23,9 +23,9 @@ namespace Gtk {
 
 	using System;
 
-	public delegate void TreeNodeAddedHandler (object o, ITreeNode child);
+	public delegate void TreeNodeAddedHandler(object o, ITreeNode child);
 
-	public delegate void TreeNodeRemovedHandler (object o, ITreeNode child, int old_position);
+	public delegate void TreeNodeRemovedHandler(object o, ITreeNode child, int old_position);
 
 	public interface ITreeNode {
 
@@ -35,9 +35,9 @@ namespace Gtk {
 
 		int ChildCount { get; }
 
-		ITreeNode this [int index] { get; }
+		ITreeNode this[int index] { get; }
 
-		int IndexOf (object o);
+		int IndexOf(object o);
 
 		event EventHandler Changed;
 

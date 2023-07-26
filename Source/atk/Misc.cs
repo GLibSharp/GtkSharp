@@ -29,11 +29,10 @@ namespace Atk {
 	public partial class Misc {
 
 		[DllImport("atksharpglue-3")]
-		static extern void atksharp_misc_set_singleton_instance (IntPtr misc);
-		
-		public static void SetSingletonInstance (Misc misc)
-		{
-			atksharp_misc_set_singleton_instance (misc.Handle);
+		static extern void atksharp_misc_set_singleton_instance(IntPtr misc);
+
+		public static void SetSingletonInstance(Misc misc) {
+			atksharp_misc_set_singleton_instance(misc.Handle);
 		}
 	}
 }

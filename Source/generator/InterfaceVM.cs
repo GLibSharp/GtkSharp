@@ -1,4 +1,4 @@
- 
+
 // GtkSharp.Generation.InterfaceVM.cs - interface-specific part of VM creation
 //
 // Author: Christian Hoff <christian_hoff@gmx.net>
@@ -27,12 +27,10 @@ namespace GtkSharp.Generation {
 	using System.IO;
 	using System.Xml;
 
-	public class InterfaceVM : VirtualMethod
-	{
+	public class InterfaceVM : VirtualMethod {
 		private Method target;
 
-		public InterfaceVM (XmlElement elem, Method target, ObjectBase container_type) : base (elem, container_type)
-		{
+		public InterfaceVM(XmlElement elem, Method target, ObjectBase container_type) : base(elem, container_type) {
 			this.target = target;
 			parms.HideData = true;
 			this.Protection = "public";
@@ -40,16 +38,16 @@ namespace GtkSharp.Generation {
 
 		public bool IsGetter {
 			get {
-				return HasGetterName && ((!retval.IsVoid && parms.Count == 0) || (retval.IsVoid && parms.Count == 1 && parms [0].PassAs == "out"));
+				return HasGetterName && ((!retval.IsVoid && parms.Count == 0) || (retval.IsVoid && parms.Count == 1 && parms[0].PassAs == "out"));
 			}
 		}
-	
+
 		public bool IsSetter {
 			get {
 				if (!HasSetterName || !retval.IsVoid)
 					return false;
 
-				if (parms.Count == 1 || (parms.Count == 3 && parms [0].Scope == "notified"))
+				if (parms.Count == 1 || (parms.Count == 3 && parms[0].Scope == "notified"))
 					return true;
 				else
 					return false;
@@ -59,39 +57,37 @@ namespace GtkSharp.Generation {
 		protected override string CallString {
 			get {
 				if (IsGetter)
-					return (target.Name.StartsWith ("Get") ? target.Name.Substring (3) : target.Name);
+					return (target.Name.StartsWith("Get") ? target.Name.Substring(3) : target.Name);
 				else if (IsSetter)
-					return target.Name.Substring (3) + " = " + call;
+					return target.Name.Substring(3) + " = " + call;
 				else
 					return target.Name + " (" + call + ")";
 			}
 		}
 
-		public void GenerateDeclaration (StreamWriter sw, InterfaceVM complement)
-		{
+		public void GenerateDeclaration(StreamWriter sw, InterfaceVM complement) {
 			if (IsGetter) {
-				string name = Name.StartsWith ("Get") ? Name.Substring (3) : Name;
-				string type = retval.IsVoid ? parms [0].CSType : retval.CSType;
-				if (complement != null && complement.parms [0].CSType == type)
-					sw.WriteLine ("\t\t" + type + " " + name + " { get; set; }");
+				string name = Name.StartsWith("Get") ? Name.Substring(3) : Name;
+				string type = retval.IsVoid ? parms[0].CSType : retval.CSType;
+				if (complement != null && complement.parms[0].CSType == type)
+					sw.WriteLine("\t\t" + type + " " + name + " { get; set; }");
 				else {
-					sw.WriteLine ("\t\t" + type + " " + name + " { get; }");
+					sw.WriteLine("\t\t" + type + " " + name + " { get; }");
 					if (complement != null)
-						sw.WriteLine ("\t\t" + complement.retval.CSType + " " + complement.Name + " (" + complement.Signature + ");");
+						sw.WriteLine("\t\t" + complement.retval.CSType + " " + complement.Name + " (" + complement.Signature + ");");
 				}
-			} else if (IsSetter) 
-				sw.WriteLine ("\t\t" + parms[0].CSType + " " + Name.Substring (3) + " { set; }");
+			} else if (IsSetter)
+				sw.WriteLine("\t\t" + parms[0].CSType + " " + Name.Substring(3) + " { set; }");
 			else
-				sw.WriteLine ("\t\t" + retval.CSType + " " + Name + " (" + Signature + ");");
+				sw.WriteLine("\t\t" + retval.CSType + " " + Name + " (" + Signature + ");");
 		}
 
-		public override bool Validate (LogWriter log)
-		{
-			if (!base.Validate (log))
+		public override bool Validate(LogWriter log) {
+			if (!base.Validate(log))
 				return false;
 
 			if (target == null && !(container_type as InterfaceGen).IsConsumeOnly) {
-				log.Warn ("No matching target method to invoke. Add target_method attribute with fixup.");
+				log.Warn("No matching target method to invoke. Add target_method attribute with fixup.");
 				return false;
 			}
 

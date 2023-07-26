@@ -27,48 +27,45 @@ namespace Gtk {
 
 	public partial class Image {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_icon_set(IntPtr icon_set, int size);
 
-		public Image (Gtk.IconSet icon_set, Gtk.IconSize size) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (Image)) {
-				var vals = new List<GLib.Value> ();
-				var names = new List<string> ();
-				names.Add ("icon_set");
-				vals.Add (new GLib.Value (icon_set));
-				names.Add ("icon_size");
-				vals.Add (new GLib.Value ((int)size));
-				CreateNativeObject (names.ToArray (), vals.ToArray ());
+		public Image(Gtk.IconSet icon_set, Gtk.IconSize size) : base(IntPtr.Zero) {
+			if (GetType() != typeof(Image)) {
+				var vals = new List<GLib.Value>();
+				var names = new List<string>();
+				names.Add("icon_set");
+				vals.Add(new GLib.Value(icon_set));
+				names.Add("icon_size");
+				vals.Add(new GLib.Value((int)size));
+				CreateNativeObject(names.ToArray(), vals.ToArray());
 				return;
 			}
-			Raw = gtk_image_new_from_icon_set(icon_set.Handle, (int) size);
+			Raw = gtk_image_new_from_icon_set(icon_set.Handle, (int)size);
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_stock(IntPtr stock_id, int size);
 
-		public Image (string stock_id, Gtk.IconSize size) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (Image)) {
-				var vals = new List<GLib.Value> ();
-				var names = new List<string> ();
-				names.Add ("stock");
-				vals.Add (new GLib.Value (stock_id));
-				names.Add ("icon_size");
-				vals.Add (new GLib.Value ((int)size));
-				CreateNativeObject (names.ToArray (), vals.ToArray ());
+		public Image(string stock_id, Gtk.IconSize size) : base(IntPtr.Zero) {
+			if (GetType() != typeof(Image)) {
+				var vals = new List<GLib.Value>();
+				var names = new List<string>();
+				names.Add("stock");
+				vals.Add(new GLib.Value(stock_id));
+				names.Add("icon_size");
+				vals.Add(new GLib.Value((int)size));
+				CreateNativeObject(names.ToArray(), vals.ToArray());
 				return;
 			}
-			IntPtr native = GLib.Marshaller.StringToPtrGStrdup (stock_id);
-			Raw = gtk_image_new_from_stock(native, (int) size);
-			GLib.Marshaller.Free (native);
+			IntPtr native = GLib.Marshaller.StringToPtrGStrdup(stock_id);
+			Raw = gtk_image_new_from_stock(native, (int)size);
+			GLib.Marshaller.Free(native);
 		}
 
-		void LoadFromStream (System.IO.Stream stream)
-		{
+		void LoadFromStream(System.IO.Stream stream) {
 			try {
-				Gdk.PixbufAnimation anim = new Gdk.PixbufAnimation (stream);
+				Gdk.PixbufAnimation anim = new Gdk.PixbufAnimation(stream);
 				if (anim.IsStaticImage)
 					Pixbuf = anim.StaticImage;
 				else
@@ -78,45 +75,42 @@ namespace Gtk {
 			}
 		}
 
-		public Image (System.IO.Stream stream) : this ()
-		{
-			LoadFromStream (stream);
+		public Image(System.IO.Stream stream) : this() {
+			LoadFromStream(stream);
 		}
 
-		public Image (System.Reflection.Assembly assembly, string resource) : this ()
-		{
+		public Image(System.Reflection.Assembly assembly, string resource) : this() {
 			if (assembly == null)
-				assembly = System.Reflection.Assembly.GetCallingAssembly ();
+				assembly = System.Reflection.Assembly.GetCallingAssembly();
 
-			System.IO.Stream s = assembly.GetManifestResourceStream (resource);
+			System.IO.Stream s = assembly.GetManifestResourceStream(resource);
 			if (s == null)
-				throw new ArgumentException ("'" + resource + "' is not a valid resource name of assembly '" + assembly + "'.");
+				throw new ArgumentException("'" + resource + "' is not a valid resource name of assembly '" + assembly + "'.");
 
-			LoadFromStream (s);
+			LoadFromStream(s);
 		}
 
-		static public Image LoadFromResource (string resource)
-		{
-			return new Image (System.Reflection.Assembly.GetCallingAssembly (), resource);
+		static public Image LoadFromResource(string resource) {
+			return new Image(System.Reflection.Assembly.GetCallingAssembly(), resource);
 		}
 
-		[Obsolete ("Use the Animation property instead")]
+		[Obsolete("Use the Animation property instead")]
 		public Gdk.PixbufAnimation FromAnimation {
 			set {
 				gtk_image_set_from_animation(Handle, value == null ? IntPtr.Zero : value.Handle);
 			}
 		}
 
-		[Obsolete ("Use the File property instead")]
+		[Obsolete("Use the File property instead")]
 		public string FromFile {
 			set {
-				IntPtr native_value = GLib.Marshaller.StringToPtrGStrdup (value);
+				IntPtr native_value = GLib.Marshaller.StringToPtrGStrdup(value);
 				gtk_image_set_from_file(Handle, native_value);
-				GLib.Marshaller.Free (native_value);
+				GLib.Marshaller.Free(native_value);
 			}
 		}
 
-		[Obsolete ("Use the Pixbuf property instead")]
+		[Obsolete("Use the Pixbuf property instead")]
 		public Gdk.Pixbuf FromPixbuf {
 			set {
 				gtk_image_set_from_pixbuf(Handle, value == null ? IntPtr.Zero : value.Handle);

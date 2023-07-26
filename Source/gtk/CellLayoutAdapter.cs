@@ -24,14 +24,13 @@ namespace Gtk {
 
 	public partial class CellLayoutAdapter {
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
+		public void SetAttributes(CellRenderer cell, params object[] attrs) {
 			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+				throw new ArgumentException("attrs should contain pairs of attribute/col");
 
-			ClearAttributes (cell);
+			ClearAttributes(cell);
 			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
+				AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
 			}
 		}
 	}

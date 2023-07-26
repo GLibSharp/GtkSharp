@@ -2,17 +2,17 @@ namespace GtkSharp.Generation {
 
 	using System;
 	using System.Collections;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Xml;
-	using System.Collections.Generic;
 
 	public class MethodABIField : StructABIField {
 		bool is_valid;
 		XmlElement Elem;
 
 
-		public MethodABIField (XmlElement elem, ClassBase container_type, string info_name) :
-				base (elem, container_type, info_name) {
+		public MethodABIField(XmlElement elem, ClassBase container_type, string info_name) :
+				base(elem, container_type, info_name) {
 			Elem = elem;
 			is_valid = true;
 		}
@@ -53,4 +53,3 @@ namespace GtkSharp.Generation {
 		}
 	}
 }
-

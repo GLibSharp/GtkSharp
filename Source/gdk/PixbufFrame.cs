@@ -26,32 +26,31 @@ namespace Gdk {
 
 	public partial struct PixbufFrame {
 
-		[Obsolete ("Replaced by Pixbuf property.")]
+		[Obsolete("Replaced by Pixbuf property.")]
 		public Gdk.Pixbuf pixbuf {
-			get { 
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(_pixbuf);
+			get {
+				Gdk.Pixbuf ret = (Gdk.Pixbuf)GLib.Object.GetObject(_pixbuf);
 				return ret;
 			}
 			set { _pixbuf = value.Handle; }
 		}
 
-		[Obsolete ("Replaced by Composited property.")]
+		[Obsolete("Replaced by Composited property.")]
 		public Gdk.Pixbuf composited {
-			get { 
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(_composited);
+			get {
+				Gdk.Pixbuf ret = (Gdk.Pixbuf)GLib.Object.GetObject(_composited);
 				return ret;
 			}
 			set { _composited = value.Handle; }
 		}
 
-		[Obsolete ("Replaced by Revert property.")]
+		[Obsolete("Replaced by Revert property.")]
 		public Gdk.Pixbuf revert {
-			get { 
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(_revert);
+			get {
+				Gdk.Pixbuf ret = (Gdk.Pixbuf)GLib.Object.GetObject(_revert);
 				return ret;
 			}
 			set { _revert = value.Handle; }
 		}
 	}
 }
-

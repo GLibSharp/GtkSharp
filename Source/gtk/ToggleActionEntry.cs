@@ -29,20 +29,19 @@ namespace Gtk {
 		public string accelerator;
 		public EventHandler activated;
 		public bool active;
-		
-		public ToggleActionEntry (string name, string stock_id)
-			: this (name, stock_id, null, null, null, null, false) {}
-		
-		public ToggleActionEntry (string name, string stock_id, EventHandler activated)
-			: this (name, stock_id, null, null, null, activated, false) {}
-		
-		public ToggleActionEntry (string name, string stock_id, EventHandler activated, bool active)
-			: this (name, stock_id, null, null, null, activated, active) {}
-		
-		public ToggleActionEntry (string name, string stock_id, string label,
+
+		public ToggleActionEntry(string name, string stock_id)
+			: this(name, stock_id, null, null, null, null, false) { }
+
+		public ToggleActionEntry(string name, string stock_id, EventHandler activated)
+			: this(name, stock_id, null, null, null, activated, false) { }
+
+		public ToggleActionEntry(string name, string stock_id, EventHandler activated, bool active)
+			: this(name, stock_id, null, null, null, activated, active) { }
+
+		public ToggleActionEntry(string name, string stock_id, string label,
 					  string accelerator, string tooltip,
-					  EventHandler activated, bool active)
-		{
+					  EventHandler activated, bool active) {
 			this.name = name;
 			this.stock_id = stock_id;
 			this.label = label;

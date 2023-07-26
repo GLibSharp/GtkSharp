@@ -31,8 +31,7 @@ using System;
 namespace Cairo {
 
 	[Serializable]
-	public enum SurfaceType
-	{
+	public enum SurfaceType {
 		Image,
 		Pdf,
 		PS,

@@ -25,8 +25,8 @@ namespace GtkSharp.Generation {
 	using System.IO;
 
 	public class LPGen : SimpleGen, IAccessor {
-		
-		public LPGen (string ctype) : base (ctype, "long", "0L") {}
+
+		public LPGen(string ctype) : base(ctype, "long", "0L") { }
 
 		public override string MarshalType {
 			get {
@@ -34,25 +34,21 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public override string CallByName (string var_name)
-		{
+		public override string CallByName(string var_name) {
 			return "new IntPtr (" + var_name + ")";
 		}
-		
-		public override string FromNative(string var)
-		{
+
+		public override string FromNative(string var) {
 			return "(long) " + var;
 		}
 
-		public void WriteAccessors (TextWriter sw, string indent, string var)
-		{
-			sw.WriteLine (indent + "get {");
-			sw.WriteLine (indent + "\treturn " + FromNative (var) + ";");
-			sw.WriteLine (indent + "}");
-			sw.WriteLine (indent + "set {");
-			sw.WriteLine (indent + "\t" + var + " = " + CallByName ("value") + ";");
-			sw.WriteLine (indent + "}");
+		public void WriteAccessors(TextWriter sw, string indent, string var) {
+			sw.WriteLine(indent + "get {");
+			sw.WriteLine(indent + "\treturn " + FromNative(var) + ";");
+			sw.WriteLine(indent + "}");
+			sw.WriteLine(indent + "set {");
+			sw.WriteLine(indent + "\t" + var + " = " + CallByName("value") + ";");
+			sw.WriteLine(indent + "}");
 		}
 	}
 }
-

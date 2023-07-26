@@ -22,13 +22,10 @@
 namespace GLib {
 
 	using System;
-	
-	public class MissingIntPtrCtorException : Exception
-	{
-		public MissingIntPtrCtorException (string msg) : base (msg)
-		{
+
+	public class MissingIntPtrCtorException : Exception {
+		public MissingIntPtrCtorException(string msg) : base(msg) {
 		}
 
 	}
 }
-

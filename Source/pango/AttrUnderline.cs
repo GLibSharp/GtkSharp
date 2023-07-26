@@ -23,16 +23,16 @@ namespace Pango {
 
 	public class AttrUnderline : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_underline_new (Pango.Underline underline);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_underline_new(Pango.Underline underline);
 
-		public AttrUnderline (Pango.Underline underline) : this (pango_attr_underline_new (underline)) {}
+		public AttrUnderline(Pango.Underline underline) : this(pango_attr_underline_new(underline)) { }
 
-		internal AttrUnderline (IntPtr raw) : base (raw) {}
+		internal AttrUnderline(IntPtr raw) : base(raw) { }
 
 		public Pango.Underline Underline {
 			get {
-				return (Pango.Underline) (AttrInt.New (Handle).Value);
+				return (Pango.Underline)(AttrInt.New(Handle).Value);
 			}
 		}
 	}

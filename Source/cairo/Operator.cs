@@ -31,11 +31,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum Operator
-	{
+	public enum Operator {
 		Clear,
 		Source,
 		Over,
@@ -48,7 +46,7 @@ namespace Cairo
 		DestIn,
 		DestOut,
 		DestAtop,
-		
+
 		Xor,
 		Add,
 		Saturate,

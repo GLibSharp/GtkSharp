@@ -25,8 +25,7 @@ namespace Gtk {
 
 	public partial struct TargetEntry {
 
-		public TargetEntry (string target, Gtk.TargetFlags flags, uint info)
-		{
+		public TargetEntry(string target, Gtk.TargetFlags flags, uint info) {
 			this.Target = target;
 			this.Flags = flags;
 			this.Info = info;

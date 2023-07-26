@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventProperty : Event {
 
-		public EventProperty (IntPtr raw) : base (raw) {} 
+		public EventProperty(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -39,24 +39,24 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public Atom Atom {
-			get { return GLib.Opaque.GetOpaque (Native.atom, typeof (Atom), false) as Atom; }
+			get { return GLib.Opaque.GetOpaque(Native.atom, typeof(Atom), false) as Atom; }
 			set {
 				NativeStruct native = Native;
 				native.atom = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public PropertyState State {
-			get { return (PropertyState) Native.state; }
+			get { return (PropertyState)Native.state; }
 			set {
 				NativeStruct native = Native;
-				native.state = (uint) value;
-				Marshal.StructureToPtr (native, Handle, false);
+				native.state = (uint)value;
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -65,9 +65,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

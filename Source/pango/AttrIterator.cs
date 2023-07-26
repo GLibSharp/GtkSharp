@@ -25,40 +25,39 @@ namespace Pango {
 
 	public partial class AttrIterator {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void pango_attr_iterator_get_font(IntPtr raw, IntPtr desc, out IntPtr language, out IntPtr extra_attrs);
 
-		public void GetFont (out Pango.FontDescription desc, out Pango.Language language, out Pango.Attribute[] extra_attrs)
-		{
-			desc = new FontDescription ();
+		public void GetFont(out Pango.FontDescription desc, out Pango.Language language, out Pango.Attribute[] extra_attrs) {
+			desc = new FontDescription();
 			IntPtr language_handle, list_handle;
-			pango_attr_iterator_get_font (Handle, desc.Handle, out language_handle, out list_handle);
+			pango_attr_iterator_get_font(Handle, desc.Handle, out language_handle, out list_handle);
 			desc.Family = desc.Family; // change static string to allocated one
-			language = language_handle == IntPtr.Zero ? null : new Language (language_handle);
+			language = language_handle == IntPtr.Zero ? null : new Language(language_handle);
 			if (list_handle == IntPtr.Zero) {
-				extra_attrs = new Pango.Attribute [0];
+				extra_attrs = new Pango.Attribute[0];
 				return;
 			}
-			GLib.SList list = new GLib.SList (list_handle);
-			extra_attrs = new Pango.Attribute [list.Count];
+			GLib.SList list = new GLib.SList(list_handle);
+			extra_attrs = new Pango.Attribute[list.Count];
 			int i = 0;
 			foreach (IntPtr raw_attr in list)
-				extra_attrs [i++] = Pango.Attribute.GetAttribute (raw_attr);
+				extra_attrs[i++] = Pango.Attribute.GetAttribute(raw_attr);
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_iterator_get_attrs (IntPtr raw);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_iterator_get_attrs(IntPtr raw);
 
 		public Pango.Attribute[] Attrs {
 			get {
-				IntPtr list_handle = pango_attr_iterator_get_attrs (Handle);
+				IntPtr list_handle = pango_attr_iterator_get_attrs(Handle);
 				if (list_handle == IntPtr.Zero)
-					return new Pango.Attribute [0];
-				GLib.SList list = new GLib.SList (list_handle);
-				Pango.Attribute[] attrs = new Pango.Attribute [list.Count];
+					return new Pango.Attribute[0];
+				GLib.SList list = new GLib.SList(list_handle);
+				Pango.Attribute[] attrs = new Pango.Attribute[list.Count];
 				int i = 0;
 				foreach (IntPtr raw_attr in list)
-					attrs [i++] = Pango.Attribute.GetAttribute (raw_attr);
+					attrs[i++] = Pango.Attribute.GetAttribute(raw_attr);
 				return attrs;
 			}
 		}

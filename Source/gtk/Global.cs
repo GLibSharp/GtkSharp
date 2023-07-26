@@ -22,15 +22,12 @@ namespace Gtk {
 
 		internal const string GtkNativeDll = "gtk-3-0.dll";
 
-		public static bool ShowUri (string uri)
-		{
-			return ShowUri (null, uri);
+		public static bool ShowUri(string uri) {
+			return ShowUri(null, uri);
 		}
 
-		public static bool ShowUri (Gdk.Screen screen, string uri)
-		{
-			return ShowUri (screen, uri, Gtk.Global.CurrentEventTime);
+		public static bool ShowUri(Gdk.Screen screen, string uri) {
+			return ShowUri(screen, uri, Gtk.Global.CurrentEventTime);
 		}
 	}
 }
-

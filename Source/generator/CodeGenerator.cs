@@ -27,12 +27,11 @@ namespace GtkSharp.Generation {
 	using System.IO;
 	using System.Xml;
 
-	public class CodeGenerator  {
+	public class CodeGenerator {
 
-		static LogWriter log = new LogWriter ("CodeGenerator");
+		static LogWriter log = new LogWriter("CodeGenerator");
 
-		public static int Main (string[] args)
-		{
+		public static int Main(string[] args) {
 			bool show_help = false;
 			bool all_opaque = true;
 			string dir = "";
@@ -47,12 +46,12 @@ namespace GtkSharp.Generation {
 			string schema_name = "";
 
 			SymbolTable table = SymbolTable.Table;
-			var gens = new List<IGeneratable> ();
+			var gens = new List<IGeneratable>();
 
-			var filenames = new List<string> ();
-			var includes = new List<string> ();
+			var filenames = new List<string>();
+			var includes = new List<string>();
 
-			var options = new OptionSet () {
+			var options = new OptionSet() {
 				{ "generate=", "Generate the C# code for this GAPI XML file.",
 					(string v) => { filenames.Add (v); } },
 				{ "I|include=", "GAPI XML file that contain symbols used in the main GAPI XML file.",
@@ -84,87 +83,85 @@ namespace GtkSharp.Generation {
 
 			List<string> extra;
 			try {
-				extra = options.Parse (args);
-			}
-			catch (OptionException e) {
-				Console.Write ("gapi-codegen: ");
-				Console.WriteLine (e.Message);
-				Console.WriteLine ("Try `gapi-codegen --help' for more information.");
+				extra = options.Parse(args);
+			} catch (OptionException e) {
+				Console.Write("gapi-codegen: ");
+				Console.WriteLine(e.Message);
+				Console.WriteLine("Try `gapi-codegen --help' for more information.");
 				return 64;
 			}
 
 			if (show_help) {
-				ShowHelp (options);
+				ShowHelp(options);
 				return 0;
 			}
 
 			if (filenames.Count == 0) {
-				Console.WriteLine ("You need to specify a file to process using the --generate option.");
-				Console.WriteLine ("Try `gapi-codegen --help' for more information.");
+				Console.WriteLine("You need to specify a file to process using the --generate option.");
+				Console.WriteLine("Try `gapi-codegen --help' for more information.");
 				return 64;
 			}
 
-			if (extra.Exists (v => { return v.StartsWith ("--customdir"); })) {
-				Console.WriteLine ("Using .custom files is not supported anymore, use partial classes instead.");
+			if (extra.Exists(v => { return v.StartsWith("--customdir"); })) {
+				Console.WriteLine("Using .custom files is not supported anymore, use partial classes instead.");
 				return 64;
 			}
 
-			if (!String.IsNullOrEmpty (schema_name) && !File.Exists (schema_name)) {
-				Console.WriteLine ("WARNING: Could not find schema file at '{0}', no validation will be done.", schema_name);
+			if (!String.IsNullOrEmpty(schema_name) && !File.Exists(schema_name)) {
+				Console.WriteLine("WARNING: Could not find schema file at '{0}', no validation will be done.", schema_name);
 				schema_name = null;
 			}
 
-			Parser p = new Parser ();
+			Parser p = new Parser();
 			foreach (string include in includes) {
 				log.Info("Parsing included gapi: " + include);
-				IGeneratable[] curr_gens = p.Parse (include, schema_name, gapidir);
-				table.AddTypes (curr_gens);
+				IGeneratable[] curr_gens = p.Parse(include, schema_name, gapidir);
+				table.AddTypes(curr_gens);
 			}
 
 			foreach (string filename in filenames) {
-			log.Info("Parsing included gapi: " + filename);
-				IGeneratable[] curr_gens = p.Parse (filename, schema_name, gapidir);
-				table.AddTypes (curr_gens);
-				gens.AddRange (curr_gens);
+				log.Info("Parsing included gapi: " + filename);
+				IGeneratable[] curr_gens = p.Parse(filename, schema_name, gapidir);
+				table.AddTypes(curr_gens);
+				gens.AddRange(curr_gens);
 			}
 
 			// Now that everything is loaded, validate all the to-be-
 			// generated generatables and then remove the invalid ones.
-			var invalids = new List<IGeneratable> ();
+			var invalids = new List<IGeneratable>();
 			foreach (IGeneratable gen in gens) {
-				if (!gen.Validate ())
-					invalids.Add (gen);
+				if (!gen.Validate())
+					invalids.Add(gen);
 			}
 			foreach (IGeneratable gen in invalids)
-				gens.Remove (gen);
+				gens.Remove(gen);
 
 			GenerationInfo gen_info = null;
 			if (dir != "" || assembly_name != "" || glue_filename != "" || glue_includes != "" || gluelib_name != "")
-				gen_info = new GenerationInfo (dir, assembly_name, glue_filename, glue_includes, gluelib_name,
+				gen_info = new GenerationInfo(dir, assembly_name, glue_filename, glue_includes, gluelib_name,
 						abi_c_file, abi_cs_file, abi_cs_usings);
-			
+
 			foreach (IGeneratable gen in gens) {
 				if (gen_info == null)
-					gen.Generate ();
+					gen.Generate();
 				else
-					gen.Generate (gen_info);
+					gen.Generate(gen_info);
 			}
 
-			ObjectGen.GenerateMappers ();
+			ObjectGen.GenerateMappers();
 
 			if (gen_info != null)
-				gen_info.CloseWriters ();
+				gen_info.CloseWriters();
 
 			Statistics.Report();
 			return 0;
 		}
 
-		static void ShowHelp (OptionSet p)
-		{
-			Console.WriteLine ("Usage: gapi-codegen [OPTIONS]+");
-			Console.WriteLine ();
-			Console.WriteLine ("Options:");
-			p.WriteOptionDescriptions (Console.Out);
+		static void ShowHelp(OptionSet p) {
+			Console.WriteLine("Usage: gapi-codegen [OPTIONS]+");
+			Console.WriteLine();
+			Console.WriteLine("Options:");
+			p.WriteOptionDescriptions(Console.Out);
 		}
 	}
 }

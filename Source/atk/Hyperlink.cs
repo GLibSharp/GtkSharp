@@ -24,9 +24,8 @@
 namespace Atk {
 	public partial class Hyperlink {
 
-		protected void EmitLinkActivated ()
-		{
-			GLib.Signal.Emit (this, "link_activated");
+		protected void EmitLinkActivated() {
+			GLib.Signal.Emit(this, "link_activated");
 		}
 	}
 }

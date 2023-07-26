@@ -29,11 +29,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum HintMetrics
-	{
+	public enum HintMetrics {
 		Default,
 		Off,
 		On,

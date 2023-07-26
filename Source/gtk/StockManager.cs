@@ -26,12 +26,11 @@ namespace Gtk {
 
 	public class StockManager {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_stock_add_static(ref Gtk.StockItem items, uint n_items);
 
-		[Obsolete ("Use StockManager.Add instead")]
-		public static void AddStatic(Gtk.StockItem items, uint n_items) 
-		{
+		[Obsolete("Use StockManager.Add instead")]
+		public static void AddStatic(Gtk.StockItem items, uint n_items) {
 			gtk_stock_add_static(ref items, n_items);
 		}
 
@@ -43,59 +42,53 @@ namespace Gtk {
 			public uint Keyval;
 			public IntPtr TranslationDomain;
 
-			public static explicit operator StockItem (ConstStockItem csi)
-			{
-				Gtk.StockItem item = new Gtk.StockItem ();
-				item.StockId = GLib.Marshaller.Utf8PtrToString (csi.StockId);
-				item.Label = GLib.Marshaller.Utf8PtrToString (csi.Label);
+			public static explicit operator StockItem(ConstStockItem csi) {
+				Gtk.StockItem item = new Gtk.StockItem();
+				item.StockId = GLib.Marshaller.Utf8PtrToString(csi.StockId);
+				item.Label = GLib.Marshaller.Utf8PtrToString(csi.Label);
 				item.Modifier = csi.Modifier;
 				item.Keyval = csi.Keyval;
-				item.TranslationDomain = GLib.Marshaller.Utf8PtrToString (csi.TranslationDomain);
+				item.TranslationDomain = GLib.Marshaller.Utf8PtrToString(csi.TranslationDomain);
 				return item;
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool gtk_stock_lookup (IntPtr stock_id, out ConstStockItem item);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool gtk_stock_lookup(IntPtr stock_id, out ConstStockItem item);
 
-		public static bool Lookup (string stock_id, ref Gtk.StockItem item) 
-		{
+		public static bool Lookup(string stock_id, ref Gtk.StockItem item) {
 			ConstStockItem const_item;
-			IntPtr native_id = GLib.Marshaller.StringToPtrGStrdup (stock_id);
-			bool found = gtk_stock_lookup (native_id, out const_item);
-			GLib.Marshaller.Free (native_id);
+			IntPtr native_id = GLib.Marshaller.StringToPtrGStrdup(stock_id);
+			bool found = gtk_stock_lookup(native_id, out const_item);
+			GLib.Marshaller.Free(native_id);
 			if (!found)
 				return false;
-			item = (StockItem) const_item;
+			item = (StockItem)const_item;
 			return true;
 		}
 
-		public static bool LookupItem (string stock_id, out Gtk.StockItem item) 
-		{
+		public static bool LookupItem(string stock_id, out Gtk.StockItem item) {
 			item = StockItem.Zero;
-			return Lookup (stock_id, ref item);
+			return Lookup(stock_id, ref item);
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_stock_add(ref Gtk.StockItem item, uint n_items);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_stock_add(Gtk.StockItem[] items, uint n_items);
 
-		[Obsolete ("Use the StockItem or StockItem[] overload instead.")]
-		public static void Add (Gtk.StockItem items, uint n_items) 
-		{
+		[Obsolete("Use the StockItem or StockItem[] overload instead.")]
+		public static void Add(Gtk.StockItem items, uint n_items) {
 			gtk_stock_add(ref items, n_items);
 		}
 
-		public static void Add (Gtk.StockItem item)
-		{
-			gtk_stock_add (ref item, 1);
+		public static void Add(Gtk.StockItem item) {
+			gtk_stock_add(ref item, 1);
 		}
 
-		public static void Add (Gtk.StockItem[] items)
-		{
-			gtk_stock_add (items, (uint) items.Length);
+		public static void Add(Gtk.StockItem[] items) {
+			gtk_stock_add(items, (uint)items.Length);
 		}
 
 	}

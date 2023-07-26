@@ -25,10 +25,10 @@ namespace GLib {
 
 	public class InitiallyUnowned : Object {
 
-		protected InitiallyUnowned (IntPtr raw) : base (raw) {}
+		protected InitiallyUnowned(IntPtr raw) : base(raw) { }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr g_initially_unowned_get_type ();
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr g_initially_unowned_get_type();
 
 		public new static GLib.GType GType {
 			get {
@@ -38,32 +38,31 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void g_object_ref_sink (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void g_object_ref_sink(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool g_object_is_floating (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool g_object_is_floating(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_force_floating (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_force_floating(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_unref (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_unref(IntPtr raw);
 
 		public bool IsFloating {
 			get {
-				return g_object_is_floating (Handle);
+				return g_object_is_floating(Handle);
 			}
 			set {
-			  	if (value == true) {
+				if (value == true) {
 					if (!IsFloating)
-						g_object_force_floating (Handle);
+						g_object_force_floating(Handle);
 				} else {
-					g_object_ref_sink (Handle);
-					g_object_unref (Handle);
+					g_object_ref_sink(Handle);
+					g_object_unref(Handle);
 				}
 			}
 		}
 	}
 }
-

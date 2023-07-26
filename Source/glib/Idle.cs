@@ -30,65 +30,56 @@ namespace GLib {
 	using System.Collections.Generic;
 	using System.Runtime.InteropServices;
 
-	public delegate bool IdleHandler ();
+	public delegate bool IdleHandler();
 
 	public class Idle {
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate bool IdleHandlerInternal ();
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		delegate bool IdleHandlerInternal();
 
 		internal class IdleProxy : SourceProxy {
-			public IdleProxy (IdleHandler real)
-			{
+			public IdleProxy(IdleHandler real) {
 				real_handler = real;
-				proxy_handler = new IdleHandlerInternal (Handler);
+				proxy_handler = new IdleHandlerInternal(Handler);
 			}
 
-			public bool Handler ()
-			{
+			public bool Handler() {
 				try {
-					IdleHandler idle_handler = (IdleHandler) real_handler;
+					IdleHandler idle_handler = (IdleHandler)real_handler;
 
-					bool cont = idle_handler ();
-					if (!cont)
-					{
-						lock (this)
-						{
-							Dispose ();
+					bool cont = idle_handler();
+					if (!cont) {
+						lock (this) {
+							Dispose();
 						}
 					}
 					return cont;
 				} catch (Exception e) {
-					ExceptionManager.RaiseUnhandledException (e, false);
+					ExceptionManager.RaiseUnhandledException(e, false);
 				}
 				return false;
 			}
 		}
-		
-		private Idle ()
-		{
+
+		private Idle() {
 		}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_idle_add_full(int priority, IdleHandlerInternal d, IntPtr data, DestroyNotify notify);
-		
-		public static uint Add (IdleHandler hndlr)
-		{
-			IdleProxy p = new IdleProxy (hndlr);
-			lock (p)
-			{
+
+		public static uint Add(IdleHandler hndlr) {
+			IdleProxy p = new IdleProxy(hndlr);
+			lock (p) {
 				var gch = GCHandle.Alloc(p);
 				var userData = GCHandle.ToIntPtr(gch);
-				p.ID = g_idle_add_full (0, (IdleHandlerInternal) p.proxy_handler, userData, DestroyHelper.NotifyHandler);
+				p.ID = g_idle_add_full(0, (IdleHandlerInternal)p.proxy_handler, userData, DestroyHelper.NotifyHandler);
 			}
 
 			return p.ID;
 		}
-		
-		public static void Remove (uint id)
-		{
-			Source.Remove (id);
+
+		public static void Remove(uint id) {
+			Source.Remove(id);
 		}
 	}
 }
-

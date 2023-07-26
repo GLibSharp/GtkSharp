@@ -21,14 +21,14 @@
 namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
-	
+
 	public partial class AppInfoAdapter {
-		[DllImport (GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_app_info_get_all();
 
-		public static GLib.IAppInfo[] GetAll () {
+		public static GLib.IAppInfo[] GetAll() {
 			IntPtr raw_ret = g_app_info_get_all();
-			GLib.IAppInfo[] ret = (GLib.IAppInfo[]) GLib.Marshaller.ListPtrToArray (raw_ret, typeof (GLib.List), true, false, typeof (GLib.IAppInfo));
+			GLib.IAppInfo[] ret = (GLib.IAppInfo[])GLib.Marshaller.ListPtrToArray(raw_ret, typeof(GLib.List), true, false, typeof(GLib.IAppInfo));
 			return ret;
 		}
 	}

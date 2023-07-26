@@ -30,10 +30,9 @@ namespace Gtk {
 		string handler;
 		object[] parms;
 
-		public BindingAttribute (Gdk.Key key, string handler, params object[] parms) : this (key, 0, handler, parms) {}
+		public BindingAttribute(Gdk.Key key, string handler, params object[] parms) : this(key, 0, handler, parms) { }
 
-		public BindingAttribute (Gdk.Key key, Gdk.ModifierType mod, string handler, params object[] parms)
-		{
+		public BindingAttribute(Gdk.Key key, Gdk.ModifierType mod, string handler, params object[] parms) {
 			this.key = key;
 			this.mod = mod;
 			this.handler = handler;
@@ -65,4 +64,3 @@ namespace Gtk {
 		}
 	}
 }
-

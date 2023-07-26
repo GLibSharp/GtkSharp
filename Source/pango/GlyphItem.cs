@@ -25,30 +25,29 @@ namespace Pango {
 
 	public partial struct GlyphItem {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_glyph_item_apply_attrs(ref Pango.GlyphItem raw, IntPtr text, IntPtr list);
 
-		public GlyphItem[] ApplyAttrs (string text, Pango.AttrList list)
-		{
-			IntPtr native_text = GLib.Marshaller.StringToPtrGStrdup (text);
-			IntPtr list_handle = pango_glyph_item_apply_attrs (ref this, native_text, list.Handle);
-			GLib.Marshaller.Free (native_text);
+		public GlyphItem[] ApplyAttrs(string text, Pango.AttrList list) {
+			IntPtr native_text = GLib.Marshaller.StringToPtrGStrdup(text);
+			IntPtr list_handle = pango_glyph_item_apply_attrs(ref this, native_text, list.Handle);
+			GLib.Marshaller.Free(native_text);
 			if (list_handle == IntPtr.Zero)
-				return new GlyphItem [0];
-			GLib.SList item_list = new GLib.SList (list_handle, typeof (GlyphItem));
-			GlyphItem[] result = new GlyphItem [item_list.Count];
+				return new GlyphItem[0];
+			GLib.SList item_list = new GLib.SList(list_handle, typeof(GlyphItem));
+			GlyphItem[] result = new GlyphItem[item_list.Count];
 			int i = 0;
 			foreach (GlyphItem item in item_list)
-				result [i++] = item;
+				result[i++] = item;
 			return result;
 		}
 
-		[Obsolete ("Replaced by Glyphs property")]
+		[Obsolete("Replaced by Glyphs property")]
 		public Pango.GlyphString glyphs {
 			get { return Glyphs; }
 		}
 
-		[Obsolete ("Replaced by Item property")]
+		[Obsolete("Replaced by Item property")]
 		public Pango.Item item {
 			get { return Item; }
 		}

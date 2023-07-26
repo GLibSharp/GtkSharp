@@ -25,7 +25,7 @@ namespace GtkSharp.Generation {
 	using System;
 	using System.Xml;
 
-	public abstract class MethodBase  {
+	public abstract class MethodBase {
 
 		protected XmlElement elem;
 		protected ClassBase container_type;
@@ -34,17 +34,16 @@ namespace GtkSharp.Generation {
 		string name;
 		private string protection = "public";
 
-		protected MethodBase (XmlElement elem, ClassBase container_type)
-		{
+		protected MethodBase(XmlElement elem, ClassBase container_type) {
 			this.elem = elem;
 			this.container_type = container_type;
-			this.name = elem.GetAttribute ("name");
-			parms = new Parameters (elem ["parameters"]);
-			IsStatic = elem.GetAttribute ("shared") == "true";
-			if (elem.GetAttributeAsBoolean ("new_flag"))
+			this.name = elem.GetAttribute("name");
+			parms = new Parameters(elem["parameters"]);
+			IsStatic = elem.GetAttribute("shared") == "true";
+			if (elem.GetAttributeAsBoolean("new_flag"))
 				mods = "new ";
-			if (elem.HasAttribute ("accessibility")) {
-				string attr = elem.GetAttribute ("accessibility");
+			if (elem.HasAttribute("accessibility")) {
+				string attr = elem.GetAttribute("accessibility");
 				switch (attr) {
 					case "public":
 					case "protected":
@@ -60,9 +59,9 @@ namespace GtkSharp.Generation {
 		protected string BaseName {
 			get {
 				string name = Name;
-				int idx = Name.LastIndexOf (".");
+				int idx = Name.LastIndexOf(".");
 				if (idx > 0)
-					name = Name.Substring (idx + 1);
+					name = Name.Substring(idx + 1);
 				return name;
 			}
 		}
@@ -71,8 +70,8 @@ namespace GtkSharp.Generation {
 		public MethodBody Body {
 			get {
 				if (body == null) {
-					LogWriter log = new LogWriter (Name);
-					body = new MethodBody (parms, log);
+					LogWriter log = new LogWriter(Name);
+					body = new MethodBody(parms, log);
 				}
 				return body;
 			}
@@ -80,7 +79,7 @@ namespace GtkSharp.Generation {
 
 		public virtual string CName {
 			get {
-				return SymbolTable.Table.MangleName (elem.GetAttribute ("cname"));
+				return SymbolTable.Table.MangleName(elem.GetAttribute("cname"));
 			}
 		}
 
@@ -91,10 +90,10 @@ namespace GtkSharp.Generation {
 					return false;
 				if (name == "GetHandle")
 					return false;
-				if (name.StartsWith ("Get") || name.StartsWith ("Has"))
-					return Char.IsUpper (name [3]);
-				else if (name.StartsWith ("Is"))
-					return Char.IsUpper (name [2]);
+				if (name.StartsWith("Get") || name.StartsWith("Has"))
+					return Char.IsUpper(name[3]);
+				else if (name.StartsWith("Is"))
+					return Char.IsUpper(name[2]);
 				else
 					return false;
 			}
@@ -107,7 +106,7 @@ namespace GtkSharp.Generation {
 					return false;
 				if (name == "SetHandle")
 					return false;
-				return name.StartsWith ("Set") && Char.IsUpper (name [3]);
+				return name.StartsWith("Set") && Char.IsUpper(name[3]);
 			}
 		}
 
@@ -122,8 +121,8 @@ namespace GtkSharp.Generation {
 
 		public string LibraryName {
 			get {
-				if (elem.HasAttribute ("library"))
-					return elem.GetAttribute ("library");
+				if (elem.HasAttribute("library"))
+					return elem.GetAttribute("library");
 				return container_type.LibraryName;
 			}
 		}
@@ -152,7 +151,7 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-	
+
 		public string Protection {
 			get { return protection; }
 			set { protection = value; }
@@ -168,15 +167,14 @@ namespace GtkSharp.Generation {
 		public Signature Signature {
 			get {
 				if (sig == null)
-					sig = new Signature (parms);
+					sig = new Signature(parms);
 				return sig;
 			}
 		}
 
-		public virtual bool Validate (LogWriter log)
-		{
+		public virtual bool Validate(LogWriter log) {
 			log.Member = Name;
-			if (!parms.Validate (log)) {
+			if (!parms.Validate(log)) {
 				Statistics.ThrottledCount++;
 				return false;
 			}
@@ -185,4 +183,3 @@ namespace GtkSharp.Generation {
 		}
 	}
 }
-

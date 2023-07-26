@@ -30,19 +30,18 @@ namespace GtkSharp.Generation {
 		string getterName, setterName;
 		protected string getOffsetName, offsetName;
 
-		public FieldBase (XmlElement elem, ClassBase container_type) : base (elem, container_type) {}
-		public FieldBase (XmlElement elem, ClassBase container_type, FieldBase abi_field) : base (elem, container_type) {
+		public FieldBase(XmlElement elem, ClassBase container_type) : base(elem, container_type) { }
+		public FieldBase(XmlElement elem, ClassBase container_type, FieldBase abi_field) : base(elem, container_type) {
 			abi_field = abi_field;
 		}
 
 
-		public virtual bool Validate (LogWriter log)
-		{
+		public virtual bool Validate(LogWriter log) {
 			log.Member = Name;
 			if (!Ignored && !Hidden && CSType == "") {
 				if (Name == "Priv")
 					return false;
-				log.Warn ("field has unknown type: " + CType);
+				log.Warn("field has unknown type: " + CType);
 				Statistics.ThrottledCount++;
 				return false;
 			}
@@ -52,17 +51,17 @@ namespace GtkSharp.Generation {
 
 		internal virtual bool Readable {
 			get {
-				if (Parser.GetVersion (elem.OwnerDocument.DocumentElement) <= 2)
-					return elem.GetAttribute ("readable") != "false";
-				return elem.HasAttribute ("readable") && elem.GetAttributeAsBoolean ("readable");
+				if (Parser.GetVersion(elem.OwnerDocument.DocumentElement) <= 2)
+					return elem.GetAttribute("readable") != "false";
+				return elem.HasAttribute("readable") && elem.GetAttributeAsBoolean("readable");
 			}
 		}
 
 		internal virtual bool Writable {
 			get {
-				if (Parser.GetVersion (elem.OwnerDocument.DocumentElement) <= 2)
-					return elem.GetAttribute ("writeable") != "false";
-				return elem.HasAttribute ("writeable") && elem.GetAttributeAsBoolean ("writeable");
+				if (Parser.GetVersion(elem.OwnerDocument.DocumentElement) <= 2)
+					return elem.GetAttribute("writeable") != "false";
+				return elem.HasAttribute("writeable") && elem.GetAttributeAsBoolean("writeable");
 			}
 		}
 
@@ -70,13 +69,13 @@ namespace GtkSharp.Generation {
 
 		protected virtual string Access {
 			get {
-				return elem.HasAttribute ("access") ? elem.GetAttribute ("access") : DefaultAccess;
+				return elem.HasAttribute("access") ? elem.GetAttribute("access") : DefaultAccess;
 			}
 		}
 
 		public bool IsArray {
 			get {
-				return elem.HasAttribute ("array_len") || elem.GetAttributeAsBoolean ("array");
+				return elem.HasAttribute("array_len") || elem.GetAttributeAsBoolean("array");
 			}
 		}
 
@@ -88,7 +87,7 @@ namespace GtkSharp.Generation {
 
 		public bool Ignored {
 			get {
-				if (container_type.GetProperty (Name) != null)
+				if (container_type.GetProperty(Name) != null)
 					return true;
 				if (IsArray)
 					return true;
@@ -105,15 +104,14 @@ namespace GtkSharp.Generation {
 			return (abi_field != null && abi_field.getOffsetName != null);
 		}
 
-		void CheckGlue (GenerationInfo gen_info)
-		{
+		void CheckGlue(GenerationInfo gen_info) {
 			getterName = setterName = getOffsetName = null;
 			if (Access != "public")
 				return;
 
 			if (UseABIStruct(gen_info)) {
 				getOffsetName = abi_field.getOffsetName;
-				offsetName = ((StructABIField) abi_field).abi_info_name + ".GetFieldOffset(\"" + ((StructField)abi_field).CName + "\")";
+				offsetName = ((StructABIField)abi_field).abi_info_name + ".GetFieldOffset(\"" + ((StructField)abi_field).CName + "\")";
 
 				return;
 			}
@@ -121,7 +119,7 @@ namespace GtkSharp.Generation {
 			if (gen_info.GlueWriter == null)
 				return;
 
-			string prefix = (container_type.NS + "Sharp_" + container_type.NS + "_" + container_type.Name).Replace(".", "__").ToLower ();
+			string prefix = (container_type.NS + "Sharp_" + container_type.NS + "_" + container_type.Name).Replace(".", "__").ToLower();
 
 			if (IsBitfield) {
 				if (Readable && Getter == null)
@@ -136,8 +134,7 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		protected override void GenerateImports (GenerationInfo gen_info, string indent)
-		{
+		protected override void GenerateImports(GenerationInfo gen_info, string indent) {
 			StreamWriter sw = gen_info.Writer;
 			SymbolTable table = SymbolTable.Table;
 
@@ -147,36 +144,35 @@ namespace GtkSharp.Generation {
 			}
 
 			if (getterName != null) {
-				sw.WriteLine (indent + "[DllImport (\"{0}\")]", gen_info.GluelibName);
-				sw.WriteLine (indent + "extern static {0} {1} ({2} raw);",
-						  table.GetMarshalType (CType), getterName,
+				sw.WriteLine(indent + "[DllImport (\"{0}\")]", gen_info.GluelibName);
+				sw.WriteLine(indent + "extern static {0} {1} ({2} raw);",
+						  table.GetMarshalType(CType), getterName,
 						  container_type.MarshalType);
 			}
 
 			if (setterName != null) {
-				sw.WriteLine (indent + "[DllImport (\"{0}\")]", gen_info.GluelibName);
-				sw.WriteLine (indent + "extern static void {0} ({1} raw, {2} value);",
-						  setterName, container_type.MarshalType, table.GetMarshalType (CType));
+				sw.WriteLine(indent + "[DllImport (\"{0}\")]", gen_info.GluelibName);
+				sw.WriteLine(indent + "extern static void {0} ({1} raw, {2} value);",
+						  setterName, container_type.MarshalType, table.GetMarshalType(CType));
 			}
 
 			if (getOffsetName != null) {
-				sw.WriteLine (indent + "[DllImport (\"{0}\")]", gen_info.GluelibName);
-				sw.WriteLine (indent + "extern static uint {0} ();", getOffsetName);
-				sw.WriteLine ();
-				sw.WriteLine (indent + "static uint " + offsetName + " = " + getOffsetName + " ();");
+				sw.WriteLine(indent + "[DllImport (\"{0}\")]", gen_info.GluelibName);
+				sw.WriteLine(indent + "extern static uint {0} ();", getOffsetName);
+				sw.WriteLine();
+				sw.WriteLine(indent + "static uint " + offsetName + " = " + getOffsetName + " ();");
 			}
 
-			base.GenerateImports (gen_info, indent);
+			base.GenerateImports(gen_info, indent);
 		}
 
-		public virtual void Generate (GenerationInfo gen_info, string indent)
-		{
+		public virtual void Generate(GenerationInfo gen_info, string indent) {
 			if (Ignored || Hidden)
 				return;
 
-			CheckGlue (gen_info);
+			CheckGlue(gen_info);
 
-			GenerateImports (gen_info, indent);
+			GenerateImports(gen_info, indent);
 
 			if (Getter == null && getterName == null && offsetName == null &&
 					Setter == null && setterName == null) {
@@ -185,126 +181,122 @@ namespace GtkSharp.Generation {
 
 
 			SymbolTable table = SymbolTable.Table;
-			IGeneratable gen = table [CType];
+			IGeneratable gen = table[CType];
 			StreamWriter sw = gen_info.Writer;
-			string modifiers = elem.GetAttributeAsBoolean ("new_flag") ? "new " : "";
+			string modifiers = elem.GetAttributeAsBoolean("new_flag") ? "new " : "";
 
-			sw.WriteLine (indent + "public " + modifiers + CSType + " " + Name + " {");
+			sw.WriteLine(indent + "public " + modifiers + CSType + " " + Name + " {");
 
 			if (Getter != null) {
-				sw.Write (indent + "\tget ");
-				Getter.GenerateBody (gen_info, container_type, "\t");
-				sw.WriteLine ("");
+				sw.Write(indent + "\tget ");
+				Getter.GenerateBody(gen_info, container_type, "\t");
+				sw.WriteLine("");
 			} else if (getterName != null) {
-				sw.WriteLine (indent + "\tget {");
-				container_type.Prepare (sw, indent + "\t\t");
-				sw.WriteLine (indent + "\t\t" + CSType + " result = " + table.FromNative (ctype, getterName + " (" + container_type.CallByName () + ")") + ";");
-				container_type.Finish (sw, indent + "\t\t");
-				sw.WriteLine (indent + "\t\treturn result;");
-				sw.WriteLine (indent + "\t}");
+				sw.WriteLine(indent + "\tget {");
+				container_type.Prepare(sw, indent + "\t\t");
+				sw.WriteLine(indent + "\t\t" + CSType + " result = " + table.FromNative(ctype, getterName + " (" + container_type.CallByName() + ")") + ";");
+				container_type.Finish(sw, indent + "\t\t");
+				sw.WriteLine(indent + "\t\treturn result;");
+				sw.WriteLine(indent + "\t}");
 			} else if (Readable && offsetName != null) {
-				sw.WriteLine (indent + "\tget {");
-				sw.WriteLine (indent + "\t\tunsafe {");
+				sw.WriteLine(indent + "\tget {");
+				sw.WriteLine(indent + "\t\tunsafe {");
 				if (gen is CallbackGen) {
-					sw.WriteLine (indent + "\t\t\tIntPtr* raw_ptr = (IntPtr*)(((byte*)" + container_type.CallByName () + ") + " + offsetName + ");");
-					sw.WriteLine (indent + "\t\t\t {0} del = ({0})Marshal.GetDelegateForFunctionPointer(*raw_ptr, typeof({0}));", table.GetMarshalType (CType));
-					sw.WriteLine (indent + "\t\t\treturn " + table.FromNative (ctype, "(del)") + ";");
+					sw.WriteLine(indent + "\t\t\tIntPtr* raw_ptr = (IntPtr*)(((byte*)" + container_type.CallByName() + ") + " + offsetName + ");");
+					sw.WriteLine(indent + "\t\t\t {0} del = ({0})Marshal.GetDelegateForFunctionPointer(*raw_ptr, typeof({0}));", table.GetMarshalType(CType));
+					sw.WriteLine(indent + "\t\t\treturn " + table.FromNative(ctype, "(del)") + ";");
+				} else {
+					sw.WriteLine(indent + "\t\t\t" + table.GetMarshalType(CType) + "* raw_ptr = (" + table.GetMarshalType(CType) + "*)(((byte*)" + container_type.CallByName() + ") + " + offsetName + ");");
+					sw.WriteLine(indent + "\t\t\treturn " + table.FromNative(ctype, "(*raw_ptr)") + ";");
 				}
-				else {
-					sw.WriteLine (indent + "\t\t\t" + table.GetMarshalType (CType) + "* raw_ptr = (" + table.GetMarshalType (CType) + "*)(((byte*)" + container_type.CallByName () + ") + " + offsetName + ");");
-					sw.WriteLine (indent + "\t\t\treturn " + table.FromNative (ctype, "(*raw_ptr)") + ";");
-				}
-				sw.WriteLine (indent + "\t\t}");
-				sw.WriteLine (indent + "\t}");
+				sw.WriteLine(indent + "\t\t}");
+				sw.WriteLine(indent + "\t}");
 			}
 
-			string to_native = (gen is IManualMarshaler) ? (gen as IManualMarshaler).AllocNative ("value") : gen.CallByName ("value");
+			string to_native = (gen is IManualMarshaler) ? (gen as IManualMarshaler).AllocNative("value") : gen.CallByName("value");
 
 			if (Setter != null) {
-				sw.Write (indent + "\tset ");
-				Setter.GenerateBody (gen_info, container_type, "\t");
-				sw.WriteLine ("");
+				sw.Write(indent + "\tset ");
+				Setter.GenerateBody(gen_info, container_type, "\t");
+				sw.WriteLine("");
 			} else if (setterName != null) {
-				sw.WriteLine (indent + "\tset {");
-				container_type.Prepare (sw, indent + "\t\t");
-				sw.WriteLine (indent + "\t\t" + setterName + " (" + container_type.CallByName () + ", " + to_native + ");");
-				container_type.Finish (sw, indent + "\t\t");
-				sw.WriteLine (indent + "\t}");
+				sw.WriteLine(indent + "\tset {");
+				container_type.Prepare(sw, indent + "\t\t");
+				sw.WriteLine(indent + "\t\t" + setterName + " (" + container_type.CallByName() + ", " + to_native + ");");
+				container_type.Finish(sw, indent + "\t\t");
+				sw.WriteLine(indent + "\t}");
 			} else if (Writable && offsetName != null) {
-				sw.WriteLine (indent + "\tset {");
-				sw.WriteLine (indent + "\t\tunsafe {");
+				sw.WriteLine(indent + "\tset {");
+				sw.WriteLine(indent + "\t\tunsafe {");
 				if (gen is CallbackGen) {
-					sw.WriteLine (indent + "\t\t\t{0} wrapper = new {0} (value);", ((CallbackGen)gen).WrapperName);
-					sw.WriteLine (indent + "\t\t\tIntPtr* raw_ptr = (IntPtr*)(((byte*)" + container_type.CallByName () + ") + " + offsetName + ");");
-					sw.WriteLine (indent + "\t\t\t*raw_ptr = Marshal.GetFunctionPointerForDelegate (wrapper.NativeDelegate);");
+					sw.WriteLine(indent + "\t\t\t{0} wrapper = new {0} (value);", ((CallbackGen)gen).WrapperName);
+					sw.WriteLine(indent + "\t\t\tIntPtr* raw_ptr = (IntPtr*)(((byte*)" + container_type.CallByName() + ") + " + offsetName + ");");
+					sw.WriteLine(indent + "\t\t\t*raw_ptr = Marshal.GetFunctionPointerForDelegate (wrapper.NativeDelegate);");
+				} else {
+					sw.WriteLine(indent + "\t\t\t" + table.GetMarshalType(CType) + "* raw_ptr = (" + table.GetMarshalType(CType) + "*)(((byte*)" + container_type.CallByName() + ") + " + offsetName + ");");
+					sw.WriteLine(indent + "\t\t\t*raw_ptr = " + to_native + ";");
 				}
-				else {
-					sw.WriteLine (indent + "\t\t\t" + table.GetMarshalType (CType) + "* raw_ptr = (" + table.GetMarshalType (CType) + "*)(((byte*)" + container_type.CallByName () + ") + " + offsetName + ");");
-					sw.WriteLine (indent + "\t\t\t*raw_ptr = " + to_native + ";");
-				}
-				sw.WriteLine (indent + "\t\t}");
-				sw.WriteLine (indent + "\t}");
+				sw.WriteLine(indent + "\t\t}");
+				sw.WriteLine(indent + "\t}");
 			}
 
-			sw.WriteLine (indent + "}");
-			sw.WriteLine ("");
+			sw.WriteLine(indent + "}");
+			sw.WriteLine("");
 
 			if ((getterName != null || setterName != null || getOffsetName != null) && gen_info.GlueWriter != null)
-				GenerateGlue (gen_info);
+				GenerateGlue(gen_info);
 		}
 
-		protected void GenerateGlue (GenerationInfo gen_info)
-		{
+		protected void GenerateGlue(GenerationInfo gen_info) {
 			StreamWriter sw = gen_info.GlueWriter;
 			SymbolTable table = SymbolTable.Table;
 
-			string FieldCType = CType.Replace ("-", " ");
+			string FieldCType = CType.Replace("-", " ");
 			bool byref = table[CType] is ByRefGen || table[CType] is StructGen;
 			string GlueCType = byref ? FieldCType + " *" : FieldCType;
 			string ContainerCType = container_type.CName;
-			string ContainerCName = container_type.Name.ToLower ();
+			string ContainerCName = container_type.Name.ToLower();
 
 			if (getterName != null) {
-				sw.WriteLine ("{0} {1} ({2} *{3});",
-					      GlueCType, getterName, ContainerCType, ContainerCName);
+				sw.WriteLine("{0} {1} ({2} *{3});",
+						  GlueCType, getterName, ContainerCType, ContainerCName);
 			}
 			if (setterName != null) {
-				sw.WriteLine ("void {0} ({1} *{2}, {3} value);",
-					      setterName, ContainerCType, ContainerCName, GlueCType);
+				sw.WriteLine("void {0} ({1} *{2}, {3} value);",
+						  setterName, ContainerCType, ContainerCName, GlueCType);
 			}
 			if (getOffsetName != null)
-				sw.WriteLine ("guint {0} (void);", getOffsetName);
-			sw.WriteLine ("");
+				sw.WriteLine("guint {0} (void);", getOffsetName);
+			sw.WriteLine("");
 
 			if (getterName != null) {
-				sw.WriteLine (GlueCType);
-				sw.WriteLine ("{0} ({1} *{2})", getterName, ContainerCType, ContainerCName);
-				sw.WriteLine ("{");
-				sw.WriteLine ("\treturn ({0}){1}{2}->{3};", GlueCType,
-					      byref ? "&" : "", ContainerCName, CName);
-				sw.WriteLine ("}");
-				sw.WriteLine ("");
+				sw.WriteLine(GlueCType);
+				sw.WriteLine("{0} ({1} *{2})", getterName, ContainerCType, ContainerCName);
+				sw.WriteLine("{");
+				sw.WriteLine("\treturn ({0}){1}{2}->{3};", GlueCType,
+						  byref ? "&" : "", ContainerCName, CName);
+				sw.WriteLine("}");
+				sw.WriteLine("");
 			}
 			if (setterName != null) {
-				sw.WriteLine ("void");
-				sw.WriteLine ("{0} ({1} *{2}, {3} value)",
-					      setterName, ContainerCType, ContainerCName, GlueCType);
-				sw.WriteLine ("{");
-				sw.WriteLine ("\t{0}->{1} = ({2}){3}value;", ContainerCName, CName,
-					      FieldCType, byref ? "*" : "");
-				sw.WriteLine ("}");
-				sw.WriteLine ("");
+				sw.WriteLine("void");
+				sw.WriteLine("{0} ({1} *{2}, {3} value)",
+						  setterName, ContainerCType, ContainerCName, GlueCType);
+				sw.WriteLine("{");
+				sw.WriteLine("\t{0}->{1} = ({2}){3}value;", ContainerCName, CName,
+						  FieldCType, byref ? "*" : "");
+				sw.WriteLine("}");
+				sw.WriteLine("");
 			}
 			if (getOffsetName != null) {
-				sw.WriteLine ("guint");
-				sw.WriteLine ("{0} (void)", getOffsetName);
-				sw.WriteLine ("{");
-				sw.WriteLine ("\treturn (guint)G_STRUCT_OFFSET ({0}, {1});",
-					      ContainerCType, CName);
-				sw.WriteLine ("}");
-				sw.WriteLine ("");
+				sw.WriteLine("guint");
+				sw.WriteLine("{0} (void)", getOffsetName);
+				sw.WriteLine("{");
+				sw.WriteLine("\treturn (guint)G_STRUCT_OFFSET ({0}, {1});",
+						  ContainerCType, CName);
+				sw.WriteLine("}");
+				sw.WriteLine("");
 			}
 		}
 	}
 }
-

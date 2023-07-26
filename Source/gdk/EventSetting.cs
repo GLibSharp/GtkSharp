@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventSetting : Event {
 
-		public EventSetting (IntPtr raw) : base (raw) {} 
+		public EventSetting(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -38,7 +38,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public SettingAction Action {
@@ -46,19 +46,18 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.action = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public string Name {
-			get { return GLib.Marshaller.Utf8PtrToString (Native.name); }
+			get { return GLib.Marshaller.Utf8PtrToString(Native.name); }
 			set {
 				NativeStruct native = Native;
-				GLib.Marshaller.Free (native.name);
-				native.name = GLib.Marshaller.StringToPtrGStrdup (value);
-				Marshal.StructureToPtr (native, Handle, false);
+				GLib.Marshaller.Free(native.name);
+				native.name = GLib.Marshaller.StringToPtrGStrdup(value);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

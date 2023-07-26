@@ -18,10 +18,8 @@ namespace Gdk {
 
 	public partial class Atom {
 
-		public static implicit operator string (Gdk.Atom atom)
-		{
+		public static implicit operator string(Gdk.Atom atom) {
 			return atom.Name;
 		}
 	}
 }
-

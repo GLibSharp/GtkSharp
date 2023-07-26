@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventVisibility : Event {
 
-		public EventVisibility (IntPtr raw) : base (raw) {} 
+		public EventVisibility(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -37,7 +37,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public VisibilityState State {
@@ -45,9 +45,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.state = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

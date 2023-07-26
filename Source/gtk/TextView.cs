@@ -25,19 +25,18 @@ namespace Gtk {
 	using System.Runtime.InteropServices;
 
 	public partial class TextView {
-				
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_text_view_new_with_buffer (IntPtr buffer);
 
-		public TextView (TextBuffer buffer) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (TextView)) {
-				CreateNativeObject (new string [0], new GLib.Value [0]);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_text_view_new_with_buffer(IntPtr buffer);
+
+		public TextView(TextBuffer buffer) : base(IntPtr.Zero) {
+			if (GetType() != typeof(TextView)) {
+				CreateNativeObject(new string[0], new GLib.Value[0]);
 				Buffer = buffer;
 				return;
 			}
 
-			Raw = gtk_text_view_new_with_buffer (buffer.Handle);
+			Raw = gtk_text_view_new_with_buffer(buffer.Handle);
 		}
 	}
 }

@@ -25,27 +25,24 @@ namespace Gtk {
 
 	public partial class IconView {
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
+		public void SetAttributes(CellRenderer cell, params object[] attrs) {
 			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+				throw new ArgumentException("attrs should contain pairs of attribute/col");
 
-			ClearAttributes (cell);
+			ClearAttributes(cell);
 			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
+				AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_icon_view_scroll_to_path(IntPtr raw, IntPtr path, bool use_align, float row_align, float col_align);
 
-		public void ScrollToPath (Gtk.TreePath path) 
-		{
+		public void ScrollToPath(Gtk.TreePath path) {
 			gtk_icon_view_scroll_to_path(Handle, path == null ? IntPtr.Zero : path.Handle, false, 0.0f, 0.0f);
 		}
 
-		public void ScrollToPath (Gtk.TreePath path, float row_align, float col_align) 
-		{
+		public void ScrollToPath(Gtk.TreePath path, float row_align, float col_align) {
 			gtk_icon_view_scroll_to_path(Handle, path == null ? IntPtr.Zero : path.Handle, true, row_align, col_align);
 		}
 	}

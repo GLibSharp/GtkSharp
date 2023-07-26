@@ -20,30 +20,29 @@ namespace Gtk {
 
 	public partial class MessageDialog {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_message_dialog_new (IntPtr parent_window, DialogFlags flags, MessageType type, ButtonsType bt, IntPtr msg, IntPtr args);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_message_dialog_new(IntPtr parent_window, DialogFlags flags, MessageType type, ButtonsType bt, IntPtr msg, IntPtr args);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_message_dialog_new_with_markup (IntPtr parent_window, DialogFlags flags, MessageType type, ButtonsType bt, IntPtr msg, IntPtr args);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_message_dialog_new_with_markup(IntPtr parent_window, DialogFlags flags, MessageType type, ButtonsType bt, IntPtr msg, IntPtr args);
 
-		public MessageDialog (Gtk.Window parent_window, DialogFlags flags, MessageType type, ButtonsType bt, bool use_markup, string format, params object[] args)
-		{
+		public MessageDialog(Gtk.Window parent_window, DialogFlags flags, MessageType type, ButtonsType bt, bool use_markup, string format, params object[] args) {
 			IntPtr p = (parent_window != null) ? parent_window.Handle : IntPtr.Zero;
 
 			if (format == null) {
-				Raw = gtk_message_dialog_new (p, flags, type, bt, IntPtr.Zero, IntPtr.Zero);
+				Raw = gtk_message_dialog_new(p, flags, type, bt, IntPtr.Zero, IntPtr.Zero);
 				return;
 			}
 
-			IntPtr nmsg = GLib.Marshaller.StringToPtrGStrdup (GLib.Marshaller.StringFormat (format, args));
+			IntPtr nmsg = GLib.Marshaller.StringToPtrGStrdup(GLib.Marshaller.StringFormat(format, args));
 			if (use_markup)
-				Raw = gtk_message_dialog_new_with_markup (p, flags, type, bt, nmsg, IntPtr.Zero);
+				Raw = gtk_message_dialog_new_with_markup(p, flags, type, bt, nmsg, IntPtr.Zero);
 			else
-				Raw = gtk_message_dialog_new (p, flags, type, bt, nmsg, IntPtr.Zero);
-			GLib.Marshaller.Free (nmsg);
+				Raw = gtk_message_dialog_new(p, flags, type, bt, nmsg, IntPtr.Zero);
+			GLib.Marshaller.Free(nmsg);
 		}
 
-		public MessageDialog (Gtk.Window parent_window, DialogFlags flags, MessageType type, ButtonsType bt, string format, params object[] args) : this (parent_window, flags, type, bt, true, format, args) {}
+		public MessageDialog(Gtk.Window parent_window, DialogFlags flags, MessageType type, ButtonsType bt, string format, params object[] args) : this(parent_window, flags, type, bt, true, format, args) { }
 
 	}
 }

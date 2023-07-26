@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventConfigure : Event {
 
-		public EventConfigure (IntPtr raw) : base (raw) {} 
+		public EventConfigure(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -40,7 +40,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public int Height {
@@ -48,7 +48,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.height = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -57,7 +57,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.width = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.x = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -75,9 +75,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.y = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

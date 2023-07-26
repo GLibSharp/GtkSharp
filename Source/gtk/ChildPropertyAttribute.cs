@@ -23,8 +23,7 @@ namespace Gtk {
 	public sealed class ChildPropertyAttribute : Attribute {
 		string name;
 
-		public ChildPropertyAttribute (string name)
-		{
+		public ChildPropertyAttribute(string name) {
 			this.name = name;
 		}
 

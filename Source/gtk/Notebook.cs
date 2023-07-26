@@ -28,16 +28,15 @@ namespace Gtk {
 
 		public Widget CurrentPageWidget {
 			get {
-				return GetNthPage (CurrentPage);
+				return GetNthPage(CurrentPage);
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern int gtk_notebook_page_num (IntPtr handle, IntPtr child);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern int gtk_notebook_page_num(IntPtr handle, IntPtr child);
 
-		public int PageNum (Widget child)
-		{
-			return gtk_notebook_page_num (Handle, child.Handle);
+		public int PageNum(Widget child) {
+			return gtk_notebook_page_num(Handle, child.Handle);
 		}
 	}
 }
