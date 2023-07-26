@@ -116,27 +116,10 @@ namespace GLib {
 			}
 		}
 
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return g_file_attribute_matcher_unref;
 			}
-
-			public bool Handler ()
-			{
-				g_file_attribute_matcher_unref (handle);
-				return false;
-			}
-		}
-
-		~FileAttributeMatcher ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 

@@ -102,8 +102,7 @@ namespace GtkSharp.Generation {
 			if (!container_type.CanGenerateABIStruct(new LogWriter(container_type.CName)))
 				return false;
 
-			return (abi_field != null && abi_field.getOffsetName != null &&
-						gen_info.GlueWriter == null);
+			return (abi_field != null && abi_field.getOffsetName != null);
 		}
 
 		void CheckGlue (GenerationInfo gen_info)
@@ -142,7 +141,7 @@ namespace GtkSharp.Generation {
 			StreamWriter sw = gen_info.Writer;
 			SymbolTable table = SymbolTable.Table;
 
-			if (gen_info.GlueWriter == null) {
+			if (UseABIStruct(gen_info) || gen_info.GlueWriter == null) {
 				base.GenerateImports(gen_info, indent);
 				return;
 			}

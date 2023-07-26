@@ -87,31 +87,14 @@ namespace Pango {
 			}
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return pango_coverage_unref;
+			}
+		}
+
 		[Obsolete("Pango.Coverage is now refcounted automatically")]
 		public void Unref () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				pango_coverage_unref (handle);
-				return false;
-			}
-		}
-
-		~Coverage ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.

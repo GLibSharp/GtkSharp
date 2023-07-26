@@ -45,27 +45,10 @@ namespace Gtk {
 			gtk_menu_tracker_free (raw);
 		}
 
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_menu_tracker_free;
 			}
-
-			public bool Handler ()
-			{
-				gtk_menu_tracker_free (handle);
-				return false;
-			}
-		}
-
-		~MenuTracker ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 

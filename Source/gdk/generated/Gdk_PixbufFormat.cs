@@ -146,27 +146,10 @@ namespace Gdk {
 			gdk_pixbuf_format_free (raw);
 		}
 
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gdk_pixbuf_format_free;
 			}
-
-			public bool Handler ()
-			{
-				gdk_pixbuf_format_free (handle);
-				return false;
-			}
-		}
-
-		~PixbufFormat ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 

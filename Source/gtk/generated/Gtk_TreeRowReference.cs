@@ -113,31 +113,14 @@ namespace Gtk {
 			gtk_tree_row_reference_free (raw);
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_tree_row_reference_free;
+			}
+		}
+
 		[Obsolete("Gtk.TreeRowReference is now freed automatically")]
 		public void Free () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				gtk_tree_row_reference_free (handle);
-				return false;
-			}
-		}
-
-		~TreeRowReference ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.

@@ -76,31 +76,14 @@ namespace Gtk {
 			}
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_gradient_unref;
+			}
+		}
+
 		[Obsolete("Gtk.Gradient is now refcounted automatically")]
 		public void Unref () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				gtk_gradient_unref (handle);
-				return false;
-			}
-		}
-
-		~Gradient ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.
