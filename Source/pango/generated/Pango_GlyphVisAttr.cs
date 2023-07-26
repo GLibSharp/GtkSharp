@@ -14,6 +14,28 @@ namespace Pango {
 
 		private uint _bitfield0;
 
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_glyphvisattr_get_is_cluster_start (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_glyphvisattr_set_is_cluster_start (IntPtr raw, bool value);
+		public bool IsClusterStart {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_glyphvisattr_get_is_cluster_start (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_glyphvisattr_set_is_cluster_start (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
 
 		public static Pango.GlyphVisAttr Zero = new Pango.GlyphVisAttr ();
 
@@ -21,6 +43,11 @@ namespace Pango {
 			if (raw == IntPtr.Zero)
 				return Pango.GlyphVisAttr.Zero;
 			return (Pango.GlyphVisAttr) Marshal.PtrToStructure (raw, typeof (Pango.GlyphVisAttr));
+		}
+
+		static void ReadNative (IntPtr native, ref Pango.GlyphVisAttr target)
+		{
+			target = New (native);
 		}
 
 		public bool Equals (GlyphVisAttr other)
