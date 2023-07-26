@@ -268,27 +268,10 @@ namespace Gtk {
 			gtk_paper_size_free (raw);
 		}
 
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_paper_size_free;
 			}
-
-			public bool Handler ()
-			{
-				gtk_paper_size_free (handle);
-				return false;
-			}
-		}
-
-		~PaperSize ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 

@@ -178,31 +178,14 @@ namespace Gtk {
 			gtk_tree_path_free (raw);
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_tree_path_free;
+			}
+		}
+
 		[Obsolete("Gtk.TreePath is now freed automatically")]
 		public void Free () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				gtk_tree_path_free (handle);
-				return false;
-			}
-		}
-
-		~TreePath ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.

@@ -368,35 +368,18 @@ namespace Gtk {
 			}
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_widget_path_unref;
+			}
+		}
+
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_widget_path_free(IntPtr raw);
 
 		protected override void Free (IntPtr raw)
 		{
 			gtk_widget_path_free (raw);
-		}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				gtk_widget_path_free (handle);
-				return false;
-			}
-		}
-
-		~WidgetPath ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 

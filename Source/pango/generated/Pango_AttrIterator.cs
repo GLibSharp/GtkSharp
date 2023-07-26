@@ -46,31 +46,14 @@ namespace Pango {
 			pango_attr_iterator_destroy (raw);
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return pango_attr_iterator_destroy;
+			}
+		}
+
 		[Obsolete("Pango.AttrIterator is now freed automatically")]
 		public void Destroy () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				pango_attr_iterator_destroy (handle);
-				return false;
-			}
-		}
-
-		~AttrIterator ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.

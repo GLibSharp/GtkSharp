@@ -112,27 +112,10 @@ namespace Gdk {
 			}
 		}
 
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gdk_frame_timings_unref;
 			}
-
-			public bool Handler ()
-			{
-				gdk_frame_timings_unref (handle);
-				return false;
-			}
-		}
-
-		~FrameTimings ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 

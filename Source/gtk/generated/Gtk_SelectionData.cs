@@ -199,31 +199,14 @@ namespace Gtk {
 			gtk_selection_data_free (raw);
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_selection_data_free;
+			}
+		}
+
 		[Obsolete("Gtk.SelectionData is now freed automatically")]
 		public void Free () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				gtk_selection_data_free (handle);
-				return false;
-			}
-		}
-
-		~SelectionData ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.

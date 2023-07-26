@@ -217,31 +217,14 @@ namespace Gtk {
 			gtk_icon_source_free (raw);
 		}
 
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_icon_source_free;
+			}
+		}
+
 		[Obsolete("Gtk.IconSource is now freed automatically")]
 		public void Free () {}
-
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
-			}
-
-			public bool Handler ()
-			{
-				gtk_icon_source_free (handle);
-				return false;
-			}
-		}
-
-		~IconSource ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
-		}
 
 
 		// Internal representation of the wrapped structure ABI.

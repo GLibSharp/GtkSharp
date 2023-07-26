@@ -104,27 +104,10 @@ namespace Gtk {
 			}
 		}
 
-		class FinalizerInfo {
-			IntPtr handle;
-
-			public FinalizerInfo (IntPtr handle)
-			{
-				this.handle = handle;
+		protected override Action<IntPtr> DisposeUnmanagedFunc {
+			get {
+				return gtk_target_list_unref;
 			}
-
-			public bool Handler ()
-			{
-				gtk_target_list_unref (handle);
-				return false;
-			}
-		}
-
-		~TargetList ()
-		{
-			if (!Owned)
-				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
 		}
 
 
