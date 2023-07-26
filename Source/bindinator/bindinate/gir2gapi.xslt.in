@@ -20,10 +20,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -282,7 +282,7 @@
 					<xsl:value-of select="$parent"/>
 				</xsl:attribute>
 			</xsl:if>
-			
+
 			<xsl:call-template name="set-version-and-deprecated">
 				<xsl:with-param name="version" select="@version"/>
 				<xsl:with-param name="deprecated" select="@deprecated"/>
@@ -500,7 +500,7 @@
 							<xsl:with-param name="introspectable" select="$introspectable"/>
 							<xsl:with-param name="external" select="$external"/>
 						</xsl:call-template>
-						
+
 					</xsl:if>
 				</xsl:for-each>
 
@@ -522,7 +522,7 @@
 		<xsl:call-template name="output-method">
 			<xsl:with-param name="external" select="$external"/>
 		</xsl:call-template>
-		
+
 	</xsl:template>
 
 	<xsl:template match="gir:virtual-method">
@@ -542,7 +542,7 @@
 				<xsl:with-param name="external" select="$external"/>
 			</xsl:call-template>
 		</xsl:if>
-		
+
 	</xsl:template>
 
 	<xsl:template match="gir:namespace/gir:function[not(@introspectable=0)]"/>
@@ -737,7 +737,7 @@
 		</xsl:variable>
 
 		<signal name="{$name}" cname="{@name}" when="{@when}">
-			
+
 			<xsl:if test="../gir:virtual-method[@name = translate(current()/@name,'-','_')]">
 				<xsl:attribute name="field_name">
 					<xsl:value-of select="translate(current()/@name,'-','_')"/>
@@ -823,7 +823,7 @@
 				<xsl:with-param name="deprecated" select="@deprecated"/>
 				<xsl:with-param name="deprecated-version" select="@deprecated-version"/>
 			</xsl:call-template>
-			
+
 			<xsl:for-each select="gir:member">
 				<xsl:sort select="@value" data-type="number"/>
 
@@ -882,7 +882,7 @@
 				<xsl:with-param name="deprecated" select="@deprecated"/>
 				<xsl:with-param name="deprecated-version" select="@deprecated-version"/>
 			</xsl:call-template>
-			
+
 			<xsl:for-each select="gir:member">
 				<xsl:sort select="@value" data-type="number"/>
 
@@ -1023,7 +1023,7 @@
 				<xsl:when test="//*/gir:namespace/gir:enumeration[@c:type=gir:type/@c:type]">
 					<xsl:text>int</xsl:text>
 				</xsl:when>
-				<xsl:otherwise>
+ 				<xsl:otherwise>
 					<xsl:value-of select="exsl:node-set($typemap)/type/@ctype"/>
 				</xsl:otherwise>
 			</xsl:choose>
@@ -1076,7 +1076,7 @@
 				</xsl:call-template>
 			</property>
 		</xsl:if>
-		
+
 	</xsl:template>
 
 	<xsl:template match="gir:*"/>
@@ -1319,13 +1319,13 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:if>
-		
+
 		<xsl:variable name="pos" select="position()"></xsl:variable>
-		
+
 		<xsl:variable name="arrayIndex">
 			<xsl:value-of select="count(..//gir:parameter[$pos = (gir:array/@length+1)]/preceding-sibling::gir:parameter)"/>
 		</xsl:variable>
-		
+
 		<xsl:if test="$arrayIndex != 0">
 			<xsl:attribute name="array_index"><xsl:value-of select="$arrayIndex"/></xsl:attribute>
 		</xsl:if>
@@ -1350,7 +1350,6 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:if>
-
 
 		<xsl:if test="exsl:node-set($ptypemap)/type/@warning">
 			<warning>
