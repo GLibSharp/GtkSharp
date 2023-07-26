@@ -22,42 +22,42 @@
 
 namespace GtkSharp.Generation {
 
-	public interface IGeneratable  {
+	public interface IGeneratable {
 
 		// The C name of the generatable
-		string CName {get;}
+		string CName { get; }
 
 		// The (short) C# name of the generatable
-		string Name {get;}
+		string Name { get; }
 
 		// The fully-qualified C# name of the generatable
-		string QualifiedName {get;}
+		string QualifiedName { get; }
 
 		// The type (possibly including "ref" or "out") to use in the import
 		// signature when passing this generatable to unmanaged code
-		string MarshalType {get;}
+		string MarshalType { get; }
 
 		// The value returned by callbacks that are interrupted prematurely
 		// by managed exceptions or other conditions where an appropriate
 		// value can't be otherwise obtained.
-		string DefaultValue {get;}
+		string DefaultValue { get; }
 
 		// Generates an expression to convert var_name to MarshalType
-		string CallByName (string var_name);
+		string CallByName(string var_name);
 
 		// Generates an expression to convert var from MarshalType
-		string FromNative (string var);
+		string FromNative(string var);
 
 		// Generates code to get size of the type
-		string GenerateGetSizeOf ();
+		string GenerateGetSizeOf();
 
 		// Generates code to get size of the type
-		string GenerateAlign ();
+		string GenerateAlign();
 
-		bool Validate ();
+		bool Validate();
 
-		void Generate ();
+		void Generate();
 
-		void Generate (GenerationInfo gen_info);
+		void Generate(GenerationInfo gen_info);
 	}
 }

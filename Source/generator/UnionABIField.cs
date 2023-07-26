@@ -2,9 +2,9 @@ namespace GtkSharp.Generation {
 
 	using System;
 	using System.Collections;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Xml;
-	using System.Collections.Generic;
 
 	public class UnionSubstruct {
 		List<StructABIField> fields;
@@ -14,7 +14,7 @@ namespace GtkSharp.Generation {
 		public string abi_info_name;
 
 		public UnionSubstruct(XmlElement elem, ClassBase container_type, string abi_info_name) {
-			fields = new List<StructABIField> ();
+			fields = new List<StructABIField>();
 			Elem = elem;
 			is_valid = true;
 			unique_field = false;
@@ -26,10 +26,10 @@ namespace GtkSharp.Generation {
 						continue;
 					}
 
-					fields.Add(new StructABIField (child_field, container_type, abi_info_name));
+					fields.Add(new StructABIField(child_field, container_type, abi_info_name));
 				}
 			} else if (Elem.Name == "field") {
-				fields.Add(new StructABIField (Elem, container_type, abi_info_name));
+				fields.Add(new StructABIField(Elem, container_type, abi_info_name));
 				unique_field = true;
 			}
 		}
@@ -42,13 +42,13 @@ namespace GtkSharp.Generation {
 					size += ",";
 				is_first = false;
 
-				size +=  "\"" + field.CName + "\"";
+				size += "\"" + field.CName + "\"";
 			}
 
 			return size + "}";
 		}
 
-		public void EnsureParentStructName (string parent_name) {
+		public void EnsureParentStructName(string parent_name) {
 			var name = Elem.GetAttribute("name");
 
 			if (!unique_field) {
@@ -64,8 +64,7 @@ namespace GtkSharp.Generation {
 		public StructField Generate(GenerationInfo gen_info, string indent,
 				string parent_name, StructABIField prev_field,
 				StructABIField next, string struct_parent_name,
-				TextWriter tw)
-		{
+				TextWriter tw) {
 			StreamWriter sw = gen_info.Writer;
 			var name = Elem.GetAttribute("name");
 			var cname = Elem.GetAttribute("cname");
@@ -76,7 +75,7 @@ namespace GtkSharp.Generation {
 
 			StructABIField next_field = null;
 			sw.WriteLine(indent + "// union struct " + parent_name);
-			for(int i=0; i < fields.Count; i++) {
+			for (int i = 0; i < fields.Count; i++) {
 				var field = fields[i];
 				next_field = fields.Count > i + 1 ? fields[i + 1] : null;
 
@@ -99,11 +98,11 @@ namespace GtkSharp.Generation {
 	public class UnionABIField : StructABIField {
 		bool is_valid;
 		XmlElement Elem;
-		protected List<UnionSubstruct> substructs = new List<UnionSubstruct> ();
+		protected List<UnionSubstruct> substructs = new List<UnionSubstruct>();
 
 
-		public UnionABIField (XmlElement elem, ClassBase container_type, string info_name) :
-				base (elem, container_type, info_name) {
+		public UnionABIField(XmlElement elem, ClassBase container_type, string info_name) :
+				base(elem, container_type, info_name) {
 			Elem = elem;
 			is_valid = true;
 			foreach (XmlElement union_child in elem.ChildNodes) {
@@ -111,7 +110,7 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public override StructABIField Generate (GenerationInfo gen_info, string indent,
+		public override StructABIField Generate(GenerationInfo gen_info, string indent,
 				StructABIField prev_field, StructABIField next_field, string parent_name,
 				TextWriter tw) {
 			StreamWriter sw = gen_info.Writer;
@@ -139,7 +138,7 @@ namespace GtkSharp.Generation {
 			indent += "\t\t\t";
 			foreach (UnionSubstruct _struct in substructs) {
 				if (!first)
-					res +=  ",\n";
+					res += ",\n";
 				first = false;
 				res += _struct.GenerateGetSize(indent + "\t\t\t");
 			}
@@ -148,8 +147,7 @@ namespace GtkSharp.Generation {
 			return res;
 		}
 
-		public override bool Validate (LogWriter log)
-		{
+		public override bool Validate(LogWriter log) {
 
 			if (!is_valid) {
 				log.Warn("Can't generate ABI compatible union");

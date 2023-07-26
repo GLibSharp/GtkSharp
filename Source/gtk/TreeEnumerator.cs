@@ -22,27 +22,23 @@
 using System;
 using System.Collections;
 
-namespace Gtk
-{
-	internal class TreeEnumerator : IEnumerator
-	{
+namespace Gtk {
+	internal class TreeEnumerator : IEnumerator {
 		private Gtk.TreeIter iter;
 		private Gtk.ITreeModel model;
 		private bool reset = true;
 		private bool changed = false;
-		
-		public TreeEnumerator (ITreeModel model)
-		{
+
+		public TreeEnumerator(ITreeModel model) {
 			this.model = model;
-			
-			model.RowChanged += new RowChangedHandler (row_changed);
-			model.RowDeleted += new RowDeletedHandler (row_deleted);
-			model.RowInserted += new RowInsertedHandler (row_inserted);
-			model.RowsReordered += new RowsReorderedHandler (rows_reordered);
+
+			model.RowChanged += new RowChangedHandler(row_changed);
+			model.RowDeleted += new RowDeletedHandler(row_deleted);
+			model.RowInserted += new RowInsertedHandler(row_inserted);
+			model.RowsReordered += new RowsReorderedHandler(rows_reordered);
 		}
-		
-		public object Current
-		{
+
+		public object Current {
 			get {
 				if (reset == false) {
 					object[] row = new object[model.NColumns];
@@ -55,9 +51,8 @@ namespace Gtk
 				}
 			}
 		}
-		
-		public bool MoveNext()
-		{
+
+		public bool MoveNext() {
 			if (changed == false) {
 				if (reset == true) {
 					reset = false;
@@ -69,32 +64,26 @@ namespace Gtk
 				throw new InvalidOperationException("List has changed.");
 			}
 		}
-		
-		public void Reset()
-		{
+
+		public void Reset() {
 			reset = true;
 			changed = false;
 		}
-		
-		private void row_changed(object o, RowChangedArgs args)
-		{
+
+		private void row_changed(object o, RowChangedArgs args) {
 			changed = true;
 		}
-		
-		private void row_deleted(object o, RowDeletedArgs args)
-		{
+
+		private void row_deleted(object o, RowDeletedArgs args) {
 			changed = true;
 		}
-		
-		private void row_inserted(object o, RowInsertedArgs args)
-		{
+
+		private void row_inserted(object o, RowInsertedArgs args) {
 			changed = true;
 		}
-		
-		private void rows_reordered(object o, RowsReorderedArgs args)
-		{
+
+		private void rows_reordered(object o, RowsReorderedArgs args) {
 			changed = true;
 		}
 	}
 }
-

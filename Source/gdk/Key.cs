@@ -1,7 +1,6 @@
 // Generated File.  Do not modify.
 
-namespace Gdk
-{
+namespace Gdk {
 	public enum Key {
 		VoidSymbol = 0xFFFFFF,
 		BackSpace = 0xFF08,

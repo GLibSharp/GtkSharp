@@ -19,16 +19,16 @@ namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
 
-	public delegate void NotifyHandler (object o, NotifyArgs args);
+	public delegate void NotifyHandler(object o, NotifyArgs args);
 
 	public class NotifyArgs : GLib.SignalArgs {
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_param_spec_get_name (IntPtr pspec);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_param_spec_get_name(IntPtr pspec);
 
 		public string Property {
 			get {
-				IntPtr raw_ret = g_param_spec_get_name ((IntPtr) Args[0]);
-				return Marshaller.Utf8PtrToString (raw_ret);
+				IntPtr raw_ret = g_param_spec_get_name((IntPtr)Args[0]);
+				return Marshaller.Utf8PtrToString(raw_ret);
 			}
 		}
 	}

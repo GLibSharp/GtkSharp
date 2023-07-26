@@ -26,29 +26,25 @@ namespace GtkSharp.Generation {
 	using System;
 
 	public class ConstStringGen : SimpleBase, IManualMarshaler {
-		
-		public ConstStringGen (string ctype) : base (ctype, "string", "null") {}
+
+		public ConstStringGen(string ctype) : base(ctype, "string", "null") { }
 
 		public override string MarshalType {
 			get {
 				return "IntPtr";
 			}
 		}
-		
-		public override string FromNative (string var)
-		{
+
+		public override string FromNative(string var) {
 			return "GLib.Marshaller.Utf8PtrToString (" + var + ")";
 		}
 
-		public string AllocNative (string managed_var)
-		{
+		public string AllocNative(string managed_var) {
 			return "GLib.Marshaller.StringToPtrGStrdup (" + managed_var + ")";
 		}
 
-		public string ReleaseNative (string native_var)
-		{
+		public string ReleaseNative(string native_var) {
 			return "GLib.Marshaller.Free (" + native_var + ")";
 		}
 	}
 }
-

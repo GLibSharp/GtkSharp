@@ -23,12 +23,12 @@ namespace Pango {
 
 	public class AttrLanguage : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_language_new (IntPtr language);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_language_new(IntPtr language);
 
-		public AttrLanguage (Pango.Language language) : this (pango_attr_language_new (language.Handle)) {}
+		public AttrLanguage(Pango.Language language) : this(pango_attr_language_new(language.Handle)) { }
 
-		internal AttrLanguage (IntPtr raw) : base (raw) {}
+		internal AttrLanguage(IntPtr raw) : base(raw) { }
 
 		new struct NativeStruct {
 			Attribute.NativeStruct attr;
@@ -37,8 +37,8 @@ namespace Pango {
 
 		public Pango.Language Language {
 			get {
-				NativeStruct native = (NativeStruct) Marshal.PtrToStructure (Handle, typeof (NativeStruct));
-				return new Pango.Language (native.value);
+				NativeStruct native = (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct));
+				return new Pango.Language(native.value);
 			}
 		}
 	}

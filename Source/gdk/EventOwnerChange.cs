@@ -26,7 +26,7 @@ namespace Gdk {
 
 	public class EventOwnerChange : Event {
 
-		public EventOwnerChange (IntPtr handle) : base (handle) {}
+		public EventOwnerChange(IntPtr handle) : base(handle) { }
 
 		struct NativeStruct {
 			public Gdk.EventType type;
@@ -40,7 +40,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof (NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public uint Owner {
@@ -48,7 +48,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.owner = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -57,19 +57,19 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.reason = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public Gdk.Atom Selection {
-			get { 
+			get {
 				IntPtr sel = Native.selection;
-				return sel == IntPtr.Zero ? null : (Gdk.Atom) GLib.Opaque.GetOpaque (sel, typeof (Gdk.Atom), false);
+				return sel == IntPtr.Zero ? null : (Gdk.Atom)GLib.Opaque.GetOpaque(sel, typeof(Gdk.Atom), false);
 			}
 			set {
 				NativeStruct native = Native;
 				native.selection = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -78,7 +78,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.selection_time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -87,9 +87,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

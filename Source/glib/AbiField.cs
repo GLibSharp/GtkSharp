@@ -25,12 +25,12 @@
 namespace GLib {
 
 	using System;
+	using System.CodeDom.Compiler;
 	using System.Collections.Generic;
+	using System.Collections.Specialized;
+	using System.Linq;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
-	using System.Linq;
-	using System.Collections.Specialized;
-	using System.CodeDom.Compiler;
 
 	public class AbiField {
 		public string Prev_name;
@@ -53,8 +53,7 @@ namespace GLib {
 				string prev_fieldname,
 				string next_fieldname,
 				long align,
-				uint bits)
-		{
+				uint bits) {
 			Name = name;
 			Offset = offset;
 			Natural_size = natural_size;
@@ -63,11 +62,11 @@ namespace GLib {
 			End = -1;
 			Size = -1;
 			Union_fields = null;
-			Align = (long) align;
+			Align = (long)align;
 			Bits = bits;
 
 			if (Bits > 0) {
-				var nbytes = (uint) (Math.Ceiling((double) Bits / (double) 8));
+				var nbytes = (uint)(Math.Ceiling((double)Bits / (double)8));
 
 				if (nbytes < GetSize())
 					Align = 1;
@@ -82,9 +81,8 @@ namespace GLib {
 				string prev_fieldname,
 				string next_fieldname,
 				long align,
-				uint bits): this (name, -1,
-					natural_size, prev_fieldname, next_fieldname, align, bits)
-		{
+				uint bits) : this(name, -1,
+					natural_size, prev_fieldname, next_fieldname, align, bits) {
 			Parent_fields = parent_fields;
 		}
 
@@ -93,35 +91,34 @@ namespace GLib {
 				long offset,
 				List<List<string>> fields_lists,
 				string prev_fieldname,
-				string next_fieldname, uint bits): this(name,
-					offset, (uint) 0, prev_fieldname, next_fieldname,
-					-1, bits)
-		{
+				string next_fieldname, uint bits) : this(name,
+					offset, (uint)0, prev_fieldname, next_fieldname,
+					-1, bits) {
 			Union_fields = fields_lists;
 		}
 
 		public uint GetEnd() {
 			if (End == -1)
-				End = (long) GetOffset() + GetSize();
+				End = (long)GetOffset() + GetSize();
 
-			return (uint) End;
+			return (uint)End;
 		}
 
 		public uint GetOffset() {
-			return (uint) Offset;
+			return (uint)Offset;
 		}
 
-		public bool InUnion () {
+		public bool InUnion() {
 			return Name.Contains(".");
 		}
 
-		public uint GetAlign () {
+		public uint GetAlign() {
 			if (Union_fields != null) {
 				uint align = 1;
 
 				foreach (var fieldnames in Union_fields) {
 					foreach (var fieldname in fieldnames) {
-						var field = (AbiField) container.Fields[fieldname];
+						var field = (AbiField)container.Fields[fieldname];
 						align = Math.Max(align, field.GetAlign());
 					}
 				}
@@ -130,7 +127,7 @@ namespace GLib {
 
 			}
 
-			return (uint) Align;
+			return (uint)Align;
 		}
 
 		public uint GetUnionSize() {
@@ -139,7 +136,7 @@ namespace GLib {
 			foreach (var fieldnames in Union_fields) {
 
 				foreach (var fieldname in fieldnames) {
-					var field = ((AbiField) container.Fields[fieldname]);
+					var field = ((AbiField)container.Fields[fieldname]);
 					var align = field.GetAlign();
 
 					if (field.Prev_name != null) {
@@ -154,7 +151,7 @@ namespace GLib {
 					field.Offset += align - 1;
 					field.Offset &= ~(align - 1);
 
-					size = Math.Max(size, field.GetEnd() - (uint) Offset);
+					size = Math.Max(size, field.GetEnd() - (uint)Offset);
 				}
 			}
 
@@ -163,7 +160,7 @@ namespace GLib {
 
 		public uint GetSize() {
 			if (Size != -1)
-				return (uint) Size;
+				return (uint)Size;
 
 			if (Union_fields != null) {
 				Size = GetUnionSize();
@@ -171,7 +168,7 @@ namespace GLib {
 				Size = Natural_size;
 			}
 
-			return (uint) Size;
+			return (uint)Size;
 		}
 	}
 }

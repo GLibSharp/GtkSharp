@@ -26,7 +26,7 @@ namespace Gdk {
 
 	public class EventGrabBroken : Event {
 
-		public EventGrabBroken (IntPtr raw) : base (raw) {} 
+		public EventGrabBroken(IntPtr raw) : base(raw) { }
 
 		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
@@ -39,7 +39,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public bool Keyboard {
@@ -47,7 +47,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.keyboard = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -56,7 +56,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native._implicit = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -65,9 +65,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.grab_window = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

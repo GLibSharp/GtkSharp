@@ -26,58 +26,56 @@ namespace GtkSharp.Generation {
 	using System.Xml;
 
 	public class BoxedGen : StructBase {
-		
-		public BoxedGen (XmlElement ns, XmlElement elem) : base (ns, elem) {}
-		
-		public override void Generate (GenerationInfo gen_info)
-		{
-			Method copy = GetMethod ("Copy");
-			Method free = GetMethod ("Free");
-			Methods.Remove ("Copy");
-			Methods.Remove ("Free");
+
+		public BoxedGen(XmlElement ns, XmlElement elem) : base(ns, elem) { }
+
+		public override void Generate(GenerationInfo gen_info) {
+			Method copy = GetMethod("Copy");
+			Method free = GetMethod("Free");
+			Methods.Remove("Copy");
+			Methods.Remove("Free");
 
 			gen_info.CurrentType = QualifiedName;
 
-			StreamWriter sw = gen_info.Writer = gen_info.OpenStream (Name, NS);
-			base.Generate (gen_info);
-			sw.WriteLine ("\t\tpublic static explicit operator GLib.Value (" + QualifiedName + " boxed)");
-			sw.WriteLine ("\t\t{");
+			StreamWriter sw = gen_info.Writer = gen_info.OpenStream(Name, NS);
+			base.Generate(gen_info);
+			sw.WriteLine("\t\tpublic static explicit operator GLib.Value (" + QualifiedName + " boxed)");
+			sw.WriteLine("\t\t{");
 
-			sw.WriteLine ("\t\t\tGLib.Value val = GLib.Value.Empty;");
-			sw.WriteLine ("\t\t\tval.Init (" + QualifiedName + ".GType);");
-			sw.WriteLine ("\t\t\tval.Val = boxed;");
-			sw.WriteLine ("\t\t\treturn val;");
-			sw.WriteLine ("\t\t}");
-			sw.WriteLine ();
-			sw.WriteLine ("\t\tpublic static explicit operator " + QualifiedName + " (GLib.Value val)");
-			sw.WriteLine ("\t\t{");
+			sw.WriteLine("\t\t\tGLib.Value val = GLib.Value.Empty;");
+			sw.WriteLine("\t\t\tval.Init (" + QualifiedName + ".GType);");
+			sw.WriteLine("\t\t\tval.Val = boxed;");
+			sw.WriteLine("\t\t\treturn val;");
+			sw.WriteLine("\t\t}");
+			sw.WriteLine();
+			sw.WriteLine("\t\tpublic static explicit operator " + QualifiedName + " (GLib.Value val)");
+			sw.WriteLine("\t\t{");
 
-			sw.WriteLine ("\t\t\treturn (" + QualifiedName + ") val.Val;");
-			sw.WriteLine ("\t\t}");
+			sw.WriteLine("\t\t\treturn (" + QualifiedName + ") val.Val;");
+			sw.WriteLine("\t\t}");
 
 			if (copy != null && copy.IsDeprecated) {
-				sw.WriteLine ();
-				sw.WriteLine ("\t\t[Obsolete(\"This is a no-op\")]");
-				sw.WriteLine ("\t\tpublic " + QualifiedName + " Copy() {");
-				sw.WriteLine ("\t\t\treturn this;");
-				sw.WriteLine ("\t\t}");
+				sw.WriteLine();
+				sw.WriteLine("\t\t[Obsolete(\"This is a no-op\")]");
+				sw.WriteLine("\t\tpublic " + QualifiedName + " Copy() {");
+				sw.WriteLine("\t\t\treturn this;");
+				sw.WriteLine("\t\t}");
 			}
 
 			if (free != null && free.IsDeprecated) {
-				sw.WriteLine ();
-				sw.WriteLine ("\t\t[Obsolete(\"This is a no-op\")]");
-				sw.WriteLine ("\t\tpublic " + QualifiedName + " Free () {");
-				sw.WriteLine ("\t\t\treturn this;");
-				sw.WriteLine ("\t\t}");
+				sw.WriteLine();
+				sw.WriteLine("\t\t[Obsolete(\"This is a no-op\")]");
+				sw.WriteLine("\t\tpublic " + QualifiedName + " Free () {");
+				sw.WriteLine("\t\t\treturn this;");
+				sw.WriteLine("\t\t}");
 			}
 
-			sw.WriteLine ("#endregion");
-			sw.WriteLine ("\t}");
-			sw.WriteLine ("}");
-			sw.Close ();
+			sw.WriteLine("#endregion");
+			sw.WriteLine("\t}");
+			sw.WriteLine("}");
+			sw.Close();
 			gen_info.Writer = null;
 			Statistics.BoxedCount++;
 		}
 	}
 }
-

@@ -21,17 +21,15 @@ namespace Gtk {
 
 	public partial class Entry {
 
-		public int InsertText (string new_text)
-		{
+		public int InsertText(string new_text) {
 			int position = 0;
 
-			InsertText (new_text, ref position);
+			InsertText(new_text, ref position);
 
 			return position;
 		}
 
-		public Entry(string initialText): this()
-		{
+		public Entry(string initialText) : this() {
 			Text = initialText;
 		}
 

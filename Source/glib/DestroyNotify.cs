@@ -23,19 +23,18 @@ namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
 
-	[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-	public delegate void DestroyNotify (IntPtr data);
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void DestroyNotify(IntPtr data);
 
 	public class DestroyHelper {
 
-		private DestroyHelper () {}
-		
-		static void ReleaseGCHandle (IntPtr data)
-		{
+		private DestroyHelper() { }
+
+		static void ReleaseGCHandle(IntPtr data) {
 			if (data == IntPtr.Zero)
 				return;
-			GCHandle gch = (GCHandle) data;
-			gch.Free ();
+			GCHandle gch = (GCHandle)data;
+			gch.Free();
 		}
 
 		static DestroyNotify release_gchandle;
@@ -43,10 +42,9 @@ namespace GLib {
 		public static DestroyNotify NotifyHandler {
 			get {
 				if (release_gchandle == null)
-					release_gchandle = new DestroyNotify (ReleaseGCHandle);
+					release_gchandle = new DestroyNotify(ReleaseGCHandle);
 				return release_gchandle;
 			}
 		}
 	}
 }
-

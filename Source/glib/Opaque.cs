@@ -33,31 +33,28 @@ namespace GLib {
 		IntPtr _obj;
 		bool owned;
 
-		public static Opaque GetOpaque (IntPtr o, Type type, bool owned)
-		{
+		public static Opaque GetOpaque(IntPtr o, Type type, bool owned) {
 			if (o == IntPtr.Zero)
 				return null;
 
-			Opaque opaque = (Opaque)Activator.CreateInstance (type, new object[] { o });
+			Opaque opaque = (Opaque)Activator.CreateInstance(type, new object[] { o });
 			if (owned) {
 				if (opaque.owned) {
 					// The constructor took a Ref it shouldn't have, so undo it
-					opaque.Unref (o);
+					opaque.Unref(o);
 				}
 				opaque.owned = true;
-			} else 
-				opaque = opaque.Copy (o);
+			} else
+				opaque = opaque.Copy(o);
 
 			return opaque;
-  		}
-  
-		public Opaque ()
-		{
+		}
+
+		public Opaque() {
 			owned = true;
 		}
 
-		public Opaque (IntPtr raw)
-		{
+		public Opaque(IntPtr raw) {
 			owned = false;
 			Raw = raw;
 		}
@@ -72,77 +69,69 @@ namespace GLib {
 				}
 
 				if (_obj != IntPtr.Zero) {
-					Unref (_obj);
+					Unref(_obj);
 					if (owned)
-						Free (_obj);
+						Free(_obj);
 				}
 				_obj = value;
 				if (_obj != IntPtr.Zero) {
-					Ref (_obj);
+					Ref(_obj);
 				}
 			}
 		}
 
 		#region IDisposable implementation
-		class FinalizerInfo
-		{
+		class FinalizerInfo {
 			IntPtr handle;
 			Action<IntPtr> unrefFunc;
 
-			public FinalizerInfo (Action<IntPtr> unrefFunc, IntPtr handle)
-			{
+			public FinalizerInfo(Action<IntPtr> unrefFunc, IntPtr handle) {
 				this.handle = handle;
 				this.unrefFunc = unrefFunc;
 			}
 
-			public bool Handler ()
-			{
-				unrefFunc (handle);
+			public bool Handler() {
+				unrefFunc(handle);
 				return false;
 			}
 		}
 
-		~Opaque ()
-		{
-			Dispose (false);
+		~Opaque() {
+			Dispose(false);
 		}
 
-		public void Dispose ()
-		{
+		public void Dispose() {
 			Raw = IntPtr.Zero;
-			Dispose (true);
-			GC.SuppressFinalize (this);
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
-		protected void Dispose (bool disposing)
-		{
+		protected void Dispose(bool disposing) {
 			if (Disposed)
 				return;
 			Disposed = true;
 			if (disposing) {
-				DisposeManagedResources ();
+				DisposeManagedResources();
 			}
-			DisposeUnmanagedResources ();
+			DisposeUnmanagedResources();
 		}
 
 		/// <summary>
 		/// Disposes the managed resources.
 		/// This method is intended to be overriden.
 		/// </summary>
-		protected virtual void DisposeManagedResources ()
-		{
+		protected virtual void DisposeManagedResources() {
 		}
 
 		/// <summary>
 		/// Disposes the unmanaged resources.
 		/// This method is intended to be overriden.
 		/// </summary>
-		protected virtual void DisposeUnmanagedResources ()
-		{
+		protected virtual void DisposeUnmanagedResources() {
 			if (!Owned || DisposeUnmanagedFunc == null)
 				return;
-			FinalizerInfo info = new FinalizerInfo (DisposeUnmanagedFunc, Handle);
-			Timeout.Add (50, new TimeoutHandler (info.Handler));
+			FinalizerInfo info = new FinalizerInfo(DisposeUnmanagedFunc, Handle);
+			Timeout.Add(50, new TimeoutHandler(info.Handler));
 		}
 
 		protected internal bool Disposed { get; private set; } = false;
@@ -156,11 +145,10 @@ namespace GLib {
 		// These take an IntPtr arg so we don't get conflicts if we need
 		// to have an "[Obsolete] public void Ref ()"
 
-		protected virtual void Ref (IntPtr raw) {}
-		protected virtual void Unref (IntPtr raw) {}
-		protected virtual void Free (IntPtr raw) {}
-		protected virtual Opaque Copy (IntPtr raw) 
-		{
+		protected virtual void Ref(IntPtr raw) { }
+		protected virtual void Unref(IntPtr raw) { }
+		protected virtual void Free(IntPtr raw) { }
+		protected virtual Opaque Copy(IntPtr raw) {
 			return this;
 		}
 
@@ -172,7 +160,7 @@ namespace GLib {
 
 		public IntPtr OwnedCopy {
 			get {
-				Opaque result = Copy (Handle);
+				Opaque result = Copy(Handle);
 				result.Owned = false;
 				return result.Handle;
 			}
@@ -187,17 +175,15 @@ namespace GLib {
 			}
 		}
 
-		public override bool Equals (object o)
-		{
+		public override bool Equals(object o) {
 			if (!(o is Opaque))
 				return false;
 
-			return (Handle == ((Opaque) o).Handle);
+			return (Handle == ((Opaque)o).Handle);
 		}
 
-		public override int GetHashCode ()
-		{
-			return Handle.GetHashCode ();
+		public override int GetHashCode() {
+			return Handle.GetHashCode();
 		}
 	}
 }

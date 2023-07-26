@@ -28,25 +28,25 @@ namespace Gdk {
 
 		public EventMask Mask {
 			get {
-				return (EventMask) EventMask;
+				return (EventMask)EventMask;
 			}
 			set {
-				EventMask = (int) value;
+				EventMask = (int)value;
 			}
 		}
 
-		[Obsolete ("Replaced by Visual property.")]
+		[Obsolete("Replaced by Visual property.")]
 		public Gdk.Visual visual {
-			get { 
-				Gdk.Visual ret = (Gdk.Visual) GLib.Object.GetObject(_visual);
+			get {
+				Gdk.Visual ret = (Gdk.Visual)GLib.Object.GetObject(_visual);
 				return ret;
 			}
 			set { _visual = value.Handle; }
 		}
 
-		[Obsolete ("Replaced by Cursor property.")]
+		[Obsolete("Replaced by Cursor property.")]
 		public Gdk.Cursor cursor {
-			get { 
+			get {
 				Gdk.Cursor ret = new Gdk.Cursor(_cursor);
 				if (ret == null) ret = new Gdk.Cursor(_cursor);
 				return ret;
@@ -55,4 +55,3 @@ namespace Gdk {
 		}
 	}
 }
-

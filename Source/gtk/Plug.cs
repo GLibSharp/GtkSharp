@@ -26,30 +26,28 @@ namespace Gtk {
 
 	public partial class Plug {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_plug_new(UIntPtr socket_id);
 
-		public Plug (ulong socket_id) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (Plug)) {
-				CreateNativeObject (new string [0], new GLib.Value [0]);
-				Construct (Convert.ToUInt32(socket_id));
+		public Plug(ulong socket_id) : base(IntPtr.Zero) {
+			if (GetType() != typeof(Plug)) {
+				CreateNativeObject(new string[0], new GLib.Value[0]);
+				Construct(Convert.ToUInt32(socket_id));
 				return;
 			}
-			Raw = gtk_plug_new (new UIntPtr (socket_id));
+			Raw = gtk_plug_new(new UIntPtr(socket_id));
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_plug_new_for_display(IntPtr display, UIntPtr socket_id);
 
-		public Plug (Gdk.Display display, ulong socket_id) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (Plug)) {
-				CreateNativeObject (new string [0], new GLib.Value [0]);
-				ConstructForDisplay (display, Convert.ToUInt32(socket_id));
+		public Plug(Gdk.Display display, ulong socket_id) : base(IntPtr.Zero) {
+			if (GetType() != typeof(Plug)) {
+				CreateNativeObject(new string[0], new GLib.Value[0]);
+				ConstructForDisplay(display, Convert.ToUInt32(socket_id));
 				return;
 			}
-			Raw = gtk_plug_new_for_display (display.Handle, new UIntPtr (socket_id));
+			Raw = gtk_plug_new_for_display(display.Handle, new UIntPtr(socket_id));
 		}
 	}
 }

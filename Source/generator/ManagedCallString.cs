@@ -26,24 +26,23 @@ namespace GtkSharp.Generation {
 	using System.IO;
 
 	public class ManagedCallString {
-		
-		IDictionary<Parameter, bool> parms = new Dictionary<Parameter, bool> ();
-		IList<Parameter> dispose_params = new List<Parameter> ();
+
+		IDictionary<Parameter, bool> parms = new Dictionary<Parameter, bool>();
+		IList<Parameter> dispose_params = new List<Parameter>();
 		string error_param = null;
 		string user_data_param = null;
 		string destroy_param = null;
 
-		public ManagedCallString (Parameters parms)
-		{
-			for (int i = 0; i < parms.Count; i ++) {
-				Parameter p = parms [i];
-				if (p.IsLength && i > 0 && parms [i-1].IsString) 
+		public ManagedCallString(Parameters parms) {
+			for (int i = 0; i < parms.Count; i++) {
+				Parameter p = parms[i];
+				if (p.IsLength && i > 0 && parms[i - 1].IsString)
 					continue;
 				else if (p.Scope == "notified") {
-					user_data_param = parms[i+1].Name;
-					destroy_param = parms[i+2].Name;
+					user_data_param = parms[i + 1].Name;
+					destroy_param = parms[i + 2].Name;
 					i += 2;
-				} else if ((p.IsCount || p.IsUserData) && parms.IsHidden (p)) {
+				} else if ((p.IsCount || p.IsUserData) && parms.IsHidden(p)) {
 					user_data_param = p.Name;
 					continue;
 				} else if (p is ErrorParameter) {
@@ -52,15 +51,15 @@ namespace GtkSharp.Generation {
 				}
 
 				bool special = false;
-				if (p.PassAs != String.Empty && (p.Name != p.FromNative (p.Name)))
+				if (p.PassAs != String.Empty && (p.Name != p.FromNative(p.Name)))
 					special = true;
 				else if (p.Generatable is CallbackGen)
 					special = true;
 
-				this.parms.Add (p, special);
+				this.parms.Add(p, special);
 
 				if (p.IsOwnable) {
-					dispose_params.Add (p);
+					dispose_params.Add(p);
 				}
 			}
 		}
@@ -79,7 +78,7 @@ namespace GtkSharp.Generation {
 			get { return dispose_params.Count > 0; }
 		}
 
-		public string Unconditional (string indent) {
+		public string Unconditional(string indent) {
 			string ret = "";
 			if (error_param != null)
 				ret = indent + error_param + " = IntPtr.Zero;\n";
@@ -90,12 +89,11 @@ namespace GtkSharp.Generation {
 			return ret;
 		}
 
-		public string Setup (string indent)
-		{
+		public string Setup(string indent) {
 			string ret = "";
 
 			foreach (Parameter p in parms.Keys) {
-				if (parms [p] == false) {
+				if (parms[p] == false) {
 					continue;
 				}
 
@@ -103,58 +101,56 @@ namespace GtkSharp.Generation {
 
 				if (igen is CallbackGen) {
 					if (user_data_param == null)
-						ret += indent + String.Format ("{0} {1}_invoker = new {0} ({1});\n", (igen as CallbackGen).InvokerName, p.Name);
+						ret += indent + String.Format("{0} {1}_invoker = new {0} ({1});\n", (igen as CallbackGen).InvokerName, p.Name);
 					else if (destroy_param == null)
-						ret += indent + String.Format ("{0} {1}_invoker = new {0} ({1}, {2});\n", (igen as CallbackGen).InvokerName, p.Name, user_data_param);
+						ret += indent + String.Format("{0} {1}_invoker = new {0} ({1}, {2});\n", (igen as CallbackGen).InvokerName, p.Name, user_data_param);
 					else
-						ret += indent + String.Format ("{0} {1}_invoker = new {0} ({1}, {2}, {3});\n", (igen as CallbackGen).InvokerName, p.Name, user_data_param, destroy_param);
+						ret += indent + String.Format("{0} {1}_invoker = new {0} ({1}, {2}, {3});\n", (igen as CallbackGen).InvokerName, p.Name, user_data_param, destroy_param);
 				} else {
 					ret += indent + igen.QualifiedName + " my" + p.Name;
 					if (p.PassAs == "ref")
-						ret += " = " + p.FromNative (p.Name);
+						ret += " = " + p.FromNative(p.Name);
 					ret += ";\n";
 				}
 			}
 
 			foreach (Parameter p in dispose_params) {
-				ret += indent + "my" + p.Name + " = " + p.FromNative (p.Name) + ";\n";
+				ret += indent + "my" + p.Name + " = " + p.FromNative(p.Name) + ";\n";
 			}
 
 			return ret;
 		}
 
-		public override string ToString ()
-		{
+		public override string ToString() {
 			if (parms.Count < 1)
 				return "";
 
-			string[] result = new string [parms.Count];
+			string[] result = new string[parms.Count];
 
 			int i = 0;
 			foreach (Parameter p in parms.Keys) {
-				result [i] = p.PassAs == "" ? "" : p.PassAs + " ";
+				result[i] = p.PassAs == "" ? "" : p.PassAs + " ";
 				if (p.Generatable is CallbackGen) {
-					result [i] += p.Name + "_invoker.Handler";
+					result[i] += p.Name + "_invoker.Handler";
 				} else {
-					if (parms [p] || dispose_params.Contains(p)) {
+					if (parms[p] || dispose_params.Contains(p)) {
 						// Parameter was declared and marshalled earlier
-						result [i] +=  "my" + p.Name;
+						result[i] += "my" + p.Name;
 					} else {
-						result [i] +=  p.FromNative (p.Name);
+						result[i] += p.FromNative(p.Name);
 					}
 				}
 				i++;
 			}
 
-			return String.Join (", ", result);
+			return String.Join(", ", result);
 		}
 
-		public string Finish (string indent)
-		{
+		public string Finish(string indent) {
 			string ret = "";
 
 			foreach (Parameter p in parms.Keys) {
-				if (parms [p] == false) {
+				if (parms[p] == false) {
 					continue;
 				}
 
@@ -163,18 +159,17 @@ namespace GtkSharp.Generation {
 				if (igen is CallbackGen)
 					continue;
 				else if (igen is StructBase || igen is ByRefGen)
-					ret += indent + String.Format ("if ({0} != IntPtr.Zero) System.Runtime.InteropServices.Marshal.StructureToPtr (my{0}, {0}, false);\n", p.Name);
+					ret += indent + String.Format("if ({0} != IntPtr.Zero) System.Runtime.InteropServices.Marshal.StructureToPtr (my{0}, {0}, false);\n", p.Name);
 				else if (igen is IManualMarshaler)
-					ret += String.Format ("{0}{1} = {2};", indent, p.Name, (igen as IManualMarshaler).AllocNative ("my" + p.Name));
+					ret += String.Format("{0}{1} = {2};", indent, p.Name, (igen as IManualMarshaler).AllocNative("my" + p.Name));
 				else
-					ret += indent + p.Name + " = " + igen.CallByName ("my" + p.Name) + ";\n";
+					ret += indent + p.Name + " = " + igen.CallByName("my" + p.Name) + ";\n";
 			}
 
 			return ret;
 		}
 
-		public string DisposeParams (string indent)
-		{
+		public string DisposeParams(string indent) {
 			string ret = "";
 
 			foreach (Parameter p in dispose_params) {
@@ -190,4 +185,3 @@ namespace GtkSharp.Generation {
 		}
 	}
 }
-

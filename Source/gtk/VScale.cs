@@ -22,26 +22,25 @@ namespace Gtk {
 
 	using System;
 	using System.Runtime.InteropServices;
-	
+
 	public partial class VScale {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_vscale_new_with_range (double min, double max, double step);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_vscale_new_with_range(double min, double max, double step);
 
-		public VScale (double min, double max, double step) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (VScale)) {
-				Adjustment adj = new Adjustment (min, min, max, step, 10 * step, 0);
-				string[] names = new string [1];
-				GLib.Value[] vals = new GLib.Value [1];
-				names [0] = "adjustment";
-				vals [0] = new GLib.Value (adj);
-				CreateNativeObject (names, vals);
-				vals [0].Dispose ();
+		public VScale(double min, double max, double step) : base(IntPtr.Zero) {
+			if (GetType() != typeof(VScale)) {
+				Adjustment adj = new Adjustment(min, min, max, step, 10 * step, 0);
+				string[] names = new string[1];
+				GLib.Value[] vals = new GLib.Value[1];
+				names[0] = "adjustment";
+				vals[0] = new GLib.Value(adj);
+				CreateNativeObject(names, vals);
+				vals[0].Dispose();
 				return;
 			}
 
-			Raw = gtk_vscale_new_with_range (min, max, step);
+			Raw = gtk_vscale_new_with_range(min, max, step);
 		}
 	}
 }

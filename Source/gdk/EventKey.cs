@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventKey : Event {
 
-		public EventKey (IntPtr raw) : base (raw) {} 
+		public EventKey(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -43,7 +43,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public byte Group {
@@ -51,7 +51,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.group = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -60,12 +60,12 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.hardware_keycode = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public Key Key {
-			get { return (Key) KeyValue; }
+			get { return (Key)KeyValue; }
 		}
 
 		public uint KeyValue {
@@ -73,16 +73,16 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.keyval = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public ModifierType State {
-			get { return (ModifierType) Native.state; }
+			get { return (ModifierType)Native.state; }
 			set {
 				NativeStruct native = Native;
-				native.state = (uint) value;
-				Marshal.StructureToPtr (native, Handle, false);
+				native.state = (uint)value;
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -91,9 +91,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

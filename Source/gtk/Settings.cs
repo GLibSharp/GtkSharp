@@ -19,12 +19,12 @@
 // Boston, MA 02111-1307, USA.
 
 namespace Gtk {
-		
+
 	using System;
 
 	public partial class Settings {
-		
-		[Obsolete ("Removed from C API, returns IntPtr.Zero")]
+
+		[Obsolete("Removed from C API, returns IntPtr.Zero")]
 		public IntPtr ColorHash {
 			get {
 				return IntPtr.Zero;

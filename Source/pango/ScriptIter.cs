@@ -25,54 +25,49 @@ namespace Pango {
 
 		IntPtr native_text;
 
-		public ScriptIter(IntPtr raw) : base(raw) {}
+		public ScriptIter(IntPtr raw) : base(raw) { }
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr pango_script_iter_new(IntPtr text, int length);
 
-		public ScriptIter (string text)
-		{
-			native_text = GLib.Marshaller.StringToPtrGStrdup (text);
-			Raw = pango_script_iter_new (native_text, -1);
+		public ScriptIter(string text) {
+			native_text = GLib.Marshaller.StringToPtrGStrdup(text);
+			Raw = pango_script_iter_new(native_text, -1);
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_script_iter_free (IntPtr raw);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void pango_script_iter_free(IntPtr raw);
 
-		~ScriptIter ()
-		{
-			GLib.Marshaller.Free (native_text);
-			pango_script_iter_free (Raw);
+		~ScriptIter() {
+			GLib.Marshaller.Free(native_text);
+			pango_script_iter_free(Raw);
 			Raw = IntPtr.Zero;
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_script_iter_get_range (IntPtr raw, out IntPtr start, out IntPtr end, out Pango.Script script);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void pango_script_iter_get_range(IntPtr raw, out IntPtr start, out IntPtr end, out Pango.Script script);
 
-		[DllImport ("glib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_utf8_pointer_to_offset (IntPtr str, IntPtr pos);
+		[DllImport("glib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_utf8_pointer_to_offset(IntPtr str, IntPtr pos);
 
-		public void GetRange (out int start, out int len, out Pango.Script script)
-		{
+		public void GetRange(out int start, out int len, out Pango.Script script) {
 			IntPtr start_ptr;
 			IntPtr end_ptr;
 
-			pango_script_iter_get_range (Handle, out start_ptr, out end_ptr, out script);
-			start = (int)g_utf8_pointer_to_offset (native_text, start_ptr);
-			len = (int)g_utf8_pointer_to_offset (start_ptr, end_ptr);
+			pango_script_iter_get_range(Handle, out start_ptr, out end_ptr, out script);
+			start = (int)g_utf8_pointer_to_offset(native_text, start_ptr);
+			len = (int)g_utf8_pointer_to_offset(start_ptr, end_ptr);
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern bool pango_script_iter_next (IntPtr raw);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern bool pango_script_iter_next(IntPtr raw);
 
-		public bool Next ()
-		{
-			return pango_script_iter_next (Handle);
+		public bool Next() {
+			return pango_script_iter_next(Handle);
 		}
 
-		[Obsolete ("Replaced by garbage collection")]
-		public void Free ()
-		{
+		[Obsolete("Replaced by garbage collection")]
+		public void Free() {
 		}
 	}
 }

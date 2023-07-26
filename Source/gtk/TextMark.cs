@@ -24,9 +24,8 @@ namespace Gtk {
 
 	public partial class TextMark {
 
-		protected TextMark () : base (IntPtr.Zero)
-		{
-			CreateNativeObject (new string [0], new GLib.Value [0]);
+		protected TextMark() : base(IntPtr.Zero) {
+			CreateNativeObject(new string[0], new GLib.Value[0]);
 		}
 	}
 }

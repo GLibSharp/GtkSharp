@@ -20,8 +20,7 @@
 // Boston, MA 02111-1307, USA.
 
 namespace GLib {
-	public enum Priority
-	{
+	public enum Priority {
 		High = -100,
 		Default = 0,
 		HighIdle = 100,

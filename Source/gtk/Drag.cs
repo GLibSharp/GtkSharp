@@ -23,16 +23,15 @@ namespace Gtk {
 
 	public partial class Drag {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_drag_set_icon_default(IntPtr context);
 
-		public static void SetIconDefault(Gdk.DragContext context)
-		{
+		public static void SetIconDefault(Gdk.DragContext context) {
 			gtk_drag_set_icon_default(context == null ? IntPtr.Zero : context.Handle);
 		}
 
 		[Obsolete("Replaced by SetIconDefault(ctx)")]
-		public static Gdk.DragContext IconDefault { 
+		public static Gdk.DragContext IconDefault {
 			set {
 				gtk_drag_set_icon_default(value == null ? IntPtr.Zero : value.Handle);
 			}

@@ -21,12 +21,12 @@
 
 
 namespace GtkSharp.Generation {
-	
+
 	using System;
 	using System.Collections;
-	
+
 	public class Statistics {
-		
+
 		static int cbs = 0;
 		static int enums = 0;
 		static int objects = 0;
@@ -41,7 +41,7 @@ namespace GtkSharp.Generation {
 		static int throttled = 0;
 		static int ignored = 0;
 		static bool vm_ignored = false;
-		
+
 		public static int CBCount {
 			get {
 				return cbs;
@@ -104,7 +104,7 @@ namespace GtkSharp.Generation {
 				ctors = value;
 			}
 		}
-		
+
 		public static int MethodCount {
 			get {
 				return methods;
@@ -149,7 +149,7 @@ namespace GtkSharp.Generation {
 				throttled = value;
 			}
 		}
-		
+
 		public static int IgnoreCount {
 			get {
 				return ignored;
@@ -158,7 +158,7 @@ namespace GtkSharp.Generation {
 				ignored = value;
 			}
 		}
-		
+
 		public static bool VMIgnored {
 			get {
 				return vm_ignored;
@@ -168,9 +168,8 @@ namespace GtkSharp.Generation {
 					vm_ignored = value;
 			}
 		}
-		
-		public static void Report()
-		{
+
+		public static void Report() {
 			if (VMIgnored) {
 				Console.WriteLine();
 				Console.WriteLine("Warning: Generation throttled for Virtual Methods.");
@@ -190,7 +189,7 @@ namespace GtkSharp.Generation {
 			Console.Write("  Methods: " + methods);
 			Console.Write("  Constructors: " + ctors);
 			Console.WriteLine("  Throttled: " + throttled);
-			Console.WriteLine("Total Nodes: " + (enums+structs+boxed+opaques+interfaces+cbs+objects+props+sigs+methods+ctors+throttled));
+			Console.WriteLine("Total Nodes: " + (enums + structs + boxed + opaques + interfaces + cbs + objects + props + sigs + methods + ctors + throttled));
 			Console.WriteLine();
 		}
 	}

@@ -26,42 +26,42 @@ namespace Pango {
 
 		public Attribute[] ExtraAttrs {
 			get {
-				GLib.SList list = new GLib.SList (_extra_attrs, typeof (IntPtr));
-				Attribute[] result = new Attribute [list.Count];
+				GLib.SList list = new GLib.SList(_extra_attrs, typeof(IntPtr));
+				Attribute[] result = new Attribute[list.Count];
 				int i = 0;
 				foreach (IntPtr attr in list)
-					result [i++] = Attribute.GetAttribute (attr);
+					result[i++] = Attribute.GetAttribute(attr);
 				return result;
 			}
 		}
 
-		[Obsolete ("Replaced by ShapeEngine property")]
+		[Obsolete("Replaced by ShapeEngine property")]
 		public Pango.EngineShape shape_engine {
-			get { 
+			get {
 				return _shape_engine == IntPtr.Zero ? null : new Pango.EngineShape(_shape_engine);
 			}
 			set { _shape_engine = value == null ? IntPtr.Zero : value.Handle; }
 		}
 
-		[Obsolete ("Replaced by LangEngine property")]
+		[Obsolete("Replaced by LangEngine property")]
 		public Pango.EngineLang lang_engine {
-			get { 
+			get {
 				return _lang_engine == IntPtr.Zero ? null : new Pango.EngineLang(_lang_engine);
 			}
 			set { _lang_engine = value == null ? IntPtr.Zero : value.Handle; }
 		}
 
-		[Obsolete ("Replaced by Font property")]
+		[Obsolete("Replaced by Font property")]
 		public Pango.Font font {
-			get { 
+			get {
 				return GLib.Object.GetObject(_font) as Pango.Font;
 			}
 			set { _font = value == null ? IntPtr.Zero : value.Handle; }
 		}
 
-		[Obsolete ("Replaced by Language property")]
+		[Obsolete("Replaced by Language property")]
 		public Pango.Language language {
-			get { 
+			get {
 				return _language == IntPtr.Zero ? null : new Pango.Language(_language);
 			}
 			set { _language = value == null ? IntPtr.Zero : value.Handle; }

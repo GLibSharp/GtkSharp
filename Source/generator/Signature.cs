@@ -25,32 +25,30 @@ namespace GtkSharp.Generation {
 	using System.Collections.Generic;
 	using System.Xml;
 
-	public class Signature  {
-		
-		private IList<Parameter> parms = new List<Parameter> ();
+	public class Signature {
 
-		public Signature (Parameters parms)
-		{
+		private IList<Parameter> parms = new List<Parameter>();
+
+		public Signature(Parameters parms) {
 			foreach (Parameter p in parms) {
-				if (!parms.IsHidden (p))
-					this.parms.Add (p);
+				if (!parms.IsHidden(p))
+					this.parms.Add(p);
 			}
 		}
 
-		public override string ToString ()
-		{
+		public override string ToString() {
 			if (parms.Count == 0)
 				return "";
 
-			string[] result = new string [parms.Count];
+			string[] result = new string[parms.Count];
 			int i = 0;
 
 			foreach (Parameter p in parms) {
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				result [i++] += p.CSType + " " + p.Name;
+				result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+				result[i++] += p.CSType + " " + p.Name;
 			}
 
-			return String.Join (", ", result);
+			return String.Join(", ", result);
 		}
 
 		public string Types {
@@ -58,13 +56,13 @@ namespace GtkSharp.Generation {
 				if (parms.Count == 0)
 					return "";
 
-				string[] result = new string [parms.Count];
+				string[] result = new string[parms.Count];
 				int i = 0;
 
 				foreach (Parameter p in parms)
-					result [i++] = p.CSType;
+					result[i++] = p.CSType;
 
-				return String.Join (":", result);
+				return String.Join(":", result);
 			}
 		}
 
@@ -74,7 +72,7 @@ namespace GtkSharp.Generation {
 				foreach (Parameter p in parms) {
 					if (p.PassAs == "out")
 						count++;
-					
+
 					if (count > 1)
 						return false;
 				}
@@ -87,7 +85,7 @@ namespace GtkSharp.Generation {
 				foreach (Parameter p in parms)
 					if (p.PassAs == "out")
 						return p.CSType;
-				
+
 				return null;
 			}
 		}
@@ -97,69 +95,65 @@ namespace GtkSharp.Generation {
 				foreach (Parameter p in parms)
 					if (p.PassAs == "out")
 						return p.Name;
-				
+
 				return null;
 			}
 		}
 
 		public string AsAccessor {
 			get {
-				string[] result = new string [parms.Count - 1];
+				string[] result = new string[parms.Count - 1];
 				int i = 0;
 
 				foreach (Parameter p in parms) {
 					if (p.PassAs == "out")
 						continue;
 
-					result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-					result [i++] += p.CSType + " " + p.Name;
+					result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+					result[i++] += p.CSType + " " + p.Name;
 				}
-				
-				return String.Join (", ", result);
+
+				return String.Join(", ", result);
 			}
 		}
 
-		public string WithoutOptional ()
-		{
+		public string WithoutOptional() {
 			if (parms.Count == 0)
 				return String.Empty;
 
-			var result = new string [parms.Count];
+			var result = new string[parms.Count];
 			int i = 0;
 
 			foreach (Parameter p in parms) {
 				if (p.IsOptional && p.PassAs == String.Empty)
 					continue;
-				result [i] = p.PassAs != String.Empty ? p.PassAs + " " : String.Empty;
-				result [i++] += p.CSType + " " + p.Name;
+				result[i] = p.PassAs != String.Empty ? p.PassAs + " " : String.Empty;
+				result[i++] += p.CSType + " " + p.Name;
 			}
 
-			return String.Join (", ", result, 0, i);
+			return String.Join(", ", result, 0, i);
 		}
 
-		public string CallWithoutOptionals ()
-		{
+		public string CallWithoutOptionals() {
 			if (parms.Count == 0)
 				return String.Empty;
 
-			var result = new string [parms.Count];
+			var result = new string[parms.Count];
 			int i = 0;
 
 			foreach (Parameter p in parms) {
 
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
+				result[i] = p.PassAs != "" ? p.PassAs + " " : "";
 				if (p.IsOptional && p.PassAs == String.Empty) {
 					if (p.IsArray)
-						result [i++] += "null";
+						result[i++] += "null";
 					else
-						result [i++] += p.Generatable.DefaultValue;
-				}
-				else
-					result [i++] += p.Name;
+						result[i++] += p.Generatable.DefaultValue;
+				} else
+					result[i++] += p.Name;
 			}
 
-			return String.Join (", ", result);
+			return String.Join(", ", result);
 		}
 	}
 }
-

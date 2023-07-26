@@ -30,8 +30,7 @@ namespace GtkSharp.Generation {
 
 		private XmlElement elem;
 
-		public Parameter (XmlElement e)
-		{
+		public Parameter(XmlElement e) {
 			elem = e;
 		}
 
@@ -59,14 +58,14 @@ namespace GtkSharp.Generation {
 
 		public string CSType {
 			get {
-				string cstype = SymbolTable.Table.GetCSType( elem.GetAttribute("type"));
+				string cstype = SymbolTable.Table.GetCSType(elem.GetAttribute("type"));
 				if (cstype == "void")
 					cstype = "System.IntPtr";
 				if (IsArray) {
 					if (IsParams)
 						cstype = "params " + cstype;
 					cstype += "[]";
-					cstype = cstype.Replace ("ref ", "");
+					cstype = cstype.Replace("ref ", "");
 				}
 				return cstype;
 			}
@@ -80,19 +79,19 @@ namespace GtkSharp.Generation {
 
 		public bool IsArray {
 			get {
-				return elem.GetAttributeAsBoolean ("array") || elem.GetAttributeAsBoolean ("null_term_array");
+				return elem.GetAttributeAsBoolean("array") || elem.GetAttributeAsBoolean("null_term_array");
 			}
 		}
 
 		public bool IsEllipsis {
 			get {
-				return elem.GetAttributeAsBoolean ("ellipsis");
+				return elem.GetAttributeAsBoolean("ellipsis");
 			}
 		}
 
 		internal bool IsOptional {
 			get {
-				return elem.GetAttributeAsBoolean ("allow-none");
+				return elem.GetAttributeAsBoolean("allow-none");
 			}
 		}
 
@@ -102,20 +101,19 @@ namespace GtkSharp.Generation {
 			get {
 				if (is_count_set)
 					return is_count;
-				
+
 				if (Name.StartsWith("n_"))
 					switch (CSType) {
-					case "int":
-					case "uint":
-					case "long":
-					case "ulong":
-					case "short":
-					case "ushort":
-						return true;
-					default:
-						return false;
-					}
-				else
+						case "int":
+						case "uint":
+						case "long":
+						case "ulong":
+						case "short":
+						case "ushort":
+							return true;
+						default:
+							return false;
+					} else
 					return false;
 			}
 			set {
@@ -134,17 +132,16 @@ namespace GtkSharp.Generation {
 			get {
 				if (Name.EndsWith("len") || Name.EndsWith("length"))
 					switch (CSType) {
-					case "int":
-					case "uint":
-					case "long":
-					case "ulong":
-					case "short":
-					case "ushort":
-						return true;
-					default:
-						return false;
-					}
-				else
+						case "int":
+						case "uint":
+						case "long":
+						case "ulong":
+						case "short":
+						case "ushort":
+							return true;
+						default:
+							return false;
+					} else
 					return false;
 			}
 		}
@@ -163,18 +160,18 @@ namespace GtkSharp.Generation {
 
 		public bool IsUserData {
 			get {
-				return CSType == "IntPtr" && (Name.EndsWith ("data") || Name.EndsWith ("data_or_owner"));
+				return CSType == "IntPtr" && (Name.EndsWith("data") || Name.EndsWith("data_or_owner"));
 			}
 		}
 
 		public virtual string MarshalType {
 			get {
-				string type = SymbolTable.Table.GetMarshalType( elem.GetAttribute("type"));
+				string type = SymbolTable.Table.GetMarshalType(elem.GetAttribute("type"));
 				if (type == "void" || Generatable is IManualMarshaler)
 					type = "IntPtr";
 				if (IsArray) {
 					type += "[]";
-					type = type.Replace ("ref ", "");
+					type = type.Replace("ref ", "");
 				}
 				return type;
 			}
@@ -182,7 +179,7 @@ namespace GtkSharp.Generation {
 
 		public string Name {
 			get {
-				return SymbolTable.Table.MangleName (elem.GetAttribute("name"));
+				return SymbolTable.Table.MangleName(elem.GetAttribute("name"));
 			}
 		}
 
@@ -194,7 +191,7 @@ namespace GtkSharp.Generation {
 
 		public bool Owned {
 			get {
-				return elem.GetAttribute ("owned") == "true";
+				return elem.GetAttribute("owned") == "true";
 			}
 		}
 
@@ -220,13 +217,13 @@ namespace GtkSharp.Generation {
 				if (pass_as != null)
 					return pass_as;
 
-				if (elem.HasAttribute ("pass_as"))
-					return elem.GetAttribute ("pass_as");
+				if (elem.HasAttribute("pass_as"))
+					return elem.GetAttribute("pass_as");
 
-				if (IsArray || CSType.EndsWith ("IntPtr"))
+				if (IsArray || CSType.EndsWith("IntPtr"))
 					return "";
 
-				if (CType.EndsWith ("*") && (Generatable is SimpleGen || Generatable is EnumGen))
+				if (CType.EndsWith("*") && (Generatable is SimpleGen || Generatable is EnumGen))
 					return "out";
 
 				return "";
@@ -240,7 +237,7 @@ namespace GtkSharp.Generation {
 		public string Scope {
 			get {
 				if (scope == null)
-					scope = elem.GetAttribute ("scope");
+					scope = elem.GetAttribute("scope");
 				return scope;
 			}
 			set {
@@ -251,8 +248,8 @@ namespace GtkSharp.Generation {
 		int closure = -1;
 		public int Closure {
 			get {
-				if(closure == -1 && elem.HasAttribute ("closure"))
-					closure = int.Parse(elem.GetAttribute ("closure"));
+				if (closure == -1 && elem.HasAttribute("closure"))
+					closure = int.Parse(elem.GetAttribute("closure"));
 				return closure;
 			}
 			set {
@@ -263,8 +260,8 @@ namespace GtkSharp.Generation {
 		int destroynotify = -1;
 		public int DestroyNotify {
 			get {
-				if (destroynotify == -1 && elem.HasAttribute ("destroy"))
-					destroynotify = int.Parse (elem.GetAttribute ("destroy"));
+				if (destroynotify == -1 && elem.HasAttribute("destroy"))
+					destroynotify = int.Parse(elem.GetAttribute("destroy"));
 				return destroynotify;
 			}
 			set {
@@ -274,7 +271,7 @@ namespace GtkSharp.Generation {
 
 		public bool IsHidden {
 			get {
-				return elem.GetAttributeAsBoolean ("hidden");
+				return elem.GetAttributeAsBoolean("hidden");
 			}
 		}
 
@@ -284,17 +281,17 @@ namespace GtkSharp.Generation {
 				if (gen is IManualMarshaler) {
 					string result = "IntPtr native_" + CallName;
 					if (PassAs != "out")
-						result += " = " + (gen as IManualMarshaler).AllocNative (CallName);
-					return new string [] { result + ";" };
+						result += " = " + (gen as IManualMarshaler).AllocNative(CallName);
+					return new string[] { result + ";" };
 				} else if (PassAs == "out" && CSType != MarshalType) {
-					return new string [] { gen.MarshalType + " native_" + CallName + ";" };
+					return new string[] { gen.MarshalType + " native_" + CallName + ";" };
 				} else if (PassAs == "ref" && CSType != MarshalType) {
-					return new string [] { gen.MarshalType + " native_" + CallName + " = (" + gen.MarshalType + ") " + CallName + ";" };
+					return new string[] { gen.MarshalType + " native_" + CallName + " = (" + gen.MarshalType + ") " + CallName + ";" };
 				} else if (gen is OpaqueGen && Owned) {
-					return new string [] { CallName + ".Owned = false;" };
+					return new string[] { CallName + ".Owned = false;" };
 				}
 
-				return new string [0];
+				return new string[0];
 			}
 		}
 
@@ -304,7 +301,7 @@ namespace GtkSharp.Generation {
 
 				IGeneratable gen = Generatable;
 				if (gen is CallbackGen)
-					return SymbolTable.Table.CallByName (CType, CallName + "_wrapper");
+					return SymbolTable.Table.CallByName(CType, CallName + "_wrapper");
 				else if (PassAs != String.Empty) {
 					call_parm = PassAs + " ";
 					if (CSType != MarshalType)
@@ -313,10 +310,10 @@ namespace GtkSharp.Generation {
 				} else if (gen is IManualMarshaler)
 					call_parm = "native_" + CallName;
 				else if (gen is ObjectBase)
-					call_parm = (gen as ObjectBase).CallByName (CallName, Owned);
+					call_parm = (gen as ObjectBase).CallByName(CallName, Owned);
 				else
-					call_parm = gen.CallByName (CallName);
-			
+					call_parm = gen.CallByName(CallName);
+
 				return call_parm;
 			}
 		}
@@ -325,30 +322,29 @@ namespace GtkSharp.Generation {
 			get {
 				IGeneratable gen = Generatable;
 				if (gen is IManualMarshaler) {
-					string[] result = new string [PassAs == "ref" ? 2 : 1];
+					string[] result = new string[PassAs == "ref" ? 2 : 1];
 					int i = 0;
 					if (PassAs != String.Empty)
-						result [i++] = CallName + " = " + Generatable.FromNative ("native_" + CallName) + ";";
+						result[i++] = CallName + " = " + Generatable.FromNative("native_" + CallName) + ";";
 					if (PassAs != "out")
-						result [i] = (gen as IManualMarshaler).ReleaseNative ("native_" + CallName) + ";";
+						result[i] = (gen as IManualMarshaler).ReleaseNative("native_" + CallName) + ";";
 					return result;
 				} else if (PassAs != String.Empty && MarshalType != CSType)
 					if (gen is IOwnable)
-						return new string [] { CallName + " = " + (gen as IOwnable).FromNative ("native_" + CallName, Owned) + ";" };
+						return new string[] { CallName + " = " + (gen as IOwnable).FromNative("native_" + CallName, Owned) + ";" };
 					else
-						return new string [] { CallName + " = " + gen.FromNative ("native_" + CallName) + ";" };
-				return new string [0];
+						return new string[] { CallName + " = " + gen.FromNative("native_" + CallName) + ";" };
+				return new string[0];
 			}
 		}
 
-		public string FromNative (string var)
-		{
+		public string FromNative(string var) {
 			if (Generatable == null)
 				return String.Empty;
 			else if (Generatable is IOwnable)
-				return ((IOwnable)Generatable).FromNative (var, Owned);
+				return ((IOwnable)Generatable).FromNative(var, Owned);
 			else
-				return Generatable.FromNative (var);
+				return Generatable.FromNative(var);
 		}
 
 		public string StudlyName {
@@ -357,20 +353,19 @@ namespace GtkSharp.Generation {
 				string[] segs = name.Split('_');
 				string studly = "";
 				foreach (string s in segs) {
-					if (s.Trim () == "")
+					if (s.Trim() == "")
 						continue;
-					studly += (s.Substring(0,1).ToUpper() + s.Substring(1));
+					studly += (s.Substring(0, 1).ToUpper() + s.Substring(1));
 				}
 				return studly;
-				
+
 			}
 		}
 	}
 
 	public class ErrorParameter : Parameter {
 
-		public ErrorParameter (XmlElement elem) : base (elem)
-		{
+		public ErrorParameter(XmlElement elem) : base(elem) {
 			PassAs = "out";
 		}
 
@@ -383,7 +378,7 @@ namespace GtkSharp.Generation {
 
 	public class StructParameter : Parameter {
 
-		public StructParameter (XmlElement elem) : base (elem) {}
+		public StructParameter(XmlElement elem) : base(elem) { }
 
 		public override string MarshalType {
 			get {
@@ -394,9 +389,9 @@ namespace GtkSharp.Generation {
 		public override string[] Prepare {
 			get {
 				if (PassAs == "out")
-					return new string [] { "IntPtr native_" + CallName + " = Marshal.AllocHGlobal (Marshal.SizeOf (typeof (" + Generatable.QualifiedName + ")));"};
+					return new string[] { "IntPtr native_" + CallName + " = Marshal.AllocHGlobal (Marshal.SizeOf (typeof (" + Generatable.QualifiedName + ")));" };
 				else
-					return new string [] { "IntPtr native_" + CallName + " = " + (Generatable as IManualMarshaler).AllocNative (CallName) + ";"};
+					return new string[] { "IntPtr native_" + CallName + " = " + (Generatable as IManualMarshaler).AllocNative(CallName) + ";" };
 			}
 		}
 
@@ -408,12 +403,12 @@ namespace GtkSharp.Generation {
 
 		public override string[] Finish {
 			get {
-				string[] result = new string [PassAs == string.Empty ? 1 : 2];
+				string[] result = new string[PassAs == string.Empty ? 1 : 2];
 				int i = 0;
 				if (PassAs != string.Empty) {
-					result [i++] = CallName + " = " + FromNative ("native_" + CallName) + ";";
+					result[i++] = CallName + " = " + FromNative("native_" + CallName) + ";";
 				}
-				result [i++] = (Generatable as IManualMarshaler).ReleaseNative ("native_" + CallName) + ";";
+				result[i++] = (Generatable as IManualMarshaler).ReleaseNative("native_" + CallName) + ";";
 				return result;
 			}
 		}

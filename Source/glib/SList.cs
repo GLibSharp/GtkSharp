@@ -26,74 +26,66 @@ namespace GLib {
 
 	public class SList : ListBase {
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_slist_copy (IntPtr l);
-		
-		public override object Clone ()
-		{
-			return new SList (g_slist_copy (Handle));
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_slist_copy(IntPtr l);
+
+		public override object Clone() {
+			return new SList(g_slist_copy(Handle));
 		}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern int g_slist_length (IntPtr l);
-		
-		internal override int Length (IntPtr list)
-		{
-			return g_slist_length (list);
+
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern int g_slist_length(IntPtr l);
+
+		internal override int Length(IntPtr list) {
+			return g_slist_length(list);
 		}
-		
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_slist_free(IntPtr l);
 
-		internal override void Free (IntPtr list)
-		{
+		internal override void Free(IntPtr list) {
 			if (list != IntPtr.Zero)
-				g_slist_free (list);
+				g_slist_free(list);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_slist_append (IntPtr l, IntPtr raw);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_slist_append(IntPtr l, IntPtr raw);
 
-		internal override IntPtr Append (IntPtr list, IntPtr raw)
-		{
-			return g_slist_append (list, raw);
+		internal override IntPtr Append(IntPtr list, IntPtr raw) {
+			return g_slist_append(list, raw);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_slist_prepend (IntPtr l, IntPtr raw);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_slist_prepend(IntPtr l, IntPtr raw);
 
-		internal override IntPtr Prepend (IntPtr list, IntPtr raw)
-		{
-			return g_slist_prepend (list, raw);
+		internal override IntPtr Prepend(IntPtr list, IntPtr raw) {
+			return g_slist_prepend(list, raw);
 		}
 
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-	        static extern IntPtr g_slist_nth_data (IntPtr l, uint n);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_slist_nth_data(IntPtr l, uint n);
 
-		internal override IntPtr NthData (uint n)
-		{
-			return g_slist_nth_data (Handle, n);
+		internal override IntPtr NthData(uint n) {
+			return g_slist_nth_data(Handle, n);
 		}
 
-		public SList (IntPtr raw) : this (raw, null) {}
+		public SList(IntPtr raw) : this(raw, null) { }
 
-		public SList (System.Type element_type) : this (IntPtr.Zero, element_type) {}
+		public SList(System.Type element_type) : this(IntPtr.Zero, element_type) { }
 
-		public SList (IntPtr raw, System.Type element_type) : this (raw, element_type, false, false) {}
+		public SList(IntPtr raw, System.Type element_type) : this(raw, element_type, false, false) { }
 
-		public SList (IntPtr raw, System.Type element_type, bool owned, bool elements_owned) : base (raw, element_type, false, false) {}
+		public SList(IntPtr raw, System.Type element_type, bool owned, bool elements_owned) : base(raw, element_type, false, false) { }
 
-		public SList (object[] members, System.Type element_type, bool owned, bool elements_owned) : this (IntPtr.Zero, element_type, owned, elements_owned)
-		{
+		public SList(object[] members, System.Type element_type, bool owned, bool elements_owned) : this(IntPtr.Zero, element_type, owned, elements_owned) {
 			foreach (object o in members)
-				Append (o);
+				Append(o);
 		}
 
-		public SList (Array members, System.Type element_type, bool owned, bool elements_owned) : this (IntPtr.Zero, element_type, owned, elements_owned)
-		{
+		public SList(Array members, System.Type element_type, bool owned, bool elements_owned) : this(IntPtr.Zero, element_type, owned, elements_owned) {
 			foreach (object o in members)
-				Append (o);
+				Append(o);
 		}
 	}
 }

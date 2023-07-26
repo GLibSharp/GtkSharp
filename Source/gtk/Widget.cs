@@ -29,15 +29,14 @@ namespace Gtk {
 
 	public partial class Widget {
 
-		[Obsolete ("Replaced by Window property.")]
+		[Obsolete("Replaced by Window property.")]
 		public Gdk.Window GdkWindow {
 			get { return Window; }
 			set { Window = value; }
 		}
 
-		public void AddAccelerator (string accel_signal, AccelGroup accel_group, AccelKey accel_key)
-		{
-			this.AddAccelerator (accel_signal, accel_group, (uint) accel_key.Key, accel_key.AccelMods, (Gtk.AccelFlags) accel_key.AccelFlags);
+		public void AddAccelerator(string accel_signal, AccelGroup accel_group, AccelKey accel_key) {
+			this.AddAccelerator(accel_signal, accel_group, (uint)accel_key.Key, accel_key.AccelMods, (Gtk.AccelFlags)accel_key.AccelFlags);
 		}
 
 		/*
@@ -55,87 +54,81 @@ namespace Gtk {
 			IntPtr notifiers;
 		}
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void ClosureMarshal (IntPtr closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data);
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		delegate void ClosureMarshal(IntPtr closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data);
 
-		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_closure_new_simple (int closure_size, IntPtr dummy);
+		[DllImport("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_closure_new_simple(int closure_size, IntPtr dummy);
 
-		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_closure_set_marshal (IntPtr closure, ClosureMarshal marshaler);
+		[DllImport("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_closure_set_marshal(IntPtr closure, ClosureMarshal marshaler);
 
-		static IntPtr CreateClosure (ClosureMarshal marshaler) {
-			IntPtr raw_closure = g_closure_new_simple (Marshal.SizeOf (typeof (GClosure)), IntPtr.Zero);
-			g_closure_set_marshal (raw_closure, marshaler);
+		static IntPtr CreateClosure(ClosureMarshal marshaler) {
+			IntPtr raw_closure = g_closure_new_simple(Marshal.SizeOf(typeof(GClosure)), IntPtr.Zero);
+			g_closure_set_marshal(raw_closure, marshaler);
 			return raw_closure;
 		}
 
-		[DllImport ("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_signal_newv (IntPtr signal_name, IntPtr gtype, GLib.Signal.Flags signal_flags, IntPtr closure, IntPtr accumulator, IntPtr accu_data, IntPtr c_marshaller, IntPtr return_type, uint n_params, [MarshalAs (UnmanagedType.LPArray)] IntPtr[] param_types);
+		[DllImport("gobject-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern uint g_signal_newv(IntPtr signal_name, IntPtr gtype, GLib.Signal.Flags signal_flags, IntPtr closure, IntPtr accumulator, IntPtr accu_data, IntPtr c_marshaller, IntPtr return_type, uint n_params, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] param_types);
 
-		static uint RegisterSignal (string signal_name, GLib.GType gtype, GLib.Signal.Flags signal_flags, GLib.GType return_type, GLib.GType[] param_types, ClosureMarshal marshaler)
-		{
-			IntPtr[] native_param_types = new IntPtr [param_types.Length];
+		static uint RegisterSignal(string signal_name, GLib.GType gtype, GLib.Signal.Flags signal_flags, GLib.GType return_type, GLib.GType[] param_types, ClosureMarshal marshaler) {
+			IntPtr[] native_param_types = new IntPtr[param_types.Length];
 			for (int parm_idx = 0; parm_idx < param_types.Length; parm_idx++)
-				native_param_types [parm_idx] = param_types [parm_idx].Val;
+				native_param_types[parm_idx] = param_types[parm_idx].Val;
 
-			IntPtr native_signal_name = GLib.Marshaller.StringToPtrGStrdup (signal_name);
+			IntPtr native_signal_name = GLib.Marshaller.StringToPtrGStrdup(signal_name);
 			try {
-				return g_signal_newv (native_signal_name, gtype.Val, signal_flags, CreateClosure (marshaler), IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, return_type.Val, (uint) param_types.Length, native_param_types);
+				return g_signal_newv(native_signal_name, gtype.Val, signal_flags, CreateClosure(marshaler), IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, return_type.Val, (uint)param_types.Length, native_param_types);
 			} finally {
-				GLib.Marshaller.Free (native_signal_name);
+				GLib.Marshaller.Free(native_signal_name);
 			}
 		}
 
-		static void ActivateMarshal_cb (IntPtr raw_closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data)
-		{
+		static void ActivateMarshal_cb(IntPtr raw_closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data) {
 			try {
-				GLib.Value inst_val = (GLib.Value) Marshal.PtrToStructure (param_values, typeof (GLib.Value));
+				GLib.Value inst_val = (GLib.Value)Marshal.PtrToStructure(param_values, typeof(GLib.Value));
 				Widget inst;
 				try {
 					inst = inst_val.Val as Widget;
 				} catch (GLib.MissingIntPtrCtorException) {
 					return;
 				}
-				inst.OnActivate ();
+				inst.OnActivate();
 			} catch (Exception e) {
-				GLib.ExceptionManager.RaiseUnhandledException (e, false);
+				GLib.ExceptionManager.RaiseUnhandledException(e, false);
 			}
 		}
 
 		static ClosureMarshal ActivateMarshalCallback;
 
-		static void ConnectActivate (GLib.GType gtype)
-		{
+		static void ConnectActivate(GLib.GType gtype) {
 			if (ActivateMarshalCallback == null)
-				ActivateMarshalCallback = new ClosureMarshal (ActivateMarshal_cb);
+				ActivateMarshalCallback = new ClosureMarshal(ActivateMarshal_cb);
 
 			unsafe {
-				uint* raw_ptr = (uint*)(((long) gtype.GetClassPtr()) + (long) class_abi.GetFieldOffset("activate_signal"));
+				uint* raw_ptr = (uint*)(((long)gtype.GetClassPtr()) + (long)class_abi.GetFieldOffset("activate_signal"));
 
-				*raw_ptr = RegisterSignal ("activate_signal", gtype, GLib.Signal.Flags.RunLast, GLib.GType.None,
-						new GLib.GType [0], ActivateMarshalCallback);
+				*raw_ptr = RegisterSignal("activate_signal", gtype, GLib.Signal.Flags.RunLast, GLib.GType.None,
+						new GLib.GType[0], ActivateMarshalCallback);
 			}
 		}
 
-		[GLib.DefaultSignalHandler (Type=typeof (Gtk.Widget), ConnectionMethod="ConnectActivate")]
-		protected virtual void OnActivate ()
-		{
+		[GLib.DefaultSignalHandler(Type = typeof(Gtk.Widget), ConnectionMethod = "ConnectActivate")]
+		protected virtual void OnActivate() {
 		}
 
 		private class BindingInvoker {
 			System.Reflection.MethodInfo mi;
 			object[] parms;
 
-			public BindingInvoker (System.Reflection.MethodInfo mi, object[] parms)
-			{
+			public BindingInvoker(System.Reflection.MethodInfo mi, object[] parms) {
 				this.mi = mi;
 				this.parms = parms;
 			}
 
-			public void Invoke (Widget w)
-			{
-				mi.Invoke (w, parms);
+			public void Invoke(Widget w) {
+				mi.Invoke(w, parms);
 			}
 		}
 
@@ -145,19 +138,18 @@ namespace Gtk {
 		 */
 		static IList<BindingInvoker> binding_invokers;
 
-		static void BindingMarshal_cb (IntPtr raw_closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data)
-		{
+		static void BindingMarshal_cb(IntPtr raw_closure, IntPtr return_val, uint n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data) {
 			try {
-				GLib.Value[] inst_and_params = new GLib.Value [n_param_vals];
-				int gvalue_size = Marshal.SizeOf (typeof (GLib.Value));
+				GLib.Value[] inst_and_params = new GLib.Value[n_param_vals];
+				int gvalue_size = Marshal.SizeOf(typeof(GLib.Value));
 				for (int idx = 0; idx < n_param_vals; idx++)
-					inst_and_params [idx] = (GLib.Value) Marshal.PtrToStructure (new IntPtr (param_values.ToInt64 () + idx * gvalue_size), typeof (GLib.Value));
+					inst_and_params[idx] = (GLib.Value)Marshal.PtrToStructure(new IntPtr(param_values.ToInt64() + idx * gvalue_size), typeof(GLib.Value));
 
-				Widget w = inst_and_params [0].Val as Widget;
-				BindingInvoker invoker = binding_invokers [(int) (long) inst_and_params [1]];
-				invoker.Invoke (w);
+				Widget w = inst_and_params[0].Val as Widget;
+				BindingInvoker invoker = binding_invokers[(int)(long)inst_and_params[1]];
+				invoker.Invoke(w);
 			} catch (Exception e) {
-				GLib.ExceptionManager.RaiseUnhandledException (e, false);
+				GLib.ExceptionManager.RaiseUnhandledException(e, false);
 			}
 		}
 
@@ -165,16 +157,16 @@ namespace Gtk {
 		static ClosureMarshal BindingDelegate {
 			get {
 				if (binding_delegate == null)
-					binding_delegate = new ClosureMarshal (BindingMarshal_cb);
+					binding_delegate = new ClosureMarshal(BindingMarshal_cb);
 				return binding_delegate;
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_binding_set_by_class (IntPtr class_ptr);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_binding_set_by_class(IntPtr class_ptr);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_binding_entry_add_signall (IntPtr binding_set, uint keyval, Gdk.ModifierType modifiers, IntPtr signal_name, IntPtr binding_args);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void gtk_binding_entry_add_signall(IntPtr binding_set, uint keyval, Gdk.ModifierType modifiers, IntPtr signal_name, IntPtr binding_args);
 
 		[StructLayout(LayoutKind.Sequential)]
 		struct GtkBindingArg {
@@ -184,98 +176,94 @@ namespace Gtk {
 
 		[StructLayout(LayoutKind.Explicit)]
 		struct GtkBindingArgData {
-		#if WIN64LONGS
+#if WIN64LONGS
 			[FieldOffset (0)] public int long_data;
-		#else
-			[FieldOffset (0)] public IntPtr long_data;
-		#endif
-			[FieldOffset (0)] public double double_data;
-			[FieldOffset (0)] public IntPtr string_data;
+#else
+			[FieldOffset(0)] public IntPtr long_data;
+#endif
+			[FieldOffset(0)] public double double_data;
+			[FieldOffset(0)] public IntPtr string_data;
 		}
 
-		static void ClassInit (GLib.GType gtype, Type t)
-		{
-			object[] attrs = t.GetCustomAttributes (typeof (BindingAttribute), true);
+		static void ClassInit(GLib.GType gtype, Type t) {
+			object[] attrs = t.GetCustomAttributes(typeof(BindingAttribute), true);
 			if (attrs.Length == 0) return;
 
-			string signame = t.Name.Replace (".", "_") + "_bindings";
-			IntPtr native_signame = GLib.Marshaller.StringToPtrGStrdup (signame);
-			RegisterSignal (signame, gtype, GLib.Signal.Flags.RunLast | GLib.Signal.Flags.Action, GLib.GType.None, new GLib.GType[] {GLib.GType.Long}, BindingDelegate);
+			string signame = t.Name.Replace(".", "_") + "_bindings";
+			IntPtr native_signame = GLib.Marshaller.StringToPtrGStrdup(signame);
+			RegisterSignal(signame, gtype, GLib.Signal.Flags.RunLast | GLib.Signal.Flags.Action, GLib.GType.None, new GLib.GType[] { GLib.GType.Long }, BindingDelegate);
 
 			if (binding_invokers == null)
-				binding_invokers = new List<BindingInvoker> ();
+				binding_invokers = new List<BindingInvoker>();
 
 			foreach (BindingAttribute attr in attrs) {
-				System.Reflection.MethodInfo mi = t.GetMethod (attr.Handler, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+				System.Reflection.MethodInfo mi = t.GetMethod(attr.Handler, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
 				if (mi == null)
-					throw new Exception ("Instance method " + attr.Handler + " not found in " + t);
+					throw new Exception("Instance method " + attr.Handler + " not found in " + t);
 
-				GtkBindingArg arg = new GtkBindingArg ();
+				GtkBindingArg arg = new GtkBindingArg();
 				arg.arg_type = GLib.GType.Long.Val;
 
-				var bi = new BindingInvoker (mi, attr.Parms);
-				binding_invokers.Add (bi);
-				int binding_invoker_idx = binding_invokers.IndexOf (bi);
+				var bi = new BindingInvoker(mi, attr.Parms);
+				binding_invokers.Add(bi);
+				int binding_invoker_idx = binding_invokers.IndexOf(bi);
 #if WIN64LONGS
 				arg.data.long_data = binding_invoker_idx;
 #else
-				arg.data.long_data = new IntPtr (binding_invoker_idx);
+				arg.data.long_data = new IntPtr(binding_invoker_idx);
 #endif
 
-				GLib.SList binding_args = new GLib.SList (new object[] {arg}, typeof (GtkBindingArg), false, false);
-				gtk_binding_entry_add_signall (gtk_binding_set_by_class (gtype.GetClassPtr ()), (uint) attr.Key, attr.Mod, native_signame, binding_args.Handle);
-				binding_args.Dispose ();
+				GLib.SList binding_args = new GLib.SList(new object[] { arg }, typeof(GtkBindingArg), false, false);
+				gtk_binding_entry_add_signall(gtk_binding_set_by_class(gtype.GetClassPtr()), (uint)attr.Key, attr.Mod, native_signame, binding_args.Handle);
+				binding_args.Dispose();
 			}
-			GLib.Marshaller.Free (native_signame);
+			GLib.Marshaller.Free(native_signame);
 		}
 
-		public object StyleGetProperty (string property_name)
-		{
+		public object StyleGetProperty(string property_name) {
 			GLib.Value value;
 			try {
-				value = StyleGetPropertyValue (property_name);
+				value = StyleGetPropertyValue(property_name);
 			} catch (ArgumentException) {
 				return null;
 			}
 			object ret = value.Val;
-			value.Dispose ();
+			value.Dispose();
 			return ret;
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_widget_class_find_style_property (IntPtr class_ptr, IntPtr property_name);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_widget_class_find_style_property(IntPtr class_ptr, IntPtr property_name);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_widget_style_get_property (IntPtr inst, IntPtr property_name, ref GLib.Value value);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_widget_style_get_property(IntPtr inst, IntPtr property_name, ref GLib.Value value);
 
-		internal GLib.Value StyleGetPropertyValue (string property_name)
-		{
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (property_name);
+		internal GLib.Value StyleGetPropertyValue(string property_name) {
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(property_name);
 			try {
-				IntPtr pspec_ptr = gtk_widget_class_find_style_property (this.LookupGType ().GetClassPtr (), native_name);
+				IntPtr pspec_ptr = gtk_widget_class_find_style_property(this.LookupGType().GetClassPtr(), native_name);
 				if (pspec_ptr == IntPtr.Zero)
-					throw new ArgumentException (String.Format ("Cannot find style property \"{0}\"", property_name));
+					throw new ArgumentException(String.Format("Cannot find style property \"{0}\"", property_name));
 
-				GLib.Value value = new GLib.Value ((new GLib.ParamSpec (pspec_ptr)).ValueType);
-				gtk_widget_style_get_property (Handle, native_name, ref value);
+				GLib.Value value = new GLib.Value((new GLib.ParamSpec(pspec_ptr)).ValueType);
+				gtk_widget_style_get_property(Handle, native_name, ref value);
 				return value;
 			} finally {
-				GLib.Marshaller.Free (native_name);
+				GLib.Marshaller.Free(native_name);
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_widget_list_mnemonic_labels (IntPtr raw);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_widget_list_mnemonic_labels(IntPtr raw);
 
-		public Widget[] ListMnemonicLabels ()
-		{
-			IntPtr raw_ret = gtk_widget_list_mnemonic_labels (Handle);
+		public Widget[] ListMnemonicLabels() {
+			IntPtr raw_ret = gtk_widget_list_mnemonic_labels(Handle);
 			if (raw_ret == IntPtr.Zero)
-				return new Widget [0];
+				return new Widget[0];
 			GLib.List list = new GLib.List(raw_ret);
-			Widget[] result = new Widget [list.Count];
+			Widget[] result = new Widget[list.Count];
 			for (int i = 0; i < list.Count; i++)
-				result [i] = list [i] as Widget;
+				result[i] = list[i] as Widget;
 			return result;
 		}
 
@@ -286,14 +274,12 @@ namespace Gtk {
 		}
 		*/
 
-		public void ModifyBg (Gtk.StateType state)
-		{
-			gtk_widget_modify_bg (Handle, (int) state, IntPtr.Zero);
+		public void ModifyBg(Gtk.StateType state) {
+			gtk_widget_modify_bg(Handle, (int)state, IntPtr.Zero);
 		}
 
-		public void ModifyFg (Gtk.StateType state)
-		{
-			gtk_widget_modify_fg (Handle, (int) state, IntPtr.Zero);
+		public void ModifyFg(Gtk.StateType state) {
+			gtk_widget_modify_fg(Handle, (int)state, IntPtr.Zero);
 		}
 
 		/*
@@ -303,36 +289,33 @@ namespace Gtk {
 		}
 		*/
 
-		public void Path (out string path, out string path_reversed)
-		{
+		public void Path(out string path, out string path_reversed) {
 			uint len;
-			Path (out len, out path, out path_reversed);
+			Path(out len, out path, out path_reversed);
 		}
 
 		static IDictionary<IntPtr, Delegate> destroy_handlers;
 		static IDictionary<IntPtr, Delegate> DestroyHandlers {
 			get {
 				if (destroy_handlers == null)
-					destroy_handlers = new Dictionary<IntPtr, Delegate> ();
+					destroy_handlers = new Dictionary<IntPtr, Delegate>();
 				return destroy_handlers;
 			}
 		}
 
-		private static void OverrideDestroyed (GLib.GType gtype)
-		{
+		private static void OverrideDestroyed(GLib.GType gtype) {
 			// Do Nothing.  We don't want to hook into the native vtable.
 			// We will manually invoke the VM on signal invocation. The signal
 			// always raises before the default handler because this signal
 			// is RUN_CLEANUP.
 		}
 
-		[GLib.DefaultSignalHandler(Type=typeof(Gtk.Widget), ConnectionMethod="OverrideDestroyed")]
-		protected virtual void OnDestroyed ()
-		{
-			if (DestroyHandlers.ContainsKey (Handle)) {
-				EventHandler handler = (EventHandler) DestroyHandlers [Handle];
-				handler (this, EventArgs.Empty);
-				DestroyHandlers.Remove (Handle);
+		[GLib.DefaultSignalHandler(Type = typeof(Gtk.Widget), ConnectionMethod = "OverrideDestroyed")]
+		protected virtual void OnDestroyed() {
+			if (DestroyHandlers.ContainsKey(Handle)) {
+				EventHandler handler = (EventHandler)DestroyHandlers[Handle];
+				handler(this, EventArgs.Empty);
+				DestroyHandlers.Remove(Handle);
 			}
 		}
 
@@ -340,62 +323,59 @@ namespace Gtk {
 		public event EventHandler Destroyed {
 			add {
 				Delegate delegate_handler;
-				DestroyHandlers.TryGetValue (Handle, out delegate_handler);
+				DestroyHandlers.TryGetValue(Handle, out delegate_handler);
 				var handler = delegate_handler as EventHandler;
-				DestroyHandlers [Handle] = Delegate.Combine (handler, value);
+				DestroyHandlers[Handle] = Delegate.Combine(handler, value);
 			}
 			remove {
 				Delegate delegate_handler;
-				DestroyHandlers.TryGetValue (Handle, out delegate_handler);
+				DestroyHandlers.TryGetValue(Handle, out delegate_handler);
 				var handler = delegate_handler as EventHandler;
-				handler = (EventHandler) Delegate.Remove (handler, value);
+				handler = (EventHandler)Delegate.Remove(handler, value);
 				if (handler != null)
-					DestroyHandlers [Handle] = handler;
+					DestroyHandlers[Handle] = handler;
 				else
-					DestroyHandlers.Remove (Handle);
+					DestroyHandlers.Remove(Handle);
 			}
 		}
 
 		event EventHandler InternalDestroyed {
 			add {
-				AddSignalHandler ("destroy", value);
+				AddSignalHandler("destroy", value);
 			}
 			remove {
-				RemoveSignalHandler ("destroy", value);
+				RemoveSignalHandler("destroy", value);
 			}
 		}
 
-		static void NativeDestroy (object o, EventArgs args)
-		{
+		static void NativeDestroy(object o, EventArgs args) {
 			Gtk.Widget widget = o as Gtk.Widget;
 			if (widget == null)
 				return;
-			widget.OnDestroyed ();
+			widget.OnDestroyed();
 		}
-		
+
 		static EventHandler native_destroy_handler;
 		static EventHandler NativeDestroyHandler {
 			get {
 				if (native_destroy_handler == null)
-					native_destroy_handler = new EventHandler (NativeDestroy);
+					native_destroy_handler = new EventHandler(NativeDestroy);
 				return native_destroy_handler;
 			}
 		}
 
-		protected override void CreateNativeObject (string[] names, GLib.Value[] vals)
-		{
-			base.CreateNativeObject (names, vals);
+		protected override void CreateNativeObject(string[] names, GLib.Value[] vals) {
+			base.CreateNativeObject(names, vals);
 		}
 
-		protected override void Dispose (bool disposing)
-		{
+		protected override void Dispose(bool disposing) {
 			if (Handle == IntPtr.Zero)
 				return;
 			InternalDestroyed -= NativeDestroyHandler;
-			base.Dispose (disposing);
+			base.Dispose(disposing);
 		}
 
-	protected override IntPtr Raw {
+		protected override IntPtr Raw {
 			get {
 				return base.Raw;
 			}
@@ -406,14 +386,13 @@ namespace Gtk {
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void gtk_widget_destroy (IntPtr raw);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void gtk_widget_destroy(IntPtr raw);
 
-		public virtual void Destroy ()
-		{
+		public virtual void Destroy() {
 			if (Handle == IntPtr.Zero)
 				return;
-			gtk_widget_destroy (Handle);
+			gtk_widget_destroy(Handle);
 			InternalDestroyed -= NativeDestroyHandler;
 		}
 	}

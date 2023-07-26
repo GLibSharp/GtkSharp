@@ -25,84 +25,79 @@ namespace Pango {
 
 		IntPtr raw;
 
-		internal Attribute (IntPtr raw)
-		{
+		internal Attribute(IntPtr raw) {
 			this.raw = raw;
 		}
 
-		static Pango.AttrType GetAttrType (IntPtr raw)
-		{
+		static Pango.AttrType GetAttrType(IntPtr raw) {
 			if (raw == IntPtr.Zero)
 				return AttrType.Invalid;
-			IntPtr klass = Marshal.ReadIntPtr (raw);
-			return (AttrType) Marshal.ReadInt32 (klass);
+			IntPtr klass = Marshal.ReadIntPtr(raw);
+			return (AttrType)Marshal.ReadInt32(klass);
 		}
 
-		public static Attribute GetAttribute (IntPtr raw)
-		{
-			switch (GetAttrType (raw)) {
-			case Pango.AttrType.Language:
-				return new AttrLanguage (raw);
-			case Pango.AttrType.Family:
-				return new AttrFamily (raw);
-			case Pango.AttrType.Style:
-				return new AttrStyle (raw);
-			case Pango.AttrType.Weight:
-				return new AttrWeight (raw);
-			case Pango.AttrType.Variant:
-				return new AttrVariant (raw);
-			case Pango.AttrType.Stretch:
-				return new AttrStretch (raw);
-			case Pango.AttrType.Size:
-				return new AttrSize (raw);
-			case Pango.AttrType.FontDesc:
-				return new AttrFontDesc (raw);
-			case Pango.AttrType.Foreground:
-				return new AttrForeground (raw);
-			case Pango.AttrType.Background:
-				return new AttrBackground (raw);
-			case Pango.AttrType.Underline:
-				return new AttrUnderline (raw);
-			case Pango.AttrType.Strikethrough:
-				return new AttrStrikethrough (raw);
-			case Pango.AttrType.Rise:
-				return new AttrRise (raw);
-			case Pango.AttrType.Shape:
-				return new AttrShape (raw);
-			case Pango.AttrType.Scale:
-				return new AttrScale (raw);
-			case Pango.AttrType.Fallback:
-				return new AttrFallback (raw);
-			case Pango.AttrType.LetterSpacing:
-				return new AttrLetterSpacing (raw);
-			case Pango.AttrType.UnderlineColor:
-				return new AttrUnderlineColor (raw);
-			case Pango.AttrType.StrikethroughColor:
-				return new AttrStrikethroughColor (raw);
-			case Pango.AttrType.Gravity:
-				return new AttrGravity (raw);
-			case Pango.AttrType.GravityHint:
-				return new AttrGravityHint (raw);
-			default:
-				return new Attribute (raw);
+		public static Attribute GetAttribute(IntPtr raw) {
+			switch (GetAttrType(raw)) {
+				case Pango.AttrType.Language:
+					return new AttrLanguage(raw);
+				case Pango.AttrType.Family:
+					return new AttrFamily(raw);
+				case Pango.AttrType.Style:
+					return new AttrStyle(raw);
+				case Pango.AttrType.Weight:
+					return new AttrWeight(raw);
+				case Pango.AttrType.Variant:
+					return new AttrVariant(raw);
+				case Pango.AttrType.Stretch:
+					return new AttrStretch(raw);
+				case Pango.AttrType.Size:
+					return new AttrSize(raw);
+				case Pango.AttrType.FontDesc:
+					return new AttrFontDesc(raw);
+				case Pango.AttrType.Foreground:
+					return new AttrForeground(raw);
+				case Pango.AttrType.Background:
+					return new AttrBackground(raw);
+				case Pango.AttrType.Underline:
+					return new AttrUnderline(raw);
+				case Pango.AttrType.Strikethrough:
+					return new AttrStrikethrough(raw);
+				case Pango.AttrType.Rise:
+					return new AttrRise(raw);
+				case Pango.AttrType.Shape:
+					return new AttrShape(raw);
+				case Pango.AttrType.Scale:
+					return new AttrScale(raw);
+				case Pango.AttrType.Fallback:
+					return new AttrFallback(raw);
+				case Pango.AttrType.LetterSpacing:
+					return new AttrLetterSpacing(raw);
+				case Pango.AttrType.UnderlineColor:
+					return new AttrUnderlineColor(raw);
+				case Pango.AttrType.StrikethroughColor:
+					return new AttrStrikethroughColor(raw);
+				case Pango.AttrType.Gravity:
+					return new AttrGravity(raw);
+				case Pango.AttrType.GravityHint:
+					return new AttrGravityHint(raw);
+				default:
+					return new Attribute(raw);
 			}
 		}
 
-		~Attribute ()
-		{
-			Dispose ();
+		~Attribute() {
+			Dispose();
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_attribute_destroy (IntPtr raw);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void pango_attribute_destroy(IntPtr raw);
 
-		public void Dispose ()
-		{
+		public void Dispose() {
 			if (raw != IntPtr.Zero) {
-				pango_attribute_destroy (raw);
+				pango_attribute_destroy(raw);
 				raw = IntPtr.Zero;
 			}
-			GC.SuppressFinalize (this);
+			GC.SuppressFinalize(this);
 		}
 
 		public IntPtr Handle {
@@ -118,7 +113,7 @@ namespace Pango {
 		}
 
 		public Pango.AttrType Type {
-			get { return GetAttrType (raw); }
+			get { return GetAttrType(raw); }
 		}
 
 		internal struct NativeStruct {
@@ -128,7 +123,7 @@ namespace Pango {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (raw, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(raw, typeof(NativeStruct)); }
 		}
 
 		public uint StartIndex {
@@ -136,7 +131,7 @@ namespace Pango {
 			set {
 				NativeStruct native = Native;
 				native.start_index = value;
-				Marshal.StructureToPtr (native, raw, false);
+				Marshal.StructureToPtr(native, raw, false);
 			}
 		}
 
@@ -145,22 +140,22 @@ namespace Pango {
 			set {
 				NativeStruct native = Native;
 				native.end_index = value;
-				Marshal.StructureToPtr (native, raw, false);
+				Marshal.StructureToPtr(native, raw, false);
 			}
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attribute_copy (IntPtr raw);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attribute_copy(IntPtr raw);
 
-		public Pango.Attribute Copy () {
-			return GetAttribute (pango_attribute_copy (raw));
+		public Pango.Attribute Copy() {
+			return GetAttribute(pango_attribute_copy(raw));
 		}
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern bool pango_attribute_equal (IntPtr raw1, IntPtr raw2);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern bool pango_attribute_equal(IntPtr raw1, IntPtr raw2);
 
-		public bool Equal (Pango.Attribute attr2) {
-			return pango_attribute_equal (raw, attr2.raw);
+		public bool Equal(Pango.Attribute attr2) {
+			return pango_attribute_equal(raw, attr2.raw);
 		}
 	}
 }

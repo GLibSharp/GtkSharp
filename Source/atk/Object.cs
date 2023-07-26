@@ -25,31 +25,27 @@ namespace Atk {
 
 	public partial class Object {
 
-		protected void EmitChildrenChanged (ChildrenChangedDetail detail, uint child_index, Atk.Object child)
-		{
-			GLib.Signal.Emit (this, 
-				"children-changed::" + detail.ToString ().ToLower (), 
+		protected void EmitChildrenChanged(ChildrenChangedDetail detail, uint child_index, Atk.Object child) {
+			GLib.Signal.Emit(this,
+				"children-changed::" + detail.ToString().ToLower(),
 				child_index, child.Handle);
 		}
-		
-		protected enum ChildrenChangedDetail
-		{
+
+		protected enum ChildrenChangedDetail {
 			Add,
 			Remove
 		}
 
-		protected void EmitVisibleDataChanged ()
-		{
-			GLib.Signal.Emit (this, "visible-data-changed");
-		}
-		
-		public void NotifyStateChange (Atk.StateType state, bool value) {
-			NotifyStateChange ((ulong)state, value);
+		protected void EmitVisibleDataChanged() {
+			GLib.Signal.Emit(this, "visible-data-changed");
 		}
 
-		protected void EmitFocusEvent (bool gained)
-		{
-			GLib.Signal.Emit (this, "focus-event", gained);
+		public void NotifyStateChange(Atk.StateType state, bool value) {
+			NotifyStateChange((ulong)state, value);
+		}
+
+		protected void EmitFocusEvent(bool gained) {
+			GLib.Signal.Emit(this, "focus-event", gained);
 		}
 	}
 }

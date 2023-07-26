@@ -31,12 +31,10 @@ using System;
 namespace Cairo {
 
 	[Serializable]
-	public enum PatternType
-	{
+	public enum PatternType {
 		Solid,
 		Surface,
 		Linear,
 		Radial,
 	}
 }
-

@@ -38,67 +38,63 @@ namespace GLib {
 		static Dictionary<IntPtr, ToggleRef> Objects = new Dictionary<IntPtr, ToggleRef>();
 		static Dictionary<IntPtr, Dictionary<IntPtr, GLib.Value>> PropertiesToSet = new Dictionary<IntPtr, Dictionary<IntPtr, GLib.Value>>();
 
-		~Object ()
-		{
+		~Object() {
 			if (WarnOnFinalize)
-				Console.Error.WriteLine ("Unexpected finalization of " + GetType() + " instance.  Consider calling Dispose.");
+				Console.Error.WriteLine("Unexpected finalization of " + GetType() + " instance.  Consider calling Dispose.");
 
-			Dispose (false);
+			Dispose(false);
 		}
 
-		public void Dispose ()
-		{
+		public void Dispose() {
 			if (disposed)
 				return;
 
-			Dispose (true);
+			Dispose(true);
 			disposed = true;
-			GC.SuppressFinalize (this);
+			GC.SuppressFinalize(this);
 		}
 
-		protected virtual void Dispose (bool disposing)
-		{
+		protected virtual void Dispose(bool disposing) {
 			ToggleRef tref;
 			lock (Objects) {
-				if (Objects.TryGetValue (Handle, out tref)) {
-					Objects.Remove (Handle);
+				if (Objects.TryGetValue(Handle, out tref)) {
+					Objects.Remove(Handle);
 				}
 			}
 
 			handle = IntPtr.Zero;
 			if (tref == null)
 				return;
-			
+
 			if (disposing)
-				tref.Dispose ();
+				tref.Dispose();
 			else
-				tref.QueueUnref ();
+				tref.QueueUnref();
 		}
 
-		public static explicit operator IntPtr (Object o) => o.Handle;
+		public static explicit operator IntPtr(Object o) => o.Handle;
 
 		public static bool WarnOnFinalize { get; set; }
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_ref (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_object_ref(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_ref_sink (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_ref_sink(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_unref (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_unref(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool g_object_is_floating (IntPtr raw);
-		
-		public static Object TryGetObject (IntPtr o)
-		{
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool g_object_is_floating(IntPtr raw);
+
+		public static Object TryGetObject(IntPtr o) {
 			if (o == IntPtr.Zero)
 				return null;
 
 			ToggleRef toggle_ref;
 			lock (Objects) {
-				if (!Objects.TryGetValue (o, out toggle_ref)) {
+				if (!Objects.TryGetValue(o, out toggle_ref)) {
 					return null;
 				}
 			}
@@ -110,8 +106,7 @@ namespace GLib {
 			return null;
 		}
 
-		public static Object GetObject(IntPtr o, bool owned_ref)
-		{
+		public static Object GetObject(IntPtr o, bool owned_ref) {
 			if (o == IntPtr.Zero)
 				return null;
 
@@ -119,7 +114,7 @@ namespace GLib {
 
 			ToggleRef toggle_ref;
 			lock (Objects) {
-				if (Objects.TryGetValue (o, out toggle_ref)) {
+				if (Objects.TryGetValue(o, out toggle_ref)) {
 					if (toggle_ref != null)
 						obj = toggle_ref.Target;
 				}
@@ -127,7 +122,7 @@ namespace GLib {
 
 			if (obj != null && obj.Handle == o) {
 				if (owned_ref)
-					g_object_unref (obj.Handle);
+					g_object_unref(obj.Handle);
 				return obj;
 			}
 
@@ -138,25 +133,24 @@ namespace GLib {
 			// we actually own it and have to sink the floating reference, which
 			// will happen in the setter for Raw later.
 			if (!owned_ref && !g_object_is_floating(o))
-				g_object_ref (o);
+				g_object_ref(o);
 			else if (owned_ref && g_object_is_floating(o))
 				unexpected_owned_floating = true;
 
-			obj = GLib.ObjectManager.CreateObject(o); 
+			obj = GLib.ObjectManager.CreateObject(o);
 			if (obj == null) {
-				g_object_unref (o);
+				g_object_unref(o);
 				return null;
 			}
 
 			if (unexpected_owned_floating)
-				Console.Error.WriteLine ("Unexpected owned floating reference of " + obj.GetType() + " instance. This will be leaked");
+				Console.Error.WriteLine("Unexpected owned floating reference of " + obj.GetType() + " instance. This will be leaked");
 
 			return obj;
 		}
 
-		public static Object GetObject(IntPtr o)
-		{
-			return GetObject (o, false);
+		public static Object GetObject(IntPtr o) {
+			return GetObject(o, false);
 		}
 
 		//  Key: The Type for the set of properties
@@ -166,7 +160,7 @@ namespace GLib {
 		static Dictionary<Type, Dictionary<IntPtr, PropertyInfo>> Properties {
 			get {
 				if (properties == null)
-					properties = new Dictionary<Type, Dictionary<IntPtr, PropertyInfo>> ();
+					properties = new Dictionary<Type, Dictionary<IntPtr, PropertyInfo>>();
 				return properties;
 			}
 		}
@@ -175,7 +169,7 @@ namespace GLib {
 		static Dictionary<IntPtr, Dictionary<Type, PropertyInfo>> IProperties {
 			get {
 				if (interface_properties == null)
-					interface_properties = new Dictionary<IntPtr, Dictionary<Type, PropertyInfo>> ();
+					interface_properties = new Dictionary<IntPtr, Dictionary<Type, PropertyInfo>>();
 				return interface_properties;
 			}
 		}
@@ -213,93 +207,85 @@ namespace GLib {
 			uint idx = 1;
 			bool is_first_subclass;
 			private GType gtype;
-			private List<GInterfaceAdapter> adapters = new List<GInterfaceAdapter> ();
+			private List<GInterfaceAdapter> adapters = new List<GInterfaceAdapter>();
 
-			internal ClassInitializer (Type type)
-			{
+			internal ClassInitializer(Type type) {
 				ClassInitManagedDelegate = this.ClassInit;
 				Type = type;
-				gtype = GType.RegisterGObjectType (this);
-				is_first_subclass = gtype.GetBaseType () == gtype.GetThresholdType ();
+				gtype = GType.RegisterGObjectType(this);
+				is_first_subclass = gtype.GetBaseType() == gtype.GetThresholdType();
 			}
 
-			internal GType Init ()
-			{
-				AddGInterfaces ();
-				gtype.EnsureClass (); //calls class_init
+			internal GType Init() {
+				AddGInterfaces();
+				gtype.EnsureClass(); //calls class_init
 
-				ConnectDefaultHandlers ();
-				InvokeTypeInitializers ();
-				AddInterfaceProperties ();
+				ConnectDefaultHandlers();
+				InvokeTypeInitializers();
+				AddInterfaceProperties();
 				return gtype;
 			}
 
-			private void AddGInterfaces ()
-			{
-				foreach (Type iface in Type.GetInterfaces ()) {
-					if (!iface.IsDefined (typeof (GInterfaceAttribute), true))
+			private void AddGInterfaces() {
+				foreach (Type iface in Type.GetInterfaces()) {
+					if (!iface.IsDefined(typeof(GInterfaceAttribute), true))
 						continue;
 
-					GInterfaceAttribute attr = iface.GetCustomAttributes (typeof (GInterfaceAttribute), false) [0] as GInterfaceAttribute;
-					GInterfaceAdapter adapter = Activator.CreateInstance (attr.AdapterType, null) as GInterfaceAdapter;
+					GInterfaceAttribute attr = iface.GetCustomAttributes(typeof(GInterfaceAttribute), false)[0] as GInterfaceAttribute;
+					GInterfaceAdapter adapter = Activator.CreateInstance(attr.AdapterType, null) as GInterfaceAdapter;
 
-					if (!iface.IsAssignableFrom (Type.BaseType)) {
+					if (!iface.IsAssignableFrom(Type.BaseType)) {
 						GInterfaceInfo info = adapter.Info;
 						info.Data = gtype.Val;
-						g_type_add_interface_static (gtype.Val, adapter.GInterfaceGType.Val, ref info);
-						adapters.Add (adapter);
+						g_type_add_interface_static(gtype.Val, adapter.GInterfaceGType.Val, ref info);
+						adapters.Add(adapter);
 					}
 				}
 			}
 
-			private void ClassInit (IntPtr gobject_class_handle)
-			{
+			private void ClassInit(IntPtr gobject_class_handle) {
 				bool override_ctor = is_first_subclass;
 
 				bool override_props = is_first_subclass || adapters.Count > 0;
 
-				OverrideHandlers (gobject_class_handle, override_ctor, override_props);
+				OverrideHandlers(gobject_class_handle, override_ctor, override_props);
 
 				foreach (GInterfaceAdapter adapter in adapters) {
-					InitializeProperties (adapter, gobject_class_handle);
+					InitializeProperties(adapter, gobject_class_handle);
 				}
 
-				AddProperties (gobject_class_handle);
+				AddProperties(gobject_class_handle);
 			}
 
-			private void InitializeProperties (GInterfaceAdapter adapter, IntPtr gobject_class_handle)
-			{
-				foreach (PropertyInfo pinfo in adapter.GetType ().GetProperties (BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)) {
-					foreach (object attr in pinfo.GetCustomAttributes (typeof (PropertyAttribute), false)) {
-						if (pinfo.GetIndexParameters ().Length > 0)
-							throw new InvalidOperationException (String.Format ("Property {0} of type {1} cannot be overriden because its GLib.PropertyAttribute is expected to have one or more indexed parameters",
-							                                                    pinfo.Name, adapter.GetType ().FullName));
+			private void InitializeProperties(GInterfaceAdapter adapter, IntPtr gobject_class_handle) {
+				foreach (PropertyInfo pinfo in adapter.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)) {
+					foreach (object attr in pinfo.GetCustomAttributes(typeof(PropertyAttribute), false)) {
+						if (pinfo.GetIndexParameters().Length > 0)
+							throw new InvalidOperationException(String.Format("Property {0} of type {1} cannot be overriden because its GLib.PropertyAttribute is expected to have one or more indexed parameters",
+																				pinfo.Name, adapter.GetType().FullName));
 
 						PropertyAttribute property_attr = attr as PropertyAttribute;
 						if (property_attr != null) {
-							OverrideProperty (gobject_class_handle, property_attr.Name);
+							OverrideProperty(gobject_class_handle, property_attr.Name);
 						}
 					}
 				}
 			}
 
-			void OverrideProperty (IntPtr declaring_class, string name)
-			{
-				Object.OverrideProperty (declaring_class, idx++, name);
+			void OverrideProperty(IntPtr declaring_class, string name) {
+				Object.OverrideProperty(declaring_class, idx++, name);
 				idx++;
 			}
 
-			private void OverrideHandlers (bool ctor, bool properties)
-			{
-				OverrideHandlers (gtype.GetClassPtr (), ctor, properties);
+			private void OverrideHandlers(bool ctor, bool properties) {
+				OverrideHandlers(gtype.GetClassPtr(), ctor, properties);
 			}
 
-			private void OverrideHandlers (IntPtr gobject_class_handle, bool ctor, bool properties)
-			{
+			private void OverrideHandlers(IntPtr gobject_class_handle, bool ctor, bool properties) {
 				if (HandlersOverriden || (ctor == false && properties == false))
 					return;
 
-				GObjectClass gobject_class = (GObjectClass)Marshal.PtrToStructure (gobject_class_handle, typeof(GObjectClass));
+				GObjectClass gobject_class = (GObjectClass)Marshal.PtrToStructure(gobject_class_handle, typeof(GObjectClass));
 				if (ctor) {
 					gobject_class.constructor_cb = GLib.Object.ConstructorHandler;
 				}
@@ -307,151 +293,146 @@ namespace GLib {
 					gobject_class.get_prop_cb = GLib.Object.GetPropertyHandler;
 					gobject_class.set_prop_cb = GLib.Object.SetPropertyHandler;
 				}
-				Marshal.StructureToPtr (gobject_class, gobject_class_handle, false);
+				Marshal.StructureToPtr(gobject_class, gobject_class_handle, false);
 				HandlersOverriden = true;
 			}
 
-			void AddProperties (IntPtr gobject_class_handle)
-			{
+			void AddProperties(IntPtr gobject_class_handle) {
 				if (is_first_subclass) {
-					ParamSpec pspec = new ParamSpec ("gtk-sharp-managed-instance", "", "", GType.Pointer, ParamFlags.Writable | ParamFlags.ConstructOnly);
-					g_object_class_install_property (gobject_class_handle, idx, pspec.Handle);
+					ParamSpec pspec = new ParamSpec("gtk-sharp-managed-instance", "", "", GType.Pointer, ParamFlags.Writable | ParamFlags.ConstructOnly);
+					g_object_class_install_property(gobject_class_handle, idx, pspec.Handle);
 					idx++;
 				}
 
-				foreach (PropertyInfo pinfo in Type.GetProperties (BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)) {
-					foreach (object attr in pinfo.GetCustomAttributes (typeof (PropertyAttribute), false)) {
-						if (pinfo.GetIndexParameters ().Length > 0)
+				foreach (PropertyInfo pinfo in Type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)) {
+					foreach (object attr in pinfo.GetCustomAttributes(typeof(PropertyAttribute), false)) {
+						if (pinfo.GetIndexParameters().Length > 0)
 							throw new InvalidOperationException(String.Format("GLib.RegisterPropertyAttribute cannot be applied to property {0} of type {1} because the property expects one or more indexed parameters",
-							                                                  pinfo.Name, Type.FullName));
+																			  pinfo.Name, Type.FullName));
 
-						OverrideHandlers (false, true);
+						OverrideHandlers(false, true);
 
 						PropertyAttribute property_attr = attr as PropertyAttribute;
 						try {
-							IntPtr param_spec = RegisterProperty (gtype, property_attr.Name, property_attr.Nickname, property_attr.Blurb, idx, (GType) pinfo.PropertyType, pinfo.CanRead, pinfo.CanWrite);
+							IntPtr param_spec = RegisterProperty(gtype, property_attr.Name, property_attr.Nickname, property_attr.Blurb, idx, (GType)pinfo.PropertyType, pinfo.CanRead, pinfo.CanWrite);
 							Type type = (Type)gtype;
 							Dictionary<IntPtr, PropertyInfo> gtype_properties;
-							if (!Properties.TryGetValue (type, out gtype_properties)) {
-								gtype_properties = new Dictionary<IntPtr, PropertyInfo> ();
-								Properties [type] = gtype_properties;
+							if (!Properties.TryGetValue(type, out gtype_properties)) {
+								gtype_properties = new Dictionary<IntPtr, PropertyInfo>();
+								Properties[type] = gtype_properties;
 							}
-							gtype_properties.Add (param_spec, pinfo);
+							gtype_properties.Add(param_spec, pinfo);
 							idx++;
 						} catch (ArgumentException) {
-							throw new InvalidOperationException (String.Format ("GLib.PropertyAttribute cannot be applied to property {0} of type {1} because the return type of the property is not supported",
-							                                                    pinfo.Name, Type.FullName));
+							throw new InvalidOperationException(String.Format("GLib.PropertyAttribute cannot be applied to property {0} of type {1} because the return type of the property is not supported",
+																				pinfo.Name, Type.FullName));
 						}
 					}
 				}
 			}
 
-			void AddInterfaceProperties ()
-			{
-				foreach (Type iface in Type.GetInterfaces ()) {
-					if (!iface.IsDefined (typeof (GInterfaceAttribute), true))
+			void AddInterfaceProperties() {
+				foreach (Type iface in Type.GetInterfaces()) {
+					if (!iface.IsDefined(typeof(GInterfaceAttribute), true))
 						continue;
 
-					GInterfaceAttribute attr = iface.GetCustomAttributes (typeof (GInterfaceAttribute), false) [0] as GInterfaceAttribute;
-					GInterfaceAdapter adapter = Activator.CreateInstance (attr.AdapterType, null) as GInterfaceAdapter;
+					GInterfaceAttribute attr = iface.GetCustomAttributes(typeof(GInterfaceAttribute), false)[0] as GInterfaceAttribute;
+					GInterfaceAdapter adapter = Activator.CreateInstance(attr.AdapterType, null) as GInterfaceAdapter;
 
-					foreach (PropertyInfo p in iface.GetProperties ()) {
-						PropertyAttribute[] attrs = p.GetCustomAttributes (typeof (PropertyAttribute), true) as PropertyAttribute [];
+					foreach (PropertyInfo p in iface.GetProperties()) {
+						PropertyAttribute[] attrs = p.GetCustomAttributes(typeof(PropertyAttribute), true) as PropertyAttribute[];
 						if (attrs.Length == 0)
 							continue;
-						PropertyAttribute property_attr = attrs [0];
-						PropertyInfo declared_prop = Type.GetProperty (p.Name, BindingFlags.Public | BindingFlags.Instance);
+						PropertyAttribute property_attr = attrs[0];
+						PropertyInfo declared_prop = Type.GetProperty(p.Name, BindingFlags.Public | BindingFlags.Instance);
 						if (declared_prop == null)
 							continue;
-						IntPtr param_spec = FindInterfaceProperty (adapter.GInterfaceGType, property_attr.Name);
+						IntPtr param_spec = FindInterfaceProperty(adapter.GInterfaceGType, property_attr.Name);
 
 						Dictionary<IntPtr, PropertyInfo> props;
-						if (!Properties.TryGetValue (Type, out props)) {
-							props = new Dictionary<IntPtr, PropertyInfo> ();
-							Properties [Type] = props;
+						if (!Properties.TryGetValue(Type, out props)) {
+							props = new Dictionary<IntPtr, PropertyInfo>();
+							Properties[Type] = props;
 						}
-						props [param_spec] = declared_prop;
+						props[param_spec] = declared_prop;
 					}
 				}
 			}
 
-			void ConnectDefaultHandlers ()
-			{
+			void ConnectDefaultHandlers() {
 				foreach (MethodInfo minfo in Type.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)) {
-					MethodInfo baseinfo = minfo.GetBaseDefinition ();
+					MethodInfo baseinfo = minfo.GetBaseDefinition();
 					if (baseinfo == minfo)
 						continue;
 
-					foreach (object attr in baseinfo.GetCustomAttributes (typeof (DefaultSignalHandlerAttribute), false)) {
+					foreach (object attr in baseinfo.GetCustomAttributes(typeof(DefaultSignalHandlerAttribute), false)) {
 						DefaultSignalHandlerAttribute sigattr = attr as DefaultSignalHandlerAttribute;
-						MethodInfo connector = sigattr.Type.GetMethod (sigattr.ConnectionMethod, BindingFlags.Static | BindingFlags.NonPublic, null, new Type[] { typeof (GType) }, new ParameterModifier [0]);
-						object[] parms = new object [1];
-						parms [0] = gtype;
-						connector.Invoke (null, parms);
+						MethodInfo connector = sigattr.Type.GetMethod(sigattr.ConnectionMethod, BindingFlags.Static | BindingFlags.NonPublic, null, new Type[] { typeof(GType) }, new ParameterModifier[0]);
+						object[] parms = new object[1];
+						parms[0] = gtype;
+						connector.Invoke(null, parms);
 						break;
 					}
 				}
 			}
 
-			void InvokeTypeInitializers ()
-			{
-				object[] parms = {gtype, Type};
+			void InvokeTypeInitializers() {
+				object[] parms = { gtype, Type };
 
 				BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic;
 
-				foreach (TypeInitializerAttribute tia in Type.GetCustomAttributes (typeof (TypeInitializerAttribute), true)) {
-					MethodInfo m = tia.Type.GetMethod (tia.MethodName, flags);
+				foreach (TypeInitializerAttribute tia in Type.GetCustomAttributes(typeof(TypeInitializerAttribute), true)) {
+					MethodInfo m = tia.Type.GetMethod(tia.MethodName, flags);
 					if (m != null)
-						m.Invoke (null, parms);
+						m.Invoke(null, parms);
 				}
 			}
 		}
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate IntPtr ConstructorDelegate (IntPtr gtype, uint n_construct_properties, IntPtr construct_properties);
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		delegate IntPtr ConstructorDelegate(IntPtr gtype, uint n_construct_properties, IntPtr construct_properties);
 
 		static ConstructorDelegate constructor_handler;
 
 		static ConstructorDelegate ConstructorHandler {
 			get {
 				if (constructor_handler == null)
-					constructor_handler = new ConstructorDelegate (ConstructorCallback);
+					constructor_handler = new ConstructorDelegate(ConstructorCallback);
 				return constructor_handler;
 			}
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_param_spec_get_name (IntPtr pspec);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_param_spec_get_name(IntPtr pspec);
 
-		static IntPtr ConstructorCallback (IntPtr gtypeval, uint n_construct_properties, IntPtr construct_properties)
-		{
-			GType gtype = new GLib.GType (gtypeval);
-			GObjectClass threshold_class = (GObjectClass) Marshal.PtrToStructure (gtype.GetThresholdType ().GetClassPtr (), typeof (GObjectClass));
-			IntPtr raw = threshold_class.constructor_cb (gtypeval, n_construct_properties, construct_properties);
+		static IntPtr ConstructorCallback(IntPtr gtypeval, uint n_construct_properties, IntPtr construct_properties) {
+			GType gtype = new GLib.GType(gtypeval);
+			GObjectClass threshold_class = (GObjectClass)Marshal.PtrToStructure(gtype.GetThresholdType().GetClassPtr(), typeof(GObjectClass));
+			IntPtr raw = threshold_class.constructor_cb(gtypeval, n_construct_properties, construct_properties);
 			Dictionary<IntPtr, GLib.Value> deferred;
 
 			GLib.Object obj = null;
 			for (int i = 0; i < n_construct_properties; i++) {
-				IntPtr p = new IntPtr (construct_properties.ToInt64 () + i * 2 * IntPtr.Size);
+				IntPtr p = new IntPtr(construct_properties.ToInt64() + i * 2 * IntPtr.Size);
 
-				string prop_name = Marshaller.Utf8PtrToString (g_param_spec_get_name (Marshal.ReadIntPtr (p)));
+				string prop_name = Marshaller.Utf8PtrToString(g_param_spec_get_name(Marshal.ReadIntPtr(p)));
 				if (prop_name != "gtk-sharp-managed-instance")
 					continue;
 
-				Value val = (Value) Marshal.PtrToStructure (Marshal.ReadIntPtr (p, IntPtr.Size), typeof (Value));
-				if ((IntPtr) val.Val != IntPtr.Zero) {
-					GCHandle gch = (GCHandle) (IntPtr) val.Val;
-					obj = (GLib.Object) gch.Target;
+				Value val = (Value)Marshal.PtrToStructure(Marshal.ReadIntPtr(p, IntPtr.Size), typeof(Value));
+				if ((IntPtr)val.Val != IntPtr.Zero) {
+					GCHandle gch = (GCHandle)(IntPtr)val.Val;
+					obj = (GLib.Object)gch.Target;
 					obj.Raw = raw;
 					break;
 				}
 			}
 
 			if (obj == null)
-				obj = GetObject (raw, false);
+				obj = GetObject(raw, false);
 
-			if(PropertiesToSet.TryGetValue(raw, out deferred)) {
-				foreach(var item in deferred) {
+			if (PropertiesToSet.TryGetValue(raw, out deferred)) {
+				foreach (var item in deferred) {
 					SetDeferredProperty(obj, item.Value, item.Key);
 				}
 				PropertiesToSet.Remove(raw);
@@ -459,102 +440,89 @@ namespace GLib {
 			return raw;
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_class_override_property (IntPtr klass, uint prop_id, IntPtr name);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_class_override_property(IntPtr klass, uint prop_id, IntPtr name);
 
-		public static void OverrideProperty (IntPtr oclass, uint property_id, string name)
-		{
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
-			g_object_class_override_property (oclass, property_id, native_name);
-			GLib.Marshaller.Free (native_name);	
+		public static void OverrideProperty(IntPtr oclass, uint property_id, string name) {
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
+			g_object_class_override_property(oclass, property_id, native_name);
+			GLib.Marshaller.Free(native_name);
 		}
 
-		[Obsolete ("Use OverrideProperty(oclass,property_id,name)")]
-		public static void OverrideProperty (IntPtr declaring_class, string name)
-		{
-			OverrideProperty (declaring_class, idx, name);
+		[Obsolete("Use OverrideProperty(oclass,property_id,name)")]
+		public static void OverrideProperty(IntPtr declaring_class, string name) {
+			OverrideProperty(declaring_class, idx, name);
 			idx++;
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_class_find_property (IntPtr klass, IntPtr name);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_object_class_find_property(IntPtr klass, IntPtr name);
 
-		static IntPtr FindClassProperty (GLib.Object o, string name)
-		{
-			IntPtr gobjectclass = Marshal.ReadIntPtr (o.Handle);
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
-			try
-			{
-				return g_object_class_find_property (gobjectclass, native_name);
-			}
-			finally
-			{
-				GLib.Marshaller.Free (native_name);
+		static IntPtr FindClassProperty(GLib.Object o, string name) {
+			IntPtr gobjectclass = Marshal.ReadIntPtr(o.Handle);
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
+			try {
+				return g_object_class_find_property(gobjectclass, native_name);
+			} finally {
+				GLib.Marshaller.Free(native_name);
 			}
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_interface_find_property (IntPtr klass, IntPtr name);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_object_interface_find_property(IntPtr klass, IntPtr name);
 
-		static IntPtr FindInterfaceProperty (GType type, string name)
-		{
-			IntPtr g_iface = type.GetDefaultInterfacePtr ();
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
-			try
-			{
-				return g_object_interface_find_property (g_iface, native_name);
-			}
-			finally
-			{
-				GLib.Marshaller.Free (native_name);
+		static IntPtr FindInterfaceProperty(GType type, string name) {
+			IntPtr g_iface = type.GetDefaultInterfacePtr();
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
+			try {
+				return g_object_interface_find_property(g_iface, native_name);
+			} finally {
+				GLib.Marshaller.Free(native_name);
 			}
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_class_install_property (IntPtr klass, uint prop_id, IntPtr param_spec);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_class_install_property(IntPtr klass, uint prop_id, IntPtr param_spec);
 
-		static IntPtr RegisterProperty (GType type, string name, string nick, string blurb, uint property_id, GType property_type, bool can_read, bool can_write)
-		{
-			IntPtr declaring_class = type.GetClassPtr ();
-			ParamSpec pspec = new ParamSpec (name, nick, blurb, property_type, can_read, can_write);
+		static IntPtr RegisterProperty(GType type, string name, string nick, string blurb, uint property_id, GType property_type, bool can_read, bool can_write) {
+			IntPtr declaring_class = type.GetClassPtr();
+			ParamSpec pspec = new ParamSpec(name, nick, blurb, property_type, can_read, can_write);
 
-			g_object_class_install_property (declaring_class, property_id, pspec.Handle);
+			g_object_class_install_property(declaring_class, property_id, pspec.Handle);
 			return pspec.Handle;
 		}
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void GetPropertyDelegate (IntPtr GObject, uint property_id, ref GLib.Value value, IntPtr pspec);
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		delegate void GetPropertyDelegate(IntPtr GObject, uint property_id, ref GLib.Value value, IntPtr pspec);
 
-		static void GetPropertyCallback (IntPtr handle, uint property_id, ref GLib.Value value, IntPtr param_spec)
-		{
-			GLib.Object obj = GLib.Object.GetObject (handle, false);
-			var type = (Type)obj.LookupGType ();
+		static void GetPropertyCallback(IntPtr handle, uint property_id, ref GLib.Value value, IntPtr param_spec) {
+			GLib.Object obj = GLib.Object.GetObject(handle, false);
+			var type = (Type)obj.LookupGType();
 
 			Dictionary<IntPtr, PropertyInfo> props;
-			if (!Properties.TryGetValue (type, out props))
+			if (!Properties.TryGetValue(type, out props))
 				return;
 
 			PropertyInfo prop;
-			if (!props.TryGetValue (param_spec, out prop))
+			if (!props.TryGetValue(param_spec, out prop))
 				return;
 
-			value.Val = prop.GetValue (obj, new object [0]);
+			value.Val = prop.GetValue(obj, new object[0]);
 		}
 
 		static GetPropertyDelegate get_property_handler;
 		static GetPropertyDelegate GetPropertyHandler {
 			get {
 				if (get_property_handler == null)
-					get_property_handler = new GetPropertyDelegate (GetPropertyCallback);
+					get_property_handler = new GetPropertyDelegate(GetPropertyCallback);
 				return get_property_handler;
 			}
 		}
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void SetPropertyDelegate (IntPtr GObject, uint property_id, ref GLib.Value value, IntPtr pspec);
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		delegate void SetPropertyDelegate(IntPtr GObject, uint property_id, ref GLib.Value value, IntPtr pspec);
 
-		static void SetPropertyCallback(IntPtr handle, uint property_id, ref GLib.Value value, IntPtr param_spec)
-		{
+		static void SetPropertyCallback(IntPtr handle, uint property_id, ref GLib.Value value, IntPtr param_spec) {
 			// There are multiple issues in this place.
 			// We cannot construct an object here as it can be in construction
 			// from ConstructorCallback thus managed object already created.
@@ -565,113 +533,106 @@ namespace GLib {
 			// We defer setting the properties to later time when
 			// we have unmanaged and managed objects paired.
 			GLib.Object obj = TryGetObject(handle);
-			if(obj != null) {
+			if (obj != null) {
 				SetDeferredProperty(obj, value, param_spec);
 				return;
 			}
 			Dictionary<IntPtr, GLib.Value> deferred;
-			if(!PropertiesToSet.TryGetValue(handle, out deferred)) {
+			if (!PropertiesToSet.TryGetValue(handle, out deferred)) {
 				deferred = new Dictionary<IntPtr, GLib.Value>();
 				PropertiesToSet.Add(handle, deferred);
 			}
 			deferred[param_spec] = value;
 		}
 
-		static void SetDeferredProperty(GLib.Object obj, GLib.Value value, IntPtr param_spec)
-		{
-			var type = (Type)obj.LookupGType ();
+		static void SetDeferredProperty(GLib.Object obj, GLib.Value value, IntPtr param_spec) {
+			var type = (Type)obj.LookupGType();
 
 			Dictionary<IntPtr, PropertyInfo> props;
-			if (!Properties.TryGetValue (type, out props))
+			if (!Properties.TryGetValue(type, out props))
 				return;
 
 			PropertyInfo prop;
-			if (!props.TryGetValue (param_spec, out prop))
+			if (!props.TryGetValue(param_spec, out prop))
 				return;
 
-			prop.SetValue (obj, value.Val, new object [0]);
+			prop.SetValue(obj, value.Val, new object[0]);
 		}
 
 		static SetPropertyDelegate set_property_handler;
 		static SetPropertyDelegate SetPropertyHandler {
 			get {
 				if (set_property_handler == null)
-					set_property_handler = new SetPropertyDelegate (SetPropertyCallback);
+					set_property_handler = new SetPropertyDelegate(SetPropertyCallback);
 				return set_property_handler;
 			}
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_type_add_interface_static (IntPtr gtype, IntPtr iface_type, ref GInterfaceInfo info);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_type_add_interface_static(IntPtr gtype, IntPtr iface_type, ref GInterfaceInfo info);
 
-		protected internal static GType RegisterGType (System.Type t)
-		{
+		protected internal static GType RegisterGType(System.Type t) {
 			//this is a deprecated way of tracking a property counter,
 			//but we may still need it for backwards compatibility
 			idx = 1;
 
-			return new ClassInitializer (t).Init ();
+			return new ClassInitializer(t).Init();
 		}
 
-		protected GType LookupGType ()
-		{
+		protected GType LookupGType() {
 			if (Handle != IntPtr.Zero) {
-				GTypeInstance obj = (GTypeInstance) Marshal.PtrToStructure (Handle, typeof (GTypeInstance));
-				GTypeClass klass = (GTypeClass) Marshal.PtrToStructure (obj.g_class, typeof (GTypeClass));
-				return new GLib.GType (klass.gtype);
+				GTypeInstance obj = (GTypeInstance)Marshal.PtrToStructure(Handle, typeof(GTypeInstance));
+				GTypeClass klass = (GTypeClass)Marshal.PtrToStructure(obj.g_class, typeof(GTypeClass));
+				return new GLib.GType(klass.gtype);
 			} else {
-				return LookupGType (GetType ());
+				return LookupGType(GetType());
 			}
 		}
 
-		protected internal static GType LookupGType (System.Type t)
-		{
-			return GType.LookupGObjectType (t);
+		protected internal static GType LookupGType(System.Type t) {
+			return GType.LookupGObjectType(t);
 		}
 
-		protected Object (IntPtr raw)
-		{
+		protected Object(IntPtr raw) {
 			Raw = raw;
 		}
 
-		protected Object ()
-		{
-			CreateNativeObject (new string [0], new GLib.Value [0]);
+		protected Object() {
+			CreateNativeObject(new string[0], new GLib.Value[0]);
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_new (IntPtr gtype, IntPtr dummy);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_object_new(IntPtr gtype, IntPtr dummy);
 
 		struct GParameter {
 			public IntPtr name;
 			public GLib.Value val;
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_newv (IntPtr gtype, int n_params, GParameter[] parms);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_object_newv(IntPtr gtype, int n_params, GParameter[] parms);
 
-		protected virtual void CreateNativeObject (string[] names, GLib.Value[] vals)
-		{
-			GType gtype = LookupGType ();
-			bool is_managed_subclass = GType.IsManaged (gtype);
-			GParameter[] parms = new GParameter [is_managed_subclass ? names.Length + 1 : names.Length];
+		protected virtual void CreateNativeObject(string[] names, GLib.Value[] vals) {
+			GType gtype = LookupGType();
+			bool is_managed_subclass = GType.IsManaged(gtype);
+			GParameter[] parms = new GParameter[is_managed_subclass ? names.Length + 1 : names.Length];
 			for (int i = 0; i < names.Length; i++) {
-				parms [i].name = GLib.Marshaller.StringToPtrGStrdup (names [i]);
-				parms [i].val = vals [i];
+				parms[i].name = GLib.Marshaller.StringToPtrGStrdup(names[i]);
+				parms[i].val = vals[i];
 			}
 
 			if (is_managed_subclass) {
-				GCHandle gch = GCHandle.Alloc (this);
-				parms[names.Length].name = GLib.Marshaller.StringToPtrGStrdup ("gtk-sharp-managed-instance");
-				parms[names.Length].val = new GLib.Value ((IntPtr) gch);
-				Raw = g_object_newv (gtype.Val, parms.Length, parms);
-				gch.Free ();
+				GCHandle gch = GCHandle.Alloc(this);
+				parms[names.Length].name = GLib.Marshaller.StringToPtrGStrdup("gtk-sharp-managed-instance");
+				parms[names.Length].val = new GLib.Value((IntPtr)gch);
+				Raw = g_object_newv(gtype.Val, parms.Length, parms);
+				gch.Free();
 			} else {
-				Raw = g_object_newv (gtype.Val, parms.Length, parms);
+				Raw = g_object_newv(gtype.Val, parms.Length, parms);
 			}
 
 			foreach (GParameter p in parms)
-				GLib.Marshaller.Free (p.name);
+				GLib.Marshaller.Free(p.name);
 		}
 
 		protected virtual IntPtr Raw {
@@ -684,9 +645,9 @@ namespace GLib {
 
 				lock (Objects) {
 					if (handle != IntPtr.Zero) {
-						Objects.Remove (handle);
+						Objects.Remove(handle);
 						if (tref != null) {
-							tref.Dispose ();
+							tref.Dispose();
 							tref = null;
 						}
 					}
@@ -700,23 +661,23 @@ namespace GLib {
 
 					handle = value;
 					if (value != IntPtr.Zero) {
-						tref = new ToggleRef (this);
-						Objects [value] = tref;
+						tref = new ToggleRef(this);
+						Objects[value] = tref;
 					}
 				}
 			}
-		}	
+		}
 
 		public static GLib.GType GType {
 			get { return GType.Object; }
 		}
 
 		protected string TypeName {
-			get { return NativeType.ToString (); }
+			get { return NativeType.ToString(); }
 		}
 
 		public GLib.GType NativeType {
-			get { return LookupGType (); }
+			get { return LookupGType(); }
 		}
 
 		internal ToggleRef ToggleRef {
@@ -728,136 +689,122 @@ namespace GLib {
 		}
 
 		public IntPtr OwnedHandle {
-			get { return g_object_ref (handle); }
+			get { return g_object_ref(handle); }
 		}
 
-		public void AddNotification (string property, NotifyHandler handler)
-		{
-			AddSignalHandler ("notify::" + property, handler, typeof(NotifyArgs));
+		public void AddNotification(string property, NotifyHandler handler) {
+			AddSignalHandler("notify::" + property, handler, typeof(NotifyArgs));
 		}
 
-		public void AddNotification (NotifyHandler handler)
-		{
-			AddSignalHandler ("notify", handler, typeof(NotifyArgs));
+		public void AddNotification(NotifyHandler handler) {
+			AddSignalHandler("notify", handler, typeof(NotifyArgs));
 		}
 
-		public void RemoveNotification (string property, NotifyHandler handler)
-		{
-			RemoveSignalHandler ("notify::" + property, handler);
+		public void RemoveNotification(string property, NotifyHandler handler) {
+			RemoveSignalHandler("notify::" + property, handler);
 		}
 
-		public void RemoveNotification (NotifyHandler handler)
-		{
-			RemoveSignalHandler ("notify", handler);
+		public void RemoveNotification(NotifyHandler handler) {
+			RemoveSignalHandler("notify", handler);
 		}
 
-		public override int GetHashCode ()
-		{
-			return Handle.GetHashCode ();
+		public override int GetHashCode() {
+			return Handle.GetHashCode();
 		}
 
 		System.Collections.Hashtable data;
 		public System.Collections.Hashtable Data {
-			get { 
+			get {
 				if (data == null)
-					data = new System.Collections.Hashtable ();
-				
+					data = new System.Collections.Hashtable();
+
 				return data;
 			}
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_get_property (IntPtr obj, IntPtr name, ref GLib.Value val);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_get_property(IntPtr obj, IntPtr name, ref GLib.Value val);
 
-		public GLib.Value GetProperty (string name)
-		{
-			Value val = new Value (this, name);
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
-			g_object_get_property (Raw, native_name, ref val);
-			GLib.Marshaller.Free (native_name);
+		public GLib.Value GetProperty(string name) {
+			Value val = new Value(this, name);
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
+			g_object_get_property(Raw, native_name, ref val);
+			GLib.Marshaller.Free(native_name);
 			return val;
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_set_property (IntPtr obj, IntPtr name, ref GLib.Value val);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_set_property(IntPtr obj, IntPtr name, ref GLib.Value val);
 
-		public void SetProperty (string name, GLib.Value val)
-		{
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
-			g_object_set_property (Raw, native_name, ref val);
-			GLib.Marshaller.Free (native_name);
+		public void SetProperty(string name, GLib.Value val) {
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
+			g_object_set_property(Raw, native_name, ref val);
+			GLib.Marshaller.Free(native_name);
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_notify (IntPtr obj, IntPtr property_name);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_notify(IntPtr obj, IntPtr property_name);
 
-		protected void Notify (string property_name)
-		{
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (property_name);
-			g_object_notify (Handle, native_name);
-			GLib.Marshaller.Free (native_name);
+		protected void Notify(string property_name) {
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(property_name);
+			g_object_notify(Handle, native_name);
+			GLib.Marshaller.Free(native_name);
 		}
 
 		Dictionary<string, Signal> signals;
 		Dictionary<string, Signal> Signals {
 			get {
 				if (signals == null)
-					signals = new Dictionary<string, Signal> ();
+					signals = new Dictionary<string, Signal>();
 				return signals;
 			}
 		}
 
-		public void AddSignalHandler (string name, Delegate handler)
-		{
-			AddSignalHandler (name, handler, typeof (EventArgs));
+		public void AddSignalHandler(string name, Delegate handler) {
+			AddSignalHandler(name, handler, typeof(EventArgs));
 		}
 
-		public void AddSignalHandler (string name, Delegate handler, Delegate marshaler)
-		{
+		public void AddSignalHandler(string name, Delegate handler, Delegate marshaler) {
 			Signal sig;
-			if (!Signals.TryGetValue (name, out sig)) {
-				sig = new Signal (this, name, marshaler);
-				Signals [name] = sig;
+			if (!Signals.TryGetValue(name, out sig)) {
+				sig = new Signal(this, name, marshaler);
+				Signals[name] = sig;
 			}
 
-			sig.AddDelegate (handler);
+			sig.AddDelegate(handler);
 		}
 
-		public void AddSignalHandler (string name, Delegate handler, Type args_type)
-		{
+		public void AddSignalHandler(string name, Delegate handler, Type args_type) {
 			if (args_type == null)
-				args_type = handler.Method.GetParameters ()[1].ParameterType;
+				args_type = handler.Method.GetParameters()[1].ParameterType;
 
 			Signal sig;
-			if (!Signals.TryGetValue (name, out sig)) {
-				sig = new Signal (this, name, args_type);
-				Signals [name] = sig;
+			if (!Signals.TryGetValue(name, out sig)) {
+				sig = new Signal(this, name, args_type);
+				Signals[name] = sig;
 			}
 
-			sig.AddDelegate (handler);
+			sig.AddDelegate(handler);
 		}
 
-		public void RemoveSignalHandler (string name, Delegate handler)
-		{
+		public void RemoveSignalHandler(string name, Delegate handler) {
 			Signal sig;
-			if (Signals.TryGetValue (name, out sig))
-				sig.RemoveDelegate (handler);
+			if (Signals.TryGetValue(name, out sig))
+				sig.RemoveDelegate(handler);
 		}
 
-		protected static void OverrideVirtualMethod (GType gtype, string name, Delegate cb)
-		{
-			Signal.OverrideDefaultHandler (gtype, name, cb);
+		protected static void OverrideVirtualMethod(GType gtype, string name, Delegate cb) {
+			Signal.OverrideDefaultHandler(gtype, name, cb);
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		protected static extern void g_signal_chain_from_overridden (IntPtr args, ref GLib.Value retval);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		protected static extern void g_signal_chain_from_overridden(IntPtr args, ref GLib.Value retval);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool g_type_check_instance_is_a (IntPtr obj, IntPtr gtype);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool g_type_check_instance_is_a(IntPtr obj, IntPtr gtype);
 
-		internal static bool IsObject (IntPtr obj)
-		{
-			return g_type_check_instance_is_a (obj, GType.Object.Val);
+		internal static bool IsObject(IntPtr obj) {
+			return g_type_check_instance_is_a(obj, GType.Object.Val);
 		}
 
 		public struct GTypeInstance {
@@ -872,20 +819,18 @@ namespace GLib {
 
 		protected int RefCount {
 			get {
-				GObject native = (GObject) Marshal.PtrToStructure (Handle, typeof (GObject));
-				return (int) native.ref_count;
+				GObject native = (GObject)Marshal.PtrToStructure(Handle, typeof(GObject));
+				return (int)native.ref_count;
 			}
 		}
 
-		internal void Harden ()
-		{
-			tref.Harden ();
+		internal void Harden() {
+			tref.Harden();
 		}
 
-		static Object ()
-		{
-			if (Environment.GetEnvironmentVariable ("GTK_SHARP_DEBUG") != null)
-				GLib.Log.SetLogHandler ("GLib-GObject", GLib.LogLevelFlags.All, new GLib.LogFunc (GLib.Log.PrintTraceLogFunction));
+		static Object() {
+			if (Environment.GetEnvironmentVariable("GTK_SHARP_DEBUG") != null)
+				GLib.Log.SetLogHandler("GLib-GObject", GLib.LogLevelFlags.All, new GLib.LogFunc(GLib.Log.PrintTraceLogFunction));
 		}
 
 		// Internal representation of the wrapped ABI structure.
@@ -1067,22 +1012,19 @@ namespace GLib {
 		);
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct GObject_g_type_instanceAlign
-		{
+		public struct GObject_g_type_instanceAlign {
 			sbyte f1;
 			private IntPtr g_type_instance;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct GObject_ref_countAlign
-		{
+		public struct GObject_ref_countAlign {
 			sbyte f1;
 			private uint ref_count;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct GObject_qdataAlign
-		{
+		public struct GObject_qdataAlign {
 			sbyte f1;
 			private IntPtr qdata;
 		}

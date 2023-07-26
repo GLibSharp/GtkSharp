@@ -32,63 +32,54 @@
 //
 using System;
 
-namespace Cairo
-{
-	public class FontFace : IDisposable
-	{
+namespace Cairo {
+	public class FontFace : IDisposable {
 		IntPtr handle;
 
-		internal static FontFace Lookup (IntPtr handle, bool owner)
-		{
+		internal static FontFace Lookup(IntPtr handle, bool owner) {
 			if (handle == IntPtr.Zero)
 				return null;
-			return new FontFace (handle, owner);
+			return new FontFace(handle, owner);
 		}
 
-		~FontFace ()
-		{
-			Dispose (false);
+		~FontFace() {
+			Dispose(false);
 		}
 
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
+		public void Dispose() {
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
-		protected virtual void Dispose (bool disposing)
-		{
+		protected virtual void Dispose(bool disposing) {
 			if (!disposing || CairoDebug.Enabled)
-				CairoDebug.OnDisposed<FontFace> (handle, disposing);
+				CairoDebug.OnDisposed<FontFace>(handle, disposing);
 
 			if (handle == IntPtr.Zero)
 				return;
 
-			NativeMethods.cairo_font_face_destroy (handle);
+			NativeMethods.cairo_font_face_destroy(handle);
 			handle = IntPtr.Zero;
 		}
 
-		void CheckDisposed ()
-		{
+		void CheckDisposed() {
 			if (handle == IntPtr.Zero)
-				throw new ObjectDisposedException ("Object has already been disposed");
+				throw new ObjectDisposedException("Object has already been disposed");
 		}
 
 		[Obsolete]
-		public FontFace (IntPtr handle) : this (handle, true)
-		{
+		public FontFace(IntPtr handle) : this(handle, true) {
 		}
 
-		public FontFace (IntPtr handle, bool owned)
-		{
+		public FontFace(IntPtr handle, bool owned) {
 			if (handle == IntPtr.Zero)
-				throw new ArgumentException ("handle should not be NULL", "handle");
+				throw new ArgumentException("handle should not be NULL", "handle");
 
 			this.handle = handle;
 			if (!owned)
-				NativeMethods.cairo_font_face_reference (handle);
+				NativeMethods.cairo_font_face_reference(handle);
 			if (CairoDebug.Enabled)
-				CairoDebug.OnAllocated (handle);
+				CairoDebug.OnAllocated(handle);
 		}
 
 		public IntPtr Handle {
@@ -99,24 +90,23 @@ namespace Cairo
 
 		public Status Status {
 			get {
-				CheckDisposed ();
-				return NativeMethods.cairo_font_face_status (handle);
+				CheckDisposed();
+				return NativeMethods.cairo_font_face_status(handle);
 			}
 		}
-		
+
 		public FontType FontType {
 			get {
-				CheckDisposed ();
-				return NativeMethods.cairo_font_face_get_type (handle);
+				CheckDisposed();
+				return NativeMethods.cairo_font_face_get_type(handle);
 			}
 		}
 
 		public uint ReferenceCount {
 			get {
-				CheckDisposed ();
-				return NativeMethods.cairo_font_face_get_reference_count (handle);
+				CheckDisposed();
+				return NativeMethods.cairo_font_face_get_reference_count(handle);
 			}
 		}
 	}
 }
-

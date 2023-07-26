@@ -24,9 +24,8 @@ namespace Gtk {
 
 	public partial class Init {
 
-		public static bool Check (ref string[] argv)
-		{
-			return Application.InitCheck (Environment.CommandLine, ref argv);
+		public static bool Check(ref string[] argv) {
+			return Application.InitCheck(Environment.CommandLine, ref argv);
 		}
 
 	}

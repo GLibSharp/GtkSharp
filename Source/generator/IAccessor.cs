@@ -21,9 +21,9 @@
 
 namespace GtkSharp.Generation {
 
-	public interface IAccessor  {
+	public interface IAccessor {
 
-		void WriteAccessors (System.IO.TextWriter sw, string indentation, string field_name);
+		void WriteAccessors(System.IO.TextWriter sw, string indentation, string field_name);
 
 	}
 }

@@ -33,163 +33,158 @@ namespace GtkSharp.Generation {
 		protected string class_struct_name = null;
 		bool class_fields_valid; // false if the class structure contains a bitfield or fields of unknown types
 
-		ArrayList class_members = new ArrayList ();
-		protected List<StructABIField> abi_class_members = new List<StructABIField> ();
+		ArrayList class_members = new ArrayList();
+		protected List<StructABIField> abi_class_members = new List<StructABIField>();
 		bool class_abi_valid = true;
 
-		protected IList<ClassField> class_fields = new List<ClassField> ();
+		protected IList<ClassField> class_fields = new List<ClassField>();
 		// The default handlers of these signals need to be overridden with g_signal_override_class_closure
-		protected IList<GObjectVM> virtual_methods = new List<GObjectVM> ();
+		protected IList<GObjectVM> virtual_methods = new List<GObjectVM>();
 		// virtual methods that are generated as an IntPtr in the class struct
-		protected IList<VirtualMethod> hidden_vms = new List<VirtualMethod> ();
-		protected IList<InterfaceVM> interface_vms = new List<InterfaceVM> ();
+		protected IList<VirtualMethod> hidden_vms = new List<VirtualMethod>();
+		protected IList<InterfaceVM> interface_vms = new List<InterfaceVM>();
 		protected Hashtable sigs = new Hashtable();
 
-		protected ObjectBase (XmlElement ns, XmlElement elem, bool is_interface) : base (ns, elem) 
-		{
+		protected ObjectBase(XmlElement ns, XmlElement elem, bool is_interface) : base(ns, elem) {
 			this.is_interface = is_interface;
 			XmlElement class_elem = null;
-			Hashtable vms = new Hashtable ();
-			Hashtable signal_vms = new Hashtable ();
+			Hashtable vms = new Hashtable();
+			Hashtable signal_vms = new Hashtable();
 
 			if (this.ParserVersion == 1)
 				class_struct_name = this.CName + (is_interface ? "Iface" : "Class");
-					
+
 			foreach (XmlNode node in elem.ChildNodes) {
 				if (!(node is XmlElement)) continue;
 				XmlElement member = node as XmlElement;
 
 				switch (node.Name) {
-				case "virtual_method":
-					if (this.ParserVersion == 1) {
-						if (is_interface) // Generating non-signal GObject virtual methods is not supported in compatibility mode
-							AddVM (member, false, is_interface);
-					} else
-						vms.Add (member.GetAttribute ("cname"), member);
-					break;
+					case "virtual_method":
+						if (this.ParserVersion == 1) {
+							if (is_interface) // Generating non-signal GObject virtual methods is not supported in compatibility mode
+								AddVM(member, false, is_interface);
+						} else
+							vms.Add(member.GetAttribute("cname"), member);
+						break;
 
-				case "signal":
-					if (this.ParserVersion == 1 || member.GetAttribute ("field_name") == "")
-						AddVM (member, true, is_interface);
-					else
-						signal_vms.Add (member.GetAttribute ("field_name"), member);
+					case "signal":
+						if (this.ParserVersion == 1 || member.GetAttribute("field_name") == "")
+							AddVM(member, true, is_interface);
+						else
+							signal_vms.Add(member.GetAttribute("field_name"), member);
 
-					if (!member.GetAttributeAsBoolean ("hidden")) {
-						string name = member.GetAttribute("name");
-						while (sigs.ContainsKey(name))
-							name += "mangled";
-						sigs.Add (name, new Signal (member, this));
-					}
-					break;
+						if (!member.GetAttributeAsBoolean("hidden")) {
+							string name = member.GetAttribute("name");
+							while (sigs.ContainsKey(name))
+								name += "mangled";
+							sigs.Add(name, new Signal(member, this));
+						}
+						break;
 
-				case "class_struct":
-					class_elem = member;
-					break;
+					case "class_struct":
+						class_elem = member;
+						break;
 				}
 			}
-				
+
 			if (class_elem == null) return;
-			
+
 			if (class_elem.GetAttributeAsBoolean("private")) {
 				class_abi_valid = false;
 				return;
 			}
 
-			class_struct_name = class_elem.GetAttribute ("cname");
+			class_struct_name = class_elem.GetAttribute("cname");
 
 			int num_abi_fields = 0;
 			for (int node_idx = 0; node_idx < class_elem.ChildNodes.Count; node_idx++) {
-				XmlNode node = class_elem.ChildNodes [node_idx];
+				XmlNode node = class_elem.ChildNodes[node_idx];
 				if (!(node is XmlElement)) continue;
-				XmlElement member = (XmlElement) node;
+				XmlElement member = (XmlElement)node;
 
 				// Make sure ABI fields are taken into account, even when hidden.
 				if (node.Name == "field") {
 					num_abi_fields += 1;
 					if (num_abi_fields != 1) { // Skip instance parent struct
-						abi_class_members.Add (new StructABIField (member, this, "class_abi"));
+						abi_class_members.Add(new StructABIField(member, this, "class_abi"));
 					}
 				} else if (node.Name == "union") {
-					abi_class_members.Add (new UnionABIField (member, this, "class_abi"));
+					abi_class_members.Add(new UnionABIField(member, this, "class_abi"));
 				} else if (node.Name == "method") {
-					abi_class_members.Add (new MethodABIField (member, this, "class_abi"));
+					abi_class_members.Add(new MethodABIField(member, this, "class_abi"));
 				}
 
 				switch (member.Name) {
-				case "method":
-					string vm_name;
-					XmlElement vm_elem;
-					bool is_signal_vm = member.HasAttribute ("signal_vm");
-					if (is_signal_vm) {
-						vm_name = member.GetAttribute ("signal_vm");
-						vm_elem = signal_vms [vm_name] as XmlElement;
-					} else {
-						vm_name = member.GetAttribute ("vm");
-						vm_elem = vms [vm_name] as XmlElement;
-					}
+					case "method":
+						string vm_name;
+						XmlElement vm_elem;
+						bool is_signal_vm = member.HasAttribute("signal_vm");
+						if (is_signal_vm) {
+							vm_name = member.GetAttribute("signal_vm");
+							vm_elem = signal_vms[vm_name] as XmlElement;
+						} else {
+							vm_name = member.GetAttribute("vm");
+							vm_elem = vms[vm_name] as XmlElement;
+						}
 
-					AddVM (vm_elem, is_signal_vm, is_interface);
-					break;
-				case "field":
-					if (node_idx == 0) continue; // Parent class
-					ClassField field = new ClassField (member, this);
-					class_fields.Add (field);
-					class_members.Add (field);
-					break;
-				default:
-					Console.WriteLine ("Unexpected node " + member.Name + " in " + class_elem.GetAttribute ("cname"));
-					break;
+						AddVM(vm_elem, is_signal_vm, is_interface);
+						break;
+					case "field":
+						if (node_idx == 0) continue; // Parent class
+						ClassField field = new ClassField(member, this);
+						class_fields.Add(field);
+						class_members.Add(field);
+						break;
+					default:
+						Console.WriteLine("Unexpected node " + member.Name + " in " + class_elem.GetAttribute("cname"));
+						break;
 				}
 			}
 		}
 
-		VirtualMethod AddVM (XmlElement vm_elem, bool is_signal_vm, bool is_interface)
-		{
+		VirtualMethod AddVM(XmlElement vm_elem, bool is_signal_vm, bool is_interface) {
 			VirtualMethod vm;
 			if (is_signal_vm)
-				vm = new DefaultSignalHandler (vm_elem, this);
+				vm = new DefaultSignalHandler(vm_elem, this);
 			else if (is_interface) {
-				string target_name = vm_elem.HasAttribute ("target_method") ? vm_elem.GetAttribute ("target_method") : vm_elem.GetAttribute ("name");
-				vm = new InterfaceVM (vm_elem, GetMethod (target_name), this);
+				string target_name = vm_elem.HasAttribute("target_method") ? vm_elem.GetAttribute("target_method") : vm_elem.GetAttribute("name");
+				vm = new InterfaceVM(vm_elem, GetMethod(target_name), this);
 			} else
-				vm = new GObjectVM (vm_elem, this);
+				vm = new GObjectVM(vm_elem, this);
 
-			if (vm_elem.GetAttributeAsBoolean ("padding") || vm_elem.GetAttributeAsBoolean ("hidden"))
-				hidden_vms.Add (vm);
+			if (vm_elem.GetAttributeAsBoolean("padding") || vm_elem.GetAttributeAsBoolean("hidden"))
+				hidden_vms.Add(vm);
 			else {
 				if (vm is GObjectVM) {
-					virtual_methods.Add ((GObjectVM)vm);
+					virtual_methods.Add((GObjectVM)vm);
 				} else {
-					interface_vms.Add ((InterfaceVM)vm);
+					interface_vms.Add((InterfaceVM)vm);
 				}
 			}
 			if (vm.CName != "")
-				class_members.Add (vm);
+				class_members.Add(vm);
 
 			return vm;
 		}
 
-		protected override bool IsNodeNameHandled (string name)
-		{
+		protected override bool IsNodeNameHandled(string name) {
 			switch (name) {
-			case "virtual_method":
-			case "signal":
-			case "class_struct":
-				return true;
-			default:
-				return base.IsNodeNameHandled (name);
+				case "virtual_method":
+				case "signal":
+				case "class_struct":
+					return true;
+				default:
+					return base.IsNodeNameHandled(name);
 			}
 		}
 
-		public override string CallByName (string var)
-		{
-			return CallByName (var, false);
+		public override string CallByName(string var) {
+			return CallByName(var, false);
 		}
 
-		public abstract string CallByName (string var, bool owned);
+		public abstract string CallByName(string var, bool owned);
 
-		public override string FromNative (string var, bool owned)
-		{
+		public override string FromNative(string var, bool owned) {
 			return "GLib.Object.GetObject(" + var + (owned ? ", true" : "") + ") as " + QualifiedName;
 		}
 
@@ -226,28 +221,27 @@ namespace GtkSharp.Generation {
 			return class_struct_name != null;
 		}
 
-		protected void GenerateClassStruct (GenerationInfo gen_info)
-		{
+		protected void GenerateClassStruct(GenerationInfo gen_info) {
 			if (class_struct_name == null || !CanGenerateClassStruct) return;
 
 			StreamWriter sw = gen_info.Writer;
 
-			sw.WriteLine ("\t\t[StructLayout (LayoutKind.Sequential)]");
-			sw.WriteLine ("\t\tstruct " + class_struct_name + " {");
+			sw.WriteLine("\t\t[StructLayout (LayoutKind.Sequential)]");
+			sw.WriteLine("\t\tstruct " + class_struct_name + " {");
 			foreach (object member in class_members) {
 				if (member is VirtualMethod) {
 					VirtualMethod vm = member as VirtualMethod;
-					if (hidden_vms.Contains (vm) || (is_interface && vm is DefaultSignalHandler))
-						sw.WriteLine ("\t\t\tIntPtr {0};", vm.Name);
+					if (hidden_vms.Contains(vm) || (is_interface && vm is DefaultSignalHandler))
+						sw.WriteLine("\t\t\tIntPtr {0};", vm.Name);
 					else
-						sw.WriteLine ("\t\t\tpublic {0}NativeDelegate {0};", vm.Name);
+						sw.WriteLine("\t\t\tpublic {0}NativeDelegate {0};", vm.Name);
 				} else if (member is ClassField) {
 					ClassField field = member as ClassField;
-					field.Generate (gen_info, "\t\t\t");
+					field.Generate(gen_info, "\t\t\t");
 				}
 			}
-			sw.WriteLine ("\t\t}");
-			sw.WriteLine ();
+			sw.WriteLine("\t\t}");
+			sw.WriteLine();
 		}
 
 		public Hashtable Signals {
@@ -256,30 +250,27 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public Signal GetSignal (string name)
-		{
+		public Signal GetSignal(string name) {
 			return sigs[name] as Signal;
 		}
 
-		public Signal GetSignalRecursively (string name)
-		{
-			return GetSignalRecursively (name, false);
+		public Signal GetSignalRecursively(string name) {
+			return GetSignalRecursively(name, false);
 		}
 
-		public virtual Signal GetSignalRecursively (string name, bool check_self)
-		{
+		public virtual Signal GetSignalRecursively(string name, bool check_self) {
 			Signal p = null;
 			if (check_self)
-				p = GetSignal (name);
-			if (p == null && Parent != null) 
-				p = (Parent as ObjectBase).GetSignalRecursively (name, true);
-			
+				p = GetSignal(name);
+			if (p == null && Parent != null)
+				p = (Parent as ObjectBase).GetSignalRecursively(name, true);
+
 			if (check_self && p == null) {
 				foreach (string iface in interfaces) {
-					InterfaceGen igen = SymbolTable.Table.GetClassGen (iface) as InterfaceGen;
+					InterfaceGen igen = SymbolTable.Table.GetClassGen(iface) as InterfaceGen;
 					if (igen == null)
 						continue;
-					p = igen.GetSignalRecursively (name, true);
+					p = igen.GetSignalRecursively(name, true);
 					if (p != null)
 						break;
 				}
@@ -288,84 +279,80 @@ namespace GtkSharp.Generation {
 			return p;
 		}
 
-		public void GenSignals (GenerationInfo gen_info, ObjectBase implementor)
-		{
+		public void GenSignals(GenerationInfo gen_info, ObjectBase implementor) {
 			foreach (Signal sig in sigs.Values)
-				sig.Generate (gen_info, implementor);
+				sig.Generate(gen_info, implementor);
 		}
 
-		public void GenVirtualMethods (GenerationInfo gen_info, ObjectBase implementor)
-		{
+		public void GenVirtualMethods(GenerationInfo gen_info, ObjectBase implementor) {
 			foreach (GObjectVM vm in virtual_methods)
-				vm.Generate (gen_info, implementor);
+				vm.Generate(gen_info, implementor);
 		}
 
-		public override bool Validate ()
-		{
+		public override bool Validate() {
 
-			if (Parent != null && !(Parent as ObjectBase).ValidateForSubclass ())
+			if (Parent != null && !(Parent as ObjectBase).ValidateForSubclass())
 				return false;
 
-			LogWriter log = new LogWriter (QualifiedName);
+			LogWriter log = new LogWriter(QualifiedName);
 
-			ArrayList invalids = new ArrayList ();
+			ArrayList invalids = new ArrayList();
 
 			foreach (GObjectVM vm in virtual_methods)
-				if (!vm.Validate (log))
-					invalids.Add (vm);
+				if (!vm.Validate(log))
+					invalids.Add(vm);
 
 			foreach (GObjectVM invalid_vm in invalids) {
-				virtual_methods.Remove (invalid_vm);
-				hidden_vms.Add (invalid_vm);
+				virtual_methods.Remove(invalid_vm);
+				hidden_vms.Add(invalid_vm);
 			}
-			invalids.Clear ();
+			invalids.Clear();
 
 			class_fields_valid = true;
 			foreach (ClassField field in class_fields)
-				if (!field.Validate (log))
+				if (!field.Validate(log))
 					class_fields_valid = false;
 
 			foreach (StructABIField field in abi_class_members)
-				if (!field.Validate (log))
+				if (!field.Validate(log))
 					class_abi_valid = false;
-			
+
 			foreach (InterfaceVM vm in interface_vms)
-				if (!vm.Validate (log))
-					invalids.Add (vm);
+				if (!vm.Validate(log))
+					invalids.Add(vm);
 
 			foreach (InterfaceVM invalid_vm in invalids) {
-				interface_vms.Remove (invalid_vm);
-				hidden_vms.Add (invalid_vm);
+				interface_vms.Remove(invalid_vm);
+				hidden_vms.Add(invalid_vm);
 			}
-			invalids.Clear ();
+			invalids.Clear();
 
 			foreach (Signal sig in sigs.Values) {
-				if (!sig.Validate (log))
-					invalids.Add (sig);
+				if (!sig.Validate(log))
+					invalids.Add(sig);
 			}
 			foreach (Signal sig in invalids)
-				sigs.Remove (sig.Name);
+				sigs.Remove(sig.Name);
 
-			return base.Validate ();
+			return base.Validate();
 		}
 
-		public virtual bool ValidateForSubclass ()
-		{
-			LogWriter log = new LogWriter (QualifiedName);
-			ArrayList invalids = new ArrayList ();
+		public virtual bool ValidateForSubclass() {
+			LogWriter log = new LogWriter(QualifiedName);
+			ArrayList invalids = new ArrayList();
 
 			foreach (Signal sig in sigs.Values) {
-				if (!sig.Validate (log)) {
-					invalids.Add (sig);
+				if (!sig.Validate(log)) {
+					invalids.Add(sig);
 				}
 			}
 			foreach (Signal sig in invalids)
-				sigs.Remove (sig.Name);
-			invalids.Clear ();
+				sigs.Remove(sig.Name);
+			invalids.Clear();
 
 			return true;
 		}
-		public override string GenerateGetSizeOf () {
+		public override string GenerateGetSizeOf() {
 			return NS + "." + Name + ".abi_info.Size";
 		}
 	}

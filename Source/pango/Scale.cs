@@ -21,7 +21,7 @@
 using System;
 
 namespace Pango {
-	
+
 	public sealed class Scale {
 		public static readonly double PangoScale = 1024.0;
 
@@ -33,13 +33,13 @@ namespace Pango {
 		public static readonly double XLarge = 1.4399999999999;
 		public static readonly double XXLarge = 1.728;
 
-		[Obsolete ("Replaced by XXSmall")]
+		[Obsolete("Replaced by XXSmall")]
 		public static readonly double XX_Small = XXSmall;
-		[Obsolete ("Replaced by XSmall")]
+		[Obsolete("Replaced by XSmall")]
 		public static readonly double X_Small = XSmall;
-		[Obsolete ("Replaced by XLarge")]
+		[Obsolete("Replaced by XLarge")]
 		public static readonly double X_Large = XLarge;
-		[Obsolete ("Replaced by XXLarge")]
+		[Obsolete("Replaced by XXLarge")]
 		public static readonly double XX_Large = XXLarge;
 	}
 }

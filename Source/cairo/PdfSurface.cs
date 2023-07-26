@@ -30,22 +30,17 @@ using System;
 
 namespace Cairo {
 
-	public class PdfSurface : Surface
-	{
-		internal PdfSurface (IntPtr handle, bool owns) : base (handle, owns)
-		{
+	public class PdfSurface : Surface {
+		internal PdfSurface(IntPtr handle, bool owns) : base(handle, owns) {
 		}
 
-		public PdfSurface (string filename, double width, double height)
-			: base (NativeMethods.cairo_pdf_surface_create (filename, width, height), true)
-		{
+		public PdfSurface(string filename, double width, double height)
+			: base(NativeMethods.cairo_pdf_surface_create(filename, width, height), true) {
 		}
 
-		public void SetSize (double width, double height)
-		{
-			CheckDisposed ();
-			NativeMethods.cairo_pdf_surface_set_size (Handle, width, height);
+		public void SetSize(double width, double height) {
+			CheckDisposed();
+			NativeMethods.cairo_pdf_surface_set_size(Handle, width, height);
 		}
 	}
 }
-

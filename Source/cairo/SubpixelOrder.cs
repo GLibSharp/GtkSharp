@@ -28,11 +28,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum SubpixelOrder
-	{
+	public enum SubpixelOrder {
 		Default,
 		Rgb,
 		Bgr,

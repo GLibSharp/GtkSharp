@@ -26,7 +26,7 @@ namespace GLib {
 	using System.Collections.Generic;
 	using System.Runtime.InteropServices;
 
-	public delegate bool GSourceFunc ();
+	public delegate bool GSourceFunc();
 
 	//
 	// Base class for IdleProxy and TimeoutProxy
@@ -36,32 +36,28 @@ namespace GLib {
 		internal Delegate proxy_handler;
 		internal uint ID;
 
-		~SourceProxy ()
-		{
-			Dispose (false);
+		~SourceProxy() {
+			Dispose(false);
 		}
 
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
+		public void Dispose() {
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
-		protected virtual void Dispose (bool disposing)
-		{
+		protected virtual void Dispose(bool disposing) {
 			// Both branches remove our delegate from the
 			// managed list of handlers, but only
 			// Source.Remove will remove it from the
 			// unmanaged list also.
 
 			if (disposing)
-				Remove ();
+				Remove();
 			else
-				Source.Remove (ID);
+				Source.Remove(ID);
 		}
 
-		internal void Remove ()
-		{
+		internal void Remove() {
 			real_handler = null;
 			proxy_handler = null;
 		}
@@ -69,53 +65,48 @@ namespace GLib {
 
 	public partial class Source : GLib.Opaque {
 
-		private Source () {}
+		private Source() { }
 
-		public Source(IntPtr raw) : base(raw) {}
+		public Source(IntPtr raw) : base(raw) { }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_source_new(IntPtr source_funcs, uint struct_size);
 
-		public Source (GLib.SourceFuncs source_funcs, uint struct_size)
-		{
-			IntPtr native_source_funcs = GLib.Marshaller.StructureToPtrAlloc (source_funcs);
+		public Source(GLib.SourceFuncs source_funcs, uint struct_size) {
+			IntPtr native_source_funcs = GLib.Marshaller.StructureToPtrAlloc(source_funcs);
 			Raw = g_source_new(native_source_funcs, struct_size);
-			source_funcs = GLib.SourceFuncs.New (native_source_funcs);
-			Marshal.FreeHGlobal (native_source_funcs);
+			source_funcs = GLib.SourceFuncs.New(native_source_funcs);
+			Marshal.FreeHGlobal(native_source_funcs);
 		}
 
 		class FinalizerInfo {
 			IntPtr handle;
 
-			public FinalizerInfo (IntPtr handle)
-			{
+			public FinalizerInfo(IntPtr handle) {
 				this.handle = handle;
 			}
 
-			public bool Handler ()
-			{
-				g_source_destroy (handle);
+			public bool Handler() {
+				g_source_destroy(handle);
 				return false;
 			}
 		}
 
-		~Source ()
-		{
+		~Source() {
 			if (!Owned)
 				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
+			FinalizerInfo info = new FinalizerInfo(Handle);
+			GLib.Timeout.Add(50, new GLib.TimeoutHandler(info.Handler));
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool g_source_remove (uint tag);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool g_source_remove(uint tag);
 
-		public static bool Remove (uint tag)
-		{
-			return g_source_remove (tag);
+		public static bool Remove(uint tag) {
+			return g_source_remove(tag);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_source_get_type();
 
 		public static GLib.GType GType {
@@ -126,71 +117,71 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_source_get_context(IntPtr raw);
 
 		public GLib.MainContext Context {
-			get  {
+			get {
 				IntPtr raw_ret = g_source_get_context(Handle);
-				GLib.MainContext ret = raw_ret == IntPtr.Zero ? null : new MainContext (raw_ret);
+				GLib.MainContext ret = raw_ret == IntPtr.Zero ? null : new MainContext(raw_ret);
 				return ret;
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern int g_source_get_priority(IntPtr raw);
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_priority(IntPtr raw, int priority);
 
 		public int Priority {
-			get  {
+			get {
 				int raw_ret = g_source_get_priority(Handle);
 				int ret = raw_ret;
 				return ret;
 			}
-			set  {
+			set {
 				g_source_set_priority(Handle, value);
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_source_get_name(IntPtr raw);
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_name(IntPtr raw, IntPtr name);
 
 		public string Name {
-			get  {
+			get {
 				IntPtr raw_ret = g_source_get_name(Handle);
-				string ret = GLib.Marshaller.Utf8PtrToString (raw_ret);
+				string ret = GLib.Marshaller.Utf8PtrToString(raw_ret);
 				return ret;
 			}
-			set  {
-				IntPtr native_value = GLib.Marshaller.StringToPtrGStrdup (value);
+			set {
+				IntPtr native_value = GLib.Marshaller.StringToPtrGStrdup(value);
 				g_source_set_name(Handle, native_value);
-				GLib.Marshaller.Free (native_value);
+				GLib.Marshaller.Free(native_value);
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_add_child_source(IntPtr raw, IntPtr child_source);
 
 		public void AddChildSource(GLib.Source child_source) {
 			g_source_add_child_source(Handle, child_source == null ? IntPtr.Zero : child_source.Handle);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_add_poll(IntPtr raw, IntPtr fd);
 
 		public void AddPoll(GLib.PollFD fd) {
-			IntPtr native_fd = GLib.Marshaller.StructureToPtrAlloc (fd);
+			IntPtr native_fd = GLib.Marshaller.StructureToPtrAlloc(fd);
 			g_source_add_poll(Handle, native_fd);
-			fd = GLib.PollFD.New (native_fd);
-			Marshal.FreeHGlobal (native_fd);
+			fd = GLib.PollFD.New(native_fd);
+			Marshal.FreeHGlobal(native_fd);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_source_attach(IntPtr raw, IntPtr context);
 
 		public uint Attach(GLib.MainContext context) {
@@ -200,13 +191,13 @@ namespace GLib {
 		}
 
 		uint Attach() {
-			return Attach (null);
+			return Attach(null);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_source_get_can_recurse(IntPtr raw);
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_can_recurse(IntPtr raw, bool can_recurse);
 
 		public bool CanRecurse {
@@ -220,18 +211,18 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_get_current_time(IntPtr raw, IntPtr timeval);
 
 		[Obsolete]
 		public void GetCurrentTime(GLib.TimeVal timeval) {
-			IntPtr native_timeval = GLib.Marshaller.StructureToPtrAlloc (timeval);
+			IntPtr native_timeval = GLib.Marshaller.StructureToPtrAlloc(timeval);
 			g_source_get_current_time(Handle, native_timeval);
-			timeval = GLib.TimeVal.New (native_timeval);
-			Marshal.FreeHGlobal (native_timeval);
+			timeval = GLib.TimeVal.New(native_timeval);
+			Marshal.FreeHGlobal(native_timeval);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_source_get_id(IntPtr raw);
 
 		public uint Id {
@@ -242,10 +233,10 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern long g_source_get_ready_time(IntPtr raw);
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_ready_time(IntPtr raw, long ready_time);
 
 		public long ReadyTime {
@@ -259,7 +250,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern long g_source_get_time(IntPtr raw);
 
 		public long Time {
@@ -270,7 +261,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_source_is_destroyed(IntPtr raw);
 
 		public bool IsDestroyed {
@@ -281,81 +272,81 @@ namespace GLib {
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_modify_unix_fd(IntPtr raw, IntPtr tag, int new_events);
 
 		public void ModifyUnixFd(IntPtr tag, GLib.IOCondition new_events) {
-			g_source_modify_unix_fd(Handle, tag, (int) new_events);
+			g_source_modify_unix_fd(Handle, tag, (int)new_events);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern int g_source_query_unix_fd(IntPtr raw, IntPtr tag);
 
 		public GLib.IOCondition QueryUnixFd(IntPtr tag) {
 			int raw_ret = g_source_query_unix_fd(Handle, tag);
-			GLib.IOCondition ret = (GLib.IOCondition) raw_ret;
+			GLib.IOCondition ret = (GLib.IOCondition)raw_ret;
 			return ret;
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_remove_child_source(IntPtr raw, IntPtr child_source);
 
 		public void RemoveChildSource(GLib.Source child_source) {
 			g_source_remove_child_source(Handle, child_source == null ? IntPtr.Zero : child_source.Handle);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_remove_poll(IntPtr raw, IntPtr fd);
 
 		public void RemovePoll(GLib.PollFD fd) {
-			IntPtr native_fd = GLib.Marshaller.StructureToPtrAlloc (fd);
+			IntPtr native_fd = GLib.Marshaller.StructureToPtrAlloc(fd);
 			g_source_remove_poll(Handle, native_fd);
-			fd = GLib.PollFD.New (native_fd);
-			Marshal.FreeHGlobal (native_fd);
+			fd = GLib.PollFD.New(native_fd);
+			Marshal.FreeHGlobal(native_fd);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_remove_unix_fd(IntPtr raw, IntPtr tag);
 
 		public void RemoveUnixFd(IntPtr tag) {
 			g_source_remove_unix_fd(Handle, tag);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_callback_indirect(IntPtr raw, IntPtr callback_data, IntPtr callback_funcs);
 
 		public void SetCallbackIndirect(IntPtr callback_data, GLib.SourceCallbackFuncs callback_funcs) {
-			IntPtr native_callback_funcs = GLib.Marshaller.StructureToPtrAlloc (callback_funcs);
+			IntPtr native_callback_funcs = GLib.Marshaller.StructureToPtrAlloc(callback_funcs);
 			g_source_set_callback_indirect(Handle, callback_data, native_callback_funcs);
-			callback_funcs = GLib.SourceCallbackFuncs.New (native_callback_funcs);
-			Marshal.FreeHGlobal (native_callback_funcs);
+			callback_funcs = GLib.SourceCallbackFuncs.New(native_callback_funcs);
+			Marshal.FreeHGlobal(native_callback_funcs);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_funcs(IntPtr raw, IntPtr value);
 
 		public GLib.SourceFuncs Funcs {
 			set {
-				IntPtr native_value = GLib.Marshaller.StructureToPtrAlloc (value);
+				IntPtr native_value = GLib.Marshaller.StructureToPtrAlloc(value);
 				g_source_set_funcs(Handle, native_value);
-				value = GLib.SourceFuncs.New (native_value);
-				Marshal.FreeHGlobal (native_value);
+				value = GLib.SourceFuncs.New(native_value);
+				Marshal.FreeHGlobal(native_value);
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_source_remove_by_funcs_user_data(IntPtr funcs, IntPtr user_data);
 
 		public static bool RemoveByFuncsUserData(GLib.SourceFuncs funcs, IntPtr user_data) {
-			IntPtr native_funcs = GLib.Marshaller.StructureToPtrAlloc (funcs);
+			IntPtr native_funcs = GLib.Marshaller.StructureToPtrAlloc(funcs);
 			bool raw_ret = g_source_remove_by_funcs_user_data(native_funcs, user_data);
 			bool ret = raw_ret;
-			funcs = GLib.SourceFuncs.New (native_funcs);
-			Marshal.FreeHGlobal (native_funcs);
+			funcs = GLib.SourceFuncs.New(native_funcs);
+			Marshal.FreeHGlobal(native_funcs);
 			return ret;
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_source_remove_by_user_data(IntPtr user_data);
 
 		public static bool RemoveByUserData(IntPtr user_data) {
@@ -364,43 +355,40 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_name_by_id(uint tag, IntPtr name);
 
 		public static void SetNameById(uint tag, string name) {
-			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
+			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
 			g_source_set_name_by_id(tag, native_name);
-			GLib.Marshaller.Free (native_name);
+			GLib.Marshaller.Free(native_name);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_source_ref(IntPtr raw);
 
-		protected override void Ref (IntPtr raw)
-		{
+		protected override void Ref(IntPtr raw) {
 			if (!Owned) {
-				g_source_ref (raw);
+				g_source_ref(raw);
 				Owned = true;
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_unref(IntPtr raw);
 
-		protected override void Unref (IntPtr raw)
-		{
+		protected override void Unref(IntPtr raw) {
 			if (Owned) {
-				g_source_unref (raw);
+				g_source_unref(raw);
 				Owned = false;
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_destroy(IntPtr raw);
 
-		protected override void Free (IntPtr raw)
-		{
-			g_source_destroy (raw);
+		protected override void Free(IntPtr raw) {
+			g_source_destroy(raw);
 		}
 	}
 }

@@ -23,16 +23,16 @@ namespace Pango {
 
 	public class AttrRise : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_rise_new (int rise);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_rise_new(int rise);
 
-		public AttrRise (int rise) : this (pango_attr_rise_new (rise)) {}
+		public AttrRise(int rise) : this(pango_attr_rise_new(rise)) { }
 
-		internal AttrRise (IntPtr raw) : base (raw) {}
+		internal AttrRise(IntPtr raw) : base(raw) { }
 
 		public int Rise {
 			get {
-				return AttrInt.New (Handle).Value;
+				return AttrInt.New(Handle).Value;
 			}
 		}
 	}

@@ -25,22 +25,19 @@ namespace GtkSharp.Generation {
 	using System;
 
 	public class ManualGen : SimpleBase {
-		
+
 		string from_fmt;
 		string abi_type;
 
-		public ManualGen (string ctype, string type) : base (ctype, type, "null")
-		{
+		public ManualGen(string ctype, string type) : base(ctype, type, "null") {
 			from_fmt = "new " + QualifiedName + "({0})";
 		}
 
-		public ManualGen (string ctype, string type, string from_fmt) : base (ctype, type, "null")
-		{
+		public ManualGen(string ctype, string type, string from_fmt) : base(ctype, type, "null") {
 			this.from_fmt = from_fmt;
 		}
 
-		public ManualGen (string ctype, string type, string from_fmt, string abi_type) : base (ctype, type, "null")
-		{
+		public ManualGen(string ctype, string type, string from_fmt, string abi_type) : base(ctype, type, "null") {
 			this.from_fmt = from_fmt;
 			this.abi_type = abi_type;
 		}
@@ -57,19 +54,16 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public override string CallByName (string var_name)
-		{
+		public override string CallByName(string var_name) {
 			return var_name + " == null ? IntPtr.Zero : " + var_name + ".Handle";
 		}
-		
-		public override string FromNative(string var)
-		{
-			return String.Format (from_fmt, var);
+
+		public override string FromNative(string var) {
+			return String.Format(from_fmt, var);
 		}
 
-		public override string GenerateGetSizeOf () {
+		public override string GenerateGetSizeOf() {
 			return "(uint) Marshal.SizeOf(typeof(" + abi_type + "))";
 		}
 	}
 }
-

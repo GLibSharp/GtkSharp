@@ -28,20 +28,17 @@ namespace GLib {
 		private object _ret;
 		private object[] _args;
 
-		public SignalArgs()
-		{
+		public SignalArgs() {
 			_ret = null;
 			_args = null;
 		}
 
-		public SignalArgs(object retval)
-		{
+		public SignalArgs(object retval) {
 			_ret = retval;
 			_args = null;
 		}
 
-		public SignalArgs(object retval, object[] args)
-		{
+		public SignalArgs(object retval, object[] args) {
 			_ret = retval;
 			_args = args;
 		}

@@ -26,27 +26,25 @@ namespace Gtk {
 
 	public partial class ComboBox {
 
-		public ComboBox (string[] entries) : this (new ListStore (typeof (string)))
-		{
+		public ComboBox(string[] entries) : this(new ListStore(typeof(string))) {
 			ListStore store = Model as ListStore;
-			CellRendererText cell = new CellRendererText ();
-			PackStart (cell, true);
-			SetAttributes (cell, "text", 0);
+			CellRendererText cell = new CellRendererText();
+			PackStart(cell, true);
+			SetAttributes(cell, "text", 0);
 			foreach (string entry in entries)
-				store.AppendValues (entry);
+				store.AppendValues(entry);
 		}
 
-		protected ComboBox (bool with_entry) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (ComboBox)) {
-				CreateNativeObject (new string[] { "has-entry" }, new GLib.Value[] { new GLib.Value (with_entry) });
+		protected ComboBox(bool with_entry) : base(IntPtr.Zero) {
+			if (GetType() != typeof(ComboBox)) {
+				CreateNativeObject(new string[] { "has-entry" }, new GLib.Value[] { new GLib.Value(with_entry) });
 				return;
 			}
-				
+
 			if (with_entry) {
-				Raw = gtk_combo_box_new_with_entry ();
+				Raw = gtk_combo_box_new_with_entry();
 			} else {
-				Raw = gtk_combo_box_new ();
+				Raw = gtk_combo_box_new();
 			}
 		}
 
@@ -56,14 +54,13 @@ namespace Gtk {
 			}
 		}
 
-		public void SetAttributes (CellRenderer cell, params object[] attrs)
-		{
+		public void SetAttributes(CellRenderer cell, params object[] attrs) {
 			if (attrs.Length % 2 != 0)
-				throw new ArgumentException ("attrs should contain pairs of attribute/col");
+				throw new ArgumentException("attrs should contain pairs of attribute/col");
 
-			ClearAttributes (cell);
+			ClearAttributes(cell);
 			for (int i = 0; i < attrs.Length - 1; i += 2) {
-				AddAttribute (cell, (string) attrs [i], (int) attrs [i + 1]);
+				AddAttribute(cell, (string)attrs[i], (int)attrs[i + 1]);
 			}
 		}
 	}

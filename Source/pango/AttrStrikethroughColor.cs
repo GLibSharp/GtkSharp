@@ -23,18 +23,18 @@ namespace Pango {
 
 	public class AttrStrikethroughColor : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_strikethrough_color_new (ushort red, ushort green, ushort blue);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_strikethrough_color_new(ushort red, ushort green, ushort blue);
 
-		public AttrStrikethroughColor (ushort red, ushort green, ushort blue) : this (pango_attr_strikethrough_color_new (red, green, blue)) {}
+		public AttrStrikethroughColor(ushort red, ushort green, ushort blue) : this(pango_attr_strikethrough_color_new(red, green, blue)) { }
 
-		public AttrStrikethroughColor (Pango.Color color) : this (pango_attr_strikethrough_color_new (color.Red, color.Green, color.Blue)) {}
+		public AttrStrikethroughColor(Pango.Color color) : this(pango_attr_strikethrough_color_new(color.Red, color.Green, color.Blue)) { }
 
-		internal AttrStrikethroughColor (IntPtr raw) : base (raw) {}
+		internal AttrStrikethroughColor(IntPtr raw) : base(raw) { }
 
 		public Pango.Color Color {
 			get {
-				return AttrColor.New (Handle).Color;
+				return AttrColor.New(Handle).Color;
 			}
 		}
 	}

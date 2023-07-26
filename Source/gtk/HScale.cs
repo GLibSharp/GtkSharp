@@ -25,23 +25,22 @@ namespace Gtk {
 
 	public partial class HScale {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_hscale_new_with_range (double min, double max, double step);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_hscale_new_with_range(double min, double max, double step);
 
-		public HScale (double min, double max, double step) : base (IntPtr.Zero)
-		{
-			if (GetType() != typeof (HScale)) {
-				Adjustment adj = new Adjustment (min, min, max, step, 10 * step, 0);
-				string[] names = new string [1];
-				GLib.Value[] vals = new GLib.Value [1];
-				names [0] = "adjustment";
-				vals [0] = new GLib.Value (adj);
-				CreateNativeObject (names, vals);
-				vals [0].Dispose ();
+		public HScale(double min, double max, double step) : base(IntPtr.Zero) {
+			if (GetType() != typeof(HScale)) {
+				Adjustment adj = new Adjustment(min, min, max, step, 10 * step, 0);
+				string[] names = new string[1];
+				GLib.Value[] vals = new GLib.Value[1];
+				names[0] = "adjustment";
+				vals[0] = new GLib.Value(adj);
+				CreateNativeObject(names, vals);
+				vals[0].Dispose();
 				return;
 			}
 
-			Raw = gtk_hscale_new_with_range (min, max, step);
+			Raw = gtk_hscale_new_with_range(min, max, step);
 		}
 	}
 }

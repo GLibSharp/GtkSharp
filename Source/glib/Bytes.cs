@@ -25,149 +25,135 @@ namespace GLib {
 	using System.Collections.Generic;
 	using System.Runtime.InteropServices;
 
-	public partial class Bytes : GLib.Opaque, IComparable<Bytes>, IEquatable<Bytes>
-	{
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_get_type ();
+	public partial class Bytes : GLib.Opaque, IComparable<Bytes>, IEquatable<Bytes> {
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_get_type();
 
-		public static GLib.GType GType { 
+		public static GLib.GType GType {
 			get {
-				IntPtr raw_ret = g_bytes_get_type ();
-				GLib.GType ret = new GLib.GType (raw_ret);
+				IntPtr raw_ret = g_bytes_get_type();
+				GLib.GType ret = new GLib.GType(raw_ret);
 				return ret;
 			}
 		}
 
-		public Bytes (IntPtr raw) : base (raw) {}
+		public Bytes(IntPtr raw) : base(raw) { }
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_new (byte [] data, UIntPtr size);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_new(byte[] data, UIntPtr size);
 
-		public Bytes (byte [] data)
-		{
-			Raw = g_bytes_new (data, new UIntPtr ((ulong)data.Length));
+		public Bytes(byte[] data) {
+			Raw = g_bytes_new(data, new UIntPtr((ulong)data.Length));
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_new_from_bytes (IntPtr raw, UIntPtr offset, UIntPtr length);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_new_from_bytes(IntPtr raw, UIntPtr offset, UIntPtr length);
 
-		public Bytes (Bytes bytes, ulong offset, ulong length)
-		{
-			Raw = g_bytes_new_from_bytes (bytes.Handle, new UIntPtr (offset), new UIntPtr (length));
+		public Bytes(Bytes bytes, ulong offset, ulong length) {
+			Raw = g_bytes_new_from_bytes(bytes.Handle, new UIntPtr(offset), new UIntPtr(length));
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_new_take (byte [] data, UIntPtr size);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_new_take(byte[] data, UIntPtr size);
 
-		public static Bytes NewTake (byte [] data)
-		{
-			return new Bytes (g_bytes_new_take (data, new UIntPtr ((ulong)data.Length)));
+		public static Bytes NewTake(byte[] data) {
+			return new Bytes(g_bytes_new_take(data, new UIntPtr((ulong)data.Length)));
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_new_static (byte [] data, UIntPtr size);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_new_static(byte[] data, UIntPtr size);
 
-		public static Bytes NewStatic (byte [] data)
-		{
-			return new Bytes (g_bytes_new_static (data, new UIntPtr ((ulong)data.Length)));
+		public static Bytes NewStatic(byte[] data) {
+			return new Bytes(g_bytes_new_static(data, new UIntPtr((ulong)data.Length)));
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern int g_bytes_compare (IntPtr raw, IntPtr bytes);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern int g_bytes_compare(IntPtr raw, IntPtr bytes);
 
-		public int CompareTo (Bytes bytes)
-		{
-			return g_bytes_compare (Handle, bytes.Handle);
+		public int CompareTo(Bytes bytes) {
+			return g_bytes_compare(Handle, bytes.Handle);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool g_bytes_equal (IntPtr raw, IntPtr bytes2);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern bool g_bytes_equal(IntPtr raw, IntPtr bytes2);
 
-		public bool Equals (Bytes other)
-		{
-			return g_bytes_equal (Handle, other.Handle);
+		public bool Equals(Bytes other) {
+			return g_bytes_equal(Handle, other.Handle);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern UIntPtr g_bytes_get_size (IntPtr raw);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern UIntPtr g_bytes_get_size(IntPtr raw);
 
-		public ulong Size { 
+		public ulong Size {
 			get {
-				return (ulong) g_bytes_get_size (Handle);
+				return (ulong)g_bytes_get_size(Handle);
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_bytes_hash (IntPtr raw);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern uint g_bytes_hash(IntPtr raw);
 
-		public uint GetHash ()
-		{
-			return g_bytes_hash (Handle);
+		public uint GetHash() {
+			return g_bytes_hash(Handle);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_get_data (IntPtr raw, out UIntPtr size);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_get_data(IntPtr raw, out UIntPtr size);
 
-		public byte [] Data {
+		public byte[] Data {
 			get {
 				UIntPtr size;
-				IntPtr ptr = g_bytes_get_data (Handle, out size);
+				IntPtr ptr = g_bytes_get_data(Handle, out size);
 
 				if (ptr == IntPtr.Zero)
 					return null;
 
-				int sz = (int) size;
-				byte [] bytes = new byte [sz];
-				Marshal.Copy (ptr, bytes, 0, sz);
+				int sz = (int)size;
+				byte[] bytes = new byte[sz];
+				Marshal.Copy(ptr, bytes, 0, sz);
 
 				return bytes;
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_bytes_ref (IntPtr raw);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_bytes_ref(IntPtr raw);
 
-		protected override void Ref (IntPtr raw)
-		{
+		protected override void Ref(IntPtr raw) {
 			if (!Owned) {
-				g_bytes_ref (raw);
+				g_bytes_ref(raw);
 				Owned = true;
 			}
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_bytes_unref (IntPtr raw);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_bytes_unref(IntPtr raw);
 
-		protected override void Unref (IntPtr raw)
-		{
+		protected override void Unref(IntPtr raw) {
 			if (Owned) {
-				g_bytes_unref (raw);
+				g_bytes_unref(raw);
 				Owned = false;
 			}
 		}
 
-		class FinalizerInfo
-		{
+		class FinalizerInfo {
 			IntPtr handle;
 
-			public FinalizerInfo (IntPtr handle)
-			{
+			public FinalizerInfo(IntPtr handle) {
 				this.handle = handle;
 			}
 
-			public bool Handler ()
-			{
-				g_bytes_unref (handle);
+			public bool Handler() {
+				g_bytes_unref(handle);
 				return false;
 			}
 		}
 
-		~Bytes ()
-		{
+		~Bytes() {
 			if (!Owned)
 				return;
-			FinalizerInfo info = new FinalizerInfo (Handle);
-			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
+			FinalizerInfo info = new FinalizerInfo(Handle);
+			GLib.Timeout.Add(50, new GLib.TimeoutHandler(info.Handler));
 		}
 	}
 }

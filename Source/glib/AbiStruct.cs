@@ -25,12 +25,12 @@
 namespace GLib {
 
 	using System;
+	using System.CodeDom.Compiler;
 	using System.Collections.Generic;
+	using System.Collections.Specialized;
+	using System.Linq;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
-	using System.Linq;
-	using System.Collections.Specialized;
-	using System.CodeDom.Compiler;
 
 	public class AbiStruct {
 		public OrderedDictionary Fields = null;
@@ -51,7 +51,7 @@ namespace GLib {
 			uint align = 1;
 
 			for (var i = 0; i < fields.Count; i++) {
-				var field = ((GLib.AbiField) fields[i]);
+				var field = ((GLib.AbiField)fields[i]);
 
 				if (field.Parent_fields != null) {
 					align = Math.Max(align, GetMinAlign(field.Parent_fields));
@@ -68,12 +68,12 @@ namespace GLib {
 			}
 		}
 
-		void Load () {
+		void Load() {
 			long bitfields_offset = -1;
 			long bitfields_size = -1;
 
-			for (var i = 0; i < Fields.Count; i++ ) {
-				var field = (AbiField) Fields[i];
+			for (var i = 0; i < Fields.Count; i++) {
+				var field = (AbiField)Fields[i];
 				field.container = this;
 				var align = field.GetAlign();
 
@@ -95,17 +95,17 @@ namespace GLib {
 						uint nbits = 0;
 
 						bitfields_offset = field.Offset;
-						for (var j = i + 1; j < Fields.Count; j++ ) {
-							var nfield = (AbiField) Fields[j];
+						for (var j = i + 1; j < Fields.Count; j++) {
+							var nfield = (AbiField)Fields[j];
 							if (nfield.Bits > 0)
 								nbits += nfield.Bits;
 						}
 
-						bitfields_size = (long) (Math.Ceiling((double) field.Bits / (double) 8));
+						bitfields_size = (long)(Math.Ceiling((double)field.Bits / (double)8));
 					}
 
-					field.Offset = (uint) bitfields_offset;
-					field.Natural_size = (uint) bitfields_size;
+					field.Offset = (uint)bitfields_offset;
+					field.Natural_size = (uint)bitfields_size;
 				} else {
 					bitfields_offset = bitfields_size = -1;
 				}
@@ -114,7 +114,7 @@ namespace GLib {
 		}
 
 		public uint GetFieldOffset(string field) {
-			return ((AbiField) Fields[field]).GetOffset();
+			return ((AbiField)Fields[field]).GetOffset();
 		}
 
 		static uint GetStructureSize(OrderedDictionary fields) {
@@ -122,12 +122,12 @@ namespace GLib {
 			uint min_align = GetMinAlign(fields);
 
 			for (var i = 0; i < fields.Count; i++) {
-				var field = ((GLib.AbiField) fields[i]);
+				var field = ((GLib.AbiField)fields[i]);
 
 				if (field.InUnion())
 					continue;
 
-				var tsize = (uint) (Math.Ceiling((double) (field.GetEnd() / (double) min_align)) * (double) min_align);
+				var tsize = (uint)(Math.Ceiling((double)(field.GetEnd() / (double)min_align)) * (double)min_align);
 
 				size = Math.Max(tsize, size);
 			}

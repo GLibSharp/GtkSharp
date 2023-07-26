@@ -20,10 +20,8 @@
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-namespace GLib
-{
-	public partial class GioGlobal
-	{
+namespace GLib {
+	public partial class GioGlobal {
 		internal const string GioNativeDll = "gio-2.0-0.dll";
 	}
 }

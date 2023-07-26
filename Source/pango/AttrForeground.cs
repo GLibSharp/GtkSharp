@@ -23,18 +23,18 @@ namespace Pango {
 
 	public class AttrForeground : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_foreground_new (ushort red, ushort green, ushort blue);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_foreground_new(ushort red, ushort green, ushort blue);
 
-		public AttrForeground (ushort red, ushort green, ushort blue) : this (pango_attr_foreground_new (red, green, blue)) {}
+		public AttrForeground(ushort red, ushort green, ushort blue) : this(pango_attr_foreground_new(red, green, blue)) { }
 
-		public AttrForeground (Pango.Color color) : this (pango_attr_foreground_new (color.Red, color.Green, color.Blue)) {}
+		public AttrForeground(Pango.Color color) : this(pango_attr_foreground_new(color.Red, color.Green, color.Blue)) { }
 
-		internal AttrForeground (IntPtr raw) : base (raw) {}
+		internal AttrForeground(IntPtr raw) : base(raw) { }
 
 		public Pango.Color Color {
 			get {
-				return AttrColor.New (Handle).Color;
+				return AttrColor.New(Handle).Color;
 			}
 		}
 	}

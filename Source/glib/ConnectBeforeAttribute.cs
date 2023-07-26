@@ -23,8 +23,7 @@ namespace GLib {
 
 	using System;
 
-	public sealed class ConnectBeforeAttribute : Attribute 
-	{
-		public ConnectBeforeAttribute () {}
+	public sealed class ConnectBeforeAttribute : Attribute {
+		public ConnectBeforeAttribute() { }
 	}
 }

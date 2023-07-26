@@ -26,15 +26,13 @@ namespace Pango {
 		public static Item Zero = null;
 
 		[Obsolete("Replaced by Item(IntPtr) constructor")]
-		public static Item New (IntPtr raw)
-		{
-			return new Item (raw);
+		public static Item New(IntPtr raw) {
+			return new Item(raw);
 		}
 
 		[Obsolete("Replaced by Item() constructor")]
-		public static Item New ()
-		{
-			return new Item ();
+		public static Item New() {
+			return new Item();
 		}
 	}
 }

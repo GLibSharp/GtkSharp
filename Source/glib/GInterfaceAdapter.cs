@@ -24,11 +24,11 @@ namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
 
-	[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-	public delegate void GInterfaceInitHandler (IntPtr iface_ptr, IntPtr data);
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void GInterfaceInitHandler(IntPtr iface_ptr, IntPtr data);
 
-	[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-	internal delegate void GInterfaceFinalizeHandler (IntPtr iface_ptr, IntPtr data);
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	internal delegate void GInterfaceFinalizeHandler(IntPtr iface_ptr, IntPtr data);
 
 	internal struct GInterfaceInfo {
 		internal GInterfaceInitHandler InitHandler;
@@ -40,8 +40,7 @@ namespace GLib {
 
 		GInterfaceInfo info;
 
-		protected GInterfaceAdapter ()
-		{
+		protected GInterfaceAdapter() {
 		}
 
 		protected GInterfaceInitHandler InitHandler {

@@ -22,8 +22,8 @@ namespace Gtk {
 	public partial class TextAttributes {
 
 		public TextAppearance Appearance {
-			get { return (TextAppearance) Marshal.PtrToStructure (new IntPtr (Handle.ToInt64 () + 4), typeof (TextAppearance)); }
-			set { Marshal.StructureToPtr (value, new IntPtr (Handle.ToInt64 () + 4), false); }
+			get { return (TextAppearance)Marshal.PtrToStructure(new IntPtr(Handle.ToInt64() + 4), typeof(TextAppearance)); }
+			set { Marshal.StructureToPtr(value, new IntPtr(Handle.ToInt64() + 4), false); }
 		}
 	}
 }

@@ -23,16 +23,16 @@ namespace Pango {
 
 	public class AttrStyle : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_style_new (Pango.Style style);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_style_new(Pango.Style style);
 
-		public AttrStyle (Pango.Style style) : this (pango_attr_style_new (style)) {}
+		public AttrStyle(Pango.Style style) : this(pango_attr_style_new(style)) { }
 
-		internal AttrStyle (IntPtr raw) : base (raw) {}
+		internal AttrStyle(IntPtr raw) : base(raw) { }
 
 		public Pango.Style Style {
 			get {
-				return (Pango.Style) (AttrInt.New (Handle).Value);
+				return (Pango.Style)(AttrInt.New(Handle).Value);
 			}
 		}
 	}

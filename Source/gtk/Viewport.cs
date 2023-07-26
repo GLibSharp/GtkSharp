@@ -22,7 +22,7 @@ namespace Gtk {
 	public partial class Viewport {
 
 		// Make a default constructor that wraps typical usage.
-		public Viewport (): this (null, null) {
+		public Viewport() : this(null, null) {
 		}
 	}
 }

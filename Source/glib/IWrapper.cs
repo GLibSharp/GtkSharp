@@ -19,12 +19,10 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib
-{
+namespace GLib {
 	using System;
 
-	public interface IWrapper
-	{
+	public interface IWrapper {
 		IntPtr Handle { get; }
 	}
 }

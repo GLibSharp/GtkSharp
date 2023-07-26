@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventFocus : Event {
 
-		public EventFocus (IntPtr raw) : base (raw) {} 
+		public EventFocus(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -37,17 +37,16 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public bool In {
 			get { return Native._in != 0; }
 			set {
 				NativeStruct native = Native;
-				native._in = (short) (value ? 1 : 0);
-				Marshal.StructureToPtr (native, Handle, false);
+				native._in = (short)(value ? 1 : 0);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

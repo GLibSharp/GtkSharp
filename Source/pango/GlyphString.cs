@@ -26,15 +26,13 @@ namespace Pango {
 		public static GlyphString Zero = null;
 
 		[Obsolete("Replaced by GlyphString(IntPtr) constructor")]
-		public static GlyphString New (IntPtr raw)
-		{
-			return new GlyphString (raw);
+		public static GlyphString New(IntPtr raw) {
+			return new GlyphString(raw);
 		}
 
 		[Obsolete("Replaced by GlyphString() constructor")]
-		public static GlyphString New ()
-		{
-			return new GlyphString ();
+		public static GlyphString New() {
+			return new GlyphString();
 		}
 	}
 }

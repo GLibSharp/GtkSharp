@@ -23,37 +23,31 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace GLib
-{
-	public class FileFactory
-	{
-		[DllImport (GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr g_file_new_for_uri (string uri);
+namespace GLib {
+	public class FileFactory {
+		[DllImport(GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr g_file_new_for_uri(string uri);
 
-		public static IFile NewForUri (string uri)
-		{
-			return GLib.FileAdapter.GetObject (g_file_new_for_uri (uri), false) as IFile;
+		public static IFile NewForUri(string uri) {
+			return GLib.FileAdapter.GetObject(g_file_new_for_uri(uri), false) as IFile;
 		}
 
-		public static IFile NewForUri (Uri uri)
-		{
-			return GLib.FileAdapter.GetObject (g_file_new_for_uri (uri.ToString ()), false) as IFile;
+		public static IFile NewForUri(Uri uri) {
+			return GLib.FileAdapter.GetObject(g_file_new_for_uri(uri.ToString()), false) as IFile;
 		}
 
-		[DllImport (GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr g_file_new_for_path (string path);
-		
-		public static IFile NewForPath (string path)
-		{
-			return GLib.FileAdapter.GetObject (g_file_new_for_path (path), false) as IFile;
+		[DllImport(GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr g_file_new_for_path(string path);
+
+		public static IFile NewForPath(string path) {
+			return GLib.FileAdapter.GetObject(g_file_new_for_path(path), false) as IFile;
 		}
 
-		[DllImport (GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr g_file_new_for_commandline_arg (string arg);
+		[DllImport(GioGlobal.GioNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr g_file_new_for_commandline_arg(string arg);
 
-		public static IFile NewFromCommandlineArg (string arg)
-		{
-			return GLib.FileAdapter.GetObject (g_file_new_for_commandline_arg (arg), false) as IFile;
+		public static IFile NewFromCommandlineArg(string arg) {
+			return GLib.FileAdapter.GetObject(g_file_new_for_commandline_arg(arg), false) as IFile;
 		}
 	}
 }

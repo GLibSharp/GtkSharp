@@ -26,36 +26,31 @@ namespace Gtk {
 	using System.Runtime.InteropServices;
 
 	public partial class Dialog {
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_dialog_new_with_buttons (IntPtr title, IntPtr i, int flags, IntPtr dummy);
-		public Dialog (string title, Gtk.Window parent, Gtk.DialogFlags flags, params object[] button_data) : base(IntPtr.Zero)
-		{
-			IntPtr native = GLib.Marshaller.StringToPtrGStrdup (title);
-			Raw = gtk_dialog_new_with_buttons (native, parent == null ? IntPtr.Zero : parent.Handle, (int) flags, IntPtr.Zero);
-			GLib.Marshaller.Free (native);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_dialog_new_with_buttons(IntPtr title, IntPtr i, int flags, IntPtr dummy);
+		public Dialog(string title, Gtk.Window parent, Gtk.DialogFlags flags, params object[] button_data) : base(IntPtr.Zero) {
+			IntPtr native = GLib.Marshaller.StringToPtrGStrdup(title);
+			Raw = gtk_dialog_new_with_buttons(native, parent == null ? IntPtr.Zero : parent.Handle, (int)flags, IntPtr.Zero);
+			GLib.Marshaller.Free(native);
 
 			for (int i = 0; i < button_data.Length - 1; i += 2)
-				AddButton ((string) button_data [i], (int) button_data [i + 1]);
+				AddButton((string)button_data[i], (int)button_data[i + 1]);
 		}
 
-		public void AddActionWidget (Widget child, ResponseType response)
-		{
-			this.AddActionWidget (child, (int) response);
+		public void AddActionWidget(Widget child, ResponseType response) {
+			this.AddActionWidget(child, (int)response);
 		}
 
-		public Gtk.Widget AddButton (string button_text, ResponseType response)
-		{
-			return this.AddButton (button_text, (int) response);
+		public Gtk.Widget AddButton(string button_text, ResponseType response) {
+			return this.AddButton(button_text, (int)response);
 		}
 
-		public void Respond (ResponseType response)
-		{
-			this.Respond ((int) response);
+		public void Respond(ResponseType response) {
+			this.Respond((int)response);
 		}
 
-		[Obsolete ("Replaced by AlternativeButtonOrder property")]
-		public int SetAlternativeButtonOrderFromArray (int n_params)
-		{
+		[Obsolete("Replaced by AlternativeButtonOrder property")]
+		public int SetAlternativeButtonOrderFromArray(int n_params) {
 			return -1;
 		}
 	}

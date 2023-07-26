@@ -31,16 +31,12 @@ using System;
 
 namespace Cairo {
 
-	public class RadialGradient : Gradient
-	{
-		internal RadialGradient (IntPtr handle, bool owned) : base (handle, owned)
-		{
+	public class RadialGradient : Gradient {
+		internal RadialGradient(IntPtr handle, bool owned) : base(handle, owned) {
 		}
 
-		public RadialGradient (double cx0, double cy0, double radius0, double cx1, double cy1, double radius1)
-			: base (NativeMethods.cairo_pattern_create_radial (cx0, cy0, radius0, cx1, cy1, radius1), true)
-		{
+		public RadialGradient(double cx0, double cy0, double radius0, double cx1, double cy1, double radius1)
+			: base(NativeMethods.cairo_pattern_create_radial(cx0, cy0, radius0, cx1, cy1, radius1), true) {
 		}
 	}
 }
-

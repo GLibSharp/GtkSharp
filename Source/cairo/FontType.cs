@@ -31,8 +31,7 @@ using System;
 namespace Cairo {
 
 	[Serializable]
-	public enum FontType
-	{
+	public enum FontType {
 		Toy,
 		FreeType,
 		Win32,
