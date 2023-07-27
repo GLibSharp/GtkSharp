@@ -19,10 +19,10 @@ regresssharp_regress_fooobject_get_parent_instance_offset (void)
 	return (guint)G_STRUCT_OFFSET (RegressFooObject, parent_instance);
 }
 
-guint regresssharp_regress_fooobject_get_some_int_offset (void);
+guint Getsome_intOffset (void);
 
 guint
-regresssharp_regress_fooobject_get_some_int_offset (void)
+Getsome_intOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressFooObject, some_int);
 }
@@ -59,6 +59,14 @@ regresssharp_regress_testfundamentalobject_get_flags_offset (void)
 	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalObject, flags);
 }
 
+guint GetdataOffset (void);
+
+guint
+GetdataOffset (void)
+{
+	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalObjectNoGetSetFunc, data);
+}
+
 guint regresssharp_regress_testfundamentalsubobject_get_fundamental_object_offset (void);
 
 guint
@@ -67,10 +75,10 @@ regresssharp_regress_testfundamentalsubobject_get_fundamental_object_offset (voi
 	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalSubObject, fundamental_object);
 }
 
-guint regresssharp_regress_testfundamentalsubobject_get_data_offset (void);
+guint GetdataOffset (void);
 
 guint
-regresssharp_regress_testfundamentalsubobject_get_data_offset (void)
+GetdataOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalSubObject, data);
 }
@@ -91,82 +99,82 @@ regresssharp_regress_testobj_get_parent_instance_offset (void)
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, parent_instance);
 }
 
-guint regresssharp_regress_testobj_get_bare_offset (void);
+guint GetbareOffset (void);
 
 guint
-regresssharp_regress_testobj_get_bare_offset (void)
+GetbareOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, bare);
 }
 
-guint regresssharp_regress_testobj_get_boxed_offset (void);
+guint GetboxedOffset (void);
 
 guint
-regresssharp_regress_testobj_get_boxed_offset (void)
+GetboxedOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, boxed);
 }
 
-guint regresssharp_regress_testobj_get_hash_table_offset (void);
+guint Gethash_tableOffset (void);
 
 guint
-regresssharp_regress_testobj_get_hash_table_offset (void)
+Gethash_tableOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, hash_table);
 }
 
-guint regresssharp_regress_testobj_get_list_offset (void);
+guint GetlistOffset (void);
 
 guint
-regresssharp_regress_testobj_get_list_offset (void)
+GetlistOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, list);
 }
 
-guint regresssharp_regress_testobj_get_some_int8_offset (void);
+guint Getsome_int8Offset (void);
 
 guint
-regresssharp_regress_testobj_get_some_int8_offset (void)
+Getsome_int8Offset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, some_int8);
 }
 
-guint regresssharp_regress_testobj_get_some_float_offset (void);
+guint Getsome_floatOffset (void);
 
 guint
-regresssharp_regress_testobj_get_some_float_offset (void)
+Getsome_floatOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, some_float);
 }
 
-guint regresssharp_regress_testobj_get_some_double_offset (void);
+guint Getsome_doubleOffset (void);
 
 guint
-regresssharp_regress_testobj_get_some_double_offset (void)
+Getsome_doubleOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, some_double);
 }
 
-guint regresssharp_regress_testobj_get_string_offset (void);
+guint GetstringOffset (void);
 
 guint
-regresssharp_regress_testobj_get_string_offset (void)
+GetstringOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, string);
 }
 
-guint regresssharp_regress_testobj_get_gtype_offset (void);
+guint GetgtypeOffset (void);
 
 guint
-regresssharp_regress_testobj_get_gtype_offset (void)
+GetgtypeOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, gtype);
 }
 
-guint regresssharp_regress_testobj_get_name_conflict_offset (void);
+guint Getname_conflictOffset (void);
 
 guint
-regresssharp_regress_testobj_get_name_conflict_offset (void)
+Getname_conflictOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestObj, name_conflict);
 }
@@ -187,10 +195,10 @@ regresssharp_regress_testwi8021x_get_parent_instance_offset (void)
 	return (guint)G_STRUCT_OFFSET (RegressTestWi8021x, parent_instance);
 }
 
-guint regresssharp_regress_testwi8021x_get_testbool_offset (void);
+guint GettestboolOffset (void);
 
 guint
-regresssharp_regress_testwi8021x_get_testbool_offset (void)
+GettestboolOffset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestWi8021x, testbool);
 }

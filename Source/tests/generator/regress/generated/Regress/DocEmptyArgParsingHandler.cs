@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void DocEmptyArgParsingHandler(object o, DocEmptyArgParsingArgs args);
 
 	public class DocEmptyArgParsingArgs : GLib.SignalArgs {
-		public IntPtr Arg1 {
+		public IntPtr Arg1{
 			get {
-				return (IntPtr)Args[0];
+				return (IntPtr) Args [0];
 			}
 		}
 

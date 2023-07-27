@@ -8,15 +8,15 @@ namespace Regress {
 	public delegate void AttributeSignalHandler(object o, AttributeSignalArgs args);
 
 	public class AttributeSignalArgs : GLib.SignalArgs {
-		public string Arg1 {
+		public string Arg1{
 			get {
-				return (string)Args[0];
+				return (string) Args [0];
 			}
 		}
 
-		public string Arg2 {
+		public string Arg2{
 			get {
-				return (string)Args[1];
+				return (string) Args [1];
 			}
 		}
 

@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void InterfaceSignalHandler(object o, InterfaceSignalArgs args);
 
 	public class InterfaceSignalArgs : GLib.SignalArgs {
-		public int Ptr {
+		public int Ptr{
 			get {
-				return (int)Args[0];
+				return (int) Args [0];
 			}
 		}
 

@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void SigWithObjHandler(object o, SigWithObjArgs args);
 
 	public class SigWithObjArgs : GLib.SignalArgs {
-		public GLib.Object Obj {
+		public GLib.Object Obj{
 			get {
-				return (GLib.Object)Args[0];
+				return (GLib.Object) Args [0];
 			}
 		}
 

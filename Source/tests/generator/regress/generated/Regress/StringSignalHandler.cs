@@ -8,9 +8,9 @@ namespace Regress {
 	public delegate void StringSignalHandler(object o, StringSignalArgs args);
 
 	public class StringSignalArgs : GLib.SignalArgs {
-		public string String {
+		public string String{
 			get {
-				return (string)Args[0];
+				return (string) Args [0];
 			}
 		}
 
