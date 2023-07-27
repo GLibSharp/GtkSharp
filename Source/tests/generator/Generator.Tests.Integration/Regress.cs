@@ -53,7 +53,7 @@ namespace Generator.Tests.Integration {
 			int res = GenerateCode();
 			Assert.AreEqual(0, res);
 			var (errors, warnings) = Compile(tempDir, "regress-sharp.dll");
-			Assert.AreEqual(1, errors.Count());
+			Assert.AreEqual(0, errors.Count());
 			Assert.AreEqual(4, warnings.Count());
 		}
 

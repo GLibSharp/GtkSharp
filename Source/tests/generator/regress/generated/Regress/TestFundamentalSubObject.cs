@@ -24,10 +24,14 @@ namespace Regress {
 			}
 		}
 
+		[DllImport ("regress-sharp-glue")]
+		extern static uint regresssharp_regress_testfundamentalsubobject_get_data_offset ();
+
+		static uint data_offset = regresssharp_regress_testfundamentalsubobject_get_data_offset ();
 		public string Data {
 			get {
 				unsafe {
-					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + abi_info.GetFieldOffset("data"));
+					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + data_offset);
 					return GLib.Marshaller.Utf8PtrToString ((*raw_ptr));
 				}
 			}

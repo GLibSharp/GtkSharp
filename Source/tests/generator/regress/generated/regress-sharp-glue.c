@@ -75,10 +75,10 @@ regresssharp_regress_testfundamentalsubobject_get_fundamental_object_offset (voi
 	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalSubObject, fundamental_object);
 }
 
-guint GetdataOffset (void);
+guint regresssharp_regress_testfundamentalsubobject_get_data_offset (void);
 
 guint
-GetdataOffset (void)
+regresssharp_regress_testfundamentalsubobject_get_data_offset (void)
 {
 	return (guint)G_STRUCT_OFFSET (RegressTestFundamentalSubObject, data);
 }

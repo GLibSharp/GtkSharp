@@ -307,14 +307,20 @@ namespace GtkSharp.Generation {
 				}
 			}
 
-			foreach (StructABIField abi_field in abi_fields) {
-				if (!abi_field.Validate(log))
-					abi_fields_valid = false;
+			if (!CheckABIStructParent(log, out _)) {
+				abi_fields_valid = false;
+			} else {
+				foreach (StructABIField abi_field in abi_fields) {
+					if (!abi_field.Validate(log))
+						abi_fields_valid = false;
+				}
 			}
-			if (abi_fields_valid)
+
+			if (abi_fields_valid) {
 				foreach (StructABIField abi_field in abi_fields) {
 					abi_field.SetGetOffseName();
 				}
+			}
 
 			ArrayList invalids = new ArrayList();
 
