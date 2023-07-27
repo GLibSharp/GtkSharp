@@ -279,7 +279,13 @@ namespace GtkSharp.Generation {
 				}
 			}
 
+
+
 			if (cur_type is AliasGen) {
+				if (cur_type.Name == type) {
+					return cur_type;
+				}
+
 				cur_type = ResolveType(cur_type.Name);
 				if (cur_type != null) {
 					types[type] = cur_type;
