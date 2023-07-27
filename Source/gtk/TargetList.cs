@@ -26,8 +26,6 @@ namespace Gtk {
 		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_target_list_new(Gtk.TargetEntry[] targets, uint n_targets);
 
-		public TargetList() : base(gtk_target_list_new(null, 0)) { }
-
 		public TargetList(Gtk.TargetEntry[] targets) : this(gtk_target_list_new(targets, (uint)targets.Length)) { }
 
 		public void Add(string target, uint flags, uint info) {

@@ -57,10 +57,6 @@ namespace Gtk {
 			}
 		}
 
-		public void Set(Gdk.Atom type, int format, byte[] data) {
-			Set(type, format, data, data.Length);
-		}
-
 		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gtk_selection_data_get_targets(IntPtr raw, out IntPtr targets, out int n_atoms);
 
