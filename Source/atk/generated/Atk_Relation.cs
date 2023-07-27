@@ -14,9 +14,9 @@ namespace Atk {
 		public Relation (IntPtr raw) : base(raw) {}
 
 		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr atk_relation_new([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)]IntPtr[] targets, int n_targets, int relationship);
+		static extern IntPtr atk_relation_new(IntPtr[] targets, int n_targets, int relationship);
 
-		public Relation (Atk.Object[] targets, Atk.RelationType relationship) : base (IntPtr.Zero)
+		public Relation (Atk.Object[] targets, int n_targets, Atk.RelationType relationship) : base (IntPtr.Zero)
 		{
 			if (GetType () != typeof (Relation)) {
 				var vals = new List<GLib.Value> ();
@@ -28,7 +28,7 @@ namespace Atk {
 			IntPtr[] native_targets = new IntPtr [cnt_targets];
 			for (int i = 0; i < cnt_targets; i++)
 				native_targets [i] = targets[i] == null ? IntPtr.Zero : targets[i].Handle;
-			Raw = atk_relation_new(native_targets, cnt_targets, (int) relationship);
+			Raw = atk_relation_new(native_targets, n_targets, (int) relationship);
 		}
 
 		[DllImport("atk-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]

@@ -1249,13 +1249,12 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern unsafe bool gtk_text_buffer_deserialize(IntPtr raw, IntPtr content_buffer, IntPtr format, IntPtr iter, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)]byte[] data, UIntPtr length, out IntPtr error);
+		static extern unsafe bool gtk_text_buffer_deserialize(IntPtr raw, IntPtr content_buffer, IntPtr format, IntPtr iter, byte[] data, UIntPtr length, out IntPtr error);
 
-		public unsafe bool Deserialize(Gtk.TextBuffer content_buffer, Gdk.Atom format, ref Gtk.TextIter iter, byte[] data) {
+		public unsafe bool Deserialize(Gtk.TextBuffer content_buffer, Gdk.Atom format, ref Gtk.TextIter iter, byte[] data, ulong length) {
 			IntPtr native_iter = GLib.Marshaller.StructureToPtrAlloc (iter);
-			ulong cnt_data = (ulong)(data == null ? 0 : data.Length);
 			IntPtr error = IntPtr.Zero;
-			bool raw_ret = gtk_text_buffer_deserialize(Handle, content_buffer == null ? IntPtr.Zero : content_buffer.Handle, format == null ? IntPtr.Zero : format.Handle, native_iter, data, new UIntPtr ((uint)cnt_data), out error);
+			bool raw_ret = gtk_text_buffer_deserialize(Handle, content_buffer == null ? IntPtr.Zero : content_buffer.Handle, format == null ? IntPtr.Zero : format.Handle, native_iter, data, new UIntPtr (length), out error);
 			bool ret = raw_ret;
 			iter = Gtk.TextIter.New (native_iter);
 			Marshal.FreeHGlobal (native_iter);

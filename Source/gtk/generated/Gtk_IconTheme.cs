@@ -173,35 +173,24 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_icon_theme_choose_icon(IntPtr raw, IntPtr[] icon_names, int size, int flags);
+		static extern IntPtr gtk_icon_theme_choose_icon(IntPtr raw, IntPtr icon_names, int size, int flags);
 
 		public Gtk.IconInfo ChooseIcon(string[] icon_names, int size, Gtk.IconLookupFlags flags) {
-			int cnt_icon_names = icon_names == null ? 0 : icon_names.Length;
-			IntPtr[] native_icon_names = new IntPtr [cnt_icon_names + 1];
-			for (int i = 0; i < cnt_icon_names; i++)
-				native_icon_names [i] = GLib.Marshaller.StringToPtrGStrdup (icon_names[i]);
-			native_icon_names [cnt_icon_names] = IntPtr.Zero;
+			IntPtr native_icon_names = GLib.Marshaller.StringArrayToStrvPtr(icon_names, true);
 			IntPtr raw_ret = gtk_icon_theme_choose_icon(Handle, native_icon_names, size, (int) flags);
 			Gtk.IconInfo ret = GLib.Object.GetObject(raw_ret) as Gtk.IconInfo;
-			for (int i = 0; i < native_icon_names.Length - 1; i++) {
-				GLib.Marshaller.Free (native_icon_names[i]);
-			}
+			GLib.Marshaller.StrFreeV (native_icon_names);
 			return ret;
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_icon_theme_choose_icon_for_scale(IntPtr raw, IntPtr[] icon_names, int size, int scale, int flags);
+		static extern IntPtr gtk_icon_theme_choose_icon_for_scale(IntPtr raw, IntPtr icon_names, int size, int scale, int flags);
 
 		public Gtk.IconInfo ChooseIconForScale(string[] icon_names, int size, int scale, Gtk.IconLookupFlags flags) {
-			int cnt_icon_names = icon_names == null ? 0 : icon_names.Length;
-			IntPtr[] native_icon_names = new IntPtr [cnt_icon_names];
-			for (int i = 0; i < cnt_icon_names; i++)
-				native_icon_names [i] = GLib.Marshaller.StringToPtrGStrdup (icon_names[i]);
+			IntPtr native_icon_names = GLib.Marshaller.StringArrayToStrvPtr(icon_names, false);
 			IntPtr raw_ret = gtk_icon_theme_choose_icon_for_scale(Handle, native_icon_names, size, scale, (int) flags);
 			Gtk.IconInfo ret = GLib.Object.GetObject(raw_ret) as Gtk.IconInfo;
-			for (int i = 0; i < native_icon_names.Length; i++) {
-				GLib.Marshaller.Free (native_icon_names[i]);
-			}
+			GLib.Marshaller.StringArrayPtrFree (native_icon_names, );
 			return ret;
 		}
 
