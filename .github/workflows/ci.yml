@@ -32,7 +32,7 @@ jobs:
           brew update
           brew install bison
       - name: Configure
-        run: meson builddir --buildtype=release
+        run: meson builddir --buildtype=release --prefix=${GITHUB_WORKSPACE}/build_prefix
       - name: Build
         run: meson compile -C builddir
       - name: Install
