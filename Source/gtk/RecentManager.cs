@@ -25,10 +25,10 @@ namespace Gtk {
 	public partial class RecentManager {
 
 		[Obsolete("Replaced by RecentItems property")]
-		public GLib.List Items { 
+		public GLib.List Items {
 			get {
 				IntPtr raw_ret = gtk_recent_manager_get_items(Handle);
-				GLib.List ret = new GLib.List(raw_ret, typeof (Gtk.RecentInfo), true, true);
+				GLib.List ret = new GLib.List(raw_ret, typeof(Gtk.RecentInfo), true, true);
 				return ret;
 			}
 		}

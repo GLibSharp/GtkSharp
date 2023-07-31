@@ -21,13 +21,13 @@
 // Boston, MA 02111-1307, USA.
 
 namespace Gtk {
-		
+
 	using System;
-		
+
 	public partial class ScrolledWindow {
-			
-		public ScrolledWindow () : this (null, null) {
-			SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
+
+		public ScrolledWindow() : this(null, null) {
+			SetPolicy(PolicyType.Automatic, PolicyType.Automatic);
 		}
 	}
 }

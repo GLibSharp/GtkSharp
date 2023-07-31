@@ -26,64 +26,63 @@ namespace Gtk {
 
 	public partial class Window {
 
-		public Window (String title) : this (WindowType.Toplevel)
-		{
+		public Window(String title) : this(WindowType.Toplevel) {
 			this.Title = title;
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_get_default_icon_list();
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_window_set_default_icon_list(IntPtr list);
 
 		public static Gdk.Pixbuf[] DefaultIconList {
 			get {
 				IntPtr raw_ret = gtk_window_get_default_icon_list();
 				if (raw_ret == IntPtr.Zero)
-					return new Gdk.Pixbuf [0];
+					return new Gdk.Pixbuf[0];
 				GLib.List list = new GLib.List(raw_ret);
-				Gdk.Pixbuf[] result = new Gdk.Pixbuf [list.Count];
+				Gdk.Pixbuf[] result = new Gdk.Pixbuf[list.Count];
 				for (int i = 0; i < list.Count; i++)
-					result [i] = list [i] as Gdk.Pixbuf;
+					result[i] = list[i] as Gdk.Pixbuf;
 				return result;
 			}
 			set {
 				GLib.List list = new GLib.List(IntPtr.Zero);
 				foreach (Gdk.Pixbuf val in value)
-					list.Append (val.Handle);
+					list.Append(val.Handle);
 				gtk_window_set_default_icon_list(list.Handle);
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_window_get_icon_list(IntPtr raw);
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_window_set_icon_list(IntPtr raw, IntPtr list);
 
 		public Gdk.Pixbuf[] IconList {
 			get {
 				IntPtr raw_ret = gtk_window_get_icon_list(Handle);
 				if (raw_ret == IntPtr.Zero)
-					return new Gdk.Pixbuf [0];
+					return new Gdk.Pixbuf[0];
 				GLib.List list = new GLib.List(raw_ret);
-				Gdk.Pixbuf[] result = new Gdk.Pixbuf [list.Count];
+				Gdk.Pixbuf[] result = new Gdk.Pixbuf[list.Count];
 				for (int i = 0; i < list.Count; i++)
-					result [i] = list [i] as Gdk.Pixbuf;
+					result[i] = list[i] as Gdk.Pixbuf;
 				return result;
 			}
 			set {
 				GLib.List list = new GLib.List(IntPtr.Zero);
 				foreach (Gdk.Pixbuf val in value)
-					list.Append (val.Handle);
+					list.Append(val.Handle);
 				gtk_window_set_icon_list(Handle, list.Handle);
 			}
 		}
 
 		public Gdk.Size DefaultSize {
 			get {
-				return new Gdk.Size (DefaultWidth, DefaultHeight);
+				return new Gdk.Size(DefaultWidth, DefaultHeight);
 			}
 			set {
 				DefaultWidth = value.Width;

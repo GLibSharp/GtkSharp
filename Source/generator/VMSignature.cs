@@ -25,20 +25,19 @@ namespace GtkSharp.Generation {
 	using System.Collections.Generic;
 	using System.Xml;
 
-	public class VMSignature  {
-		
-		private IList<Parameter> parms = new List<Parameter> ();
+	public class VMSignature {
 
-		public VMSignature (Parameters parms)
-		{
+		private IList<Parameter> parms = new List<Parameter>();
+
+		public VMSignature(Parameters parms) {
 			bool has_cb = parms.HideData;
 			for (int i = 0; i < parms.Count; i++) {
-				Parameter p = parms [i];
+				Parameter p = parms[i];
 
-				if (i > 0 && p.IsLength && parms [i - 1].IsString)
+				if (i > 0 && p.IsLength && parms[i - 1].IsString)
 					continue;
 
-				if (p.IsCount && ((i > 0 && parms [i - 1].IsArray) || (i < parms.Count - 1 && parms [i + 1].IsArray)))
+				if (p.IsCount && ((i > 0 && parms[i - 1].IsArray) || (i < parms.Count - 1 && parms[i + 1].IsArray)))
 					continue;
 
 				has_cb = has_cb || p.Generatable is CallbackGen;
@@ -51,41 +50,38 @@ namespace GtkSharp.Generation {
 				if (p.Scope == "notified")
 					i += 2;
 
-				this.parms.Add (p);
+				this.parms.Add(p);
 			}
 		}
 
-		public string GetCallString (bool use_place_holders)
-		{
+		public string GetCallString(bool use_place_holders) {
 			if (parms.Count == 0)
 				return "";
 
-			string[] result = new string [parms.Count];
+			string[] result = new string[parms.Count];
 			int i = 0;
 			foreach (Parameter p in parms) {
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				result [i] += use_place_holders ? "{" + i + "}" : p.Name;
+				result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+				result[i] += use_place_holders ? "{" + i + "}" : p.Name;
 				i++;
 			}
 
-			return String.Join (", ", result);
+			return String.Join(", ", result);
 		}
 
-		public override string ToString ()
-		{
+		public override string ToString() {
 			if (parms.Count == 0)
 				return "";
 
-			string[] result = new string [parms.Count];
+			string[] result = new string[parms.Count];
 			int i = 0;
 
 			foreach (Parameter p in parms) {
-				result [i] = p.PassAs != "" ? p.PassAs + " " : "";
-				result [i++] += p.CSType + " " + p.Name;
+				result[i] = p.PassAs != "" ? p.PassAs + " " : "";
+				result[i++] += p.CSType + " " + p.Name;
 			}
 
-			return String.Join (", ", result);
+			return String.Join(", ", result);
 		}
 	}
 }
-

@@ -19,6 +19,6 @@ namespace GtkSharp.Generation {
 
 	public interface IOwnable {
 
-		string FromNative (string var, bool owned);
+		string FromNative(string var, bool owned);
 	}
 }

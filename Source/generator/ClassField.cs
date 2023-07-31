@@ -27,17 +27,16 @@ namespace GtkSharp.Generation {
 	public class ClassField : StructField {
 		protected new ObjectBase container_type;
 
-		public ClassField (XmlElement elem, ObjectBase container_type) : base (elem, container_type) {
+		public ClassField(XmlElement elem, ObjectBase container_type) : base(elem, container_type) {
 			this.container_type = container_type;
 		}
 
-		public override bool Validate (LogWriter log)
-		{
-			if (!base.Validate (log))
+		public override bool Validate(LogWriter log) {
+			if (!base.Validate(log))
 				return false;
 
 			if (IsBitfield) {
-				log.Warn ("bitfields are not supported");
+				log.Warn("bitfields are not supported");
 				return false;
 			}
 

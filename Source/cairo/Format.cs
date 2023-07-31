@@ -29,20 +29,18 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum Format
-	{
-		Argb32	= 0,
-		Rgb24	= 1,
-		A8	= 2,
-		A1	= 3,
+	public enum Format {
+		Argb32 = 0,
+		Rgb24 = 1,
+		A8 = 2,
+		A1 = 3,
 		Rgb16565 = 4,
 
 		//[Obsolete ("Use Argb32")]
 		ARGB32 = Argb32,
 		//[Obsolete ("Use Rgb24")]
-		RGB24	= Rgb24,
+		RGB24 = Rgb24,
 	}
 }

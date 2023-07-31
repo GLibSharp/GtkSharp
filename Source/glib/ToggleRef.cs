@@ -32,13 +32,12 @@ namespace GLib {
 		object reference;
 		GCHandle gch;
 
-		public ToggleRef (GLib.Object target)
-		{
+		public ToggleRef(GLib.Object target) {
 			handle = target.Handle;
-			gch = GCHandle.Alloc (this);
+			gch = GCHandle.Alloc(this);
 			reference = target;
-			g_object_add_toggle_ref (target.Handle, ToggleNotifyCallback, (IntPtr) gch);
-			g_object_unref (target.Handle);
+			g_object_add_toggle_ref(target.Handle, ToggleNotifyCallback, (IntPtr)gch);
+			g_object_unref(target.Handle);
 		}
 
 		public IntPtr Handle {
@@ -57,26 +56,23 @@ namespace GLib {
 			}
 		}
 
-		public void Dispose ()
-		{
+		public void Dispose() {
 			lock (PendingDestroys) {
-				PendingDestroys.Remove (this);
+				PendingDestroys.Remove(this);
 			}
-			Free ();
+			Free();
 		}
 
-  		void Free ()
-  		{
+		void Free() {
 			if (hardened)
-				g_object_unref (handle);
+				g_object_unref(handle);
 			else
-				g_object_remove_toggle_ref (handle, ToggleNotifyCallback, (IntPtr) gch);
+				g_object_remove_toggle_ref(handle, ToggleNotifyCallback, (IntPtr)gch);
 			reference = null;
-			gch.Free ();
+			gch.Free();
 		}
 
-		internal void Harden ()
-		{
+		internal void Harden() {
 			// Added for the benefit of GnomeProgram.  It releases a final ref in
 			// an atexit handler which causes toggle ref notifications to occur after 
 			// our delegates are gone, so we need a mechanism to override the 
@@ -84,34 +80,32 @@ namespace GLib {
 			// but since it is only used by Gnome.Program, which is a singleton object 
 			// with program duration persistence, who cares.
 
-			g_object_ref (handle);
-			g_object_remove_toggle_ref (handle, ToggleNotifyCallback, (IntPtr) gch);
+			g_object_ref(handle);
+			g_object_remove_toggle_ref(handle, ToggleNotifyCallback, (IntPtr)gch);
 			if (reference is WeakReference)
 				reference = (reference as WeakReference).Target;
 			hardened = true;
 		}
 
-		void Toggle (bool is_last_ref)
-		{
+		void Toggle(bool is_last_ref) {
 			if (is_last_ref && reference is GLib.Object)
-				reference = new WeakReference (reference);
+				reference = new WeakReference(reference);
 			else if (!is_last_ref && reference is WeakReference) {
 				WeakReference weak = reference as WeakReference;
 				reference = weak.Target;
 			}
 		}
 
-		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void ToggleNotifyHandler (IntPtr data, IntPtr handle, bool is_last_ref);
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		delegate void ToggleNotifyHandler(IntPtr data, IntPtr handle, bool is_last_ref);
 
-		static void RefToggled (IntPtr data, IntPtr handle, bool is_last_ref)
-		{
+		static void RefToggled(IntPtr data, IntPtr handle, bool is_last_ref) {
 			try {
-				GCHandle gch = (GCHandle) data;
+				GCHandle gch = (GCHandle)data;
 				ToggleRef tref = (ToggleRef)gch.Target;
-				tref.Toggle (is_last_ref);
+				tref.Toggle(is_last_ref);
 			} catch (Exception e) {
-				ExceptionManager.RaiseUnhandledException (e, false);
+				ExceptionManager.RaiseUnhandledException(e, false);
 			}
 		}
 
@@ -119,53 +113,51 @@ namespace GLib {
 		static ToggleNotifyHandler ToggleNotifyCallback {
 			get {
 				if (toggle_notify_callback == null)
-					toggle_notify_callback = new ToggleNotifyHandler (RefToggled);
+					toggle_notify_callback = new ToggleNotifyHandler(RefToggled);
 				return toggle_notify_callback;
 			}
 		}
 
-		static List<ToggleRef> PendingDestroys = new List<ToggleRef> ();
+		static List<ToggleRef> PendingDestroys = new List<ToggleRef>();
 		static bool idle_queued;
 
-		public void QueueUnref ()
-		{
+		public void QueueUnref() {
 			lock (PendingDestroys) {
-				PendingDestroys.Add (this);
-				if (!idle_queued){
-					Timeout.Add (50, new TimeoutHandler (PerformQueuedUnrefs));
+				PendingDestroys.Add(this);
+				if (!idle_queued) {
+					Timeout.Add(50, new TimeoutHandler(PerformQueuedUnrefs));
 					idle_queued = true;
 				}
 			}
 		}
 
-		static bool PerformQueuedUnrefs ()
-		{
+		static bool PerformQueuedUnrefs() {
 			ToggleRef[] references;
 
-			lock (PendingDestroys){
-				references = new ToggleRef [PendingDestroys.Count];
-				PendingDestroys.CopyTo (references, 0);
-				PendingDestroys.Clear ();
+			lock (PendingDestroys) {
+				references = new ToggleRef[PendingDestroys.Count];
+				PendingDestroys.CopyTo(references, 0);
+				PendingDestroys.Clear();
 				idle_queued = false;
 			}
 
 			foreach (ToggleRef r in references)
-				r.Free ();
+				r.Free();
 
 			return false;
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_add_toggle_ref (IntPtr raw, ToggleNotifyHandler notify_cb, IntPtr data);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_add_toggle_ref(IntPtr raw, ToggleNotifyHandler notify_cb, IntPtr data);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_remove_toggle_ref (IntPtr raw, ToggleNotifyHandler notify_cb, IntPtr data);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_remove_toggle_ref(IntPtr raw, ToggleNotifyHandler notify_cb, IntPtr data);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_object_ref (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_object_ref(IntPtr raw);
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void g_object_unref (IntPtr raw);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void g_object_unref(IntPtr raw);
 
 	}
 }

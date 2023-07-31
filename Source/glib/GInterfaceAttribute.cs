@@ -21,12 +21,11 @@ namespace GLib {
 
 	using System;
 
-	[AttributeUsage (AttributeTargets.Interface)]
+	[AttributeUsage(AttributeTargets.Interface)]
 	public sealed class GInterfaceAttribute : Attribute {
 		Type adapter_type;
 
-		public GInterfaceAttribute (Type adapter_type)
-		{
+		public GInterfaceAttribute(Type adapter_type) {
 			this.adapter_type = adapter_type;
 		}
 

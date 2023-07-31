@@ -24,32 +24,30 @@ namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
 
-	public class FileUtils
-	{
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		extern static bool g_file_get_contents (IntPtr filename, out IntPtr contents, out int length, out IntPtr error);
+	public class FileUtils {
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		extern static bool g_file_get_contents(IntPtr filename, out IntPtr contents, out int length, out IntPtr error);
 
-		[DllImport (Global.GLibNativeDll)]
-		extern static bool g_file_get_contents_utf8 (IntPtr filename, out IntPtr contents, out int length, out IntPtr error);
+		[DllImport(Global.GLibNativeDll)]
+		extern static bool g_file_get_contents_utf8(IntPtr filename, out IntPtr contents, out int length, out IntPtr error);
 
-		public static string GetFileContents (string filename)
-		{
+		public static string GetFileContents(string filename) {
 			int length;
 			IntPtr contents, error;
-			IntPtr native_filename = Marshaller.StringToPtrGStrdup (filename);
+			IntPtr native_filename = Marshaller.StringToPtrGStrdup(filename);
 
 			if (Global.IsWindowsPlatform) {
-				if (!g_file_get_contents_utf8 (native_filename, out contents, out length, out error))
-					throw new GException (error);
+				if (!g_file_get_contents_utf8(native_filename, out contents, out length, out error))
+					throw new GException(error);
 			} else {
-				if (!g_file_get_contents (native_filename, out contents, out length, out error))
-					throw new GException (error);
+				if (!g_file_get_contents(native_filename, out contents, out length, out error))
+					throw new GException(error);
 			}
 
-			Marshaller.Free (native_filename);
-			return Marshaller.Utf8PtrToString (contents);
+			Marshaller.Free(native_filename);
+			return Marshaller.Utf8PtrToString(contents);
 		}
 
-		private FileUtils () {}
+		private FileUtils() { }
 	}
 }

@@ -19,24 +19,20 @@
 // Boston, MA 02111-1307, USA.
 
 
-namespace GLib
-{
+namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
 
-	public class Thread
-	{
-		private Thread () {}
+	public class Thread {
+		private Thread() { }
 
-		[Obsolete ("This is no longer needed, GLib automatically initializes threads")]
-		public static void Init ()
-		{
+		[Obsolete("This is no longer needed, GLib automatically initializes threads")]
+		public static void Init() {
 			// GLib automatically inits threads in 2.31 and above
 			// http://developer.gnome.org/glib/unstable/glib-Deprecated-Thread-APIs.html#g-thread-init
 		}
 
-		public static bool Supported
-		{
+		public static bool Supported {
 			get { return true; }
 		}
 

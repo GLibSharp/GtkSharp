@@ -34,103 +34,87 @@ namespace Gdk {
 		public int Width;
 		public int Height;
 
-		public Rectangle (int x, int y, int width, int height)
-		{
+		public Rectangle(int x, int y, int width, int height) {
 			this.X = x;
 			this.Y = y;
 			this.Width = width;
 			this.Height = height;
 		}
 
-		public Rectangle (Point loc, Size sz) : this (loc.X, loc.Y, sz.Width, sz.Height) {}
+		public Rectangle(Point loc, Size sz) : this(loc.X, loc.Y, sz.Width, sz.Height) { }
 
-		public static Rectangle FromLTRB (int left, int top, int right, int bottom)
-		{
-			return new Rectangle (left, top, right - left, bottom - top);
+		public static Rectangle FromLTRB(int left, int top, int right, int bottom) {
+			return new Rectangle(left, top, right - left, bottom - top);
 		}
 
-		public override bool Equals (object o)
-		{
+		public override bool Equals(object o) {
 			if (!(o is Rectangle))
 				return false;
 
-			return (this == (Rectangle) o);
+			return (this == (Rectangle)o);
 		}
 
-		public override int GetHashCode ()
-		{
+		public override int GetHashCode() {
 			return (Height + Width) ^ X + Y;
 		}
 
-		public static bool operator == (Rectangle r1, Rectangle r2)
-		{
+		public static bool operator ==(Rectangle r1, Rectangle r2) {
 			return ((r1.Location == r2.Location) && (r1.Size == r2.Size));
 		}
 
-		public static bool operator != (Rectangle r1, Rectangle r2)
-		{
+		public static bool operator !=(Rectangle r1, Rectangle r2) {
 			return !(r1 == r2);
 		}
-		
-		public static explicit operator GLib.Value (Gdk.Rectangle boxed)
-		{
+
+		public static explicit operator GLib.Value(Gdk.Rectangle boxed) {
 			GLib.Value val = GLib.Value.Empty;
-			val.Init (Gdk.Rectangle.GType);
+			val.Init(Gdk.Rectangle.GType);
 			val.Val = boxed;
 			return val;
 		}
 
-		public static explicit operator Gdk.Rectangle (GLib.Value val)
-		{
-			return (Gdk.Rectangle) val.Val;
+		public static explicit operator Gdk.Rectangle(GLib.Value val) {
+			return (Gdk.Rectangle)val.Val;
 		}
 
-		public override string ToString ()
-		{
-			return String.Format ("{0}x{1}+{2}+{3}", Width, Height, X, Y);
+		public override string ToString() {
+			return String.Format("{0}x{1}+{2}+{3}", Width, Height, X, Y);
 		}
 
 		// Hit Testing / Intersection / Union
-		public bool Contains (Rectangle rect)
-		{
-			return (rect == Intersect (this, rect));
+		public bool Contains(Rectangle rect) {
+			return (rect == Intersect(this, rect));
 		}
 
-		public bool Contains (Point pt)
-		{
-			return Contains (pt.X, pt.Y);
+		public bool Contains(Point pt) {
+			return Contains(pt.X, pt.Y);
 		}
 
-		public bool Contains (int x, int y)
-		{
+		public bool Contains(int x, int y) {
 			return ((x >= Left) && (x <= Right) && (y >= Top) && (y <= Bottom));
 		}
 
-		public bool IntersectsWith (Rectangle r)
-		{
+		public bool IntersectsWith(Rectangle r) {
 			return !((Left > r.Right) || (Right < r.Left) ||
-	    		(Top > r.Bottom) || (Bottom < r.Top));
+				(Top > r.Bottom) || (Bottom < r.Top));
 		}
 
-		public static Rectangle Union (Rectangle r1, Rectangle r2)
-		{
-			return FromLTRB (Math.Min (r1.Left, r2.Left),
-			 		Math.Min (r1.Top, r2.Top),
-			 		Math.Max (r1.Right, r2.Right),
-			 		Math.Max (r1.Bottom, r2.Bottom));
+		public static Rectangle Union(Rectangle r1, Rectangle r2) {
+			return FromLTRB(Math.Min(r1.Left, r2.Left),
+					 Math.Min(r1.Top, r2.Top),
+					 Math.Max(r1.Right, r2.Right),
+					 Math.Max(r1.Bottom, r2.Bottom));
 		}
 
-		public void Intersect (Rectangle r)
-		{
-			this = Intersect (this, r);
+		public void Intersect(Rectangle r) {
+			this = Intersect(this, r);
 		}
 
-		public static Rectangle Intersect (Rectangle r1, Rectangle r2)
-		{
+		public static Rectangle Intersect(Rectangle r1, Rectangle r2) {
 			Rectangle r;
-			if (!r1.Intersect (r2, out r))
-				return new Rectangle ();
-			
+			if (!r1.Intersect(r2, out r))
+				return new Rectangle();
+
 			return r;
 		}
 
@@ -153,7 +137,7 @@ namespace Gdk {
 		}
 
 		public Size Size {
-			get { return new Size (Width, Height); }
+			get { return new Size(Width, Height); }
 			set {
 				Width = value.Width;
 				Height = value.Height;
@@ -162,7 +146,7 @@ namespace Gdk {
 
 		public Point Location {
 			get {
-				return new Point (X, Y);
+				return new Point(X, Y);
 			}
 			set {
 				X = value.X;
@@ -171,58 +155,50 @@ namespace Gdk {
 		}
 
 		// Inflate and Offset
-		public void Inflate (Size sz)
-		{
-			Inflate (sz.Width, sz.Height);
+		public void Inflate(Size sz) {
+			Inflate(sz.Width, sz.Height);
 		}
 
-		public void Inflate (int width, int height)
-		{
+		public void Inflate(int width, int height) {
 			X -= width;
 			Y -= height;
 			Width += width * 2;
 			Height += height * 2;
 		}
 
-		public static Rectangle Inflate (Rectangle rect, int x, int y)
-		{
+		public static Rectangle Inflate(Rectangle rect, int x, int y) {
 			Rectangle r = rect;
-			r.Inflate (x, y);
+			r.Inflate(x, y);
 			return r;
 		}
 
-		public static Rectangle Inflate (Rectangle rect, Size sz)
-		{
-			return Inflate (rect, sz.Width, sz.Height);
+		public static Rectangle Inflate(Rectangle rect, Size sz) {
+			return Inflate(rect, sz.Width, sz.Height);
 		}
 
-		public void Offset (int dx, int dy)
-		{
+		public void Offset(int dx, int dy) {
 			X += dx;
 			Y += dy;
 		}
 
-		public void Offset (Point dr)
-		{
-			Offset (dr.X, dr.Y);
+		public void Offset(Point dr) {
+			Offset(dr.X, dr.Y);
 		}
 
-		public static Rectangle Offset (Rectangle rect, int dx, int dy)
-		{
+		public static Rectangle Offset(Rectangle rect, int dx, int dy) {
 			Rectangle r = rect;
-			r.Offset (dx, dy);
+			r.Offset(dx, dy);
 			return r;
 		}
 
-		public static Rectangle Offset (Rectangle rect, Point dr)
-		{
-			return Offset (rect, dr.X, dr.Y);
+		public static Rectangle Offset(Rectangle rect, Point dr) {
+			return Offset(rect, dr.X, dr.Y);
 		}
 
 		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gdk_rectangle_get_type();
 
-		public static GLib.GType GType { 
+		public static GLib.GType GType {
 			get {
 				IntPtr raw_ret = gdk_rectangle_get_type();
 				GLib.GType ret = new GLib.GType(raw_ret);
@@ -231,26 +207,23 @@ namespace Gdk {
 		}
 
 		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gdk_rectangle_union (ref Rectangle src1, ref Rectangle src2, out Rectangle dest);
+		static extern void gdk_rectangle_union(ref Rectangle src1, ref Rectangle src2, out Rectangle dest);
 
-		public Gdk.Rectangle Union (Gdk.Rectangle src)
-		{
+		public Gdk.Rectangle Union(Gdk.Rectangle src) {
 			Gdk.Rectangle dest;
-			gdk_rectangle_union (ref this, ref src, out dest);
+			gdk_rectangle_union(ref this, ref src, out dest);
 			return dest;
 		}
 
 		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern bool gdk_rectangle_intersect (ref Rectangle src1, ref Rectangle src2, out Rectangle dest);
+		static extern bool gdk_rectangle_intersect(ref Rectangle src1, ref Rectangle src2, out Rectangle dest);
 
-		public bool Intersect (Gdk.Rectangle src, out Gdk.Rectangle dest)
-		{
-			return gdk_rectangle_intersect (ref this, ref src, out dest);
+		public bool Intersect(Gdk.Rectangle src, out Gdk.Rectangle dest) {
+			return gdk_rectangle_intersect(ref this, ref src, out dest);
 		}
 
-		public static Rectangle New (IntPtr raw)
-		{
-			return (Gdk.Rectangle) Marshal.PtrToStructure (raw, typeof (Gdk.Rectangle));
+		public static Rectangle New(IntPtr raw) {
+			return (Gdk.Rectangle)Marshal.PtrToStructure(raw, typeof(Gdk.Rectangle));
 		}
 
 		public static Rectangle Zero;

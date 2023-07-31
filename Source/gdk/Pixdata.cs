@@ -23,18 +23,17 @@ namespace Gdk {
 
 	public partial struct Pixdata {
 
-		[DllImport ("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gdk_pixdata_serialize (ref Gdk.Pixdata raw, out uint len);
-	
-		public byte [] Serialize () {
-			uint len;
-			IntPtr raw_ret = gdk_pixdata_serialize (ref this, out len);
+		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gdk_pixdata_serialize(ref Gdk.Pixdata raw, out uint len);
 
-			byte [] data = new byte [len];
-			Marshal.Copy (raw_ret, data, 0, (int)len);
-			GLib.Marshaller.Free (raw_ret);
+		public byte[] Serialize() {
+			uint len;
+			IntPtr raw_ret = gdk_pixdata_serialize(ref this, out len);
+
+			byte[] data = new byte[len];
+			Marshal.Copy(raw_ret, data, 0, (int)len);
+			GLib.Marshaller.Free(raw_ret);
 			return data;
 		}
 	}
 }
-

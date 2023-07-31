@@ -25,9 +25,8 @@ namespace Pango {
 		Attribute.NativeStruct attr;
 		public double Value;
 
-		public static AttrFloat New (IntPtr raw)
-		{
-			return (AttrFloat) Marshal.PtrToStructure (raw, typeof (AttrFloat));
+		public static AttrFloat New(IntPtr raw) {
+			return (AttrFloat)Marshal.PtrToStructure(raw, typeof(AttrFloat));
 		}
 	}
 }

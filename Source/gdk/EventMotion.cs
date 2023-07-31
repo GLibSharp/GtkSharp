@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventMotion : Event {
 
-		public EventMotion (IntPtr raw) : base (raw) {} 
+		public EventMotion(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -45,7 +45,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public double[] Axes {
@@ -53,25 +53,25 @@ namespace Gdk {
 				double[] result = null;
 				IntPtr axes = Native.axes;
 				if (axes != IntPtr.Zero) {
-					result = new double [Device.NumAxes];
-					Marshal.Copy (axes, result, 0, result.Length);
+					result = new double[Device.NumAxes];
+					Marshal.Copy(axes, result, 0, result.Length);
 				}
 				return result;
 			}
 			set {
 				NativeStruct native = Native;
 				if (native.axes == IntPtr.Zero || value.Length != Device.NumAxes)
-					throw new InvalidOperationException ();
-				Marshal.Copy (value, 0, native.axes, value.Length);
+					throw new InvalidOperationException();
+				Marshal.Copy(value, 0, native.axes, value.Length);
 			}
 		}
 
 		public Device Device {
-			get { return GLib.Object.GetObject (Native.device, false) as Device; }
+			get { return GLib.Object.GetObject(Native.device, false) as Device; }
 			set {
 				NativeStruct native = Native;
 				native.device = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -79,17 +79,17 @@ namespace Gdk {
 			get { return Native.is_hint != 0; }
 			set {
 				NativeStruct native = Native;
-				native.is_hint = (short) (value ? 1 : 0);
-				Marshal.StructureToPtr (native, Handle, false);
+				native.is_hint = (short)(value ? 1 : 0);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public ModifierType State {
-			get { return (ModifierType) Native.state; }
+			get { return (ModifierType)Native.state; }
 			set {
 				NativeStruct native = Native;
-				native.state = (uint) value;
-				Marshal.StructureToPtr (native, Handle, false);
+				native.state = (uint)value;
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -98,7 +98,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -107,7 +107,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.x = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.x_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.y = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -134,9 +134,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.y_root = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

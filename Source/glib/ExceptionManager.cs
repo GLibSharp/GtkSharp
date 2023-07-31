@@ -23,13 +23,13 @@ namespace GLib {
 
 	using System;
 
-	public delegate void UnhandledExceptionHandler (UnhandledExceptionArgs args);
+	public delegate void UnhandledExceptionHandler(UnhandledExceptionArgs args);
 
 	public class UnhandledExceptionArgs : System.UnhandledExceptionEventArgs {
 
 		bool exit_app = false;
 
-		public UnhandledExceptionArgs (Exception e, bool is_terminal) : base (e, is_terminal) {}
+		public UnhandledExceptionArgs(Exception e, bool is_terminal) : base(e, is_terminal) { }
 
 		public bool ExitApplication {
 			get {
@@ -45,30 +45,29 @@ namespace GLib {
 	public class ExceptionManager {
 
 
-		private ExceptionManager () {}
+		private ExceptionManager() { }
 
 		public static event UnhandledExceptionHandler UnhandledException;
 
-		public static void RaiseUnhandledException (Exception e, bool is_terminal)
-		{
+		public static void RaiseUnhandledException(Exception e, bool is_terminal) {
 			if (UnhandledException == null) {
-				Console.Error.WriteLine ("Exception in Gtk# callback delegate");
-				Console.Error.WriteLine ("  Note: Applications can use GLib.ExceptionManager.UnhandledException to handle the exception.");
-				Console.Error.WriteLine (e);
-				Console.Error.WriteLine (new System.Diagnostics.StackTrace (true));
-				Environment.Exit (1);
+				Console.Error.WriteLine("Exception in Gtk# callback delegate");
+				Console.Error.WriteLine("  Note: Applications can use GLib.ExceptionManager.UnhandledException to handle the exception.");
+				Console.Error.WriteLine(e);
+				Console.Error.WriteLine(new System.Diagnostics.StackTrace(true));
+				Environment.Exit(1);
 			}
 
-			UnhandledExceptionArgs args = new UnhandledExceptionArgs (e, is_terminal);
+			UnhandledExceptionArgs args = new UnhandledExceptionArgs(e, is_terminal);
 			try {
-				UnhandledException (args);
+				UnhandledException(args);
 			} catch (Exception ex) {
-				Console.Error.WriteLine (ex);
-				Environment.Exit (1);
+				Console.Error.WriteLine(ex);
+				Environment.Exit(1);
 			}
 
 			if (is_terminal || args.ExitApplication)
-				Environment.Exit (1);
+				Environment.Exit(1);
 		}
 	}
 }

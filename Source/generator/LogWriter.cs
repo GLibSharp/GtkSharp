@@ -25,12 +25,12 @@ using System;
 namespace GtkSharp.Generation {
 
 	public class LogWriter {
-		
+
 		string type;
 		string member;
 		int level;
 
-		public LogWriter () {
+		public LogWriter() {
 			var l = Environment.GetEnvironmentVariable("CODEGEN_DEBUG");
 
 			level = 1;
@@ -39,8 +39,7 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public LogWriter (string type): this()
-		{
+		public LogWriter(string type) : this() {
 			this.type = type;
 		}
 
@@ -54,22 +53,18 @@ namespace GtkSharp.Generation {
 			set { type = value; }
 		}
 
-		public void Warn (string format, params object[] args)
-		{
-			Warn (String.Format (format, args));
+		public void Warn(string format, params object[] args) {
+			Warn(String.Format(format, args));
 		}
 
-		public void Warn (string warning)
-		{
+		public void Warn(string warning) {
 			if (level > 0)
-				Console.WriteLine ("WARN: {0}{1} - {2}", Type, String.IsNullOrEmpty (Member) ? String.Empty : "." + Member, warning);
+				Console.WriteLine("WARN: {0}{1} - {2}", Type, String.IsNullOrEmpty(Member) ? String.Empty : "." + Member, warning);
 		}
 
-		public void Info (string info)
-		{
+		public void Info(string info) {
 			if (level > 1)
-				Console.WriteLine ("INFO: {0}{1} - {2}", Type, String.IsNullOrEmpty (Member) ? String.Empty : "." + Member, info);
+				Console.WriteLine("INFO: {0}{1} - {2}", Type, String.IsNullOrEmpty(Member) ? String.Empty : "." + Member, info);
 		}
 	}
 }
-

@@ -23,40 +23,38 @@ namespace GLib {
 
 	using System;
 	using System.Runtime.InteropServices;
-	
+
 	public class Argv {
 
 		IntPtr[] arg_ptrs;
 		IntPtr handle;
 		bool add_progname = false;
 
-		~Argv ()
-		{
-			Marshaller.Free (arg_ptrs);
-			Marshaller.Free (handle);
+		~Argv() {
+			Marshaller.Free(arg_ptrs);
+			Marshaller.Free(handle);
 		}
-				
-		public Argv (string[] args) : this (args, false) {}
-		
-		public Argv (string[] args, bool add_program_name)
-		{
+
+		public Argv(string[] args) : this(args, false) { }
+
+		public Argv(string[] args, bool add_program_name) {
 			add_progname = add_program_name;
 			if (add_progname) {
-				string[] full = new string [args.Length + 1];
-				full [0] = System.Environment.GetCommandLineArgs ()[0];
-				args.CopyTo (full, 1);
+				string[] full = new string[args.Length + 1];
+				full[0] = System.Environment.GetCommandLineArgs()[0];
+				args.CopyTo(full, 1);
 				args = full;
 			}
 
-			arg_ptrs = new IntPtr [args.Length];
+			arg_ptrs = new IntPtr[args.Length];
 
 			for (int i = 0; i < args.Length; i++)
-				arg_ptrs [i] = Marshaller.StringToPtrGStrdup (args[i]);
-				
-			handle = Marshaller.Malloc ((ulong)(IntPtr.Size * args.Length));
+				arg_ptrs[i] = Marshaller.StringToPtrGStrdup(args[i]);
+
+			handle = Marshaller.Malloc((ulong)(IntPtr.Size * args.Length));
 
 			for (int i = 0; i < args.Length; i++)
-				Marshal.WriteIntPtr (handle, i * IntPtr.Size, arg_ptrs [i]);
+				Marshal.WriteIntPtr(handle, i * IntPtr.Size, arg_ptrs[i]);
 		}
 
 		public IntPtr Handle {
@@ -65,17 +63,15 @@ namespace GLib {
 			}
 		}
 
-		public string[] GetArgs (int argc)
-		{
+		public string[] GetArgs(int argc) {
 			int count = add_progname ? argc - 1 : argc;
 			int idx = add_progname ? 1 : 0;
-			string[] result = new string [count];
+			string[] result = new string[count];
 
-			for (int i = 0; i < count; i++, idx++) 
-				result [i] = Marshaller.Utf8PtrToString (Marshal.ReadIntPtr (handle, idx * IntPtr.Size));
+			for (int i = 0; i < count; i++, idx++)
+				result[i] = Marshaller.Utf8PtrToString(Marshal.ReadIntPtr(handle, idx * IntPtr.Size));
 
 			return result;
 		}
 	}
 }
-

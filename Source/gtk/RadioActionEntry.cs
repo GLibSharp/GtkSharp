@@ -28,17 +28,16 @@ namespace Gtk {
 		public string tooltip;
 		public string accelerator;
 		public int value;
-		
-		public RadioActionEntry (string name, string stock_id)
-			: this (name, stock_id, null, null, null, 0) {}
-		
-		public RadioActionEntry (string name, string stock_id, string label,
-					 string accelerator, string tooltip)
-			: this (name, stock_id, label, accelerator, tooltip, 0) {}
 
-		public RadioActionEntry (string name, string stock_id, string label,
-					 string accelerator, string tooltip, int value)
-		{
+		public RadioActionEntry(string name, string stock_id)
+			: this(name, stock_id, null, null, null, 0) { }
+
+		public RadioActionEntry(string name, string stock_id, string label,
+					 string accelerator, string tooltip)
+			: this(name, stock_id, label, accelerator, tooltip, 0) { }
+
+		public RadioActionEntry(string name, string stock_id, string label,
+					 string accelerator, string tooltip, int value) {
 			this.name = name;
 			this.stock_id = stock_id;
 			this.label = label;

@@ -24,29 +24,25 @@ namespace GtkSharp.Generation {
 	using System;
 
 	public class ConstFilenameGen : SimpleBase, IManualMarshaler {
-		
-		public ConstFilenameGen (string ctype) : base (ctype, "string", "null") {}
+
+		public ConstFilenameGen(string ctype) : base(ctype, "string", "null") { }
 
 		public override string MarshalType {
 			get {
 				return "IntPtr";
 			}
 		}
-		
-		public override string FromNative (string var)
-		{
+
+		public override string FromNative(string var) {
 			return "GLib.Marshaller.FilenamePtrToString (" + var + ")";
 		}
 
-		public string AllocNative (string managed_var)
-		{
+		public string AllocNative(string managed_var) {
 			return "GLib.Marshaller.StringToFilenamePtr (" + managed_var + ")";
 		}
 
-		public string ReleaseNative (string native_var)
-		{
+		public string ReleaseNative(string native_var) {
 			return "GLib.Marshaller.Free (" + native_var + ")";
 		}
 	}
 }
-

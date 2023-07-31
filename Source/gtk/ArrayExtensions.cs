@@ -21,14 +21,12 @@
 namespace Gtk {
 	using System;
 
-	static class ArrayExtensions
-	{
-		public static object[] Explode (this Array arr)
-		{
+	static class ArrayExtensions {
+		public static object[] Explode(this Array arr) {
 			if (arr == null)
 				return null;
-			var ret = new object [arr.Length];
-			arr.CopyTo (ret, 0);
+			var ret = new object[arr.Length];
+			arr.CopyTo(ret, 0);
 			return ret;
 		}
 	}

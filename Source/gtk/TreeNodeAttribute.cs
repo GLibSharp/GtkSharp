@@ -26,8 +26,8 @@ namespace Gtk {
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class TreeNodeAttribute : Attribute {
 		bool list_only;
-		
-		[Obsolete ("This is no longer needed; it gets detected by Gtk#")]
+
+		[Obsolete("This is no longer needed; it gets detected by Gtk#")]
 		public int ColumnCount {
 			get { return 0; }
 			set { }
@@ -43,4 +43,3 @@ namespace Gtk {
 		}
 	}
 }
-

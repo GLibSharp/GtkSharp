@@ -32,11 +32,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum Extend
-	{
+	public enum Extend {
 		None,
 		Repeat,
 		Reflect,

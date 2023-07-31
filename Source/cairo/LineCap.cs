@@ -29,11 +29,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum LineCap
-	{
+	public enum LineCap {
 		Butt,
 		Round,
 		Square,

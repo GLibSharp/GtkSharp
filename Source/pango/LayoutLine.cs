@@ -30,10 +30,9 @@ namespace Pango {
 		static extern void pango_layout_line_get_x_ranges(IntPtr raw, int start_index, int end_index, out IntPtr ranges_handle, out int n_ranges);
 #endif
 
-		public void GetXRanges(int start_index, int end_index, out int[][] ranges)
-		{
+		public void GetXRanges(int start_index, int end_index, out int[][] ranges) {
 			// FIXME: this is broken
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 #if NOT_BROKEN
 			int count;
 			IntPtr array_ptr;

@@ -27,19 +27,18 @@ namespace GtkSharp.Generation {
 	using System.Xml;
 
 	public abstract class GenBase : IGeneratable {
-		
+
 		private XmlElement ns;
 		private XmlElement elem;
 
-		protected GenBase (XmlElement ns, XmlElement elem)
-		{
+		protected GenBase(XmlElement ns, XmlElement elem) {
 			this.ns = ns;
 			this.elem = elem;
 		}
 
 		public string CName {
 			get {
-				return elem.GetAttribute ("cname");
+				return elem.GetAttribute("cname");
 			}
 		}
 
@@ -52,19 +51,19 @@ namespace GtkSharp.Generation {
 		public int ParserVersion {
 			get {
 				XmlElement root = elem.OwnerDocument.DocumentElement;
-				return root.HasAttribute ("parser_version") ? int.Parse (root.GetAttribute ("parser_version")) : 1;
+				return root.HasAttribute("parser_version") ? int.Parse(root.GetAttribute("parser_version")) : 1;
 			}
 		}
 
 		public bool IsInternal {
 			get {
-				return elem.GetAttributeAsBoolean ("internal");
+				return elem.GetAttributeAsBoolean("internal");
 			}
 		}
 
 		public string LibraryName {
 			get {
-				return ns.GetAttribute ("library");
+				return ns.GetAttribute("library");
 			}
 		}
 
@@ -72,13 +71,13 @@ namespace GtkSharp.Generation {
 
 		public virtual string Name {
 			get {
-				return elem.GetAttribute ("name");
+				return elem.GetAttribute("name");
 			}
 		}
 
 		public string NS {
 			get {
-				return ns.GetAttribute ("name");
+				return ns.GetAttribute("name");
 			}
 		}
 
@@ -90,27 +89,25 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public abstract string CallByName (string var);
+		public abstract string CallByName(string var);
 
-		public abstract string FromNative (string var);
+		public abstract string FromNative(string var);
 
-		public abstract bool Validate ();
+		public abstract bool Validate();
 
-		public virtual string GenerateGetSizeOf () {
+		public virtual string GenerateGetSizeOf() {
 			return null;
 		}
 
-		public virtual string GenerateAlign () {
+		public virtual string GenerateAlign() {
 			return null;
 		}
 
-		public void Generate ()
-		{
-			GenerationInfo geninfo = new GenerationInfo (ns);
-			Generate (geninfo);
+		public void Generate() {
+			GenerationInfo geninfo = new GenerationInfo(ns);
+			Generate(geninfo);
 		}
 
-		public abstract void Generate (GenerationInfo geninfo);
+		public abstract void Generate(GenerationInfo geninfo);
 	}
 }
-

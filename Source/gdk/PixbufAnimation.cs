@@ -24,19 +24,16 @@ namespace Gdk {
 
 	public partial class PixbufAnimation {
 
-		public PixbufAnimation (System.IO.Stream stream) : base (new PixbufLoader (stream).AnimationHandle) {}
+		public PixbufAnimation(System.IO.Stream stream) : base(new PixbufLoader(stream).AnimationHandle) { }
 
-		public PixbufAnimation (System.Reflection.Assembly assembly, string resource) : base (IntPtr.Zero)
-		{
+		public PixbufAnimation(System.Reflection.Assembly assembly, string resource) : base(IntPtr.Zero) {
 			if (assembly == null)
-				assembly = System.Reflection.Assembly.GetCallingAssembly ();
-			Raw = new PixbufLoader (assembly, resource).AnimationHandle;
+				assembly = System.Reflection.Assembly.GetCallingAssembly();
+			Raw = new PixbufLoader(assembly, resource).AnimationHandle;
 		}
 
-		static public PixbufAnimation LoadFromResource (string resource)
-		{
-			return new PixbufAnimation (System.Reflection.Assembly.GetCallingAssembly (), resource);
+		static public PixbufAnimation LoadFromResource(string resource) {
+			return new PixbufAnimation(System.Reflection.Assembly.GetCallingAssembly(), resource);
 		}
 	}
 }
-

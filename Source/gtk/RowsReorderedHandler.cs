@@ -23,31 +23,31 @@ namespace Gtk {
 
 	using System;
 
-	public delegate void RowsReorderedHandler (object o, RowsReorderedArgs args);
+	public delegate void RowsReorderedHandler(object o, RowsReorderedArgs args);
 
 	public class RowsReorderedArgs : GLib.SignalArgs {
 
-		public Gtk.TreePath Path{
+		public Gtk.TreePath Path {
 			get {
-				return (Gtk.TreePath) Args[0];
+				return (Gtk.TreePath)Args[0];
 			}
 		}
 
-		public Gtk.TreeIter Iter{
+		public Gtk.TreeIter Iter {
 			get {
-				return (Gtk.TreeIter) Args[1];
+				return (Gtk.TreeIter)Args[1];
 			}
 		}
 
-		[Obsolete ("Replaced by NewChildOrder property")]
-		public int NewOrder{
+		[Obsolete("Replaced by NewChildOrder property")]
+		public int NewOrder {
 			set { }
 		}
 
 
 		public int[] NewChildOrder {
 			get {
-				return (int[]) Args[2];
+				return (int[])Args[2];
 			}
 		}
 	}

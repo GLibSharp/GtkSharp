@@ -29,11 +29,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum HintStyle
-	{
+	public enum HintStyle {
 		Default,
 		None,
 		Slight,

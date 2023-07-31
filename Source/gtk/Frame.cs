@@ -28,7 +28,7 @@ namespace Gtk {
 
 	public partial class Frame {
 
-		public Frame() : this (null) {}
+		public Frame() : this(null) { }
 
 	}
 }

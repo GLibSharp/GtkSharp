@@ -23,25 +23,24 @@ namespace GtkSharp.Generation {
 
 	using System;
 
-	public abstract class SimpleBase : IGeneratable  {
-		
+	public abstract class SimpleBase : IGeneratable {
+
 		string type;
 		string ctype;
 		string ns = String.Empty;
 		string default_value = String.Empty;
 
-		public SimpleBase (string ctype, string type, string default_value)
-		{
+		public SimpleBase(string ctype, string type, string default_value) {
 			string[] toks = type.Split('.');
 			this.ctype = ctype;
 			this.type = toks[toks.Length - 1];
 			if (toks.Length > 2)
-				this.ns = String.Join (".", toks, 0, toks.Length - 1);
+				this.ns = String.Join(".", toks, 0, toks.Length - 1);
 			else if (toks.Length == 2)
 				this.ns = toks[0];
 			this.default_value = default_value;
 		}
-		
+
 		public string CName {
 			get {
 				return ctype;
@@ -72,36 +71,30 @@ namespace GtkSharp.Generation {
 			}
 		}
 
-		public virtual string CallByName (string var)
-		{
-			return var;
-		}
-		
-		public virtual string FromNative(string var)
-		{
+		public virtual string CallByName(string var) {
 			return var;
 		}
 
-		public bool Validate ()
-		{
+		public virtual string FromNative(string var) {
+			return var;
+		}
+
+		public bool Validate() {
 			return true;
 		}
 
-		public void Generate ()
-		{
-		}
-		
-		public void Generate (GenerationInfo gen_info)
-		{
+		public void Generate() {
 		}
 
-		public virtual string GenerateGetSizeOf () {
+		public void Generate(GenerationInfo gen_info) {
+		}
+
+		public virtual string GenerateGetSizeOf() {
 			return null;
 		}
 
-		public virtual string GenerateAlign () {
+		public virtual string GenerateAlign() {
 			return null;
 		}
 	}
 }
-

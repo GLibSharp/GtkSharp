@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventWindowState : Event {
 
-		public EventWindowState (IntPtr raw) : base (raw) {} 
+		public EventWindowState(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -38,7 +38,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public WindowState ChangedMask {
@@ -46,7 +46,7 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.changed_mask = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -55,9 +55,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.new_window_state = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

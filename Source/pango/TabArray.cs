@@ -25,25 +25,24 @@ namespace Pango {
 
 	public partial class TabArray {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_tab_array_get_tabs (IntPtr raw, out IntPtr alignments, out IntPtr locations);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void pango_tab_array_get_tabs(IntPtr raw, out IntPtr alignments, out IntPtr locations);
 
-		public void GetTabs (out TabAlign[] alignments, out int[] locations) 
-		{
+		public void GetTabs(out TabAlign[] alignments, out int[] locations) {
 			int sz = Size;
 			IntPtr align_ptr, loc_ptr;
-			alignments = new TabAlign [sz];
-			locations = new int [sz];
-			int[] tmp = new int [sz];
+			alignments = new TabAlign[sz];
+			locations = new int[sz];
+			int[] tmp = new int[sz];
 			if (sz == 0)
 				return;
-			pango_tab_array_get_tabs (Handle, out align_ptr, out loc_ptr);
-			Marshal.Copy (loc_ptr, locations, 0, sz);
-			Marshal.Copy (align_ptr, tmp, 0, sz);
+			pango_tab_array_get_tabs(Handle, out align_ptr, out loc_ptr);
+			Marshal.Copy(loc_ptr, locations, 0, sz);
+			Marshal.Copy(align_ptr, tmp, 0, sz);
 			for (int i = 0; i < sz; i++)
-				alignments [i] = (TabAlign) tmp [i];
-			GLib.Marshaller.Free (align_ptr);
-			GLib.Marshaller.Free (loc_ptr);
+				alignments[i] = (TabAlign)tmp[i];
+			GLib.Marshaller.Free(align_ptr);
+			GLib.Marshaller.Free(loc_ptr);
 		}
 	}
 }

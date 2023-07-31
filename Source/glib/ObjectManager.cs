@@ -23,67 +23,62 @@
 namespace GLib {
 
 	using System;
-	using System.Runtime.InteropServices;
 	using System.Reflection;
+	using System.Runtime.InteropServices;
 
 	public static class ObjectManager {
 
 		static BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.CreateInstance;
 
-		public static GLib.Object CreateObject (IntPtr raw)
-		{
+		public static GLib.Object CreateObject(IntPtr raw) {
 			if (raw == IntPtr.Zero)
 				return null;
 
-			Type type = GetTypeOrParent (raw);
+			Type type = GetTypeOrParent(raw);
 
 			if (type == null)
 				return null;
 
 			GLib.Object obj;
 			try {
-				obj = Activator.CreateInstance (type, flags, null, new object[] {raw}, null) as GLib.Object;
+				obj = Activator.CreateInstance(type, flags, null, new object[] { raw }, null) as GLib.Object;
 			} catch (MissingMethodException) {
-				throw new GLib.MissingIntPtrCtorException ("Unable to construct instance of type " + type + " from native object handle. Instance of managed subclass may have been prematurely disposed.");
+				throw new GLib.MissingIntPtrCtorException("Unable to construct instance of type " + type + " from native object handle. Instance of managed subclass may have been prematurely disposed.");
 			}
 			return obj;
 		}
 
-		[Obsolete ("Replaced by GType.Register (GType, Type)")]
-		public static void RegisterType (string native_name, string managed_name, string assembly)
-		{
-			RegisterType (native_name, managed_name + "," + assembly);
+		[Obsolete("Replaced by GType.Register (GType, Type)")]
+		public static void RegisterType(string native_name, string managed_name, string assembly) {
+			RegisterType(native_name, managed_name + "," + assembly);
 		}
 
-		[Obsolete ("Replaced by GType.Register (GType, Type)")]
-		public static void RegisterType (string native_name, string mangled)
-		{
-			RegisterType (GType.FromName (native_name), Type.GetType (mangled));
+		[Obsolete("Replaced by GType.Register (GType, Type)")]
+		public static void RegisterType(string native_name, string mangled) {
+			RegisterType(GType.FromName(native_name), Type.GetType(mangled));
 		}
 
-		[Obsolete ("Replaced by GType.Register (GType, Type)")]
-		public static void RegisterType (GType native_type, System.Type type)
-		{
-			GType.Register (native_type, type);
+		[Obsolete("Replaced by GType.Register (GType, Type)")]
+		public static void RegisterType(GType native_type, System.Type type) {
+			GType.Register(native_type, type);
 		}
 
-		static Type GetTypeOrParent (IntPtr obj)
-		{
-			IntPtr typeid = GType.ValFromInstancePtr (obj);
+		static Type GetTypeOrParent(IntPtr obj) {
+			IntPtr typeid = GType.ValFromInstancePtr(obj);
 			if (typeid == GType.Invalid.Val)
 				return null;
 
-			Type result = GType.LookupType (typeid);
+			Type result = GType.LookupType(typeid);
 			while (result == null) {
-				typeid = g_type_parent (typeid);
+				typeid = g_type_parent(typeid);
 				if (typeid == IntPtr.Zero)
 					return null;
-				result = GType.LookupType (typeid);
+				result = GType.LookupType(typeid);
 			}
 			return result;
 		}
 
-		[DllImport (Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_type_parent (IntPtr typ);
+		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_type_parent(IntPtr typ);
 	}
 }

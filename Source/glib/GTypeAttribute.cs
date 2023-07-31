@@ -21,12 +21,11 @@ namespace GLib {
 
 	using System;
 
-	[AttributeUsage (AttributeTargets.Enum)]
+	[AttributeUsage(AttributeTargets.Enum)]
 	public sealed class GTypeAttribute : Attribute {
 		Type wrapper_type;
 
-		public GTypeAttribute (Type wrapper_type)
-		{
+		public GTypeAttribute(Type wrapper_type) {
 			this.wrapper_type = wrapper_type;
 		}
 

@@ -30,11 +30,9 @@
 
 using System;
 
-namespace Cairo
-{
+namespace Cairo {
 	[Serializable]
-	public enum Filter
-	{
+	public enum Filter {
 		Fast,
 		Good,
 		Best,

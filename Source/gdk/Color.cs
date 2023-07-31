@@ -27,20 +27,18 @@ namespace Gdk {
 
 	public partial struct Color {
 
-		public Color (byte r, byte g, byte b)
-		{
-			Red = (ushort) (r << 8 | r);
-			Green = (ushort) (g << 8 | g);
-			Blue = (ushort) (b << 8 | b);
+		public Color(byte r, byte g, byte b) {
+			Red = (ushort)(r << 8 | r);
+			Green = (ushort)(g << 8 | g);
+			Blue = (ushort)(b << 8 | b);
 			Pixel = 0;
 		}
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gdk_color_hash(ref Gdk.Color raw);
 
 		public override int GetHashCode() {
-			return (int) gdk_color_hash(ref this);
+			return (int)gdk_color_hash(ref this);
 		}
 	}
 }
-

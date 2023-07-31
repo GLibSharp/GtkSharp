@@ -52,4 +52,3 @@ namespace GLib {
 		public override string Message { get; }
 	}
 }
-

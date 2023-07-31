@@ -26,19 +26,19 @@ namespace GtkSharp.Generation {
 
 	public class ObjectField : FieldBase {
 
-		public ObjectField (XmlElement elem, ClassBase container_type) : base (elem, container_type){
+		public ObjectField(XmlElement elem, ClassBase container_type) : base(elem, container_type) {
 			if (CType == "char*" || CType == "gchar*")
 				ctype = "const-" + CType;
 		}
 
-		public ObjectField (XmlElement elem, ClassBase container_type, FieldBase abi_field) : base (elem, container_type) {
+		public ObjectField(XmlElement elem, ClassBase container_type, FieldBase abi_field) : base(elem, container_type) {
 			if (CType == "char*" || CType == "gchar*")
 				ctype = "const-" + CType;
 		}
 
 		internal override bool Writable {
 			get {
-				return elem.GetAttributeAsBoolean ("writeable");
+				return elem.GetAttributeAsBoolean("writeable");
 			}
 		}
 
@@ -49,4 +49,3 @@ namespace GtkSharp.Generation {
 		}
 	}
 }
-

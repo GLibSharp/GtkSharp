@@ -27,43 +27,36 @@
 using System;
 using System.Threading;
 
-namespace GLib
-{
-	public class GLibSynchronizationContext : SynchronizationContext
-	{
-		public override void Post (SendOrPostCallback d, object state)
-		{
-			PostAction (() => d (state));
+namespace GLib {
+	public class GLibSynchronizationContext : SynchronizationContext {
+		public override void Post(SendOrPostCallback d, object state) {
+			PostAction(() => d(state));
 		}
 
-		public override void Send (SendOrPostCallback d, object state)
-		{
-			var mre = new ManualResetEvent (false);
+		public override void Send(SendOrPostCallback d, object state) {
+			var mre = new ManualResetEvent(false);
 			Exception error = null;
-			
-			PostAction (() =>
-			{
+
+			PostAction(() => {
 				try {
-					d (state);
+					d(state);
 				} catch (Exception ex) {
 					error = ex;
 				} finally {
-					mre.Set ();
+					mre.Set();
 				}
 			});
-			
-			mre.WaitOne ();
-			
+
+			mre.WaitOne();
+
 			if (error != null) {
 				throw error;
 			}
 		}
 
-		void PostAction (Action action)
-		{
-			Idle.Add (() =>
-			{
-				action ();
+		void PostAction(Action action) {
+			Idle.Add(() => {
+				action();
 				return false;
 			});
 		}

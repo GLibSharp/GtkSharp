@@ -22,27 +22,25 @@
 namespace GLib {
 	using System;
 	using System.Runtime.InteropServices;
-	
+
 	public class GString : GLib.IWrapper {
 
 		IntPtr handle;
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_string_free (IntPtr mem, bool free_segments);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_string_free(IntPtr mem, bool free_segments);
 
-		~GString ()
-		{
-			g_string_free (handle, true);
+		~GString() {
+			g_string_free(handle, true);
 		}
 
-		[DllImport (Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr g_string_new (IntPtr text);
+		[DllImport(Global.GLibNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr g_string_new(IntPtr text);
 
-		public GString (string text) 
-		{
-			IntPtr native_text = Marshaller.StringToPtrGStrdup (text);
-			handle = g_string_new (native_text);
-			Marshaller.Free (native_text);
+		public GString(string text) {
+			IntPtr native_text = Marshaller.StringToPtrGStrdup(text);
+			handle = g_string_new(native_text);
+			Marshaller.Free(native_text);
 		}
 
 		public IntPtr Handle {
@@ -50,11 +48,9 @@ namespace GLib {
 				return handle;
 			}
 		}
-		
-		public static string PtrToString (IntPtr ptr) 
-		{
-			return Marshaller.Utf8PtrToString (ptr);
+
+		public static string PtrToString(IntPtr ptr) {
+			return Marshaller.Utf8PtrToString(ptr);
 		}
 	}
 }
-

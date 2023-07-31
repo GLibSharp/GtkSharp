@@ -28,25 +28,24 @@ namespace Gtk {
 
 	public partial class FileChooserDialog {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_file_chooser_dialog_new(IntPtr title, IntPtr parent, int action, IntPtr nil);
 
-		public FileChooserDialog (string title, Window parent, FileChooserAction action, params object[] button_data) : base (IntPtr.Zero)
-		{
-			if (GetType () != typeof (FileChooserDialog)) {
-				CreateNativeObject (new string[0], new GLib.Value[0]);
+		public FileChooserDialog(string title, Window parent, FileChooserAction action, params object[] button_data) : base(IntPtr.Zero) {
+			if (GetType() != typeof(FileChooserDialog)) {
+				CreateNativeObject(new string[0], new GLib.Value[0]);
 				Title = title;
 				if (parent != null)
 					TransientFor = parent;
 				Action = action;
 			} else {
-				IntPtr native = GLib.Marshaller.StringToPtrGStrdup (title);
-				Raw = gtk_file_chooser_dialog_new (native, parent == null ? IntPtr.Zero : parent.Handle, (int)action, IntPtr.Zero);
-				GLib.Marshaller.Free (native);
+				IntPtr native = GLib.Marshaller.StringToPtrGStrdup(title);
+				Raw = gtk_file_chooser_dialog_new(native, parent == null ? IntPtr.Zero : parent.Handle, (int)action, IntPtr.Zero);
+				GLib.Marshaller.Free(native);
 			}
 
 			for (int i = 0; i < button_data.Length - 1; i += 2)
-				AddButton ((string) button_data [i], (int) button_data [i + 1]);
+				AddButton((string)button_data[i], (int)button_data[i + 1]);
 		}
 	}
 }

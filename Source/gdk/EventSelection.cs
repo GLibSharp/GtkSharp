@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventSelection : Event {
 
-		public EventSelection (IntPtr raw) : base (raw) {} 
+		public EventSelection(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -41,15 +41,15 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public Atom Property {
-			get { return GLib.Opaque.GetOpaque (Native.property, typeof (Atom), false) as Atom; }
+			get { return GLib.Opaque.GetOpaque(Native.property, typeof(Atom), false) as Atom; }
 			set {
 				NativeStruct native = Native;
 				native.property = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -58,26 +58,26 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.requestor = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public Atom Selection {
-			get { return GLib.Opaque.GetOpaque (Native.selection, typeof (Atom), false) as Atom; }
+			get { return GLib.Opaque.GetOpaque(Native.selection, typeof(Atom), false) as Atom; }
 			set {
 				NativeStruct native = Native;
 				native.selection = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public Atom Target {
-			get { return GLib.Opaque.GetOpaque (Native.target, typeof (Atom), false) as Atom; }
+			get { return GLib.Opaque.GetOpaque(Native.target, typeof(Atom), false) as Atom; }
 			set {
 				NativeStruct native = Native;
 				native.target = value.Handle;
 				native.target = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -86,9 +86,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.time = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

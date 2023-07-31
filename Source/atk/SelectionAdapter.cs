@@ -24,9 +24,8 @@
 namespace Atk {
 	public partial class SelectionAdapter {
 
-		public void EmitSelectionChanged ()
-		{
-			GLib.Signal.Emit (GLib.Object.GetObject (Handle), "selection_changed");
+		public void EmitSelectionChanged() {
+			GLib.Signal.Emit(GLib.Object.GetObject(Handle), "selection_changed");
 		}
 	}
 }

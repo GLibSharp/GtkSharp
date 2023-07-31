@@ -26,9 +26,9 @@ namespace Gdk {
 
 	public class EventExpose : Event {
 
-		public EventExpose (IntPtr raw) : base (raw) {} 
+		public EventExpose(IntPtr raw) : base(raw) { }
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NativeStruct {
 			EventType type;
 			IntPtr window;
@@ -39,7 +39,7 @@ namespace Gdk {
 		}
 
 		NativeStruct Native {
-			get { return (NativeStruct) Marshal.PtrToStructure (Handle, typeof(NativeStruct)); }
+			get { return (NativeStruct)Marshal.PtrToStructure(Handle, typeof(NativeStruct)); }
 		}
 
 		public Rectangle Area {
@@ -47,16 +47,16 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.area = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
 		public Cairo.Region Region {
-			get { return new Cairo.Region (Native.region); }
+			get { return new Cairo.Region(Native.region); }
 			set {
 				NativeStruct native = Native;
 				native.region = value == null ? IntPtr.Zero : value.Handle;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 
@@ -65,9 +65,8 @@ namespace Gdk {
 			set {
 				NativeStruct native = Native;
 				native.count = value;
-				Marshal.StructureToPtr (native, Handle, false);
+				Marshal.StructureToPtr(native, Handle, false);
 			}
 		}
 	}
 }
-

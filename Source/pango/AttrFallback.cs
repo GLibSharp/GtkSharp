@@ -23,16 +23,16 @@ namespace Pango {
 
 	public class AttrFallback : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_fallback_new (bool fallback);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_fallback_new(bool fallback);
 
-		public AttrFallback (bool fallback) : this (pango_attr_fallback_new (fallback)) {}
+		public AttrFallback(bool fallback) : this(pango_attr_fallback_new(fallback)) { }
 
-		internal AttrFallback (IntPtr raw) : base (raw) {}
+		internal AttrFallback(IntPtr raw) : base(raw) { }
 
 		public bool Fallback {
 			get {
-				return AttrInt.New (Handle).Value != 0;
+				return AttrInt.New(Handle).Value != 0;
 			}
 		}
 	}

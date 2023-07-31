@@ -23,16 +23,16 @@ namespace Pango {
 
 	public class AttrGravityHint : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_gravity_hint_new (int hint);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_gravity_hint_new(int hint);
 
-		public AttrGravityHint (GravityHint hint) : this (pango_attr_gravity_hint_new ((int) hint)) {}
+		public AttrGravityHint(GravityHint hint) : this(pango_attr_gravity_hint_new((int)hint)) { }
 
-		internal AttrGravityHint (IntPtr raw) : base (raw) {}
+		internal AttrGravityHint(IntPtr raw) : base(raw) { }
 
 		public GravityHint GravityHint {
 			get {
-				return (GravityHint) (AttrInt.New (Handle).Value);
+				return (GravityHint)(AttrInt.New(Handle).Value);
 			}
 		}
 	}

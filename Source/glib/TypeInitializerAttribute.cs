@@ -23,14 +23,12 @@ namespace GLib {
 
 	using System;
 
-	[AttributeUsage (AttributeTargets.Class)]
-	public sealed class TypeInitializerAttribute : Attribute 
-	{
+	[AttributeUsage(AttributeTargets.Class)]
+	public sealed class TypeInitializerAttribute : Attribute {
 		string method_name;
 		Type type;
 
-		public TypeInitializerAttribute (Type type, string method_name) 
-		{
+		public TypeInitializerAttribute(Type type, string method_name) {
 			this.type = type;
 			this.method_name = method_name;
 		}

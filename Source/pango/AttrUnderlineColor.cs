@@ -23,18 +23,18 @@ namespace Pango {
 
 	public class AttrUnderlineColor : Attribute {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr pango_attr_underline_color_new (ushort red, ushort green, ushort blue);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr pango_attr_underline_color_new(ushort red, ushort green, ushort blue);
 
-		public AttrUnderlineColor (ushort red, ushort green, ushort blue) : this (pango_attr_underline_color_new (red, green, blue)) {}
+		public AttrUnderlineColor(ushort red, ushort green, ushort blue) : this(pango_attr_underline_color_new(red, green, blue)) { }
 
-		public AttrUnderlineColor (Pango.Color color) : this (pango_attr_underline_color_new (color.Red, color.Green, color.Blue)) {}
+		public AttrUnderlineColor(Pango.Color color) : this(pango_attr_underline_color_new(color.Red, color.Green, color.Blue)) { }
 
-		internal AttrUnderlineColor (IntPtr raw) : base (raw) {}
+		internal AttrUnderlineColor(IntPtr raw) : base(raw) { }
 
 		public Pango.Color Color {
 			get {
-				return AttrColor.New (Handle).Color;
+				return AttrColor.New(Handle).Color;
 			}
 		}
 	}

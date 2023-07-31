@@ -31,67 +31,61 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Cairo
-{
-	[StructLayout (LayoutKind.Sequential)]
-	public struct TextExtents
-	{
+namespace Cairo {
+	[StructLayout(LayoutKind.Sequential)]
+	public struct TextExtents {
 		double xbearing;
 		double ybearing;
 		double width;
 		double height;
 		double xadvance;
 		double yadvance;
-		
+
 		public double XBearing {
 			get { return xbearing; }
 			set { xbearing = value; }
 		}
-		
+
 		public double YBearing {
 			get { return ybearing; }
 			set { ybearing = value; }
 		}
-		
+
 		public double Width {
 			get { return width; }
 			set { width = value; }
 		}
-		
+
 		public double Height {
 			get { return height; }
 			set { height = value; }
 		}
-		
+
 		public double XAdvance {
 			get { return xadvance; }
 			set { xadvance = value; }
 		}
-		
+
 		public double YAdvance {
 			get { return yadvance; }
 			set { yadvance = value; }
 		}
 
-		public override bool Equals (object obj)
-		{
+		public override bool Equals(object obj) {
 			if (obj is TextExtents)
 				return this == (TextExtents)obj;
 			return false;
 		}
 
-		public override int GetHashCode ()
-		{
+		public override int GetHashCode() {
 			return (int)XBearing ^ (int)YBearing ^ (int)Width ^ (int)Height ^ (int)XAdvance ^ (int)YAdvance;
 		}
 
-		public static bool operator == (TextExtents extents, TextExtents other)
-		{
+		public static bool operator ==(TextExtents extents, TextExtents other) {
 			return extents.XBearing == other.XBearing && extents.YBearing == other.YBearing && extents.Width == other.Width && extents.Height == other.Height && extents.XAdvance == other.XAdvance && extents.YAdvance == other.YAdvance;
 		}
 
-		public static bool operator != (TextExtents extents, TextExtents other)
-		{
+		public static bool operator !=(TextExtents extents, TextExtents other) {
 			return !(extents == other);
 		}
 	}

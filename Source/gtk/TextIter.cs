@@ -25,70 +25,69 @@ namespace Gtk {
 
 	public partial struct TextIter {
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern uint gtk_text_iter_get_char(ref Gtk.TextIter raw);
 
-		public string Char { 
+		public string Char {
 			get {
-				return GLib.Marshaller.GUnicharToString (gtk_text_iter_get_char (ref this));
+				return GLib.Marshaller.GUnicharToString(gtk_text_iter_get_char(ref this));
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_text_iter_get_marks (ref TextIter iter);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_text_iter_get_marks(ref TextIter iter);
 
 		public TextMark[] Marks {
 			get {
-				IntPtr raw_ret = gtk_text_iter_get_marks (ref this);
+				IntPtr raw_ret = gtk_text_iter_get_marks(ref this);
 				if (raw_ret == IntPtr.Zero)
-					return new TextMark [0];
+					return new TextMark[0];
 				GLib.SList list = new GLib.SList(raw_ret);
-				TextMark[] result = new TextMark [list.Count];
+				TextMark[] result = new TextMark[list.Count];
 				for (int i = 0; i < list.Count; i++)
-					result [i] = list [i] as TextMark;
+					result[i] = list[i] as TextMark;
 				return result;
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_text_iter_get_tags (ref TextIter iter);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_text_iter_get_tags(ref TextIter iter);
 
 		public TextTag[] Tags {
 			get {
-				IntPtr raw_ret = gtk_text_iter_get_tags (ref this);
+				IntPtr raw_ret = gtk_text_iter_get_tags(ref this);
 				if (raw_ret == IntPtr.Zero)
-					return new TextTag [0];
+					return new TextTag[0];
 				GLib.SList list = new GLib.SList(raw_ret);
-				TextTag[] result = new TextTag [list.Count];
+				TextTag[] result = new TextTag[list.Count];
 				for (int i = 0; i < list.Count; i++)
-					result [i] = list [i] as TextTag;
+					result[i] = list[i] as TextTag;
 				return result;
 			}
 		}
 
-		[DllImport (Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_text_iter_get_toggled_tags (ref TextIter iter, bool toggled_on);
+		[DllImport(Global.GtkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_text_iter_get_toggled_tags(ref TextIter iter, bool toggled_on);
 
-		public TextTag[] GetToggledTags (bool toggled_on)
-		{
-			IntPtr raw_ret = gtk_text_iter_get_toggled_tags (ref this, toggled_on);
+		public TextTag[] GetToggledTags(bool toggled_on) {
+			IntPtr raw_ret = gtk_text_iter_get_toggled_tags(ref this, toggled_on);
 			if (raw_ret == IntPtr.Zero)
-				return new TextTag [0];
+				return new TextTag[0];
 			GLib.SList list = new GLib.SList(raw_ret);
-			TextTag[] result = new TextTag [list.Count];
+			TextTag[] result = new TextTag[list.Count];
 			for (int i = 0; i < list.Count; i++)
-				result [i] = list [i] as TextTag;
+				result[i] = list[i] as TextTag;
 			return result;
 		}
 
 		[Obsolete("Replaced by overload without IntPtr argument")]
-		public bool ForwardFindChar (Gtk.TextCharPredicate pred, IntPtr user_data, Gtk.TextIter limit) {
-			return ForwardFindChar (pred, limit);
+		public bool ForwardFindChar(Gtk.TextCharPredicate pred, IntPtr user_data, Gtk.TextIter limit) {
+			return ForwardFindChar(pred, limit);
 		}
 
 		[Obsolete("Replaced by overload without IntPtr argument")]
-		public bool BackwardFindChar (Gtk.TextCharPredicate pred, IntPtr user_data, Gtk.TextIter limit) {
-			return BackwardFindChar (pred, limit);
+		public bool BackwardFindChar(Gtk.TextCharPredicate pred, IntPtr user_data, Gtk.TextIter limit) {
+			return BackwardFindChar(pred, limit);
 		}
 	}
 }

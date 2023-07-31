@@ -25,17 +25,16 @@ namespace Pango {
 
 	public partial class Coverage {
 
-		[DllImport ("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void pango_coverage_to_bytes (IntPtr raw, out IntPtr bytes, out int n_bytes);
+		[DllImport("pango-1.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void pango_coverage_to_bytes(IntPtr raw, out IntPtr bytes, out int n_bytes);
 
-		public void ToBytes(out byte[] bytes) 
-		{
+		public void ToBytes(out byte[] bytes) {
 			int count;
 			IntPtr array_ptr;
-			pango_coverage_to_bytes (Handle, out array_ptr, out count);
-			bytes = new byte [count];
-			Marshal.Copy (array_ptr, bytes, 0, count);
-			GLib.Marshaller.Free (array_ptr);
+			pango_coverage_to_bytes(Handle, out array_ptr, out count);
+			bytes = new byte[count];
+			Marshal.Copy(array_ptr, bytes, 0, count);
+			GLib.Marshaller.Free(array_ptr);
 		}
 	}
 }

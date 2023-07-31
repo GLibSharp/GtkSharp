@@ -24,15 +24,13 @@ namespace Pango {
 
 	public partial class Units {
 
-		private Units () {}
-		
-		public static int FromPixels (int pixels)
-		{
+		private Units() { }
+
+		public static int FromPixels(int pixels) {
 			return pixels * 1024;
 		}
 
-		public static int ToPixels (int units)
-		{
+		public static int ToPixels(int units) {
 			return (units + 512) >> 10;
 		}
 	}

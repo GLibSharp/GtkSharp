@@ -25,7 +25,7 @@ namespace Gtk {
 		public static PaperSize Letter {
 			get {
 				if (letter == null)
-					letter = new PaperSize ("na_letter");
+					letter = new PaperSize("na_letter");
 				return letter;
 			}
 		}
@@ -34,7 +34,7 @@ namespace Gtk {
 		public static PaperSize Executive {
 			get {
 				if (executive == null)
-					executive = new PaperSize ("na_executive");
+					executive = new PaperSize("na_executive");
 				return executive;
 			}
 		}
@@ -43,7 +43,7 @@ namespace Gtk {
 		public static PaperSize Legal {
 			get {
 				if (legal == null)
-					legal = new PaperSize ("na_legal");
+					legal = new PaperSize("na_legal");
 				return legal;
 			}
 		}
@@ -52,7 +52,7 @@ namespace Gtk {
 		public static PaperSize A3 {
 			get {
 				if (a3 == null)
-					a3 = new PaperSize ("iso_a3");
+					a3 = new PaperSize("iso_a3");
 				return a3;
 			}
 		}
@@ -61,7 +61,7 @@ namespace Gtk {
 		public static PaperSize A4 {
 			get {
 				if (a4 == null)
-					a4 = new PaperSize ("iso_a4");
+					a4 = new PaperSize("iso_a4");
 				return a4;
 			}
 		}
@@ -70,7 +70,7 @@ namespace Gtk {
 		public static PaperSize A5 {
 			get {
 				if (a5 == null)
-					a5 = new PaperSize ("iso_a5");
+					a5 = new PaperSize("iso_a5");
 				return a5;
 			}
 		}
@@ -79,7 +79,7 @@ namespace Gtk {
 		public static PaperSize B5 {
 			get {
 				if (b5 == null)
-					b5 = new PaperSize ("iso_b5");
+					b5 = new PaperSize("iso_b5");
 				return b5;
 			}
 		}

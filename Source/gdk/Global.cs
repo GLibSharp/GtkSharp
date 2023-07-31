@@ -28,26 +28,25 @@ namespace Gdk {
 
 		internal const string GdkNativeDll = "gdk-3-0.dll";
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gdk_list_visuals ();
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gdk_list_visuals();
 
-		public static Visual[] ListVisuals ()
-		{
-			IntPtr raw_ret = gdk_list_visuals ();
+		public static Visual[] ListVisuals() {
+			IntPtr raw_ret = gdk_list_visuals();
 			if (raw_ret == IntPtr.Zero)
-				return new Visual [0];
+				return new Visual[0];
 			GLib.List list = new GLib.List(raw_ret);
-			Visual[] result = new Visual [list.Count];
+			Visual[] result = new Visual[list.Count];
 			for (int i = 0; i < list.Count; i++)
-				result [i] = list [i] as Visual;
+				result[i] = list[i] as Visual;
 			return result;
 		}
 
 		public static Gdk.Atom[] SupportedWindowManagerHints {
 			get {
 				Gdk.Atom[] atoms;
-				if (!Gdk.Property.Get (Screen.Default.RootWindow, Atom.Intern ("_NET_SUPPORTED", false), false, out atoms))
-					throw new ApplicationException ("Unable to get _NET_SUPPORTED property");
+				if (!Gdk.Property.Get(Screen.Default.RootWindow, Atom.Intern("_NET_SUPPORTED", false), false, out atoms))
+					throw new ApplicationException("Unable to get _NET_SUPPORTED property");
 
 				return atoms;
 			}
@@ -68,20 +67,20 @@ namespace Gdk {
 		public static int NumberOfDesktops {
 			get {
 				int[] data;
-				if (!Gdk.Property.Get (Screen.Default.RootWindow, Atom.Intern ("_NET_NUMBER_OF_DESKTOPS", false), false, out data))
-					throw new ApplicationException ("Unable to get _NET_NUMBER_OF_DESKTOPS property");
+				if (!Gdk.Property.Get(Screen.Default.RootWindow, Atom.Intern("_NET_NUMBER_OF_DESKTOPS", false), false, out data))
+					throw new ApplicationException("Unable to get _NET_NUMBER_OF_DESKTOPS property");
 
-				return data [0];
+				return data[0];
 			}
 		}
 
 		public static int CurrentDesktop {
 			get {
 				int[] data;
-				if (!Gdk.Property.Get (Screen.Default.RootWindow, Atom.Intern ("_NET_CURRENT_DESKTOP", false), false, out data))
-					throw new ApplicationException ("Unable to get _NET_CURRENT_DESKTOP property");
+				if (!Gdk.Property.Get(Screen.Default.RootWindow, Atom.Intern("_NET_CURRENT_DESKTOP", false), false, out data))
+					throw new ApplicationException("Unable to get _NET_CURRENT_DESKTOP property");
 
-				return data [0];
+				return data[0];
 			}
 		}
 
@@ -100,67 +99,62 @@ namespace Gdk {
 		public static Gdk.Rectangle[] DesktopWorkareas {
 			get {
 				Gdk.Rectangle[] workareas;
-				if (!Gdk.Property.Get (Screen.Default.RootWindow, Atom.Intern ("_NET_WORKAREA", false), false, out workareas))
-					throw new ApplicationException ("Unable to get _NET_WORKAREA property");
+				if (!Gdk.Property.Get(Screen.Default.RootWindow, Atom.Intern("_NET_WORKAREA", false), false, out workareas))
+					throw new ApplicationException("Unable to get _NET_WORKAREA property");
 
 				return workareas;
 			}
 		}
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_init_check(ref int argc, ref IntPtr argv);
 
-		public static bool InitCheck (ref string[] argv)
-		{
-			GLib.Argv a = new GLib.Argv (argv, true);
+		public static bool InitCheck(ref string[] argv) {
+			GLib.Argv a = new GLib.Argv(argv, true);
 			IntPtr buf = a.Handle;
 			int argc = argv.Length + 1;
 
-			bool result = gdk_init_check (ref argc, ref buf);
-			argv = a.GetArgs (argc);
+			bool result = gdk_init_check(ref argc, ref buf);
+			argv = a.GetArgs(argc);
 			return result;
 		}
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_parse_args(ref int argc, ref IntPtr argv);
 
-		public static void ParseArgs (ref string[] argv)
-		{
-			GLib.Argv a = new GLib.Argv (argv, true);
+		public static void ParseArgs(ref string[] argv) {
+			GLib.Argv a = new GLib.Argv(argv, true);
 			IntPtr buf = a.Handle;
 			int argc = argv.Length + 1;
 
-			gdk_parse_args (ref argc, ref buf);
-			argv = a.GetArgs (argc);
+			gdk_parse_args(ref argc, ref buf);
+			argv = a.GetArgs(argc);
 		}
 
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gdk_query_depths (out IntPtr depths, out int n_depths);
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void gdk_query_depths(out IntPtr depths, out int n_depths);
 
-		public static int[] QueryDepths ()
-		{
+		public static int[] QueryDepths() {
 			IntPtr ptr;
 			int count;
-			gdk_query_depths (out ptr, out count);
-			int[] result = new int [count];
-			Marshal.Copy (ptr, result, 0, count);
+			gdk_query_depths(out ptr, out count);
+			int[] result = new int[count];
+			Marshal.Copy(ptr, result, 0, count);
 			return result;
 		}
-		[DllImport (Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
-		static extern void gdk_query_visual_types (out IntPtr types, out int n_types);
+		[DllImport(Global.GdkNativeDll, CallingConvention = CallingConvention.Cdecl)]
+		static extern void gdk_query_visual_types(out IntPtr types, out int n_types);
 
-		public static VisualType[] QueryVisualTypes ()
-		{
+		public static VisualType[] QueryVisualTypes() {
 			IntPtr ptr;
 			int count;
-			gdk_query_visual_types (out ptr, out count);
-			int[] tmp = new int [count];
-			Marshal.Copy (ptr, tmp, 0, count);
-			VisualType[] result = new VisualType [count];
+			gdk_query_visual_types(out ptr, out count);
+			int[] tmp = new int[count];
+			Marshal.Copy(ptr, tmp, 0, count);
+			VisualType[] result = new VisualType[count];
 			for (int i = 0; i < count; i++)
-				result [i] = (VisualType) tmp [i];
+				result[i] = (VisualType)tmp[i];
 			return result;
 		}
 	}
 }
-
