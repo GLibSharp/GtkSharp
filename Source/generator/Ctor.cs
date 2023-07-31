@@ -37,6 +37,7 @@ namespace GtkSharp.Generation {
 			preferred = elem.GetAttributeAsBoolean("preferred");
 			this.implementor = implementor;
 			name = implementor.Name;
+			parms.Constructor = true;
 		}
 
 		public bool Preferred {

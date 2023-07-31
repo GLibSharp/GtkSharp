@@ -149,6 +149,8 @@ namespace GtkSharp.Generation {
 			get { return has_optional; }
 		}
 
+		public bool Constructor { get; set; }
+
 		public Parameter GetCountParameter(string param_name) {
 			foreach (Parameter p in this)
 				if (p.Name == param_name) {
@@ -298,7 +300,7 @@ namespace GtkSharp.Generation {
 					rawParams.Remove(arrayLengthParamIndex);
 
 					bool invert = arrayLengthParamIndex < i;
-					if (!Static && !HideData) {
+					if (!Static && !HideData && !Constructor) {
 						// First unmanaged parameter is the object.
 						arrayLengthParamIndex++;
 					}
