@@ -169,7 +169,7 @@ namespace Gtk {
 
 		public GLib.GType[] ColumnTypes { 
 			set {
-				int n_columns = value == null ? 0 : value.Length;
+				int n_columns = (value == null ? 0 : value.Length);
 				IntPtr[] native_value = new IntPtr [n_columns];
 				for (int i = 0; i < n_columns; i++)
 					native_value [i] = value[i].Val;

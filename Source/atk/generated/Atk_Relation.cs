@@ -24,7 +24,7 @@ namespace Atk {
 				CreateNativeObject (names.ToArray (), vals.ToArray ());
 				return;
 			}
-			int n_targets = targets == null ? 0 : targets.Length;
+			int n_targets = (targets == null ? 0 : targets.Length);
 			IntPtr[] native_targets = new IntPtr [n_targets];
 			for (int i = 0; i < n_targets; i++)
 				native_targets [i] = targets[i] == null ? IntPtr.Zero : targets[i].Handle;
