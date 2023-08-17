@@ -79,6 +79,7 @@ namespace GtkSharp.Generation {
 			AddType(new SimpleGen("double", "double", "0.0"));
 			AddType(new SimpleGen("goffset", "long", "0"));
 			AddType(new SimpleGen("GQuark", "int", "0"));
+			AddType(new AliasGen("utf8", "gchar"));
 
 			// platform specific integer types.
 #if WIN64LONGS

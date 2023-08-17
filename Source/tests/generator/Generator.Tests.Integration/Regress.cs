@@ -41,7 +41,7 @@ namespace Generator.Tests.Integration {
 			Assert.AreEqual(Statistics.CBCount, 20);
 			Assert.AreEqual(Statistics.PropCount, 21);
 			Assert.AreEqual(Statistics.SignalCount, 17);
-			Assert.AreEqual(Statistics.MethodCount, 301);
+			Assert.AreEqual(Statistics.MethodCount, 304);
 			Assert.AreEqual(Statistics.CtorCount, 25);
 			Assert.AreEqual(Statistics.ThrottledCount, 20);
 		}
