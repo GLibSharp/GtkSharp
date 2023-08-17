@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Microsoft.Extensions.FileSystemGlobbing;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace Generator.Tests {
 	public static class NativeLibraryResolver {
+
+		static readonly Dictionary<string, IntPtr> libsCache = new Dictionary<string, nint>();
+
 		static readonly Dictionary<string, Dictionary<OSPlatform, string>> LIBS_MAPPING = new()
 		{
 
@@ -71,6 +76,10 @@ namespace Generator.Tests {
 			IntPtr libHandle;
 			string libraryName = libName;
 
+			if (libsCache.TryGetValue(libName, out IntPtr handle)) {
+				return handle;
+			}
+
 			// Try with the full path in the user defined search dirs
 			if (LIBS_MAPPING.TryGetValue(libName, out var osToNameDict)) {
 				if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
@@ -82,8 +91,20 @@ namespace Generator.Tests {
 				} else {
 					throw new NotSupportedException("Operating system not supported");
 				}
-				NativeLibrary.TryLoad(Path.Join(searchDir, libraryName), out libHandle);
+
+				var libPath = Path.Join(searchDir, libraryName);
+				if (!Path.Exists(libPath)) {
+					Matcher matcher = new();
+					matcher.AddInclude($"**/{libraryName}");
+					var newLibraryPath = matcher.GetResultsInFullPath(searchDir).FirstOrDefault();
+					if (!Path.Exists(newLibraryPath)) {
+						return IntPtr.Zero;
+					}
+					libPath = newLibraryPath;
+				}
+				NativeLibrary.TryLoad(libPath, out libHandle);
 				if (libHandle != IntPtr.Zero) {
+					libsCache[libName] = libHandle;
 					return libHandle;
 				}
 			}
@@ -95,6 +116,7 @@ namespace Generator.Tests {
 				NativeLibrary.TryLoad(libraryName, assembly, DllImportSearchPath.ApplicationDirectory, out libHandle);
 			}
 
+			libsCache[libName] = libHandle;
 			return libHandle;
 		}
 	}

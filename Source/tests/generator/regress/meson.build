@@ -12,11 +12,11 @@ custom_c_args = []
 #  ])
 #endif
 
+regress_deps = [gobject_dep, gio_dep]
 if cairo_dep.found() and cairo_gobject_dep.found()
-  regress_deps = [cairo_dep, cairo_gobject_dep]
+  regress_deps += [cairo_dep, cairo_gobject_dep]
   regress_c_args = []
 else
-  regress_deps = []
   regress_c_args = ['-D_GI_DISABLE_CAIRO']
 endif
 
@@ -41,9 +41,24 @@ regress_lib = shared_library('regress-1.0',
   include_directories : [include_directories('.')],
   link_with: utility_lib,
   c_args: regress_c_args + custom_c_args,
-  dependencies: [gobject_dep, gio_dep, cairo_dep, cairo_gobject_dep] + regress_deps,
+  dependencies: regress_deps,
 )
 
+search_dirs = [meson.current_build_dir()]
+foreach dep: regress_deps
+  dep_type = dep.type_name()
+  if dep_type == 'pkgconfig'
+    search_dirs += dep.get_variable(pkgconfig: 'libdir')
+  elif dep_type == 'internal'
+    if not search_dirs.contains(meson.global_build_root())
+      search_dirs += meson.global_build_root()
+    endif
+  endif
+endforeach
+
+search_dirs_data = configuration_data()
+search_dirs_data.set('SEARCH_DIRS', ';'.join(search_dirs))
+configure_file(input: 'SearchDirs.cs.in', output: 'SearchDirs.cs', configuration : search_dirs_data)
 
 gnome = import('gnome')
 utility_gir = gnome.generate_gir(
