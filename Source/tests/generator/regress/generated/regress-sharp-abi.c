@@ -10,6 +10,8 @@ int main (int argc, char *argv[]) {
 	g_print("\"RegressFooObjectClass._reserved\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) G_STRUCT_OFFSET(RegressFooObjectClass, _reserved));
 	g_print("\"sizeof(RegressFooObject)\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) sizeof(RegressFooObject));
 	g_print("\"RegressFooObject.some_int\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) G_STRUCT_OFFSET(RegressFooObject, some_int));
+	g_print("\"sizeof(RegressMiscObjectClass)\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) sizeof(RegressMiscObjectClass));
+	g_print("\"RegressMiscObjectClass.get_options\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) G_STRUCT_OFFSET(RegressMiscObjectClass, get_options));
 	g_print("\"sizeof(RegressTestFundamentalObjectNoGetSetFunc)\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) sizeof(RegressTestFundamentalObjectNoGetSetFunc));
 	g_print("\"RegressTestFundamentalObjectNoGetSetFunc.fundamental_object\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) G_STRUCT_OFFSET(RegressTestFundamentalObjectNoGetSetFunc, fundamental_object));
 	g_print("\"RegressTestFundamentalObjectNoGetSetFunc.data\": \"%" G_GUINT64_FORMAT "\"\n", (guint64) G_STRUCT_OFFSET(RegressTestFundamentalObjectNoGetSetFunc, data));

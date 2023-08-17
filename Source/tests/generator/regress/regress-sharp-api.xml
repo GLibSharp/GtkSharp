@@ -659,6 +659,24 @@
       <constructor cname="regress_foo_subobject_new" disable_void_ctor=""/>
       <field cname="parent_instance" access="public" writeable="false" readable="true" is_callback="false" name="ParentInstance" type="RegressFooObject*"/>
     </object>
+    <object name="MiscObject" cname="RegressMiscObject" opaque="false" hidden="false" parent="GObject.Object">
+      <class_struct cname="RegressMiscObjectClass">
+        <field cname="parent_class" access="public" writeable="false" readable="true" is_callback="false" name="ParentClass" type="GObject.ObjectClass"/>
+        <method vm="get_options"/>
+      </class_struct>
+      <method name="GetType" cname="regress_misc_object_get_type" shared="true">
+        <return-type type="GType"/>
+      </method>
+      <virtual_method name="GetOptions" cname="get_options">
+        <return-type type="const gchar**" array="true" null_term_array="true" element_type="gchar*"/>
+        <parameters/>
+      </virtual_method>
+      <method name="GetOptions" cname="regress_misc_object_get_options">
+        <return-type type="const gchar**" array="true" null_term_array="true" element_type="gchar*"/>
+        <parameters/>
+      </method>
+      <field cname="parent_instance" access="public" writeable="false" readable="true" is_callback="false" name="ParentInstance" type="GObject.Object"/>
+    </object>
     <object name="TestFloating" cname="RegressTestFloating" opaque="false" hidden="false" parent="GObject.InitiallyUnowned">
       <class_struct cname="RegressTestFloatingClass">
         <field cname="parent_class" access="public" writeable="false" readable="true" is_callback="false" name="ParentClass" type="GObject.InitiallyUnownedClass"/>

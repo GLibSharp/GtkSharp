@@ -118,6 +118,8 @@ namespace GtkSharp.Generation {
 			}
 		}
 
+		bool IsStringArray => ElementType == "string" && IGen is MarshalGen;
+
 		public string MarshalType {
 			get {
 				if (IGen == null)
@@ -142,7 +144,11 @@ namespace GtkSharp.Generation {
 			if (IGen == null)
 				return String.Empty;
 
-			if (ElementType != String.Empty) {
+			if (IsStringArray && is_null_term) {
+				return String.Format("GLib.Marshaller.NullTermPtrToStringArray ({0}, {1})", var, owned ? "true" : "false");
+			} else if (IsStringArray && is_null_term) {
+				return String.Format("({0}) GLib.Marshaller.PtrToStringArray ({1}, (int){2}native_{3}, true)", CSType, var, CountParameter.CSType == "int" ? String.Empty : "(" + CountParameter.CSType + ")", CountParameter.Name);
+			} else if (ElementType != String.Empty) {
 				string args = (owned ? "true" : "false") + ", " + (elements_owned ? "true" : "false");
 				if (IGen.QualifiedName == "GLib.PtrArray")
 					return String.Format("({0}[]) GLib.Marshaller.PtrArrayToArray ({1}, {2}, typeof({0}))", ElementType, var, args);
@@ -161,8 +167,11 @@ namespace GtkSharp.Generation {
 		public string ToNative(string var) {
 			if (IGen == null)
 				return String.Empty;
-
-			if (ElementType.Length > 0) {
+			if (IsStringArray && is_null_term) {
+				return String.Format("GLib.Marshaller.StringArrayToNullTermStrvPointer ({0})", var);
+			} else if (IsStringArray && is_null_term) {
+				return String.Format("GLib.Marshaller.StringArrayToStrvPtr ({0}, false)", var);
+			} else if (ElementType.Length > 0) {
 				string args = ", typeof (" + ElementType + "), " + (owned ? "true" : "false") + ", " + (elements_owned ? "true" : "false");
 				var = "new " + IGen.QualifiedName + "(" + var + args + ")";
 			} else if (is_null_term)

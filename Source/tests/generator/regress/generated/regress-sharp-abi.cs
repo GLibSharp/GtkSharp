@@ -14,6 +14,8 @@ namespace AbiTester {
 			Console.WriteLine("\"RegressFooObjectClass._reserved\": \"" + Regress.FooObject.class_abi.GetFieldOffset("_reserved") + "\"");
 			Console.WriteLine("\"sizeof(RegressFooObject)\": \"" + Regress.FooObject.abi_info.Size + "\"");
 			Console.WriteLine("\"RegressFooObject.some_int\": \"" + Regress.FooObject.abi_info.GetFieldOffset("some_int") + "\"");
+			Console.WriteLine("\"sizeof(RegressMiscObjectClass)\": \"" + Regress.MiscObject.class_abi.Size + "\"");
+			Console.WriteLine("\"RegressMiscObjectClass.get_options\": \"" + Regress.MiscObject.class_abi.GetFieldOffset("get_options") + "\"");
 			Console.WriteLine("\"sizeof(RegressTestFundamentalObjectNoGetSetFunc)\": \"" + Regress.TestFundamentalObjectNoGetSetFunc.abi_info.Size + "\"");
 			Console.WriteLine("\"RegressTestFundamentalObjectNoGetSetFunc.fundamental_object\": \"" + Regress.TestFundamentalObjectNoGetSetFunc.abi_info.GetFieldOffset("fundamental_object") + "\"");
 			Console.WriteLine("\"RegressTestFundamentalObjectNoGetSetFunc.data\": \"" + Regress.TestFundamentalObjectNoGetSetFunc.abi_info.GetFieldOffset("data") + "\"");
