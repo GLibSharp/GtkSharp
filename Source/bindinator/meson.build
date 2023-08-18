@@ -35,6 +35,13 @@ if xsltproc.found() and pkgconfig.found()
     cdata.set_quoted('prefix', get_option('prefix'))
     cdata.set_quoted('GAPIFIXUP', gapi_fixup.full_path())
 
+    if host_machine.system() == 'windows'
+        pathsep = ';'
+    else
+        pathsep = ':'
+    endif
+    cdata.set_quoted('PATH_SEPARATOR', pathsep)
+
     configure_file(output : 'bindinate', input: 'bindinate/bindinate.in', configuration : cdata)
 
     cdata = configuration_data()

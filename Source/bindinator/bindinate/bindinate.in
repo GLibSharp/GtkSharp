@@ -97,7 +97,7 @@ fi
 
 find_gir () {
     OLDIFS="$IFS"
-    IFS=':'; export IFS;
+    IFS='@PATH_SEPARATOR@'; export IFS;
     for dir in $2; do
         TMPGIRFILE="$dir/$1.gir"
         if [ -e "$TMPGIRFILE" ]; then
@@ -108,7 +108,7 @@ find_gir () {
     IFS=$OLDIFS; export IFS
 }
 
-GIRDIRS=$GI_TYPELIB_PATH:@GIRDIR@
+GIRDIRS=$GI_TYPELIB_PATH@PATH_SEPARATOR@@GIRDIR@
 FULLGIRFILE=$(find_gir "$GIRFILE" "$GIRDIRS")
 
 if [ x$FULLGIRFILE == x ]; then
