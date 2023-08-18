@@ -46,6 +46,7 @@ if xsltproc.found() and pkgconfig.found()
 
     cdata = configuration_data()
     cdata.set('GIRDIR', gir_dir)
+    cdata.set('PATH_SEPARATOR', pathsep)
     configure_file(output : 'gir2gapi.xslt', input: 'bindinate/gir2gapi.xslt.in', configuration : cdata)
 
     bindinate = find_program(join_paths(meson.current_build_dir(), 'bindinate'))

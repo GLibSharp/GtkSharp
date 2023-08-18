@@ -41,6 +41,7 @@
 	exclude-result-prefixes="xsl exsl gir c glib">
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:strip-space elements="*"/>
+	<xsl:param name="girdirs"/>
 
 	<!--- maps svg names into xaml names -->
 	<xsl:variable name="mappings">
@@ -116,10 +117,37 @@
 
 	</xsl:template>
 
+	<xsl:template name="include-girs">
+		<xsl:param name="text"/>
+		<xsl:param name="delimiter" select="'@PATH_SEPARATOR@'"/>
+		<xsl:choose>
+			<xsl:when test="contains($text, $delimiter)">
+				<xsl:if test="document(concat(substring-before($text, $delimiter), '/', @name, '-', @version, '.gir'), .)">
+					<include name="{@name}">
+						<xsl:copy-of select="document(concat(substring-before($text, $delimiter), '/', @name, '-', @version, '.gir'), .)"/>
+					</include>
+				</xsl:if>
+				<xsl:call-template name="include-girs">
+					<xsl:with-param name="text" select="substring-after($text, $delimiter)"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="document(concat($text, '/', @name, '-', @version, '.gir'), .)">
+					<include name="{@name}">
+						<xsl:copy-of select="document(concat($text, '/', @name, '-', @version, '.gir'), .)"/>
+					</include>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 	<xsl:template match="gir:include">
 		<include name="{@name}">
 			<xsl:copy-of select="document(concat('@GIRDIR@', @name, '-', @version, '.gir'), .)"/>
 		</include>
+		<xsl:call-template name="include-girs">
+			<xsl:with-param name="text" select="$girdirs"/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="gir:namespace">

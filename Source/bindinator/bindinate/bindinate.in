@@ -300,7 +300,7 @@ if [ -n "$REGENERATE" ] || [ "$REGENERATE_RAW" ]; then
 
 	echo "Processing $FULLGIRFILE and outputting $REGENERATE_RAW"
 	echo @XSLTPROC@ -o $REGENERATE_RAW @GIR2GAPIXSLT@ $FULLGIRFILE
-	@XSLTPROC@ -o $REGENERATE_RAW @GIR2GAPIXSLT@ $FULLGIRFILE
+	@XSLTPROC@ --stringparam girdirs $GIRDIRS -o $REGENERATE_RAW @GIR2GAPIXSLT@ $FULLGIRFILE
 	exit 0
 fi
 
@@ -464,7 +464,7 @@ fi
 
 if [ ! -e $OUTDIR/sources/$NAME-sharp-api.raw ]; then
 	echo "Processing $FULLGIRFILE and outputting $OUTDIR/sources/$NAME-sharp-api.raw"
-	@XSLTPROC@ -o $OUTDIR/sources/$NAME-sharp-api.raw @GIR2GAPIXSLT@ $FULLGIRFILE
+	@XSLTPROC@ $PATH --stringparam girdirs $GIRDIRS  -o $OUTDIR/sources/$NAME-sharp-api.raw @GIR2GAPIXSLT@ $FULLGIRFILE
 fi
 
 # Create xbuild files (sln and csproj)
