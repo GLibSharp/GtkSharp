@@ -25,6 +25,7 @@ namespace GtkSharp.Generation {
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Xml;
 
 	public class Parameters : IEnumerable<Parameter> {
@@ -148,6 +149,8 @@ namespace GtkSharp.Generation {
 			get { return has_optional; }
 		}
 
+		public bool Constructor { get; set; }
+
 		public Parameter GetCountParameter(string param_name) {
 			foreach (Parameter p in this)
 				if (p.Name == param_name) {
@@ -180,11 +183,40 @@ namespace GtkSharp.Generation {
 			if (elem == null)
 				return false;
 
-			for (int i = first_is_instance ? 1 : 0; i < elem.ChildNodes.Count; i++) {
-				XmlElement parm = elem.ChildNodes[i] as XmlElement;
-				if (parm == null || parm.Name != "parameter")
-					continue;
-				Parameter p = new Parameter(parm);
+			int destroyNotifyIdx = -1;
+
+			int idx = 0;
+			SortedDictionary<int, Parameter> rawParams = new SortedDictionary<int, Parameter>();
+
+			foreach (Parameter p in elem.ChildNodes
+										.OfType<XmlElement>()
+										.Where(e => e.Name == "parameter")
+										.Select(e => new Parameter(e))) {
+				rawParams.Add(idx, p);
+				idx++;
+			}
+
+			ProcessArrayParams(rawParams);
+
+			foreach (var idxParam in rawParams) {
+				int i = idxParam.Key;
+				Parameter p = idxParam.Value;
+
+				bool isDestroyNotify = false;
+				if (i == destroyNotifyIdx) {
+					isDestroyNotify = true;
+				}
+				if (isDestroyNotify) {
+					p.IsDestroyNotify = true;
+				}
+
+				destroyNotifyIdx = p.DestroyNotify;
+
+				if (p.IsDestroyNotify && p.CSType != "GLib.DestroyNotify") {
+					log.Warn("Custom destroy notify is not supported, bind manually.");
+					Clear();
+					return false;
+				}
 
 				if (p.IsEllipsis) {
 					log.Warn("Ellipsis parameter: hide and bind manually if no alternative exists. ");
@@ -204,37 +236,22 @@ namespace GtkSharp.Generation {
 
 				IGeneratable gen = p.Generatable;
 
-				if (p.IsArray) {
-					p = new ArrayParameter(parm);
-					if (i < elem.ChildNodes.Count - 1) {
-						XmlElement next = elem.ChildNodes[i + 1] as XmlElement;
-						if (next != null || next.Name == "parameter") {
-							Parameter c = new Parameter(next);
-							if (c.IsCount) {
-								p = new ArrayCountPair(parm, next, false);
-								i++;
-							}
-						}
-					}
-				} else if (p.IsCount) {
-					p.IsCount = false;
-					if (i < elem.ChildNodes.Count - 1) {
-						XmlElement next = elem.ChildNodes[i + 1] as XmlElement;
-						if (next != null || next.Name == "parameter") {
-							Parameter a = new Parameter(next);
-							if (a.IsArray) {
-								p = new ArrayCountPair(next, parm, true);
-								i++;
-							}
-						}
-					}
+				if (p is ArrayParameter) {
+
 				} else if (p.CType == "GError**" && Throws)
-					p = new ErrorParameter(parm);
+					p = new ErrorParameter(p.Element);
 				else if (gen is StructBase || gen is ByRefGen) {
-					p = new StructParameter(parm);
+					p = new StructParameter(p.Element);
 				} else if (gen is CallbackGen) {
 					has_cb = true;
 				}
+
+				if (p is ArrayCountPair && p.CSType == "[]") {
+					log.Warn($"Unknown type {p.CType} on parameter {p.Name}");
+					Clear();
+					return false;
+				}
+
 				param_list.Add(p);
 			}
 
@@ -242,8 +259,56 @@ namespace GtkSharp.Generation {
 				has_cb && Count > 2 && this[Count - 3].Generatable is CallbackGen && this[Count - 2].IsUserData && this[Count - 1].IsDestroyNotify)
 				this[Count - 3].Scope = "notified";
 
+			if (IsAccessor) {
+				AccessorParam.IsAccessor = true;
+			}
 			valid = true;
 			return true;
+		}
+
+		private void ProcessArrayParams(SortedDictionary<int, Parameter> rawParams) {
+			SortedDictionary<int, Parameter> countParams = new SortedDictionary<int, Parameter>();
+
+			int paramsCount = rawParams.Count;
+
+			for (int i = 0; i < paramsCount; i++) {
+				bool skip_count_in_native = false;
+				if (!rawParams.TryGetValue(i, out Parameter param)) {
+					continue;
+				}
+				if (!param.IsArray) {
+					continue;
+				}
+
+				// Create an ArrayParameter and replace it in the params dictionary
+				param = new ArrayParameter(param.Element);
+
+				// Check if the array length is provided in another parameter
+				var arrayLengthParamIndex = ((ArrayParameter)param).ArrayLengthParamIndex;
+				if (arrayLengthParamIndex != -1) {
+					Parameter arrayLengthParam;
+
+					if (!rawParams.TryGetValue(arrayLengthParamIndex, out arrayLengthParam)) {
+						if (!countParams.TryGetValue(arrayLengthParamIndex, out arrayLengthParam)) {
+							throw new Exception($"No count parameter found at index {arrayLengthParamIndex}");
+						}
+						skip_count_in_native = true;
+					} else {
+						countParams.Add(arrayLengthParamIndex, arrayLengthParam);
+					}
+					// Remove the param from the list
+					rawParams.Remove(arrayLengthParamIndex);
+
+					bool invert = arrayLengthParamIndex < i;
+					if (!Static && !HideData && !Constructor) {
+						// First unmanaged parameter is the object.
+						arrayLengthParamIndex++;
+					}
+					// Create a new ArrayCountPair
+					param = new ArrayCountPair(param, arrayLengthParam, invert, arrayLengthParamIndex, skip_count_in_native);
+				}
+				rawParams[i] = param;
+			}
 		}
 
 		public bool IsAccessor {

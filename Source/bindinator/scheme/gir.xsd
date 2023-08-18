@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.gtk.org/introspection/core/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <xs:import namespace="http://www.gtk.org/introspection/c/1.0" schemaLocation="c.xsd"/>
+  <xs:import namespace="http://www.gtk.org/introspection/glib/1.0" schemaLocation="glib.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:element name="repository">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:include"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:package"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="c:include"/>
+        <xs:element ref="core:namespace"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required" type="xs:decimal"/>
+      <xs:attributeGroup ref="c:identifier-prefixes"/>
+      <xs:attributeGroup ref="c:symbol-prefixes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="include">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="version" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="package">
+    <xs:complexType>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="namespace">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="core:callback"/>
+        <xs:element ref="core:constant"/>
+        <xs:element ref="core:function"/>
+        <xs:element ref="core:record"/>
+        <xs:element ref="core:union"/>
+        <xs:element ref="core:alias"/>
+        <xs:element ref="core:bitfield"/>
+        <xs:element ref="core:class"/>
+        <xs:element ref="core:enumeration"/>
+        <xs:element ref="core:interface"/>
+        <xs:element ref="glib:boxed"/>
+      </xs:choice>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="shared-library"/>
+      <xs:attribute name="version" use="required" type="xs:decimal"/>
+      <xs:attributeGroup ref="c:identifier-prefixes1"/>
+      <xs:attribute ref="c:prefix"/>
+      <xs:attributeGroup ref="c:symbol-prefixes1"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="alias">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element ref="core:type"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="stability" type="xs:NCName"/>
+      <xs:attribute name="target" type="xs:NCName"/>
+      <xs:attributeGroup ref="c:type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bitfield">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element maxOccurs="unbounded" ref="core:member"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:function"/>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attributeGroup ref="c:type"/>
+      <xs:attribute ref="glib:get-type"/>
+      <xs:attribute ref="glib:type-name"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:implements"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="core:constant"/>
+          <xs:element ref="core:constructor"/>
+          <xs:element ref="core:field"/>
+          <xs:element ref="core:function"/>
+          <xs:element ref="core:method"/>
+          <xs:element ref="core:property"/>
+          <xs:element ref="core:record"/>
+          <xs:element ref="core:virtual-method"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="glib:signal"/>
+      </xs:sequence>
+      <xs:attribute name="abstract" type="xs:integer"/>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="parent" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attribute ref="c:symbol-prefix"/>
+      <xs:attributeGroup ref="c:type"/>
+      <xs:attribute ref="glib:fundamental"/>
+      <xs:attribute ref="glib:get-type" use="required"/>
+      <xs:attribute ref="glib:get-value-func"/>
+      <xs:attribute ref="glib:ref-func"/>
+      <xs:attribute ref="glib:set-value-func"/>
+      <xs:attribute ref="glib:type-name" use="required"/>
+      <xs:attribute ref="glib:type-struct"/>
+      <xs:attribute ref="glib:unref-func"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="implements">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enumeration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element maxOccurs="unbounded" ref="core:member"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:function"/>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="stability" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attributeGroup ref="c:type"/>
+      <xs:attribute ref="glib:error-domain"/>
+      <xs:attribute ref="glib:get-type"/>
+      <xs:attribute ref="glib:type-name"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interface">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element minOccurs="0" ref="core:prerequisite"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:function"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="core:method"/>
+          <xs:element ref="core:virtual-method"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:property"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="glib:signal"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attribute ref="c:symbol-prefix"/>
+      <xs:attributeGroup ref="c:type"/>
+      <xs:attribute ref="glib:get-type" use="required"/>
+      <xs:attribute ref="glib:type-name" use="required"/>
+      <xs:attribute ref="glib:type-struct"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prerequisite">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doc">
+    <xs:complexType mixed="true">
+      <xs:attribute ref="xml:whitespace" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="constructor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="core:parameters"/>
+          <xs:element ref="core:return-value"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:NMTOKEN"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="shadowed-by" type="xs:NCName"/>
+      <xs:attribute name="shadows" type="xs:NCName"/>
+      <xs:attribute name="throws" type="xs:integer"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+      <xs:attribute ref="c:identifier" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="function">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="core:parameters"/>
+          <xs:element ref="core:return-value"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="moved-to" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="shadowed-by" type="xs:NCName"/>
+      <xs:attribute name="shadows" type="xs:NCName"/>
+      <xs:attribute name="stability" type="xs:NCName"/>
+      <xs:attribute name="throws" type="xs:integer"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+      <xs:attribute ref="c:identifier" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice>
+          <xs:element ref="core:array"/>
+          <xs:element ref="core:type"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="construct" type="xs:integer"/>
+      <xs:attribute name="construct-only" type="xs:integer"/>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="readable" type="xs:integer"/>
+      <xs:attribute name="transfer-ownership" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+      <xs:attribute name="writable" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="field">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="core:array"/>
+        <xs:element ref="core:callback"/>
+        <xs:element ref="core:type"/>
+      </xs:choice>
+      <xs:attribute name="bits" type="xs:integer"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="private" type="xs:integer"/>
+      <xs:attribute name="readable" type="xs:integer"/>
+      <xs:attribute name="writable" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="constant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element ref="core:type"/>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="name" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="value" use="required"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+      <xs:attribute ref="c:identifier"/>
+      <xs:attributeGroup ref="c:type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="record">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="core:field"/>
+          <xs:element ref="core:union"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:constructor"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:method"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:function"/>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="disguised" type="xs:integer"/>
+      <xs:attribute name="foreign" type="xs:integer"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attribute ref="c:symbol-prefix"/>
+      <xs:attributeGroup ref="c:type"/>
+      <xs:attribute ref="glib:get-type"/>
+      <xs:attribute ref="glib:is-gtype-struct-for"/>
+      <xs:attribute ref="glib:type-name"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="virtual-method">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="core:parameters"/>
+          <xs:element ref="core:return-value"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:decimal"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="invoker" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="throws" type="xs:integer"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="method">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="core:doc"/>
+          <xs:element ref="core:annotation"/>
+        </xs:choice>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="core:parameters"/>
+          <xs:element ref="core:return-value"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="shadowed-by" type="xs:NCName"/>
+      <xs:attribute name="shadows" type="xs:NCName"/>
+      <xs:attribute name="stability" type="xs:NCName"/>
+      <xs:attribute name="throws" type="xs:integer"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+      <xs:attribute ref="c:identifier" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="annotation">
+    <xs:complexType>
+      <xs:attribute name="key" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="union">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="core:field"/>
+          <xs:element ref="core:record"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:constructor"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:method"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:function"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attribute ref="c:symbol-prefix"/>
+      <xs:attributeGroup ref="c:type"/>
+      <xs:attribute ref="glib:get-type"/>
+      <xs:attribute ref="glib:type-name"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="member">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+      <xs:attribute ref="c:identifier" use="required"/>
+      <xs:attribute ref="glib:nick"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="callback">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="core:parameters"/>
+          <xs:element ref="core:return-value"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="deprecated" type="xs:decimal"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="throws" type="xs:integer"/>
+      <xs:attribute name="version" type="xs:decimal"/>
+      <xs:attributeGroup ref="c:type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="type">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="core:array"/>
+        <xs:element ref="core:type"/>
+      </xs:choice>
+      <xs:attribute name="name"/>
+      <xs:attributeGroup ref="c:type1"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:instance-parameter"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:parameter"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="instance-parameter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:element ref="core:type"/>
+      </xs:sequence>
+      <xs:attribute name="allow-none" type="xs:integer"/>
+      <xs:attribute name="caller-allocates" type="xs:integer"/>
+      <xs:attribute name="direction" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="transfer-ownership" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:varargs"/>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="core:array"/>
+          <xs:element ref="core:type"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="allow-none" type="xs:integer"/>
+      <xs:attribute name="caller-allocates" type="xs:integer"/>
+      <xs:attribute name="closure" type="xs:integer"/>
+      <xs:attribute name="destroy" type="xs:integer"/>
+      <xs:attribute name="direction" type="xs:NCName"/>
+      <xs:attribute name="name" type="xs:NCName"/>
+      <xs:attribute name="scope" type="xs:NCName"/>
+      <xs:attribute name="transfer-ownership" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="varargs">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="return-value">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice>
+          <xs:element ref="core:array"/>
+          <xs:element ref="core:type"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="allow-none" type="xs:integer"/>
+      <xs:attribute name="transfer-ownership" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="array">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="core:type"/>
+      </xs:sequence>
+      <xs:attribute name="fixed-size" type="xs:integer"/>
+      <xs:attribute name="length" type="xs:integer"/>
+      <xs:attribute name="name" type="xs:NCName"/>
+      <xs:attribute name="zero-terminated" type="xs:integer"/>
+      <xs:attributeGroup ref="c:type1"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

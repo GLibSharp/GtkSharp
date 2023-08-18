@@ -1,5 +1,5 @@
 project('GtkSharp', ['cs', 'c'], version: '3.22.0',
-        meson_version: '>=0.47')
+        meson_version: '>=0.58')
 
 pkgs = []
 subdir('Source')

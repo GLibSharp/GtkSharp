@@ -24,6 +24,8 @@ namespace GtkSharp.Generation {
 
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text.RegularExpressions;
 
 	public class SymbolTable {
 
@@ -77,6 +79,7 @@ namespace GtkSharp.Generation {
 			AddType(new SimpleGen("double", "double", "0.0"));
 			AddType(new SimpleGen("goffset", "long", "0"));
 			AddType(new SimpleGen("GQuark", "int", "0"));
+			AddType(new AliasGen("utf8", "gchar"));
 
 			// platform specific integer types.
 #if WIN64LONGS
@@ -119,8 +122,8 @@ namespace GtkSharp.Generation {
 			AddType(new SimpleGen("GStrv", "string[]", "null"));
 
 			// manually wrapped types requiring more complex marshaling
-			AddType(new ManualGen("GInitiallyUnowned", "GLib.InitiallyUnowned", "GLib.Object.GetObject ({0})"));
-			AddType(new ManualGen("GObject", "GLib.Object", "GLib.Object.GetObject ({0})"));
+			AddType(new ManualGen("GInitiallyUnowned", "GLib.InitiallyUnowned", "(GLib.InitiallyUnowned) GLib.Object.GetObject ({0})"));
+			AddType(new ManualGen("GObject", "GLib.Object", "GLib.Object.GetObject ({0})", "GLib.Object"));
 			AddType(new ManualGen("GList", "GLib.List"));
 			AddType(new ManualGen("GPtrArray", "GLib.PtrArray"));
 			AddType(new ManualGen("GSList", "GLib.SList"));
@@ -173,6 +176,17 @@ namespace GtkSharp.Generation {
 			AddType(new SimpleGen("GBoxedCopyFunc", "IntPtr", "IntPtr.Zero"));
 			AddType(new SimpleGen("GBoxedFreeFunc", "IntPtr", "IntPtr.Zero"));
 			AddType(new SimpleGen("GHookFinalizeFunc", "IntPtr", "IntPtr.Zero"));
+			AddType(new SimpleGen("GCallback", "IntPtr", "IntPtr.Zero"));
+
+			// Alias types that do not match the correct name in manually generated glib-sharp bindings
+			AddType(new AliasGen("GObject.Object", "GObject"));
+			AddType(new AliasGen("GObject.Callback", "GCallback"));
+			AddType(new AliasGen("GObject.Value", "GValue"));
+			AddType(new AliasGen("GObject.Closure", "GClosure"));
+			AddType(new AliasGen("GObject.InitiallyUnowned", "GInitiallyUnowned"));
+
+			AddType(new AliasGen("GLib.Error", "GError"));
+			AddType(new AliasGen("GLib.Quark", "GQuark"));
 		}
 
 		public void AddType(IGeneratable gen) {
@@ -199,7 +213,34 @@ namespace GtkSharp.Generation {
 
 		public IGeneratable this[string ctype] {
 			get {
-				return DeAlias(ctype);
+				return ResolveType(ctype);
+			}
+		}
+
+
+		public string GetTypeFromIntegerValue(string value) {
+			foreach (Match match in Regex.Matches(value, "[0-9]+([UL]{1,2})", RegexOptions.IgnoreCase)) {
+				switch (match.Groups[1].Value.ToUpper()) {
+					case "U":
+						return "uint";
+					case "L":
+						return "int";
+					case "UL":
+						return "ulong";
+				}
+			}
+
+			if (int.TryParse(value, out int out_int)) {
+				return "int";
+			} else if (uint.TryParse(value, out uint out_uint)) {
+				return "uint";
+			} else if (long.TryParse(value, out long out_long)) {
+				return "long";
+			} else if (ulong.TryParse(value, out ulong out_ulong)) {
+				return "ulong";
+			} else {
+				log.Warn($"Can't parse enum value: {value}");
+				return "int";
 			}
 		}
 
@@ -230,18 +271,26 @@ namespace GtkSharp.Generation {
 			return trim_type;
 		}
 
-		private IGeneratable DeAlias(string type) {
+		private IGeneratable ResolveType(string type) {
 			type = Trim(type);
-			IGeneratable cur_type = null;
-			while (types.TryGetValue(type, out cur_type) && cur_type is AliasGen) {
-				IGeneratable igen = cur_type as AliasGen;
+			if (!types.TryGetValue(type, out IGeneratable cur_type)) {
+				cur_type = types.Values.FirstOrDefault(t => t.QualifiedName == type);
+				if (cur_type != null) {
+					types[type] = cur_type;
+				}
+			}
 
-				IGeneratable new_type;
-				if (!types.TryGetValue(igen.Name, out new_type))
-					new_type = null;
 
-				types[type] = new_type;
-				type = igen.Name;
+
+			if (cur_type is AliasGen) {
+				if (cur_type.Name == type) {
+					return cur_type;
+				}
+
+				cur_type = ResolveType(cur_type.Name);
+				if (cur_type != null) {
+					types[type] = cur_type;
+				}
 			}
 
 			return cur_type;
@@ -408,6 +457,8 @@ namespace GtkSharp.Generation {
 					return "for_each";
 				case "remove":
 					return "_remove";
+				case "...":
+					return "_va_list";
 				default:
 					break;
 			}

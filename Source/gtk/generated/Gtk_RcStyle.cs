@@ -25,6 +25,82 @@ namespace Gtk {
 			Raw = gtk_rc_style_new();
 		}
 
+		[DllImport ("gtk-sharp-glue")]
+		extern static uint gtksharp_gtk_rcstyle_get_name_offset ();
+
+		static uint name_offset = gtksharp_gtk_rcstyle_get_name_offset ();
+		public string Name {
+			get {
+				unsafe {
+					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + name_offset);
+					return GLib.Marshaller.Utf8PtrToString ((*raw_ptr));
+				}
+			}
+			set {
+				unsafe {
+					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + name_offset);
+					*raw_ptr = GLib.Marshaller.StringToPtrGStrdup (value);
+				}
+			}
+		}
+
+		[DllImport ("gtk-sharp-glue")]
+		extern static uint gtksharp_gtk_rcstyle_get_font_desc_offset ();
+
+		static uint font_desc_offset = gtksharp_gtk_rcstyle_get_font_desc_offset ();
+		public Pango.FontDescription FontDesc {
+			get {
+				unsafe {
+					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + font_desc_offset);
+					return (*raw_ptr) == IntPtr.Zero ? null : (Pango.FontDescription) GLib.Opaque.GetOpaque ((*raw_ptr), typeof (Pango.FontDescription), false);
+				}
+			}
+			set {
+				unsafe {
+					IntPtr* raw_ptr = (IntPtr*)(((byte*)Handle) + font_desc_offset);
+					*raw_ptr = value == null ? IntPtr.Zero : value.Handle;
+				}
+			}
+		}
+
+		[DllImport ("gtk-sharp-glue")]
+		extern static uint gtksharp_gtk_rcstyle_get_xthickness_offset ();
+
+		static uint xthickness_offset = gtksharp_gtk_rcstyle_get_xthickness_offset ();
+		public int Xthickness {
+			get {
+				unsafe {
+					int* raw_ptr = (int*)(((byte*)Handle) + xthickness_offset);
+					return (*raw_ptr);
+				}
+			}
+			set {
+				unsafe {
+					int* raw_ptr = (int*)(((byte*)Handle) + xthickness_offset);
+					*raw_ptr = value;
+				}
+			}
+		}
+
+		[DllImport ("gtk-sharp-glue")]
+		extern static uint gtksharp_gtk_rcstyle_get_ythickness_offset ();
+
+		static uint ythickness_offset = gtksharp_gtk_rcstyle_get_ythickness_offset ();
+		public int Ythickness {
+			get {
+				unsafe {
+					int* raw_ptr = (int*)(((byte*)Handle) + ythickness_offset);
+					return (*raw_ptr);
+				}
+			}
+			set {
+				unsafe {
+					int* raw_ptr = (int*)(((byte*)Handle) + ythickness_offset);
+					*raw_ptr = value;
+				}
+			}
+		}
+
 		static CreateRcStyleNativeDelegate CreateRcStyle_cb_delegate;
 		static CreateRcStyleNativeDelegate CreateRcStyleVMCallback {
 			get {

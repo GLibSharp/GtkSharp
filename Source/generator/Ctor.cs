@@ -31,14 +31,13 @@ namespace GtkSharp.Generation {
 
 		private bool preferred;
 		private string name;
-		private bool needs_chaining = false;
+		ClassBase implementor;
 
 		public Ctor(XmlElement elem, ClassBase implementor) : base(elem, implementor) {
 			preferred = elem.GetAttributeAsBoolean("preferred");
-			if (implementor is ObjectGen)
-				needs_chaining = true;
-
+			this.implementor = implementor;
 			name = implementor.Name;
+			parms.Constructor = true;
 		}
 
 		public bool Preferred {
@@ -93,13 +92,16 @@ namespace GtkSharp.Generation {
 
 			GenerateImport(sw);
 
+			bool needs_chaining = implementor is ObjectGen || implementor.Parent != null;
+			bool needs_alloc = implementor is ObjectGen;
+
 			if (IsStatic)
 				GenerateStatic(gen_info);
 			else {
 				sw.WriteLine("\t\t{0} {1}{2} ({3}) {4}", Protection, Safety, name, Signature.ToString(), needs_chaining ? ": base (IntPtr.Zero)" : "");
 				sw.WriteLine("\t\t{");
 
-				if (needs_chaining) {
+				if (needs_alloc) {
 					sw.WriteLine("\t\t\tif (GetType () != typeof (" + name + ")) {");
 
 					if (Parameters.Count == 0) {

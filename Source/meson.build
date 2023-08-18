@@ -10,6 +10,8 @@ apiversion = '3.0.0.0'
 mono_required_version = '>=3.2.0'
 gtk_required_version='>=3.22.0'
 glib_required_version='>=2.32.0'
+gi_required_version='>=1.72.0'
+
 
 csc = meson.get_compiler('cs')
 
@@ -44,6 +46,13 @@ glib_dep = dependency('glib-2.0', version: glib_required_version,
         fallback: ['glib', 'libglib_dep'])
 gio_dep = dependency('gio-2.0', version: glib_required_version,
         fallback: ['glib', 'libgio_dep'])
+gobject_dep = dependency('gobject-2.0', version : glib_required_version,
+  fallback: ['glib', 'libgobject_dep'])
+
+if glib_dep.type_name() == 'internal'
+    gi_dep = dependency('gobject-introspection-1.0', version: gi_required_version,
+        fallback: ['gobject-introspection'])
+endif
 
 # FIXME Check how to enabled debug flags (if at all needed).
 
@@ -91,8 +100,19 @@ foreach d: [ 'glib',  'gio' ]
     mono_path += pathsep + join_paths(meson.current_build_dir(), d)
 endforeach
 
+dep_type = glib_dep.type_name()
+if dep_type == 'internal'
+    subprojdir = 'subprojects'
+    glib_girdir = join_paths(meson.global_build_root(), subprojdir, 'gobject-introspection', 'gir')
+    gio_girdir = glib_girdir
+elif dep_type == 'pkgconfig'
+    glib_girdir = join_paths(glib_dep.get_variable(pkgconfig: 'datadir'), 'gir-1.0')
+    gio_girdir =  join_paths(gio_dep.get_variable(pkgconfig: 'datadir'), 'gir-1.0')
+endif
+
 subdir('parser')
 subdir('generator')
+subdir('bindinator')
 subdir('glib')
 subdir('gio')
 
@@ -103,6 +123,7 @@ if cairo_dep.found()
 else
     message('Cairo not found, not building')
 endif
+cairo_gobject_dep = dependency('cairo-gobject', required: get_option('cairo'))
 
 pango_dep = dependency('pango', required: get_option('pango'))
 if pango_dep.found()
@@ -169,3 +190,5 @@ if install
     gacutil_install = join_paths(meson.current_source_dir(), 'gacutil_install.py')
     meson.add_install_script(gacutil_install, install_infos)
 endif
+
+subdir('tests')

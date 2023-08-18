@@ -7,7 +7,8 @@ jobs:
         config:
           - { os: ubuntu-latest, arch: x64, name: ubuntu-x64 }
           - { os: macos-latest, arch: x64, name: macos-x64 }
-          - { os: windows-latest, arch: x64, name: windows-x64 }
+          # Disable Windows until gobject-introspeciton build is fixed
+          # - { os: windows-latest, arch: x64, name: windows-x64 }
     runs-on: ${{ matrix.config.os }}
     steps:
       - uses: actions/checkout@v2
@@ -22,11 +23,22 @@ jobs:
         run: dotnet format Source/gtk-sharp.sln --verify-no-changes --no-restore
       - name: Install Deps
         run: pip3 install meson ninja
+      - name: Install Windows Deps
+        if: matrix.config.os == 'windows-latest'
+        run: choco install winflexbison3 pkgconfiglite -y --allow-empty-checksum
+      - name: Install macOS Deps
+        if: matrix.config.os == 'macos-latest'
+        run: |
+          brew update
+          brew install bison
+          echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
       - name: Configure
-        run: meson builddir
+        run: meson setup builddir --buildtype=release --prefix=${GITHUB_WORKSPACE}/build_prefix
       - name: Build
         run: meson compile -C builddir
       - name: Install
         run: meson install -C builddir
       - name: Build dotnet
         run: dotnet build Source/gtk-sharp.sln /p:Platform="Any CPU"
+      - name: Test
+        run: dotnet test Source/gtk-sharp.sln /p:Platform="Any CPU"

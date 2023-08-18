@@ -964,22 +964,15 @@ namespace GLib {
 		}
 
 		[DllImport("gio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern bool g_settings_set_strv(IntPtr raw, IntPtr key, IntPtr[] value);
+		static extern bool g_settings_set_strv(IntPtr raw, IntPtr key, IntPtr value);
 
 		public bool SetStrv(string key, string[] value) {
 			IntPtr native_key = GLib.Marshaller.StringToPtrGStrdup (key);
-			int cnt_value = value == null ? 0 : value.Length;
-			IntPtr[] native_value = new IntPtr [cnt_value + 1];
-			for (int i = 0; i < cnt_value; i++)
-				native_value [i] = GLib.Marshaller.StringToPtrGStrdup (value[i]);
-			native_value [cnt_value] = IntPtr.Zero;
+			IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, true);
 			bool raw_ret = g_settings_set_strv(Handle, native_key, native_value);
 			bool ret = raw_ret;
 			GLib.Marshaller.Free (native_key);
-			for (int i = 0; i < native_value.Length - 1; i++) {
-				value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
-				GLib.Marshaller.Free (native_value[i]);
-			}
+			GLib.Marshaller.StrFreeV (native_value);
 			return ret;
 		}
 

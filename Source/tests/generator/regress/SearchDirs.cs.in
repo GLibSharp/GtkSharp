@@ -1,0 +1,7 @@
+namespace Generator.Tests
+{
+	public static class SearchDirs
+	{
+		public const string SEARCH_DIRS = "@SEARCH_DIRS@";
+	}
+}

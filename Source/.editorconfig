@@ -3,6 +3,8 @@ root = true
 
 [**/generated/*.cs]
 generated_code = true
+[**/generated/*/*.cs]
+generated_code = true
 
 # C# files
 [*.cs]

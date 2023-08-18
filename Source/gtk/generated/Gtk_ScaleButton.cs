@@ -14,7 +14,7 @@ namespace Gtk {
 		public ScaleButton (IntPtr raw) : base(raw) {}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_scale_button_new(int size, double min, double max, double step, IntPtr[] icons);
+		static extern IntPtr gtk_scale_button_new(int size, double min, double max, double step, IntPtr icons);
 
 		public ScaleButton (Gtk.IconSize size, double min, double max, double step, string[] icons) : base (IntPtr.Zero)
 		{
@@ -28,16 +28,9 @@ namespace Gtk {
 				CreateNativeObject (names.ToArray (), vals.ToArray ());
 				return;
 			}
-			int cnt_icons = icons == null ? 0 : icons.Length;
-			IntPtr[] native_icons = new IntPtr [cnt_icons + 1];
-			for (int i = 0; i < cnt_icons; i++)
-				native_icons [i] = GLib.Marshaller.StringToPtrGStrdup (icons[i]);
-			native_icons [cnt_icons] = IntPtr.Zero;
+			IntPtr native_icons = GLib.Marshaller.StringArrayToStrvPtr(icons, true);
 			Raw = gtk_scale_button_new((int) size, min, max, step, native_icons);
-			for (int i = 0; i < native_icons.Length - 1; i++) {
-				icons [i] = GLib.Marshaller.Utf8PtrToString (native_icons[i]);
-				GLib.Marshaller.Free (native_icons[i]);
-			}
+			GLib.Marshaller.StrFreeV (native_icons);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -92,7 +85,7 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_scale_button_set_icons(IntPtr raw, IntPtr[] icons);
+		static extern void gtk_scale_button_set_icons(IntPtr raw, IntPtr icons);
 
 		[GLib.Property ("icons")]
 		public string[] Icons {
@@ -103,16 +96,9 @@ namespace Gtk {
 				return ret;
 			}
 			set  {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value + 1];
-				for (int i = 0; i < cnt_value; i++)
-					native_value [i] = GLib.Marshaller.StringToPtrGStrdup (value[i]);
-				native_value [cnt_value] = IntPtr.Zero;
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, true);
 				gtk_scale_button_set_icons(Handle, native_value);
-				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
-					GLib.Marshaller.Free (native_value[i]);
-				}
+				GLib.Marshaller.StrFreeV (native_value);
 			}
 		}
 

@@ -148,7 +148,15 @@ namespace GtkSharp.Generation {
 				}
 			}
 
-			if (!Elem.GetAttributeAsBoolean("noequals")) {
+			bool genEquals = !Elem.GetAttributeAsBoolean("noequals");
+			if (genEquals && Methods.ContainsKey("Equals")) {
+				var equalsMethod = Methods["Equals"];
+				if (equalsMethod.Parameters.Count == 1 && equalsMethod.Parameters[0].CSType == QualifiedName) {
+					genEquals = false;
+				}
+			}
+
+			if (genEquals) {
 				sw.WriteLine("\t\tpublic bool Equals ({0} other)", Name);
 				sw.WriteLine("\t\t{");
 				sw.WriteLine("\t\t\treturn {0};", equals.ToString());

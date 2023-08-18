@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="regress\**" />
+		<EmbeddedResource Remove="regress\**" />
+		<None Remove="regress\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="regress-sharp-abi.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="meson.build" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0-1.final" />
+		<PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="4.1.0-preview1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+		<PackageReference Include="coverlet.collector" Version="3.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\regress\regress-sharp-api.xml">
+			<Link>regress-sharp-api.xml</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gdk\Gdk.metadata">
+		  <Link>Gdk.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gdk\gdk-api.raw">
+		  <Link>gdk-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gio\Gio.metadata">
+		  <Link>Gio.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gio\gio-api.raw">
+		  <Link>gio-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\atk\Atk.metadata">
+		  <Link>Atk.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\atk\atk-api.raw">
+		  <Link>atk-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\pango\pango-api.raw">
+		  <Link>pango-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\pango\Pango.metadata">
+		  <Link>Pango.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gtk\Gtk.metadata">
+		  <Link>Gtk.metadata</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\gtk\gtk-api.raw">
+		  <Link>gtk-api.raw</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="glib-api.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="regress-sharp-abi.c">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="regress-sharp-api.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="regress-sharp-glue.c">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\gio\gio.csproj" />
+		<ProjectReference Include="..\..\..\glib\glib.csproj" />
+		<ProjectReference Include="..\..\..\generator\generator.csproj" />
+	</ItemGroup>
+</Project>

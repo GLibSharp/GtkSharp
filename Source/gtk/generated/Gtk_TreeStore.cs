@@ -165,15 +165,15 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_tree_store_set_column_types(IntPtr raw, int n_columns, IntPtr[] types);
+		static extern void gtk_tree_store_set_column_types(IntPtr raw, int n_columns, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]IntPtr[] types);
 
 		public GLib.GType[] ColumnTypes { 
 			set {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value];
-				for (int i = 0; i < cnt_value; i++)
+				int n_columns = (value == null ? 0 : value.Length);
+				IntPtr[] native_value = new IntPtr [n_columns];
+				for (int i = 0; i < n_columns; i++)
 					native_value [i] = value[i].Val;
-				gtk_tree_store_set_column_types(Handle, (value == null ? 0 : value.Length), native_value);
+				gtk_tree_store_set_column_types(Handle, n_columns, native_value);
 			}
 		}
 

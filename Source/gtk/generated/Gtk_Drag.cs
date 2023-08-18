@@ -93,10 +93,11 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_drag_dest_set(IntPtr widget, int flags, Gtk.TargetEntry[] targets, int n_targets, int actions);
+		static extern void gtk_drag_dest_set(IntPtr widget, int flags, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)]Gtk.TargetEntry[] targets, int n_targets, int actions);
 
 		public static void DestSet(Gtk.Widget widget, Gtk.DestDefaults flags, Gtk.TargetEntry[] targets, Gdk.DragAction actions) {
-			gtk_drag_dest_set(widget == null ? IntPtr.Zero : widget.Handle, (int) flags, targets, (targets == null ? 0 : targets.Length), (int) actions);
+			int n_targets = (targets == null ? 0 : targets.Length);
+			gtk_drag_dest_set(widget == null ? IntPtr.Zero : widget.Handle, (int) flags, targets, n_targets, (int) actions);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -236,10 +237,11 @@ namespace Gtk {
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_drag_source_set(IntPtr widget, int start_button_mask, Gtk.TargetEntry[] targets, int n_targets, int actions);
+		static extern void gtk_drag_source_set(IntPtr widget, int start_button_mask, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)]Gtk.TargetEntry[] targets, int n_targets, int actions);
 
 		public static void SourceSet(Gtk.Widget widget, Gdk.ModifierType start_button_mask, Gtk.TargetEntry[] targets, Gdk.DragAction actions) {
-			gtk_drag_source_set(widget == null ? IntPtr.Zero : widget.Handle, (int) start_button_mask, targets, (targets == null ? 0 : targets.Length), (int) actions);
+			int n_targets = (targets == null ? 0 : targets.Length);
+			gtk_drag_source_set(widget == null ? IntPtr.Zero : widget.Handle, (int) start_button_mask, targets, n_targets, (int) actions);
 		}
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]

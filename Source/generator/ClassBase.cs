@@ -114,6 +114,10 @@ namespace GtkSharp.Generation {
 				switch (node.Name) {
 					case "method":
 						name = member.GetAttribute("name");
+						// FIXME: bindinate generates twice the _ref and and _unref methods
+						if (methods.ContainsKey(name) && (name == "Ref" || name == "Unref")) {
+							continue;
+						}
 						while (methods.ContainsKey(name))
 							name += "mangled";
 						methods.Add(name, new Method(member, this));
@@ -303,14 +307,20 @@ namespace GtkSharp.Generation {
 				}
 			}
 
-			foreach (StructABIField abi_field in abi_fields) {
-				if (!abi_field.Validate(log))
-					abi_fields_valid = false;
+			if (!CheckABIStructParent(log, out _)) {
+				abi_fields_valid = false;
+			} else {
+				foreach (StructABIField abi_field in abi_fields) {
+					if (!abi_field.Validate(log))
+						abi_fields_valid = false;
+				}
 			}
-			if (abi_fields_valid)
+
+			if (abi_fields_valid) {
 				foreach (StructABIField abi_field in abi_fields) {
 					abi_field.SetGetOffseName();
 				}
+			}
 
 			ArrayList invalids = new ArrayList();
 

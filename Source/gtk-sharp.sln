@@ -1,25 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gtk-sharp", "gtk-sharp", "{E0AD538D-9979-479B-8CBA-ED9143536CE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glib", "glib\glib.csproj", "{3BF1D531-8840-4F15-8066-A9788D8C398B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "glib", "glib\glib.csproj", "{3BF1D531-8840-4F15-8066-A9788D8C398B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "atk", "atk\atk.csproj", "{42FE871A-D8CF-4B29-9AFF-B02454E6C976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "atk", "atk\atk.csproj", "{42FE871A-D8CF-4B29-9AFF-B02454E6C976}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cairo", "cairo\cairo.csproj", "{364577DB-9728-4951-AC2C-EDF7A6FCC09D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cairo", "cairo\cairo.csproj", "{364577DB-9728-4951-AC2C-EDF7A6FCC09D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtk", "gtk\gtk.csproj", "{94045F11-4266-40B4-910F-298985AF69D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gtk", "gtk\gtk.csproj", "{94045F11-4266-40B4-910F-298985AF69D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pango", "pango\pango.csproj", "{FF422D8C-562F-4EA6-8590-9D1A5CD40AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pango", "pango\pango.csproj", "{FF422D8C-562F-4EA6-8590-9D1A5CD40AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gdk", "gdk\gdk.csproj", "{DB3F4842-C47A-4FAA-B534-D2C10BB0718C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gdk", "gdk\gdk.csproj", "{DB3F4842-C47A-4FAA-B534-D2C10BB0718C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gio", "gio\gio.csproj", "{C2F33008-4268-40A3-92BD-4EDCC171BE69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gio", "gio\gio.csproj", "{C2F33008-4268-40A3-92BD-4EDCC171BE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "generator", "generator\generator.csproj", "{80E73555-2284-40DC-9068-9A40B7359B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "generator", "generator\generator.csproj", "{80E73555-2284-40DC-9068-9A40B7359B0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0E652F3D-9260-4CB8-B277-FC854F32E7DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator.Tests.Integration", "tests\generator\Generator.Tests.Integration\Generator.Tests.Integration.csproj", "{F45F2E1F-2665-43A5-8CCB-B7A86C4584CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regress", "tests\generator\regress\generated\Regress\Regress.csproj", "{EC293E7A-7D08-4576-9551-3D24717A43D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator.Tests.Unit", "tests\generator\Generator.Tests.Unit\Generator.Tests.Unit.csproj", "{1B9BD6B8-D945-431F-90A0-4A36E6AF61FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +67,18 @@ Global
 		{80E73555-2284-40DC-9068-9A40B7359B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80E73555-2284-40DC-9068-9A40B7359B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80E73555-2284-40DC-9068-9A40B7359B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45F2E1F-2665-43A5-8CCB-B7A86C4584CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45F2E1F-2665-43A5-8CCB-B7A86C4584CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45F2E1F-2665-43A5-8CCB-B7A86C4584CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45F2E1F-2665-43A5-8CCB-B7A86C4584CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC293E7A-7D08-4576-9551-3D24717A43D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC293E7A-7D08-4576-9551-3D24717A43D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC293E7A-7D08-4576-9551-3D24717A43D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC293E7A-7D08-4576-9551-3D24717A43D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B9BD6B8-D945-431F-90A0-4A36E6AF61FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B9BD6B8-D945-431F-90A0-4A36E6AF61FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B9BD6B8-D945-431F-90A0-4A36E6AF61FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B9BD6B8-D945-431F-90A0-4A36E6AF61FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +91,12 @@ Global
 		{FF422D8C-562F-4EA6-8590-9D1A5CD40AD4} = {E0AD538D-9979-479B-8CBA-ED9143536CE0}
 		{DB3F4842-C47A-4FAA-B534-D2C10BB0718C} = {E0AD538D-9979-479B-8CBA-ED9143536CE0}
 		{C2F33008-4268-40A3-92BD-4EDCC171BE69} = {E0AD538D-9979-479B-8CBA-ED9143536CE0}
+		{F45F2E1F-2665-43A5-8CCB-B7A86C4584CD} = {0E652F3D-9260-4CB8-B277-FC854F32E7DE}
+		{EC293E7A-7D08-4576-9551-3D24717A43D2} = {0E652F3D-9260-4CB8-B277-FC854F32E7DE}
+		{1B9BD6B8-D945-431F-90A0-4A36E6AF61FD} = {0E652F3D-9260-4CB8-B277-FC854F32E7DE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18ABBBD5-A9F9-4573-8D9B-CE606F0BED1C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = sample\sample.csproj

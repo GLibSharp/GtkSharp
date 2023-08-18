@@ -32,11 +32,23 @@ namespace GtkSharp.Generation {
 		public Property(XmlElement elem, ClassBase container_type) : base(elem, container_type) { }
 
 		public bool Validate(LogWriter log) {
-			if (CSType == "" && !Hidden) {
+			if (Hidden) {
+				return true;
+			}
+
+			if (CSType == "") {
 				log.Member = Name;
 				log.Warn("property has unknown type '{0}' ", CType);
 				Statistics.ThrottledCount++;
 				return false;
+			}
+
+			if (SymbolTable.Table.IsCallback(CType)) {
+				log.Member = Name;
+				log.Warn($"{CType} properties are not supported", CType);
+				Statistics.ThrottledCount++;
+				return false;
+
 			}
 
 			return true;
@@ -66,14 +78,14 @@ namespace GtkSharp.Generation {
 			return "[GLib.Property (" + qpname + ")]";
 		}
 
-		protected virtual string RawGetter(string qpname) {
-			if (container_type is InterfaceGen)
+		protected virtual string RawGetter(string qpname, ClassBase implementor) {
+			if (container_type is InterfaceGen && implementor == null)
 				return "implementor.GetProperty (" + qpname + ")";
 			return "GetProperty (" + qpname + ")";
 		}
 
-		protected virtual string RawSetter(string qpname) {
-			if (container_type is InterfaceGen)
+		protected virtual string RawSetter(string qpname, ClassBase implementor) {
+			if (container_type is InterfaceGen && implementor == null)
 				return "implementor.SetProperty(" + qpname + ", val)";
 			return "SetProperty(" + qpname + ", val)";
 		}
@@ -141,7 +153,7 @@ namespace GtkSharp.Generation {
 				sw.WriteLine();
 			} else if (Readable) {
 				sw.WriteLine(indent + "get {");
-				sw.WriteLine(indent + "\tGLib.Value val = " + RawGetter(qpname) + ";");
+				sw.WriteLine(indent + "\tGLib.Value val = " + RawGetter(qpname, implementor) + ";");
 				if (table.IsOpaque(CType) || table.IsBoxed(CType)) {
 					sw.WriteLine(indent + "\t" + CSType + " ret = (" + CSType + ") val;");
 				} else if (table.IsInterface(CType)) {
@@ -182,7 +194,7 @@ namespace GtkSharp.Generation {
 					}
 					sw.WriteLine("value);");
 				}
-				sw.WriteLine(indent + "\t" + RawSetter(qpname) + ";");
+				sw.WriteLine(indent + "\t" + RawSetter(qpname, implementor) + ";");
 				sw.WriteLine(indent + "\tval.Dispose ();");
 				sw.WriteLine(indent + "}");
 			}

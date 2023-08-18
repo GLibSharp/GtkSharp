@@ -187,7 +187,7 @@ namespace Gtk {
 		static extern IntPtr gtk_about_dialog_get_authors(IntPtr raw);
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_about_dialog_set_authors(IntPtr raw, IntPtr[] authors);
+		static extern void gtk_about_dialog_set_authors(IntPtr raw, IntPtr authors);
 
 		[GLib.Property ("authors")]
 		public string[] Authors {
@@ -197,16 +197,9 @@ namespace Gtk {
 				return ret;
 			}
 			set  {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value + 1];
-				for (int i = 0; i < cnt_value; i++)
-					native_value [i] = GLib.Marshaller.StringToPtrGStrdup (value[i]);
-				native_value [cnt_value] = IntPtr.Zero;
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, true);
 				gtk_about_dialog_set_authors(Handle, native_value);
-				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
-					GLib.Marshaller.Free (native_value[i]);
-				}
+				GLib.Marshaller.StrFreeV (native_value);
 			}
 		}
 
@@ -214,7 +207,7 @@ namespace Gtk {
 		static extern IntPtr gtk_about_dialog_get_documenters(IntPtr raw);
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_about_dialog_set_documenters(IntPtr raw, IntPtr[] documenters);
+		static extern void gtk_about_dialog_set_documenters(IntPtr raw, IntPtr documenters);
 
 		[GLib.Property ("documenters")]
 		public string[] Documenters {
@@ -224,16 +217,9 @@ namespace Gtk {
 				return ret;
 			}
 			set  {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value + 1];
-				for (int i = 0; i < cnt_value; i++)
-					native_value [i] = GLib.Marshaller.StringToPtrGStrdup (value[i]);
-				native_value [cnt_value] = IntPtr.Zero;
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, true);
 				gtk_about_dialog_set_documenters(Handle, native_value);
-				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
-					GLib.Marshaller.Free (native_value[i]);
-				}
+				GLib.Marshaller.StrFreeV (native_value);
 			}
 		}
 
@@ -241,7 +227,7 @@ namespace Gtk {
 		static extern IntPtr gtk_about_dialog_get_artists(IntPtr raw);
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_about_dialog_set_artists(IntPtr raw, IntPtr[] artists);
+		static extern void gtk_about_dialog_set_artists(IntPtr raw, IntPtr artists);
 
 		[GLib.Property ("artists")]
 		public string[] Artists {
@@ -251,16 +237,9 @@ namespace Gtk {
 				return ret;
 			}
 			set  {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value + 1];
-				for (int i = 0; i < cnt_value; i++)
-					native_value [i] = GLib.Marshaller.StringToPtrGStrdup (value[i]);
-				native_value [cnt_value] = IntPtr.Zero;
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, true);
 				gtk_about_dialog_set_artists(Handle, native_value);
-				for (int i = 0; i < native_value.Length - 1; i++) {
-					value [i] = GLib.Marshaller.Utf8PtrToString (native_value[i]);
-					GLib.Marshaller.Free (native_value[i]);
-				}
+				GLib.Marshaller.StrFreeV (native_value);
 			}
 		}
 

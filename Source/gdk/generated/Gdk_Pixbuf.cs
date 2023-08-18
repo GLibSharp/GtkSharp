@@ -281,7 +281,7 @@ namespace Gdk {
 		}
 
 		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gdk_pixbuf_new_from_xpm_data(IntPtr[] data);
+		static extern IntPtr gdk_pixbuf_new_from_xpm_data(IntPtr data);
 
 		public Pixbuf (string[] data) : base (IntPtr.Zero)
 		{
@@ -291,15 +291,9 @@ namespace Gdk {
 				CreateNativeObject (names.ToArray (), vals.ToArray ());
 				return;
 			}
-			int cnt_data = data == null ? 0 : data.Length;
-			IntPtr[] native_data = new IntPtr [cnt_data];
-			for (int i = 0; i < cnt_data; i++)
-				native_data [i] = GLib.Marshaller.StringToPtrGStrdup (data[i]);
+			IntPtr native_data = GLib.Marshaller.StringArrayToStrvPtr(data, true);
 			Raw = gdk_pixbuf_new_from_xpm_data(native_data);
-			for (int i = 0; i < native_data.Length; i++) {
-				data [i] = GLib.Marshaller.Utf8PtrToString (native_data[i]);
-				GLib.Marshaller.Free (native_data[i]);
-			}
+			GLib.Marshaller.StrFreeV (native_data);
 		}
 
 		[DllImport("gdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]

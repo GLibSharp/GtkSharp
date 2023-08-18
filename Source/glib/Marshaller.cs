@@ -162,8 +162,8 @@ namespace GLib {
 				return ret.Replace("%", "%%");
 		}
 
-		public static IntPtr StringArrayToStrvPtr(string[] strs) {
-			IntPtr[] ptrs = StringArrayToNullTermPointer(strs);
+		public static IntPtr StringArrayToStrvPtr(string[] strs, bool nullTerminated = true) {
+			IntPtr[] ptrs = StringArrayToPtr(strs, nullTerminated);
 			IntPtr ret = g_malloc(new UIntPtr((ulong)(ptrs.Length * IntPtr.Size)));
 			Marshal.Copy(ptrs, 0, ret, ptrs.Length);
 			return ret;
@@ -174,12 +174,23 @@ namespace GLib {
 		}
 
 		public static IntPtr[] StringArrayToNullTermPointer(string[] strs) {
+			return StringArrayToPtr(strs, true);
+		}
+
+		public static IntPtr[] StringArrayToPtr(string[] strs, bool nullTerminated = true) {
 			if (strs == null)
 				return null;
-			IntPtr[] result = new IntPtr[strs.Length + 1];
-			for (int i = 0; i < strs.Length; i++)
+			var length = strs.Length;
+			if (nullTerminated) {
+				length++;
+			}
+			IntPtr[] result = new IntPtr[length];
+			for (int i = 0; i < strs.Length; i++) {
 				result[i] = StringToPtrGStrdup(strs[i]);
-			result[strs.Length] = IntPtr.Zero;
+			}
+			if (nullTerminated) {
+				result[strs.Length] = IntPtr.Zero;
+			}
 			return result;
 		}
 
@@ -188,6 +199,18 @@ namespace GLib {
 
 		public static void StrFreeV(IntPtr null_term_array) {
 			g_strfreev(null_term_array);
+		}
+
+		/// <summary>
+		/// Frees a fixed-length strings array
+		/// </summary>
+		/// <param name="ptr"></param>
+		public static void StringArrayPtrFree(IntPtr string_array, int count) {
+			for (int i = 0; i < count; ++i) {
+				IntPtr s = Marshal.ReadIntPtr(string_array, i * IntPtr.Size);
+				Free(s);
+			}
+			Free(string_array);
 		}
 
 		public static string[] NullTermPtrToStringArray(IntPtr null_term_array, bool owned) {
@@ -208,20 +231,27 @@ namespace GLib {
 			return result.ToArray();
 		}
 
+		[Obsolete("Use NullTermPtrToStringArray with owned=true")]
 		public static string[] PtrToStringArrayGFree(IntPtr string_array) {
+			return NullTermPtrToStringArray(string_array, true);
+		}
+
+		public static string[] PtrToStringArray(IntPtr string_array, int count, bool owned) {
 			if (string_array == IntPtr.Zero)
 				return new string[0];
-
-			int count = 0;
-			while (Marshal.ReadIntPtr(string_array, count * IntPtr.Size) != IntPtr.Zero)
-				++count;
 
 			string[] members = new string[count];
 			for (int i = 0; i < count; ++i) {
 				IntPtr s = Marshal.ReadIntPtr(string_array, i * IntPtr.Size);
-				members[i] = PtrToStringGFree(s);
+				if (owned) {
+					members[i] = PtrToStringGFree(s);
+				} else {
+					members[i] = Utf8PtrToString(s);
+				}
 			}
-			Free(string_array);
+			if (owned) {
+				Free(string_array);
+			}
 			return members;
 		}
 

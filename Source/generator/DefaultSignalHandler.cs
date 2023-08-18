@@ -131,6 +131,10 @@ namespace GtkSharp.Generation {
 						return "GLib.GType.String";
 					case "int":
 						return "GLib.GType.Int";
+					case "long":
+						return "GLib.GType.Int64";
+					case "ulong":
+						return "GLib.GType.UInt64";
 					default:
 						throw new Exception(retval.CSType);
 				}

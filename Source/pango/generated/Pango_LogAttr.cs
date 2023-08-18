@@ -14,6 +14,292 @@ namespace Pango {
 
 		private uint _bitfield0;
 
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_line_break (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_line_break (IntPtr raw, bool value);
+		public bool IsLineBreak {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_line_break (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_line_break (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_mandatory_break (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_mandatory_break (IntPtr raw, bool value);
+		public bool IsMandatoryBreak {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_mandatory_break (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_mandatory_break (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_char_break (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_char_break (IntPtr raw, bool value);
+		public bool IsCharBreak {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_char_break (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_char_break (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_white (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_white (IntPtr raw, bool value);
+		public bool IsWhite {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_white (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_white (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_cursor_position (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_cursor_position (IntPtr raw, bool value);
+		public bool IsCursorPosition {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_cursor_position (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_cursor_position (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_word_start (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_word_start (IntPtr raw, bool value);
+		public bool IsWordStart {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_word_start (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_word_start (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_word_end (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_word_end (IntPtr raw, bool value);
+		public bool IsWordEnd {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_word_end (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_word_end (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_sentence_boundary (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_sentence_boundary (IntPtr raw, bool value);
+		public bool IsSentenceBoundary {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_sentence_boundary (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_sentence_boundary (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_sentence_start (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_sentence_start (IntPtr raw, bool value);
+		public bool IsSentenceStart {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_sentence_start (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_sentence_start (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_sentence_end (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_sentence_end (IntPtr raw, bool value);
+		public bool IsSentenceEnd {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_sentence_end (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_sentence_end (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_backspace_deletes_character (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_backspace_deletes_character (IntPtr raw, bool value);
+		public bool BackspaceDeletesCharacter {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_backspace_deletes_character (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_backspace_deletes_character (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_expandable_space (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_expandable_space (IntPtr raw, bool value);
+		public bool IsExpandableSpace {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_expandable_space (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_expandable_space (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
+		[DllImport ("pango-sharp-glue")]
+		extern static bool pangosharp_pango_logattr_get_is_word_boundary (IntPtr raw);
+		[DllImport ("pango-sharp-glue")]
+		extern static void pangosharp_pango_logattr_set_is_word_boundary (IntPtr raw, bool value);
+		public bool IsWordBoundary {
+			get {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				bool result = pangosharp_pango_logattr_get_is_word_boundary (this_as_native);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+				return result;
+			}
+			set {
+				IntPtr this_as_native = System.Runtime.InteropServices.Marshal.AllocHGlobal (System.Runtime.InteropServices.Marshal.SizeOf (this));
+				System.Runtime.InteropServices.Marshal.StructureToPtr (this, this_as_native, false);
+				pangosharp_pango_logattr_set_is_word_boundary (this_as_native, value);
+				ReadNative (this_as_native, ref this);
+				System.Runtime.InteropServices.Marshal.FreeHGlobal (this_as_native);
+			}
+		}
+
 
 		public static Pango.LogAttr Zero = new Pango.LogAttr ();
 
@@ -21,6 +307,11 @@ namespace Pango {
 			if (raw == IntPtr.Zero)
 				return Pango.LogAttr.Zero;
 			return (Pango.LogAttr) Marshal.PtrToStructure (raw, typeof (Pango.LogAttr));
+		}
+
+		static void ReadNative (IntPtr native, ref Pango.LogAttr target)
+		{
+			target = New (native);
 		}
 
 		public bool Equals (LogAttr other)

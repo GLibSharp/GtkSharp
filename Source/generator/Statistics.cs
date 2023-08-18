@@ -169,6 +169,22 @@ namespace GtkSharp.Generation {
 			}
 		}
 
+		public static void Reset() {
+			cbs = 0;
+			enums = 0;
+			objects = 0;
+			structs = 0;
+			boxed = 0;
+			opaques = 0;
+			interfaces = 0;
+			methods = 0;
+			ctors = 0;
+			props = 0;
+			sigs = 0;
+			throttled = 0;
+			ignored = 0;
+		}
+
 		public static void Report() {
 			if (VMIgnored) {
 				Console.WriteLine();

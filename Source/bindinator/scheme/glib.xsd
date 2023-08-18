@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.gtk.org/introspection/glib/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <xs:import namespace="http://www.gtk.org/introspection/c/1.0" schemaLocation="c.xsd"/>
+  <xs:import namespace="http://www.gtk.org/introspection/core/1.0" schemaLocation="gir.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:attribute name="get-type" type="xs:NCName"/>
+  <xs:attribute name="type-name" type="xs:NCName"/>
+  <xs:attribute name="fundamental" type="xs:integer"/>
+  <xs:attribute name="get-value-func" type="xs:NCName"/>
+  <xs:attribute name="ref-func" type="xs:NCName"/>
+  <xs:attribute name="set-value-func" type="xs:NCName"/>
+  <xs:attribute name="type-struct" type="xs:NCName"/>
+  <xs:attribute name="unref-func" type="xs:NCName"/>
+  <xs:attribute name="error-domain" type="xs:NCName"/>
+  <xs:element name="boxed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="core:function"/>
+      </xs:sequence>
+      <xs:attribute ref="c:symbol-prefix" use="required"/>
+      <xs:attribute ref="glib:get-type" use="required"/>
+      <xs:attribute name="name" use="required" form="qualified" type="xs:NCName"/>
+      <xs:attribute ref="glib:type-name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attribute name="is-gtype-struct-for" type="xs:NCName"/>
+  <xs:element name="signal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="core:doc"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="core:parameters"/>
+          <xs:element ref="core:return-value"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="action" type="xs:integer"/>
+      <xs:attribute name="deprecated"/>
+      <xs:attribute name="deprecated-version" type="xs:NMTOKEN"/>
+      <xs:attribute name="detailed" type="xs:integer"/>
+      <xs:attribute name="introspectable" type="xs:integer"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="no-hooks" type="xs:integer"/>
+      <xs:attribute name="no-recurse" type="xs:integer"/>
+      <xs:attribute name="version" type="xs:NMTOKEN"/>
+      <xs:attribute name="when" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attribute name="nick" type="xs:NMTOKEN"/>
+</xs:schema>

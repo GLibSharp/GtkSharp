@@ -35,7 +35,7 @@ namespace Gtk {
 		static extern IntPtr gtk_rc_get_default_files();
 
 		[DllImport("gtk-3-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gtk_rc_set_default_files(IntPtr[] filenames);
+		static extern void gtk_rc_set_default_files(IntPtr filenames);
 
 		[Obsolete]
 		public static string[] DefaultFiles { 
@@ -45,12 +45,9 @@ namespace Gtk {
 				return ret;
 			}
 			set {
-				int cnt_value = value == null ? 0 : value.Length;
-				IntPtr[] native_value = new IntPtr [cnt_value + 1];
-				for (int i = 0; i < cnt_value; i++)
-					native_value [i] = GLib.Marshaller.StringToPtrGStrdup(value[i]);
-				native_value [cnt_value] = IntPtr.Zero;
+				IntPtr native_value = GLib.Marshaller.StringArrayToStrvPtr(value, true);
 				gtk_rc_set_default_files(native_value);
+				GLib.Marshaller.StrFreeV (native_value);
 			}
 		}
 

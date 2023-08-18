@@ -32,13 +32,13 @@ namespace GtkSharp.Generation {
 
 		public FieldBase(XmlElement elem, ClassBase container_type) : base(elem, container_type) { }
 		public FieldBase(XmlElement elem, ClassBase container_type, FieldBase abi_field) : base(elem, container_type) {
-			abi_field = abi_field;
+			this.abi_field = abi_field;
 		}
 
 
 		public virtual bool Validate(LogWriter log) {
 			log.Member = Name;
-			if (!Ignored && !Hidden && CSType == "") {
+			if (!Ignored && !Hidden && CSType == "" || CType == "") {
 				if (Name == "Priv")
 					return false;
 				log.Warn("field has unknown type: " + CType);

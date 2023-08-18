@@ -281,13 +281,13 @@ namespace GLib {
 		}
 
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void AskQuestionNativeDelegate (IntPtr inst, IntPtr message, IntPtr[] choices);
+		delegate void AskQuestionNativeDelegate (IntPtr inst, IntPtr message, IntPtr choices);
 
-		static void AskQuestion_cb (IntPtr inst, IntPtr message, IntPtr[] choices)
+		static void AskQuestion_cb (IntPtr inst, IntPtr message, IntPtr choices)
 		{
 			try {
 				MountOperation __obj = GLib.Object.GetObject (inst, false) as MountOperation;
-				__obj.OnAskQuestion (GLib.Marshaller.Utf8PtrToString (message), GLib.Marshaller.Utf8PtrToString (choices));
+				__obj.OnAskQuestion (GLib.Marshaller.Utf8PtrToString (message), GLib.Marshaller.NullTermPtrToStringArray (choices, false));
 			} catch (Exception e) {
 				GLib.ExceptionManager.RaiseUnhandledException (e, false);
 			}
@@ -309,16 +309,10 @@ namespace GLib {
 			if (unmanaged == null) return;
 
 			IntPtr native_message = GLib.Marshaller.StringToPtrGStrdup (message);
-			int cnt_choices = choices == null ? 0 : choices.Length;
-			IntPtr[] native_choices = new IntPtr [cnt_choices];
-			for (int i = 0; i < cnt_choices; i++)
-				native_choices [i] = GLib.Marshaller.StringToPtrGStrdup (choices[i]);
+			IntPtr native_choices = GLib.Marshaller.StringArrayToStrvPtr(choices, true);
 			unmanaged (this.Handle, native_message, native_choices);
 			GLib.Marshaller.Free (native_message);
-			for (int i = 0; i < native_choices.Length; i++) {
-				choices [i] = GLib.Marshaller.Utf8PtrToString (native_choices[i]);
-				GLib.Marshaller.Free (native_choices[i]);
-			}
+			GLib.Marshaller.StrFreeV (native_choices);
 		}
 
 		static ReplyNativeDelegate Reply_cb_delegate;
@@ -450,13 +444,13 @@ namespace GLib {
 		}
 
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
-		delegate void ShowProcessesNativeDelegate (IntPtr inst, IntPtr message, IntPtr processes, IntPtr[] choices);
+		delegate void ShowProcessesNativeDelegate (IntPtr inst, IntPtr message, IntPtr processes, IntPtr choices);
 
-		static void ShowProcesses_cb (IntPtr inst, IntPtr message, IntPtr processes, IntPtr[] choices)
+		static void ShowProcesses_cb (IntPtr inst, IntPtr message, IntPtr processes, IntPtr choices)
 		{
 			try {
 				MountOperation __obj = GLib.Object.GetObject (inst, false) as MountOperation;
-				__obj.OnShowProcesses (GLib.Marshaller.Utf8PtrToString (message), processes, GLib.Marshaller.Utf8PtrToString (choices));
+				__obj.OnShowProcesses (GLib.Marshaller.Utf8PtrToString (message), processes, GLib.Marshaller.NullTermPtrToStringArray (choices, false));
 			} catch (Exception e) {
 				GLib.ExceptionManager.RaiseUnhandledException (e, false);
 			}
@@ -478,16 +472,10 @@ namespace GLib {
 			if (unmanaged == null) return;
 
 			IntPtr native_message = GLib.Marshaller.StringToPtrGStrdup (message);
-			int cnt_choices = choices == null ? 0 : choices.Length;
-			IntPtr[] native_choices = new IntPtr [cnt_choices];
-			for (int i = 0; i < cnt_choices; i++)
-				native_choices [i] = GLib.Marshaller.StringToPtrGStrdup (choices[i]);
+			IntPtr native_choices = GLib.Marshaller.StringArrayToStrvPtr(choices, true);
 			unmanaged (this.Handle, native_message, processes, native_choices);
 			GLib.Marshaller.Free (native_message);
-			for (int i = 0; i < native_choices.Length; i++) {
-				choices [i] = GLib.Marshaller.Utf8PtrToString (native_choices[i]);
-				GLib.Marshaller.Free (native_choices[i]);
-			}
+			GLib.Marshaller.StrFreeV (native_choices);
 		}
 
 		static ShowUnmountProgressNativeDelegate ShowUnmountProgress_cb_delegate;

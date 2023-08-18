@@ -43,9 +43,11 @@ namespace GtkSharp.Generation {
 				if (IsString)
 					return "string";
 				// gir registers all integer values as gint even for numbers which do not fit into a gint
-				// if the number is too big for an int, try to fit it into a long
-				if (SymbolTable.Table.GetMarshalType(ctype) == "int" && value.Length < 20 && long.Parse(value) > Int32.MaxValue)
-					return "long";
+				// if the number is too big for an int, try to fit it into a long or ulong
+
+				if (SymbolTable.Table.GetMarshalType(ctype) == "int") {
+					return SymbolTable.Table.GetTypeFromIntegerValue(value);
+				}
 				return SymbolTable.Table.GetMarshalType(ctype);
 			}
 		}
