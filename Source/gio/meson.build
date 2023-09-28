@@ -1,6 +1,7 @@
 pkg = 'gio'
 assembly_name = pkg + '-sharp'
-
+nupkg_name = 'GLibSharp.GioSharp.' + version + '.nupkg'
+csproj_name = pkg + '.csproj'
 raw_api_fname = join_paths(meson.current_source_dir(), pkg + '-api.raw')
 metadata_fname = join_paths(meson.current_source_dir(), 'Gio.metadata')
 
@@ -35,6 +36,9 @@ gio_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         install_dir: lib_install_dir
 )
 
-nuget_infos += [['GioSharp', gio_sharp, ['GlibSharp']]]
 install_infos += [assembly_name, gio_sharp.full_path()]
 gio_sharp_dep = declare_dependency(link_with: [glib_sharp, gio_sharp])
+
+custom_target(assembly_name + '-nugget',
+        command: dotnet_pack + [join_paths(meson.current_source_dir(), csproj_name)],
+        output: nupkg_name)

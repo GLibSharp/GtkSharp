@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<PackageId>GLibSharp.GLibSharp</PackageId>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Update="glib-sharp.dll.config">
@@ -11,4 +11,5 @@
 		</None>
 	</ItemGroup>
 	<Import Project="..\common.targets" />
+	<Import Condition="Exists('..\..\builddir\Source\version.props')" Project="..\..\builddir\Source\version.props" />
 </Project>

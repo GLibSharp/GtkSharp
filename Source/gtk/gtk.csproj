@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<PackageId>GLibSharp.GtkSharp</PackageId>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Update="gdk-sharp.dll.config">
@@ -19,4 +19,5 @@
 		<ProjectReference Include="..\gdk\gdk.csproj" />
 	</ItemGroup>
 	<Import Project="..\common.targets" />
+	<Import Condition="Exists('..\..\builddir\Source\version.props')" Project="..\..\builddir\Source\version.props" />
 </Project>

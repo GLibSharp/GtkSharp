@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<PackageId>GLibSharp.PangoSharp</PackageId>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Update="pango-sharp.dll.config">
@@ -15,4 +15,5 @@
 		<ProjectReference Include="..\cairo\cairo.csproj" />
 	</ItemGroup>
 	<Import Project="..\common.targets" />
+	<Import Condition="Exists('..\..\builddir\Source\version.props')" Project="..\..\builddir\Source\version.props" />
 </Project>

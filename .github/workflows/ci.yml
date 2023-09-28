@@ -42,3 +42,5 @@ jobs:
         run: dotnet build Source/gtk-sharp.sln /p:Platform="Any CPU"
       - name: Test
         run: dotnet test Source/gtk-sharp.sln /p:Platform="Any CPU"
+      - name: Pack
+        run: dotnet pack Source/gtk-sharp.sln /p:Platform="Any CPU"

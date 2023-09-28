@@ -1,5 +1,8 @@
 pkg = 'pango'
+
 assembly_name = pkg + '-sharp'
+nupkg_name = 'GLibSharp.PangoSharp.' + version + '.nupkg'
+csproj_name = pkg + '.csproj'
 raw_api_fname = join_paths(meson.current_source_dir(), pkg + '-api.raw')
 metadata_fname = join_paths(meson.current_source_dir(), 'Pango.metadata')
 
@@ -64,6 +67,9 @@ pango_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         install_dir: lib_install_dir
 )
 
-nuget_infos += [['PangoSharp', pango_sharp, ['GlibSharp', 'GioSharp']]]
 install_infos += [assembly_name, pango_sharp.full_path()]
 pango_sharp_dep = declare_dependency(link_with: deps + [pango_sharp])
+
+custom_target(assembly_name + '-nugget',
+        command: dotnet_pack + [join_paths(meson.current_source_dir(), csproj_name)],
+        output: nupkg_name)

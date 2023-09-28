@@ -1,5 +1,7 @@
 pkg = 'gtk'
 assembly_name = pkg + '-sharp'
+nupkg_name = 'GLibSharp.GtkSharp.' + version + '.nupkg'
+csproj_name = pkg + '.csproj'
 symbols = join_paths(meson.current_source_dir(), pkg + '-symbols.xml')
 
 raw_api_fname = join_paths(meson.current_source_dir(), pkg + '-api.raw')
@@ -139,8 +141,6 @@ gtk_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         install_dir: lib_install_dir
 )
 
-nuget_infos += [['GtkSharp', gtk_sharp, ['GlibSharp', 'GioSharp',
-    'AtkSharp', 'GdkSharp']]]
 install_infos += [assembly_name, gtk_sharp.full_path()]
 gtk_sharp_dep = declare_dependency(link_with: deps + [gtk_sharp])
 
@@ -160,3 +160,7 @@ if add_languages('c', required: false) and csc.get_id() == 'mono'
 else
     message('Not running tests ' + csc.get_id())
 endif
+
+custom_target(assembly_name + '-nugget',
+        command: dotnet_pack + [join_paths(meson.current_source_dir(), csproj_name)],
+        output: nupkg_name)

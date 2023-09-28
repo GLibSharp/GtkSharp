@@ -1,5 +1,7 @@
 pkg = 'gdk'
 assembly_name = pkg + '-sharp'
+nupkg_name = 'GLibSharp.GdkSharp.' + version + '.nupkg'
+csproj_name = pkg + '.csproj'
 symbols = join_paths(meson.current_source_dir(), 'gdk-symbols.xml')
 
 raw_api_fname = join_paths(meson.current_source_dir(), 'gdk-api.raw')
@@ -70,7 +72,9 @@ gdk_sharp = shared_library(assembly_name, source_gen, sources, assemblyinfo,
         install_dir: lib_install_dir
 )
 
-nuget_infos += [['GdkSharp', gdk_sharp, ['GlibSharp', 'GioSharp', 'AtkSharp']]]
 install_infos += [assembly_name, gdk_sharp.full_path()]
 gdk_sharp_dep = declare_dependency(link_with: deps + [gdk_sharp])
 
+custom_target(assembly_name + '-nugget',
+        command: dotnet_pack + [join_paths(meson.current_source_dir(), csproj_name)],
+        output: nupkg_name)

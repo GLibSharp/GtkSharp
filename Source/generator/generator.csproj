@@ -18,4 +18,5 @@
 	  <EmbeddedResource Include="DESIGN" />
 	</ItemGroup>
 	<Import Project="..\common.targets" />
+	<Import Condition="Exists('..\..\builddir\Source\version.props')" Project="..\..\builddir\Source\version.props" />
 </Project>
