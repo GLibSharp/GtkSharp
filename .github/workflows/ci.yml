@@ -31,7 +31,10 @@ jobs:
         run: |
           brew update
           brew install bison
+          brew install gobject-introspection
           echo "/usr/local/opt/bison/bin" >> $GITHUB_PATH
+        env:
+          HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
       - name: Configure
         run: meson setup builddir --buildtype=release --prefix=${GITHUB_WORKSPACE}/build_prefix
       - name: Build
