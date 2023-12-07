@@ -10,7 +10,7 @@ apiversion = '3.0.0.0'
 mono_required_version = '>=3.2.0'
 gtk_required_version='>=3.22.0'
 glib_required_version='>=2.32.0'
-gi_required_version='>=1.72.0'
+gi_required_version='>=1.68.0'
 
 
 csc = meson.get_compiler('cs')
