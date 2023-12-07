@@ -48,11 +48,8 @@ gio_dep = dependency('gio-2.0', version: glib_required_version,
         fallback: ['glib', 'libgio_dep'])
 gobject_dep = dependency('gobject-2.0', version : glib_required_version,
   fallback: ['glib', 'libgobject_dep'])
-
-if glib_dep.type_name() == 'internal'
-    gi_dep = dependency('gobject-introspection-1.0', version: gi_required_version,
-        fallback: ['gobject-introspection'])
-endif
+gi_dep = dependency('gobject-introspection-1.0', version: gi_required_version,
+    fallback: ['gobject-introspection'])
 
 # FIXME Check how to enabled debug flags (if at all needed).
 
@@ -100,14 +97,14 @@ foreach d: [ 'glib',  'gio' ]
     mono_path += pathsep + join_paths(meson.current_build_dir(), d)
 endforeach
 
-dep_type = glib_dep.type_name()
+dep_type = gi_dep.type_name()
 if dep_type == 'internal'
     subprojdir = 'subprojects'
     glib_girdir = join_paths(meson.global_build_root(), subprojdir, 'gobject-introspection', 'gir')
     gio_girdir = glib_girdir
 elif dep_type == 'pkgconfig'
-    glib_girdir = join_paths(glib_dep.get_variable(pkgconfig: 'datadir'), 'gir-1.0')
-    gio_girdir =  join_paths(gio_dep.get_variable(pkgconfig: 'datadir'), 'gir-1.0')
+    glib_girdir = gi_dep.get_variable(pkgconfig: 'girdir')
+    gio_girdir = glib_girdir
 endif
 
 subdir('parser')
