@@ -60,6 +60,10 @@ assembly_data = configuration_data()
 assembly_data.set('API_VERSION', apiversion)
 assemblyinfo = configure_file(input: 'AssemblyInfo.cs.in', output: 'AssemblyInfo.cs', configuration : assembly_data)
 
+version_props_data = configuration_data()
+version_props_data.set('API_VERSION', version)
+version_props_targets = configure_file(input: 'version.props.in', output: 'version.props', configuration : version_props_data)
+
 policy_config = files('policy.config.in')
 if host_machine.system() == 'darwin'
   lib_prefix=''
@@ -79,7 +83,6 @@ version_data.set('VERSION', version)
 version_data.set('PACKAGE_VERSION', pkg_version)
 
 install_infos = []
-nuget_infos = []
 lib_install_dir = join_paths(get_option('libdir'), 'mono', pkg_version)
 pkg_install_dir = join_paths(get_option('libdir'), 'pkgconfig')
 gapi_xml_installdir = join_paths(get_option('datadir'), 'gapi-3.0')
@@ -106,6 +109,8 @@ elif dep_type == 'pkgconfig'
     glib_girdir = gi_dep.get_variable(pkgconfig: 'girdir')
     gio_girdir = glib_girdir
 endif
+
+dotnet_pack = ['dotnet', 'pack', '--configuration', 'Release']
 
 subdir('parser')
 subdir('generator')
@@ -159,29 +164,6 @@ else
     has_gtk = false
     message('Gtk not found, not building')
 endif
-
-nuget = find_program('nuget.py')
-license_path = 'https://github.com/gtk-sharp'
-project_uri = 'https://github.com/gtk-sharp'
-icon_uri = 'https://upload.wikimedia.org/wikipedia/en/5/5f/Gtk_Sharp_Logo.png'
-license_uri = 'https://github.com/gtk-sharp/gtk-sharp/blob/master/COPYING'
-
-deps = []
-foreach nugetinfo: nuget_infos
-    # FIXME - Pass proper '--owner' and '--author'
-    cmd = [nuget, '--package-name', nugetinfo[0], '--assembly', nugetinfo[1].full_path(),
-            '--project-url', project_uri, '--icon-url', icon_uri, '--license-url',
-            license_uri, '--version', version, '--tags', 'gtk bindings',
-            '--builddir', meson.current_build_dir()]
-
-    foreach dep: nugetinfo[2]
-        cmd += ['--dependency=' + dep + pathsep + version]
-    endforeach
-
-    deps += [custom_target(nugetinfo[0] + '-nugget', command: cmd,
-        depends: [nugetinfo[1]] + deps,
-        output: nugetinfo[0] + '.' + version + '.nupkg')]
-endforeach
 
 if install
     gacutil_install = join_paths(meson.current_source_dir(), 'gacutil_install.py')

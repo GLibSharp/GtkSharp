@@ -1,5 +1,7 @@
-assembly_name = 'cairo-sharp'
-
+pkg = 'cairo'
+assembly_name = pkg + '-sharp'
+nupkg_name = 'GLibSharp.CairoSharp.' + version + '.nupkg'
+csproj_name = pkg + '.csproj'
 raw_api_fname = join_paths(meson.current_source_dir(), 'cairo-api.raw')
 metadata_fname = join_paths(meson.current_source_dir(), 'cairo.metadata')
 
@@ -69,7 +71,6 @@ cairo_sharp = shared_library(assembly_name, sources, assemblyinfo,
         install_dir: lib_install_dir
 )
 
-nuget_infos += [['CairoSharp', cairo_sharp, []]]
 install_infos += [assembly_name, cairo_sharp.full_path()]
 cairo_api_includes = join_paths(meson.current_source_dir(), 'cairo-api.xml')
 
@@ -78,3 +79,7 @@ if install
 endif
 
 cairo_sharp_dep = declare_dependency(link_with: cairo_sharp)
+
+custom_target(assembly_name + '-nugget',
+        command: dotnet_pack + [join_paths(meson.current_source_dir(), csproj_name)],
+        output: nupkg_name)

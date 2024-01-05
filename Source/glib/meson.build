@@ -1,4 +1,7 @@
-assembly_name = 'glib-sharp'
+pkg = 'glib'
+assembly_name = pkg + '-sharp'
+nupkg_name = 'GLibSharp.GLibSharp.' + version + '.nupkg'
+csproj_name = pkg + '.csproj'
 
 configure_file(input: 'glib-sharp.dll.config.in',
         output: 'glib-sharp.dll.config',
@@ -101,7 +104,6 @@ glib_sharp = shared_library(assembly_name, sources, assemblyinfo,
         install_dir: lib_install_dir
 )
 
-nuget_infos += [['GlibSharp', glib_sharp, []]]
 install_infos += [assembly_name, glib_sharp.full_path()]
 
 glib_api_includes = join_paths(meson.current_source_dir(), 'glib-api.xml')
@@ -111,3 +113,7 @@ if install
 endif
 
 glib_sharp_dep = declare_dependency(link_with: glib_sharp)
+
+custom_target(assembly_name + '-nugget',
+        command: dotnet_pack + [join_paths(meson.current_source_dir(), csproj_name)],
+        output: nupkg_name)

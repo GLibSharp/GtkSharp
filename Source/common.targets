@@ -2,5 +2,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	</PropertyGroup>
+        <Authors>GLibSharp</Authors>
+        <PackageProjectUrl>https://github.com/GLibSharp/GtkSharp</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/GLibSharp/GtkSharp</RepositoryUrl>
+        <IconUrl>https://upload.wikimedia.org/wikipedia/en/5/5f/Gtk_Sharp_Logo.png</IconUrl>
+        <PackageTags>gtk bindings</PackageTags>
+        <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+        <SignAssembly>true</SignAssembly>
+        <DelaySign>true</DelaySign>
+        <AssemblyOriginatorKeyFile>..\gtk-sharp.snk</AssemblyOriginatorKeyFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+        <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
 </Project>
