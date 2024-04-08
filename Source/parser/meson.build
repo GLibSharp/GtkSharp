@@ -1,4 +1,4 @@
-gapi_installdir = join_paths(get_option('libdir'), 'gapi-3.0')
+gapi_installdir = join_paths(get_option('prefix'), 'lib', 'gapi-3.0')
 pkg_install_dir = '@0@/pkgconfig'.format(get_option('libdir'))
 
 gapi_parser = executable('gapi-parser', 'gapi-parser.cs',
