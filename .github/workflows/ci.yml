@@ -22,7 +22,7 @@ jobs:
         if: matrix.config.os == 'ubuntu-latest'
         run: dotnet format Source/gtk-sharp.sln --verify-no-changes --no-restore
       - name: Install Deps
-        run: pip3 install meson ninja
+        run: pip3 install meson ninja --break-system-packages
       - name: Install Windows Deps
         if: matrix.config.os == 'windows-latest'
         run: choco install winflexbison3 pkgconfiglite -y --allow-empty-checksum
