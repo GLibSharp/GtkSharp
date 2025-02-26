@@ -130,8 +130,12 @@ namespace GLib {
 		protected virtual void DisposeUnmanagedResources() {
 			if (!Owned || DisposeUnmanagedFunc == null)
 				return;
-			FinalizerInfo info = new FinalizerInfo(DisposeUnmanagedFunc, Handle);
-			Timeout.Add(50, new TimeoutHandler(info.Handler));
+			if (Object.FinalizeOnMainThread) {
+				FinalizerInfo info = new FinalizerInfo(DisposeUnmanagedFunc, Handle);
+				Timeout.Add(50, new TimeoutHandler(info.Handler));
+			} else {
+				DisposeUnmanagedFunc(Handle);
+			}
 		}
 
 		protected internal bool Disposed { get; private set; } = false;

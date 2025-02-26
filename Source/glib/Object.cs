@@ -8,7 +8,7 @@
 // Copyright (c) 2013 Andres G. Aragoneses
 //
 // This program is free software; you can redistribute it and/or
-// modify it under the terms of version 2 of the Lesser GNU General 
+// modify it under the terms of version 2 of the Lesser GNU General
 // Public License as published by the Free Software Foundation.
 //
 // This program is distributed in the hope that it will be useful,
@@ -66,7 +66,7 @@ namespace GLib {
 			if (tref == null)
 				return;
 
-			if (disposing)
+			if (disposing || !FinalizeOnMainThread)
 				tref.Dispose();
 			else
 				tref.QueueUnref();
@@ -75,6 +75,8 @@ namespace GLib {
 		public static explicit operator IntPtr(Object o) => o.Handle;
 
 		public static bool WarnOnFinalize { get; set; }
+
+		public static bool FinalizeOnMainThread { get; set; } = true;
 
 		[DllImport(Global.GObjectNativeDll, CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_object_ref(IntPtr raw);
